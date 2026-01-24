@@ -6,7 +6,7 @@
 
 ## Overview
 
-A Next.js website to visualize and compare Common Data Set (CDS) metrics across colleges. Currently featuring Brown University with 9 years of historical data (2016-2017 through 2024-2025).
+A Next.js website to visualize and compare Common Data Set (CDS) metrics across colleges. Currently featuring **Brown University** and **Harvard University**, each with 9 years of historical data (2016-2017 through 2024-2025).
 
 **Live Features:**
 - Admissions trends (applications, acceptance rates, yield, early decision)
@@ -64,7 +64,8 @@ college-comparisons/
 │   │       └── DemographicsTrendChart.tsx
 │   ├── data/
 │   │   └── schools/
-│   │       └── brown.json              # Brown University data (9 years)
+│   │       ├── brown.json              # Brown University data (9 years)
+│   │       └── harvard.json            # Harvard University data (9 years)
 │   ├── lib/
 │   │   └── types.ts                    # TypeScript interfaces
 │   └── utils/
@@ -306,6 +307,17 @@ export const SCHOOL_COLORS: Record<string, string> = {
 - `Brown/CDS_2023_2024.pdf`
 - `Brown/CDS_2024_2025.pdf`
 
+### Harvard University (9 years)
+- `Harvard/CDS 2016-2017.pdf`
+- `Harvard/CDS 2017-2018.pdf`
+- `Harvard/CDS 2018-2019.pdf`
+- `Harvard/CDS 2019-2020.pdf`
+- `Harvard/CDS 2020-2021.pdf`
+- `Harvard/CDS 2021-2022.pdf`
+- `Harvard/CDS_2022-2023.pdf`
+- `Harvard/CDS_2023-2024.pdf`
+- `Harvard/CDS_2024-25.pdf`
+
 ### Other Schools (PDFs available, not yet extracted)
 - **Cornell:** 8 PDFs (2016-2024)
 - **Dartmouth:** 9 PDFs (2016-2025)
@@ -356,6 +368,7 @@ The width(-1) and height(-1) of chart should be greater than 0
 ## Future Work / TODO
 
 ### Data
+- [x] Extract data for Harvard University (9 years)
 - [ ] Extract data for other Ivy League schools (Cornell, Dartmouth, Yale, etc.)
 - [ ] Extract data for Stanford, MIT, UPenn
 - [ ] Improve automated extraction accuracy
@@ -389,6 +402,7 @@ The width(-1) and height(-1) of chart should be greater than 0
 | `src/app/[school]/SchoolPageClient.tsx` | Main school page with all charts |
 | `src/lib/types.ts` | TypeScript interfaces and school colors |
 | `src/data/schools/brown.json` | Brown University data (9 years) |
+| `src/data/schools/harvard.json` | Harvard University data (9 years) |
 | `scripts/extract_cds.py` | PDF extraction script |
 | `src/app/globals.css` | Global styles, light mode forcing |
 | `tailwind.config.ts` | Tailwind configuration |
@@ -427,6 +441,22 @@ find . -name "*.pdf" | head -20
 | 2022-2023 | 50,649 | 2,562 | 5.1% | 1490-1580 | $84,728 |
 | 2023-2024 | 51,316 | 2,686 | 5.2% | 1500-1570 | $88,756 |
 | 2024-2025 | 48,904 | 2,638 | 5.4% | 1510-1580 | $93,164 |
+
+---
+
+## Data Summary: Harvard University
+
+| Year | Applied | Admitted | Accept% | SAT Range | Total COA |
+|------|---------|----------|---------|-----------|-----------|
+| 2016-2017 | 39,506 | 2,037 | 5.2% | 1430-1600 | $69,607 |
+| 2017-2018 | 39,494 | 2,056 | 5.2% | 1460-1590 | $71,650 |
+| 2018-2019 | 42,749 | 1,962 | 4.6% | 1460-1590 | $72,391 |
+| 2019-2020 | 43,330 | 1,950 | 4.5% | 1460-1580 | $75,891 |
+| 2020-2021 | 40,248 | 1,980 | 4.9% | 1460-1580 | $78,028 |
+| 2021-2022 | 57,435 | 1,968 | 3.4% | 1460-1580 | $78,028 |
+| 2022-2023 | 61,220 | 1,954 | 3.2% | 1480-1580 | $82,866 |
+| 2023-2024 | 56,937 | 1,942 | 3.4% | 1490-1580 | $88,584 |
+| 2024-2025 | 54,008 | 1,937 | 3.6% | 1510-1580 | $93,075 |
 
 ---
 

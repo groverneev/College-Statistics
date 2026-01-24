@@ -19,6 +19,7 @@ A data visualization dashboard for comparing colleges using Common Data Set (CDS
 | School | Years | Data Points |
 |--------|-------|-------------|
 | Brown University | 2016-2025 | 9 years |
+| Harvard University | 2016-2025 | 9 years |
 
 *More schools coming soon: Cornell, Dartmouth, Yale, Stanford, UPenn*
 
