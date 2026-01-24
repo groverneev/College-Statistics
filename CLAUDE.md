@@ -2,6 +2,8 @@
 
 > **WARNING:** Do NOT attempt to read PDF files directly using the Read tool. The PDF files in this project (e.g., `Brown/*.pdf`) are large and will overload the context window. Always use the Python extraction script (`scripts/extract_cds.py`) to extract data from PDFs instead.
 
+> **NOTE:** When completing significant tasks (adding features, fixing bugs, adding new schools, changing data schema, etc.), update this `CLAUDE.md` file and `README.md` if necessary to keep documentation current.
+
 ## Overview
 
 A Next.js website to visualize and compare Common Data Set (CDS) metrics across colleges. Currently featuring Brown University with 9 years of historical data (2016-2017 through 2024-2025).
