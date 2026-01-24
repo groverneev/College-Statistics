@@ -1,0 +1,141 @@
+@import "tailwindcss";
+
+/* Force light mode */
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: light only;
+  }
+}
+
+:root {
+  --background: #f5f5f5;
+  --foreground: #1a1a1a;
+  --card-bg: #ffffff;
+  --border-color: #e5e5e5;
+  color-scheme: light only;
+}
+
+html {
+  color-scheme: light only;
+}
+
+body {
+  color: #1a1a1a;
+  background: #f5f5f5;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+}
+
+/* Force all backgrounds to be light */
+.bg-white,
+.bg-gray-50,
+.bg-gray-100 {
+  background-color: #ffffff !important;
+}
+
+/* Card styling - force white background */
+.card {
+  background-color: #ffffff !important;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.06);
+}
+
+/* Override any dark mode backgrounds */
+[class*="dark:bg-"] {
+  background-color: #ffffff !important;
+}
+
+/* Stat card styling */
+.stat-card {
+  background-color: #ffffff !important;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  padding: 1.25rem 1.5rem;
+  text-align: center;
+  border: 1px solid #e5e5e5;
+}
+
+.stat-card .label {
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #666666;
+  margin-bottom: 0.5rem;
+}
+
+.stat-card .value {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  line-height: 1.2;
+}
+
+.stat-card .subtext {
+  font-size: 0.75rem;
+  color: #999999;
+  margin-top: 0.25rem;
+}
+
+/* Table styling */
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.875rem;
+  background-color: #ffffff !important;
+}
+
+.data-table th {
+  text-align: left;
+  padding: 0.75rem 1rem;
+  font-weight: 600;
+  color: #666666;
+  border-bottom: 2px solid #e5e5e5;
+  font-size: 0.75rem;
+  background-color: #ffffff !important;
+}
+
+.data-table td {
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid #e5e5e5;
+  color: #1a1a1a;
+  background-color: #ffffff !important;
+}
+
+.data-table tr:hover td {
+  background-color: #fafafa !important;
+}
+
+.data-table .year-cell {
+  font-weight: 600;
+}
+
+/* Override dark text colors */
+.text-gray-800,
+.text-gray-900 {
+  color: #1a1a1a !important;
+}
+
+.text-gray-600,
+.text-gray-700 {
+  color: #4a4a4a !important;
+}
+
+.text-gray-500 {
+  color: #666666 !important;
+}
+
+/* Recharts overrides */
+.recharts-wrapper,
+.recharts-surface {
+  background-color: transparent !important;
+}
+
+.recharts-cartesian-grid-bg {
+  fill: transparent !important;
+}
+
+/* Border colors */
+.border-gray-200,
+.border-gray-100 {
+  border-color: #e5e5e5 !important;
+}
