@@ -2,8 +2,8 @@
 
 import { YearData } from "@/lib/types";
 import {
-  ComposedChart,
-  Bar,
+  AreaChart,
+  Area,
   Line,
   XAxis,
   YAxis,
@@ -11,7 +11,6 @@ import {
   Tooltip,
   ResponsiveContainer,
   Legend,
-  Cell,
 } from "recharts";
 
 interface TestScoresTrendChartProps {
@@ -25,6 +24,17 @@ export default function TestScoresTrendChart({
 }: TestScoresTrendChartProps) {
   const years = Object.keys(yearData).sort();
 
+  // Calculate min score for Y-axis (rounded down to nearest 50)
+  const allScores = years
+    .filter((year) => yearData[year].testScores.sat)
+    .flatMap((year) => {
+      const sat = yearData[year].testScores.sat!;
+      return [sat.composite.p25, sat.composite.p50, sat.composite.p75];
+    });
+
+  const minScore = Math.floor(Math.min(...allScores) / 50) * 50 - 50; // Round down and add padding
+  const maxScore = 1600;
+
   const satTrendData = years
     .filter((year) => yearData[year].testScores.sat)
     .map((year) => {
@@ -35,10 +45,7 @@ export default function TestScoresTrendChart({
         p25: sat.composite.p25,
         p50: sat.composite.p50,
         p75: sat.composite.p75,
-        // For stacked bar: bottom portion and middle range
-        bottom: sat.composite.p25,
-        middle: sat.composite.p50 - sat.composite.p25,
-        top: sat.composite.p75 - sat.composite.p50,
+        range: [sat.composite.p25, sat.composite.p75],
       };
     });
 
@@ -53,7 +60,7 @@ export default function TestScoresTrendChart({
       </h3>
       <div className="h-64">
         <ResponsiveContainer width="100%" height="100%">
-          <ComposedChart data={satTrendData}>
+          <AreaChart data={satTrendData}>
             <CartesianGrid strokeDasharray="3 3" stroke="#e5e5e5" />
             <XAxis
               dataKey="year"
@@ -61,7 +68,7 @@ export default function TestScoresTrendChart({
               axisLine={{ stroke: "#e5e5e5" }}
             />
             <YAxis
-              domain={[1400, 1600]}
+              domain={[minScore, maxScore]}
               tick={{ fontSize: 12, fill: "#666" }}
               axisLine={{ stroke: "#e5e5e5" }}
               label={{
@@ -95,37 +102,29 @@ export default function TestScoresTrendChart({
             />
             <Legend
               formatter={(value) => {
-                if (value === "p75") return "75th Percentile";
-                if (value === "p50") return "50th Percentile";
-                if (value === "p25") return "25th Percentile";
+                if (value === "p50") return "50th Percentile (Median)";
+                if (value === "range") return "Middle 50% Range";
                 return value;
               }}
             />
-            <Bar dataKey="bottom" stackId="a" fill="transparent" />
-            <Bar
-              dataKey="middle"
-              stackId="a"
+            <Area
+              type="monotone"
+              dataKey="range"
               fill={schoolColor}
-              fillOpacity={0.5}
-              name="p25"
-            />
-            <Bar
-              dataKey="top"
-              stackId="a"
-              fill="#27ae60"
-              fillOpacity={0.7}
-              name="p75"
-              radius={[4, 4, 0, 0]}
+              fillOpacity={0.3}
+              stroke={schoolColor}
+              strokeWidth={2}
+              name="range"
             />
             <Line
               type="monotone"
               dataKey="p50"
               stroke="#2980b9"
               strokeWidth={3}
-              dot={{ fill: "#2980b9", r: 4 }}
+              dot={{ fill: "#2980b9", r: 5 }}
               name="p50"
             />
-          </ComposedChart>
+          </AreaChart>
         </ResponsiveContainer>
       </div>
 
