@@ -5,10 +5,12 @@ import { formatNumber, formatPercent } from "@/utils/dataHelpers";
 // Import school data
 import brownData from "@/data/schools/brown.json";
 import harvardData from "@/data/schools/harvard.json";
+import stanfordData from "@/data/schools/stanford.json";
 
 const schools: SchoolData[] = [
   brownData as SchoolData,
   harvardData as SchoolData,
+  stanfordData as SchoolData,
 ];
 
 export default function HomePage() {
