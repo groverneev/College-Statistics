@@ -11,9 +11,6 @@ import {
   Tooltip,
   ResponsiveContainer,
   Legend,
-  PieChart,
-  Pie,
-  Cell,
 } from "recharts";
 
 interface DemographicsTrendChartProps {
@@ -28,7 +25,6 @@ const RACE_COLORS: Record<string, string> = {
   blackAfricanAmerican: "#27ae60",
   international: "#9b59b6",
   twoOrMoreRaces: "#e74c3c",
-  unknown: "#bdc3c7",
 };
 
 const RACE_LABELS: Record<string, string> = {
@@ -38,7 +34,6 @@ const RACE_LABELS: Record<string, string> = {
   blackAfricanAmerican: "Black/African American",
   international: "International",
   twoOrMoreRaces: "Two or More",
-  unknown: "Unknown",
 };
 
 export default function DemographicsTrendChart({
@@ -58,16 +53,21 @@ export default function DemographicsTrendChart({
     graduate: yearData[year].demographics.enrollment.graduate || 0,
   }));
 
-  // Pie chart data for current demographics
-  const pieData = Object.entries(latestDemo.byRace)
-    .filter(([key]) => key in RACE_LABELS && latestDemo.byRace[key as keyof typeof latestDemo.byRace] > 0)
-    .map(([key, value]) => ({
-      name: RACE_LABELS[key],
-      value,
-      percent: totalUndergrad > 0 ? (value / totalUndergrad) * 100 : 0,
-      color: RACE_COLORS[key],
-    }))
-    .sort((a, b) => b.value - a.value);
+  // Demographics trend data (percentages over time)
+  const demographicsData = years.map((year) => {
+    const demo = yearData[year].demographics;
+    const total = demo.enrollment.undergraduate;
+    return {
+      year: year.split("-")[0],
+      fullYear: year,
+      white: total > 0 ? (demo.byRace.white / total) * 100 : 0,
+      asian: total > 0 ? (demo.byRace.asian / total) * 100 : 0,
+      hispanicLatino: total > 0 ? (demo.byRace.hispanicLatino / total) * 100 : 0,
+      blackAfricanAmerican: total > 0 ? (demo.byRace.blackAfricanAmerican / total) * 100 : 0,
+      international: total > 0 ? (demo.byRace.international / total) * 100 : 0,
+      twoOrMoreRaces: total > 0 ? (demo.byRace.twoOrMoreRaces / total) * 100 : 0,
+    };
+  });
 
   return (
     <div className="card p-6">
@@ -126,31 +126,85 @@ export default function DemographicsTrendChart({
           </div>
         </div>
 
-        {/* Demographics Pie Chart */}
+        {/* Demographics Trend Chart */}
         <div>
           <h4 className="text-sm font-medium text-gray-600 mb-3">
-            Current Demographics ({latestYear})
+            Demographics Over Time (% of Undergraduates)
           </h4>
           <div className="h-64">
             <ResponsiveContainer width="100%" height="100%">
-              <PieChart>
-                <Pie
-                  data={pieData}
-                  cx="50%"
-                  cy="50%"
-                  outerRadius={80}
-                  dataKey="value"
-                  label={({ name, percent }) => `${name} ${(percent ?? 0).toFixed(0)}%`}
-                  labelLine={false}
-                >
-                  {pieData.map((entry, index) => (
-                    <Cell key={`cell-${index}`} fill={entry.color} />
-                  ))}
-                </Pie>
-                <Tooltip
-                  formatter={(value) => [formatNumber(value as number), "Students"]}
+              <LineChart data={demographicsData}>
+                <CartesianGrid strokeDasharray="3 3" stroke="#e5e5e5" />
+                <XAxis
+                  dataKey="year"
+                  tick={{ fontSize: 12, fill: "#666" }}
+                  axisLine={{ stroke: "#e5e5e5" }}
                 />
-              </PieChart>
+                <YAxis
+                  tick={{ fontSize: 12, fill: "#666" }}
+                  axisLine={{ stroke: "#e5e5e5" }}
+                  tickFormatter={(v) => `${v.toFixed(0)}%`}
+                  domain={[0, 'auto']}
+                />
+                <Tooltip
+                  contentStyle={{
+                    backgroundColor: "white",
+                    border: "1px solid #e5e5e5",
+                    borderRadius: "8px",
+                  }}
+                  formatter={(value) => [`${(value as number).toFixed(1)}%`, ""]}
+                  labelFormatter={(label) => `${label}-${parseInt(label as string) + 1}`}
+                />
+                <Legend />
+                <Line
+                  type="monotone"
+                  dataKey="white"
+                  name={RACE_LABELS.white}
+                  stroke={RACE_COLORS.white}
+                  strokeWidth={2}
+                  dot={{ fill: RACE_COLORS.white, r: 3 }}
+                />
+                <Line
+                  type="monotone"
+                  dataKey="asian"
+                  name={RACE_LABELS.asian}
+                  stroke={RACE_COLORS.asian}
+                  strokeWidth={2}
+                  dot={{ fill: RACE_COLORS.asian, r: 3 }}
+                />
+                <Line
+                  type="monotone"
+                  dataKey="hispanicLatino"
+                  name={RACE_LABELS.hispanicLatino}
+                  stroke={RACE_COLORS.hispanicLatino}
+                  strokeWidth={2}
+                  dot={{ fill: RACE_COLORS.hispanicLatino, r: 3 }}
+                />
+                <Line
+                  type="monotone"
+                  dataKey="blackAfricanAmerican"
+                  name={RACE_LABELS.blackAfricanAmerican}
+                  stroke={RACE_COLORS.blackAfricanAmerican}
+                  strokeWidth={2}
+                  dot={{ fill: RACE_COLORS.blackAfricanAmerican, r: 3 }}
+                />
+                <Line
+                  type="monotone"
+                  dataKey="international"
+                  name={RACE_LABELS.international}
+                  stroke={RACE_COLORS.international}
+                  strokeWidth={2}
+                  dot={{ fill: RACE_COLORS.international, r: 3 }}
+                />
+                <Line
+                  type="monotone"
+                  dataKey="twoOrMoreRaces"
+                  name={RACE_LABELS.twoOrMoreRaces}
+                  stroke={RACE_COLORS.twoOrMoreRaces}
+                  strokeWidth={2}
+                  dot={{ fill: RACE_COLORS.twoOrMoreRaces, r: 3 }}
+                />
+              </LineChart>
             </ResponsiveContainer>
           </div>
         </div>
