@@ -22,35 +22,6 @@ A data visualization dashboard for comparing colleges using Common Data Set (CDS
 
 *More schools coming soon: Cornell, Dartmouth, Yale, Stanford, UPenn*
 
-## Getting Started
-
-### Prerequisites
-
-- Node.js 18+
-- npm or yarn
-
-### Installation
-
-```bash
-# Clone the repository
-git clone https://github.com/yourusername/college-comparisons.git
-cd college-comparisons
-
-# Install dependencies
-npm install
-
-# Start development server
-npm run dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) to view the dashboard.
-
-### Build for Production
-
-```bash
-npm run build
-```
-
 ## Project Structure
 
 ```
