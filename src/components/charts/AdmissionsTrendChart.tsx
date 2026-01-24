@@ -183,16 +183,16 @@ export default function AdmissionsTrendChart({
           <table className="data-table">
             <thead>
               <tr>
-                <th>Year</th>
-                <th className="text-right">Applications</th>
-                <th className="text-right">Admits</th>
-                <th className="text-right">Enrolled</th>
-                <th className="text-right">Accept Rate</th>
-                <th className="text-right">Yield Rate</th>
+                <th style={{ textAlign: "left" }}>Year</th>
+                <th style={{ textAlign: "right" }}>Applications</th>
+                <th style={{ textAlign: "right" }}>Admits</th>
+                <th style={{ textAlign: "right" }}>Enrolled</th>
+                <th style={{ textAlign: "right" }}>Accept Rate</th>
+                <th style={{ textAlign: "right" }}>Yield Rate</th>
                 {hasEarlyDecision && (
                   <>
-                    <th className="text-right">ED Apps</th>
-                    <th className="text-right">ED Admits</th>
+                    <th style={{ textAlign: "right" }}>ED Apps</th>
+                    <th style={{ textAlign: "right" }}>ED Admits</th>
                   </>
                 )}
               </tr>
@@ -200,18 +200,18 @@ export default function AdmissionsTrendChart({
             <tbody>
               {trendData.slice().reverse().map((row) => (
                 <tr key={row.fullYear}>
-                  <td className="year-cell" style={{ color: schoolColor }}>
+                  <td className="year-cell" style={{ color: schoolColor, textAlign: "left" }}>
                     {row.fullYear}
                   </td>
-                  <td className="text-right">{formatNumber(row.applications)}</td>
-                  <td className="text-right">{formatNumber(row.admitted)}</td>
-                  <td className="text-right">{formatNumber(row.enrolled)}</td>
-                  <td className="text-right">{row.acceptanceRate.toFixed(1)}%</td>
-                  <td className="text-right">{row.yieldRate.toFixed(1)}%</td>
+                  <td style={{ textAlign: "right" }}>{formatNumber(row.applications)}</td>
+                  <td style={{ textAlign: "right" }}>{formatNumber(row.admitted)}</td>
+                  <td style={{ textAlign: "right" }}>{formatNumber(row.enrolled)}</td>
+                  <td style={{ textAlign: "right" }}>{row.acceptanceRate.toFixed(1)}%</td>
+                  <td style={{ textAlign: "right" }}>{row.yieldRate.toFixed(1)}%</td>
                   {hasEarlyDecision && (
                     <>
-                      <td className="text-right">{row.edApplied > 0 ? formatNumber(row.edApplied) : "-"}</td>
-                      <td className="text-right">{row.edAdmitted > 0 ? formatNumber(row.edAdmitted) : "-"}</td>
+                      <td style={{ textAlign: "right" }}>{row.edApplied > 0 ? formatNumber(row.edApplied) : "-"}</td>
+                      <td style={{ textAlign: "right" }}>{row.edAdmitted > 0 ? formatNumber(row.edAdmitted) : "-"}</td>
                     </>
                   )}
                 </tr>
