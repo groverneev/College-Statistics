@@ -45,20 +45,20 @@
           "graduate": 9880
         },
         "byRace": {
-          "international": 0,
-          "hispanicLatino": 0,
-          "blackAfricanAmerican": 0,
-          "white": 0,
-          "asian": 0,
-          "americanIndianAlaskaNative": 0,
-          "nativeHawaiianPacificIslander": 0,
-          "twoOrMoreRaces": 0,
-          "unknown": 0
+          "international": 640,
+          "hispanicLatino": 1117,
+          "blackAfricanAmerican": 449,
+          "white": 2545,
+          "asian": 1454,
+          "americanIndianAlaskaNative": 75,
+          "nativeHawaiianPacificIslander": 24,
+          "twoOrMoreRaces": 700,
+          "unknown": 28
         },
         "byResidency": {
-          "inState": 0,
-          "outOfState": 0,
-          "international": 0
+          "inState": 2686,
+          "outOfState": 3708,
+          "international": 640
         }
       },
       "costs": {
@@ -69,8 +69,8 @@
       },
       "financialAid": {
         "percentReceivingAid": 0,
-        "averageAidPackage": 0,
-        "averageNeedBasedGrant": 0,
+        "averageAidPackage": 50547,
+        "averageNeedBasedGrant": 49124,
         "percentNeedFullyMet": 1.0
       }
     },
@@ -84,13 +84,29 @@
       },
       "testScores": {
         "sat": {
-          "composite": {"p25": 1390, "p50": 1465, "p75": 1540},
-          "readingWriting": {"p25": 690, "p50": 725, "p75": 760},
-          "math": {"p25": 700, "p50": 740, "p75": 780},
+          "composite": {
+            "p25": 1390,
+            "p50": 1465,
+            "p75": 1540
+          },
+          "readingWriting": {
+            "p25": 690,
+            "p50": 725,
+            "p75": 760
+          },
+          "math": {
+            "p25": 700,
+            "p50": 740,
+            "p75": 780
+          },
           "submissionRate": 0
         },
         "act": {
-          "composite": {"p25": 32, "p50": 33, "p75": 35},
+          "composite": {
+            "p25": 32,
+            "p50": 33,
+            "p75": 35
+          },
           "submissionRate": 0
         }
       },
@@ -112,8 +128,8 @@
           "unknown": 249
         },
         "byResidency": {
-          "inState": 1651,
-          "outOfState": 4733,
+          "inState": 2618,
+          "outOfState": 3766,
           "international": 648
         }
       },
@@ -124,7 +140,7 @@
         "totalCOA": 64729
       },
       "financialAid": {
-        "percentReceivingAid": 0.50,
+        "percentReceivingAid": 0.5,
         "averageAidPackage": 50547,
         "averageNeedBasedGrant": 47664,
         "percentNeedFullyMet": 1.0
@@ -140,13 +156,29 @@
       },
       "testScores": {
         "sat": {
-          "composite": {"p25": 1420, "p50": 1495, "p75": 1570},
-          "readingWriting": {"p25": 700, "p50": 735, "p75": 770},
-          "math": {"p25": 720, "p50": 760, "p75": 800},
+          "composite": {
+            "p25": 1420,
+            "p50": 1495,
+            "p75": 1570
+          },
+          "readingWriting": {
+            "p25": 700,
+            "p50": 735,
+            "p75": 770
+          },
+          "math": {
+            "p25": 720,
+            "p50": 760,
+            "p75": 800
+          },
           "submissionRate": 0
         },
         "act": {
-          "composite": {"p25": 32, "p50": 33, "p75": 35},
+          "composite": {
+            "p25": 32,
+            "p50": 33,
+            "p75": 35
+          },
           "submissionRate": 0
         }
       },
@@ -168,8 +200,8 @@
           "unknown": 219
         },
         "byResidency": {
-          "inState": 1659,
-          "outOfState": 4739,
+          "inState": 2624,
+          "outOfState": 3774,
           "international": 664
         }
       },
@@ -180,7 +212,7 @@
         "totalCOA": 69962
       },
       "financialAid": {
-        "percentReceivingAid": 0.50,
+        "percentReceivingAid": 0.5,
         "averageAidPackage": 53260,
         "averageNeedBasedGrant": 50234,
         "percentNeedFullyMet": 1.0
@@ -196,13 +228,29 @@
       },
       "testScores": {
         "sat": {
-          "composite": {"p25": 1440, "p50": 1505, "p75": 1570},
-          "readingWriting": {"p25": 710, "p50": 745, "p75": 780},
-          "math": {"p25": 730, "p50": 760, "p75": 790},
+          "composite": {
+            "p25": 1440,
+            "p50": 1505,
+            "p75": 1570
+          },
+          "readingWriting": {
+            "p25": 710,
+            "p50": 745,
+            "p75": 780
+          },
+          "math": {
+            "p25": 730,
+            "p50": 760,
+            "p75": 790
+          },
           "submissionRate": 0
         },
         "act": {
-          "composite": {"p25": 32, "p50": 33, "p75": 35},
+          "composite": {
+            "p25": 32,
+            "p50": 33,
+            "p75": 35
+          },
           "submissionRate": 0
         }
       },
@@ -224,8 +272,8 @@
           "unknown": 61
         },
         "byResidency": {
-          "inState": 1644,
-          "outOfState": 4653,
+          "inState": 2519,
+          "outOfState": 3778,
           "international": 699
         }
       },
@@ -252,13 +300,29 @@
       },
       "testScores": {
         "sat": {
-          "composite": {"p25": 1440, "p50": 1510, "p75": 1570},
-          "readingWriting": {"p25": 710, "p50": 750, "p75": 780},
-          "math": {"p25": 730, "p50": 760, "p75": 790},
+          "composite": {
+            "p25": 1440,
+            "p50": 1510,
+            "p75": 1570
+          },
+          "readingWriting": {
+            "p25": 710,
+            "p50": 750,
+            "p75": 780
+          },
+          "math": {
+            "p25": 730,
+            "p50": 760,
+            "p75": 790
+          },
           "submissionRate": 0
         },
         "act": {
-          "composite": {"p25": 31, "p50": 33, "p75": 35},
+          "composite": {
+            "p25": 31,
+            "p50": 33,
+            "p75": 35
+          },
           "submissionRate": 0
         }
       },
@@ -280,8 +344,8 @@
           "unknown": 61
         },
         "byResidency": {
-          "inState": 1497,
-          "outOfState": 4232,
+          "inState": 2235,
+          "outOfState": 3494,
           "international": 637
         }
       },
@@ -308,13 +372,29 @@
       },
       "testScores": {
         "sat": {
-          "composite": {"p25": 1470, "p50": 1525, "p75": 1570},
-          "readingWriting": {"p25": 720, "p50": 755, "p75": 780},
-          "math": {"p25": 750, "p50": 770, "p75": 790},
+          "composite": {
+            "p25": 1470,
+            "p50": 1525,
+            "p75": 1570
+          },
+          "readingWriting": {
+            "p25": 720,
+            "p50": 755,
+            "p75": 780
+          },
+          "math": {
+            "p25": 750,
+            "p50": 770,
+            "p75": 790
+          },
           "submissionRate": 0
         },
         "act": {
-          "composite": {"p25": 34, "p50": 34, "p75": 35},
+          "composite": {
+            "p25": 34,
+            "p50": 34,
+            "p75": 35
+          },
           "submissionRate": 0
         }
       },
@@ -336,8 +416,8 @@
           "unknown": 467
         },
         "byResidency": {
-          "inState": 1795,
-          "outOfState": 5086,
+          "inState": 2753,
+          "outOfState": 4128,
           "international": 764
         }
       },
@@ -364,13 +444,29 @@
       },
       "testScores": {
         "sat": {
-          "composite": {"p25": 1500, "p50": 1540, "p75": 1570},
-          "readingWriting": {"p25": 730, "p50": 760, "p75": 780},
-          "math": {"p25": 770, "p50": 790, "p75": 800},
+          "composite": {
+            "p25": 1500,
+            "p50": 1540,
+            "p75": 1570
+          },
+          "readingWriting": {
+            "p25": 730,
+            "p50": 760,
+            "p75": 780
+          },
+          "math": {
+            "p25": 770,
+            "p50": 790,
+            "p75": 800
+          },
           "submissionRate": 0
         },
         "act": {
-          "composite": {"p25": 33, "p50": 35, "p75": 35},
+          "composite": {
+            "p25": 33,
+            "p50": 35,
+            "p75": 35
+          },
           "submissionRate": 0
         }
       },
@@ -392,8 +488,8 @@
           "unknown": 417
         },
         "byResidency": {
-          "inState": 1891,
-          "outOfState": 5354,
+          "inState": 2971,
+          "outOfState": 4274,
           "international": 804
         }
       },
@@ -420,13 +516,29 @@
       },
       "testScores": {
         "sat": {
-          "composite": {"p25": 1500, "p50": 1540, "p75": 1580},
-          "readingWriting": {"p25": 740, "p50": 765, "p75": 790},
-          "math": {"p25": 760, "p50": 780, "p75": 800},
+          "composite": {
+            "p25": 1500,
+            "p50": 1540,
+            "p75": 1580
+          },
+          "readingWriting": {
+            "p25": 740,
+            "p50": 765,
+            "p75": 790
+          },
+          "math": {
+            "p25": 760,
+            "p50": 780,
+            "p75": 800
+          },
           "submissionRate": 0
         },
         "act": {
-          "composite": {"p25": 34, "p50": 35, "p75": 36},
+          "composite": {
+            "p25": 34,
+            "p50": 35,
+            "p75": 36
+          },
           "submissionRate": 0
         }
       },
@@ -448,8 +560,8 @@
           "unknown": 274
         },
         "byResidency": {
-          "inState": 1824,
-          "outOfState": 5161,
+          "inState": 2934,
+          "outOfState": 4051,
           "international": 776
         }
       },
@@ -476,13 +588,29 @@
       },
       "testScores": {
         "sat": {
-          "composite": {"p25": 1510, "p50": 1540, "p75": 1570},
-          "readingWriting": {"p25": 740, "p50": 760, "p75": 780},
-          "math": {"p25": 770, "p50": 790, "p75": 800},
+          "composite": {
+            "p25": 1510,
+            "p50": 1540,
+            "p75": 1570
+          },
+          "readingWriting": {
+            "p25": 740,
+            "p50": 760,
+            "p75": 780
+          },
+          "math": {
+            "p25": 770,
+            "p50": 790,
+            "p75": 800
+          },
           "submissionRate": 0
         },
         "act": {
-          "composite": {"p25": 34, "p50": 35, "p75": 35},
+          "composite": {
+            "p25": 34,
+            "p50": 35,
+            "p75": 35
+          },
           "submissionRate": 0
         }
       },
@@ -504,8 +632,8 @@
           "unknown": 339
         },
         "byResidency": {
-          "inState": 1856,
-          "outOfState": 5258,
+          "inState": 3060,
+          "outOfState": 4054,
           "international": 790
         }
       },

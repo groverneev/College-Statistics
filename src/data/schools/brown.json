@@ -60,8 +60,8 @@
           "unknown": 509
         },
         "byResidency": {
-          "inState": 232,
-          "outOfState": 5755,
+          "inState": 299,
+          "outOfState": 5688,
           "international": 665
         }
       },
@@ -136,8 +136,8 @@
           "unknown": 452
         },
         "byResidency": {
-          "inState": 233,
-          "outOfState": 5744,
+          "inState": 359,
+          "outOfState": 5618,
           "international": 693
         }
       },
@@ -212,8 +212,8 @@
           "unknown": 1
         },
         "byResidency": {
-          "inState": 237,
-          "outOfState": 5835,
+          "inState": 304,
+          "outOfState": 5768,
           "international": 720
         }
       },
@@ -288,8 +288,8 @@
           "unknown": 1
         },
         "byResidency": {
-          "inState": 244,
-          "outOfState": 5988,
+          "inState": 312,
+          "outOfState": 5920,
           "international": 756
         }
       },
@@ -364,8 +364,8 @@
           "unknown": 295
         },
         "byResidency": {
-          "inState": 237,
-          "outOfState": 5844,
+          "inState": 365,
+          "outOfState": 5716,
           "international": 712
         }
       },
@@ -440,8 +440,8 @@
           "unknown": 292
         },
         "byResidency": {
-          "inState": 250,
-          "outOfState": 6137,
+          "inState": 383,
+          "outOfState": 6004,
           "international": 773
         }
       },
@@ -516,8 +516,8 @@
           "unknown": 365
         },
         "byResidency": {
-          "inState": 246,
-          "outOfState": 5977,
+          "inState": 373,
+          "outOfState": 5850,
           "international": 820
         }
       },
@@ -592,8 +592,8 @@
           "unknown": 4
         },
         "byResidency": {
-          "inState": 257,
-          "outOfState": 6216,
+          "inState": 388,
+          "outOfState": 6085,
           "international": 876
         }
       },
@@ -668,8 +668,8 @@
           "unknown": 1
         },
         "byResidency": {
-          "inState": 276,
-          "outOfState": 6752,
+          "inState": 422,
+          "outOfState": 6606,
           "international": 882
         }
       },

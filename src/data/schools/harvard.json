@@ -56,8 +56,8 @@
           "unknown": 109
         },
         "byResidency": {
-          "inState": 134,
-          "outOfState": 5770,
+          "inState": 941,
+          "outOfState": 4939,
           "international": 830
         }
       },
@@ -69,8 +69,8 @@
       },
       "financialAid": {
         "percentReceivingAid": 0.55,
-        "averageAidPackage": 53000,
-        "averageNeedBasedGrant": 50000,
+        "averageAidPackage": 53071,
+        "averageNeedBasedGrant": 51308,
         "percentNeedFullyMet": 1.0
       }
     },
@@ -128,8 +128,8 @@
           "unknown": 113
         },
         "byResidency": {
-          "inState": 135,
-          "outOfState": 5818,
+          "inState": 958,
+          "outOfState": 5032,
           "international": 776
         }
       },
@@ -141,8 +141,8 @@
       },
       "financialAid": {
         "percentReceivingAid": 0.55,
-        "averageAidPackage": 55000,
-        "averageNeedBasedGrant": 52000,
+        "averageAidPackage": 55354,
+        "averageNeedBasedGrant": 53730,
         "percentNeedFullyMet": 1.0
       }
     },
@@ -200,8 +200,8 @@
           "unknown": 103
         },
         "byResidency": {
-          "inState": 135,
-          "outOfState": 5837,
+          "inState": 946,
+          "outOfState": 4966,
           "international": 876
         }
       },
@@ -213,8 +213,8 @@
       },
       "financialAid": {
         "percentReceivingAid": 0.55,
-        "averageAidPackage": 56000,
-        "averageNeedBasedGrant": 53000,
+        "averageAidPackage": 58815,
+        "averageNeedBasedGrant": 56820,
         "percentNeedFullyMet": 1.0
       }
     },
@@ -272,8 +272,8 @@
           "unknown": 92
         },
         "byResidency": {
-          "inState": 135,
-          "outOfState": 5809,
+          "inState": 943,
+          "outOfState": 4949,
           "international": 863
         }
       },
@@ -285,8 +285,8 @@
       },
       "financialAid": {
         "percentReceivingAid": 0.55,
-        "averageAidPackage": 57000,
-        "averageNeedBasedGrant": 54000,
+        "averageAidPackage": 60817,
+        "averageNeedBasedGrant": 58849,
         "percentNeedFullyMet": 1.0
       }
     },
@@ -344,8 +344,8 @@
           "unknown": 74
         },
         "byResidency": {
-          "inState": 104,
-          "outOfState": 4490,
+          "inState": 735,
+          "outOfState": 3861,
           "international": 626
         }
       },
@@ -357,8 +357,8 @@
       },
       "financialAid": {
         "percentReceivingAid": 0.55,
-        "averageAidPackage": 58000,
-        "averageNeedBasedGrant": 55000,
+        "averageAidPackage": 62338,
+        "averageNeedBasedGrant": 60230,
         "percentNeedFullyMet": 1.0
       }
     },
@@ -416,8 +416,8 @@
           "unknown": 80
         },
         "byResidency": {
-          "inState": 143,
-          "outOfState": 6151,
+          "inState": 933,
+          "outOfState": 5286,
           "international": 934
         }
       },
@@ -429,8 +429,8 @@
       },
       "financialAid": {
         "percentReceivingAid": 0.55,
-        "averageAidPackage": 59000,
-        "averageNeedBasedGrant": 56000,
+        "averageAidPackage": 62252,
+        "averageNeedBasedGrant": 55920,
         "percentNeedFullyMet": 1.0
       }
     },
@@ -488,8 +488,8 @@
           "unknown": 79
         },
         "byResidency": {
-          "inState": 144,
-          "outOfState": 6226,
+          "inState": 936,
+          "outOfState": 5302,
           "international": 1002
         }
       },
@@ -501,8 +501,8 @@
       },
       "financialAid": {
         "percentReceivingAid": 0.55,
-        "averageAidPackage": 62000,
-        "averageNeedBasedGrant": 59000,
+        "averageAidPackage": 67898,
+        "averageNeedBasedGrant": 64594,
         "percentNeedFullyMet": 1.0
       }
     },
@@ -564,8 +564,8 @@
           "unknown": 76
         },
         "byResidency": {
-          "inState": 145,
-          "outOfState": 6269,
+          "inState": 1124,
+          "outOfState": 5118,
           "international": 1048
         }
       },
@@ -577,8 +577,8 @@
       },
       "financialAid": {
         "percentReceivingAid": 0.55,
-        "averageAidPackage": 64000,
-        "averageNeedBasedGrant": 61000,
+        "averageAidPackage": 70478,
+        "averageNeedBasedGrant": 67990,
         "percentNeedFullyMet": 1.0
       }
     },
@@ -636,8 +636,8 @@
           "unknown": 117
         },
         "byResidency": {
-          "inState": 147,
-          "outOfState": 6338,
+          "inState": 940,
+          "outOfState": 5327,
           "international": 1103
         }
       },
@@ -649,8 +649,8 @@
       },
       "financialAid": {
         "percentReceivingAid": 0.55,
-        "averageAidPackage": 66000,
-        "averageNeedBasedGrant": 63000,
+        "averageAidPackage": 74387,
+        "averageNeedBasedGrant": 72600,
         "percentNeedFullyMet": 1.0
       }
     }

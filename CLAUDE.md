@@ -2,11 +2,13 @@
 
 > **WARNING:** Do NOT attempt to read PDF files directly using the Read tool. The PDF files in this project (e.g., `Brown/*.pdf`) are large and will overload the context window. Always use the Python extraction script (`scripts/extract_cds.py`) to extract data from PDFs instead.
 
+> **CRITICAL: NEVER MAKE UP DATA.** All data must be extracted from the actual PDF files. If you cannot extract a specific field after multiple attempts, STOP and tell the user which fields are missing. Do not use placeholder values, estimates, or round numbers. Signs of made-up data include: round numbers (e.g., $50,000 instead of $50,547), flat/identical values across years, or values that don't match PDF content. When in doubt, leave the field empty or ask the user for guidance.
+
 > **NOTE:** When completing significant tasks (adding features, fixing bugs, adding new schools, changing data schema, etc.), update this `CLAUDE.md` file and `README.md` if necessary to keep documentation current.
 
 ## Overview
 
-A Next.js website to visualize and compare Common Data Set (CDS) metrics across colleges. Currently featuring **Brown University**, **Harvard University**, **Stanford University**, and **Yale University**, each with 9 years of historical data (2016-2017 through 2024-2025).
+A Next.js website to visualize and compare Common Data Set (CDS) metrics across colleges. Currently featuring **Brown University**, **California Institute of Technology (Caltech)**, **Harvard University**, **Stanford University**, and **Yale University**, each with 9 years of historical data (2016-2017 through 2024-2025).
 
 **Live Features:**
 - Admissions trends (applications, acceptance rates, yield, early decision)
@@ -65,6 +67,7 @@ college-comparisons/
 │   ├── data/
 │   │   └── schools/
 │   │       ├── brown.json              # Brown University data (9 years)
+│   │       ├── caltech.json            # Caltech data (9 years)
 │   │       ├── harvard.json            # Harvard University data (9 years)
 │   │       ├── stanford.json           # Stanford University data (9 years)
 │   │       └── yale.json               # Yale University data (9 years)
@@ -217,35 +220,105 @@ pip install pdfplumber
 python scripts/extract_cds.py brown --pdf-dir ./Brown
 ```
 
-### Extraction Challenges & Solutions
+### Extraction Techniques That Work Well
 
-1. **Admissions Data:** Successfully extracted using regex patterns:
-   - `Total first-time, first-year (degree-seeking) who applied`
-   - Older PDFs use different format: `first-time...men who applied` + `women who applied`
+#### 1. Admissions Data (Section C1)
+**Technique:** Search for gendered totals and sum them.
+```python
+patterns = [
+    (r'Total first-time.*?men who applied\s+(\d[\d,]*)', 'men_applied'),
+    (r'Total first-time.*?women who applied\s+(\d[\d,]*)', 'women_applied'),
+    (r'Total first-time.*?men who were admitted\s+(\d[\d,]*)', 'men_admitted'),
+    (r'Total first-time.*?women who were admitted\s+(\d[\d,]*)', 'women_admitted'),
+    (r'Total full-time.*?men who enrolled\s+(\d[\d,]*)', 'men_enrolled'),
+    (r'Total full-time.*?women who enrolled\s+(\d[\d,]*)', 'women_enrolled'),
+]
+# Sum men + women for totals
+```
+**Why it works:** CDS always reports by gender, and this format is consistent across schools/years.
 
-2. **Enrollment Numbers:** PDF table parsing unreliable
-   - **Solution:** Manually corrected based on Brown's published enrollment figures
-   - Brown has ~6,600-7,900 undergrads, ~2,600-4,000 grad students
+#### 2. Financial Aid (Section H2, rows J and K)
+**Technique:** Search for H2 J/K rows with dollar amounts.
+```python
+# Look for lines with two dollar amounts after H2 j or k
+for line in lines:
+    if 'H2 j' in line or 'H2 k' in line:
+        amounts = re.findall(r'\$?([\d]{2},[\d]{3})', line)
+        # First amount is typically avg aid package (J) or avg grant (K)
+```
+**Why it works:** H2 section has standardized row labels (J = avg package, K = avg need-based grant).
 
-3. **Costs:** Table extraction worked for most fields
-   - Tuition, fees, room & board extracted successfully
-   - Some years needed manual verification
+#### 3. Demographics (Section B2)
+**Technique:** Search for racial/ethnic category names followed by numbers.
+```python
+# B2 section lists categories with enrollment numbers
+# Format: "Category name    firstYear   totalUndergrad   totalUndergrad"
+categories = ['Nonresident', 'Hispanic', 'Black', 'White', 'Asian',
+              'American Indian', 'Native Hawaiian', 'Two or more']
+```
+**Why it works:** B2 has consistent category names across all CDS reports.
 
-4. **Demographics:** Race/ethnicity numbers extracted from tables
-   - International student numbers were too low in raw extraction
-   - **Solution:** Corrected to match ~10-12% international rate
+#### 4. Costs (Section G1)
+**Technique:** Search for labeled cost rows.
+```python
+tuition = re.search(r'Tuition:\s*\$?([\d,]+)', text)
+fees = re.search(r'REQUIRED FEES:\s*\$?([\d,]+)', text)
+room_board = re.search(r'Room and Board.*?\$?([\d,]+)', text)
+```
+**Why it works:** G1 uses consistent labels. Note: Some schools (Yale) have $0 fees as they bundle into tuition.
 
-5. **Financial Aid:** Regex patterns often failed
-   - **Solution:** Added known values (Brown meets 100% of demonstrated need)
+#### 5. SAT/ACT Scores (Section C9)
+**Technique:** Search for score labels with 3-4 digit numbers.
+```python
+sat_composite = re.search(r'SAT Composite\s+(\d{4})\s+(\d{4})', text)  # 25th, 75th
+sat_math = re.search(r'SAT Math\s+(\d{3})\s+(\d{3})', text)
+act_composite = re.search(r'ACT Composite\s+(\d{2})\s+(\d{2})', text)
+```
 
-### Data Quality Notes
+#### 6. Residency / byResidency (Section F1)
+**Technique:** Search for "out of state" percentage, then calculate from totals.
+```python
+# F1 shows "Percent who are from out of state (exclude international)"
+# Format varies: "58% 58%" or "58.00 58.00" (without % sign)
+match = re.search(r'out of state.*?(\d+(?:\.\d+)?)\s*%?\s+(\d+(?:\.\d+)?)', text, re.IGNORECASE)
+out_pct = float(match.group(2))  # Second number is undergrad percentage
 
-- **Admissions:** Accurately extracted from PDFs
-- **Test Scores:** SAT/ACT ranges extracted successfully
-- **Enrollment:** Manually corrected to match institutional data
-- **Costs:** Extracted from PDFs, verified against published rates
-- **Financial Aid:** Supplemented with known institutional policies
-- **Demographics:** Corrected international student counts
+# Calculate actual numbers:
+# - International comes from B2 "Nonresident aliens"
+# - "Out of state" excludes international students
+domestic = total_undergrad - international
+out_of_state = int(domestic * out_pct / 100)
+in_state = domestic - out_of_state
+```
+**Why it works:** F1 reports percentages; combine with B2 international count to calculate raw numbers.
+**Note:** Newer PDFs may have encoding issues - search for "outofstate" (no spaces) as fallback.
+
+### Common Extraction Issues
+
+1. **Encoding problems in newer PDFs:** Some PDFs use `(cid:XX)` encoding. Try older PDFs first as they often have cleaner text.
+
+2. **Multi-line values:** Costs and other fields sometimes span multiple lines. Search across line boundaries:
+   ```python
+   text = full_text.replace('\n', ' ')  # Join lines before searching
+   ```
+
+3. **Format variations:** Old format uses "freshman", new format uses "first-year". Handle both:
+   ```python
+   pattern = r'Total first-time.*?(?:freshman|first-year).*?applied'
+   ```
+
+4. **Missing data:** If a field consistently fails to extract, check if:
+   - The school reports it differently (e.g., Yale has no separate fees)
+   - The PDF format changed (compare old vs new PDFs)
+   - The data genuinely doesn't exist for that year
+
+### Data Quality Verification
+
+After extraction, verify data quality by checking:
+- **No round numbers:** Real data like `$53,071` not `$53,000`
+- **Year-over-year variation:** Demographics and costs should change each year
+- **Reasonable ranges:** Acceptance rates, SAT scores, costs should be in expected ranges
+- **Internal consistency:** Sum of demographic categories ≈ total enrollment
 
 ---
 
@@ -342,6 +415,17 @@ export const SCHOOL_COLORS: Record<string, string> = {
 - `Yale/cds_yale_2023-24_vf_20240320.pdf`
 - `Yale/yale_cds_2024-25_rmd_20250612.pdf`
 
+### Caltech (9 years)
+- `Caltech/cds2017.pdf`
+- `Caltech/cds2018.pdf`
+- `Caltech/cds2019.pdf`
+- `Caltech/cds2020.pdf`
+- `Caltech/cds_2021.pdf`
+- `Caltech/cds_2022.pdf`
+- `Caltech/Caltech_Common_Data_Set_2022-23_Published_June_2023_v1.pdf`
+- `Caltech/Caltech_CDS_2023-2024_June_2024.pdf`
+- `Caltech/Caltech_CDS_2024-2025_May_2025.pdf`
+
 ### Other Schools (PDFs available, not yet extracted)
 - **Cornell:** 8 PDFs (2016-2024)
 - **Dartmouth:** 9 PDFs (2016-2025)
@@ -393,6 +477,7 @@ The width(-1) and height(-1) of chart should be greater than 0
 - [x] Extract data for Harvard University (9 years)
 - [x] Extract data for Stanford University (9 years)
 - [x] Extract data for Yale University (9 years)
+- [x] Extract data for Caltech (9 years)
 - [ ] Extract data for other Ivy League schools (Cornell, Dartmouth, Princeton, etc.)
 - [ ] Extract data for MIT, UPenn
 - [ ] Improve automated extraction accuracy
@@ -426,6 +511,7 @@ The width(-1) and height(-1) of chart should be greater than 0
 | `src/app/[school]/SchoolPageClient.tsx` | Main school page with all charts |
 | `src/lib/types.ts` | TypeScript interfaces and school colors |
 | `src/data/schools/brown.json` | Brown University data (9 years) |
+| `src/data/schools/caltech.json` | Caltech data (9 years) |
 | `src/data/schools/harvard.json` | Harvard University data (9 years) |
 | `src/data/schools/stanford.json` | Stanford University data (9 years) |
 | `src/data/schools/yale.json` | Yale University data (9 years) |
@@ -453,69 +539,3 @@ find . -name "*.pdf" | head -20
 ```
 
 ---
-
-## Data Summary: Brown University
-
-| Year | Applied | Admitted | Accept% | SAT Range | Total COA |
-|------|---------|----------|---------|-----------|-----------|
-| 2016-2017 | 32,390 | 3,014 | 9.3% | 1370-1540 | $67,439 |
-| 2017-2018 | 32,723 | 2,799 | 8.6% | 1405-1570 | $70,226 |
-| 2018-2019 | 35,437 | 2,718 | 7.7% | 1420-1550 | $73,736 |
-| 2019-2020 | 38,674 | 2,733 | 7.1% | 1440-1570 | $76,504 |
-| 2020-2021 | 36,793 | 2,822 | 7.7% | 1440-1560 | $78,668 |
-| 2021-2022 | 46,568 | 2,568 | 5.5% | 1460-1570 | $80,886 |
-| 2022-2023 | 50,649 | 2,562 | 5.1% | 1490-1580 | $84,728 |
-| 2023-2024 | 51,316 | 2,686 | 5.2% | 1500-1570 | $88,756 |
-| 2024-2025 | 48,904 | 2,638 | 5.4% | 1510-1580 | $93,164 |
-
----
-
-## Data Summary: Harvard University
-
-| Year | Applied | Admitted | Accept% | SAT Range | Total COA |
-|------|---------|----------|---------|-----------|-----------|
-| 2016-2017 | 39,506 | 2,037 | 5.2% | 1430-1600 | $69,607 |
-| 2017-2018 | 39,494 | 2,056 | 5.2% | 1460-1590 | $71,650 |
-| 2018-2019 | 42,749 | 1,962 | 4.6% | 1460-1590 | $72,391 |
-| 2019-2020 | 43,330 | 1,950 | 4.5% | 1460-1580 | $75,891 |
-| 2020-2021 | 40,248 | 1,980 | 4.9% | 1460-1580 | $78,028 |
-| 2021-2022 | 57,435 | 1,968 | 3.4% | 1460-1580 | $78,028 |
-| 2022-2023 | 61,220 | 1,954 | 3.2% | 1480-1580 | $82,866 |
-| 2023-2024 | 56,937 | 1,942 | 3.4% | 1490-1580 | $88,584 |
-| 2024-2025 | 54,008 | 1,937 | 3.6% | 1510-1580 | $93,075 |
-
----
-
-## Data Summary: Stanford University
-
-| Year | Applied | Admitted | Accept% | SAT Range | Total COA |
-|------|---------|----------|---------|-----------|-----------|
-| 2016-2017 | 43,997 | 2,118 | 4.8% | 1380-1580 | $62,541 |
-| 2017-2018 | 44,073 | 2,085 | 4.7% | 1390-1540 | $64,729 |
-| 2018-2019 | 47,452 | 2,071 | 4.4% | 1420-1570 | $69,962 |
-| 2019-2020 | 47,498 | 2,062 | 4.3% | 1440-1570 | $73,424 |
-| 2020-2021 | 45,227 | 2,349 | 5.2% | 1440-1570 | $73,421 |
-| 2021-2022 | 55,471 | 2,190 | 4.0% | 1470-1570 | $74,029 |
-| 2022-2023 | 56,378 | 2,075 | 3.7% | 1500-1570 | $82,406 |
-| 2023-2024 | 53,733 | 2,099 | 3.9% | 1500-1580 | $87,225 |
-| 2024-2025 | 57,326 | 2,067 | 3.6% | 1510-1570 | $90,711 |
-
----
-
-## Data Summary: Yale University
-
-| Year | Applied | Admitted | Accept% | SAT Range | Total COA |
-|------|---------|----------|---------|-----------|-----------|
-| 2016-2017 | 31,445 | 1,988 | 6.3% | 1420-1600 | $66,900 |
-| 2017-2018 | 32,914 | 2,285 | 6.9% | 1430-1590 | $69,430 |
-| 2018-2019 | 35,307 | 2,241 | 6.3% | 1450-1590 | $72,100 |
-| 2019-2020 | 36,844 | 2,241 | 6.1% | 1460-1590 | $75,200 |
-| 2020-2021 | 35,220 | 2,299 | 6.5% | 1460-1580 | $77,750 |
-| 2021-2022 | 47,240 | 2,509 | 5.3% | 1470-1570 | $80,600 |
-| 2022-2023 | 50,060 | 2,289 | 4.6% | 1470-1560 | $83,650 |
-| 2023-2024 | 51,802 | 2,332 | 4.5% | 1500-1560 | $87,150 |
-| 2024-2025 | 57,491 | 2,227 | 3.9% | 1480-1560 | $90,550 |
-
----
-
-*Last updated: January 2026*
