@@ -6,7 +6,7 @@
 
 ## Overview
 
-A Next.js website to visualize and compare Common Data Set (CDS) metrics across colleges. Currently featuring **Brown University**, **Harvard University**, and **Stanford University**, each with 9 years of historical data (2016-2017 through 2024-2025).
+A Next.js website to visualize and compare Common Data Set (CDS) metrics across colleges. Currently featuring **Brown University**, **Harvard University**, **Stanford University**, and **Yale University**, each with 9 years of historical data (2016-2017 through 2024-2025).
 
 **Live Features:**
 - Admissions trends (applications, acceptance rates, yield, early decision)
@@ -66,7 +66,8 @@ college-comparisons/
 │   │   └── schools/
 │   │       ├── brown.json              # Brown University data (9 years)
 │   │       ├── harvard.json            # Harvard University data (9 years)
-│   │       └── stanford.json           # Stanford University data (9 years)
+│   │       ├── stanford.json           # Stanford University data (9 years)
+│   │       └── yale.json               # Yale University data (9 years)
 │   ├── lib/
 │   │   └── types.ts                    # TypeScript interfaces
 │   └── utils/
@@ -330,11 +331,21 @@ export const SCHOOL_COLORS: Record<string, string> = {
 - `Stanford/stanford_cds_2023_2024.pdf`
 - `Stanford/stanford_cds_2024_2025.pdf`
 
+### Yale University (9 years)
+- `Yale/cds2016-2017.pdf`
+- `Yale/cds_2017-2018.pdf`
+- `Yale/cds_yale_2018-2019.pdf`
+- `Yale/cds_2019-2020_yale_vf_030420.pdf`
+- `Yale/cds_2020-2021_yale_vf_030521.pdf`
+- `Yale/yale_cds_2021-2022_vf_06062022_0.pdf`
+- `Yale/cds_yale_2022-2023_vf_10062023.pdf`
+- `Yale/cds_yale_2023-24_vf_20240320.pdf`
+- `Yale/yale_cds_2024-25_rmd_20250612.pdf`
+
 ### Other Schools (PDFs available, not yet extracted)
 - **Cornell:** 8 PDFs (2016-2024)
 - **Dartmouth:** 9 PDFs (2016-2025)
 - **UPenn:** 9 PDFs (2016-2025)
-- **Yale:** Multiple PDFs available
 
 ---
 
@@ -381,7 +392,8 @@ The width(-1) and height(-1) of chart should be greater than 0
 ### Data
 - [x] Extract data for Harvard University (9 years)
 - [x] Extract data for Stanford University (9 years)
-- [ ] Extract data for other Ivy League schools (Cornell, Dartmouth, Yale, etc.)
+- [x] Extract data for Yale University (9 years)
+- [ ] Extract data for other Ivy League schools (Cornell, Dartmouth, Princeton, etc.)
 - [ ] Extract data for MIT, UPenn
 - [ ] Improve automated extraction accuracy
 - [ ] Add more years of historical data where available
@@ -416,6 +428,7 @@ The width(-1) and height(-1) of chart should be greater than 0
 | `src/data/schools/brown.json` | Brown University data (9 years) |
 | `src/data/schools/harvard.json` | Harvard University data (9 years) |
 | `src/data/schools/stanford.json` | Stanford University data (9 years) |
+| `src/data/schools/yale.json` | Yale University data (9 years) |
 | `scripts/extract_cds.py` | PDF extraction script |
 | `src/app/globals.css` | Global styles, light mode forcing |
 | `tailwind.config.ts` | Tailwind configuration |
@@ -486,6 +499,22 @@ find . -name "*.pdf" | head -20
 | 2022-2023 | 56,378 | 2,075 | 3.7% | 1500-1570 | $82,406 |
 | 2023-2024 | 53,733 | 2,099 | 3.9% | 1500-1580 | $87,225 |
 | 2024-2025 | 57,326 | 2,067 | 3.6% | 1510-1570 | $90,711 |
+
+---
+
+## Data Summary: Yale University
+
+| Year | Applied | Admitted | Accept% | SAT Range | Total COA |
+|------|---------|----------|---------|-----------|-----------|
+| 2016-2017 | 31,445 | 1,988 | 6.3% | 1420-1600 | $66,900 |
+| 2017-2018 | 32,914 | 2,285 | 6.9% | 1430-1590 | $69,430 |
+| 2018-2019 | 35,307 | 2,241 | 6.3% | 1450-1590 | $72,100 |
+| 2019-2020 | 36,844 | 2,241 | 6.1% | 1460-1590 | $75,200 |
+| 2020-2021 | 35,220 | 2,299 | 6.5% | 1460-1580 | $77,750 |
+| 2021-2022 | 47,240 | 2,509 | 5.3% | 1470-1570 | $80,600 |
+| 2022-2023 | 50,060 | 2,289 | 4.6% | 1470-1560 | $83,650 |
+| 2023-2024 | 51,802 | 2,332 | 4.5% | 1500-1560 | $87,150 |
+| 2024-2025 | 57,491 | 2,227 | 3.9% | 1480-1560 | $90,550 |
 
 ---
 

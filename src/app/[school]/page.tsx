@@ -6,11 +6,13 @@ import SchoolPageClient from "./SchoolPageClient";
 import brownData from "@/data/schools/brown.json";
 import harvardData from "@/data/schools/harvard.json";
 import stanfordData from "@/data/schools/stanford.json";
+import yaleData from "@/data/schools/yale.json";
 
 const schoolDataMap: Record<string, SchoolData> = {
   brown: brownData as SchoolData,
   harvard: harvardData as SchoolData,
   stanford: stanfordData as SchoolData,
+  yale: yaleData as SchoolData,
 };
 
 // Generate static params for all schools
