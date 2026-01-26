@@ -8,7 +8,7 @@
 
 ## Overview
 
-A Next.js website to visualize and compare Common Data Set (CDS) metrics across colleges. Currently featuring **Brown University**, **California Institute of Technology (Caltech)**, **Harvard University**, **Princeton University**, **Stanford University**, and **Yale University**, each with 9 years of historical data (2016-2017 through 2024-2025).
+A Next.js website to visualize and compare Common Data Set (CDS) metrics across colleges. Currently featuring **Brown University**, **California Institute of Technology (Caltech)**, **Harvard University**, **Princeton University**, **Stanford University**, **University of Pennsylvania (UPenn)**, and **Yale University**, each with 9 years of historical data (2016-2017 through 2024-2025).
 
 **Live Features:**
 - Admissions trends (applications, acceptance rates, yield, early decision)
@@ -71,6 +71,7 @@ college-comparisons/
 │   │       ├── harvard.json            # Harvard University data (9 years)
 │   │       ├── princeton.json          # Princeton University data (9 years)
 │   │       ├── stanford.json           # Stanford University data (9 years)
+│   │       ├── upenn.json              # UPenn data (9 years)
 │   │       └── yale.json               # Yale University data (9 years)
 │   ├── lib/
 │   │   └── types.ts                    # TypeScript interfaces

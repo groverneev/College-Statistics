@@ -8,6 +8,7 @@ import caltechData from "@/data/schools/caltech.json";
 import harvardData from "@/data/schools/harvard.json";
 import princetonData from "@/data/schools/princeton.json";
 import stanfordData from "@/data/schools/stanford.json";
+import upennData from "@/data/schools/upenn.json";
 import yaleData from "@/data/schools/yale.json";
 
 const schools: SchoolData[] = [
@@ -16,6 +17,7 @@ const schools: SchoolData[] = [
   harvardData as SchoolData,
   princetonData as SchoolData,
   stanfordData as SchoolData,
+  upennData as SchoolData,
   yaleData as SchoolData,
 ];
 
