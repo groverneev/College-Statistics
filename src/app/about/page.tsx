@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 
 export default function AboutPage() {
@@ -64,17 +65,15 @@ export default function AboutPage() {
             About the Creator
           </h2>
           <div className="flex flex-col md:flex-row gap-8">
-            {/* Photo placeholder */}
+            {/* Photo */}
             <div className="flex-shrink-0">
-              <div className="w-32 h-32 rounded-full bg-gray-200 flex items-center justify-center">
-                <svg
-                  className="w-16 h-16 text-gray-400"
-                  fill="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />
-                </svg>
-              </div>
+              <Image
+                src="/neev-grover.jpg"
+                alt="Neev Grover"
+                width={128}
+                height={128}
+                className="w-32 h-32 rounded-full object-cover"
+              />
             </div>
 
             {/* Bio */}

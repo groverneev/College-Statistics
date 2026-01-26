@@ -1,6 +1,8 @@
-# College Comparisons
+# College Statistics
 
 A data visualization dashboard for comparing colleges using Common Data Set (CDS) metrics. View historical trends for admissions, test scores, costs, financial aid, and demographics.
+
+**Live Site:** [collegestatistics.org](https://collegestatistics.org)
 
 ![Next.js](https://img.shields.io/badge/Next.js-16-black)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5-blue)
@@ -19,9 +21,20 @@ A data visualization dashboard for comparing colleges using Common Data Set (CDS
 | School | Years | Data Points |
 |--------|-------|-------------|
 | Brown University | 2016-2025 | 9 years |
+| California Institute of Technology (Caltech) | 2016-2025 | 9 years |
 | Harvard University | 2016-2025 | 9 years |
+| Princeton University | 2016-2025 | 9 years |
+| Stanford University | 2016-2025 | 9 years |
+| University of Pennsylvania (UPenn) | 2016-2025 | 9 years |
+| Yale University | 2016-2025 | 9 years |
 
-*More schools coming soon: Cornell, Dartmouth, Yale, Stanford, UPenn*
+## Pages
+
+- **Home** (`/`) - School selector with key stats
+- **School Dashboard** (`/[school]`) - Detailed charts and data for each school
+- **About** (`/about`) - Information about the project and creator
+- **How it Works** (`/how-it-works`) - Explanation of CDS data and how to use the dashboard
+- **Contact** (`/contact`) - Contact form and social links
 
 ## Project Structure
 
@@ -29,13 +42,19 @@ A data visualization dashboard for comparing colleges using Common Data Set (CDS
 ├── src/
 │   ├── app/                    # Next.js App Router pages
 │   │   ├── [school]/           # Dynamic school pages
+│   │   ├── about/              # About page
+│   │   ├── how-it-works/       # How it Works page
+│   │   ├── contact/            # Contact page
 │   │   └── compare/            # School comparison page
-│   ├── components/charts/      # Recharts visualizations
+│   ├── components/
+│   │   ├── charts/             # Recharts visualizations
+│   │   ├── Header.tsx          # Navigation header
+│   │   └── Footer.tsx          # Site footer
 │   ├── data/schools/           # JSON data files
 │   └── lib/types.ts            # TypeScript interfaces
 ├── scripts/
 │   └── extract_cds.py          # PDF data extraction
-└── Brown/                      # Source PDF files
+└── [School]/                   # Source PDF files
 ```
 
 ## Data Sources
@@ -63,6 +82,7 @@ python scripts/extract_cds.py brown --pdf-dir ./Brown
 - **Styling:** [Tailwind CSS v4](https://tailwindcss.com/)
 - **Charts:** [Recharts](https://recharts.org/)
 - **Data Extraction:** Python with [pdfplumber](https://github.com/jsvine/pdfplumber)
+- **Contact Form:** [Formspree](https://formspree.io/)
 
 ## Contributing
 
@@ -81,3 +101,10 @@ MIT
 
 - Common Data Set Initiative for standardized college data
 - Individual institutions for publishing their CDS reports
+
+## Contact
+
+- **Website:** [neevgrover.com](https://neevgrover.com)
+- **Blog:** [techunpacked.substack.com](https://techunpacked.substack.com)
+- **Twitter:** [@groverneev01](https://x.com/groverneev01)
+- **GitHub:** [groverneev](https://github.com/groverneev)
