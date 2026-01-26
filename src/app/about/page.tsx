@@ -68,7 +68,7 @@ export default function AboutPage() {
             {/* Photo */}
             <div className="flex-shrink-0">
               <Image
-                src="/neev-grover.jpg"
+                src="/neev-grover.png"
                 alt="Neev Grover"
                 width={128}
                 height={128}
