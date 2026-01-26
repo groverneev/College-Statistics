@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { SchoolData } from "@/lib/types";
 import { formatNumber, formatPercent } from "@/utils/dataHelpers";
 import {
@@ -29,11 +30,30 @@ export default function SchoolPageClient({
     <div className="min-h-screen" style={{ background: "#f5f5f5" }}>
       {/* Header Banner */}
       <div
-        className="py-12 px-4 text-center text-white"
+        className="py-10 px-4 text-center text-white"
         style={{
           background: `linear-gradient(135deg, ${schoolColor} 0%, ${schoolColor}dd 100%)`,
         }}
       >
+        <Link
+          href="/"
+          className="inline-flex items-center text-white/80 hover:text-white text-sm mb-4 transition-colors"
+        >
+          <svg
+            className="w-4 h-4 mr-1"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M15 19l-7-7 7-7"
+            />
+          </svg>
+          Back to Schools
+        </Link>
         <h1 className="text-3xl md:text-4xl font-bold mb-2">
           {schoolData.name}
         </h1>

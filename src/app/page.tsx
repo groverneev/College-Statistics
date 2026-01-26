@@ -24,10 +24,10 @@ const schools: SchoolData[] = [
 export default function HomePage() {
   return (
     <div className="min-h-screen" style={{ background: "#f5f5f5" }}>
-      {/* Header */}
+      {/* Hero Section */}
       <div className="bg-gradient-to-r from-gray-800 to-gray-900 py-16 px-4 text-center text-white">
         <h1 className="text-4xl md:text-5xl font-bold mb-3">
-          College Data Dashboard
+          College Statistics
         </h1>
         <p className="text-gray-300 text-lg max-w-2xl mx-auto">
           Explore and compare Common Data Set metrics across top universities.
@@ -50,12 +50,16 @@ export default function HomePage() {
 
             return (
               <Link key={school.slug} href={`/${school.slug}`}>
-                <div className="card p-6 hover:shadow-lg transition-shadow cursor-pointer border-t-4" style={{ borderTopColor: color }}>
+                <div
+                  className="card p-6 hover:shadow-lg transition-shadow cursor-pointer border-t-4"
+                  style={{ borderTopColor: color }}
+                >
                   <h3 className="text-xl font-semibold mb-1" style={{ color }}>
                     {school.name}
                   </h3>
                   <p className="text-sm text-gray-500 mb-4">
-                    {years.length} years of data ({years[0].split("-")[0]}-{latestYear.split("-")[1]})
+                    {years.length} years of data ({years[0].split("-")[0]}-
+                    {latestYear.split("-")[1]})
                   </p>
 
                   <div className="grid grid-cols-2 gap-4">
@@ -63,7 +67,9 @@ export default function HomePage() {
                       <div className="text-2xl font-bold text-gray-800">
                         {formatPercent(latestData.admissions.acceptanceRate)}
                       </div>
-                      <div className="text-xs text-gray-500">Acceptance Rate</div>
+                      <div className="text-xs text-gray-500">
+                        Acceptance Rate
+                      </div>
                     </div>
                     <div>
                       <div className="text-2xl font-bold text-gray-800">
@@ -74,7 +80,8 @@ export default function HomePage() {
                     {latestData.testScores.sat && (
                       <div>
                         <div className="text-lg font-semibold text-gray-700">
-                          {latestData.testScores.sat.composite.p25}-{latestData.testScores.sat.composite.p75}
+                          {latestData.testScores.sat.composite.p25}-
+                          {latestData.testScores.sat.composite.p75}
                         </div>
                         <div className="text-xs text-gray-500">SAT Range</div>
                       </div>
@@ -89,7 +96,7 @@ export default function HomePage() {
 
                   <div className="mt-4 pt-4 border-t border-gray-100">
                     <span className="text-sm font-medium" style={{ color }}>
-                      View Dashboard →
+                      View Dashboard &rarr;
                     </span>
                   </div>
                 </div>
@@ -103,15 +110,6 @@ export default function HomePage() {
             <p className="text-gray-500">No school data available yet.</p>
           </div>
         )}
-      </div>
-
-      {/* Footer */}
-      <div className="bg-white border-t border-gray-200 py-6 mt-12">
-        <div className="max-w-6xl mx-auto px-4 text-center">
-          <p className="text-sm text-gray-500">
-            Data sourced from Common Data Set reports. For informational purposes only.
-          </p>
-        </div>
       </div>
     </div>
   );

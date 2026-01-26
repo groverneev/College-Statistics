@@ -1,9 +1,12 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
-  title: "College Comparisons - CDS Data Dashboard",
-  description: "Compare colleges using Common Data Set metrics - admissions, test scores, costs, and financial aid",
+  title: "College Statistics - Compare University Data",
+  description:
+    "Compare university admissions data, test scores, costs, and financial aid across top colleges using official Common Data Set reports.",
 };
 
 export default function RootLayout({
@@ -13,8 +16,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="light" style={{ colorScheme: "light" }}>
-      <body className="min-h-screen antialiased bg-[#f5f5f5]">
-        {children}
+      <body className="min-h-screen antialiased bg-[#f5f5f5] flex flex-col">
+        <Header />
+        <main className="flex-1 pt-16">{children}</main>
+        <Footer />
       </body>
     </html>
   );
