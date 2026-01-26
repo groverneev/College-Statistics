@@ -32,6 +32,7 @@ export default function HomePage() {
         <p className="text-gray-300 text-lg max-w-2xl mx-auto">
           Explore and compare Common Data Set metrics across top universities.
           View historical trends in admissions, test scores, costs, and more.
+          More colleges will be added shortly.
         </p>
       </div>
 
