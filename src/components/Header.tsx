@@ -9,6 +9,7 @@ export default function Header() {
   const navLinks = [
     { href: "/about", label: "About" },
     { href: "/how-it-works", label: "How it Works" },
+    { href: "https://techunpacked.substack.com", label: "Blog", external: true },
     { href: "/contact", label: "Contact" },
   ];
 
@@ -25,15 +26,27 @@ export default function Header() {
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-8">
-            {navLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className="text-gray-600 hover:text-gray-900 font-medium transition-colors"
-              >
-                {link.label}
-              </Link>
-            ))}
+            {navLinks.map((link) =>
+              link.external ? (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-gray-600 hover:text-gray-900 font-medium transition-colors"
+                >
+                  {link.label}
+                </a>
+              ) : (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className="text-gray-600 hover:text-gray-900 font-medium transition-colors"
+                >
+                  {link.label}
+                </Link>
+              )
+            )}
           </nav>
 
           {/* Mobile Menu Button */}
@@ -78,16 +91,29 @@ export default function Header() {
         {mobileMenuOpen && (
           <div className="md:hidden border-t border-gray-100 py-4">
             <nav className="flex flex-col space-y-4">
-              {navLinks.map((link) => (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  className="text-gray-600 hover:text-gray-900 font-medium px-2 py-1"
-                  onClick={() => setMobileMenuOpen(false)}
-                >
-                  {link.label}
-                </Link>
-              ))}
+              {navLinks.map((link) =>
+                link.external ? (
+                  <a
+                    key={link.href}
+                    href={link.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-gray-600 hover:text-gray-900 font-medium px-2 py-1"
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    {link.label}
+                  </a>
+                ) : (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    className="text-gray-600 hover:text-gray-900 font-medium px-2 py-1"
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    {link.label}
+                  </Link>
+                )
+              )}
             </nav>
           </div>
         )}

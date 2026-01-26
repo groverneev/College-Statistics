@@ -17,7 +17,7 @@ export default function ContactPage() {
 
     try {
       // Replace with your Formspree endpoint
-      const response = await fetch("https://formspree.io/f/YOUR_FORM_ID", {
+      const response = await fetch("https://formspree.io/f/xnnvbrzq", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -308,9 +308,9 @@ export default function ContactPage() {
               </div>
             </div>
 
-            <div className="card p-8 bg-gray-800 text-white">
+            <div className="card p-8 bg-gray-800 text-black">
               <h2 className="text-xl font-bold mb-3">Found a Data Error?</h2>
-              <p className="text-gray-300 text-sm mb-4">
+              <p className="text-black-300 text-sm mb-4">
                 We take data accuracy seriously. If you notice any discrepancies
                 between our data and official CDS reports, please let us know
                 and we&apos;ll investigate.
