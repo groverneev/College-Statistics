@@ -2,7 +2,7 @@
 
 > **WARNING:** Do NOT attempt to read PDF files directly using the Read tool. The PDF files in this project (e.g., `Brown/*.pdf`) are large and will overload the context window. Always use the Python extraction script (`scripts/extract_cds.py`) to extract data from PDFs instead.
 
-> **CRITICAL: NEVER MAKE UP DATA.** All data must be extracted from the actual PDF files. If you cannot extract a specific field after multiple attempts, STOP and tell the user which fields are missing. Do not use placeholder values, estimates, or round numbers. Signs of made-up data include: round numbers (e.g., $50,000 instead of $50,547), flat/identical values across years, or values that don't match PDF content. When in doubt, leave the field empty or ask the user for guidance.
+> **CRITICAL: NEVER MAKE UP DATA.** All data must be extracted from the actual PDF files. If you cannot extract a specific field after multiple attempts, STOP and tell the user which fields are missing. Do not use placeholder values, estimates, or round numbers. Signs of made-up data include: round numbers (e.g., $50,000 instead of $50,547), flat/identical values across years, or values that don't match PDF content. When in doubt, leave the field empty or ask the user for guidance. But make sure to try your best before giving up.
 
 > **NOTE:** When completing significant tasks (adding features, fixing bugs, adding new schools, changing data schema, etc.), update this `CLAUDE.md` file and `README.md` if necessary to keep documentation current.
 
