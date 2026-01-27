@@ -323,6 +323,79 @@ After extraction, verify data quality by checking:
 - **Reasonable ranges:** Acceptance rates, SAT scores, costs should be in expected ranges
 - **Internal consistency:** Sum of demographic categories ≈ total enrollment
 
+### Advanced Extraction Patterns (Learned from Dartmouth)
+
+#### 7. Newer CDS Format (2023-2024+)
+Starting around 2023-2024, some schools use a different format for admissions:
+```python
+# Old format: "Total first-time...men who applied 11,384"
+# New format: "students who applied in Fall 2023 13,516.0 15,325.0"
+#             (Men and Women on same line after "Fall YYYY")
+
+newer_patterns = [
+    (r'students who applied.*?Fall \d{4}\s+(\d{1,2},\d{3}(?:\.\d)?)\s+(\d{1,2},\d{3}(?:\.\d)?)', 'applied'),
+    (r'students admitted.*?Fall \d{4}\s+(\d{1,3}(?:\.\d)?)\s+(\d{1,3}(?:\.\d)?)', 'admitted'),
+    (r'students enrolled in Fall \d{4}\s+(\d{1,3}(?:\.\d)?)\s+(\d{1,3}(?:\.\d)?)', 'enrolled'),
+]
+# Sum both numbers to get total
+```
+
+#### 8. Room and Board Variations
+Terminology varies between schools and years:
+```python
+# Patterns to try (in order of preference):
+rb_patterns = [
+    r'Food and housing \(on-campus\):\s*\$?([\d,]+)',  # Newer format
+    r'ROOM AND BOARD[:\s]*\(on-campus\)\s*\$?([\d,]+)',  # With (on-campus)
+    r'Room and [Bb]oard[:\s]*\$?([\d,]+)',  # Standard format
+]
+
+# Fallback for multi-line format (older PDFs):
+# Line 1: "G1 ROOM AND BOARD:"
+# Line 2: "(on-campus) $15,756"
+if data["roomAndBoard"] == 0:
+    for i, line in enumerate(lines):
+        if 'ROOM AND BOARD' in line.upper() and i + 1 < len(lines):
+            match = re.search(r'\$?([\d,]+)', lines[i + 1])
+            if match:
+                data["roomAndBoard"] = extract_number(match.group(1))
+```
+
+#### 9. Pattern Priority and Guards
+**Critical:** Later patterns can overwrite earlier successful matches. Always guard fallback patterns:
+```python
+# WRONG - this always runs and may overwrite good data:
+for i, line in enumerate(lines):
+    if 'total first-time' in line.lower():
+        data['applied'] = max(large_nums)  # Overwrites!
+
+# CORRECT - only use fallback if primary extraction failed:
+if data['applied'] == 0:
+    for i, line in enumerate(lines):
+        if 'total first-time' in line.lower():
+            data['applied'] = max(large_nums)
+```
+
+#### 10. pdfplumber Table Parsing Issues
+Sometimes pdfplumber splits tables incorrectly, separating headers from data:
+```python
+# Table 0: ['13,516.0', '15,325.0', '']  # Data only
+# Table 1: ['919.0', '878.0', '']        # Data only
+# Table 5: ['Total first-time...who applied', '416', ...]  # Headers with different data
+
+# Solution: Use text extraction as primary method when table parsing is unreliable
+text = page.extract_text()
+# Then use regex on text
+```
+
+#### 11. Test-Optional Era (2020+)
+Many schools went test-optional during COVID and have remained so. SAT/ACT scores may be:
+- Missing entirely from the PDF
+- Present but with 0% submission rates
+- Only reported for the subset who submitted
+
+**Don't assume missing SAT data is an extraction error** - verify against the school's testing policy.
+
 ---
 
 ## Styling & Theme
