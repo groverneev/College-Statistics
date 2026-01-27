@@ -8,10 +8,23 @@ import { YearSelector } from "@/components";
 
 // Import school data
 import brownData from "@/data/schools/brown.json";
+import caltechData from "@/data/schools/caltech.json";
+import dartmouthData from "@/data/schools/dartmouth.json";
+import harvardData from "@/data/schools/harvard.json";
+import princetonData from "@/data/schools/princeton.json";
+import stanfordData from "@/data/schools/stanford.json";
+import upennData from "@/data/schools/upenn.json";
+import yaleData from "@/data/schools/yale.json";
 
 const schoolDataMap: Record<string, SchoolData> = {
   brown: brownData as SchoolData,
-  // Add more schools here
+  caltech: caltechData as SchoolData,
+  dartmouth: dartmouthData as SchoolData,
+  harvard: harvardData as SchoolData,
+  princeton: princetonData as SchoolData,
+  stanford: stanfordData as SchoolData,
+  upenn: upennData as SchoolData,
+  yale: yaleData as SchoolData,
 };
 
 function CompareContent() {

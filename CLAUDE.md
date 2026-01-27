@@ -8,7 +8,7 @@
 
 ## Overview
 
-A Next.js website to visualize and compare Common Data Set (CDS) metrics across colleges. Currently featuring **Brown University**, **California Institute of Technology (Caltech)**, **Harvard University**, **Princeton University**, **Stanford University**, **University of Pennsylvania (UPenn)**, and **Yale University**, each with 9 years of historical data (2016-2017 through 2024-2025).
+A Next.js website to visualize and compare Common Data Set (CDS) metrics across colleges. Currently featuring **Brown University**, **California Institute of Technology (Caltech)**, **Dartmouth College**, **Harvard University**, **Princeton University**, **Stanford University**, **University of Pennsylvania (UPenn)**, and **Yale University**, each with 9 years of historical data (2016-2017 through 2024-2025).
 
 **Live Features:**
 - Admissions trends (applications, acceptance rates, yield, early decision)
@@ -68,6 +68,7 @@ college-comparisons/
 │   │   └── schools/
 │   │       ├── brown.json              # Brown University data (9 years)
 │   │       ├── caltech.json            # Caltech data (9 years)
+│   │       ├── dartmouth.json          # Dartmouth College data (9 years)
 │   │       ├── harvard.json            # Harvard University data (9 years)
 │   │       ├── princeton.json          # Princeton University data (9 years)
 │   │       ├── stanford.json           # Stanford University data (9 years)
@@ -428,10 +429,19 @@ export const SCHOOL_COLORS: Record<string, string> = {
 - `Caltech/Caltech_CDS_2023-2024_June_2024.pdf`
 - `Caltech/Caltech_CDS_2024-2025_May_2025.pdf`
 
+### Dartmouth College (9 years)
+- `Dartmouth/cds_2016-2017.pdf`
+- `Dartmouth/cds_2017-2018.pdf`
+- `Dartmouth/cds_2018-2019.pdf`
+- `Dartmouth/cds_2019-2020.pdf`
+- `Dartmouth/cds_2020-2021.pdf`
+- `Dartmouth/cds_2021-2022.pdf`
+- `Dartmouth/cds_2022-2023.pdf`
+- `Dartmouth/cds_2023-2024.pdf`
+- `Dartmouth/cds_2024-2025.pdf`
+
 ### Other Schools (PDFs available, not yet extracted)
 - **Cornell:** 8 PDFs (2016-2024)
-- **Dartmouth:** 9 PDFs (2016-2025)
-- **UPenn:** 9 PDFs (2016-2025)
 
 ---
 
@@ -480,8 +490,9 @@ The width(-1) and height(-1) of chart should be greater than 0
 - [x] Extract data for Stanford University (9 years)
 - [x] Extract data for Yale University (9 years)
 - [x] Extract data for Caltech (9 years)
-- [ ] Extract data for other Ivy League schools (Cornell, Dartmouth, Princeton, etc.)
-- [ ] Extract data for MIT, UPenn
+- [x] Extract data for Dartmouth College (9 years)
+- [ ] Extract data for Cornell (8 PDFs available)
+- [ ] Extract data for MIT
 - [ ] Improve automated extraction accuracy
 - [ ] Add more years of historical data where available
 
@@ -514,6 +525,7 @@ The width(-1) and height(-1) of chart should be greater than 0
 | `src/lib/types.ts` | TypeScript interfaces and school colors |
 | `src/data/schools/brown.json` | Brown University data (9 years) |
 | `src/data/schools/caltech.json` | Caltech data (9 years) |
+| `src/data/schools/dartmouth.json` | Dartmouth College data (9 years) |
 | `src/data/schools/harvard.json` | Harvard University data (9 years) |
 | `src/data/schools/stanford.json` | Stanford University data (9 years) |
 | `src/data/schools/yale.json` | Yale University data (9 years) |
