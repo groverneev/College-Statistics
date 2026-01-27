@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { SchoolData, SCHOOL_COLORS } from "@/lib/types";
 import { formatNumber, formatPercent } from "@/utils/dataHelpers";
+import SearchBar from "@/components/SearchBar";
 
 // Import school data
 import brownData from "@/data/schools/brown.json";
@@ -21,6 +22,18 @@ const schools: SchoolData[] = [
   yaleData as SchoolData,
 ];
 
+// Prepare search data
+const searchableSchools = schools.map((school) => {
+  const years = Object.keys(school.years).sort();
+  const latestYear = years[years.length - 1];
+  const latestData = school.years[latestYear];
+  return {
+    name: school.name,
+    slug: school.slug,
+    acceptanceRate: latestData.admissions.acceptanceRate,
+  };
+});
+
 export default function HomePage() {
   return (
     <div className="min-h-screen" style={{ background: "#f5f5f5" }}>
@@ -29,17 +42,19 @@ export default function HomePage() {
         <h1 className="text-4xl md:text-5xl font-bold mb-3">
           College Statistics
         </h1>
-        <p className="text-gray-300 text-lg max-w-2xl mx-auto">
+        <p className="text-gray-300 text-lg max-w-2xl mx-auto mb-8">
           Explore and compare Common Data Set metrics across top universities.
           View historical trends in admissions, test scores, costs, and more.
-          More colleges will be added shortly.
         </p>
+
+        {/* Search Bar */}
+        <SearchBar schools={searchableSchools} />
       </div>
 
       {/* School Grid */}
       <div className="max-w-6xl mx-auto px-4 py-12">
         <h2 className="text-2xl font-semibold text-gray-800 mb-6">
-          Select a School
+          Featured Schools
         </h2>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">

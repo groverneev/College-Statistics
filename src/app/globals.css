@@ -181,6 +181,25 @@ header {
   background-color: #ffffff !important;
 }
 
+/* Search box animation */
+@keyframes subtle-pulse {
+  0%, 100% {
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.2), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+  }
+  50% {
+    box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.3), 0 8px 15px -6px rgba(0, 0, 0, 0.15);
+  }
+}
+
+.search-input-animate {
+  animation: subtle-pulse 2s ease-in-out infinite;
+}
+
+.search-input-animate:focus {
+  animation: none;
+  box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.3), 0 0 0 3px rgba(255, 255, 255, 0.5);
+}
+
 /* Footer link hover */
 footer a:hover {
   color: #ffffff;
