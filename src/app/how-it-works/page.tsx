@@ -1,6 +1,35 @@
 import Link from "next/link";
+import { SchoolData } from "@/lib/types";
+
+// Import school data
+import brownData from "@/data/schools/brown.json";
+import caltechData from "@/data/schools/caltech.json";
+import dartmouthData from "@/data/schools/dartmouth.json";
+import harvardData from "@/data/schools/harvard.json";
+import princetonData from "@/data/schools/princeton.json";
+import stanfordData from "@/data/schools/stanford.json";
+import upennData from "@/data/schools/upenn.json";
+import yaleData from "@/data/schools/yale.json";
+
+const schools: SchoolData[] = [
+  brownData as SchoolData,
+  caltechData as SchoolData,
+  dartmouthData as SchoolData,
+  harvardData as SchoolData,
+  princetonData as SchoolData,
+  stanfordData as SchoolData,
+  upennData as SchoolData,
+  yaleData as SchoolData,
+];
 
 export default function HowItWorksPage() {
+  const schoolCount = schools.length;
+  const schoolNames = schools.map((s) => s.name).join(", ").replace(/, ([^,]*)$/, ", and $1");
+
+  // Get the year range from the first school (all schools have the same years)
+  const years = Object.keys(schools[0].years).sort();
+  const yearRange = `${years[0]} through ${years[years.length - 1]}`;
+  const yearCount = years.length;
   const metrics = [
     {
       title: "Admissions",
@@ -233,12 +262,10 @@ export default function HowItWorksPage() {
           </p>
           <ul className="list-disc list-inside text-gray-600 space-y-2 ml-4 mb-4">
             <li>
-              <strong>7 universities</strong>: Brown, Caltech, Harvard,
-              Princeton, Stanford, UPenn, and Yale
+              <strong>{schoolCount} universities</strong>: {schoolNames}
             </li>
             <li>
-              <strong>9 years of data</strong>: Academic years 2016-2017 through
-              2024-2025
+              <strong>{yearCount} years of data</strong>: Academic years {yearRange}
             </li>
             <li>
               <strong>50+ data points</strong> per school per year
