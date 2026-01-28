@@ -8,7 +8,7 @@
 
 ## Overview
 
-A Next.js website to visualize and compare Common Data Set (CDS) metrics across colleges. Currently featuring **Brown University**, **California Institute of Technology (Caltech)**, **Cornell University**, **Dartmouth College**, **Harvard University**, **Princeton University**, **Stanford University**, **University of Pennsylvania (UPenn)**, and **Yale University**, each with 8-9 years of historical data (2016-2017 through 2023-2024 or 2024-2025).
+A Next.js website to visualize and compare Common Data Set (CDS) metrics across colleges. Currently featuring **Brown University**, **California Institute of Technology (Caltech)**, **Cornell University**, **Dartmouth College**, **Harvard University**, **Princeton University**, **Stanford University**, **UCLA**, **University of Pennsylvania (UPenn)**, and **Yale University**, each with 7-9 years of historical data (2016-2017 through 2023-2024 or 2024-2025).
 
 **Live Features:**
 - Admissions trends (applications, acceptance rates, yield, early decision)
@@ -73,6 +73,7 @@ college-comparisons/
 │   │       ├── harvard.json            # Harvard University data (9 years)
 │   │       ├── princeton.json          # Princeton University data (9 years)
 │   │       ├── stanford.json           # Stanford University data (9 years)
+│   │       ├── ucla.json               # UCLA data (7 years)
 │   │       ├── upenn.json              # UPenn data (9 years)
 │   │       └── yale.json               # Yale University data (9 years)
 │   ├── lib/
@@ -525,6 +526,16 @@ export const SCHOOL_COLORS: Record<string, string> = {
 - `Dartmouth/cds_2023-2024.pdf`
 - `Dartmouth/cds_2024-2025.pdf`
 
+### UCLA (7 years)
+- `UCLA/17-18.pdf`
+- `UCLA/18-19.pdf`
+- `UCLA/19-20.pdf`
+- `UCLA/20-21.pdf`
+- `UCLA/21-22.pdf`
+- `UCLA/22-23.pdf`
+- `UCLA/23-24.pdf`
+- `UCLA/24-25.pdf` (blank template, not extracted)
+
 ---
 
 ## Running the Project
@@ -612,10 +623,12 @@ The width(-1) and height(-1) of chart should be greater than 0
 | `src/data/schools/harvard.json` | Harvard University data (9 years) |
 | `src/data/schools/princeton.json` | Princeton University data (9 years) |
 | `src/data/schools/stanford.json` | Stanford University data (9 years) |
+| `src/data/schools/ucla.json` | UCLA data (7 years) |
 | `src/data/schools/upenn.json` | UPenn data (9 years) |
 | `src/data/schools/yale.json` | Yale University data (9 years) |
 | `scripts/extract_cds.py` | PDF extraction script |
 | `scripts/extract_cornell.py` | Cornell-specific extraction script |
+| `scripts/extract_ucla.py` | UCLA-specific extraction script |
 | `src/app/globals.css` | Global styles, light mode forcing |
 | `tailwind.config.ts` | Tailwind configuration |
 
