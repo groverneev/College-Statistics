@@ -4,20 +4,24 @@ import { SchoolData } from "@/lib/types";
 // Import school data
 import brownData from "@/data/schools/brown.json";
 import caltechData from "@/data/schools/caltech.json";
+import cornellData from "@/data/schools/cornell.json";
 import dartmouthData from "@/data/schools/dartmouth.json";
 import harvardData from "@/data/schools/harvard.json";
 import princetonData from "@/data/schools/princeton.json";
 import stanfordData from "@/data/schools/stanford.json";
+import uclaData from "@/data/schools/ucla.json";
 import upennData from "@/data/schools/upenn.json";
 import yaleData from "@/data/schools/yale.json";
 
 const schools: SchoolData[] = [
   brownData as SchoolData,
   caltechData as SchoolData,
+  cornellData as SchoolData,
   dartmouthData as SchoolData,
   harvardData as SchoolData,
   princetonData as SchoolData,
   stanfordData as SchoolData,
+  uclaData as SchoolData,
   upennData as SchoolData,
   yaleData as SchoolData,
 ];
@@ -26,10 +30,19 @@ export default function HowItWorksPage() {
   const schoolCount = schools.length;
   const schoolNames = schools.map((s) => s.name).join(", ").replace(/, ([^,]*)$/, ", and $1");
 
-  // Get the year range from the first school (all schools have the same years)
-  const years = Object.keys(schools[0].years).sort();
-  const yearRange = `${years[0]} through ${years[years.length - 1]}`;
-  const yearCount = years.length;
+  // Calculate the overall year range across all schools
+  const allYears = new Set<string>();
+  schools.forEach((school) => {
+    Object.keys(school.years).forEach((year) => allYears.add(year));
+  });
+  const sortedYears = Array.from(allYears).sort();
+  const yearRange = `${sortedYears[0]} through ${sortedYears[sortedYears.length - 1]}`;
+
+  // Calculate min/max years per school for display
+  const yearCounts = schools.map((s) => Object.keys(s.years).length);
+  const minYears = Math.min(...yearCounts);
+  const maxYears = Math.max(...yearCounts);
+  const yearCountDisplay = minYears === maxYears ? `${maxYears}` : `${minYears}-${maxYears}`;
   const metrics = [
     {
       title: "Admissions",
@@ -265,7 +278,7 @@ export default function HowItWorksPage() {
               <strong>{schoolCount} universities</strong>: {schoolNames}
             </li>
             <li>
-              <strong>{yearCount} years of data</strong>: Academic years {yearRange}
+              <strong>{yearCountDisplay} years of data</strong> per school: Academic years {yearRange}
             </li>
             <li>
               <strong>50+ data points</strong> per school per year

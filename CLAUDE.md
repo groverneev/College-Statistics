@@ -538,6 +538,29 @@ export const SCHOOL_COLORS: Record<string, string> = {
 
 ---
 
+## Adding a New School
+
+When adding a new school to the website, update the following files:
+
+### Required Files to Update:
+1. **Create data file:** `src/data/schools/<school>.json` - Extract data using a custom script
+2. **Add school color:** `src/lib/types.ts` - Add entry to `SCHOOL_COLORS`
+3. **Home page:** `src/app/page.tsx` - Add import and add to `schools` array
+4. **School page:** `src/app/[school]/page.tsx` - Add import and add to `schoolDataMap`
+5. **How it works:** `src/app/how-it-works/page.tsx` - Add import and add to `schools` array
+6. **Data helpers:** `src/utils/dataHelpers.ts` - Add to `getAvailableSchools()` array
+7. **Documentation:** `CLAUDE.md` - Update overview, project structure, Available PDF Data section, and Key Files Reference
+
+### Checklist:
+- [ ] Create extraction script in `scripts/extract_<school>.py`
+- [ ] Run extraction and verify data quality
+- [ ] Add school color (find official brand color)
+- [ ] Update all 4 page/component files listed above
+- [ ] Run `npm run build` to verify no errors
+- [ ] Update `CLAUDE.md` documentation
+
+---
+
 ## Running the Project
 
 ### Development
