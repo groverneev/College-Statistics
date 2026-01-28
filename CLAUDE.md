@@ -447,97 +447,6 @@ export const SCHOOL_COLORS: Record<string, string> = {
 
 ---
 
-## Available PDF Data
-
-### Brown University (9 years)
-- `Brown/Brown CDS_2016-2017_Final.pdf`
-- `Brown/CDS_2017-2018.pdf`
-- `Brown/CDS_2018_2019_FINAL.pdf`
-- `Brown/CDS_2019_2020.pdf`
-- `Brown/CDS_2020_2021_Final2_0.pdf`
-- `Brown/CDS_2021_2022_0.pdf`
-- `Brown/CDS_2022_2023.pdf`
-- `Brown/CDS_2023_2024.pdf`
-- `Brown/CDS_2024_2025.pdf`
-
-### Harvard University (9 years)
-- `Harvard/CDS 2016-2017.pdf`
-- `Harvard/CDS 2017-2018.pdf`
-- `Harvard/CDS 2018-2019.pdf`
-- `Harvard/CDS 2019-2020.pdf`
-- `Harvard/CDS 2020-2021.pdf`
-- `Harvard/CDS 2021-2022.pdf`
-- `Harvard/CDS_2022-2023.pdf`
-- `Harvard/CDS_2023-2024.pdf`
-- `Harvard/CDS_2024-25.pdf`
-
-### Stanford University (9 years)
-- `Stanford/stanford_cds_2016_2017.pdf`
-- `Stanford/stanford_cds_2017_2018.pdf`
-- `Stanford/stanford_cds_2018_2019.pdf`
-- `Stanford/stanford_cds_2019_2020.pdf`
-- `Stanford/stanford_cds_2020_2021.pdf`
-- `Stanford/stanford_cds_2021_2022.pdf`
-- `Stanford/stanford_cds_2022_2023.pdf`
-- `Stanford/stanford_cds_2023_2024.pdf`
-- `Stanford/stanford_cds_2024_2025.pdf`
-
-### Yale University (9 years)
-- `Yale/cds2016-2017.pdf`
-- `Yale/cds_2017-2018.pdf`
-- `Yale/cds_yale_2018-2019.pdf`
-- `Yale/cds_2019-2020_yale_vf_030420.pdf`
-- `Yale/cds_2020-2021_yale_vf_030521.pdf`
-- `Yale/yale_cds_2021-2022_vf_06062022_0.pdf`
-- `Yale/cds_yale_2022-2023_vf_10062023.pdf`
-- `Yale/cds_yale_2023-24_vf_20240320.pdf`
-- `Yale/yale_cds_2024-25_rmd_20250612.pdf`
-
-### Caltech (9 years)
-- `Caltech/cds2017.pdf`
-- `Caltech/cds2018.pdf`
-- `Caltech/cds2019.pdf`
-- `Caltech/cds2020.pdf`
-- `Caltech/cds_2021.pdf`
-- `Caltech/cds_2022.pdf`
-- `Caltech/Caltech_Common_Data_Set_2022-23_Published_June_2023_v1.pdf`
-- `Caltech/Caltech_CDS_2023-2024_June_2024.pdf`
-- `Caltech/Caltech_CDS_2024-2025_May_2025.pdf`
-
-### Cornell University (8 years)
-- `Cornell/16-17.pdf`
-- `Cornell/CDS_2017-2018-v5.pdf`
-- `Cornell/CDS_2018-2019_v6.pdf`
-- `Cornell/CDS_2019-2020_FINAL.pdf`
-- `Cornell/CDS_2020-2021_FINAL.pdf`
-- `Cornell/CDS_2021-2022_V5.pdf`
-- `Cornell/CDS_2022-2023_Cornell-University-v5.pdf`
-- `Cornell/CDS_UNL2_2023_2024-v11.pdf`
-- `Cornell/CDS-2024-2025.pdf` (blank template, not extracted)
-
-### Dartmouth College (9 years)
-- `Dartmouth/cds_2016-2017.pdf`
-- `Dartmouth/cds_2017-2018.pdf`
-- `Dartmouth/cds_2018-2019.pdf`
-- `Dartmouth/cds_2019-2020.pdf`
-- `Dartmouth/cds_2020-2021.pdf`
-- `Dartmouth/cds_2021-2022.pdf`
-- `Dartmouth/cds_2022-2023.pdf`
-- `Dartmouth/cds_2023-2024.pdf`
-- `Dartmouth/cds_2024-2025.pdf`
-
-### UCLA (7 years)
-- `UCLA/17-18.pdf`
-- `UCLA/18-19.pdf`
-- `UCLA/19-20.pdf`
-- `UCLA/20-21.pdf`
-- `UCLA/21-22.pdf`
-- `UCLA/22-23.pdf`
-- `UCLA/23-24.pdf`
-- `UCLA/24-25.pdf` (blank template, not extracted)
-
----
-
 ## Adding a New School
 
 When adding a new school to the website, update the following files:
@@ -547,7 +456,7 @@ When adding a new school to the website, update the following files:
 2. **Add school color:** `src/lib/types.ts` - Add entry to `SCHOOL_COLORS`
 3. **Home page:** `src/app/page.tsx` - Add import and add to `schools` array
 4. **School page:** `src/app/[school]/page.tsx` - Add import and add to `schoolDataMap`
-5. **How it works:** `src/app/how-it-works/page.tsx` - Add import and add to `schools` array
+5. **How it works:** `src/app/how-it-works/page.tsx` - Change university count
 6. **Data helpers:** `src/utils/dataHelpers.ts` - Add to `getAvailableSchools()` array
 7. **Documentation:** `CLAUDE.md` - Update overview, project structure, Available PDF Data section, and Key Files Reference
 
@@ -602,15 +511,7 @@ The width(-1) and height(-1) of chart should be greater than 0
 ## Future Work / TODO
 
 ### Data
-- [x] Extract data for Harvard University (9 years)
-- [x] Extract data for Stanford University (9 years)
-- [x] Extract data for Yale University (9 years)
-- [x] Extract data for Caltech (9 years)
-- [x] Extract data for Dartmouth College (9 years)
-- [x] Extract data for Cornell University (8 years)
-- [ ] Extract data for MIT
-- [ ] Improve automated extraction accuracy
-- [ ] Add more years of historical data where available
+- Extract data for more Colleges
 
 ### Features
 - [ ] Implement comparison page (`/compare?schools=brown,harvard`)

@@ -1,48 +1,6 @@
 import Link from "next/link";
-import { SchoolData } from "@/lib/types";
-
-// Import school data
-import brownData from "@/data/schools/brown.json";
-import caltechData from "@/data/schools/caltech.json";
-import cornellData from "@/data/schools/cornell.json";
-import dartmouthData from "@/data/schools/dartmouth.json";
-import harvardData from "@/data/schools/harvard.json";
-import princetonData from "@/data/schools/princeton.json";
-import stanfordData from "@/data/schools/stanford.json";
-import uclaData from "@/data/schools/ucla.json";
-import upennData from "@/data/schools/upenn.json";
-import yaleData from "@/data/schools/yale.json";
-
-const schools: SchoolData[] = [
-  brownData as SchoolData,
-  caltechData as SchoolData,
-  cornellData as SchoolData,
-  dartmouthData as SchoolData,
-  harvardData as SchoolData,
-  princetonData as SchoolData,
-  stanfordData as SchoolData,
-  uclaData as SchoolData,
-  upennData as SchoolData,
-  yaleData as SchoolData,
-];
 
 export default function HowItWorksPage() {
-  const schoolCount = schools.length;
-  const schoolNames = schools.map((s) => s.name).join(", ").replace(/, ([^,]*)$/, ", and $1");
-
-  // Calculate the overall year range across all schools
-  const allYears = new Set<string>();
-  schools.forEach((school) => {
-    Object.keys(school.years).forEach((year) => allYears.add(year));
-  });
-  const sortedYears = Array.from(allYears).sort();
-  const yearRange = `${sortedYears[0]} through ${sortedYears[sortedYears.length - 1]}`;
-
-  // Calculate min/max years per school for display
-  const yearCounts = schools.map((s) => Object.keys(s.years).length);
-  const minYears = Math.min(...yearCounts);
-  const maxYears = Math.max(...yearCounts);
-  const yearCountDisplay = minYears === maxYears ? `${maxYears}` : `${minYears}-${maxYears}`;
   const metrics = [
     {
       title: "Admissions",
@@ -192,10 +150,10 @@ export default function HowItWorksPage() {
           </h2>
           <p className="text-gray-600 mb-4">
             The Common Data Set (CDS) initiative is a collaborative effort among
-            higher education institutions, The College Board, Peterson&apos;s, and
-            U.S. News &amp; World Report. It establishes standardized data items
-            and definitions to ensure consistent, comparable data about colleges
-            and universities.
+            higher education institutions, The College Board, Peterson&apos;s,
+            and U.S. News &amp; World Report. It establishes standardized data
+            items and definitions to ensure consistent, comparable data about
+            colleges and universities.
           </p>
           <p className="text-gray-600 mb-4">
             Each year, participating colleges complete the CDS survey, providing
@@ -270,15 +228,14 @@ export default function HowItWorksPage() {
             modify, interpolate, or estimate any values. If data is unavailable
             for a particular year or metric, it will be clearly indicated.
           </p>
-          <p className="text-gray-600 mb-4">
-            Our current coverage includes:
-          </p>
+          <p className="text-gray-600 mb-4">Our current coverage includes:</p>
           <ul className="list-disc list-inside text-gray-600 space-y-2 ml-4 mb-4">
             <li>
-              <strong>{schoolCount} universities</strong>: {schoolNames}
+              <strong>10 universities</strong> (more coming soon!)
             </li>
             <li>
-              <strong>{yearCountDisplay} years of data</strong> per school: Academic years {yearRange}
+              <strong>9 years of data</strong> per school: Academic years
+              2016-2017 through 2024-2025
             </li>
             <li>
               <strong>50+ data points</strong> per school per year
