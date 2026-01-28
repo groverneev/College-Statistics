@@ -5,6 +5,7 @@ import SchoolPageClient from "./SchoolPageClient";
 // Import school data
 import brownData from "@/data/schools/brown.json";
 import caltechData from "@/data/schools/caltech.json";
+import cornellData from "@/data/schools/cornell.json";
 import dartmouthData from "@/data/schools/dartmouth.json";
 import harvardData from "@/data/schools/harvard.json";
 import princetonData from "@/data/schools/princeton.json";
@@ -15,6 +16,7 @@ import yaleData from "@/data/schools/yale.json";
 const schoolDataMap: Record<string, SchoolData> = {
   brown: brownData as SchoolData,
   caltech: caltechData as SchoolData,
+  cornell: cornellData as SchoolData,
   dartmouth: dartmouthData as SchoolData,
   harvard: harvardData as SchoolData,
   princeton: princetonData as SchoolData,

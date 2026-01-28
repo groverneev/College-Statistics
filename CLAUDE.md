@@ -8,7 +8,7 @@
 
 ## Overview
 
-A Next.js website to visualize and compare Common Data Set (CDS) metrics across colleges. Currently featuring **Brown University**, **California Institute of Technology (Caltech)**, **Dartmouth College**, **Harvard University**, **Princeton University**, **Stanford University**, **University of Pennsylvania (UPenn)**, and **Yale University**, each with 9 years of historical data (2016-2017 through 2024-2025).
+A Next.js website to visualize and compare Common Data Set (CDS) metrics across colleges. Currently featuring **Brown University**, **California Institute of Technology (Caltech)**, **Cornell University**, **Dartmouth College**, **Harvard University**, **Princeton University**, **Stanford University**, **University of Pennsylvania (UPenn)**, and **Yale University**, each with 8-9 years of historical data (2016-2017 through 2023-2024 or 2024-2025).
 
 **Live Features:**
 - Admissions trends (applications, acceptance rates, yield, early decision)
@@ -68,6 +68,7 @@ college-comparisons/
 │   │   └── schools/
 │   │       ├── brown.json              # Brown University data (9 years)
 │   │       ├── caltech.json            # Caltech data (9 years)
+│   │       ├── cornell.json            # Cornell University data (8 years)
 │   │       ├── dartmouth.json          # Dartmouth College data (9 years)
 │   │       ├── harvard.json            # Harvard University data (9 years)
 │   │       ├── princeton.json          # Princeton University data (9 years)
@@ -502,6 +503,17 @@ export const SCHOOL_COLORS: Record<string, string> = {
 - `Caltech/Caltech_CDS_2023-2024_June_2024.pdf`
 - `Caltech/Caltech_CDS_2024-2025_May_2025.pdf`
 
+### Cornell University (8 years)
+- `Cornell/16-17.pdf`
+- `Cornell/CDS_2017-2018-v5.pdf`
+- `Cornell/CDS_2018-2019_v6.pdf`
+- `Cornell/CDS_2019-2020_FINAL.pdf`
+- `Cornell/CDS_2020-2021_FINAL.pdf`
+- `Cornell/CDS_2021-2022_V5.pdf`
+- `Cornell/CDS_2022-2023_Cornell-University-v5.pdf`
+- `Cornell/CDS_UNL2_2023_2024-v11.pdf`
+- `Cornell/CDS-2024-2025.pdf` (blank template, not extracted)
+
 ### Dartmouth College (9 years)
 - `Dartmouth/cds_2016-2017.pdf`
 - `Dartmouth/cds_2017-2018.pdf`
@@ -512,9 +524,6 @@ export const SCHOOL_COLORS: Record<string, string> = {
 - `Dartmouth/cds_2022-2023.pdf`
 - `Dartmouth/cds_2023-2024.pdf`
 - `Dartmouth/cds_2024-2025.pdf`
-
-### Other Schools (PDFs available, not yet extracted)
-- **Cornell:** 8 PDFs (2016-2024)
 
 ---
 
@@ -564,7 +573,7 @@ The width(-1) and height(-1) of chart should be greater than 0
 - [x] Extract data for Yale University (9 years)
 - [x] Extract data for Caltech (9 years)
 - [x] Extract data for Dartmouth College (9 years)
-- [ ] Extract data for Cornell (8 PDFs available)
+- [x] Extract data for Cornell University (8 years)
 - [ ] Extract data for MIT
 - [ ] Improve automated extraction accuracy
 - [ ] Add more years of historical data where available
@@ -598,11 +607,15 @@ The width(-1) and height(-1) of chart should be greater than 0
 | `src/lib/types.ts` | TypeScript interfaces and school colors |
 | `src/data/schools/brown.json` | Brown University data (9 years) |
 | `src/data/schools/caltech.json` | Caltech data (9 years) |
+| `src/data/schools/cornell.json` | Cornell University data (8 years) |
 | `src/data/schools/dartmouth.json` | Dartmouth College data (9 years) |
 | `src/data/schools/harvard.json` | Harvard University data (9 years) |
+| `src/data/schools/princeton.json` | Princeton University data (9 years) |
 | `src/data/schools/stanford.json` | Stanford University data (9 years) |
+| `src/data/schools/upenn.json` | UPenn data (9 years) |
 | `src/data/schools/yale.json` | Yale University data (9 years) |
 | `scripts/extract_cds.py` | PDF extraction script |
+| `scripts/extract_cornell.py` | Cornell-specific extraction script |
 | `src/app/globals.css` | Global styles, light mode forcing |
 | `tailwind.config.ts` | Tailwind configuration |
 

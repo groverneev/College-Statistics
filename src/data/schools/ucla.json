@@ -1,0 +1,51 @@
+{
+  "name": "Ucla",
+  "slug": "ucla",
+  "years": {
+    "unknown": {
+      "admissions": {
+        "applied": 202,
+        "admitted": 202,
+        "enrolled": 202,
+        "acceptanceRate": 1.0,
+        "yield": 1.0
+      },
+      "testScores": {},
+      "demographics": {
+        "enrollment": {
+          "total": 201,
+          "undergraduate": 201,
+          "graduate": 0
+        },
+        "byRace": {
+          "international": 0,
+          "hispanicLatino": 0,
+          "blackAfricanAmerican": 0,
+          "white": 0,
+          "asian": 0,
+          "americanIndianAlaskaNative": 0,
+          "nativeHawaiianPacificIslander": 0,
+          "twoOrMoreRaces": 0,
+          "unknown": 0
+        },
+        "byResidency": {
+          "inState": 0,
+          "outOfState": 0,
+          "international": 0
+        }
+      },
+      "costs": {
+        "tuition": 0,
+        "fees": 0,
+        "roomAndBoard": 0,
+        "totalCOA": 0
+      },
+      "financialAid": {
+        "percentReceivingAid": 0,
+        "averageAidPackage": 0,
+        "averageNeedBasedGrant": 0,
+        "percentNeedFullyMet": 0
+      }
+    }
+  }
+}
