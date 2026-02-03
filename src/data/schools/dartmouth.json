@@ -11,13 +11,31 @@
         "yield": 0.5119
       },
       "testScores": {
+        "sat": {
+          "composite": {
+            "p25": 1350,
+            "p50": 1455,
+            "p75": 1560
+          },
+          "readingWriting": {
+            "p25": 670,
+            "p50": 720,
+            "p75": 770
+          },
+          "math": {
+            "p25": 680,
+            "p50": 735,
+            "p75": 790
+          },
+          "submissionRate": 0.5
+        },
         "act": {
           "composite": {
             "p25": 30,
             "p50": 32,
             "p75": 34
           },
-          "submissionRate": 0
+          "submissionRate": 0.5
         }
       },
       "demographics": {
@@ -352,7 +370,34 @@
         "acceptanceRate": 0.0617,
         "yield": 0.7017
       },
-      "testScores": {},
+      "testScores": {
+        "sat": {
+          "composite": {
+            "p25": 1440,
+            "p50": 1500,
+            "p75": 1560
+          },
+          "readingWriting": {
+            "p25": 710,
+            "p50": 745,
+            "p75": 780
+          },
+          "math": {
+            "p25": 730,
+            "p50": 755,
+            "p75": 780
+          },
+          "submissionRate": 0.69
+        },
+        "act": {
+          "composite": {
+            "p25": 33,
+            "p50": 34,
+            "p75": 35
+          },
+          "submissionRate": 0.31
+        }
+      },
       "demographics": {
         "enrollment": {
           "total": 5777,
@@ -397,7 +442,34 @@
         "acceptanceRate": 0.0638,
         "yield": 0.6217
       },
-      "testScores": {},
+      "testScores": {
+        "sat": {
+          "composite": {
+            "p25": 1500,
+            "p50": 1550,
+            "p75": 1580
+          },
+          "readingWriting": {
+            "p25": 740,
+            "p50": 770,
+            "p75": 790
+          },
+          "math": {
+            "p25": 760,
+            "p50": 780,
+            "p75": 790
+          },
+          "submissionRate": 0.65
+        },
+        "act": {
+          "composite": {
+            "p25": 33,
+            "p50": 34,
+            "p75": 35
+          },
+          "submissionRate": 0.35
+        }
+      },
       "demographics": {
         "enrollment": {
           "total": 5582,
@@ -405,20 +477,20 @@
           "graduate": 1124
         },
         "byRace": {
-          "international": 1,
+          "international": 170,
           "hispanicLatino": 103,
           "blackAfricanAmerican": 68,
           "white": 509,
           "asian": 154,
           "americanIndianAlaskaNative": 13,
-          "nativeHawaiianPacificIslander": 0,
+          "nativeHawaiianPacificIslander": 3,
           "twoOrMoreRaces": 83,
-          "unknown": 171
+          "unknown": 21
         },
         "byResidency": {
-          "inState": 90,
-          "outOfState": 4367,
-          "international": 1
+          "inState": 80,
+          "outOfState": 3758,
+          "international": 620
         }
       },
       "costs": {
@@ -442,28 +514,55 @@
         "acceptanceRate": 0.0623,
         "yield": 0.6728
       },
-      "testScores": {},
+      "testScores": {
+        "sat": {
+          "composite": {
+            "p25": 1430,
+            "p50": 1490,
+            "p75": 1550
+          },
+          "readingWriting": {
+            "p25": 710,
+            "p50": 740,
+            "p75": 770
+          },
+          "math": {
+            "p25": 730,
+            "p50": 760,
+            "p75": 790
+          },
+          "submissionRate": 0.75
+        },
+        "act": {
+          "composite": {
+            "p25": 32,
+            "p50": 34,
+            "p75": 35
+          },
+          "submissionRate": 0.25
+        }
+      },
       "demographics": {
         "enrollment": {
-          "total": 1206,
-          "undergraduate": 0,
-          "graduate": 1206
+          "total": 5647,
+          "undergraduate": 4447,
+          "graduate": 1200
         },
         "byRace": {
-          "international": 0,
-          "hispanicLatino": 0,
-          "blackAfricanAmerican": 0,
-          "white": 0,
-          "asian": 0,
-          "americanIndianAlaskaNative": 0,
-          "nativeHawaiianPacificIslander": 0,
-          "twoOrMoreRaces": 0,
-          "unknown": 0
+          "international": 174,
+          "hispanicLatino": 103,
+          "blackAfricanAmerican": 75,
+          "white": 539,
+          "asian": 177,
+          "americanIndianAlaskaNative": 13,
+          "nativeHawaiianPacificIslander": 4,
+          "twoOrMoreRaces": 93,
+          "unknown": 28
         },
         "byResidency": {
-          "inState": 0,
-          "outOfState": 0,
-          "international": 0
+          "inState": 76,
+          "outOfState": 3734,
+          "international": 637
         }
       },
       "costs": {
@@ -487,7 +586,34 @@
         "acceptanceRate": 0.0545,
         "yield": 0.6908
       },
-      "testScores": {},
+      "testScores": {
+        "sat": {
+          "composite": {
+            "p25": 1480,
+            "p50": 1530,
+            "p75": 1560
+          },
+          "readingWriting": {
+            "p25": 710,
+            "p50": 750,
+            "p75": 770
+          },
+          "math": {
+            "p25": 730,
+            "p50": 770,
+            "p75": 790
+          },
+          "submissionRate": 0.75
+        },
+        "act": {
+          "composite": {
+            "p25": 32,
+            "p50": 34,
+            "p75": 35
+          },
+          "submissionRate": 0.25
+        }
+      },
       "demographics": {
         "enrollment": {
           "total": 5752,
@@ -495,20 +621,20 @@
           "graduate": 1182
         },
         "byRace": {
-          "international": 1,
+          "international": 175,
           "hispanicLatino": 130,
           "blackAfricanAmerican": 70,
           "white": 484,
-          "asian": 150,
+          "asian": 190,
           "americanIndianAlaskaNative": 13,
-          "nativeHawaiianPacificIslander": 98,
-          "twoOrMoreRaces": 1,
-          "unknown": 170
+          "nativeHawaiianPacificIslander": 5,
+          "twoOrMoreRaces": 85,
+          "unknown": 14
         },
         "byResidency": {
-          "inState": 92,
-          "outOfState": 4477,
-          "international": 1
+          "inState": 79,
+          "outOfState": 3851,
+          "international": 640
         }
       },
       "costs": {
