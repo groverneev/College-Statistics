@@ -14,10 +14,12 @@ import stanfordData from "@/data/schools/stanford.json";
 import uclaData from "@/data/schools/ucla.json";
 import upennData from "@/data/schools/upenn.json";
 import yaleData from "@/data/schools/yale.json";
+import columbiaData from "@/data/schools/columbia.json";
 
 const schools: SchoolData[] = [
   brownData as SchoolData,
   caltechData as SchoolData,
+  columbiaData as SchoolData,
   cornellData as SchoolData,
   dartmouthData as SchoolData,
   harvardData as SchoolData,

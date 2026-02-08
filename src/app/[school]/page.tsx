@@ -13,10 +13,12 @@ import stanfordData from "@/data/schools/stanford.json";
 import uclaData from "@/data/schools/ucla.json";
 import upennData from "@/data/schools/upenn.json";
 import yaleData from "@/data/schools/yale.json";
+import columbiaData from "@/data/schools/columbia.json";
 
 const schoolDataMap: Record<string, SchoolData> = {
   brown: brownData as SchoolData,
   caltech: caltechData as SchoolData,
+  columbia: columbiaData as SchoolData,
   cornell: cornellData as SchoolData,
   dartmouth: dartmouthData as SchoolData,
   harvard: harvardData as SchoolData,
