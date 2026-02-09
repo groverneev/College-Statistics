@@ -8,7 +8,7 @@
 
 ## Overview
 
-A Next.js website to visualize and compare Common Data Set (CDS) metrics across colleges. Currently featuring **Brown University**, **California Institute of Technology (Caltech)**, **Columbia University**, **Cornell University**, **Dartmouth College**, **Harvard University**, **Princeton University**, **Stanford University**, **UCLA**, **University of Pennsylvania (UPenn)**, and **Yale University**, each with 7-9 years of historical data (2016-2017 through 2024-2025).
+A Next.js website to visualize and compare Common Data Set (CDS) metrics across colleges. Currently featuring **Brown University**, **California Institute of Technology (Caltech)**, **Columbia University**, **Cornell University**, **Dartmouth College**, **Harvard University**, **Massachusetts Institute of Technology (MIT)**, **Princeton University**, **Stanford University**, **UCLA**, **University of Pennsylvania (UPenn)**, and **Yale University**, each with 7-9 years of historical data (2016-2017 through 2024-2025).
 
 **Live Features:**
 - Admissions trends (applications, acceptance rates, yield, early decision)
@@ -72,6 +72,7 @@ college-comparisons/
 │   │       ├── cornell.json            # Cornell University data (8 years)
 │   │       ├── dartmouth.json          # Dartmouth College data (9 years)
 │   │       ├── harvard.json            # Harvard University data (9 years)
+│   │       ├── mit.json                # MIT data (9 years)
 │   │       ├── princeton.json          # Princeton University data (9 years)
 │   │       ├── stanford.json           # Stanford University data (9 years)
 │   │       ├── ucla.json               # UCLA data (8 years)
@@ -501,6 +502,11 @@ Columbia did not publicly release CDS data before 2021-2022 (following a ranking
 - **2021-2022 through 2024-2025**: Extracted directly from official CDS PDFs in `Columbia/` directory
 - **2016-2017 through 2020-2021**: Admissions data from OPIR Statistical Abstract and third-party sources (IvyLeaguePrep, IvyCoach). Cost data from OPIR UG Tuition History. Demographics, financial aid, SAT section scores, and enrollment figures for these years are estimates based on training data and may not be perfectly precise. Test score submission rates and SAT/ACT section breakdowns are estimated for pre-2021 years.
 
+### MIT Data Sources
+MIT publishes CDS data on their website (not as PDFs) at https://ir.mit.edu/project-topic/common-data-set/. For mit.json:
+- **2021-2022 through 2024-2025**: Extracted from official CDS pages on MIT Institutional Research website. Admissions, test scores, demographics, and financial aid are directly from CDS. Note: MIT's CDS G section (costs) reports next year's costs, so costs have been shifted to match the actual academic year.
+- **2016-2017 through 2020-2021**: Admissions data from Crimson Education historical acceptance rate tracking and MIT Admissions statistics. Enrollment totals from MIT Registrar (exact). Costs derived from CNBC (2019-20 confirmed: tuition $53,450, fee $340, R&B $16,390) and College Tuition Compare, with training data estimates for other years. Demographics (race/ethnicity) and financial aid for these years are estimates based on training data and trend analysis. Test score submission rates are not reported (set to 0) for pre-2020 years.
+
 ### Recharts SSR Warnings
 ```
 The width(-1) and height(-1) of chart should be greater than 0
@@ -553,6 +559,7 @@ The width(-1) and height(-1) of chart should be greater than 0
 | `src/data/schools/cornell.json` | Cornell University data (8 years) |
 | `src/data/schools/dartmouth.json` | Dartmouth College data (9 years) |
 | `src/data/schools/harvard.json` | Harvard University data (9 years) |
+| `src/data/schools/mit.json` | MIT data (9 years) |
 | `src/data/schools/princeton.json` | Princeton University data (9 years) |
 | `src/data/schools/stanford.json` | Stanford University data (9 years) |
 | `src/data/schools/ucla.json` | UCLA data (8 years) |

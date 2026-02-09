@@ -14,6 +14,7 @@ import uclaData from "@/data/schools/ucla.json";
 import upennData from "@/data/schools/upenn.json";
 import yaleData from "@/data/schools/yale.json";
 import columbiaData from "@/data/schools/columbia.json";
+import mitData from "@/data/schools/mit.json";
 
 const schoolDataMap: Record<string, SchoolData> = {
   brown: brownData as SchoolData,
@@ -27,6 +28,7 @@ const schoolDataMap: Record<string, SchoolData> = {
   ucla: uclaData as SchoolData,
   upenn: upennData as SchoolData,
   yale: yaleData as SchoolData,
+  mit: mitData as SchoolData,
 };
 
 // Generate static params for all schools

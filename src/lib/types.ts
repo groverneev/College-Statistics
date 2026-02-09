@@ -104,4 +104,5 @@ export const SCHOOL_COLORS: Record<string, string> = {
   caltech: "#FF6C0C",
   ucla: "#2774AE",
   columbia: "#1D4F91",
+  mit: "#A31F34",
 };
