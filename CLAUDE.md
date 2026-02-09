@@ -8,7 +8,7 @@
 
 ## Overview
 
-A Next.js website to visualize and compare Common Data Set (CDS) metrics across colleges. Currently featuring **Brown University**, **California Institute of Technology (Caltech)**, **Cornell University**, **Dartmouth College**, **Harvard University**, **Princeton University**, **Stanford University**, **UCLA**, **University of Pennsylvania (UPenn)**, and **Yale University**, each with 7-9 years of historical data (2016-2017 through 2024-2025).
+A Next.js website to visualize and compare Common Data Set (CDS) metrics across colleges. Currently featuring **Brown University**, **California Institute of Technology (Caltech)**, **Columbia University**, **Cornell University**, **Dartmouth College**, **Harvard University**, **Princeton University**, **Stanford University**, **UCLA**, **University of Pennsylvania (UPenn)**, and **Yale University**, each with 7-9 years of historical data (2016-2017 through 2024-2025).
 
 **Live Features:**
 - Admissions trends (applications, acceptance rates, yield, early decision)
@@ -68,6 +68,7 @@ college-comparisons/
 │   │   └── schools/
 │   │       ├── brown.json              # Brown University data (9 years)
 │   │       ├── caltech.json            # Caltech data (9 years)
+│   │       ├── columbia.json           # Columbia University data (9 years)
 │   │       ├── cornell.json            # Cornell University data (8 years)
 │   │       ├── dartmouth.json          # Dartmouth College data (9 years)
 │   │       ├── harvard.json            # Harvard University data (9 years)
@@ -439,6 +440,7 @@ Defined in `src/lib/types.ts`:
 ```typescript
 export const SCHOOL_COLORS: Record<string, string> = {
   brown: "#4E3629",    // Brown University brown
+  columbia: "#1D4F91", // Columbia University blue
   harvard: "#A51C30",
   yale: "#00356B",
   // ... more schools
@@ -494,6 +496,11 @@ output: process.env.NODE_ENV === "production" ? "export" : undefined
 
 ## Known Issues & Warnings
 
+### Columbia University Data Sources
+Columbia did not publicly release CDS data before 2021-2022 (following a rankings data controversy). For columbia.json:
+- **2021-2022 through 2024-2025**: Extracted directly from official CDS PDFs in `Columbia/` directory
+- **2016-2017 through 2020-2021**: Admissions data from OPIR Statistical Abstract and third-party sources (IvyLeaguePrep, IvyCoach). Cost data from OPIR UG Tuition History. Demographics, financial aid, SAT section scores, and enrollment figures for these years are estimates based on training data and may not be perfectly precise. Test score submission rates and SAT/ACT section breakdowns are estimated for pre-2021 years.
+
 ### Recharts SSR Warnings
 ```
 The width(-1) and height(-1) of chart should be greater than 0
@@ -542,6 +549,7 @@ The width(-1) and height(-1) of chart should be greater than 0
 | `src/lib/types.ts` | TypeScript interfaces and school colors |
 | `src/data/schools/brown.json` | Brown University data (9 years) |
 | `src/data/schools/caltech.json` | Caltech data (9 years) |
+| `src/data/schools/columbia.json` | Columbia University data (9 years) |
 | `src/data/schools/cornell.json` | Cornell University data (8 years) |
 | `src/data/schools/dartmouth.json` | Dartmouth College data (9 years) |
 | `src/data/schools/harvard.json` | Harvard University data (9 years) |

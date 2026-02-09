@@ -6,12 +6,12 @@
       "admissions": {
         "applied": 36292,
         "admitted": 2193,
-        "enrolled": 1416,
+        "enrolled": 1420,
         "acceptanceRate": 0.0604,
-        "yield": 0.6456,
+        "yield": 0.6474,
         "earlyDecision": {
-          "applied": 4086,
-          "admitted": 650
+          "applied": 3520,
+          "admitted": 620
         }
       },
       "testScores": {
@@ -50,10 +50,10 @@
         }
       },
       "costs": {
-        "tuition": 55056,
-        "fees": 2802,
+        "tuition": 52478,
+        "fees": 2578,
         "roomAndBoard": 13244,
-        "totalCOA": 71102
+        "totalCOA": 68300
       },
       "financialAid": {
         "percentReceivingAid": 0.49,
@@ -65,13 +65,13 @@
     "2017-2018": {
       "admissions": {
         "applied": 37389,
-        "admitted": 2214,
-        "enrolled": 1443,
-        "acceptanceRate": 0.0592,
-        "yield": 0.6517,
+        "admitted": 2185,
+        "enrolled": 1405,
+        "acceptanceRate": 0.0584,
+        "yield": 0.643,
         "earlyDecision": {
-          "applied": 4085,
-          "admitted": 648
+          "applied": 4086,
+          "admitted": 650
         }
       },
       "testScores": {
@@ -110,10 +110,10 @@
         }
       },
       "costs": {
-        "tuition": 57208,
-        "fees": 2860,
+        "tuition": 54504,
+        "fees": 2704,
         "roomAndBoard": 13618,
-        "totalCOA": 73686
+        "totalCOA": 70826
       },
       "financialAid": {
         "percentReceivingAid": 0.49,
@@ -130,8 +130,8 @@
         "acceptanceRate": 0.0551,
         "yield": 0.6409,
         "earlyDecision": {
-          "applied": 4461,
-          "admitted": 695
+          "applied": 4085,
+          "admitted": 650
         }
       },
       "testScores": {
@@ -142,7 +142,7 @@
           "submissionRate": 0.67
         },
         "act": {
-          "composite": { "p25": 34, "p50": 35, "p75": 35 },
+          "composite": { "p25": 33, "p50": 34, "p75": 35 },
           "submissionRate": 0.48
         }
       },
@@ -170,10 +170,10 @@
         }
       },
       "costs": {
-        "tuition": 59430,
-        "fees": 2964,
+        "tuition": 56608,
+        "fees": 2822,
         "roomAndBoard": 14016,
-        "totalCOA": 76410
+        "totalCOA": 73446
       },
       "financialAid": {
         "percentReceivingAid": 0.49,
@@ -184,25 +184,25 @@
     },
     "2019-2020": {
       "admissions": {
-        "applied": 40084,
-        "admitted": 2544,
-        "enrolled": 1515,
-        "acceptanceRate": 0.0635,
-        "yield": 0.5957,
+        "applied": 42569,
+        "admitted": 2190,
+        "enrolled": 1392,
+        "acceptanceRate": 0.0514,
+        "yield": 0.6356,
         "earlyDecision": {
           "applied": 4461,
-          "admitted": 772
+          "admitted": 650
         }
       },
       "testScores": {
         "sat": {
-          "composite": { "p25": 1480, "p50": 1530, "p75": 1580 },
+          "composite": { "p25": 1480, "p50": 1520, "p75": 1560 },
           "readingWriting": { "p25": 720, "p50": 750, "p75": 780 },
           "math": { "p25": 750, "p50": 780, "p75": 800 },
           "submissionRate": 0.65
         },
         "act": {
-          "composite": { "p25": 34, "p50": 35, "p75": 35 },
+          "composite": { "p25": 33, "p50": 34, "p75": 35 },
           "submissionRate": 0.47
         }
       },
@@ -230,10 +230,10 @@
         }
       },
       "costs": {
-        "tuition": 61788,
-        "fees": 3078,
+        "tuition": 58920,
+        "fees": 2930,
         "roomAndBoard": 14490,
-        "totalCOA": 79356
+        "totalCOA": 76340
       },
       "financialAid": {
         "percentReceivingAid": 0.49,
@@ -244,14 +244,14 @@
     },
     "2020-2021": {
       "admissions": {
-        "applied": 60551,
-        "admitted": 2218,
-        "enrolled": 1527,
-        "acceptanceRate": 0.0366,
-        "yield": 0.6885,
+        "applied": 40084,
+        "admitted": 2465,
+        "enrolled": 1454,
+        "acceptanceRate": 0.0615,
+        "yield": 0.5899,
         "earlyDecision": {
-          "applied": 6435,
-          "admitted": 808
+          "applied": 4318,
+          "admitted": 650
         }
       },
       "testScores": {
@@ -259,11 +259,11 @@
           "composite": { "p25": 1490, "p50": 1530, "p75": 1560 },
           "readingWriting": { "p25": 720, "p50": 750, "p75": 770 },
           "math": { "p25": 760, "p50": 780, "p75": 800 },
-          "submissionRate": 0.41
+          "submissionRate": 0.55
         },
         "act": {
           "composite": { "p25": 34, "p50": 35, "p75": 35 },
-          "submissionRate": 0.24
+          "submissionRate": 0.40
         }
       },
       "demographics": {
@@ -290,10 +290,10 @@
         }
       },
       "costs": {
-        "tuition": 62570,
-        "fees": 3327,
-        "roomAndBoard": 15572,
-        "totalCOA": 81469
+        "tuition": 58920,
+        "fees": 3036,
+        "roomAndBoard": 15130,
+        "totalCOA": 77086
       },
       "financialAid": {
         "percentReceivingAid": 0.49,
