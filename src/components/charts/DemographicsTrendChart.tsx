@@ -131,9 +131,9 @@ export default function DemographicsTrendChart({
           <h4 className="text-sm font-medium text-gray-600 mb-3">
             Demographics Over Time (% of Undergraduates)
           </h4>
-          <div className="h-64">
+          <div className="h-80">
             <ResponsiveContainer width="100%" height="100%">
-              <LineChart data={demographicsData}>
+              <LineChart data={demographicsData} margin={{ bottom: 50 }}>
                 <CartesianGrid strokeDasharray="3 3" stroke="#e5e5e5" />
                 <XAxis
                   dataKey="year"
@@ -155,7 +155,10 @@ export default function DemographicsTrendChart({
                   formatter={(value) => [`${(value as number).toFixed(1)}%`, ""]}
                   labelFormatter={(label) => `${label}-${parseInt(label as string) + 1}`}
                 />
-                <Legend />
+                <Legend
+                  verticalAlign="bottom"
+                  wrapperStyle={{ paddingTop: 12 }}
+                />
                 <Line
                   type="monotone"
                   dataKey="white"
