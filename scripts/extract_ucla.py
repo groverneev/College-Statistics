@@ -380,7 +380,7 @@ def extract_ucla_year(pdf_path, year_label):
 
 
 def main():
-    ucla_dir = Path("UCLA")
+    ucla_dir = Path("College-Data/UCLA")
 
     # Map filenames to academic years
     year_map = {
