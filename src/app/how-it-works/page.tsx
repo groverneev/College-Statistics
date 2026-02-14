@@ -231,7 +231,7 @@ export default function HowItWorksPage() {
           <p className="text-gray-600 mb-4">Our current coverage includes:</p>
           <ul className="list-disc list-inside text-gray-600 space-y-2 ml-4 mb-4">
             <li>
-              <strong>12 universities</strong> (more coming soon!)
+              <strong>13 universities</strong> (more coming soon!)
             </li>
             <li>
               <strong>9 years of data</strong> per school: Academic years

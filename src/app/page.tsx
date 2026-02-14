@@ -16,6 +16,7 @@ import upennData from "@/data/schools/upenn.json";
 import yaleData from "@/data/schools/yale.json";
 import columbiaData from "@/data/schools/columbia.json";
 import mitData from "@/data/schools/mit.json";
+import northwesternData from "@/data/schools/northwestern.json";
 
 const schools: SchoolData[] = [
   brownData as SchoolData,
@@ -30,6 +31,7 @@ const schools: SchoolData[] = [
   upennData as SchoolData,
   yaleData as SchoolData,
   mitData as SchoolData,
+  northwesternData as SchoolData,
 ];
 
 // Prepare search data

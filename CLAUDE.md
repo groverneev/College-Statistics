@@ -8,7 +8,7 @@
 
 ## Overview
 
-A Next.js website to visualize and compare Common Data Set (CDS) metrics across colleges. Currently featuring **Brown University**, **California Institute of Technology (Caltech)**, **Columbia University**, **Cornell University**, **Dartmouth College**, **Harvard University**, **Massachusetts Institute of Technology (MIT)**, **Princeton University**, **Stanford University**, **UCLA**, **University of Pennsylvania (UPenn)**, and **Yale University**, each with 7-9 years of historical data (2016-2017 through 2024-2025).
+A Next.js website to visualize and compare Common Data Set (CDS) metrics across colleges. Currently featuring **Brown University**, **California Institute of Technology (Caltech)**, **Columbia University**, **Cornell University**, **Dartmouth College**, **Harvard University**, **Massachusetts Institute of Technology (MIT)**, **Northwestern University**, **Princeton University**, **Stanford University**, **UCLA**, **University of Pennsylvania (UPenn)**, and **Yale University**, each with 7-9 years of historical data (2016-2017 through 2024-2025).
 
 **Live Features:**
 - Admissions trends (applications, acceptance rates, yield, early decision)
@@ -73,6 +73,7 @@ college-comparisons/
 │   │       ├── dartmouth.json          # Dartmouth College data (9 years)
 │   │       ├── harvard.json            # Harvard University data (9 years)
 │   │       ├── mit.json                # MIT data (9 years)
+│   │       ├── northwestern.json       # Northwestern University data (9 years)
 │   │       ├── princeton.json          # Princeton University data (9 years)
 │   │       ├── stanford.json           # Stanford University data (9 years)
 │   │       ├── ucla.json               # UCLA data (8 years)
@@ -91,6 +92,7 @@ college-comparisons/
 │   ├── Cornell/
 │   ├── Dartmouth/
 │   ├── Harvard/
+│   ├── MIT/
 │   ├── Northwestern/
 │   ├── Princeton/
 │   ├── Stanford/
@@ -562,6 +564,7 @@ The width(-1) and height(-1) of chart should be greater than 0
 | `src/data/schools/dartmouth.json` | Dartmouth College data (9 years) |
 | `src/data/schools/harvard.json` | Harvard University data (9 years) |
 | `src/data/schools/mit.json` | MIT data (9 years) |
+| `src/data/schools/northwestern.json` | Northwestern University data (9 years) |
 | `src/data/schools/princeton.json` | Princeton University data (9 years) |
 | `src/data/schools/stanford.json` | Stanford University data (9 years) |
 | `src/data/schools/ucla.json` | UCLA data (8 years) |
@@ -569,6 +572,7 @@ The width(-1) and height(-1) of chart should be greater than 0
 | `src/data/schools/yale.json` | Yale University data (9 years) |
 | `scripts/extract_cds.py` | PDF extraction script |
 | `scripts/extract_cornell.py` | Cornell-specific extraction script |
+| `scripts/extract_northwestern.py` | Northwestern-specific extraction script |
 | `scripts/extract_ucla.py` | UCLA-specific extraction script |
 | `src/app/globals.css` | Global styles, light mode forcing |
 | `tailwind.config.ts` | Tailwind configuration |
