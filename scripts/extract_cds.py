@@ -7,7 +7,7 @@ Uses pdfplumber for table extraction and text parsing.
 
 Usage:
     python extract_cds.py <school_name> <pdf_path> [--output <output_path>]
-    python extract_cds.py brown ../Brown/CDS_2024_2025.pdf
+    python extract_cds.py brown ../College-Data/Brown/CDS_2024_2025.pdf
 
 Install dependencies:
     pip install pdfplumber
@@ -658,7 +658,7 @@ def process_school(school_name: str, pdf_dir: str, output_dir: str) -> dict:
 def main():
     parser = argparse.ArgumentParser(description="Extract CDS data from PDF files")
     parser.add_argument("school", help="School name (e.g., brown, harvard)")
-    parser.add_argument("--pdf-dir", help="Directory containing PDF files (default: ./<School>)")
+    parser.add_argument("--pdf-dir", help="Directory containing PDF files (default: ./College-Data/<School>)")
     parser.add_argument("--output", "-o", help="Output JSON file path")
     parser.add_argument("--single-pdf", help="Process a single PDF file instead of directory")
     parser.add_argument("--verbose", "-v", action="store_true", help="Verbose output")
@@ -684,7 +684,7 @@ def main():
         }
     else:
         # Process directory
-        pdf_dir = args.pdf_dir or f"./{school_name.title()}"
+        pdf_dir = args.pdf_dir or f"./College-Data/{school_name.title()}"
         output_dir = "src/data/schools"
         school_data = process_school(school_name, pdf_dir, output_dir)
 

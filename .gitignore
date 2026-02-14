@@ -1,15 +1,5 @@
 # Colleges
-/Columbia/
-/Brown/
-/Caltech/
-/Harvard/
-/Princeton/
-/Stanford/
-/UPenn/
-/Yale/
-/UCLA/
-/Dartmouth/
-/Cornell/
+/College-Data/
 
 # Dependencies
 /node_modules

@@ -1,6 +1,6 @@
 # College Comparisons - Project Documentation
 
-> **WARNING:** Do NOT attempt to read PDF files directly using the Read tool. The PDF files in this project (e.g., `Brown/*.pdf`) are large and will overload the context window. Always use the Python extraction script (`scripts/extract_cds.py`) to extract data from PDFs instead.
+> **WARNING:** Do NOT attempt to read PDF files directly using the Read tool. The PDF files in this project (e.g., `College-Data/Brown/*.pdf`) are large and will overload the context window. Always use the Python extraction script (`scripts/extract_cds.py`) to extract data from PDFs instead.
 
 > **CRITICAL: NEVER MAKE UP DATA.** All data must be extracted from the actual PDF files. If you cannot extract a specific field after multiple attempts, STOP and tell the user which fields are missing. Do not use placeholder values, estimates, or round numbers. Signs of made-up data include: round numbers (e.g., $50,000 instead of $50,547), flat/identical values across years, or values that don't match PDF content. When in doubt, leave the field empty or ask the user for guidance. But make sure to try your best before giving up. However, if you believe that you have good internal numbers (ie. you know the correct value of something from your training data), then you are free to put it in the website.
 
@@ -84,7 +84,19 @@ college-comparisons/
 │       └── dataHelpers.ts              # Formatting utilities
 ├── scripts/
 │   └── extract_cds.py                  # PDF data extraction script
-├── Brown/                              # Source PDFs (9 years)
+├── College-Data/                       # Source CDS PDFs organized by school
+│   ├── Brown/
+│   ├── Caltech/
+│   ├── Columbia/
+│   ├── Cornell/
+│   ├── Dartmouth/
+│   ├── Harvard/
+│   ├── Northwestern/
+│   ├── Princeton/
+│   ├── Stanford/
+│   ├── UCLA/
+│   ├── UPenn/
+│   └── Yale/
 ├── .venv/                              # Python virtual environment
 ├── tailwind.config.ts
 ├── next.config.ts
@@ -224,7 +236,7 @@ pip install pdfplumber
 
 **Usage:**
 ```bash
-python scripts/extract_cds.py brown --pdf-dir ./Brown
+python scripts/extract_cds.py brown --pdf-dir ./College-Data/Brown
 ```
 
 ### Extraction Techniques That Work Well
@@ -497,16 +509,6 @@ output: process.env.NODE_ENV === "production" ? "export" : undefined
 
 ## Known Issues & Warnings
 
-### Columbia University Data Sources
-Columbia did not publicly release CDS data before 2021-2022 (following a rankings data controversy). For columbia.json:
-- **2021-2022 through 2024-2025**: Extracted directly from official CDS PDFs in `Columbia/` directory
-- **2016-2017 through 2020-2021**: Admissions data from OPIR Statistical Abstract and third-party sources (IvyLeaguePrep, IvyCoach). Cost data from OPIR UG Tuition History. Demographics, financial aid, SAT section scores, and enrollment figures for these years are estimates based on training data and may not be perfectly precise. Test score submission rates and SAT/ACT section breakdowns are estimated for pre-2021 years.
-
-### MIT Data Sources
-MIT publishes CDS data on their website (not as PDFs) at https://ir.mit.edu/project-topic/common-data-set/. For mit.json:
-- **2021-2022 through 2024-2025**: Extracted from official CDS pages on MIT Institutional Research website. Admissions, test scores, demographics, and financial aid are directly from CDS. Note: MIT's CDS G section (costs) reports next year's costs, so costs have been shifted to match the actual academic year.
-- **2016-2017 through 2020-2021**: Admissions data from Crimson Education historical acceptance rate tracking and MIT Admissions statistics. Enrollment totals from MIT Registrar (exact). Costs derived from CNBC (2019-20 confirmed: tuition $53,450, fee $340, R&B $16,390) and College Tuition Compare, with training data estimates for other years. Demographics (race/ethnicity) and financial aid for these years are estimates based on training data and trend analysis. Test score submission rates are not reported (set to 0) for pre-2020 years.
-
 ### Recharts SSR Warnings
 ```
 The width(-1) and height(-1) of chart should be greater than 0
@@ -584,7 +586,7 @@ npm run build
 
 # Extract Brown data
 source .venv/bin/activate
-python scripts/extract_cds.py brown --pdf-dir ./Brown
+python scripts/extract_cds.py brown --pdf-dir ./College-Data/Brown
 
 # List available PDFs
 find . -name "*.pdf" | head -20

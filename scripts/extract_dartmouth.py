@@ -700,7 +700,7 @@ def extract_year_from_filename(filename):
 
 def process_dartmouth():
     """Process all Dartmouth PDFs."""
-    pdf_dir = Path("Dartmouth")
+    pdf_dir = Path("College-Data/Dartmouth")
     pdf_files = sorted(pdf_dir.glob("*.pdf"))
 
     school_data = {

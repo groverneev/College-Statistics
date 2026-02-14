@@ -54,7 +54,11 @@ A data visualization dashboard for comparing colleges using Common Data Set (CDS
 │   └── lib/types.ts            # TypeScript interfaces
 ├── scripts/
 │   └── extract_cds.py          # PDF data extraction
-└── [School]/                   # Source PDF files
+└── College-Data/               # Source CDS PDFs by school
+    ├── Brown/
+    ├── Caltech/
+    ├── Columbia/
+    └── ...
 ```
 
 ## Data Sources
@@ -72,7 +76,7 @@ source .venv/bin/activate
 pip install pdfplumber
 
 # Extract data for a school
-python scripts/extract_cds.py brown --pdf-dir ./Brown
+python scripts/extract_cds.py brown --pdf-dir ./College-Data/Brown
 ```
 
 ## Tech Stack

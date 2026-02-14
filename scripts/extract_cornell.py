@@ -528,7 +528,7 @@ def extract_cornell_year(pdf_path, year_label):
 
 
 def main():
-    cornell_dir = Path("Cornell")
+    cornell_dir = Path("College-Data/Cornell")
 
     # Map filenames to academic years
     # NOTE: 2024-2025 PDF is a blank template with no data
