@@ -170,7 +170,7 @@ export default function ContactPage() {
                     onChange={handleChange}
                     required
                     className="form-input"
-                    placeholder="your@email.com"
+                    placeholder="Your email"
                   />
                 </div>
 
