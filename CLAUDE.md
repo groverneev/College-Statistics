@@ -2,7 +2,7 @@
 
 > **WARNING:** Do NOT attempt to read PDF files directly using the Read tool. The PDF files in this project (e.g., `College-Data/Brown/*.pdf`) are large and will overload the context window. Always use the Python extraction script (`scripts/extract_cds.py`) to extract data from PDFs instead.
 
-> **Data:** You should be able to extract the data from the CDS pdfs. However, if data is missing or you are having extraction problems, you can either insert the actual numbers from your own knowledge if you have the correct numbers from your training data, or you can search up any missing info if needed.
+> **Data:** You should be able to extract the data from the CDS pdfs. However, if data is missing or you are having extraction problems, you can either insert the actual numbers from your own knowledge if you have the correct numbers from your training data, or you can search up any missing info if needed. If pdf files for certain years are missing, you can use search to get the correct numbers. The most important thing is that you can't make up any data. The best strategy might be to use a research agent to get the most accurate numbers without errors. If there are any discrepencies between data, you must figure out the issue.
 
 > **NOTE:** When completing significant tasks (adding features, fixing bugs, adding new schools, changing data schema, etc.), update this `CLAUDE.md` file and `README.md` if necessary to keep documentation current.
 
@@ -477,6 +477,8 @@ When adding a new school to the website, update the following files:
 5. **How it works:** `src/app/how-it-works/page.tsx` - Change university count number
 6. **Data helpers:** `src/utils/dataHelpers.ts` - Add to `getAvailableSchools()` array
 7. **Documentation:** `CLAUDE.md` - Update overview, project structure, and Key Files Reference
+
+> **ORDERING:** The `schools` array in `src/app/page.tsx` must always be kept in **alphabetical order by school name**. When adding a new school, insert it in the correct alphabetical position, not at the end.
 
 > **CRITICAL:** For `page.tsx` and `[school]/page.tsx`, you must make TWO edits each:
 > - Add the `import <school>Data from "@/data/schools/<school>.json"` line with the other imports
