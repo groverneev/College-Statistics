@@ -472,19 +472,26 @@ When adding a new school to the website, update the following files:
 ### Required Files to Update:
 1. **Create data file:** `src/data/schools/<school>.json` - Extract data using a custom script
 2. **Add school color:** `src/lib/types.ts` - Add entry to `SCHOOL_COLORS`
-3. **Home page:** `src/app/page.tsx` - Add import and add to `schools` array
-4. **School page:** `src/app/[school]/page.tsx` - Add import and add to `schoolDataMap`
-5. **How it works:** `src/app/how-it-works/page.tsx` - Change university count
+3. **Home page:** `src/app/page.tsx` - Add import AND add to `schools` array (both steps required)
+4. **School page:** `src/app/[school]/page.tsx` - Add import AND add to `schoolDataMap` (both steps required)
+5. **How it works:** `src/app/how-it-works/page.tsx` - Change university count number
 6. **Data helpers:** `src/utils/dataHelpers.ts` - Add to `getAvailableSchools()` array
-7. **Documentation:** `CLAUDE.md` - Update overview, project structure, Available PDF Data section, and Key Files Reference
+7. **Documentation:** `CLAUDE.md` - Update overview, project structure, and Key Files Reference
+
+> **CRITICAL:** For `page.tsx` and `[school]/page.tsx`, you must make TWO edits each:
+> - Add the `import <school>Data from "@/data/schools/<school>.json"` line with the other imports
+> - Add `<school>Data as SchoolData` to the `schools` array (in `page.tsx`) or `schoolDataMap` (in `[school]/page.tsx`)
+> After editing, always read the file back to confirm both the import and array entry are present before moving on.
 
 ### Checklist:
-- [ ] Create extraction script in `scripts/extract_<school>.py`
-- [ ] Run extraction and verify data quality
-- [ ] Add school color (find official brand color)
-- [ ] Update all 4 page/component files listed above
-- [ ] Run `npm run build` to verify no errors
-- [ ] Update `CLAUDE.md` documentation
+- [ ] Create `src/data/schools/<school>.json` with complete data
+- [ ] Add school color to `src/lib/types.ts` `SCHOOL_COLORS`
+- [ ] `src/app/page.tsx`: add import line + add to `schools` array — **verify both are present**
+- [ ] `src/app/[school]/page.tsx`: add import line + add to `schoolDataMap` — **verify both are present**
+- [ ] `src/app/how-it-works/page.tsx`: increment university count
+- [ ] `src/utils/dataHelpers.ts`: add to `getAvailableSchools()` array
+- [ ] `CLAUDE.md`: update overview, project structure, Key Files Reference
+- [ ] Run `npm run dev` to verify the school appears on the home page
 
 ---
 
