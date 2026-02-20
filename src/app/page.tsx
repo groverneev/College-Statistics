@@ -25,15 +25,15 @@ const schools: SchoolData[] = [
   columbiaData as SchoolData,
   cornellData as SchoolData,
   dartmouthData as SchoolData,
+  dukeData as SchoolData,
   harvardData as SchoolData,
+  mitData as SchoolData,
+  northwesternData as SchoolData,
   princetonData as SchoolData,
   stanfordData as SchoolData,
   uclaData as SchoolData,
   upennData as SchoolData,
   yaleData as SchoolData,
-  mitData as SchoolData,
-  northwesternData as SchoolData,
-  dukeData as SchoolData,
 ];
 
 // Prepare search data
