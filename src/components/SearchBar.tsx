@@ -13,6 +13,23 @@ interface SearchBarProps {
   schools: School[];
 }
 
+const SCHOOL_ALIASES: Record<string, string[]> = {
+  mit:          ["MIT", "Massachusetts Institute of Technology"],
+  upenn:        ["UPenn", "Penn", "U Penn", "University of Pennsylvania"],
+  caltech:      ["Caltech", "Cal Tech", "CIT"],
+  ucla:         ["UCLA", "University of California Los Angeles", "UC Los Angeles"],
+  brown:        ["Brown"],
+  columbia:     ["Columbia"],
+  cornell:      ["Cornell"],
+  dartmouth:    ["Dartmouth"],
+  duke:         ["Duke"],
+  harvard:      ["Harvard"],
+  northwestern: ["NU", "Northwestern"],
+  princeton:    ["Princeton"],
+  stanford:     ["Stanford"],
+  yale:         ["Yale"],
+};
+
 export default function SearchBar({ schools }: SearchBarProps) {
   const [query, setQuery] = useState("");
   const [isOpen, setIsOpen] = useState(false);
@@ -21,12 +38,15 @@ export default function SearchBar({ schools }: SearchBarProps) {
   const dropdownRef = useRef<HTMLDivElement>(null);
   const router = useRouter();
 
-  // Filter schools based on query
+  // Filter schools based on query (name or aliases)
   const filteredSchools = query.trim()
     ? schools
-        .filter((school) =>
-          school.name.toLowerCase().includes(query.toLowerCase())
-        )
+        .filter((school) => {
+          const q = query.toLowerCase();
+          if (school.name.toLowerCase().includes(q)) return true;
+          const aliases = SCHOOL_ALIASES[school.slug] ?? [];
+          return aliases.some((alias) => alias.toLowerCase().includes(q));
+        })
         .slice(0, 6)
     : [];
 

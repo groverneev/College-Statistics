@@ -492,6 +492,7 @@ When adding a new school to the website, update the following files:
 - [ ] `src/app/[school]/page.tsx`: add import line + add to `schoolDataMap` — **verify both are present**
 - [ ] `src/app/how-it-works/page.tsx`: increment university count
 - [ ] `src/utils/dataHelpers.ts`: add to `getAvailableSchools()` array
+- [ ] `src/components/SearchBar.tsx`: add entry to `SCHOOL_ALIASES` with the school's slug as the key and an array of common aliases/abbreviations (e.g. `["MIT", "Massachusetts Institute of Technology"]`)
 - [ ] `CLAUDE.md`: update overview, project structure, Key Files Reference
 - [ ] Run `npm run dev` to verify the school appears on the home page
 
