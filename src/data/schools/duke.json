@@ -19,11 +19,11 @@
           "composite": { "p25": 1450, "p50": 1505, "p75": 1560 },
           "readingWriting": { "p25": 710, "p50": 735, "p75": 760 },
           "math": { "p25": 740, "p50": 770, "p75": 800 },
-          "submissionRate": 0
+          "submissionRate": 0.53
         },
         "act": {
           "composite": { "p25": 32, "p50": 33, "p75": 35 },
-          "submissionRate": 0
+          "submissionRate": 0.72
         }
       },
       "demographics": {
@@ -79,11 +79,11 @@
           "composite": { "p25": 1470, "p50": 1520, "p75": 1570 },
           "readingWriting": { "p25": 710, "p50": 740, "p75": 770 },
           "math": { "p25": 750, "p50": 775, "p75": 800 },
-          "submissionRate": 0
+          "submissionRate": 0.53
         },
         "act": {
           "composite": { "p25": 33, "p50": 34, "p75": 35 },
-          "submissionRate": 0
+          "submissionRate": 0.72
         }
       },
       "demographics": {
@@ -139,11 +139,11 @@
           "composite": { "p25": 1470, "p50": 1520, "p75": 1570 },
           "readingWriting": { "p25": 720, "p50": 745, "p75": 770 },
           "math": { "p25": 750, "p50": 775, "p75": 800 },
-          "submissionRate": 0
+          "submissionRate": 0.53
         },
         "act": {
           "composite": { "p25": 33, "p50": 34, "p75": 35 },
-          "submissionRate": 0
+          "submissionRate": 0.72
         }
       },
       "demographics": {
@@ -199,11 +199,11 @@
           "composite": { "p25": 1480, "p50": 1530, "p75": 1580 },
           "readingWriting": { "p25": 720, "p50": 750, "p75": 780 },
           "math": { "p25": 760, "p50": 780, "p75": 800 },
-          "submissionRate": 0
+          "submissionRate": 0.53
         },
         "act": {
           "composite": { "p25": 33, "p50": 34, "p75": 35 },
-          "submissionRate": 0
+          "submissionRate": 0.72
         }
       },
       "demographics": {
@@ -259,11 +259,11 @@
           "composite": { "p25": 1470, "p50": 1520, "p75": 1570 },
           "readingWriting": { "p25": 720, "p50": 745, "p75": 770 },
           "math": { "p25": 750, "p50": 775, "p75": 800 },
-          "submissionRate": 0
+          "submissionRate": 0.53
         },
         "act": {
           "composite": { "p25": 34, "p50": 34, "p75": 35 },
-          "submissionRate": 0
+          "submissionRate": 0.72
         }
       },
       "demographics": {
@@ -319,11 +319,11 @@
           "composite": { "p25": 1480, "p50": 1525, "p75": 1570 },
           "readingWriting": { "p25": 730, "p50": 750, "p75": 770 },
           "math": { "p25": 750, "p50": 775, "p75": 800 },
-          "submissionRate": 0
+          "submissionRate": 0.47
         },
         "act": {
           "composite": { "p25": 33, "p50": 34, "p75": 35 },
-          "submissionRate": 0
+          "submissionRate": 0.46
         }
       },
       "demographics": {
@@ -364,14 +364,14 @@
     },
     "2022-2023": {
       "admissions": {
-        "applied": 44180,
-        "admitted": 2829,
+        "applied": 50002,
+        "admitted": 3085,
         "enrolled": 1750,
-        "acceptanceRate": 0.0641,
-        "yield": 0.6186,
+        "acceptanceRate": 0.0617,
+        "yield": 0.5673,
         "earlyDecision": {
-          "applied": 3441,
-          "admitted": 882
+          "applied": 4015,
+          "admitted": 855
         }
       },
       "testScores": {
@@ -379,11 +379,11 @@
           "composite": { "p25": 1500, "p50": 1535, "p75": 1570 },
           "readingWriting": { "p25": 740, "p50": 757, "p75": 770 },
           "math": { "p25": 760, "p50": 780, "p75": 800 },
-          "submissionRate": 0
+          "submissionRate": 0.47
         },
         "act": {
           "composite": { "p25": 34, "p50": 35, "p75": 36 },
-          "submissionRate": 0
+          "submissionRate": 0.30
         }
       },
       "demographics": {
@@ -424,14 +424,14 @@
     },
     "2023-2024": {
       "admissions": {
-        "applied": 44339,
-        "admitted": 2368,
+        "applied": 49469,
+        "admitted": 2948,
         "enrolled": 1743,
-        "acceptanceRate": 0.0534,
-        "yield": 0.7360,
+        "acceptanceRate": 0.0596,
+        "yield": 0.5913,
         "earlyDecision": {
-          "applied": 3494,
-          "admitted": 882
+          "applied": 4880,
+          "admitted": 800
         }
       },
       "testScores": {
@@ -439,11 +439,11 @@
           "composite": { "p25": 1510, "p50": 1545, "p75": 1580 },
           "readingWriting": { "p25": 750, "p50": 765, "p75": 780 },
           "math": { "p25": 760, "p50": 780, "p75": 800 },
-          "submissionRate": 0
+          "submissionRate": 0.47
         },
         "act": {
           "composite": { "p25": 34, "p50": 35, "p75": 36 },
-          "submissionRate": 0
+          "submissionRate": 0.30
         }
       },
       "demographics": {
@@ -484,14 +484,14 @@
     },
     "2024-2025": {
       "admissions": {
-        "applied": 37400,
-        "admitted": 2200,
-        "enrolled": 1750,
-        "acceptanceRate": 0.0588,
-        "yield": 0.7955,
+        "applied": 54190,
+        "admitted": 2790,
+        "enrolled": 1749,
+        "acceptanceRate": 0.0515,
+        "yield": 0.6269,
         "earlyDecision": {
-          "applied": 3500,
-          "admitted": 900
+          "applied": 6240,
+          "admitted": 806
         }
       },
       "testScores": {
@@ -499,34 +499,34 @@
           "composite": { "p25": 1510, "p50": 1545, "p75": 1580 },
           "readingWriting": { "p25": 750, "p50": 765, "p75": 780 },
           "math": { "p25": 760, "p50": 780, "p75": 800 },
-          "submissionRate": 0
+          "submissionRate": 0.48
         },
         "act": {
           "composite": { "p25": 34, "p50": 34, "p75": 35 },
-          "submissionRate": 0
+          "submissionRate": 0.30
         }
       },
       "demographics": {
         "enrollment": {
-          "total": 17000,
-          "undergraduate": 6786,
-          "graduate": 10214
+          "total": 17499,
+          "undergraduate": 6523,
+          "graduate": 10976
         },
         "byRace": {
-          "international": 747,
-          "hispanicLatino": 815,
-          "blackAfricanAmerican": 611,
-          "white": 2721,
-          "asian": 1494,
-          "americanIndianAlaskaNative": 27,
-          "nativeHawaiianPacificIslander": 14,
-          "twoOrMoreRaces": 339,
-          "unknown": 18
+          "international": 693,
+          "hispanicLatino": 696,
+          "blackAfricanAmerican": 562,
+          "white": 2285,
+          "asian": 1409,
+          "americanIndianAlaskaNative": 13,
+          "nativeHawaiianPacificIslander": 5,
+          "twoOrMoreRaces": 477,
+          "unknown": 383
         },
         "byResidency": {
-          "inState": 783,
-          "outOfState": 5256,
-          "international": 747
+          "inState": 933,
+          "outOfState": 4897,
+          "international": 693
         }
       },
       "costs": {
