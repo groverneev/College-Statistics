@@ -11,6 +11,7 @@ import harvardData from "@/data/schools/harvard.json";
 import princetonData from "@/data/schools/princeton.json";
 import stanfordData from "@/data/schools/stanford.json";
 import uclaData from "@/data/schools/ucla.json";
+import ucberkeleyData from "@/data/schools/ucberkeley.json";
 import upennData from "@/data/schools/upenn.json";
 import yaleData from "@/data/schools/yale.json";
 import columbiaData from "@/data/schools/columbia.json";
@@ -28,6 +29,7 @@ const schoolDataMap: Record<string, SchoolData> = {
   princeton: princetonData as SchoolData,
   stanford: stanfordData as SchoolData,
   ucla: uclaData as SchoolData,
+  ucberkeley: ucberkeleyData as SchoolData,
   upenn: upennData as SchoolData,
   yale: yaleData as SchoolData,
   mit: mitData as SchoolData,
