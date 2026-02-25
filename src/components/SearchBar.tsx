@@ -17,6 +17,7 @@ const SCHOOL_ALIASES: Record<string, string[]> = {
   mit:          ["MIT", "Massachusetts Institute of Technology"],
   upenn:        ["UPenn", "Penn", "U Penn", "University of Pennsylvania"],
   caltech:      ["Caltech", "Cal Tech", "CIT"],
+  cmu:          ["CMU", "Carnegie Mellon", "Carnegie-Mellon"],
   ucla:         ["UCLA", "University of California Los Angeles", "UC Los Angeles"],
   ucberkeley:   ["UC Berkeley", "Cal", "Berkeley", "University of California Berkeley"],
   brown:        ["Brown"],

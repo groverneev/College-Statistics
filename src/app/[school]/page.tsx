@@ -15,6 +15,7 @@ import ucberkeleyData from "@/data/schools/ucberkeley.json";
 import upennData from "@/data/schools/upenn.json";
 import yaleData from "@/data/schools/yale.json";
 import columbiaData from "@/data/schools/columbia.json";
+import cmuData from "@/data/schools/cmu.json";
 import mitData from "@/data/schools/mit.json";
 import northwesternData from "@/data/schools/northwestern.json";
 import dukeData from "@/data/schools/duke.json";
@@ -22,6 +23,7 @@ import dukeData from "@/data/schools/duke.json";
 const schoolDataMap: Record<string, SchoolData> = {
   brown: brownData as SchoolData,
   caltech: caltechData as SchoolData,
+  cmu: cmuData as SchoolData,
   columbia: columbiaData as SchoolData,
   cornell: cornellData as SchoolData,
   dartmouth: dartmouthData as SchoolData,

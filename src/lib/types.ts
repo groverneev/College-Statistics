@@ -108,4 +108,5 @@ export const SCHOOL_COLORS: Record<string, string> = {
   northwestern: "#4E2A84",
   duke: "#012169",
   ucberkeley: "#003262",
+  cmu: "#C41230",
 };

@@ -8,7 +8,7 @@
 
 ## Overview
 
-A Next.js website to visualize and compare Common Data Set (CDS) metrics across colleges. Currently featuring **Brown University**, **California Institute of Technology (Caltech)**, **Columbia University**, **Cornell University**, **Dartmouth College**, **Duke University**, **Harvard University**, **Massachusetts Institute of Technology (MIT)**, **Northwestern University**, **Princeton University**, **Stanford University**, **UCLA**, **University of California, Berkeley (UC Berkeley)**, **University of Pennsylvania (UPenn)**, and **Yale University**, each with 7-9 years of historical data (2016-2017 through 2024-2025).
+A Next.js website to visualize and compare Common Data Set (CDS) metrics across colleges. Currently featuring **Brown University**, **California Institute of Technology (Caltech)**, **Carnegie Mellon University (CMU)**, **Columbia University**, **Cornell University**, **Dartmouth College**, **Duke University**, **Harvard University**, **Massachusetts Institute of Technology (MIT)**, **Northwestern University**, **Princeton University**, **Stanford University**, **UCLA**, **University of California, Berkeley (UC Berkeley)**, **University of Pennsylvania (UPenn)**, and **Yale University**, each with 7-9 years of historical data (2016-2017 through 2024-2025).
 
 **Live Features:**
 - Admissions trends (applications, acceptance rates, yield, early decision)
@@ -68,6 +68,7 @@ college-comparisons/
 │   │   └── schools/
 │   │       ├── brown.json              # Brown University data (9 years)
 │   │       ├── caltech.json            # Caltech data (9 years)
+│   │       ├── cmu.json                # Carnegie Mellon University data (9 years)
 │   │       ├── columbia.json           # Columbia University data (9 years)
 │   │       ├── cornell.json            # Cornell University data (8 years)
 │   │       ├── dartmouth.json          # Dartmouth College data (9 years)
@@ -571,6 +572,7 @@ The width(-1) and height(-1) of chart should be greater than 0
 | `src/lib/types.ts` | TypeScript interfaces and school colors |
 | `src/data/schools/brown.json` | Brown University data (9 years) |
 | `src/data/schools/caltech.json` | Caltech data (9 years) |
+| `src/data/schools/cmu.json` | Carnegie Mellon University data (9 years) |
 | `src/data/schools/columbia.json` | Columbia University data (9 years) |
 | `src/data/schools/cornell.json` | Cornell University data (8 years) |
 | `src/data/schools/dartmouth.json` | Dartmouth College data (9 years) |
