@@ -25,25 +25,25 @@
       },
       "demographics": {
         "enrollment": {
-          "total": 13258,
-          "undergraduate": 6283,
-          "graduate": 6975
+          "total": 13961,
+          "undergraduate": 6673,
+          "graduate": 7288
         },
         "byRace": {
-          "international": 879,
-          "hispanicLatino": 503,
-          "blackAfricanAmerican": 283,
-          "white": 1634,
-          "asian": 2136,
-          "americanIndianAlaskaNative": 19,
-          "nativeHawaiianPacificIslander": 13,
-          "twoOrMoreRaces": 220,
-          "unknown": 596
+          "international": 1514,
+          "hispanicLatino": 524,
+          "blackAfricanAmerican": 286,
+          "white": 1872,
+          "asian": 1863,
+          "americanIndianAlaskaNative": 3,
+          "nativeHawaiianPacificIslander": 2,
+          "twoOrMoreRaces": 271,
+          "unknown": 338
         },
         "byResidency": {
-          "inState": 648,
-          "outOfState": 4756,
-          "international": 879
+          "inState": 774,
+          "outOfState": 4385,
+          "international": 1514
         }
       },
       "costs": {
@@ -82,25 +82,25 @@
       },
       "demographics": {
         "enrollment": {
-          "total": 13869,
-          "undergraduate": 6533,
-          "graduate": 7336
+          "total": 14528,
+          "undergraduate": 6896,
+          "graduate": 7632
         },
         "byRace": {
-          "international": 914,
-          "hispanicLatino": 523,
-          "blackAfricanAmerican": 294,
-          "white": 1698,
-          "asian": 2220,
-          "americanIndianAlaskaNative": 20,
-          "nativeHawaiianPacificIslander": 13,
-          "twoOrMoreRaces": 229,
-          "unknown": 622
+          "international": 1553,
+          "hispanicLatino": 581,
+          "blackAfricanAmerican": 284,
+          "white": 1836,
+          "asian": 1994,
+          "americanIndianAlaskaNative": 3,
+          "nativeHawaiianPacificIslander": 2,
+          "twoOrMoreRaces": 273,
+          "unknown": 370
         },
         "byResidency": {
-          "inState": 674,
-          "outOfState": 4945,
-          "international": 914
+          "inState": 801,
+          "outOfState": 4542,
+          "international": 1553
         }
       },
       "costs": {
@@ -139,25 +139,25 @@
       },
       "demographics": {
         "enrollment": {
-          "total": 14029,
-          "undergraduate": 6589,
-          "graduate": 7440
+          "total": 14625,
+          "undergraduate": 6947,
+          "graduate": 7678
         },
         "byRace": {
-          "international": 922,
-          "hispanicLatino": 527,
-          "blackAfricanAmerican": 297,
-          "white": 1715,
-          "asian": 2240,
-          "americanIndianAlaskaNative": 20,
-          "nativeHawaiianPacificIslander": 13,
-          "twoOrMoreRaces": 231,
-          "unknown": 624
+          "international": 1536,
+          "hispanicLatino": 602,
+          "blackAfricanAmerican": 269,
+          "white": 1809,
+          "asian": 2055,
+          "americanIndianAlaskaNative": 2,
+          "nativeHawaiianPacificIslander": 1,
+          "twoOrMoreRaces": 265,
+          "unknown": 408
         },
         "byResidency": {
-          "inState": 680,
-          "outOfState": 4987,
-          "international": 922
+          "inState": 763,
+          "outOfState": 4648,
+          "international": 1536
         }
       },
       "costs": {
@@ -196,25 +196,25 @@
       },
       "demographics": {
         "enrollment": {
-          "total": 14180,
-          "undergraduate": 6618,
-          "graduate": 7562
+          "total": 14799,
+          "undergraduate": 7022,
+          "graduate": 7777
         },
         "byRace": {
-          "international": 993,
-          "hispanicLatino": 529,
-          "blackAfricanAmerican": 298,
-          "white": 1721,
-          "asian": 2249,
-          "americanIndianAlaskaNative": 20,
-          "nativeHawaiianPacificIslander": 13,
-          "twoOrMoreRaces": 232,
-          "unknown": 563
+          "international": 1566,
+          "hispanicLatino": 598,
+          "blackAfricanAmerican": 246,
+          "white": 1745,
+          "asian": 2150,
+          "americanIndianAlaskaNative": 1,
+          "nativeHawaiianPacificIslander": 2,
+          "twoOrMoreRaces": 274,
+          "unknown": 440
         },
         "byResidency": {
-          "inState": 683,
-          "outOfState": 4942,
-          "international": 993
+          "inState": 742,
+          "outOfState": 4714,
+          "international": 1566
         }
       },
       "costs": {
@@ -253,25 +253,25 @@
       },
       "demographics": {
         "enrollment": {
-          "total": 13519,
-          "undergraduate": 6622,
-          "graduate": 6897
+          "total": 14189,
+          "undergraduate": 7073,
+          "graduate": 7116
         },
         "byRace": {
-          "international": 993,
-          "hispanicLatino": 530,
-          "blackAfricanAmerican": 298,
-          "white": 1722,
-          "asian": 2252,
-          "americanIndianAlaskaNative": 20,
-          "nativeHawaiianPacificIslander": 13,
-          "twoOrMoreRaces": 232,
-          "unknown": 562
+          "international": 1495,
+          "hispanicLatino": 612,
+          "blackAfricanAmerican": 257,
+          "white": 1668,
+          "asian": 2290,
+          "americanIndianAlaskaNative": 0,
+          "nativeHawaiianPacificIslander": 2,
+          "twoOrMoreRaces": 280,
+          "unknown": 469
         },
         "byResidency": {
-          "inState": 683,
-          "outOfState": 4946,
-          "international": 993
+          "inState": 725,
+          "outOfState": 4853,
+          "international": 1495
         }
       },
       "costs": {
@@ -310,25 +310,25 @@
       },
       "demographics": {
         "enrollment": {
-          "total": 15057,
-          "undergraduate": 6932,
-          "graduate": 8125
+          "total": 15818,
+          "undergraduate": 7365,
+          "graduate": 8453
         },
         "byRace": {
-          "international": 1040,
-          "hispanicLatino": 555,
-          "blackAfricanAmerican": 312,
-          "white": 1803,
-          "asian": 2357,
-          "americanIndianAlaskaNative": 21,
-          "nativeHawaiianPacificIslander": 14,
-          "twoOrMoreRaces": 243,
-          "unknown": 587
+          "international": 1656,
+          "hispanicLatino": 677,
+          "blackAfricanAmerican": 273,
+          "white": 1639,
+          "asian": 2329,
+          "americanIndianAlaskaNative": 0,
+          "nativeHawaiianPacificIslander": 3,
+          "twoOrMoreRaces": 341,
+          "unknown": 447
         },
         "byResidency": {
-          "inState": 715,
-          "outOfState": 5177,
-          "international": 1040
+          "inState": 736,
+          "outOfState": 4973,
+          "international": 1656
         }
       },
       "costs": {
@@ -367,25 +367,25 @@
       },
       "demographics": {
         "enrollment": {
-          "total": 16002,
-          "undergraduate": 7059,
-          "graduate": 8943
+          "total": 16779,
+          "undergraduate": 7509,
+          "graduate": 9270
         },
         "byRace": {
-          "international": 1155,
-          "hispanicLatino": 654,
-          "blackAfricanAmerican": 278,
-          "white": 1745,
-          "asian": 2450,
-          "americanIndianAlaskaNative": 10,
-          "nativeHawaiianPacificIslander": 2,
-          "twoOrMoreRaces": 304,
-          "unknown": 461
+          "international": 1784,
+          "hispanicLatino": 737,
+          "blackAfricanAmerican": 286,
+          "white": 1551,
+          "asian": 2372,
+          "americanIndianAlaskaNative": 2,
+          "nativeHawaiianPacificIslander": 4,
+          "twoOrMoreRaces": 361,
+          "unknown": 412
         },
         "byResidency": {
-          "inState": 728,
-          "outOfState": 5176,
-          "international": 1155
+          "inState": 1935,
+          "outOfState": 3790,
+          "international": 1784
         }
       },
       "costs": {
@@ -424,25 +424,25 @@
       },
       "demographics": {
         "enrollment": {
-          "total": 15596,
-          "undergraduate": 7289,
-          "graduate": 8307
+          "total": 16335,
+          "undergraduate": 7707,
+          "graduate": 8628
         },
         "byRace": {
-          "international": 1193,
-          "hispanicLatino": 676,
-          "blackAfricanAmerican": 287,
-          "white": 1802,
-          "asian": 2531,
-          "americanIndianAlaskaNative": 10,
-          "nativeHawaiianPacificIslander": 2,
-          "twoOrMoreRaces": 314,
-          "unknown": 474
+          "international": 1786,
+          "hispanicLatino": 783,
+          "blackAfricanAmerican": 308,
+          "white": 1590,
+          "asian": 2424,
+          "americanIndianAlaskaNative": 2,
+          "nativeHawaiianPacificIslander": 3,
+          "twoOrMoreRaces": 390,
+          "unknown": 421
         },
         "byResidency": {
-          "inState": 752,
-          "outOfState": 5344,
-          "international": 1193
+          "inState": 793,
+          "outOfState": 5128,
+          "international": 1786
         }
       },
       "costs": {
@@ -481,25 +481,25 @@
       },
       "demographics": {
         "enrollment": {
-          "total": 15888,
-          "undergraduate": 7377,
-          "graduate": 8511
+          "total": 16676,
+          "undergraduate": 7824,
+          "graduate": 8852
         },
         "byRace": {
-          "international": 1208,
-          "hispanicLatino": 684,
-          "blackAfricanAmerican": 291,
-          "white": 1824,
-          "asian": 2562,
-          "americanIndianAlaskaNative": 10,
-          "nativeHawaiianPacificIslander": 3,
-          "twoOrMoreRaces": 318,
-          "unknown": 477
+          "international": 1823,
+          "hispanicLatino": 735,
+          "blackAfricanAmerican": 298,
+          "white": 1607,
+          "asian": 2530,
+          "americanIndianAlaskaNative": 1,
+          "nativeHawaiianPacificIslander": 2,
+          "twoOrMoreRaces": 394,
+          "unknown": 434
         },
         "byResidency": {
-          "inState": 761,
-          "outOfState": 5408,
-          "international": 1208
+          "inState": 816,
+          "outOfState": 5185,
+          "international": 1823
         }
       },
       "costs": {
