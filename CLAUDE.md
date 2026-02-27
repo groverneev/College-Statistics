@@ -344,6 +344,44 @@ After extraction, verify data quality by checking:
 - **Reasonable ranges:** Acceptance rates, SAT scores, costs should be in expected ranges
 - **Internal consistency:** Sum of demographic categories ≈ total enrollment
 
+### Fast Data Retrieval Strategy (Works Well in Practice)
+
+Use this when you need accurate numbers quickly, especially to fix one section (like demographics) without re-extracting everything.
+
+1. **Start from official institutional CDS pages only**
+   - Prefer the school's CDS archive/index page (e.g., `.../CDS/index.html`) and year-specific PDFs from the same domain.
+   - Avoid tertiary summary sites for raw counts.
+
+2. **Extract only the blocking fields first**
+   - For demographic fixes, focus on:
+     - `B2` for `byRace` and undergraduate totals
+     - `F1` for out-of-state % (to compute `inState` / `outOfState`)
+   - This is much faster than full-schema extraction when only one chart is wrong.
+
+3. **Use deterministic math for derived fields**
+   - Residency:
+     - `domestic = undergraduate - international`
+     - `outOfState = round(domestic * outPct / 100)`
+     - `inState = domestic - outOfState`
+   - Keep one rounding rule for all years in the same school.
+
+4. **Patch all affected years in one pass**
+   - Update all years for that school (`2016-2017` through latest) in one edit to prevent mixed-quality time series.
+
+5. **Run strict consistency checks immediately after patching**
+   - For each year:
+     - `undergraduate + graduate == total`
+     - `sum(byRace) == undergraduate`
+     - `sum(byResidency) == undergraduate`
+   - If any check fails, fix before touching any other dataset.
+
+6. **Watch for obvious anomaly signals**
+   - Large one-year jumps in a category with no matching enrollment shift
+   - Flat/linear-looking fabricated patterns
+   - Residencies that imply impossible domestic/international splits
+
+This workflow optimized for both speed and correctness when repairing existing school JSON files.
+
 ### Advanced Extraction Patterns (Learned from Dartmouth)
 
 #### 7. Newer CDS Format (2023-2024+)
