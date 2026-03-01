@@ -15,6 +15,7 @@ A data visualization dashboard for comparing colleges using Common Data Set (CDS
 - **Cost of Attendance** - Tuition, fees, room & board breakdown
 - **Financial Aid** - Average grants, percent receiving aid, net price
 - **Demographics** - Enrollment trends and racial/ethnic composition over time
+- **Trends** - Data-driven stories and analyses (e.g. UC application volume comparisons)
 
 ## Currently Available
 
@@ -22,9 +23,18 @@ A data visualization dashboard for comparing colleges using Common Data Set (CDS
 |--------|-------|-------------|
 | Brown University | 2016-2025 | 9 years |
 | California Institute of Technology (Caltech) | 2016-2025 | 9 years |
+| Carnegie Mellon University (CMU) | 2016-2025 | 9 years |
+| Columbia University | 2016-2025 | 9 years |
+| Cornell University | 2017-2025 | 8 years |
+| Dartmouth College | 2016-2025 | 9 years |
+| Duke University | 2016-2025 | 9 years |
 | Harvard University | 2016-2025 | 9 years |
+| Massachusetts Institute of Technology (MIT) | 2016-2025 | 9 years |
+| Northwestern University | 2016-2025 | 9 years |
 | Princeton University | 2016-2025 | 9 years |
 | Stanford University | 2016-2025 | 9 years |
+| UCLA | 2017-2025 | 8 years |
+| University of California, Berkeley (UC Berkeley) | 2016-2025 | 9 years |
 | University of Pennsylvania (UPenn) | 2016-2025 | 9 years |
 | Yale University | 2016-2025 | 9 years |
 
@@ -32,6 +42,7 @@ A data visualization dashboard for comparing colleges using Common Data Set (CDS
 
 - **Home** (`/`) - School selector with key stats
 - **School Dashboard** (`/[school]`) - Detailed charts and data for each school
+- **Trends** (`/trends`) - Data-driven stories with charts and analysis
 - **About** (`/about`) - Information about the project and creator
 - **How it Works** (`/how-it-works`) - Explanation of CDS data and how to use the dashboard
 - **Contact** (`/contact`) - Contact form and social links
@@ -42,15 +53,19 @@ A data visualization dashboard for comparing colleges using Common Data Set (CDS
 ├── src/
 │   ├── app/                    # Next.js App Router pages
 │   │   ├── [school]/           # Dynamic school pages
+│   │   ├── trends/             # Trends index + story pages
 │   │   ├── about/              # About page
 │   │   ├── how-it-works/       # How it Works page
 │   │   ├── contact/            # Contact page
 │   │   └── compare/            # School comparison page
 │   ├── components/
 │   │   ├── charts/             # Recharts visualizations
+│   │   ├── trends/             # Trends story components
 │   │   ├── Header.tsx          # Navigation header
 │   │   └── Footer.tsx          # Site footer
-│   ├── data/schools/           # JSON data files
+│   ├── data/
+│   │   ├── schools/            # CDS JSON data files
+│   │   └── trends/             # Trends story data files
 │   └── lib/types.ts            # TypeScript interfaces
 ├── scripts/
 │   └── extract_cds.py          # PDF data extraction

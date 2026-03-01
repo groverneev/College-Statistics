@@ -1,5 +1,7 @@
 # College Comparisons - Project Documentation
 
+> **WORKTREE:** Always work directly in the main repository (`/Users/neevgrover/Documents/Programming/College-Statistics`). Do NOT create git worktrees. Do not use `git worktree add`. Make all edits in place on the current branch.
+
 > **WARNING:** Do NOT attempt to read PDF files directly using the Read tool. The PDF files in this project (e.g., `College-Data/Brown/*.pdf`) are large and will overload the context window. Always use the Python extraction script (`scripts/extract_cds.py`) to extract data from PDFs instead.
 
 > **Data:** You should be able to extract the data from the CDS pdfs. However, if data is missing or you are having extraction problems, you can either insert the actual numbers from your own knowledge if you have the correct numbers from your training data, or you can search up any missing info if needed. If pdf files for certain years are missing, you can use search to get the correct numbers. The most important thing is that you can't make up any data. The best strategy might be to use a research agent to get the most accurate numbers without errors. If there are any discrepencies between data, you must figure out the issue.
@@ -16,6 +18,7 @@ A Next.js website to visualize and compare Common Data Set (CDS) metrics across 
 - Cost of attendance breakdown over time
 - Financial aid statistics
 - Student demographics and enrollment trends
+- Trends page (`/trends`) — data-driven stories with charts (e.g. UC application volume analysis)
 
 ---
 
@@ -54,17 +57,29 @@ college-comparisons/
 │   │   │   └── SchoolPageClient.tsx    # Client component with charts
 │   │   ├── compare/
 │   │   │   └── page.tsx                # School comparison page
+│   │   ├── trends/
+│   │   │   ├── page.tsx                # Trends index page (list of stories)
+│   │   │   └── [slug]/
+│   │   │       └── page.tsx            # Dynamic story route
 │   │   ├── layout.tsx                  # Root layout (forces light mode)
 │   │   ├── globals.css                 # Global styles
 │   │   └── icon.svg                    # Favicon
 │   ├── components/
-│   │   └── charts/
-│   │       ├── AdmissionsTrendChart.tsx
-│   │       ├── TestScoresTrendChart.tsx
-│   │       ├── CostsTrendChart.tsx
-│   │       ├── FinancialAidTrendChart.tsx
-│   │       └── DemographicsTrendChart.tsx
+│   │   ├── charts/
+│   │   │   ├── AdmissionsTrendChart.tsx
+│   │   │   ├── TestScoresTrendChart.tsx
+│   │   │   ├── CostsTrendChart.tsx
+│   │   │   ├── FinancialAidTrendChart.tsx
+│   │   │   └── DemographicsTrendChart.tsx
+│   │   └── trends/
+│   │       ├── StoryCard.tsx           # Card on the trends index page
+│   │       └── stories/
+│   │           └── UC2026Story.tsx     # UC 2026 application story
 │   ├── data/
+│   │   ├── trends/
+│   │   │   ├── index.ts                # Story registry (add new stories here)
+│   │   │   └── uc-2026-applications/
+│   │   │       └── data.ts             # Data for UC 2026 story
 │   │   └── schools/
 │   │       ├── brown.json              # Brown University data (9 years)
 │   │       ├── caltech.json            # Caltech data (9 years)
@@ -602,6 +617,34 @@ The width(-1) and height(-1) of chart should be greater than 0
 
 ---
 
+## Adding a Trends Story
+
+The `/trends` page is a scalable, static "blog" for data-driven analyses. Each story lives at `/trends/<slug>`.
+
+### To add a new story:
+
+1. **Register it** in `src/data/trends/index.ts` — add one entry to the `trends` array:
+   ```ts
+   {
+     slug: "my-new-story",
+     title: "...",
+     subtitle: "...",
+     date: "2026-03-15",   // ISO date
+     tags: ["Tag1", "Tag2"],
+     preview: "1-2 sentence summary shown on the index card.",
+   }
+   ```
+
+2. **Add data** in `src/data/trends/my-new-story/data.ts` — typed arrays for each chart, plus any narrative strings.
+
+3. **Build the story component** at `src/components/trends/stories/MyNewStory.tsx` — a `"use client"` component using Recharts, matching existing story patterns.
+
+4. **Wire the route** in `src/app/trends/[slug]/page.tsx` — add a `slug === "my-new-story"` branch that renders your story component.
+
+No other files need to change. `generateStaticParams()` auto-picks up the new slug.
+
+---
+
 ## Key Files Reference
 
 | File | Purpose |
@@ -624,6 +667,11 @@ The width(-1) and height(-1) of chart should be greater than 0
 | `src/data/schools/ucberkeley.json` | UC Berkeley data (9 years) |
 | `src/data/schools/upenn.json` | UPenn data (9 years) |
 | `src/data/schools/yale.json` | Yale University data (9 years) |
+| `src/app/trends/page.tsx` | Trends index page |
+| `src/app/trends/[slug]/page.tsx` | Dynamic story route |
+| `src/data/trends/index.ts` | Story registry — add new stories here |
+| `src/components/trends/StoryCard.tsx` | Card on the trends index |
+| `src/components/trends/stories/UC2026Story.tsx` | UC 2026 application story |
 | `scripts/extract_cds.py` | PDF extraction script |
 | `scripts/extract_cornell.py` | Cornell-specific extraction script |
 | `scripts/extract_northwestern.py` | Northwestern-specific extraction script |
