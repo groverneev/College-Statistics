@@ -105,6 +105,7 @@ export const SCHOOL_COLORS: Record<string, string> = {
   ucla: "#2774AE",
   columbia: "#1D4F91",
   mit: "#A31F34",
+  nyu: "#57068C",
   northwestern: "#4E2A84",
   duke: "#012169",
   ucberkeley: "#003262",

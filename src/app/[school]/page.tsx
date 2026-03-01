@@ -17,6 +17,7 @@ import yaleData from "@/data/schools/yale.json";
 import columbiaData from "@/data/schools/columbia.json";
 import cmuData from "@/data/schools/cmu.json";
 import mitData from "@/data/schools/mit.json";
+import nyuData from "@/data/schools/nyu.json";
 import northwesternData from "@/data/schools/northwestern.json";
 import dukeData from "@/data/schools/duke.json";
 
@@ -35,6 +36,7 @@ const schoolDataMap: Record<string, SchoolData> = {
   upenn: upennData as SchoolData,
   yale: yaleData as SchoolData,
   mit: mitData as SchoolData,
+  nyu: nyuData as SchoolData,
   northwestern: northwesternData as SchoolData,
   duke: dukeData as SchoolData,
 };

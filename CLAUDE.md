@@ -10,7 +10,7 @@
 
 ## Overview
 
-A Next.js website to visualize and compare Common Data Set (CDS) metrics across colleges. Currently featuring **Brown University**, **California Institute of Technology (Caltech)**, **Carnegie Mellon University (CMU)**, **Columbia University**, **Cornell University**, **Dartmouth College**, **Duke University**, **Harvard University**, **Massachusetts Institute of Technology (MIT)**, **Northwestern University**, **Princeton University**, **Stanford University**, **UCLA**, **University of California, Berkeley (UC Berkeley)**, **University of Pennsylvania (UPenn)**, and **Yale University**, each with 7-9 years of historical data (2016-2017 through 2024-2025).
+A Next.js website to visualize and compare Common Data Set (CDS) metrics across colleges. Currently featuring **Brown University**, **California Institute of Technology (Caltech)**, **Carnegie Mellon University (CMU)**, **Columbia University**, **Cornell University**, **Dartmouth College**, **Duke University**, **Harvard University**, **Massachusetts Institute of Technology (MIT)**, **New York University (NYU)**, **Northwestern University**, **Princeton University**, **Stanford University**, **UCLA**, **University of California, Berkeley (UC Berkeley)**, **University of Pennsylvania (UPenn)**, and **Yale University**, each with 7-9 years of historical data (2016-2017 through 2024-2025).
 
 **Live Features:**
 - Admissions trends (applications, acceptance rates, yield, early decision)
@@ -55,8 +55,6 @@ college-comparisons/
 │   │   ├── [school]/
 │   │   │   ├── page.tsx                # Dynamic school page
 │   │   │   └── SchoolPageClient.tsx    # Client component with charts
-│   │   ├── compare/
-│   │   │   └── page.tsx                # School comparison page
 │   │   ├── trends/
 │   │   │   ├── page.tsx                # Trends index page (list of stories)
 │   │   │   └── [slug]/
@@ -89,6 +87,7 @@ college-comparisons/
 │   │       ├── dartmouth.json          # Dartmouth College data (9 years)
 │   │       ├── harvard.json            # Harvard University data (9 years)
 │   │       ├── mit.json                # MIT data (9 years)
+│   │       ├── nyu.json                # NYU data (8 years)
 │   │       ├── duke.json               # Duke University data (9 years)
 │   │       ├── northwestern.json       # Northwestern University data (9 years)
 │   │       ├── princeton.json          # Princeton University data (9 years)
@@ -597,7 +596,6 @@ The width(-1) and height(-1) of chart should be greater than 0
 - Extract data for more Colleges
 
 ### Features
-- [ ] Implement comparison page (`/compare?schools=brown,harvard`)
 - [ ] Add school selector dropdown on school pages
 - [ ] Add data tables with sortable columns
 - [ ] Add graduation/retention rate charts (outcomes data)
@@ -659,6 +657,7 @@ No other files need to change. `generateStaticParams()` auto-picks up the new sl
 | `src/data/schools/dartmouth.json` | Dartmouth College data (9 years) |
 | `src/data/schools/harvard.json` | Harvard University data (9 years) |
 | `src/data/schools/mit.json` | MIT data (9 years) |
+| `src/data/schools/nyu.json` | NYU data (8 years) |
 | `src/data/schools/duke.json` | Duke University data (9 years) |
 | `src/data/schools/northwestern.json` | Northwestern University data (9 years) |
 | `src/data/schools/princeton.json` | Princeton University data (9 years) |

@@ -57,7 +57,6 @@ A data visualization dashboard for comparing colleges using Common Data Set (CDS
 │   │   ├── about/              # About page
 │   │   ├── how-it-works/       # How it Works page
 │   │   ├── contact/            # Contact page
-│   │   └── compare/            # School comparison page
 │   ├── components/
 │   │   ├── charts/             # Recharts visualizations
 │   │   ├── trends/             # Trends story components

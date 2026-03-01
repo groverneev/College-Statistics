@@ -26,6 +26,7 @@ const SCHOOL_ALIASES: Record<string, string[]> = {
   dartmouth:    ["Dartmouth"],
   duke:         ["Duke"],
   harvard:      ["Harvard"],
+  nyu:          ["NYU", "New York University"],
   northwestern: ["NU", "Northwestern"],
   princeton:    ["Princeton"],
   stanford:     ["Stanford"],
