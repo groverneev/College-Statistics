@@ -32,7 +32,7 @@ const NEGATIVE = "#DC2626"; // red-600
 const NEUTRAL = "#6B7280"; // gray-500
 const LIGHT_GRAY = "#F3F4F6"; // gray-100
 
-function fmtPct(v: number | string | undefined) {
+function fmtPct(v: unknown): string {
   if (typeof v !== "number") return "";
   return `${v > 0 ? "+" : ""}${v}%`;
 }
@@ -324,7 +324,7 @@ function TestRequirementChart() {
             <LabelList
               dataKey="pctRequiring"
               position="top"
-              formatter={(v: number) => `${v}%`}
+              formatter={(v: unknown) => typeof v === "number" ? `${v}%` : ""}
               style={{ fontSize: 11, fontWeight: 600, fill: "#374151" }}
             />
           </Bar>
@@ -376,7 +376,7 @@ function SelectivityChart() {
             <LabelList
               dataKey="growth"
               position="top"
-              formatter={(v: number) => `+${v}%`}
+              formatter={(v: unknown) => typeof v === "number" ? `+${v}%` : ""}
               style={{ fontSize: 12, fontWeight: 700, fill: "#374151" }}
             />
             {selectivityGrowth.map((entry) => (
