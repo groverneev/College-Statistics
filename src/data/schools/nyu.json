@@ -4,11 +4,11 @@
   "years": {
     "2017-2018": {
       "admissions": {
-        "applied": 0,
-        "admitted": 0,
-        "enrolled": 0,
-        "acceptanceRate": 0,
-        "yield": 0
+        "applied": 64007,
+        "admitted": 17707,
+        "enrolled": 6022,
+        "acceptanceRate": 0.2766,
+        "yield": 0.3401
       },
       "testScores": {},
       "demographics": {
@@ -35,10 +35,10 @@
         }
       },
       "costs": {
-        "tuition": 0,
+        "tuition": 50464,
         "fees": 0,
-        "roomAndBoard": 0,
-        "totalCOA": 0
+        "roomAndBoard": 17664,
+        "totalCOA": 68128
       },
       "financialAid": {
         "percentReceivingAid": 0,
@@ -251,10 +251,10 @@
         }
       },
       "costs": {
-        "tuition": 0,
-        "fees": 0,
-        "roomAndBoard": 0,
-        "totalCOA": 0
+        "tuition": 53770,
+        "fees": 2730,
+        "roomAndBoard": 19244,
+        "totalCOA": 75744
       },
       "financialAid": {
         "percentReceivingAid": 0.4401,
@@ -395,10 +395,10 @@
         }
       },
       "costs": {
-        "tuition": 0,
+        "tuition": 60438,
         "fees": 0,
-        "roomAndBoard": 0,
-        "totalCOA": 0
+        "roomAndBoard": 22786,
+        "totalCOA": 83224
       },
       "financialAid": {
         "percentReceivingAid": 0.3123,
@@ -539,10 +539,10 @@
         }
       },
       "costs": {
-        "tuition": 0,
+        "tuition": 62796,
         "fees": 0,
-        "roomAndBoard": 0,
-        "totalCOA": 0
+        "roomAndBoard": 24652,
+        "totalCOA": 87448
       },
       "financialAid": {
         "percentReceivingAid": 0,
