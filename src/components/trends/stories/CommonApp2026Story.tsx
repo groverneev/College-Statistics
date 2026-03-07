@@ -1,5 +1,6 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import {
   BarChart,
   Bar,
@@ -12,6 +13,17 @@ import {
   ResponsiveContainer,
   LabelList,
 } from "recharts";
+
+function useIsMobile(breakpoint = 640) {
+  const [isMobile, setIsMobile] = useState(false);
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < breakpoint);
+    check();
+    window.addEventListener("resize", check);
+    return () => window.removeEventListener("resize", check);
+  }, [breakpoint]);
+  return isMobile;
+}
 import {
   platformStats,
   demographicGrowth,
@@ -66,6 +78,13 @@ function PlatformStats() {
 
 function DemographicGrowthChart() {
   const sorted = [...demographicGrowth].sort((a, b) => b.growth - a.growth);
+  const isMobile = useIsMobile();
+
+  const yAxisWidth = isMobile ? 116 : 164;
+  const leftMargin = isMobile ? 0 : 168;
+  const rightMargin = isMobile ? 36 : 56;
+  const labelFontSize = isMobile ? 10 : 11;
+  const tickFontSize = isMobile ? 10 : 12;
 
   return (
     <div className="card p-6">
@@ -79,7 +98,7 @@ function DemographicGrowthChart() {
         <BarChart
           layout="vertical"
           data={sorted}
-          margin={{ top: 4, right: 56, left: 168, bottom: 4 }}
+          margin={{ top: 4, right: rightMargin, left: leftMargin, bottom: 4 }}
         >
           <CartesianGrid
             strokeDasharray="3 3"
@@ -89,14 +108,14 @@ function DemographicGrowthChart() {
           <XAxis
             type="number"
             tickFormatter={(v) => `${v}%`}
-            tick={{ fontSize: 12 }}
+            tick={{ fontSize: tickFontSize }}
             domain={[-2, 12]}
           />
           <YAxis
             type="category"
             dataKey="group"
-            tick={{ fontSize: 12 }}
-            width={164}
+            tick={{ fontSize: tickFontSize }}
+            width={yAxisWidth}
           />
           <Tooltip formatter={fmtPct} cursor={{ fill: LIGHT_GRAY }} />
           <ReferenceLine x={0} stroke="#9CA3AF" />
@@ -105,7 +124,7 @@ function DemographicGrowthChart() {
               dataKey="growth"
               position="right"
               formatter={fmtPct}
-              style={{ fontSize: 11, fontWeight: 600, fill: "#374151" }}
+              style={{ fontSize: labelFontSize, fontWeight: 600, fill: "#374151" }}
             />
             {sorted.map((entry) => (
               <Cell
