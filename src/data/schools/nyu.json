@@ -41,10 +41,10 @@
         "totalCOA": 68128
       },
       "financialAid": {
-        "percentReceivingAid": 0,
-        "averageAidPackage": 0,
-        "averageNeedBasedGrant": 0,
-        "percentNeedFullyMet": 0
+        "percentReceivingAid": 0.51,
+        "averageAidPackage": 29832,
+        "averageNeedBasedGrant": 27303,
+        "percentNeedFullyMet": 0.6
       }
     },
     "2018-2019": {
@@ -545,10 +545,10 @@
         "totalCOA": 87448
       },
       "financialAid": {
-        "percentReceivingAid": 0,
-        "averageAidPackage": 0,
-        "averageNeedBasedGrant": 0,
-        "percentNeedFullyMet": 0
+        "percentReceivingAid": 0.2852,
+        "averageAidPackage": 68216,
+        "averageNeedBasedGrant": 63749,
+        "percentNeedFullyMet": 0.984
       }
     }
   }
