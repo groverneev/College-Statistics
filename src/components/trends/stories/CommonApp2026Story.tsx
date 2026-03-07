@@ -247,12 +247,12 @@ function CountryChangesChart() {
           <Bar dataKey="growth" radius={[0, 3, 3, 0]} name="Growth">
             <LabelList
               dataKey="growth"
-              content={(props: Record<string, unknown>) => {
-                const x = props.x as number;
-                const y = props.y as number;
-                const width = props.width as number;
-                const height = props.height as number;
-                const value = props.value as number;
+              content={(props) => {
+                const x = Number(props.x ?? 0);
+                const y = Number(props.y ?? 0);
+                const width = Number(props.width ?? 0);
+                const height = Number(props.height ?? 0);
+                const value = Number(props.value ?? 0);
                 return (
                   <text
                     x={x + Math.max(width, 0) + 4}
