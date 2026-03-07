@@ -9,6 +9,15 @@ export interface TrendMeta {
 
 export const trends: TrendMeta[] = [
   {
+    slug: "common-app-2026",
+    title: "2026 Application Season: Five Fault Lines",
+    subtitle: "Record totals mask growing divides in who's applying, and where",
+    date: "2026-03-07",
+    tags: ["Common App", "Applications", "2026", "Admissions"],
+    preview:
+      "1.4 million applicants, 9.2 million applications — but the aggregate surge hides five sharp divergences: a first-gen boom, a 9% international cliff, the return of test scores, and why the most selective schools are the slowest-growing.",
+  },
+  {
     slug: "uc-2026-applications",
     title: "UC Applications in 2026: Santa Cruz Surges, System Stays Flat",
     subtitle: "Campus-level divergence hidden beneath a near-flat system total",

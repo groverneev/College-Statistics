@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import { trends } from "@/data/trends/index";
 import UC2026Story from "@/components/trends/stories/UC2026Story";
+import CommonApp2026Story from "@/components/trends/stories/CommonApp2026Story";
 
 export function generateStaticParams() {
   return trends.map((t) => ({ slug: t.slug }));
@@ -61,6 +62,7 @@ export default async function StoryPage({
 
       {/* Story Content */}
       <div className="max-w-5xl mx-auto px-4 py-10">
+        {slug === "common-app-2026" && <CommonApp2026Story />}
         {slug === "uc-2026-applications" && <UC2026Story />}
       </div>
     </div>
