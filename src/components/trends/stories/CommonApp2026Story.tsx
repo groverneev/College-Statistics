@@ -247,9 +247,26 @@ function CountryChangesChart() {
           <Bar dataKey="growth" radius={[0, 3, 3, 0]} name="Growth">
             <LabelList
               dataKey="growth"
-              position="right"
-              formatter={fmtPct}
-              style={{ fontSize: 11, fontWeight: 600, fill: "#374151" }}
+              content={(props: Record<string, unknown>) => {
+                const x = props.x as number;
+                const y = props.y as number;
+                const width = props.width as number;
+                const height = props.height as number;
+                const value = props.value as number;
+                return (
+                  <text
+                    x={x + Math.max(width, 0) + 4}
+                    y={y + height / 2}
+                    textAnchor="start"
+                    dominantBaseline="middle"
+                    fontSize={11}
+                    fontWeight={600}
+                    fill="#374151"
+                  >
+                    {fmtPct(value)}
+                  </text>
+                );
+              }}
             />
             {data.map((entry) => (
               <Cell
