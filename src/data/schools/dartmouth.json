@@ -45,15 +45,15 @@
           "graduate": 1116
         },
         "byRace": {
-          "international": 2,
-          "hispanicLatino": 118,
-          "blackAfricanAmerican": 80,
-          "white": 550,
-          "asian": 164,
-          "americanIndianAlaskaNative": 25,
-          "nativeHawaiianPacificIslander": 4,
-          "twoOrMoreRaces": 2,
-          "unknown": 15
+          "international": 384,
+          "hispanicLatino": 390,
+          "blackAfricanAmerican": 293,
+          "white": 2136,
+          "asian": 654,
+          "americanIndianAlaskaNative": 98,
+          "nativeHawaiianPacificIslander": 11,
+          "twoOrMoreRaces": 219,
+          "unknown": 125
         },
         "byResidency": {
           "inState": 87,
@@ -117,15 +117,15 @@
           "graduate": 1215
         },
         "byRace": {
-          "international": 2,
-          "hispanicLatino": 120,
-          "blackAfricanAmerican": 67,
-          "white": 619,
-          "asian": 196,
-          "americanIndianAlaskaNative": 16,
-          "nativeHawaiianPacificIslander": 3,
-          "twoOrMoreRaces": 2,
-          "unknown": 11
+          "international": 405,
+          "hispanicLatino": 436,
+          "blackAfricanAmerican": 290,
+          "white": 2189,
+          "asian": 652,
+          "americanIndianAlaskaNative": 80,
+          "nativeHawaiianPacificIslander": 14,
+          "twoOrMoreRaces": 233,
+          "unknown": 111
         },
         "byResidency": {
           "inState": 133,
@@ -189,15 +189,15 @@
           "graduate": 1167
         },
         "byRace": {
-          "international": 2,
-          "hispanicLatino": 117,
-          "blackAfricanAmerican": 58,
-          "white": 605,
-          "asian": 171,
-          "americanIndianAlaskaNative": 16,
-          "nativeHawaiianPacificIslander": 1,
-          "twoOrMoreRaces": 2,
-          "unknown": 11
+          "international": 434,
+          "hispanicLatino": 430,
+          "blackAfricanAmerican": 263,
+          "white": 2221,
+          "asian": 671,
+          "americanIndianAlaskaNative": 74,
+          "nativeHawaiianPacificIslander": 13,
+          "twoOrMoreRaces": 232,
+          "unknown": 79
         },
         "byResidency": {
           "inState": 89,
@@ -261,15 +261,15 @@
           "graduate": 1190
         },
         "byRace": {
-          "international": 2,
-          "hispanicLatino": 119,
-          "blackAfricanAmerican": 67,
-          "white": 605,
-          "asian": 169,
-          "americanIndianAlaskaNative": 17,
-          "nativeHawaiianPacificIslander": 0,
-          "twoOrMoreRaces": 2,
-          "unknown": 20
+          "international": 455,
+          "hispanicLatino": 459,
+          "blackAfricanAmerican": 254,
+          "white": 2248,
+          "asian": 650,
+          "americanIndianAlaskaNative": 59,
+          "nativeHawaiianPacificIslander": 8,
+          "twoOrMoreRaces": 243,
+          "unknown": 83
         },
         "byResidency": {
           "inState": 90,
@@ -333,15 +333,15 @@
           "graduate": 1057
         },
         "byRace": {
-          "international": 112,
-          "hispanicLatino": 113,
-          "blackAfricanAmerican": 62,
-          "white": 508,
-          "asian": 162,
-          "americanIndianAlaskaNative": 14,
-          "nativeHawaiianPacificIslander": 0,
-          "twoOrMoreRaces": 112,
-          "unknown": 16
+          "international": 448,
+          "hispanicLatino": 431,
+          "blackAfricanAmerican": 245,
+          "white": 2036,
+          "asian": 632,
+          "americanIndianAlaskaNative": 56,
+          "nativeHawaiianPacificIslander": 4,
+          "twoOrMoreRaces": 242,
+          "unknown": 76
         },
         "byResidency": {
           "inState": 122,
@@ -405,15 +405,15 @@
           "graduate": 1221
         },
         "byRace": {
-          "international": 166,
-          "hispanicLatino": 128,
-          "blackAfricanAmerican": 74,
-          "white": 573,
-          "asian": 154,
-          "americanIndianAlaskaNative": 18,
+          "international": 540,
+          "hispanicLatino": 454,
+          "blackAfricanAmerican": 243,
+          "white": 2260,
+          "asian": 643,
+          "americanIndianAlaskaNative": 53,
           "nativeHawaiianPacificIslander": 1,
-          "twoOrMoreRaces": 166,
-          "unknown": 18
+          "twoOrMoreRaces": 279,
+          "unknown": 83
         },
         "byResidency": {
           "inState": 88,
@@ -477,15 +477,15 @@
           "graduate": 1124
         },
         "byRace": {
-          "international": 170,
-          "hispanicLatino": 103,
-          "blackAfricanAmerican": 68,
-          "white": 509,
-          "asian": 154,
-          "americanIndianAlaskaNative": 13,
-          "nativeHawaiianPacificIslander": 3,
-          "twoOrMoreRaces": 83,
-          "unknown": 21
+          "international": 619,
+          "hispanicLatino": 429,
+          "blackAfricanAmerican": 266,
+          "white": 2101,
+          "asian": 602,
+          "americanIndianAlaskaNative": 50,
+          "nativeHawaiianPacificIslander": 1,
+          "twoOrMoreRaces": 300,
+          "unknown": 90
         },
         "byResidency": {
           "inState": 80,
@@ -549,15 +549,15 @@
           "graduate": 1200
         },
         "byRace": {
-          "international": 174,
-          "hispanicLatino": 103,
-          "blackAfricanAmerican": 75,
-          "white": 539,
-          "asian": 177,
-          "americanIndianAlaskaNative": 13,
-          "nativeHawaiianPacificIslander": 4,
-          "twoOrMoreRaces": 93,
-          "unknown": 28
+          "international": 637,
+          "hispanicLatino": 416,
+          "blackAfricanAmerican": 272,
+          "white": 2045,
+          "asian": 616,
+          "americanIndianAlaskaNative": 47,
+          "nativeHawaiianPacificIslander": 0,
+          "twoOrMoreRaces": 308,
+          "unknown": 106
         },
         "byResidency": {
           "inState": 76,
@@ -621,15 +621,15 @@
           "graduate": 1182
         },
         "byRace": {
-          "international": 175,
-          "hispanicLatino": 130,
-          "blackAfricanAmerican": 70,
-          "white": 484,
-          "asian": 190,
-          "americanIndianAlaskaNative": 13,
-          "nativeHawaiianPacificIslander": 5,
-          "twoOrMoreRaces": 85,
-          "unknown": 14
+          "international": 708,
+          "hispanicLatino": 447,
+          "blackAfricanAmerican": 279,
+          "white": 1999,
+          "asian": 590,
+          "americanIndianAlaskaNative": 52,
+          "nativeHawaiianPacificIslander": 0,
+          "twoOrMoreRaces": 342,
+          "unknown": 153
         },
         "byResidency": {
           "inState": 79,
