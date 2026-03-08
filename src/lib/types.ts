@@ -111,4 +111,5 @@ export const SCHOOL_COLORS: Record<string, string> = {
   vanderbilt: "#866D4B",
   ucberkeley: "#003262",
   cmu: "#C41230",
+  utexasaustin: "#BF5700",
 };

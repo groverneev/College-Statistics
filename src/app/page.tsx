@@ -14,6 +14,7 @@ import stanfordData from "@/data/schools/stanford.json";
 import uclaData from "@/data/schools/ucla.json";
 import ucberkeleyData from "@/data/schools/ucberkeley.json";
 import upennData from "@/data/schools/upenn.json";
+import utexasaustinData from "@/data/schools/utexasaustin.json";
 import yaleData from "@/data/schools/yale.json";
 import columbiaData from "@/data/schools/columbia.json";
 import cmuData from "@/data/schools/cmu.json";
@@ -40,6 +41,7 @@ const schools: SchoolData[] = [
   uclaData as SchoolData,
   ucberkeleyData as SchoolData,
   upennData as SchoolData,
+  utexasaustinData as SchoolData,
   vanderbiltData as SchoolData,
   yaleData as SchoolData,
 ];

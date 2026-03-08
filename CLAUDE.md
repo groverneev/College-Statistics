@@ -12,7 +12,7 @@
 
 ## Overview
 
-A Next.js website to visualize and compare Common Data Set (CDS) metrics across colleges. Currently featuring **Brown University**, **California Institute of Technology (Caltech)**, **Carnegie Mellon University (CMU)**, **Columbia University**, **Cornell University**, **Dartmouth College**, **Duke University**, **Harvard University**, **Massachusetts Institute of Technology (MIT)**, **New York University (NYU)**, **Northwestern University**, **Princeton University**, **Stanford University**, **UCLA**, **University of California, Berkeley (UC Berkeley)**, **University of Pennsylvania (UPenn)**, **Vanderbilt University**, and **Yale University**, each with 7-9 years of historical data (2016-2017 through 2024-2025).
+A Next.js website to visualize and compare Common Data Set (CDS) metrics across colleges. Currently featuring **Brown University**, **California Institute of Technology (Caltech)**, **Carnegie Mellon University (CMU)**, **Columbia University**, **Cornell University**, **Dartmouth College**, **Duke University**, **Harvard University**, **Massachusetts Institute of Technology (MIT)**, **New York University (NYU)**, **Northwestern University**, **Princeton University**, **Stanford University**, **UCLA**, **University of California, Berkeley (UC Berkeley)**, **University of Pennsylvania (UPenn)**, **The University of Texas at Austin**, **Vanderbilt University**, and **Yale University**, each with 7-9 years of historical data (2016-2017 through 2024-2025).
 
 **Live Features:**
 - Admissions trends (applications, acceptance rates, yield, early decision)
@@ -681,6 +681,7 @@ No other files need to change. `generateStaticParams()` auto-picks up the new sl
 | `src/data/schools/ucla.json` | UCLA data (8 years) |
 | `src/data/schools/ucberkeley.json` | UC Berkeley data (9 years) |
 | `src/data/schools/upenn.json` | UPenn data (9 years) |
+| `src/data/schools/utexasaustin.json` | UT Austin data (9 years) |
 | `src/data/schools/vanderbilt.json` | Vanderbilt University data (9 years) |
 | `src/data/schools/yale.json` | Yale University data (9 years) |
 | `src/app/trends/page.tsx` | Trends index page |
@@ -689,6 +690,7 @@ No other files need to change. `generateStaticParams()` auto-picks up the new sl
 | `src/components/trends/StoryCard.tsx` | Card on the trends index |
 | `src/components/trends/stories/UC2026Story.tsx` | UC 2026 application story |
 | `scripts/extract_cds.py` | PDF extraction script |
+| `scripts/extract_utexasaustin.py` | UT Austin PDF/Box extraction script |
 | `scripts/extract_vanderbilt_excel.py` | Vanderbilt Excel extraction script |
 | `scripts/extract_cornell.py` | Cornell-specific extraction script |
 | `scripts/extract_northwestern.py` | Northwestern-specific extraction script |
