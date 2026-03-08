@@ -231,11 +231,11 @@ export default function HowItWorksPage() {
           <p className="text-gray-600 mb-4">Our current coverage includes:</p>
           <ul className="list-disc list-inside text-gray-600 space-y-2 ml-4 mb-4">
             <li>
-              <strong>20 universities</strong> (more coming soon!)
+              <strong>21 universities</strong> (more coming soon!)
             </li>
             <li>
-              <strong>9 years of data</strong> per school: Academic years
-              2016-2017 through 2024-2025
+              <strong>8-10 years of data</strong> per school: Academic years
+              2016-2017 through 2025-2026
             </li>
             <li>
               <strong>50+ data points</strong> per school per year

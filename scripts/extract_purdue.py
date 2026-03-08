@@ -413,6 +413,17 @@ class PurduePdfExtractor:
     def _match_int(self, patterns: list[str]) -> int:
         return parse_int(self.search(patterns).group(1))
 
+    def _single_line_total(self, label: str) -> int | None:
+        for line in self.text.splitlines():
+            if label.lower() not in line.lower():
+                continue
+            normalized_line = re.sub(r"(\d)\s+(?=\d,\d{3}\b)", r"\1", line)
+            normalized_line = re.sub(r"(\d)\s+(?=,\d{3}\b)", r"\1", normalized_line)
+            numbers = re.findall(r"\d[\d,]*", normalized_line)
+            if len(numbers) == 1:
+                return parse_int(numbers[0])
+        return None
+
     def _find_table_row(self, label: str) -> list[str | None]:
         normalized = normalize_text(label)
         for table in self.tables:
@@ -445,60 +456,54 @@ class PurduePdfExtractor:
         raise ValueError(f"Unexpected score match in {self.pdf_path.name}: {match.groups()}")
 
     def extract_admissions(self) -> dict[str, Any]:
-        total_applied_match = self.search_optional([
-            r"Total first-time, first-year \(degree-seeking\) who applied\s+([\d,\s]+)",
-        ])
-        total_admitted_match = self.search_optional([
-            r"Total first-time, first-year \(degree-seeking\) who were admitted\s+([\d,\s]+)",
-        ])
-        total_enrolled_match = self.search_optional([
-            r"Total first-time, first-year \(degree-seeking\) who enrolled\s+([\d,\s]+)",
-        ])
+        direct_total_applied = self._single_line_total("Total first-time, first-year (degree-seeking) who applied")
+        direct_total_admitted = self._single_line_total("Total first-time, first-year (degree-seeking) who were admitted")
+        direct_total_enrolled = self._single_line_total("Total first-time, first-year (degree-seeking) who enrolled")
         male_applied_match = self.search_optional([
-            r"Total first-time, first-year males who applied\s+([\d,\s]+)",
-            r"Total first-time, first-year men who applied\s+([\d,\s]+)",
-            r"Total first-time, first-year \(freshman\) men who applied\s+([\d,\s]+)",
+            r"Total first-time, first-year males who applied\s+([\d, ]+)",
+            r"Total first-time, first-year men who applied\s+([\d, ]+)",
+            r"Total first-time, first-year \(freshman\) men who applied\s+([\d, ]+)",
         ])
         female_applied_match = self.search_optional([
-            r"Total first-time, first-year females who applied\s+([\d,\s]+)",
-            r"Total first-time, first-year women who applied\s+([\d,\s]+)",
-            r"Total first-time, first-year \(freshman\) women who applied\s+([\d,\s]+)",
+            r"Total first-time, first-year females who applied\s+([\d, ]+)",
+            r"Total first-time, first-year women who applied\s+([\d, ]+)",
+            r"Total first-time, first-year \(freshman\) women who applied\s+([\d, ]+)",
         ])
         male_admitted_match = self.search_optional([
-            r"Total first-time, first-year males who were admitted\s+([\d,\s]+)",
-            r"Total first-time, first-year men who were admitted\s+([\d,\s]+)",
-            r"Total first-time, first-year \(freshman\) men who were admitted\s+([\d,\s]+)",
+            r"Total first-time, first-year males who were admitted\s+([\d, ]+)",
+            r"Total first-time, first-year men who were admitted\s+([\d, ]+)",
+            r"Total first-time, first-year \(freshman\) men who were admitted\s+([\d, ]+)",
         ])
         female_admitted_match = self.search_optional([
-            r"Total first-time, first-year females who were admitted\s+([\d,\s]+)",
-            r"Total first-time, first-year women who were admitted\s+([\d,\s]+)",
-            r"Total first-time, first-year \(freshman\) women who were admitted\s+([\d,\s]+)",
+            r"Total first-time, first-year females who were admitted\s+([\d, ]+)",
+            r"Total first-time, first-year women who were admitted\s+([\d, ]+)",
+            r"Total first-time, first-year \(freshman\) women who were admitted\s+([\d, ]+)",
         ])
         male_enrolled_match = self.search_optional([
-            r"Total full-time, first-time, first-year males who enrolled\s+([\d,\s]+)",
-            r"Total full-time, first-time, first-year men who enrolled\s+([\d,\s]+)",
-            r"Total full-time, first-time, first-year \(freshman\) men who enrolled\s+([\d,\s]+)",
+            r"Total full-time, first-time, first-year males who enrolled\s+([\d, ]+)",
+            r"Total full-time, first-time, first-year men who enrolled\s+([\d, ]+)",
+            r"Total full-time, first-time, first-year \(freshman\) men who enrolled\s+([\d, ]+)",
         ])
         male_part_time_match = self.search_optional([
-            r"Total part-time, first-time, first-year males who enrolled\s+([\d,\s]+)",
-            r"Total part-time, first-time, first-year men who enrolled\s+([\d,\s]+)",
-            r"Total part-time, first-time, first-year \(freshman\) men who enrolled\s+([\d,\s]+)",
+            r"Total part-time, first-time, first-year males who enrolled\s+([\d, ]+)",
+            r"Total part-time, first-time, first-year men who enrolled\s+([\d, ]+)",
+            r"Total part-time, first-time, first-year \(freshman\) men who enrolled\s+([\d, ]+)",
         ])
         female_enrolled_match = self.search_optional([
-            r"Total full-time, first-time, first-year females who enrolled\s+([\d,\s]+)",
-            r"Total full-time, first-time, first-year women who enrolled\s+([\d,\s]+)",
-            r"Total full-time, first-time, first-year \(freshman\) women who enrolled\s+([\d,\s]+)",
+            r"Total full-time, first-time, first-year females who enrolled\s+([\d, ]+)",
+            r"Total full-time, first-time, first-year women who enrolled\s+([\d, ]+)",
+            r"Total full-time, first-time, first-year \(freshman\) women who enrolled\s+([\d, ]+)",
         ])
         female_part_time_match = self.search_optional([
-            r"Total part-time, first-time, first-year females who enrolled\s+([\d,\s]+)",
-            r"Total part-time, first-time, first-year women who enrolled\s+([\d,\s]+)",
-            r"Total part-time, first-time, first-year \(freshman\) women who enrolled\s+([\d,\s]+)",
+            r"Total part-time, first-time, first-year females who enrolled\s+([\d, ]+)",
+            r"Total part-time, first-time, first-year women who enrolled\s+([\d, ]+)",
+            r"Total part-time, first-time, first-year \(freshman\) women who enrolled\s+([\d, ]+)",
         ])
 
-        if total_applied_match and total_admitted_match and total_enrolled_match:
-            applied = parse_int(total_applied_match.group(1))
-            admitted = parse_int(total_admitted_match.group(1))
-            enrolled = parse_int(total_enrolled_match.group(1))
+        if direct_total_applied and direct_total_admitted and direct_total_enrolled:
+            applied = direct_total_applied
+            admitted = direct_total_admitted
+            enrolled = direct_total_enrolled
         elif male_applied_match and female_applied_match:
             applied = parse_int(male_applied_match.group(1)) + parse_int(female_applied_match.group(1))
             admitted = parse_int(male_admitted_match.group(1)) + parse_int(female_admitted_match.group(1))

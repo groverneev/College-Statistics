@@ -652,11 +652,11 @@
     },
     "2025-2026": {
       "admissions": {
-        "applied": 12040588531632787456,
-        "admitted": 855925650367237888,
-        "enrolled": 430348275269656,
-        "acceptanceRate": 0.0711,
-        "yield": 0.0005
+        "applied": 87220,
+        "admitted": 37881,
+        "enrolled": 9656,
+        "acceptanceRate": 0.4343,
+        "yield": 0.2549
       },
       "testScores": {
         "sat": {

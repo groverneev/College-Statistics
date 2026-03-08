@@ -31,9 +31,11 @@ A data visualization dashboard for comparing colleges using Common Data Set (CDS
 | Duke University | 2016-2025 | 9 years |
 | Harvard University | 2016-2025 | 9 years |
 | Massachusetts Institute of Technology (MIT) | 2016-2025 | 9 years |
+| Northeastern University | 2016-2025 | 9 years |
 | New York University (NYU) | 2017-2025 | 8 years |
 | Northwestern University | 2016-2025 | 9 years |
 | Princeton University | 2016-2025 | 9 years |
+| Purdue University | 2016-2026 | 10 years |
 | Stanford University | 2016-2025 | 9 years |
 | UCLA | 2017-2025 | 8 years |
 | University of California, Berkeley (UC Berkeley) | 2016-2025 | 9 years |
@@ -81,7 +83,7 @@ A data visualization dashboard for comparing colleges using Common Data Set (CDS
 
 ## Data Sources
 
-All data is extracted from official Common Data Set (CDS) publications released by each institution. The CDS is a collaborative effort among data providers in higher education that provides comparable data across institutions. Some schools in this repo use PDF sources, and Vanderbilt now uses CDS Excel workbooks.
+All data is extracted from official Common Data Set (CDS) publications released by each institution. The CDS is a collaborative effort among data providers in higher education that provides comparable data across institutions. Some schools in this repo use PDF sources, Northeastern publishes year-by-year CDS data as webpages, Vanderbilt uses CDS Excel workbooks, and Purdue uses a mixed Excel/PDF archive across 2016-2026.
 
 ## Extracting Data
 
@@ -101,6 +103,12 @@ To extract Vanderbilt from its CDS Excel workbooks:
 
 ```bash
 python scripts/extract_vanderbilt_excel.py
+```
+
+To extract Purdue from its mixed CDS archive:
+
+```bash
+python scripts/extract_purdue.py
 ```
 
 To extract UT Austin, including the missing 2022-2023 Box-hosted CDS year:

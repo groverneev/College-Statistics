@@ -12,7 +12,7 @@
 
 ## Overview
 
-A Next.js website to visualize and compare Common Data Set (CDS) metrics across colleges. Currently featuring **Boston University**, **Brown University**, **California Institute of Technology (Caltech)**, **Carnegie Mellon University (CMU)**, **Columbia University**, **Cornell University**, **Dartmouth College**, **Duke University**, **Harvard University**, **Massachusetts Institute of Technology (MIT)**, **New York University (NYU)**, **Northwestern University**, **Princeton University**, **Stanford University**, **UCLA**, **University of California, Berkeley (UC Berkeley)**, **University of Pennsylvania (UPenn)**, **The University of Texas at Austin**, **Vanderbilt University**, and **Yale University**, each with 7-9 years of historical data (2016-2017 through 2024-2025).
+A Next.js website to visualize and compare Common Data Set (CDS) metrics across colleges. Currently featuring **Boston University**, **Brown University**, **California Institute of Technology (Caltech)**, **Carnegie Mellon University (CMU)**, **Columbia University**, **Cornell University**, **Dartmouth College**, **Duke University**, **Harvard University**, **Massachusetts Institute of Technology (MIT)**, **Northeastern University**, **New York University (NYU)**, **Northwestern University**, **Princeton University**, **Purdue University**, **Stanford University**, **UCLA**, **University of California, Berkeley (UC Berkeley)**, **University of Pennsylvania (UPenn)**, **The University of Texas at Austin**, **Vanderbilt University**, and **Yale University**, each with 8-10 years of historical data (2016-2017 through 2025-2026, depending on school).
 
 **Live Features:**
 - Admissions trends (applications, acceptance rates, yield, early decision)
@@ -676,10 +676,12 @@ No other files need to change. `generateStaticParams()` auto-picks up the new sl
 | `src/data/schools/dartmouth.json` | Dartmouth College data (9 years) |
 | `src/data/schools/harvard.json` | Harvard University data (9 years) |
 | `src/data/schools/mit.json` | MIT data (9 years) |
+| `src/data/schools/northeastern.json` | Northeastern University data (9 years) |
 | `src/data/schools/nyu.json` | NYU data (8 years) |
 | `src/data/schools/duke.json` | Duke University data (9 years) |
 | `src/data/schools/northwestern.json` | Northwestern University data (9 years) |
 | `src/data/schools/princeton.json` | Princeton University data (9 years) |
+| `src/data/schools/purdue.json` | Purdue University data (10 years) |
 | `src/data/schools/stanford.json` | Stanford University data (9 years) |
 | `src/data/schools/ucla.json` | UCLA data (8 years) |
 | `src/data/schools/ucberkeley.json` | UC Berkeley data (9 years) |
@@ -694,6 +696,7 @@ No other files need to change. `generateStaticParams()` auto-picks up the new sl
 | `src/components/trends/stories/UC2026Story.tsx` | UC 2026 application story |
 | `scripts/extract_bostonuniversity.py` | Boston University PDF extraction script |
 | `scripts/extract_cds.py` | PDF extraction script |
+| `scripts/extract_purdue.py` | Purdue mixed Excel/PDF extraction script |
 | `scripts/extract_utexasaustin.py` | UT Austin PDF/Box extraction script |
 | `scripts/extract_vanderbilt_excel.py` | Vanderbilt Excel extraction script |
 | `scripts/extract_cornell.py` | Cornell-specific extraction script |
