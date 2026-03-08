@@ -12,7 +12,7 @@
 
 ## Overview
 
-A Next.js website to visualize and compare Common Data Set (CDS) metrics across colleges. Currently featuring **Brown University**, **California Institute of Technology (Caltech)**, **Carnegie Mellon University (CMU)**, **Columbia University**, **Cornell University**, **Dartmouth College**, **Duke University**, **Harvard University**, **Massachusetts Institute of Technology (MIT)**, **New York University (NYU)**, **Northwestern University**, **Princeton University**, **Stanford University**, **UCLA**, **University of California, Berkeley (UC Berkeley)**, **University of Pennsylvania (UPenn)**, **The University of Texas at Austin**, **Vanderbilt University**, and **Yale University**, each with 7-9 years of historical data (2016-2017 through 2024-2025).
+A Next.js website to visualize and compare Common Data Set (CDS) metrics across colleges. Currently featuring **Boston University**, **Brown University**, **California Institute of Technology (Caltech)**, **Carnegie Mellon University (CMU)**, **Columbia University**, **Cornell University**, **Dartmouth College**, **Duke University**, **Harvard University**, **Massachusetts Institute of Technology (MIT)**, **New York University (NYU)**, **Northwestern University**, **Princeton University**, **Stanford University**, **UCLA**, **University of California, Berkeley (UC Berkeley)**, **University of Pennsylvania (UPenn)**, **The University of Texas at Austin**, **Vanderbilt University**, and **Yale University**, each with 7-9 years of historical data (2016-2017 through 2024-2025).
 
 **Live Features:**
 - Admissions trends (applications, acceptance rates, yield, early decision)
@@ -48,6 +48,8 @@ A Next.js website to visualize and compare Common Data Set (CDS) metrics across 
 ---
 
 ## Project Structure
+
+Boston University is sourced from `College-Data/BostonUniversity/`, extracted with `scripts/extract_bostonuniversity.py`, and stored in `src/data/schools/bostonuniversity.json`.
 
 ```
 college-comparisons/
@@ -665,6 +667,7 @@ No other files need to change. `generateStaticParams()` auto-picks up the new sl
 |------|---------|
 | `src/app/[school]/SchoolPageClient.tsx` | Main school page with all charts |
 | `src/lib/types.ts` | TypeScript interfaces and school colors |
+| `src/data/schools/bostonuniversity.json` | Boston University data (9 years) |
 | `src/data/schools/brown.json` | Brown University data (9 years) |
 | `src/data/schools/caltech.json` | Caltech data (9 years) |
 | `src/data/schools/cmu.json` | Carnegie Mellon University data (9 years) |
@@ -689,6 +692,7 @@ No other files need to change. `generateStaticParams()` auto-picks up the new sl
 | `src/data/trends/index.ts` | Story registry — add new stories here |
 | `src/components/trends/StoryCard.tsx` | Card on the trends index |
 | `src/components/trends/stories/UC2026Story.tsx` | UC 2026 application story |
+| `scripts/extract_bostonuniversity.py` | Boston University PDF extraction script |
 | `scripts/extract_cds.py` | PDF extraction script |
 | `scripts/extract_utexasaustin.py` | UT Austin PDF/Box extraction script |
 | `scripts/extract_vanderbilt_excel.py` | Vanderbilt Excel extraction script |

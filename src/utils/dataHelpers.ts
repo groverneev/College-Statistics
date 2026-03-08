@@ -30,7 +30,7 @@ export function formatCurrency(num: number): string {
 
 export function getAvailableSchools(): string[] {
   // This will be populated dynamically based on available JSON files
-  return ["brown", "harvard", "yale", "princeton", "cornell", "dartmouth", "upenn", "utexasaustin", "stanford", "caltech", "cmu", "ucla", "ucberkeley", "columbia", "mit", "nyu", "northwestern", "duke", "vanderbilt"];
+  return ["bostonuniversity", "brown", "caltech", "cmu", "columbia", "cornell", "dartmouth", "duke", "harvard", "mit", "nyu", "northwestern", "princeton", "stanford", "ucla", "ucberkeley", "upenn", "utexasaustin", "vanderbilt", "yale"];
 }
 
 export function calculateAcceptanceRate(admitted: number, applied: number): number {

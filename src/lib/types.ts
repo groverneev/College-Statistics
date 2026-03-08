@@ -94,6 +94,7 @@ export interface SchoolInfo {
 
 export const SCHOOL_COLORS: Record<string, string> = {
   brown: "#4E3629",
+  bostonuniversity: "#CC0000",
   harvard: "#A51C30",
   yale: "#00356B",
   princeton: "#E77500",

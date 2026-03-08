@@ -5,6 +5,7 @@ import SearchBar from "@/components/SearchBar";
 
 // Import school data
 import brownData from "@/data/schools/brown.json";
+import bostonUniversityData from "@/data/schools/bostonuniversity.json";
 import caltechData from "@/data/schools/caltech.json";
 import cornellData from "@/data/schools/cornell.json";
 import dartmouthData from "@/data/schools/dartmouth.json";
@@ -25,6 +26,7 @@ import dukeData from "@/data/schools/duke.json";
 import vanderbiltData from "@/data/schools/vanderbilt.json";
 
 const schools: SchoolData[] = [
+  bostonUniversityData as SchoolData,
   brownData as SchoolData,
   caltechData as SchoolData,
   cmuData as SchoolData,

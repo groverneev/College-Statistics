@@ -21,6 +21,7 @@ A data visualization dashboard for comparing colleges using Common Data Set (CDS
 
 | School | Years | Data Points |
 |--------|-------|-------------|
+| Boston University | 2016-2025 | 9 years |
 | Brown University | 2016-2025 | 9 years |
 | California Institute of Technology (Caltech) | 2016-2025 | 9 years |
 | Carnegie Mellon University (CMU) | 2016-2025 | 9 years |
@@ -106,6 +107,12 @@ To extract UT Austin, including the missing 2022-2023 Box-hosted CDS year:
 
 ```bash
 python scripts/extract_utexasaustin.py
+```
+
+To extract Boston University from its BU-specific PDF naming and layout:
+
+```bash
+python scripts/extract_bostonuniversity.py
 ```
 
 ## Tech Stack
