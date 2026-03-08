@@ -29,6 +29,7 @@ A data visualization dashboard for comparing colleges using Common Data Set (CDS
 | Cornell University | 2017-2025 | 8 years |
 | Dartmouth College | 2016-2025 | 9 years |
 | Duke University | 2016-2025 | 9 years |
+| Emory University | 2017-2025 | 8 years |
 | Harvard University | 2016-2025 | 9 years |
 | Massachusetts Institute of Technology (MIT) | 2016-2025 | 9 years |
 | Northeastern University | 2016-2025 | 9 years |
@@ -40,6 +41,7 @@ A data visualization dashboard for comparing colleges using Common Data Set (CDS
 | UCLA | 2017-2025 | 8 years |
 | University of California, Berkeley (UC Berkeley) | 2016-2025 | 9 years |
 | University of Chicago (UChicago) | 2021-2025 | 4 years |
+| University of Michigan Ann Arbor | 2016-2025 | 9 years |
 | University of Pennsylvania (UPenn) | 2016-2025 | 9 years |
 | University of Southern California (USC) | 2016-2025 | 9 years |
 | The University of Texas at Austin | 2016-2025 | 9 years |
@@ -85,7 +87,7 @@ A data visualization dashboard for comparing colleges using Common Data Set (CDS
 
 ## Data Sources
 
-All data is extracted from official Common Data Set (CDS) publications released by each institution. The CDS is a collaborative effort among data providers in higher education that provides comparable data across institutions. Some schools in this repo use PDF sources, Northeastern publishes year-by-year CDS data as webpages, USC uses its official CDS archive pages plus linked PDFs, UChicago uses a dedicated PDF parser for its official 2021-2025 CDS archive, Vanderbilt uses CDS Excel workbooks, and Purdue uses a mixed Excel/PDF archive across 2016-2026.
+All data is extracted from official Common Data Set (CDS) publications released by each institution. The CDS is a collaborative effort among data providers in higher education that provides comparable data across institutions. Some schools in this repo use PDF sources, Northeastern publishes year-by-year CDS data as webpages, USC uses its official CDS archive pages plus linked PDFs, UChicago uses a dedicated PDF parser for its official 2021-2025 CDS archive, Michigan uses a dedicated parser for its 2016-2025 CDS PDFs, Vanderbilt uses CDS Excel workbooks, and Purdue uses a mixed Excel/PDF archive across 2016-2026.
 
 ## Extracting Data
 
@@ -135,6 +137,18 @@ To extract UChicago from its official CDS PDFs:
 
 ```bash
 python scripts/extract_uchicago.py
+```
+
+To extract Emory from its local CDS PDFs plus archived official older-year PDFs:
+
+```bash
+python scripts/extract_emory.py
+```
+
+To extract the University of Michigan Ann Arbor from its CDS PDFs:
+
+```bash
+python scripts/extract_umich.py
 ```
 
 ## Tech Stack

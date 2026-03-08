@@ -111,6 +111,8 @@ export const SCHOOL_COLORS: Record<string, string> = {
   northwestern: "#4E2A84",
   purdue: "#CFB991",
   duke: "#012169",
+  emory: "#012169",
+  umich: "#00274C",
   vanderbilt: "#866D4B",
   ucberkeley: "#003262",
   uchicago: "#800000",

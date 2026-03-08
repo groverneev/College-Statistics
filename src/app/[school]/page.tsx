@@ -25,7 +25,9 @@ import northeasternData from "@/data/schools/northeastern.json";
 import nyuData from "@/data/schools/nyu.json";
 import northwesternData from "@/data/schools/northwestern.json";
 import purdueData from "@/data/schools/purdue.json";
+import umichData from "@/data/schools/umich.json";
 import dukeData from "@/data/schools/duke.json";
+import emoryData from "@/data/schools/emory.json";
 import vanderbiltData from "@/data/schools/vanderbilt.json";
 
 const schoolDataMap: Record<string, SchoolData> = {
@@ -36,12 +38,15 @@ const schoolDataMap: Record<string, SchoolData> = {
   columbia: columbiaData as SchoolData,
   cornell: cornellData as SchoolData,
   dartmouth: dartmouthData as SchoolData,
+  duke: dukeData as SchoolData,
+  emory: emoryData as SchoolData,
   harvard: harvardData as SchoolData,
   princeton: princetonData as SchoolData,
   stanford: stanfordData as SchoolData,
   ucla: uclaData as SchoolData,
   ucberkeley: ucberkeleyData as SchoolData,
   uchicago: uchicagoData as SchoolData,
+  umich: umichData as SchoolData,
   upenn: upennData as SchoolData,
   usc: uscData as SchoolData,
   utexasaustin: utexasaustinData as SchoolData,
@@ -52,7 +57,6 @@ const schoolDataMap: Record<string, SchoolData> = {
   nyu: nyuData as SchoolData,
   northwestern: northwesternData as SchoolData,
   purdue: purdueData as SchoolData,
-  duke: dukeData as SchoolData,
 };
 
 // Generate static params for all schools

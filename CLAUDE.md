@@ -12,7 +12,7 @@
 
 ## Overview
 
-A Next.js website to visualize and compare Common Data Set (CDS) metrics across colleges. Currently featuring **Boston University**, **Brown University**, **California Institute of Technology (Caltech)**, **Carnegie Mellon University (CMU)**, **Columbia University**, **Cornell University**, **Dartmouth College**, **Duke University**, **Harvard University**, **Massachusetts Institute of Technology (MIT)**, **Northeastern University**, **New York University (NYU)**, **Northwestern University**, **Princeton University**, **Purdue University**, **Stanford University**, **UCLA**, **University of California, Berkeley (UC Berkeley)**, **University of Chicago (UChicago)**, **University of Pennsylvania (UPenn)**, **University of Southern California (USC)**, **The University of Texas at Austin**, **Vanderbilt University**, and **Yale University**. Most schools have 8-10 years of historical data (2016-2017 through 2025-2026, depending on school); UChicago currently has its official 2021-2025 CDS archive.
+A Next.js website to visualize and compare Common Data Set (CDS) metrics across colleges. Currently featuring **Boston University**, **Brown University**, **California Institute of Technology (Caltech)**, **Carnegie Mellon University (CMU)**, **Columbia University**, **Cornell University**, **Dartmouth College**, **Duke University**, **Emory University**, **Harvard University**, **Massachusetts Institute of Technology (MIT)**, **Northeastern University**, **New York University (NYU)**, **Northwestern University**, **Princeton University**, **Purdue University**, **Stanford University**, **UCLA**, **University of California, Berkeley (UC Berkeley)**, **University of Chicago (UChicago)**, **University of Michigan Ann Arbor**, **University of Pennsylvania (UPenn)**, **University of Southern California (USC)**, **The University of Texas at Austin**, **Vanderbilt University**, and **Yale University**. Most schools have 8-10 years of historical data (2016-2017 through 2025-2026, depending on school); UChicago currently has its official 2021-2025 CDS archive.
 
 **Live Features:**
 - Admissions trends (applications, acceptance rates, yield, early decision)
@@ -53,6 +53,7 @@ Boston University is sourced from `College-Data/BostonUniversity/`, extracted wi
 USC is sourced from USC's official CDS archive webpages and linked PDFs, extracted with `scripts/extract_usc.py`, and stored in `src/data/schools/usc.json`.
 
 UChicago is sourced from `College-Data/UChicago/`, extracted with `scripts/extract_uchicago.py`, and stored in `src/data/schools/uchicago.json`.
+University of Michigan Ann Arbor is sourced from `College-Data/University of Michigan Ann Arbor/`, extracted with `scripts/extract_umich.py`, and stored in `src/data/schools/umich.json`.
 
 ```
 college-comparisons/
@@ -96,6 +97,7 @@ college-comparisons/
 │   │       ├── mit.json                # MIT data (9 years)
 │   │       ├── nyu.json                # NYU data (8 years)
 │   │       ├── duke.json               # Duke University data (9 years)
+│   │       ├── emory.json              # Emory University data (8 years)
 │   │       ├── northwestern.json       # Northwestern University data (9 years)
 │   │       ├── princeton.json          # Princeton University data (9 years)
 │   │       ├── stanford.json           # Stanford University data (9 years)
@@ -684,6 +686,7 @@ No other files need to change. `generateStaticParams()` auto-picks up the new sl
 | `src/data/schools/northeastern.json` | Northeastern University data (9 years) |
 | `src/data/schools/nyu.json` | NYU data (8 years) |
 | `src/data/schools/duke.json` | Duke University data (9 years) |
+| `src/data/schools/emory.json` | Emory University data (8 years) |
 | `src/data/schools/northwestern.json` | Northwestern University data (9 years) |
 | `src/data/schools/princeton.json` | Princeton University data (9 years) |
 | `src/data/schools/purdue.json` | Purdue University data (10 years) |
@@ -691,6 +694,7 @@ No other files need to change. `generateStaticParams()` auto-picks up the new sl
 | `src/data/schools/ucla.json` | UCLA data (8 years) |
 | `src/data/schools/ucberkeley.json` | UC Berkeley data (9 years) |
 | `src/data/schools/uchicago.json` | UChicago data (4 years) |
+| `src/data/schools/umich.json` | University of Michigan Ann Arbor data (9 years) |
 | `src/data/schools/upenn.json` | UPenn data (9 years) |
 | `src/data/schools/usc.json` | USC data (9 years) |
 | `src/data/schools/utexasaustin.json` | UT Austin data (9 years) |
@@ -705,10 +709,12 @@ No other files need to change. `generateStaticParams()` auto-picks up the new sl
 | `scripts/extract_cds.py` | PDF extraction script |
 | `scripts/extract_purdue.py` | Purdue mixed Excel/PDF extraction script |
 | `scripts/extract_uchicago.py` | UChicago PDF extraction script |
+| `scripts/extract_umich.py` | University of Michigan Ann Arbor PDF extraction script |
 | `scripts/extract_usc.py` | USC archive HTML/PDF extraction script |
 | `scripts/extract_utexasaustin.py` | UT Austin PDF/Box extraction script |
 | `scripts/extract_vanderbilt_excel.py` | Vanderbilt Excel extraction script |
 | `scripts/extract_cornell.py` | Cornell-specific extraction script |
+| `scripts/extract_emory.py` | Emory-specific PDF and archive extraction script |
 | `scripts/extract_northwestern.py` | Northwestern-specific extraction script |
 | `scripts/extract_ucla.py` | UCLA-specific extraction script |
 | `src/app/globals.css` | Global styles, light mode forcing |

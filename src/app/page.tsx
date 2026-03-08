@@ -26,7 +26,9 @@ import northeasternData from "@/data/schools/northeastern.json";
 import nyuData from "@/data/schools/nyu.json";
 import northwesternData from "@/data/schools/northwestern.json";
 import purdueData from "@/data/schools/purdue.json";
+import umichData from "@/data/schools/umich.json";
 import dukeData from "@/data/schools/duke.json";
+import emoryData from "@/data/schools/emory.json";
 import vanderbiltData from "@/data/schools/vanderbilt.json";
 
 const schools: SchoolData[] = [
@@ -38,6 +40,7 @@ const schools: SchoolData[] = [
   cornellData as SchoolData,
   dartmouthData as SchoolData,
   dukeData as SchoolData,
+  emoryData as SchoolData,
   harvardData as SchoolData,
   mitData as SchoolData,
   northeasternData as SchoolData,
@@ -49,6 +52,7 @@ const schools: SchoolData[] = [
   uclaData as SchoolData,
   ucberkeleyData as SchoolData,
   uchicagoData as SchoolData,
+  umichData as SchoolData,
   upennData as SchoolData,
   uscData as SchoolData,
   utexasaustinData as SchoolData,
