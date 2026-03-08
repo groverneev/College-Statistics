@@ -21,6 +21,7 @@ import mitData from "@/data/schools/mit.json";
 import nyuData from "@/data/schools/nyu.json";
 import northwesternData from "@/data/schools/northwestern.json";
 import dukeData from "@/data/schools/duke.json";
+import vanderbiltData from "@/data/schools/vanderbilt.json";
 
 const schools: SchoolData[] = [
   brownData as SchoolData,
@@ -39,6 +40,7 @@ const schools: SchoolData[] = [
   uclaData as SchoolData,
   ucberkeleyData as SchoolData,
   upennData as SchoolData,
+  vanderbiltData as SchoolData,
   yaleData as SchoolData,
 ];
 

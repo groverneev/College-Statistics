@@ -8,9 +8,11 @@
 
 > **NOTE:** When completing significant tasks (adding features, fixing bugs, adding new schools, changing data schema, etc.), update this `CLAUDE.md` file and `README.md` if necessary to keep documentation current.
 
+> **Excel Workbooks:** Vanderbilt uses CDS Excel files rather than PDFs. Use `scripts/extract_vanderbilt_excel.py` for Vanderbilt instead of the PDF extractor.
+
 ## Overview
 
-A Next.js website to visualize and compare Common Data Set (CDS) metrics across colleges. Currently featuring **Brown University**, **California Institute of Technology (Caltech)**, **Carnegie Mellon University (CMU)**, **Columbia University**, **Cornell University**, **Dartmouth College**, **Duke University**, **Harvard University**, **Massachusetts Institute of Technology (MIT)**, **New York University (NYU)**, **Northwestern University**, **Princeton University**, **Stanford University**, **UCLA**, **University of California, Berkeley (UC Berkeley)**, **University of Pennsylvania (UPenn)**, and **Yale University**, each with 7-9 years of historical data (2016-2017 through 2024-2025).
+A Next.js website to visualize and compare Common Data Set (CDS) metrics across colleges. Currently featuring **Brown University**, **California Institute of Technology (Caltech)**, **Carnegie Mellon University (CMU)**, **Columbia University**, **Cornell University**, **Dartmouth College**, **Duke University**, **Harvard University**, **Massachusetts Institute of Technology (MIT)**, **New York University (NYU)**, **Northwestern University**, **Princeton University**, **Stanford University**, **UCLA**, **University of California, Berkeley (UC Berkeley)**, **University of Pennsylvania (UPenn)**, **Vanderbilt University**, and **Yale University**, each with 7-9 years of historical data (2016-2017 through 2024-2025).
 
 **Live Features:**
 - Admissions trends (applications, acceptance rates, yield, early decision)
@@ -28,7 +30,7 @@ A Next.js website to visualize and compare Common Data Set (CDS) metrics across 
 - **Language:** TypeScript
 - **Styling:** Tailwind CSS v4
 - **Charts:** Recharts
-- **Data Extraction:** Python with pdfplumber
+- **Data Extraction:** Python with pdfplumber, openpyxl, and xlrd
 - **Deployment:** Vercel (static export)
 
 ### Key Dependencies
@@ -244,7 +246,9 @@ interface YearData {
 
 ## Data Extraction
 
-### Python Script: `scripts/extract_cds.py`
+### Python Scripts
+
+#### PDF extractor: `scripts/extract_cds.py`
 
 **Setup:**
 ```bash
@@ -256,6 +260,18 @@ pip install pdfplumber
 **Usage:**
 ```bash
 python scripts/extract_cds.py brown --pdf-dir ./College-Data/Brown
+```
+
+#### Vanderbilt Excel extractor: `scripts/extract_vanderbilt_excel.py`
+
+**Setup:**
+```bash
+pip install openpyxl xlrd
+```
+
+**Usage:**
+```bash
+python scripts/extract_vanderbilt_excel.py
 ```
 
 ### Extraction Techniques That Work Well
@@ -665,6 +681,7 @@ No other files need to change. `generateStaticParams()` auto-picks up the new sl
 | `src/data/schools/ucla.json` | UCLA data (8 years) |
 | `src/data/schools/ucberkeley.json` | UC Berkeley data (9 years) |
 | `src/data/schools/upenn.json` | UPenn data (9 years) |
+| `src/data/schools/vanderbilt.json` | Vanderbilt University data (9 years) |
 | `src/data/schools/yale.json` | Yale University data (9 years) |
 | `src/app/trends/page.tsx` | Trends index page |
 | `src/app/trends/[slug]/page.tsx` | Dynamic story route |
@@ -672,6 +689,7 @@ No other files need to change. `generateStaticParams()` auto-picks up the new sl
 | `src/components/trends/StoryCard.tsx` | Card on the trends index |
 | `src/components/trends/stories/UC2026Story.tsx` | UC 2026 application story |
 | `scripts/extract_cds.py` | PDF extraction script |
+| `scripts/extract_vanderbilt_excel.py` | Vanderbilt Excel extraction script |
 | `scripts/extract_cornell.py` | Cornell-specific extraction script |
 | `scripts/extract_northwestern.py` | Northwestern-specific extraction script |
 | `scripts/extract_ucla.py` | UCLA-specific extraction script |

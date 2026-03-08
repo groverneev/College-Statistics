@@ -36,6 +36,7 @@ A data visualization dashboard for comparing colleges using Common Data Set (CDS
 | UCLA | 2017-2025 | 8 years |
 | University of California, Berkeley (UC Berkeley) | 2016-2025 | 9 years |
 | University of Pennsylvania (UPenn) | 2016-2025 | 9 years |
+| Vanderbilt University | 2016-2025 | 9 years |
 | Yale University | 2016-2025 | 9 years |
 
 ## Pages
@@ -77,9 +78,9 @@ A data visualization dashboard for comparing colleges using Common Data Set (CDS
 
 ## Data Sources
 
-All data is extracted from official Common Data Set (CDS) publications released by each institution. The CDS is a collaborative effort among data providers in higher education that provides comparable data across institutions.
+All data is extracted from official Common Data Set (CDS) publications released by each institution. The CDS is a collaborative effort among data providers in higher education that provides comparable data across institutions. Some schools in this repo use PDF sources, and Vanderbilt now uses CDS Excel workbooks.
 
-## Extracting Data from PDFs
+## Extracting Data
 
 To extract data from new CDS PDFs:
 
@@ -93,13 +94,19 @@ pip install pdfplumber
 python scripts/extract_cds.py brown --pdf-dir ./College-Data/Brown
 ```
 
+To extract Vanderbilt from its CDS Excel workbooks:
+
+```bash
+python scripts/extract_vanderbilt_excel.py
+```
+
 ## Tech Stack
 
 - **Framework:** [Next.js 16](https://nextjs.org/) with App Router
 - **Language:** [TypeScript](https://www.typescriptlang.org/)
 - **Styling:** [Tailwind CSS v4](https://tailwindcss.com/)
 - **Charts:** [Recharts](https://recharts.org/)
-- **Data Extraction:** Python with [pdfplumber](https://github.com/jsvine/pdfplumber)
+- **Data Extraction:** Python with [pdfplumber](https://github.com/jsvine/pdfplumber), [openpyxl](https://openpyxl.readthedocs.io/), and [xlrd](https://xlrd.readthedocs.io/)
 - **Contact Form:** [Formspree](https://formspree.io/)
 
 ## Contributing

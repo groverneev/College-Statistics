@@ -108,6 +108,7 @@ export const SCHOOL_COLORS: Record<string, string> = {
   nyu: "#57068C",
   northwestern: "#4E2A84",
   duke: "#012169",
+  vanderbilt: "#866D4B",
   ucberkeley: "#003262",
   cmu: "#C41230",
 };
