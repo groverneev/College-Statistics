@@ -41,12 +41,15 @@ export default function DemographicsTrendChart({
   schoolColor,
 }: DemographicsTrendChartProps) {
   const years = Object.keys(yearData).sort();
-  const latestYear = years[years.length - 1];
+  const yearsWithEnrollment = years.filter(
+    (year) => yearData[year].demographics.enrollment.undergraduate > 0
+  );
+  const latestYear = yearsWithEnrollment[yearsWithEnrollment.length - 1] || years[years.length - 1];
   const latestDemo = yearData[latestYear].demographics;
   const totalUndergrad = latestDemo.enrollment.undergraduate;
 
   // Enrollment trend data
-  const enrollmentData = years.map((year) => ({
+  const enrollmentData = yearsWithEnrollment.map((year) => ({
     year: year.split("-")[0],
     fullYear: year,
     undergraduate: yearData[year].demographics.enrollment.undergraduate,
@@ -54,20 +57,37 @@ export default function DemographicsTrendChart({
   }));
 
   // Demographics trend data (percentages over time)
-  const demographicsData = years.map((year) => {
+  const demographicsData = yearsWithEnrollment.map((year) => {
     const demo = yearData[year].demographics;
     const total = demo.enrollment.undergraduate;
+    const hasDetailedRaceData =
+      demo.byRace.white +
+        demo.byRace.asian +
+        demo.byRace.hispanicLatino +
+        demo.byRace.blackAfricanAmerican +
+        demo.byRace.international +
+        demo.byRace.twoOrMoreRaces >
+      0;
+
     return {
       year: year.split("-")[0],
       fullYear: year,
-      white: total > 0 ? (demo.byRace.white / total) * 100 : 0,
-      asian: total > 0 ? (demo.byRace.asian / total) * 100 : 0,
-      hispanicLatino: total > 0 ? (demo.byRace.hispanicLatino / total) * 100 : 0,
-      blackAfricanAmerican: total > 0 ? (demo.byRace.blackAfricanAmerican / total) * 100 : 0,
-      international: total > 0 ? (demo.byRace.international / total) * 100 : 0,
-      twoOrMoreRaces: total > 0 ? (demo.byRace.twoOrMoreRaces / total) * 100 : 0,
+      white: total > 0 && hasDetailedRaceData ? (demo.byRace.white / total) * 100 : null,
+      asian: total > 0 && hasDetailedRaceData ? (demo.byRace.asian / total) * 100 : null,
+      hispanicLatino:
+        total > 0 && hasDetailedRaceData ? (demo.byRace.hispanicLatino / total) * 100 : null,
+      blackAfricanAmerican:
+        total > 0 && hasDetailedRaceData ? (demo.byRace.blackAfricanAmerican / total) * 100 : null,
+      international:
+        total > 0 && hasDetailedRaceData ? (demo.byRace.international / total) * 100 : null,
+      twoOrMoreRaces:
+        total > 0 && hasDetailedRaceData ? (demo.byRace.twoOrMoreRaces / total) * 100 : null,
     };
   });
+
+  if (enrollmentData.length === 0) {
+    return null;
+  }
 
   return (
     <div className="card p-6">

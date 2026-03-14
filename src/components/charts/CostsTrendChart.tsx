@@ -24,14 +24,20 @@ export default function CostsTrendChart({
 }: CostsTrendChartProps) {
   const years = Object.keys(yearData).sort();
 
-  const trendData = years.map((year) => ({
-    year: year.split("-")[0],
-    fullYear: year,
-    tuition: yearData[year].costs.tuition,
-    fees: yearData[year].costs.fees,
-    roomAndBoard: yearData[year].costs.roomAndBoard,
-    total: yearData[year].costs.totalCOA,
-  }));
+  const trendData = years
+    .filter((year) => yearData[year].costs.totalCOA > 0)
+    .map((year) => ({
+      year: year.split("-")[0],
+      fullYear: year,
+      tuition: yearData[year].costs.tuition,
+      fees: yearData[year].costs.fees,
+      roomAndBoard: yearData[year].costs.roomAndBoard,
+      total: yearData[year].costs.totalCOA,
+    }));
+
+  if (trendData.length === 0) {
+    return null;
+  }
 
   const latestData = trendData[trendData.length - 1];
   const earliestData = trendData[0];

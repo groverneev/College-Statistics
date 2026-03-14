@@ -27,6 +27,180 @@ PDF_FILES = {
     "2024-2025": "CDS_2024-2025_JHU.pdf",
 }
 
+# Older years are backfilled from a mix of official JHU Hub/news pages and
+# other institution-published figures when CDS PDFs are unavailable.
+WEB_BACKFILLS: dict[str, dict[str, Any]] = {
+    "2016-2017": {
+        "admissions": {
+            "applied": 24669,
+            "admitted": 3133,
+            "enrolled": 0,
+            "acceptanceRate": round(3133 / 24669, 4),
+            "yield": 0,
+            "earlyDecision": {
+                "applied": 2068,
+                "admitted": 618,
+            },
+        },
+        "testScores": {},
+        "demographics": {
+            "enrollment": {"total": 0, "undergraduate": 0, "graduate": 0},
+            "byRace": {
+                "international": 0,
+                "hispanicLatino": 0,
+                "blackAfricanAmerican": 0,
+                "white": 0,
+                "americanIndianAlaskaNative": 0,
+                "asian": 0,
+                "nativeHawaiianPacificIslander": 0,
+                "twoOrMoreRaces": 0,
+                "unknown": 0,
+            },
+            "byResidency": {"inState": 0, "outOfState": 0, "international": 0},
+        },
+        "costs": {"tuition": 0, "fees": 0, "roomAndBoard": 0, "totalCOA": 0},
+        "financialAid": {
+            "percentReceivingAid": 0,
+            "averageAidPackage": 0,
+            "averageNeedBasedGrant": 0,
+            "percentNeedFullyMet": 0,
+        },
+    },
+    "2017-2018": {
+        "admissions": {
+            "applied": 27852,
+            "admitted": 3371,
+            "enrolled": 1346,
+            "acceptanceRate": round(3371 / 27852, 4),
+            "yield": round(1346 / 3371, 4),
+        },
+        "testScores": {},
+        "demographics": {
+            "enrollment": {"total": 0, "undergraduate": 0, "graduate": 0},
+            "byRace": {
+                "international": 0,
+                "hispanicLatino": 0,
+                "blackAfricanAmerican": 0,
+                "white": 0,
+                "americanIndianAlaskaNative": 0,
+                "asian": 0,
+                "nativeHawaiianPacificIslander": 0,
+                "twoOrMoreRaces": 0,
+                "unknown": 0,
+            },
+            "byResidency": {"inState": 0, "outOfState": 0, "international": 0},
+        },
+        "costs": {
+            "tuition": 52170,
+            "fees": 1640,
+            "roomAndBoard": 15410,
+            "totalCOA": 69220,
+        },
+        "financialAid": {
+            "percentReceivingAid": 0,
+            "averageAidPackage": 39515,
+            "averageNeedBasedGrant": 39515,
+            "percentNeedFullyMet": 0,
+        },
+    },
+    "2018-2019": {
+        "admissions": {
+            "applied": 0,
+            "admitted": 2843,
+            "enrolled": 1363,
+            "acceptanceRate": 0.099,
+            "yield": round(1363 / 2843, 4),
+        },
+        "testScores": {},
+        "demographics": {
+            "enrollment": {"total": 0, "undergraduate": 0, "graduate": 0},
+            "byRace": {
+                "international": 0,
+                "hispanicLatino": 0,
+                "blackAfricanAmerican": 0,
+                "white": 0,
+                "americanIndianAlaskaNative": 0,
+                "asian": 0,
+                "nativeHawaiianPacificIslander": 0,
+                "twoOrMoreRaces": 0,
+                "unknown": 0,
+            },
+            "byResidency": {"inState": 0, "outOfState": 0, "international": 0},
+        },
+        "costs": {"tuition": 0, "fees": 0, "roomAndBoard": 0, "totalCOA": 0},
+        "financialAid": {
+            "percentReceivingAid": 0,
+            "averageAidPackage": 44556,
+            "averageNeedBasedGrant": 44556,
+            "percentNeedFullyMet": 0,
+        },
+    },
+    "2019-2020": {
+        "admissions": {
+            "applied": 30164,
+            "admitted": 2356,
+            "enrolled": 0,
+            "acceptanceRate": round(2356 / 30164, 4),
+            "yield": 0,
+        },
+        "testScores": {},
+        "demographics": {
+            "enrollment": {"total": 0, "undergraduate": 0, "graduate": 0},
+            "byRace": {
+                "international": 0,
+                "hispanicLatino": 0,
+                "blackAfricanAmerican": 0,
+                "white": 0,
+                "americanIndianAlaskaNative": 0,
+                "asian": 0,
+                "nativeHawaiianPacificIslander": 0,
+                "twoOrMoreRaces": 0,
+                "unknown": 0,
+            },
+            "byResidency": {"inState": 0, "outOfState": 0, "international": 0},
+        },
+        "costs": {"tuition": 0, "fees": 0, "roomAndBoard": 0, "totalCOA": 0},
+        "financialAid": {
+            "percentReceivingAid": 0,
+            "averageAidPackage": 0,
+            "averageNeedBasedGrant": 0,
+            "percentNeedFullyMet": 0,
+        },
+    },
+    "2020-2021": {
+        "admissions": {
+            "applied": 27256,
+            "admitted": 2604,
+            "enrolled": 0,
+            "acceptanceRate": round(2604 / 27256, 4),
+            "yield": 0,
+        },
+        "testScores": {},
+        "demographics": {
+            "enrollment": {"total": 0, "undergraduate": 0, "graduate": 0},
+            "byRace": {
+                "international": 0,
+                "hispanicLatino": 0,
+                "blackAfricanAmerican": 0,
+                "white": 0,
+                "americanIndianAlaskaNative": 0,
+                "asian": 0,
+                "nativeHawaiianPacificIslander": 0,
+                "twoOrMoreRaces": 0,
+                "unknown": 0,
+            },
+            "byResidency": {"inState": 0, "outOfState": 0, "international": 0},
+        },
+        "costs": {"tuition": 0, "fees": 0, "roomAndBoard": 0, "totalCOA": 0},
+        "financialAid": {
+            "percentReceivingAid": 0,
+            "averageAidPackage": 0,
+            "averageNeedBasedGrant": 0,
+            "percentNeedFullyMet": 0,
+        },
+    },
+}
+
 
 def clean_number(value: str) -> int:
     digits = re.sub(r"[^\d]", "", value or "")
@@ -319,6 +493,9 @@ def main() -> None:
 
     for year, filename in PDF_FILES.items():
         data["years"][year] = parse_pdf(PDF_DIR / filename)
+
+    for year, year_data in WEB_BACKFILLS.items():
+        data["years"][year] = year_data
 
     OUTPUT_PATH.write_text(json.dumps(data, indent=2) + "\n", encoding="utf-8")
     print(f"Wrote {OUTPUT_PATH}")

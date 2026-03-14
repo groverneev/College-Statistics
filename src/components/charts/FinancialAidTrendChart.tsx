@@ -25,16 +25,30 @@ export default function FinancialAidTrendChart({
 }: FinancialAidTrendChartProps) {
   const years = Object.keys(yearData).sort();
 
-  const trendData = years.map((year) => ({
-    year: year.split("-")[0],
-    fullYear: year,
-    percentReceivingAid: yearData[year].financialAid.percentReceivingAid * 100,
-    averageAidPackage: yearData[year].financialAid.averageAidPackage,
-    averageNeedBasedGrant: yearData[year].financialAid.averageNeedBasedGrant,
-    percentNeedFullyMet: yearData[year].financialAid.percentNeedFullyMet * 100,
-    averageNetPrice: yearData[year].financialAid.averageNetPrice || 0,
-    totalCOA: yearData[year].costs.totalCOA,
-  }));
+  const trendData = years
+    .filter((year) => {
+      const aid = yearData[year].financialAid;
+      return (
+        aid.percentReceivingAid > 0 ||
+        aid.averageAidPackage > 0 ||
+        aid.averageNeedBasedGrant > 0 ||
+        aid.percentNeedFullyMet > 0
+      );
+    })
+    .map((year) => ({
+      year: year.split("-")[0],
+      fullYear: year,
+      percentReceivingAid: yearData[year].financialAid.percentReceivingAid * 100,
+      averageAidPackage: yearData[year].financialAid.averageAidPackage,
+      averageNeedBasedGrant: yearData[year].financialAid.averageNeedBasedGrant,
+      percentNeedFullyMet: yearData[year].financialAid.percentNeedFullyMet * 100,
+      averageNetPrice: yearData[year].financialAid.averageNetPrice || 0,
+      totalCOA: yearData[year].costs.totalCOA,
+    }));
+
+  if (trendData.length === 0) {
+    return null;
+  }
 
   const latestData = trendData[trendData.length - 1];
 
