@@ -28,6 +28,7 @@ import purdueData from "@/data/schools/purdue.json";
 import umichData from "@/data/schools/umich.json";
 import dukeData from "@/data/schools/duke.json";
 import emoryData from "@/data/schools/emory.json";
+import johnsHopkinsData from "@/data/schools/johnshopkins.json";
 import vanderbiltData from "@/data/schools/vanderbilt.json";
 
 const schoolDataMap: Record<string, SchoolData> = {
@@ -41,6 +42,7 @@ const schoolDataMap: Record<string, SchoolData> = {
   duke: dukeData as SchoolData,
   emory: emoryData as SchoolData,
   harvard: harvardData as SchoolData,
+  johnshopkins: johnsHopkinsData as SchoolData,
   princeton: princetonData as SchoolData,
   stanford: stanfordData as SchoolData,
   ucla: uclaData as SchoolData,
