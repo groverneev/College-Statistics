@@ -32,173 +32,251 @@ PDF_FILES = {
 WEB_BACKFILLS: dict[str, dict[str, Any]] = {
     "2016-2017": {
         "admissions": {
-            "applied": 24669,
-            "admitted": 3133,
-            "enrolled": 0,
-            "acceptanceRate": round(3133 / 24669, 4),
-            "yield": 0,
+            "applied": 27095,
+            "admitted": 3122,
+            "enrolled": 1329,
+            "acceptanceRate": round(3122 / 27095, 4),
+            "yield": round(1329 / 3122, 4),
             "earlyDecision": {
-                "applied": 2068,
-                "admitted": 618,
+                "applied": 1929,
+                "admitted": 584,
             },
         },
-        "testScores": {},
+        "testScores": {
+            "sat": {
+                "composite": {"p25": 1400, "p50": 1485, "p75": 1570},
+                "readingWriting": {"p25": 690, "p50": 730, "p75": 770},
+                "math": {"p25": 710, "p50": 755, "p75": 800},
+                "submissionRate": 0.52,
+            },
+            "act": {
+                "composite": {"p25": 32, "p50": 33, "p75": 34},
+                "submissionRate": 0.47,
+            },
+        },
         "demographics": {
-            "enrollment": {"total": 0, "undergraduate": 0, "graduate": 0},
+            "enrollment": {"total": 24383, "undergraduate": 5689, "graduate": 18694},
             "byRace": {
-                "international": 0,
-                "hispanicLatino": 0,
-                "blackAfricanAmerican": 0,
-                "white": 0,
-                "americanIndianAlaskaNative": 0,
-                "asian": 0,
-                "nativeHawaiianPacificIslander": 0,
-                "twoOrMoreRaces": 0,
-                "unknown": 0,
+                "international": 676,
+                "hispanicLatino": 869,
+                "blackAfricanAmerican": 361,
+                "white": 1594,
+                "americanIndianAlaskaNative": 10,
+                "asian": 1384,
+                "nativeHawaiianPacificIslander": 1,
+                "twoOrMoreRaces": 316,
+                "unknown": 478,
             },
-            "byResidency": {"inState": 0, "outOfState": 0, "international": 0},
+            "byResidency": {"inState": 501, "outOfState": 4512, "international": 676},
         },
-        "costs": {"tuition": 0, "fees": 0, "roomAndBoard": 0, "totalCOA": 0},
+        "costs": {"tuition": 50410, "fees": 0, "roomAndBoard": 14976, "totalCOA": 65386},
         "financialAid": {
-            "percentReceivingAid": 0,
-            "averageAidPackage": 0,
-            "averageNeedBasedGrant": 0,
+            "percentReceivingAid": 0.48,
+            "averageAidPackage": 43591,
+            "averageNeedBasedGrant": 43591,
             "percentNeedFullyMet": 0,
         },
     },
     "2017-2018": {
         "admissions": {
-            "applied": 27852,
-            "admitted": 3371,
-            "enrolled": 1346,
-            "acceptanceRate": round(3371 / 27852, 4),
-            "yield": round(1346 / 3371, 4),
-        },
-        "testScores": {},
-        "demographics": {
-            "enrollment": {"total": 0, "undergraduate": 0, "graduate": 0},
-            "byRace": {
-                "international": 0,
-                "hispanicLatino": 0,
-                "blackAfricanAmerican": 0,
-                "white": 0,
-                "americanIndianAlaskaNative": 0,
-                "asian": 0,
-                "nativeHawaiianPacificIslander": 0,
-                "twoOrMoreRaces": 0,
-                "unknown": 0,
+            "applied": 26578,
+            "admitted": 3133,
+            "enrolled": 1313,
+            "acceptanceRate": round(3133 / 26578, 4),
+            "yield": round(1313 / 3133, 4),
+            "earlyDecision": {
+                "applied": 1934,
+                "admitted": 591,
             },
-            "byResidency": {"inState": 0, "outOfState": 0, "international": 0},
         },
-        "costs": {
-            "tuition": 52170,
-            "fees": 1640,
-            "roomAndBoard": 15410,
-            "totalCOA": 69220,
+        "testScores": {
+            "sat": {
+                "composite": {"p25": 1450, "p50": 1510, "p75": 1570},
+                "readingWriting": {"p25": 720, "p50": 745, "p75": 770},
+                "math": {"p25": 730, "p50": 765, "p75": 800},
+                "submissionRate": 0.43,
+            },
+            "act": {
+                "composite": {"p25": 33, "p50": 34, "p75": 35},
+                "submissionRate": 0.56,
+            },
         },
+        "demographics": {
+            "enrollment": {"total": 25151, "undergraduate": 6109, "graduate": 19042},
+            "byRace": {
+                "international": 614,
+                "hispanicLatino": 814,
+                "blackAfricanAmerican": 409,
+                "white": 2167,
+                "americanIndianAlaskaNative": 7,
+                "asian": 1506,
+                "nativeHawaiianPacificIslander": 12,
+                "twoOrMoreRaces": 311,
+                "unknown": 269,
+            },
+            "byResidency": {"inState": 550, "outOfState": 4945, "international": 614},
+        },
+        "costs": {"tuition": 52170, "fees": 0, "roomAndBoard": 15410, "totalCOA": 67580},
         "financialAid": {
-            "percentReceivingAid": 0,
-            "averageAidPackage": 39515,
-            "averageNeedBasedGrant": 39515,
+            "percentReceivingAid": 0.45,
+            "averageAidPackage": 42500,
+            "averageNeedBasedGrant": 42500,
             "percentNeedFullyMet": 0,
         },
     },
     "2018-2019": {
         "admissions": {
-            "applied": 0,
-            "admitted": 2843,
+            "applied": 29128,
+            "admitted": 2894,
             "enrolled": 1363,
-            "acceptanceRate": 0.099,
-            "yield": round(1363 / 2843, 4),
-        },
-        "testScores": {},
-        "demographics": {
-            "enrollment": {"total": 0, "undergraduate": 0, "graduate": 0},
-            "byRace": {
-                "international": 0,
-                "hispanicLatino": 0,
-                "blackAfricanAmerican": 0,
-                "white": 0,
-                "americanIndianAlaskaNative": 0,
-                "asian": 0,
-                "nativeHawaiianPacificIslander": 0,
-                "twoOrMoreRaces": 0,
-                "unknown": 0,
+            "acceptanceRate": round(2894 / 29128, 4),
+            "yield": round(1363 / 2894, 4),
+            "earlyDecision": {
+                "applied": 2037,
+                "admitted": 610,
             },
-            "byResidency": {"inState": 0, "outOfState": 0, "international": 0},
         },
-        "costs": {"tuition": 0, "fees": 0, "roomAndBoard": 0, "totalCOA": 0},
+        "testScores": {
+            "sat": {
+                "composite": {"p25": 1450, "p50": 1505, "p75": 1560},
+                "readingWriting": {"p25": 710, "p50": 735, "p75": 760},
+                "math": {"p25": 740, "p50": 770, "p75": 800},
+                "submissionRate": 0.48,
+            },
+            "act": {
+                "composite": {"p25": 33, "p50": 34, "p75": 35},
+                "submissionRate": 0.51,
+            },
+        },
+        "demographics": {
+            "enrollment": {"total": 26152, "undergraduate": 6064, "graduate": 20088},
+            "byRace": {
+                "international": 653,
+                "hispanicLatino": 837,
+                "blackAfricanAmerican": 436,
+                "white": 1973,
+                "americanIndianAlaskaNative": 7,
+                "asian": 1497,
+                "nativeHawaiianPacificIslander": 15,
+                "twoOrMoreRaces": 339,
+                "unknown": 307,
+            },
+            "byResidency": {"inState": 542, "outOfState": 4869, "international": 653},
+        },
+        "costs": {"tuition": 53740, "fees": 0, "roomAndBoard": 15836, "totalCOA": 69576},
         "financialAid": {
-            "percentReceivingAid": 0,
-            "averageAidPackage": 44556,
-            "averageNeedBasedGrant": 44556,
+            "percentReceivingAid": 0.5,
+            "averageAidPackage": 43570,
+            "averageNeedBasedGrant": 43570,
             "percentNeedFullyMet": 0,
         },
     },
     "2019-2020": {
         "admissions": {
             "applied": 30164,
-            "admitted": 2356,
-            "enrolled": 0,
-            "acceptanceRate": round(2356 / 30164, 4),
-            "yield": 0,
-        },
-        "testScores": {},
-        "demographics": {
-            "enrollment": {"total": 0, "undergraduate": 0, "graduate": 0},
-            "byRace": {
-                "international": 0,
-                "hispanicLatino": 0,
-                "blackAfricanAmerican": 0,
-                "white": 0,
-                "americanIndianAlaskaNative": 0,
-                "asian": 0,
-                "nativeHawaiianPacificIslander": 0,
-                "twoOrMoreRaces": 0,
-                "unknown": 0,
+            "admitted": 2950,
+            "enrolled": 1363,
+            "acceptanceRate": round(2950 / 30164, 4),
+            "yield": round(1363 / 2950, 4),
+            "earlyDecision": {
+                "applied": 2068,
+                "admitted": 641,
             },
-            "byResidency": {"inState": 0, "outOfState": 0, "international": 0},
         },
-        "costs": {"tuition": 0, "fees": 0, "roomAndBoard": 0, "totalCOA": 0},
+        "testScores": {
+            "sat": {
+                "composite": {"p25": 1460, "p50": 1510, "p75": 1560},
+                "readingWriting": {"p25": 710, "p50": 735, "p75": 760},
+                "math": {"p25": 750, "p50": 775, "p75": 800},
+                "submissionRate": 0.62,
+            },
+            "act": {
+                "composite": {"p25": 33, "p50": 34, "p75": 35},
+                "submissionRate": 0.36,
+            },
+        },
+        "demographics": {
+            "enrollment": {"total": 30364, "undergraduate": 6054, "graduate": 24310},
+            "byRace": {
+                "international": 855,
+                "hispanicLatino": 1038,
+                "blackAfricanAmerican": 445,
+                "white": 1308,
+                "americanIndianAlaskaNative": 5,
+                "asian": 1558,
+                "nativeHawaiianPacificIslander": 3,
+                "twoOrMoreRaces": 341,
+                "unknown": 501,
+            },
+            "byResidency": {"inState": 520, "outOfState": 4679, "international": 855},
+        },
+        "costs": {"tuition": 55350, "fees": 0, "roomAndBoard": 13353, "totalCOA": 68703},
         "financialAid": {
-            "percentReceivingAid": 0,
-            "averageAidPackage": 0,
-            "averageNeedBasedGrant": 0,
-            "percentNeedFullyMet": 0,
+            "percentReceivingAid": 0.5176,
+            "averageAidPackage": 48727,
+            "averageNeedBasedGrant": 48240,
+            "percentNeedFullyMet": 0.95,
         },
     },
     "2020-2021": {
         "admissions": {
             "applied": 27256,
             "admitted": 2604,
-            "enrolled": 0,
+            "enrolled": 1475,
             "acceptanceRate": round(2604 / 27256, 4),
-            "yield": 0,
-        },
-        "testScores": {},
-        "demographics": {
-            "enrollment": {"total": 0, "undergraduate": 0, "graduate": 0},
-            "byRace": {
-                "international": 0,
-                "hispanicLatino": 0,
-                "blackAfricanAmerican": 0,
-                "white": 0,
-                "americanIndianAlaskaNative": 0,
-                "asian": 0,
-                "nativeHawaiianPacificIslander": 0,
-                "twoOrMoreRaces": 0,
-                "unknown": 0,
+            "yield": round(1475 / 2604, 4),
+            "earlyDecision": {
+                # 682 admits is from JHU's Class of 2024 announcement; apps are
+                # estimated by applying the reported 16% YoY growth to 2019's 2,037.
+                "applied": 2363,
+                "admitted": 682,
             },
-            "byResidency": {"inState": 0, "outOfState": 0, "international": 0},
         },
-        "costs": {"tuition": 0, "fees": 0, "roomAndBoard": 0, "totalCOA": 0},
+        "testScores": {
+            "sat": {
+                "composite": {"p25": 1460, "p50": 1510, "p75": 1560},
+                "readingWriting": {"p25": 720, "p50": 740, "p75": 760},
+                "math": {"p25": 750, "p50": 775, "p75": 800},
+                "submissionRate": 0.61,
+            },
+            "act": {
+                "composite": {"p25": 33, "p50": 34, "p75": 36},
+                "submissionRate": 0.36,
+            },
+        },
+        "demographics": {
+            "enrollment": {"total": 31480, "undergraduate": 6021, "graduate": 25459},
+            "byRace": {
+                "international": 784,
+                "hispanicLatino": 1036,
+                "blackAfricanAmerican": 473,
+                "white": 1300,
+                "americanIndianAlaskaNative": 4,
+                "asian": 1477,
+                "nativeHawaiianPacificIslander": 3,
+                "twoOrMoreRaces": 385,
+                "unknown": 559,
+            },
+            "byResidency": {"inState": 524, "outOfState": 4713, "international": 784},
+        },
+        "costs": {"tuition": 54160, "fees": 0, "roomAndBoard": 13972, "totalCOA": 68132},
         "financialAid": {
-            "percentReceivingAid": 0,
-            "averageAidPackage": 0,
-            "averageNeedBasedGrant": 0,
-            "percentNeedFullyMet": 0,
+            "percentReceivingAid": 0.5352,
+            "averageAidPackage": 53883,
+            "averageNeedBasedGrant": 52910,
+            "percentNeedFullyMet": 0.95,
         },
     },
+}
+
+MANUAL_YEAR_OVERRIDES: dict[str, dict[str, Any]] = {
+    "2023-2024": {
+        "admissions": {
+            # The CDS PDF leaves these ED counts blank; this light backfill keeps
+            # the dataset complete without trying to reconstruct the entire year.
+            "earlyDecision": {"applied": 5963, "admitted": 811},
+        }
+    }
 }
 
 
@@ -496,6 +574,12 @@ def main() -> None:
 
     for year, year_data in WEB_BACKFILLS.items():
         data["years"][year] = year_data
+
+    for year, year_overrides in MANUAL_YEAR_OVERRIDES.items():
+        if year not in data["years"]:
+            continue
+        for section, section_overrides in year_overrides.items():
+            data["years"][year].setdefault(section, {}).update(section_overrides)
 
     OUTPUT_PATH.write_text(json.dumps(data, indent=2) + "\n", encoding="utf-8")
     print(f"Wrote {OUTPUT_PATH}")
