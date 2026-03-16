@@ -6,7 +6,6 @@ export default function ContactPage() {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
-    subject: "",
     message: "",
   });
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
@@ -27,7 +26,7 @@ export default function ContactPage() {
 
       if (response.ok) {
         setStatus("success");
-        setFormData({ name: "", email: "", subject: "", message: "" });
+        setFormData({ name: "", email: "", message: "" });
       } else {
         setStatus("error");
       }
@@ -118,27 +117,31 @@ export default function ContactPage() {
             </h2>
 
             {status === "success" ? (
-              <div className="bg-green-50 border border-green-200 text-green-800 px-4 py-6 rounded-lg text-center">
-                <svg
-                  className="w-12 h-12 mx-auto mb-3 text-green-500"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
-                  />
-                </svg>
-                <p className="font-semibold mb-1">Message sent!</p>
-                <p className="text-sm">
-                  Thank you for reaching out. I&apos;ll get back to you soon.
+              <div className="flex flex-col items-center justify-center py-12 text-center">
+                <div className="w-14 h-14 rounded-full bg-gray-100 flex items-center justify-center mb-5">
+                  <svg
+                    className="w-7 h-7 text-gray-700"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M5 13l4 4L19 7"
+                    />
+                  </svg>
+                </div>
+                <h3 className="text-xl font-semibold text-gray-900 mb-2">
+                  Message received
+                </h3>
+                <p className="text-gray-500 text-sm max-w-xs">
+                  Thanks for reaching out — I&apos;ll be in touch shortly.
                 </p>
                 <button
                   onClick={() => setStatus("idle")}
-                  className="mt-4 text-green-700 underline text-sm"
+                  className="mt-6 text-sm text-gray-400 hover:text-gray-600 transition-colors"
                 >
                   Send another message
                 </button>
@@ -181,30 +184,6 @@ export default function ContactPage() {
                     className="form-input"
                     placeholder="Your email"
                   />
-                </div>
-
-                <div>
-                  <label
-                    htmlFor="subject"
-                    className="block text-sm font-medium text-gray-700 mb-1"
-                  >
-                    Subject
-                  </label>
-                  <select
-                    id="subject"
-                    name="subject"
-                    value={formData.subject}
-                    onChange={handleChange}
-                    required
-                    className="form-input"
-                  >
-                    <option value="">Select a subject</option>
-                    <option value="General Inquiry">General Inquiry</option>
-                    <option value="Data Question">Data Question</option>
-                    <option value="Bug Report">Bug Report</option>
-                    <option value="Feature Request">Feature Request</option>
-                    <option value="Other">Other</option>
-                  </select>
                 </div>
 
                 <div>

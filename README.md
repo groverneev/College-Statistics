@@ -46,6 +46,7 @@ A data visualization dashboard for comparing colleges using Common Data Set (CDS
 | University of Pennsylvania (UPenn) | 2016-2025 | 9 years |
 | University of Southern California (USC) | 2016-2025 | 9 years |
 | The University of Texas at Austin | 2016-2025 | 9 years |
+| University of Virginia | 2019-2025 | 6 years |
 | Vanderbilt University | 2016-2025 | 9 years |
 | Yale University | 2016-2025 | 9 years |
 
@@ -88,7 +89,7 @@ A data visualization dashboard for comparing colleges using Common Data Set (CDS
 
 ## Data Sources
 
-Most data is extracted from official Common Data Set (CDS) publications released by each institution. The CDS is a collaborative effort among data providers in higher education that provides comparable data across institutions. Some schools in this repo use PDF sources, Northeastern publishes year-by-year CDS data as webpages, USC uses its official CDS archive pages plus linked PDFs, UChicago uses a dedicated PDF parser for its official 2021-2025 CDS archive, Johns Hopkins uses a dedicated parser for its local 2021-2025 CDS PDFs plus a mixed-source web backfill for older missing years, Michigan uses a dedicated parser for its 2016-2025 CDS PDFs, Vanderbilt uses CDS Excel workbooks, and Purdue uses a mixed Excel/PDF archive across 2016-2026.
+Most data is extracted from official Common Data Set (CDS) publications released by each institution. The CDS is a collaborative effort among data providers in higher education that provides comparable data across institutions. Some schools in this repo use PDF sources, Northeastern publishes year-by-year CDS data as webpages, USC uses its official CDS archive pages plus linked PDFs, UChicago uses a dedicated PDF parser for its official 2021-2025 CDS archive, Johns Hopkins uses a dedicated parser for its local 2021-2025 CDS PDFs plus a mixed-source web backfill for older missing years, Michigan uses a dedicated parser for its 2016-2025 CDS PDFs, UVA currently uses a mixed official-source dataset built from local 2022-2025 CDS PDFs plus UVA's official 2020-2022 CDS webpages and a web-sourced 2019-2020 backfill, Vanderbilt uses CDS Excel workbooks, and Purdue uses a mixed Excel/PDF archive across 2016-2026.
 
 ## Extracting Data
 

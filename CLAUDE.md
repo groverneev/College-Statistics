@@ -12,7 +12,7 @@
 
 ## Overview
 
-A Next.js website to visualize and compare Common Data Set (CDS) metrics across colleges. Currently featuring **Boston University**, **Brown University**, **California Institute of Technology (Caltech)**, **Carnegie Mellon University (CMU)**, **Columbia University**, **Cornell University**, **Dartmouth College**, **Duke University**, **Emory University**, **Harvard University**, **Johns Hopkins University**, **Massachusetts Institute of Technology (MIT)**, **Northeastern University**, **New York University (NYU)**, **Northwestern University**, **Princeton University**, **Purdue University**, **Stanford University**, **UCLA**, **University of California, Berkeley (UC Berkeley)**, **University of Chicago (UChicago)**, **University of Michigan Ann Arbor**, **University of Pennsylvania (UPenn)**, **University of Southern California (USC)**, **The University of Texas at Austin**, **Vanderbilt University**, and **Yale University**. Most schools have 8-10 years of historical data (2016-2017 through 2025-2026, depending on school); UChicago currently has an official 2021-2025 CDS archive in the repo, and Johns Hopkins now mixes official 2021-2025 CDS PDFs with older web-sourced backfills.
+A Next.js website to visualize and compare Common Data Set (CDS) metrics across colleges. Currently featuring **Boston University**, **Brown University**, **California Institute of Technology (Caltech)**, **Carnegie Mellon University (CMU)**, **Columbia University**, **Cornell University**, **Dartmouth College**, **Duke University**, **Emory University**, **Harvard University**, **Johns Hopkins University**, **Massachusetts Institute of Technology (MIT)**, **Northeastern University**, **New York University (NYU)**, **Northwestern University**, **Princeton University**, **Purdue University**, **Stanford University**, **UCLA**, **University of California, Berkeley (UC Berkeley)**, **University of Chicago (UChicago)**, **University of Michigan Ann Arbor**, **University of Pennsylvania (UPenn)**, **University of Southern California (USC)**, **The University of Texas at Austin**, **University of Virginia**, **Vanderbilt University**, and **Yale University**. Most schools have 8-10 years of historical data (2016-2017 through 2025-2026, depending on school); UChicago currently has an official 2021-2025 CDS archive in the repo, Johns Hopkins now mixes official 2021-2025 CDS PDFs with older web-sourced backfills, and UVA currently has a 2019-2025 mixed-source dataset assembled from official CDS webpages/PDFs plus older web backfill.
 
 **Live Features:**
 - Admissions trends (applications, acceptance rates, yield, early decision)
@@ -55,6 +55,7 @@ USC is sourced from USC's official CDS archive webpages and linked PDFs, extract
 UChicago is sourced from `College-Data/UChicago/`, extracted with `scripts/extract_uchicago.py`, and stored in `src/data/schools/uchicago.json`.
 University of Michigan Ann Arbor is sourced from `College-Data/University of Michigan Ann Arbor/`, extracted with `scripts/extract_umich.py`, and stored in `src/data/schools/umich.json`.
 Johns Hopkins University is sourced from `College-Data/JohnHopkinsUniversity/` for 2021-2025 CDS PDFs, plus older web-sourced backfills inside `scripts/extract_johnshopkins.py`, and stored in `src/data/schools/johnshopkins.json`.
+University of Virginia is sourced from `College-Data/UniversityVirginia/` for 2022-2025 CDS PDFs, plus UVA's official CDS webpages for 2020-2022 backfill, plus a 2019-2020 web-sourced backfill, and stored in `src/data/schools/uva.json`.
 
 ```
 college-comparisons/
@@ -700,6 +701,7 @@ No other files need to change. `generateStaticParams()` auto-picks up the new sl
 | `src/data/schools/upenn.json` | UPenn data (9 years) |
 | `src/data/schools/usc.json` | USC data (9 years) |
 | `src/data/schools/utexasaustin.json` | UT Austin data (9 years) |
+| `src/data/schools/uva.json` | University of Virginia data (6 years, mixed official webpage/PDF archive + web backfill) |
 | `src/data/schools/vanderbilt.json` | Vanderbilt University data (9 years) |
 | `src/data/schools/yale.json` | Yale University data (9 years) |
 | `src/app/trends/page.tsx` | Trends index page |

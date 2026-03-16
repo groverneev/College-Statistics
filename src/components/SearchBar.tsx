@@ -39,6 +39,7 @@ const SCHOOL_ALIASES: Record<string, string[]> = {
   uchicago:     ["UChicago", "University of Chicago", "Chicago"],
   umich:        ["UMich", "U-M", "Michigan", "University of Michigan", "University of Michigan Ann Arbor", "UM Ann Arbor"],
   utexasaustin: ["UT Austin", "UTexasAustin", "UTexas", "University of Texas at Austin", "University of Texas Austin"],
+  uva:          ["UVA", "University of Virginia", "Virginia", "U. Virginia"],
   vanderbilt:   ["Vanderbilt", "Vandy", "Vanderbilt University"],
   yale:         ["Yale"],
 };
