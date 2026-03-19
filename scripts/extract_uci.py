@@ -144,22 +144,60 @@ def extract_admissions(text: str) -> dict:
 
 
 def extract_test_scores(text: str) -> dict:
-    sat_composite = re.search(r"SAT Composite(?: \(400 - 1600\))?\s+(\d{3,4})\s+(?:\d{3,4}\s+)?(\d{3,4})", text)
-    sat_rw = re.search(
-        r"SAT Evidence-Based Reading and(?: Writing)?\s+(\d{3})\s+(?:\d{3}\s+)?(\d{3})",
-        text,
+    flat = squish(text)
+
+    def first_match(patterns: list[str]) -> re.Match[str] | None:
+        for pattern in patterns:
+            match = re.search(pattern, flat, re.IGNORECASE)
+            if match:
+                return match
+        return None
+
+    sat_composite = first_match(
+        [
+            r"SAT Composite(?: \(400 - 1600\))?\s+(\d{3,4})\s+(?:\d{3,4}\s+)?(\d{3,4})",
+        ]
     )
-    sat_math = re.search(r"SAT Math(?: \(200 - 800\))?\s+(\d{3})\s+(?:\d{3}\s+)?(\d{3})", text)
-    sat_submit = re.search(r"Submitting SAT Scores\s+(\d+(?:\.\d+)?)%", text)
-    act_composite = re.search(r"ACT Composite(?: \(0 - 36\))?\s+(\d{2})\s+(?:\d{2}\s+)?(\d{2})", text)
-    act_submit = re.search(r"Submitting ACT Scores\s+(\d+(?:\.\d+)?)%", text)
+    sat_rw = first_match(
+        [
+            r"SAT Evidence-Based Reading and(?: Writing)?\s+(\d{3})\s+(?:\d{3}\s+)?(\d{3})",
+            r"SAT Evidence-\s*Based Reading and Writing\s+(\d{3})\s+(\d{3})",
+            r"SAT Critical Reading\s+(\d{3})\s+(\d{3})",
+        ]
+    )
+    sat_math = first_match(
+        [
+            r"SAT Math(?: \(200 - 800\))?\s+(\d{3})\s+(?:\d{3}\s+)?(\d{3})",
+        ]
+    )
+    sat_submit = first_match(
+        [
+            r"Submitting SAT Scores\s+(\d+(?:\.\d+)?)%",
+            r"Percent submitting SAT scores\s+(\d+(?:\.\d+)?)%",
+        ]
+    )
+    act_composite = first_match(
+        [
+            r"ACT Composite(?: \(0 - 36\))?\s+(\d{2})\s+(?:\d{2}\s+)?(\d{2})",
+        ]
+    )
+    act_submit = first_match(
+        [
+            r"Submitting ACT Scores\s+(\d+(?:\.\d+)?)%",
+            r"Percent submitting ACT scores\s+(\d+(?:\.\d+)?)%",
+        ]
+    )
 
     data: dict = {}
 
-    if sat_composite and sat_rw and sat_math:
-        comp25, comp75 = map(int, sat_composite.groups())
+    if sat_rw and sat_math:
         rw25, rw75 = map(int, sat_rw.groups())
         math25, math75 = map(int, sat_math.groups())
+        if sat_composite:
+            comp25, comp75 = map(int, sat_composite.groups())
+        else:
+            comp25 = rw25 + math25
+            comp75 = rw75 + math75
         data["sat"] = {
             "composite": {"p25": comp25, "p50": (comp25 + comp75) // 2, "p75": comp75},
             "readingWriting": {"p25": rw25, "p50": (rw25 + rw75) // 2, "p75": rw75},
