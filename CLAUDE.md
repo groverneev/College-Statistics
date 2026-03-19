@@ -12,15 +12,16 @@
 
 ## Overview
 
-A Next.js website to visualize and compare Common Data Set (CDS) metrics across colleges. Currently featuring **Boston University**, **Brown University**, **California Institute of Technology (Caltech)**, **Carnegie Mellon University (CMU)**, **Columbia University**, **Cornell University**, **Dartmouth College**, **Duke University**, **Emory University**, **Harvard University**, **Johns Hopkins University**, **Massachusetts Institute of Technology (MIT)**, **Northeastern University**, **New York University (NYU)**, **Northwestern University**, **Princeton University**, **Purdue University**, **Rice University**, **Stanford University**, **UCLA**, **University of California, Berkeley (UC Berkeley)**, **University of California, Irvine (UCI)**, **University of Chicago (UChicago)**, **University of Michigan Ann Arbor**, **University of Pennsylvania (UPenn)**, **University of Southern California (USC)**, **The University of Texas at Austin**, **University of Virginia**, **Vanderbilt University**, and **Yale University**. Most schools have 8-10 years of historical data (2016-2017 through 2025-2026, depending on school); Rice now has an official 2016-2025 CDS archive in the repo, UChicago currently has an official 2021-2025 CDS archive in the repo, UCI now has 2016-2025 coverage in the repo with web-backed cost overrides for 2018-2019 through 2020-2021, Johns Hopkins now mixes official 2021-2025 CDS PDFs with older web-sourced backfills, and UVA currently has a 2019-2025 mixed-source dataset assembled from official CDS webpages/PDFs plus older web backfill.
+A Next.js website to visualize and compare Common Data Set (CDS) metrics across colleges. The repo includes many schools with multi-year historical data, generally covering the late 2010s through the mid-2020s. Some schools use custom extraction scripts or mixed PDF/web/Excel source pipelines, so always inspect the existing script and JSON for the school you are modifying before making changes.
 
+```md
 **Live Features:**
-- Admissions trends (applications, acceptance rates, yield, early decision)
-- SAT/ACT score trends with middle 50% ranges
-- Cost of attendance breakdown over time
-- Financial aid statistics
-- Student demographics and enrollment trends
-- Trends page (`/trends`) — data-driven stories with charts (e.g. UC application volume analysis)
+- Admissions trends
+- SAT/ACT score trends
+- Cost of attendance
+- Financial aid
+- Student demographics
+- Trends stories (`/trends`)
 
 ---
 
@@ -49,94 +50,43 @@ A Next.js website to visualize and compare Common Data Set (CDS) metrics across 
 
 ## Project Structure
 
-Boston University is sourced from `College-Data/BostonUniversity/`, extracted with `scripts/extract_bostonuniversity.py`, and stored in `src/data/schools/bostonuniversity.json`.
-USC is sourced from USC's official CDS archive webpages and linked PDFs, extracted with `scripts/extract_usc.py`, and stored in `src/data/schools/usc.json`.
+Each school typically has:
+- source files in `College-Data/<School>/`
+- an extraction script in `scripts/` (generic or school-specific)
+- an output dataset in `src/data/schools/<slug>.json`
 
-UChicago is sourced from `College-Data/UChicago/`, extracted with `scripts/extract_uchicago.py`, and stored in `src/data/schools/uchicago.json`.
-Rice University is sourced from `College-Data/RiceUniversity/`, extracted with `scripts/extract_rice.py`, and stored in `src/data/schools/rice.json`.
-University of Michigan Ann Arbor is sourced from `College-Data/University of Michigan Ann Arbor/`, extracted with `scripts/extract_umich.py`, and stored in `src/data/schools/umich.json`.
-Johns Hopkins University is sourced from `College-Data/JohnHopkinsUniversity/` for 2021-2025 CDS PDFs, plus older web-sourced backfills inside `scripts/extract_johnshopkins.py`, and stored in `src/data/schools/johnshopkins.json`.
-University of California, Irvine is sourced from `College-Data/UCI/` for official CDS PDFs, with web-backed cost overrides for 2018-2019 through 2020-2021 inside `scripts/extract_uci.py`, and stored in `src/data/schools/uci.json`.
-University of Virginia is sourced from `College-Data/UniversityVirginia/` for 2022-2025 CDS PDFs, plus UVA's official CDS webpages for 2020-2022 backfill, plus a 2019-2020 web-sourced backfill, and stored in `src/data/schools/uva.json`.
+Before editing school data, check whether the school already uses a dedicated extractor or any web-backed/manual overrides.
 
-```
+```text
 college-comparisons/
-├── src/
-│   ├── app/
-│   │   ├── page.tsx                    # Home page (school selector)
-│   │   ├── [school]/
-│   │   │   ├── page.tsx                # Dynamic school page
-│   │   │   └── SchoolPageClient.tsx    # Client component with charts
-│   │   ├── trends/
-│   │   │   ├── page.tsx                # Trends index page (list of stories)
-│   │   │   └── [slug]/
-│   │   │       └── page.tsx            # Dynamic story route
-│   │   ├── layout.tsx                  # Root layout (forces light mode)
-│   │   ├── globals.css                 # Global styles
-│   │   └── icon.svg                    # Favicon
-│   ├── components/
-│   │   ├── charts/
-│   │   │   ├── AdmissionsTrendChart.tsx
-│   │   │   ├── TestScoresTrendChart.tsx
-│   │   │   ├── CostsTrendChart.tsx
-│   │   │   ├── FinancialAidTrendChart.tsx
-│   │   │   └── DemographicsTrendChart.tsx
-│   │   └── trends/
-│   │       ├── StoryCard.tsx           # Card on the trends index page
-│   │       └── stories/
-│   │           └── UC2026Story.tsx     # UC 2026 application story
-│   ├── data/
-│   │   ├── trends/
-│   │   │   ├── index.ts                # Story registry (add new stories here)
-│   │   │   └── uc-2026-applications/
-│   │   │       └── data.ts             # Data for UC 2026 story
-│   │   └── schools/
-│   │       ├── brown.json              # Brown University data (9 years)
-│   │       ├── caltech.json            # Caltech data (9 years)
-│   │       ├── cmu.json                # Carnegie Mellon University data (9 years)
-│   │       ├── columbia.json           # Columbia University data (9 years)
-│   │       ├── cornell.json            # Cornell University data (8 years)
-│   │       ├── dartmouth.json          # Dartmouth College data (9 years)
-│   │       ├── harvard.json            # Harvard University data (9 years)
-│   │       ├── mit.json                # MIT data (9 years)
-│   │       ├── nyu.json                # NYU data (8 years)
-│   │       ├── duke.json               # Duke University data (9 years)
-│   │       ├── emory.json              # Emory University data (8 years)
-│   │       ├── northwestern.json       # Northwestern University data (9 years)
-│   │       ├── princeton.json          # Princeton University data (9 years)
-│   │       ├── stanford.json           # Stanford University data (9 years)
-│   │       ├── ucla.json               # UCLA data (8 years)
-│   │       ├── ucberkeley.json         # UC Berkeley data (9 years)
-│   │       ├── uci.json                # UC Irvine data (9 years)
-│   │       ├── uchicago.json           # UChicago data (4 years)
-│   │       ├── upenn.json              # UPenn data (9 years)
-│   │       └── yale.json               # Yale University data (9 years)
-│   ├── lib/
-│   │   └── types.ts                    # TypeScript interfaces
-│   └── utils/
-│       └── dataHelpers.ts              # Formatting utilities
-├── scripts/
-│   └── extract_cds.py                  # PDF data extraction script
-├── College-Data/                       # Source CDS PDFs organized by school
-│   ├── Brown/
-│   ├── Caltech/
-│   ├── Columbia/
-│   ├── Cornell/
-│   ├── Dartmouth/
-│   ├── Harvard/
-│   ├── MIT/
-│   ├── Northwestern/
-│   ├── Princeton/
-│   ├── Stanford/
-│   ├── UCLA/
-│   ├── UCI/
-│   ├── UChicago/
-│   ├── UPenn/
-│   └── Yale/
-├── .venv/                              # Python virtual environment
-├── tailwind.config.ts
-├── next.config.ts
-└── package.json
+|-- src/
+|   |-- app/
+|   |   |-- page.tsx
+|   |   |-- [school]/
+|   |   |   `-- SchoolPageClient.tsx
+|   |   `-- trends/
+|   |-- components/
+|   |   |-- charts/
+|   |   `-- trends/
+|   |-- data/
+|   |   |-- schools/
+|   |   |   |-- brown.json
+|   |   |   |-- harvard.json
+|   |   |   `-- ...
+|   |   `-- trends/
+|   |-- lib/
+|   `-- utils/
+|-- scripts/
+|   |-- extract_cds.py
+|   `-- extract_*.py
+|-- College-Data/
+|   |-- Brown/
+|   |-- Harvard/
+|   `-- ...
+|-- .venv/
+|-- tailwind.config.ts
+|-- next.config.ts
+`-- package.json
 ```
 
 ---
@@ -561,7 +511,7 @@ When adding a new school to the website, update the following files:
 4. **School page:** `src/app/[school]/page.tsx` - Add import AND add to `schoolDataMap` (both steps required)
 5. **How it works:** `src/app/how-it-works/page.tsx` - Change university count number
 6. **Data helpers:** `src/utils/dataHelpers.ts` - Add to `getAvailableSchools()` array
-7. **Documentation:** `CLAUDE.md` - Update overview, project structure, and Key Files Reference
+7. **Documentation:** `CLAUDE.md` and `README.md` - Update only if the workflow or user-facing behavior changed
 
 > **ORDERING:** The `schools` array in `src/app/page.tsx` must always be kept in **alphabetical order by school name**. When adding a new school, insert it in the correct alphabetical position, not at the end.
 
@@ -578,7 +528,7 @@ When adding a new school to the website, update the following files:
 - [ ] `src/app/how-it-works/page.tsx`: increment university count
 - [ ] `src/utils/dataHelpers.ts`: add to `getAvailableSchools()` array
 - [ ] `src/components/SearchBar.tsx`: add entry to `SCHOOL_ALIASES` with the school's slug as the key and an array of common aliases/abbreviations (e.g. `["MIT", "Massachusetts Institute of Technology"]`)
-- [ ] `CLAUDE.md`: update overview, project structure, Key Files Reference
+- [ ] `CLAUDE.md`/`README.md`: update only if the documented workflow or behavior changed
 - [ ] Run `npm run dev` to verify the school appears on the home page
 
 ---
@@ -671,67 +621,6 @@ The `/trends` page is a scalable, static "blog" for data-driven analyses. Each s
 4. **Wire the route** in `src/app/trends/[slug]/page.tsx` — add a `slug === "my-new-story"` branch that renders your story component.
 
 No other files need to change. `generateStaticParams()` auto-picks up the new slug.
-
----
-
-## Key Files Reference
-
-| File | Purpose |
-|------|---------|
-| `src/app/[school]/SchoolPageClient.tsx` | Main school page with all charts |
-| `src/lib/types.ts` | TypeScript interfaces and school colors |
-| `src/data/schools/bostonuniversity.json` | Boston University data (9 years) |
-| `src/data/schools/brown.json` | Brown University data (9 years) |
-| `src/data/schools/caltech.json` | Caltech data (9 years) |
-| `src/data/schools/cmu.json` | Carnegie Mellon University data (9 years) |
-| `src/data/schools/columbia.json` | Columbia University data (9 years) |
-| `src/data/schools/cornell.json` | Cornell University data (8 years) |
-| `src/data/schools/dartmouth.json` | Dartmouth College data (9 years) |
-| `src/data/schools/harvard.json` | Harvard University data (9 years) |
-| `src/data/schools/johnshopkins.json` | Johns Hopkins University data (9 years, mixed-source older backfill) |
-| `src/data/schools/mit.json` | MIT data (9 years) |
-| `src/data/schools/northeastern.json` | Northeastern University data (9 years) |
-| `src/data/schools/nyu.json` | NYU data (8 years) |
-| `src/data/schools/duke.json` | Duke University data (9 years) |
-| `src/data/schools/emory.json` | Emory University data (8 years) |
-| `src/data/schools/northwestern.json` | Northwestern University data (9 years) |
-| `src/data/schools/princeton.json` | Princeton University data (9 years) |
-| `src/data/schools/purdue.json` | Purdue University data (10 years) |
-| `src/data/schools/rice.json` | Rice University data (9 years) |
-| `src/data/schools/stanford.json` | Stanford University data (9 years) |
-| `src/data/schools/ucla.json` | UCLA data (8 years) |
-| `src/data/schools/ucberkeley.json` | UC Berkeley data (9 years) |
-| `src/data/schools/uci.json` | UC Irvine data (9 years) |
-| `src/data/schools/uchicago.json` | UChicago data (4 years) |
-| `src/data/schools/umich.json` | University of Michigan Ann Arbor data (9 years) |
-| `src/data/schools/upenn.json` | UPenn data (9 years) |
-| `src/data/schools/usc.json` | USC data (9 years) |
-| `src/data/schools/utexasaustin.json` | UT Austin data (9 years) |
-| `src/data/schools/uva.json` | University of Virginia data (6 years, mixed official webpage/PDF archive + web backfill) |
-| `src/data/schools/vanderbilt.json` | Vanderbilt University data (9 years) |
-| `src/data/schools/yale.json` | Yale University data (9 years) |
-| `src/app/trends/page.tsx` | Trends index page |
-| `src/app/trends/[slug]/page.tsx` | Dynamic story route |
-| `src/data/trends/index.ts` | Story registry — add new stories here |
-| `src/components/trends/StoryCard.tsx` | Card on the trends index |
-| `src/components/trends/stories/UC2026Story.tsx` | UC 2026 application story |
-| `scripts/extract_bostonuniversity.py` | Boston University PDF extraction script |
-| `scripts/extract_cds.py` | PDF extraction script |
-| `scripts/extract_purdue.py` | Purdue mixed Excel/PDF extraction script |
-| `scripts/extract_uchicago.py` | UChicago PDF extraction script |
-| `scripts/extract_umich.py` | University of Michigan Ann Arbor PDF extraction script |
-| `scripts/extract_usc.py` | USC archive HTML/PDF extraction script |
-| `scripts/extract_utexasaustin.py` | UT Austin PDF/Box extraction script |
-| `scripts/extract_vanderbilt_excel.py` | Vanderbilt Excel extraction script |
-| `scripts/extract_cornell.py` | Cornell-specific extraction script |
-| `scripts/extract_emory.py` | Emory-specific PDF and archive extraction script |
-| `scripts/extract_johnshopkins.py` | Johns Hopkins University CDS PDF + older web backfill extraction script |
-| `scripts/extract_northwestern.py` | Northwestern-specific extraction script |
-| `scripts/extract_rice.py` | Rice-specific CDS PDF extraction script |
-| `scripts/extract_ucla.py` | UCLA-specific extraction script |
-| `scripts/extract_uci.py` | UC Irvine-specific extraction script |
-| `src/app/globals.css` | Global styles, light mode forcing |
-| `tailwind.config.ts` | Tailwind configuration |
 
 ---
 
