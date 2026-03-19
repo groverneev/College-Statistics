@@ -13,6 +13,7 @@ import princetonData from "@/data/schools/princeton.json";
 import stanfordData from "@/data/schools/stanford.json";
 import uclaData from "@/data/schools/ucla.json";
 import ucberkeleyData from "@/data/schools/ucberkeley.json";
+import ucdavisData from "@/data/schools/ucdavis.json";
 import uciData from "@/data/schools/uci.json";
 import uchicagoData from "@/data/schools/uchicago.json";
 import upennData from "@/data/schools/upenn.json";
@@ -24,6 +25,7 @@ import columbiaData from "@/data/schools/columbia.json";
 import cmuData from "@/data/schools/cmu.json";
 import mitData from "@/data/schools/mit.json";
 import northeasternData from "@/data/schools/northeastern.json";
+import notreDameData from "@/data/schools/notredame.json";
 import nyuData from "@/data/schools/nyu.json";
 import northwesternData from "@/data/schools/northwestern.json";
 import purdueData from "@/data/schools/purdue.json";
@@ -50,6 +52,7 @@ const schoolDataMap: Record<string, SchoolData> = {
   stanford: stanfordData as SchoolData,
   ucla: uclaData as SchoolData,
   ucberkeley: ucberkeleyData as SchoolData,
+  ucdavis: ucdavisData as SchoolData,
   uci: uciData as SchoolData,
   uchicago: uchicagoData as SchoolData,
   umich: umichData as SchoolData,
@@ -61,6 +64,7 @@ const schoolDataMap: Record<string, SchoolData> = {
   yale: yaleData as SchoolData,
   mit: mitData as SchoolData,
   northeastern: northeasternData as SchoolData,
+  notredame: notreDameData as SchoolData,
   nyu: nyuData as SchoolData,
   northwestern: northwesternData as SchoolData,
   rice: riceData as SchoolData,

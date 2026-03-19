@@ -14,6 +14,7 @@ import princetonData from "@/data/schools/princeton.json";
 import stanfordData from "@/data/schools/stanford.json";
 import uclaData from "@/data/schools/ucla.json";
 import ucberkeleyData from "@/data/schools/ucberkeley.json";
+import ucdavisData from "@/data/schools/ucdavis.json";
 import uciData from "@/data/schools/uci.json";
 import uchicagoData from "@/data/schools/uchicago.json";
 import upennData from "@/data/schools/upenn.json";
@@ -25,8 +26,9 @@ import columbiaData from "@/data/schools/columbia.json";
 import cmuData from "@/data/schools/cmu.json";
 import mitData from "@/data/schools/mit.json";
 import northeasternData from "@/data/schools/northeastern.json";
-import nyuData from "@/data/schools/nyu.json";
 import northwesternData from "@/data/schools/northwestern.json";
+import notreDameData from "@/data/schools/notredame.json";
+import nyuData from "@/data/schools/nyu.json";
 import purdueData from "@/data/schools/purdue.json";
 import riceData from "@/data/schools/rice.json";
 import umichData from "@/data/schools/umich.json";
@@ -49,14 +51,16 @@ const schools: SchoolData[] = [
   johnsHopkinsData as SchoolData,
   mitData as SchoolData,
   northeasternData as SchoolData,
-  nyuData as SchoolData,
   northwesternData as SchoolData,
+  notreDameData as SchoolData,
+  nyuData as SchoolData,
   princetonData as SchoolData,
   riceData as SchoolData,
   purdueData as SchoolData,
   stanfordData as SchoolData,
   uclaData as SchoolData,
   ucberkeleyData as SchoolData,
+  ucdavisData as SchoolData,
   uciData as SchoolData,
   uchicagoData as SchoolData,
   umichData as SchoolData,
