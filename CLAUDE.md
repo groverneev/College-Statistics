@@ -12,7 +12,7 @@
 
 ## Overview
 
-A Next.js website to visualize and compare Common Data Set (CDS) metrics across colleges. Currently featuring **Boston University**, **Brown University**, **California Institute of Technology (Caltech)**, **Carnegie Mellon University (CMU)**, **Columbia University**, **Cornell University**, **Dartmouth College**, **Duke University**, **Emory University**, **Harvard University**, **Johns Hopkins University**, **Massachusetts Institute of Technology (MIT)**, **Northeastern University**, **New York University (NYU)**, **Northwestern University**, **Princeton University**, **Purdue University**, **Rice University**, **Stanford University**, **UCLA**, **University of California, Berkeley (UC Berkeley)**, **University of California, Irvine (UCI)**, **University of Chicago (UChicago)**, **University of Michigan Ann Arbor**, **University of Pennsylvania (UPenn)**, **University of Southern California (USC)**, **The University of Texas at Austin**, **University of Virginia**, **Vanderbilt University**, and **Yale University**. Most schools have 8-10 years of historical data (2016-2017 through 2025-2026, depending on school); Rice now has an official 2016-2025 CDS archive in the repo, UChicago currently has an official 2021-2025 CDS archive in the repo, UCI now has an official 2021-2025 CDS archive in the repo, Johns Hopkins now mixes official 2021-2025 CDS PDFs with older web-sourced backfills, and UVA currently has a 2019-2025 mixed-source dataset assembled from official CDS webpages/PDFs plus older web backfill.
+A Next.js website to visualize and compare Common Data Set (CDS) metrics across colleges. Currently featuring **Boston University**, **Brown University**, **California Institute of Technology (Caltech)**, **Carnegie Mellon University (CMU)**, **Columbia University**, **Cornell University**, **Dartmouth College**, **Duke University**, **Emory University**, **Harvard University**, **Johns Hopkins University**, **Massachusetts Institute of Technology (MIT)**, **Northeastern University**, **New York University (NYU)**, **Northwestern University**, **Princeton University**, **Purdue University**, **Rice University**, **Stanford University**, **UCLA**, **University of California, Berkeley (UC Berkeley)**, **University of California, Irvine (UCI)**, **University of Chicago (UChicago)**, **University of Michigan Ann Arbor**, **University of Pennsylvania (UPenn)**, **University of Southern California (USC)**, **The University of Texas at Austin**, **University of Virginia**, **Vanderbilt University**, and **Yale University**. Most schools have 8-10 years of historical data (2016-2017 through 2025-2026, depending on school); Rice now has an official 2016-2025 CDS archive in the repo, UChicago currently has an official 2021-2025 CDS archive in the repo, UCI now has 2016-2025 coverage in the repo with web-backed cost overrides for 2018-2019 through 2020-2021, Johns Hopkins now mixes official 2021-2025 CDS PDFs with older web-sourced backfills, and UVA currently has a 2019-2025 mixed-source dataset assembled from official CDS webpages/PDFs plus older web backfill.
 
 **Live Features:**
 - Admissions trends (applications, acceptance rates, yield, early decision)
@@ -56,7 +56,7 @@ UChicago is sourced from `College-Data/UChicago/`, extracted with `scripts/extra
 Rice University is sourced from `College-Data/RiceUniversity/`, extracted with `scripts/extract_rice.py`, and stored in `src/data/schools/rice.json`.
 University of Michigan Ann Arbor is sourced from `College-Data/University of Michigan Ann Arbor/`, extracted with `scripts/extract_umich.py`, and stored in `src/data/schools/umich.json`.
 Johns Hopkins University is sourced from `College-Data/JohnHopkinsUniversity/` for 2021-2025 CDS PDFs, plus older web-sourced backfills inside `scripts/extract_johnshopkins.py`, and stored in `src/data/schools/johnshopkins.json`.
-University of California, Irvine is sourced from `College-Data/UCI/` for official 2021-2025 CDS PDFs, extracted with `scripts/extract_uci.py`, and stored in `src/data/schools/uci.json`.
+University of California, Irvine is sourced from `College-Data/UCI/` for official CDS PDFs, with web-backed cost overrides for 2018-2019 through 2020-2021 inside `scripts/extract_uci.py`, and stored in `src/data/schools/uci.json`.
 University of Virginia is sourced from `College-Data/UniversityVirginia/` for 2022-2025 CDS PDFs, plus UVA's official CDS webpages for 2020-2022 backfill, plus a 2019-2020 web-sourced backfill, and stored in `src/data/schools/uva.json`.
 
 ```
@@ -107,7 +107,7 @@ college-comparisons/
 │   │       ├── stanford.json           # Stanford University data (9 years)
 │   │       ├── ucla.json               # UCLA data (8 years)
 │   │       ├── ucberkeley.json         # UC Berkeley data (9 years)
-│   │       ├── uci.json                # UC Irvine data (4 years)
+│   │       ├── uci.json                # UC Irvine data (9 years)
 │   │       ├── uchicago.json           # UChicago data (4 years)
 │   │       ├── upenn.json              # UPenn data (9 years)
 │   │       └── yale.json               # Yale University data (9 years)
@@ -701,7 +701,7 @@ No other files need to change. `generateStaticParams()` auto-picks up the new sl
 | `src/data/schools/stanford.json` | Stanford University data (9 years) |
 | `src/data/schools/ucla.json` | UCLA data (8 years) |
 | `src/data/schools/ucberkeley.json` | UC Berkeley data (9 years) |
-| `src/data/schools/uci.json` | UC Irvine data (4 years) |
+| `src/data/schools/uci.json` | UC Irvine data (9 years) |
 | `src/data/schools/uchicago.json` | UChicago data (4 years) |
 | `src/data/schools/umich.json` | University of Michigan Ann Arbor data (9 years) |
 | `src/data/schools/upenn.json` | UPenn data (9 years) |

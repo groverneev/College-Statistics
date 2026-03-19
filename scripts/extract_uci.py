@@ -2,9 +2,10 @@
 """
 UCI CDS extractor.
 
-Builds a clean UCI dataset from official CDS PDFs for 2021-2022 through 2024-2025.
-Older UCI CDS PDFs are in the repo, but several of those years omit usable cost fields,
-so this script sticks to the fully-verifiable recent window.
+Builds a clean UCI dataset from official CDS PDFs. Most years come directly
+from UCI's CDS archive; for 2018-2019 through 2020-2021, UCI's G-section cost
+cells are blank in the PDFs, so those cost fields are backfilled from UCI's
+registrar fee archives plus IPEDS-derived living-cost data.
 """
 
 from __future__ import annotations
@@ -17,6 +18,11 @@ import pdfplumber
 
 
 YEAR_FILES = {
+    "2016-2017": "2016-17.pdf",
+    "2017-2018": "2017-18.pdf",
+    "2018-2019": "2018-19.pdf",
+    "2019-2020": "2019-20.pdf",
+    "2020-2021": "2020-21.pdf",
     "2021-2022": "2021-22.pdf",
     "2022-2023": "2022-23.pdf",
     "2023-2024": "2023-24.pdf",
@@ -25,6 +31,17 @@ YEAR_FILES = {
 
 
 COST_OVERRIDES = {
+    # 2016-2017 and 2017-2018 come directly from UCI's G1 text rows in the
+    # official CDS PDFs.
+    "2016-2017": {"tuition": 11502, "fees": 4014, "roomAndBoard": 14829},
+    "2017-2018": {"tuition": 11442, "fees": 2258, "roomAndBoard": 15263},
+    # 2018-2019 through 2020-2021 use official UCI registrar tuition/fee
+    # archives for tuition + required fees (excluding health insurance), and
+    # CollegeTuitionCompare's IPEDS-based on-campus living-cost history for
+    # room and board.
+    "2018-2019": {"tuition": 11442, "fees": 2258, "roomAndBoard": 18763},
+    "2019-2020": {"tuition": 11442, "fees": 2285, "roomAndBoard": 19198},
+    "2020-2021": {"tuition": 11442, "fees": 2311, "roomAndBoard": 20246},
     # All values below come from official UCI CDS PDFs:
     # - 2022-2023 and 2023-2024 are from the 2022-23 CDS current/previous columns
     # - 2024-2025 and 2025-2026 are from the 2024-25 CDS previous/current columns
@@ -276,8 +293,42 @@ def extract_h2_rows(text: str) -> dict[str, str]:
     return rows
 
 
+def extract_financial_aid_legacy(text: str) -> dict | None:
+    flat = squish(text)
+    patterns = {
+        "total_students": r"H2 a\).*?(\d[\d,]*)\s+(\d[\d,]*)\s+(\d[\d,]*)",
+        "students_with_aid": r"H2 d\).*?(\d[\d,]*)\s+(\d[\d,]*)\s+(\d[\d,]*)",
+        "fully_met": r"H2 h\).*?(\d[\d,]*)\s+(\d[\d,]*)\s+(\d[\d,]*)",
+        "average_package": r"H2 j\).*?\$?\s*(\d[\d,]*)\s+\$?\s*(\d[\d,]*)\s+\$?\s*(\d[\d,]*)",
+        "average_grant": r"k\)\s+\$?\s*(\d[\d,]*)\s+\$?\s*(\d[\d,]*)\s+\$?\s*(\d[\d,]*)",
+    }
+
+    values: dict[str, int] = {}
+    for key, pattern in patterns.items():
+        match = re.search(pattern, flat, re.IGNORECASE)
+        if not match:
+            return None
+        values[key] = parse_number(match.group(2))
+
+    total_students = values["total_students"]
+    students_with_aid = values["students_with_aid"]
+    fully_met = values["fully_met"]
+
+    return {
+        "percentReceivingAid": round(students_with_aid / total_students, 4) if total_students else 0,
+        "averageAidPackage": values["average_package"],
+        "averageNeedBasedGrant": values["average_grant"],
+        "percentNeedFullyMet": round(fully_met / students_with_aid, 4) if students_with_aid else 0,
+    }
+
+
 def extract_financial_aid(text: str) -> dict:
     rows = extract_h2_rows(text)
+    required_keys = {"A", "D", "H", "J", "K"}
+    if not rows or not required_keys.issubset(rows):
+        legacy = extract_financial_aid_legacy(text)
+        if legacy:
+            return legacy
 
     def second_integer(row_key: str) -> int:
         raw_numbers = [parse_number(value) for value in re.findall(r"\d[\d,]*(?:\.\d+)?", rows[row_key])]
