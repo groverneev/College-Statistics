@@ -17,7 +17,7 @@ A data visualization dashboard for comparing colleges using Common Data Set (CDS
 - **Demographics** - Enrollment trends and racial/ethnic composition over time
 - **Trends** - Data-driven stories and analyses (e.g. UC application volume comparisons)
 
-## Currently Available
+## Currently Available Schools
 
 | School | Years | Data Points |
 |--------|-------|-------------|
@@ -63,115 +63,41 @@ A data visualization dashboard for comparing colleges using Common Data Set (CDS
 
 ## Project Structure
 
-```
-├── src/
-│   ├── app/                    # Next.js App Router pages
-│   │   ├── [school]/           # Dynamic school pages
-│   │   ├── trends/             # Trends index + story pages
-│   │   ├── about/              # About page
-│   │   ├── how-it-works/       # How it Works page
-│   │   ├── contact/            # Contact page
-│   ├── components/
-│   │   ├── charts/             # Recharts visualizations
-│   │   ├── trends/             # Trends story components
-│   │   ├── Header.tsx          # Navigation header
-│   │   └── Footer.tsx          # Site footer
-│   ├── data/
-│   │   ├── schools/            # CDS JSON data files
-│   │   └── trends/             # Trends story data files
-│   └── lib/types.ts            # TypeScript interfaces
-├── scripts/
-│   └── extract_cds.py          # PDF data extraction
-└── College-Data/               # Source CDS PDFs by school
-    ├── Brown/
-    ├── Caltech/
-    ├── Columbia/
-    └── ...
+```text
+College-Statistics/
+|-- src/
+|   |-- app/
+|   |   |-- page.tsx
+|   |   |-- [school]/
+|   |   |   `-- SchoolPageClient.tsx
+|   |   `-- trends/
+|   |-- components/
+|   |   |-- charts/
+|   |   `-- trends/
+|   |-- data/
+|   |   |-- schools/
+|   |   |   |-- brown.json
+|   |   |   |-- harvard.json
+|   |   |   `-- ...
+|   |   `-- trends/
+|   |-- lib/
+|   `-- utils/
+|-- scripts/
+|   |-- extract_cds.py
+|   `-- extract_*.py
+|-- College-Data/
+|   |-- Brown/
+|   |-- Harvard/
+|   `-- ...
+|-- .venv/
+|-- tailwind.config.ts
+|-- next.config.ts
+`-- package.json
 ```
 
 ## Data Sources
 
 Most data is extracted from official Common Data Set (CDS) publications released by each institution. The CDS is a collaborative effort among data providers in higher education that provides comparable data across institutions. Some schools in this repo use PDF sources, Northeastern publishes year-by-year CDS data as webpages, Rice uses a dedicated parser for its official 2016-2025 CDS PDF archive, USC uses its official CDS archive pages plus linked PDFs, UChicago uses a dedicated PDF parser for its official 2021-2025 CDS archive, UCI uses a dedicated PDF parser for its CDS archive with web-backed cost overrides for 2018-2019 through 2020-2021, Johns Hopkins uses a dedicated parser for its local 2021-2025 CDS PDFs plus a mixed-source web backfill for older missing years, Michigan uses a dedicated parser for its 2016-2025 CDS PDFs, UVA currently uses a mixed official-source dataset built from local 2022-2025 CDS PDFs plus UVA's official 2020-2022 CDS webpages and a web-sourced 2019-2020 backfill, Vanderbilt uses CDS Excel workbooks, and Purdue uses a mixed Excel/PDF archive across 2016-2026.
-
-## Extracting Data
-
-To extract data from new CDS PDFs:
-
-```bash
-# Set up Python environment
-python3 -m venv .venv
-source .venv/bin/activate
-pip install pdfplumber
-
-# Extract data for a school
-python scripts/extract_cds.py brown --pdf-dir ./College-Data/Brown
-```
-
-To extract Vanderbilt from its CDS Excel workbooks:
-
-```bash
-python scripts/extract_vanderbilt_excel.py
-```
-
-To extract Purdue from its mixed CDS archive:
-
-```bash
-python scripts/extract_purdue.py
-```
-
-To extract UT Austin, including the missing 2022-2023 Box-hosted CDS year:
-
-```bash
-python scripts/extract_utexasaustin.py
-```
-
-To extract Boston University from its BU-specific PDF naming and layout:
-
-```bash
-python scripts/extract_bostonuniversity.py
-```
-
-To extract USC from its official CDS archive pages and linked PDFs:
-
-```bash
-python scripts/extract_usc.py
-```
-
-To extract UChicago from its official CDS PDFs:
-
-```bash
-python scripts/extract_uchicago.py
-```
-
-To extract UCI from its CDS archive plus the web-backed 2018-2021 cost overrides:
-
-```bash
-python scripts/extract_uci.py
-```
-
-To extract Johns Hopkins from its CDS PDFs and older web backfills:
-
-```bash
-python scripts/extract_johnshopkins.py
-```
-
-To extract Emory from its local CDS PDFs plus archived official older-year PDFs:
-
-```bash
-python scripts/extract_emory.py
-```
-
-To extract Rice from its official CDS PDF archive:
-
-```bash
-python scripts/extract_rice.py
-```
-
-To extract the University of Michigan Ann Arbor from its CDS PDFs:
-
-```bash
-python scripts/extract_umich.py
-```
 
 ## Tech Stack
 
@@ -188,7 +114,6 @@ Contributions are welcome! Areas where help is needed:
 
 - Adding data for more schools
 - Improving PDF extraction accuracy
-- Building the comparison feature
 - UI/UX improvements
 
 ## License

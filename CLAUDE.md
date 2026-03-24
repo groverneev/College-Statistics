@@ -58,7 +58,7 @@ Each school typically has:
 Before editing school data, check whether the school already uses a dedicated extractor or any web-backed/manual overrides.
 
 ```text
-college-comparisons/
+College-Statistics/
 |-- src/
 |   |-- app/
 |   |   |-- page.tsx

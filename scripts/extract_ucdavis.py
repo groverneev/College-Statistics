@@ -37,6 +37,187 @@ OFFICIAL_COSTS: dict[str, CostOverride] = {
 }
 
 
+WEB_YEAR_OVERRIDES: dict[str, dict] = {
+    "2019-2020": {
+        "admissions": {
+            "applied": 78093,
+            "admitted": 31035,
+            "enrolled": 5957,
+            "acceptanceRate": 0.3974,
+            "yield": 0.1919,
+        },
+        "testScores": {
+            "sat": {
+                "composite": {"p25": 1145, "p50": 1275, "p75": 1405},
+                "readingWriting": {"p25": 565, "p50": 620, "p75": 670},
+                "math": {"p25": 580, "p50": 660, "p75": 735},
+                "submissionRate": 0.74,
+            },
+            "act": {
+                "composite": {"p25": 25, "p50": 28, "p75": 31},
+                "submissionRate": 0.26,
+            },
+        },
+        "demographics": {
+            "enrollment": {
+                "total": 39629,
+                "undergraduate": 30982,
+                "graduate": 8647,
+            },
+            "byRace": {
+                "international": 5190,
+                "hispanicLatino": 6974,
+                "blackAfricanAmerican": 1181,
+                "white": 7004,
+                "americanIndianAlaskaNative": 187,
+                "asian": 10018,
+                "nativeHawaiianPacificIslander": 0,
+                "twoOrMoreRaces": 0,
+                "unknown": 428,
+            },
+            "byResidency": {
+                "inState": 25470,
+                "outOfState": 1041,
+                "international": 4471,
+            },
+        },
+        "costs": {
+            "tuition": 11442,
+            "fees": 3053,
+            "roomAndBoard": 15863,
+            "totalCOA": 30358,
+        },
+        "financialAid": {
+            "percentReceivingAid": 0.5677,
+            "averageAidPackage": 21848,
+            "averageNeedBasedGrant": 19310,
+            "percentNeedFullyMet": 0.2086,
+        },
+    },
+    "2021-2022": {
+        "admissions": {
+            "applied": 87136,
+            "admitted": 42474,
+            "enrolled": 7482,
+            "acceptanceRate": 0.4874,
+            "yield": 0.1762,
+        },
+        "testScores": {},
+        "demographics": {
+            "enrollment": {
+                "total": 41155,
+                "undergraduate": 31657,
+                "graduate": 9498,
+            },
+            "byRace": {
+                "international": 4905,
+                "hispanicLatino": 7146,
+                "blackAfricanAmerican": 1188,
+                "white": 6772,
+                "americanIndianAlaskaNative": 106,
+                "asian": 10705,
+                "nativeHawaiianPacificIslander": 111,
+                "twoOrMoreRaces": 0,
+                "unknown": 724,
+            },
+            "byResidency": {
+                "inState": 26168,
+                "outOfState": 1286,
+                "international": 4203,
+            },
+        },
+        "costs": {
+            "tuition": 11442,
+            "fees": 3203,
+            "roomAndBoard": 17018,
+            "totalCOA": 31663,
+        },
+        "financialAid": {
+            "percentReceivingAid": 0.7122,
+            "averageAidPackage": 25311,
+            "averageNeedBasedGrant": 22005,
+            "percentNeedFullyMet": 0.2114,
+        },
+    },
+    "2022-2023": {
+        "admissions": {
+            "applied": 94748,
+            "admitted": 35377,
+            "enrolled": 6399,
+            "acceptanceRate": 0.3734,
+            "yield": 0.1809,
+        },
+        "testScores": {},
+        "demographics": {
+            "enrollment": {
+                "total": 40772,
+                "undergraduate": 31532,
+                "graduate": 9240,
+            },
+            "byRace": {
+                "international": 4216,
+                "hispanicLatino": 7223,
+                "blackAfricanAmerican": 1120,
+                "white": 6708,
+                "americanIndianAlaskaNative": 116,
+                "asian": 11287,
+                "nativeHawaiianPacificIslander": 109,
+                "twoOrMoreRaces": 0,
+                "unknown": 753,
+            },
+            "byResidency": {
+                "inState": 25896,
+                "outOfState": 1506,
+                "international": 4130,
+            },
+        },
+        "costs": {
+            "tuition": 11928,
+            "fees": 3330,
+            "roomAndBoard": 17692,
+            "totalCOA": 32950,
+        },
+        "financialAid": {
+            "percentReceivingAid": 0.6811,
+            "averageAidPackage": 25371,
+            "averageNeedBasedGrant": 21623,
+            "percentNeedFullyMet": 0.2292,
+        },
+    },
+}
+
+
+PDF_YEAR_OVERRIDES: dict[str, dict] = {
+    # UC Davis's public enrollment dashboards provide much cleaner race and
+    # residency counts than the 2020 transitional CDS PDF extraction.
+    "2020-2021": {
+        "demographics": {
+            "enrollment": {
+                "total": 40031,
+                "undergraduate": 31162,
+                "graduate": 8869,
+            },
+            "byRace": {
+                "international": 5124,
+                "hispanicLatino": 7159,
+                "blackAfricanAmerican": 1209,
+                "white": 6663,
+                "americanIndianAlaskaNative": 179,
+                "asian": 10385,
+                "nativeHawaiianPacificIslander": 0,
+                "twoOrMoreRaces": 0,
+                "unknown": 443,
+            },
+            "byResidency": {
+                "inState": 25759,
+                "outOfState": 1035,
+                "international": 4368,
+            },
+        },
+    },
+}
+
+
 def squish(text: str) -> str:
     return re.sub(r"\s+", " ", text).strip()
 
@@ -384,18 +565,41 @@ def build_year_data(pdf_path: Path, year: str) -> dict:
     }
 
 
+def deep_merge(base: dict, override: dict) -> dict:
+    merged = dict(base)
+    for key, value in override.items():
+        if isinstance(value, dict) and isinstance(merged.get(key), dict):
+            merged[key] = deep_merge(merged[key], value)
+        else:
+            merged[key] = value
+    return merged
+
+
 def main() -> None:
     base_dir = Path("College-Data/UCDavis")
     output_path = Path("src/data/schools/ucdavis.json")
 
+    years: dict[str, dict] = {}
+
+    for year, filename in YEAR_FILES.items():
+        year_data = build_year_data(base_dir / filename, year)
+        if year in PDF_YEAR_OVERRIDES:
+            year_data = deep_merge(year_data, PDF_YEAR_OVERRIDES[year])
+        years[year] = year_data
+
+    for year, year_data in WEB_YEAR_OVERRIDES.items():
+        years[year] = year_data
+
+    ordered_years = {
+        year: years[year]
+        for year in sorted(years.keys(), key=lambda value: int(value.split("-")[0]))
+    }
+
     school_data = {
         "name": "University of California, Davis",
         "slug": "ucdavis",
-        "years": {},
+        "years": ordered_years,
     }
-
-    for year, filename in YEAR_FILES.items():
-        school_data["years"][year] = build_year_data(base_dir / filename, year)
 
     output_path.write_text(json.dumps(school_data, indent=2) + "\n")
     print(f"Wrote {output_path}")
