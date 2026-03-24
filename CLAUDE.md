@@ -529,22 +529,9 @@ When adding a new school to the website, update the following files:
 - [ ] `src/utils/dataHelpers.ts`: add to `getAvailableSchools()` array
 - [ ] `src/components/SearchBar.tsx`: add entry to `SCHOOL_ALIASES` with the school's slug as the key and an array of common aliases/abbreviations (e.g. `["MIT", "Massachusetts Institute of Technology"]`)
 - [ ] `CLAUDE.md`/`README.md`: update only if the documented workflow or behavior changed
-- [ ] Run `npm run dev` to verify the school appears on the home page
+- [ ] Run `npm run build` to verify the school appears on the home page
 
 ---
-
-## Running the Project
-
-### Development
-```bash
-npm run dev
-```
-Open http://localhost:3000
-
-### Build
-```bash
-npm run build
-```
 
 ### Static Export
 The project is configured for static export on Vercel:
@@ -562,37 +549,11 @@ output: process.env.NODE_ENV === "production" ? "export" : undefined
 The width(-1) and height(-1) of chart should be greater than 0
 ```
 - **Cause:** Recharts tries to render on server where DOM doesn't exist
-- **Impact:** None - charts render correctly in browser
-- **Solution:** Can be suppressed with dynamic imports if needed
+- **Impact:** None; Ignore the warning
 
 ### Static Export Requirements
 - `generateStaticParams()` required for dynamic routes
 - Located in `src/app/[school]/page.tsx`
-
----
-
-## Future Work / TODO
-
-### Data
-- Extract data for more Colleges
-
-### Features
-- [ ] Add school selector dropdown on school pages
-- [ ] Add data tables with sortable columns
-- [ ] Add graduation/retention rate charts (outcomes data)
-- [ ] Add class size and faculty data (academics section)
-
-### UI/UX
-- [ ] Mobile responsive improvements
-- [ ] Add loading states for charts
-- [ ] Add print-friendly view
-- [ ] Dark mode toggle (optional)
-
-### Technical
-- [ ] Add unit tests for data extraction
-- [ ] Set up CI/CD pipeline
-- [ ] Add data validation/verification scripts
-- [ ] Consider caching for large datasets
 
 ---
 
@@ -632,10 +593,6 @@ npm run dev
 
 # Build
 npm run build
-
-# Extract Brown data
-source .venv/bin/activate
-python scripts/extract_cds.py brown --pdf-dir ./College-Data/Brown
 
 # List available PDFs
 find . -name "*.pdf" | head -20
