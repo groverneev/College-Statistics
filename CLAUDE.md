@@ -8,8 +8,6 @@
 
 > **NOTE:** When completing significant tasks (adding features, fixing bugs, adding new schools, changing data schema, etc.), update this `CLAUDE.md` file and `README.md` if necessary to keep documentation current.
 
-> **Excel Workbooks:** Vanderbilt uses CDS Excel files rather than PDFs. Use `scripts/extract_vanderbilt_excel.py` for Vanderbilt instead of the PDF extractor.
-
 ## Overview
 
 A Next.js website to visualize and compare Common Data Set (CDS) metrics across colleges. The repo includes many schools with multi-year historical data, generally covering the late 2010s through the mid-2020s. Some schools use custom extraction scripts or mixed PDF/web/Excel source pipelines, so always inspect the existing script and JSON for the school you are modifying before making changes.
@@ -27,7 +25,7 @@ A Next.js website to visualize and compare Common Data Set (CDS) metrics across 
 
 ## Tech Stack
 
-- **Framework:** Next.js 16.1.4 (App Router)
+- **Framework:** Next.js 16.1.7 (App Router)
 - **Language:** TypeScript
 - **Styling:** Tailwind CSS v4
 - **Charts:** Recharts
@@ -38,7 +36,7 @@ A Next.js website to visualize and compare Common Data Set (CDS) metrics across 
 
 ```json
 {
-  "next": "^16.0.0",
+  "next": "^16.1.7",
   "react": "^19.0.0",
   "recharts": "^2.15.0",
   "tailwindcss": "^4.0.0",
