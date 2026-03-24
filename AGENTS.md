@@ -1,3 +1,1 @@
-# Agent Instructions
-
-Primary project instructions are documented in [CLAUDE.md](./CLAUDE.md).
+Read [CLAUDE.md](./CLAUDE.md) for project instructions
