@@ -237,6 +237,23 @@ pip install openpyxl xlrd
 python scripts/extract_vanderbilt_excel.py
 ```
 
+#### UIUC Excel extractor: `scripts/extract_uiuc.py`
+
+**Setup:**
+```bash
+pip install openpyxl xlrd
+```
+
+**Usage:**
+```bash
+python scripts/extract_uiuc.py
+```
+
+**Notes:**
+- UIUC's newer CDS Excel workbooks repeat several `CDS-B`, `CDS-F`, and `CDS-H` rows for first-year, degree-seeking undergraduate, and total-undergraduate cohorts.
+- For `CDS-H` financial aid and `CDS-F` out-of-state percentage rows, use the degree-seeking undergraduate cohort.
+- For `CDS-B` race/ethnicity rows, use the total-undergraduate cohort so the category totals reconcile to `B1 Total all undergraduates`.
+
 ### Extraction Techniques That Work Well
 
 #### 1. Admissions Data (Section C1)

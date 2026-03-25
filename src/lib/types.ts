@@ -108,6 +108,7 @@ export const SCHOOL_COLORS: Record<string, string> = {
   uci: "#0064A4",
   columbia: "#1D4F91",
   georgiatech: "#B3A369",
+  uiuc: "#13294B",
   mit: "#A31F34",
   northeastern: "#C8102E",
   notredame: "#0C2340",
