@@ -34,6 +34,7 @@ import riceData from "@/data/schools/rice.json";
 import umichData from "@/data/schools/umich.json";
 import dukeData from "@/data/schools/duke.json";
 import emoryData from "@/data/schools/emory.json";
+import georgiaTechData from "@/data/schools/georgiatech.json";
 import johnsHopkinsData from "@/data/schools/johnshopkins.json";
 import vanderbiltData from "@/data/schools/vanderbilt.json";
 
@@ -47,6 +48,7 @@ const schools: SchoolData[] = [
   dartmouthData as SchoolData,
   dukeData as SchoolData,
   emoryData as SchoolData,
+  georgiaTechData as SchoolData,
   harvardData as SchoolData,
   johnsHopkinsData as SchoolData,
   mitData as SchoolData,
