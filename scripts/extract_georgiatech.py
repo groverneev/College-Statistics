@@ -84,6 +84,33 @@ MANUAL_FINANCIAL_AID = {
     },
 }
 
+MANUAL_TEST_SCORES = {
+    "2024-2025": {
+        "sat": {
+            "composite": {"p25": 1370, "p50": 1460, "p75": 1530},
+            "readingWriting": {"p25": 680, "p50": 720, "p75": 750},
+            "math": {"p25": 690, "p50": 760, "p75": 790},
+            "submissionRate": 0.77,
+        },
+        "act": {
+            "composite": {"p25": 30, "p50": 33, "p75": 34},
+            "submissionRate": 0.35,
+        },
+    },
+    "2025-2026": {
+        "sat": {
+            "composite": {"p25": 1370, "p50": 1460, "p75": 1530},
+            "readingWriting": {"p25": 680, "p50": 730, "p75": 760},
+            "math": {"p25": 700, "p50": 750, "p75": 790},
+            "submissionRate": 0.78,
+        },
+        "act": {
+            "composite": {"p25": 31, "p50": 33, "p75": 35},
+            "submissionRate": 0.33,
+        },
+    },
+}
+
 
 def parse_int(value: str) -> int:
     cleaned = value.replace(",", "").replace("$", "").replace(" ", "").strip()
@@ -211,7 +238,10 @@ def extract_admissions(text: str) -> dict:
     }
 
 
-def extract_test_scores(text: str) -> dict:
+def extract_test_scores(text: str, year: str) -> dict:
+    if year in MANUAL_TEST_SCORES:
+        return MANUAL_TEST_SCORES[year]
+
     data: dict = {}
     normalized = re.sub(r"\s+", " ", text)
 
@@ -412,7 +442,7 @@ def extract_pdf(pdf_path: Path, year: str) -> dict:
 
     return {
         "admissions": extract_admissions(text),
-        "testScores": extract_test_scores(text),
+        "testScores": extract_test_scores(text, year),
         "demographics": extract_demographics(text),
         "costs": extract_costs(text),
         "financialAid": extract_financial_aid(year),
