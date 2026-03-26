@@ -79,10 +79,10 @@ export interface CostsData {
 }
 
 export interface FinancialAidData {
-  percentReceivingAid: number;
-  averageAidPackage: number;
-  averageNeedBasedGrant: number;
-  percentNeedFullyMet: number;
+  percentReceivingAid?: number;
+  averageAidPackage?: number;
+  averageNeedBasedGrant?: number;
+  percentNeedFullyMet?: number;
   averageNetPrice?: number;
 }
 
@@ -105,6 +105,7 @@ export const SCHOOL_COLORS: Record<string, string> = {
   caltech: "#FF6C0C",
   ucla: "#2774AE",
   ucdavis: "#022851",
+  ucsandiego: "#182B49",
   uci: "#0064A4",
   columbia: "#1D4F91",
   georgiatech: "#B3A369",
@@ -125,6 +126,7 @@ export const SCHOOL_COLORS: Record<string, string> = {
   uchicago: "#800000",
   cmu: "#C41230",
   usc: "#990000",
+  uwashington: "#4B2E83",
   utexasaustin: "#BF5700",
   uva: "#232D4B",
 };

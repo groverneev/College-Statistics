@@ -15,11 +15,13 @@ import stanfordData from "@/data/schools/stanford.json";
 import uclaData from "@/data/schools/ucla.json";
 import ucberkeleyData from "@/data/schools/ucberkeley.json";
 import ucdavisData from "@/data/schools/ucdavis.json";
+import ucsanDiegoData from "@/data/schools/ucsandiego.json";
 import uciData from "@/data/schools/uci.json";
 import uchicagoData from "@/data/schools/uchicago.json";
 import uiucData from "@/data/schools/uiuc.json";
 import upennData from "@/data/schools/upenn.json";
 import uscData from "@/data/schools/usc.json";
+import uwashingtonData from "@/data/schools/uwashington.json";
 import utexasaustinData from "@/data/schools/utexasaustin.json";
 import uvaData from "@/data/schools/uva.json";
 import yaleData from "@/data/schools/yale.json";
@@ -64,12 +66,14 @@ const schools: SchoolData[] = [
   uclaData as SchoolData,
   ucberkeleyData as SchoolData,
   ucdavisData as SchoolData,
+  ucsanDiegoData as SchoolData,
   uciData as SchoolData,
   uchicagoData as SchoolData,
   uiucData as SchoolData,
   umichData as SchoolData,
   upennData as SchoolData,
   uscData as SchoolData,
+  uwashingtonData as SchoolData,
   utexasaustinData as SchoolData,
   uvaData as SchoolData,
   vanderbiltData as SchoolData,

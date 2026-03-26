@@ -21,14 +21,24 @@ export default function FinancialAidChart({
   costs,
   schoolColor = "#4E3629",
 }: FinancialAidChartProps) {
+  const hasPercentReceivingAid = data.percentReceivingAid !== undefined;
+  const hasPercentNeedFullyMet = data.percentNeedFullyMet !== undefined;
+  const hasAverageAidPackage = data.averageAidPackage !== undefined;
+  const hasAverageNeedBasedGrant = data.averageNeedBasedGrant !== undefined;
+
+  const percentReceivingAid = data.percentReceivingAid ?? 0;
+  const percentNeedFullyMet = data.percentNeedFullyMet ?? 0;
+  const averageAidPackage = data.averageAidPackage ?? 0;
+  const averageNeedBasedGrant = data.averageNeedBasedGrant ?? 0;
+
   const aidPieData = [
-    { name: "Receiving Aid", value: data.percentReceivingAid * 100 },
-    { name: "Not Receiving Aid", value: (1 - data.percentReceivingAid) * 100 },
+    { name: "Receiving Aid", value: percentReceivingAid * 100 },
+    { name: "Not Receiving Aid", value: (1 - percentReceivingAid) * 100 },
   ];
 
   const needMetPieData = [
-    { name: "Need Fully Met", value: data.percentNeedFullyMet * 100 },
-    { name: "Need Partially Met", value: (1 - data.percentNeedFullyMet) * 100 },
+    { name: "Need Fully Met", value: percentNeedFullyMet * 100 },
+    { name: "Need Partially Met", value: (1 - percentNeedFullyMet) * 100 },
   ];
 
   const COLORS = [schoolColor, "#e5e7eb"];
@@ -40,60 +50,72 @@ export default function FinancialAidChart({
       <div className="grid grid-cols-2 gap-4 mb-4">
         <div className="text-center">
           <div className="h-24">
-            <ResponsiveContainer width="100%" height="100%">
-              <PieChart>
-                <Pie
-                  data={aidPieData}
-                  cx="50%"
-                  cy="50%"
-                  innerRadius={25}
-                  outerRadius={40}
-                  dataKey="value"
-                  startAngle={90}
-                  endAngle={-270}
-                >
-                  {aidPieData.map((_, index) => (
-                    <Cell key={`cell-${index}`} fill={COLORS[index]} />
-                  ))}
-                </Pie>
-                <Tooltip
-                  formatter={(value) => `${(value as number).toFixed(0)}%`}
-                />
-              </PieChart>
-            </ResponsiveContainer>
+            {hasPercentReceivingAid ? (
+              <ResponsiveContainer width="100%" height="100%">
+                <PieChart>
+                  <Pie
+                    data={aidPieData}
+                    cx="50%"
+                    cy="50%"
+                    innerRadius={25}
+                    outerRadius={40}
+                    dataKey="value"
+                    startAngle={90}
+                    endAngle={-270}
+                  >
+                    {aidPieData.map((_, index) => (
+                      <Cell key={`cell-${index}`} fill={COLORS[index]} />
+                    ))}
+                  </Pie>
+                  <Tooltip
+                    formatter={(value) => `${(value as number).toFixed(0)}%`}
+                  />
+                </PieChart>
+              </ResponsiveContainer>
+            ) : (
+              <div className="h-full flex items-center justify-center text-sm text-gray-400">
+                N/A
+              </div>
+            )}
           </div>
           <div className="text-xl font-bold" style={{ color: schoolColor }}>
-            {formatPercent(data.percentReceivingAid)}
+            {hasPercentReceivingAid ? formatPercent(percentReceivingAid) : "N/A"}
           </div>
           <div className="text-xs text-gray-500">Receive Aid</div>
         </div>
 
         <div className="text-center">
           <div className="h-24">
-            <ResponsiveContainer width="100%" height="100%">
-              <PieChart>
-                <Pie
-                  data={needMetPieData}
-                  cx="50%"
-                  cy="50%"
-                  innerRadius={25}
-                  outerRadius={40}
-                  dataKey="value"
-                  startAngle={90}
-                  endAngle={-270}
-                >
-                  {needMetPieData.map((_, index) => (
-                    <Cell key={`cell-${index}`} fill={COLORS[index]} />
-                  ))}
-                </Pie>
-                <Tooltip
-                  formatter={(value) => `${(value as number).toFixed(0)}%`}
-                />
-              </PieChart>
-            </ResponsiveContainer>
+            {hasPercentNeedFullyMet ? (
+              <ResponsiveContainer width="100%" height="100%">
+                <PieChart>
+                  <Pie
+                    data={needMetPieData}
+                    cx="50%"
+                    cy="50%"
+                    innerRadius={25}
+                    outerRadius={40}
+                    dataKey="value"
+                    startAngle={90}
+                    endAngle={-270}
+                  >
+                    {needMetPieData.map((_, index) => (
+                      <Cell key={`cell-${index}`} fill={COLORS[index]} />
+                    ))}
+                  </Pie>
+                  <Tooltip
+                    formatter={(value) => `${(value as number).toFixed(0)}%`}
+                  />
+                </PieChart>
+              </ResponsiveContainer>
+            ) : (
+              <div className="h-full flex items-center justify-center text-sm text-gray-400">
+                N/A
+              </div>
+            )}
           </div>
           <div className="text-xl font-bold" style={{ color: schoolColor }}>
-            {formatPercent(data.percentNeedFullyMet)}
+            {hasPercentNeedFullyMet ? formatPercent(percentNeedFullyMet) : "N/A"}
           </div>
           <div className="text-xs text-gray-500">Need Fully Met</div>
         </div>
@@ -104,13 +126,17 @@ export default function FinancialAidChart({
           <span className="text-sm text-gray-600 dark:text-gray-300">
             Average Aid Package
           </span>
-          <span className="font-semibold">{formatCurrency(data.averageAidPackage)}</span>
+          <span className="font-semibold">
+            {hasAverageAidPackage ? formatCurrency(averageAidPackage) : "N/A"}
+          </span>
         </div>
         <div className="flex justify-between">
           <span className="text-sm text-gray-600 dark:text-gray-300">
             Average Need-Based Grant
           </span>
-          <span className="font-semibold">{formatCurrency(data.averageNeedBasedGrant)}</span>
+          <span className="font-semibold">
+            {hasAverageNeedBasedGrant ? formatCurrency(averageNeedBasedGrant) : "N/A"}
+          </span>
         </div>
         {data.averageNetPrice && costs && (
           <div className="flex justify-between pt-2 border-t border-gray-100 dark:border-gray-600">

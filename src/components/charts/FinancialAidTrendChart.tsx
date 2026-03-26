@@ -29,19 +29,19 @@ export default function FinancialAidTrendChart({
     .filter((year) => {
       const aid = yearData[year].financialAid;
       return (
-        aid.percentReceivingAid > 0 ||
-        aid.averageAidPackage > 0 ||
-        aid.averageNeedBasedGrant > 0 ||
-        aid.percentNeedFullyMet > 0
+        (aid.percentReceivingAid ?? 0) > 0 ||
+        (aid.averageAidPackage ?? 0) > 0 ||
+        (aid.averageNeedBasedGrant ?? 0) > 0 ||
+        (aid.percentNeedFullyMet ?? 0) > 0
       );
     })
     .map((year) => ({
       year: year.split("-")[0],
       fullYear: year,
-      percentReceivingAid: yearData[year].financialAid.percentReceivingAid * 100,
-      averageAidPackage: yearData[year].financialAid.averageAidPackage,
-      averageNeedBasedGrant: yearData[year].financialAid.averageNeedBasedGrant,
-      percentNeedFullyMet: yearData[year].financialAid.percentNeedFullyMet * 100,
+      percentReceivingAid: (yearData[year].financialAid.percentReceivingAid ?? 0) * 100,
+      averageAidPackage: yearData[year].financialAid.averageAidPackage ?? 0,
+      averageNeedBasedGrant: yearData[year].financialAid.averageNeedBasedGrant ?? 0,
+      percentNeedFullyMet: (yearData[year].financialAid.percentNeedFullyMet ?? 0) * 100,
       averageNetPrice: yearData[year].financialAid.averageNetPrice || 0,
       totalCOA: yearData[year].costs.totalCOA,
     }));

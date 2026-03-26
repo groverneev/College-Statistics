@@ -29,7 +29,7 @@ A Next.js website to visualize and compare Common Data Set (CDS) metrics across 
 - **Language:** TypeScript
 - **Styling:** Tailwind CSS v4
 - **Charts:** Recharts
-- **Data Extraction:** Python with pdfplumber, openpyxl, and xlrd
+- **Data Extraction:** Python with pdfplumber, pypdf, openpyxl, and xlrd
 - **Deployment:** Vercel (static export)
 
 ### Key Dependencies
@@ -52,6 +52,8 @@ Each school typically has:
 - source files in `College-Data/<School>/`
 - an extraction script in `scripts/` (generic or school-specific)
 - an output dataset in `src/data/schools/<slug>.json`
+
+Some newer CDS PDFs are fillable forms where table extraction misses values. For those, inspect AcroForm fields with `pypdf` rather than relying only on `pdfplumber` table parsing.
 
 Before editing school data, check whether the school already uses a dedicated extractor or any web-backed/manual overrides.
 

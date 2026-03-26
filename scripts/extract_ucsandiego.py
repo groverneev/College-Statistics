@@ -22,9 +22,44 @@ YEAR_FILES = {
     "2018-2019": "UCSD-CDS_2018-2019.pdf",
     "2019-2020": "UCSD_CDS_2019-2020.pdf",
     "2020-2021": "UCSD-2020-2021.pdf",
+    "2021-2022": "UCSD-CDS_2021-2022.pdf",
     "2022-2023": "UCSD-CDS_2022-20233.pdf",
     "2023-2024": "CDS_UCSD_2023_20242.pdf",
     "2024-2025": "CDS_2024-2025_Final1.pdf",
+}
+
+OFFICIAL_COST_OVERRIDES = {
+    "2016-2017": {"tuition": 12630, "fees": 3553, "roomAndBoard": 13254},
+}
+
+WEB_FINANCIAL_AID_OVERRIDES = {
+    # Source: secondary web summaries quoting 2021-2022 first-year aid stats:
+    # https://collegegazette.com/ucsd-out-of-state-acceptance-rate/
+    # https://www.spainexchange.com/faq/does-ucsd-give-financial-aid-to-out-of-state-students
+    # Approximate need-met proxy from:
+    # https://www.collegetransitions.com/dataverse/colleges-meeting-your-financial-need
+    #
+    # UCSD's official 2021-2022 CDS H2/H2A pages are blank in the published PDF, and
+    # public web sources expose first-year aid values rather than the usual CDS full-time
+    # undergraduate cohort. We backfill the available fields and use College Transitions'
+    # published need-met percentage as an approximate proxy for the site's "need fully met"
+    # field so the year is complete on the frontend.
+    "2021-2022": {
+        "percentReceivingAid": 0.59,
+        "averageAidPackage": 25036,
+        "averageNeedBasedGrant": 25700,
+        "percentNeedFullyMet": 0.83,
+    },
+    # Source: official UC San Diego IR CDS PDF:
+    # https://ir.ucsd.edu/stats/undergrad/CDS_2024-2025_Final1.pdf
+    # H2 full-time undergrad values:
+    # A=34,101 D=18,028 H=1,996 J=$30,549 K=$27,393
+    "2024-2025": {
+        "percentReceivingAid": 0.5287,
+        "averageAidPackage": 30549,
+        "averageNeedBasedGrant": 27393,
+        "percentNeedFullyMet": 0.1107,
+    },
 }
 
 
@@ -66,6 +101,9 @@ def extract_admissions(text: str) -> dict:
             r"Total first-time, first-year students who applied in Fall \d{4}\s+[\d,]+\s+[\d,]+\s+[\d,]+\s+([\d,]+).*?"
             r"Total first-time, first-year students admitted in Fall \d{4}\s+[\d,]+\s+[\d,]+\s+[\d,]+\s+([\d,]+).*?"
             r"Total first-time, first-year students enrolled in Fall \d{4}\s+[\d,]+\s+[\d,]+\s+[\d,]+\s+([\d,]+)",
+            r"Total first-time, first-year \(degree-seeking\) who applied\s+([\d,]+).*?"
+            r"Total first-time, first-year \(degree-seeking\) who were admitted\s+([\d,]+).*?"
+            r"Total first-time, first-year \(degree-seeking\) enrolled\s+([\d,]+)",
         ],
     )
     if total_match:
@@ -79,47 +117,45 @@ def extract_admissions(text: str) -> dict:
         }
 
     applied = sum(
-        parse_number(group)
-        for group in find_match(
+        parse_number(value)
+        for value in re.findall(
+            r"Total first-time, first-year (?:(?:\(freshman\) )?)"
+            r"(?:men|women|males|females|of another/unknown gender|students of unknown sex)"
+            r" who applied\s+([\d,]+)",
             flat,
-            [
-                r"Total first-time, first-year \(freshman\) men who applied\s+([\d,]+).*?"
-                r"Total first-time, first-year \(freshman\) women who applied\s+([\d,]+)(?:.*?another gender who applied\s+([\d,]+))?",
-                r"Total first-time, first-year men who applied\s+([\d,]+).*?"
-                r"Total first-time, first-year women who applied\s+([\d,]+)(?:.*?another gender who applied\s+([\d,]+))?",
-            ],
-        ).groups(default="0")
+            re.IGNORECASE,
+        )
     )
     admitted = sum(
-        parse_number(group)
-        for group in find_match(
+        parse_number(value)
+        for value in re.findall(
+            r"Total first-time, first-year (?:(?:\(freshman\) )?)"
+            r"(?:men|women|males|females|of another/unknown gender|students of unknown sex)"
+            r" who were admitted\s+([\d,]+)",
             flat,
-            [
-                r"Total first-time, first-year \(freshman\) men who were admitted\s+([\d,]+).*?"
-                r"Total first-time, first-year \(freshman\) women who were admitted\s+([\d,]+)(?:.*?another gender who were admitted\s+([\d,]+))?",
-                r"Total first-time, first-year men who were admitted\s+([\d,]+).*?"
-                r"Total first-time, first-year women who were admitted\s+([\d,]+)(?:.*?another gender who were admitted\s+([\d,]+))?",
-            ],
-        ).groups(default="0")
+            re.IGNORECASE,
+        )
     )
-    enrolled = sum(
-        parse_number(group)
-        for group in find_match(
-            flat,
-            [
-                r"Total full-time, first-time, first-year \(freshman\) men who enrolled\s+([\d,]+).*?"
-                r"Total part-time, first-time, first-year \(freshman\) men who enrolled\s+([\d,]+).*?"
-                r"Total full-time, first-time, first-year \(freshman\) women who enrolled\s+([\d,]+).*?"
-                r"Total part-time, first-time, first-year \(freshman\) women who enrolled\s+([\d,]+)",
-                r"Total full-time, first-time, first-year men who enrolled\s+([\d,]+).*?"
-                r"Total part-time, first-time, first-year men who enrolled\s+([\d,]+).*?"
-                r"Total full-time, first-time, first-year women who enrolled\s+([\d,]+).*?"
-                r"Total part-time, first-time, first-year women who enrolled\s+([\d,]+).*?"
-                r"Total full-time, first-time, first-year another gender who enrolled\s+([\d,]+).*?"
-                r"Total part-time, first-time, first-year another gender who enrolled\s+([\d,]+)",
-            ],
-        ).groups(default="0")
+    enrolled_total_rows = re.findall(
+        r"Total first-time, first-year (?:(?:\(freshman\) )?)"
+        r"(?:men|women|males|females|of another/unknown gender|students of unknown sex)"
+        r" who enroll(?:ed)?\s+([\d,]+)",
+        flat,
+        re.IGNORECASE,
     )
+    if enrolled_total_rows:
+        enrolled = sum(parse_number(value) for value in enrolled_total_rows)
+    else:
+        enrolled = sum(
+            parse_number(value)
+            for value in re.findall(
+                r"Total (?:(?:full-time|part-time),? )first-time, first-year (?:(?:\(freshman\) )?)"
+                r"(?:men|women|males|females|of another/unknown gender|students of unknown sex)"
+                r" who enroll(?:ed)?\s+([\d,]+)",
+                flat,
+                re.IGNORECASE,
+            )
+        )
 
     return {
         "applied": applied,
@@ -140,6 +176,8 @@ def extract_test_scores(text: str) -> dict:
         flat,
         [
             r"SAT Evidence-Based Reading and Writing\s+(\d{3})\s+(\d{3})",
+            r"SAT Evidence-Based Reading and\s+Writing\s+(\d{3})\s+(\d{3})",
+            r"SAT Evidence-Based Reading and\s+(\d{3})\s+(\d{3})\s+Writing",
             r"SAT Critical Reading\s+(\d{3})\s+(\d{3})",
         ],
     )
@@ -176,8 +214,21 @@ def extract_test_scores(text: str) -> dict:
 
 def extract_enrollment(text: str) -> dict:
     flat = squish(text)
-    undergrad_match = find_match(flat, [r"Total all undergraduates\s+([\d,]+)"])
-    grad_match = find_match(flat, [r"Total all graduate\s+([\d,]+)"])
+    undergrad_match = find_match(
+        flat,
+        [
+            r"Total all undergraduates\s+([\d,]+)",
+            r"Total of all undergraduate degree-seeking students\s+([\d,]+)",
+        ],
+    )
+    grad_match = find_match(
+        flat,
+        [
+            r"Total all graduate\s+([\d,]+)",
+            r"Total of all graduate degree-seeking students\s+([\d,]+)",
+            r"Total of all graduate students enrolled\s+([\d,]+)",
+        ],
+    )
     if not undergrad_match or not grad_match:
         raise ValueError("Could not extract enrollment totals")
 
@@ -254,7 +305,7 @@ def extract_costs(text: str) -> dict:
         [
             r"Tuition: In-state \(out-of-district\): \$([\d,]+)",
             r"In-state \(out-of-district\): \$([\d,]+)",
-            r"PUBLIC INSTITUTIONS \$([\d,]+) \$[\d,]+ In-state \(out-of-district\):",
+            r"\$([\d,]+)\s+\$[\d,]+\s+In-state \(out-of-district\):",
         ],
     )
     fees_match = find_match(flat, [r"Required Fees:?\s+\$([\d,]+)", r"REQUIRED FEES:\s+\$([\d,]+)"])
@@ -314,20 +365,40 @@ def extract_financial_aid(text: str) -> dict:
     if not required.issubset(rows):
         return {}
 
-    def second_value(row_key: str) -> int | float:
+    def extract_triplet(row_key: str) -> list[str]:
         values = re.findall(r"\$?\d[\d,]*(?:\.\d+)?%?", rows[row_key])
-        if len(values) < 2:
+        if len(values) < 3:
+            return []
+
+        for i in range(len(values) - 2):
+            window = values[i : i + 3]
+            parsed = []
+            for raw in window:
+                if raw.endswith("%"):
+                    parsed.append(float(raw[:-1]))
+                else:
+                    parsed.append(parse_number(raw))
+
+            first, second, third = parsed
+            if first >= 100 and second >= 100 and first >= third and second >= third:
+                return window
+
+        return values[-3:]
+
+    def middle_value(row_key: str) -> int | float:
+        triplet = extract_triplet(row_key)
+        if len(triplet) < 3:
             return 0
-        value = values[1]
+        value = triplet[1]
         if value.endswith("%"):
             return parse_percent(value)
         return parse_number(value)
 
-    total_students = int(second_value("A"))
-    students_with_aid = int(second_value("D"))
-    fully_met = int(second_value("H"))
-    average_package = int(second_value("J"))
-    average_grant = int(second_value("K"))
+    total_students = int(middle_value("A"))
+    students_with_aid = int(middle_value("D"))
+    fully_met = int(middle_value("H"))
+    average_package = int(middle_value("J"))
+    average_grant = int(middle_value("K"))
 
     return {
         "percentReceivingAid": round(students_with_aid / total_students, 4) if total_students else 0,
@@ -337,9 +408,15 @@ def extract_financial_aid(text: str) -> dict:
     }
 
 
-def build_year_data(text: str) -> dict:
+def build_year_data(year: str, text: str) -> dict:
     enrollment = extract_enrollment(text)
     by_race = extract_by_race(text)
+    costs = OFFICIAL_COST_OVERRIDES.get(year)
+    if costs:
+        costs = {**costs, "totalCOA": sum(costs.values())}
+    else:
+        costs = extract_costs(text)
+    financial_aid = WEB_FINANCIAL_AID_OVERRIDES.get(year, extract_financial_aid(text))
     return {
         "admissions": extract_admissions(text),
         "testScores": extract_test_scores(text),
@@ -348,8 +425,8 @@ def build_year_data(text: str) -> dict:
             "byRace": by_race,
             "byResidency": extract_residency(text, enrollment["undergraduate"], by_race["international"]),
         },
-        "costs": extract_costs(text),
-        "financialAid": extract_financial_aid(text),
+        "costs": costs,
+        "financialAid": financial_aid,
     }
 
 
@@ -365,7 +442,7 @@ def main() -> None:
 
     for year, filename in YEAR_FILES.items():
         text = load_text(base_dir / filename)
-        school_data["years"][year] = build_year_data(text)
+        school_data["years"][year] = build_year_data(year, text)
 
     output_path.write_text(json.dumps(school_data, indent=2) + "\n")
     print(f"Wrote {output_path}")

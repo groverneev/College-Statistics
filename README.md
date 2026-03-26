@@ -49,6 +49,7 @@ A data visualization dashboard for comparing colleges using Common Data Set (CDS
 | University of Michigan Ann Arbor | 2016-2025 | 9 years |
 | University of Pennsylvania (UPenn) | 2016-2025 | 9 years |
 | University of Southern California (USC) | 2016-2025 | 9 years |
+| University of Washington | 2018-2026 | 8 years |
 | The University of Texas at Austin | 2016-2025 | 9 years |
 | University of Virginia | 2019-2025 | 6 years |
 | Vanderbilt University | 2016-2025 | 9 years |
@@ -99,7 +100,7 @@ College-Statistics/
 
 ## Data Sources
 
-Most data is extracted from official Common Data Set (CDS) publications released by each institution. The CDS is a collaborative effort among data providers in higher education that provides comparable data across institutions. Some schools in this repo use PDF sources, Northeastern publishes year-by-year CDS data as webpages, Rice uses a dedicated parser for its official 2016-2025 CDS PDF archive, USC uses its official CDS archive pages plus linked PDFs, UChicago uses a dedicated PDF parser for its official 2021-2025 CDS archive, UCI uses a dedicated PDF parser for its CDS archive with web-backed cost overrides for 2018-2019 through 2020-2021, UIUC uses a dedicated Excel extractor for its 2016-2025 CDS workbooks, Johns Hopkins uses a dedicated parser for its local 2021-2025 CDS PDFs plus a mixed-source web backfill for older missing years, Michigan uses a dedicated parser for its 2016-2025 CDS PDFs, UVA currently uses a mixed official-source dataset built from local 2022-2025 CDS PDFs plus UVA's official 2020-2022 CDS webpages and a web-sourced 2019-2020 backfill, Vanderbilt uses CDS Excel workbooks, and Purdue uses a mixed Excel/PDF archive across 2016-2026.
+Most data is extracted from official Common Data Set (CDS) publications released by each institution. The CDS is a collaborative effort among data providers in higher education that provides comparable data across institutions. Some schools in this repo use PDF sources, Northeastern publishes year-by-year CDS data as webpages, Rice uses a dedicated parser for its official 2016-2025 CDS PDF archive, USC uses its official CDS archive pages plus linked PDFs, UChicago uses a dedicated PDF parser for its official 2021-2025 CDS archive, UCI uses a dedicated PDF parser for its CDS archive with web-backed cost overrides for 2018-2019 through 2020-2021, UIUC uses a dedicated Excel extractor for its 2016-2025 CDS workbooks, Johns Hopkins uses a dedicated parser for its local 2021-2025 CDS PDFs plus a mixed-source web backfill for older missing years, Michigan uses a dedicated parser for its 2016-2025 CDS PDFs, Washington uses a mixed Excel/PDF extractor against its local 2018-2026 CDS files, UVA currently uses a mixed official-source dataset built from local 2022-2025 CDS PDFs plus UVA's official 2020-2022 CDS webpages and a web-sourced 2019-2020 backfill, Vanderbilt uses CDS Excel workbooks, and Purdue uses a mixed Excel/PDF archive across 2016-2026.
 
 ## Tech Stack
 
@@ -107,7 +108,7 @@ Most data is extracted from official Common Data Set (CDS) publications released
 - **Language:** [TypeScript](https://www.typescriptlang.org/)
 - **Styling:** [Tailwind CSS v4](https://tailwindcss.com/)
 - **Charts:** [Recharts](https://recharts.org/)
-- **Data Extraction:** Python with [pdfplumber](https://github.com/jsvine/pdfplumber), [openpyxl](https://openpyxl.readthedocs.io/), and [xlrd](https://xlrd.readthedocs.io/)
+- **Data Extraction:** Python with [pdfplumber](https://github.com/jsvine/pdfplumber), [pypdf](https://pypdf.readthedocs.io/), [openpyxl](https://openpyxl.readthedocs.io/), and [xlrd](https://xlrd.readthedocs.io/)
 - **Contact Form:** [Formspree](https://formspree.io/)
 
 ## Contributing

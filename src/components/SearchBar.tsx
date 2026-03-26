@@ -21,6 +21,7 @@ const SCHOOL_ALIASES: Record<string, string[]> = {
   ucla:         ["UCLA", "University of California Los Angeles", "UC Los Angeles"],
   ucberkeley:   ["UC Berkeley", "Cal", "Berkeley", "University of California Berkeley"],
   ucdavis:      ["UC Davis", "University of California Davis", "University of California, Davis", "Davis"],
+  ucsandiego:   ["UCSD", "UC San Diego", "University of California San Diego", "University of California, San Diego", "San Diego"],
   uci:          ["UCI", "UC Irvine", "University of California Irvine", "University of California, Irvine", "Irvine"],
   uiuc:         ["UIUC", "University of Illinois Urbana-Champaign", "University of Illinois", "Illinois", "U of I", "Urbana-Champaign"],
   usc:          ["USC", "Southern Cal", "University of Southern California"],
