@@ -9,6 +9,7 @@
 > **DOCS:** Detailed reference material lives in:
 > - `docs/data-extraction.md`
 > - `docs/architecture.md`
+> - `docs/pdf-extraction-pipeline.md`
 
 ## Repo Purpose
 
@@ -22,7 +23,8 @@ This is a Next.js site for exploring Common Data Set trends across colleges. The
 
 Use this checklist:
 
-1. Create `src/data/schools/<slug>.json` with complete, source-backed data.
+1. Run `python -m cds_pipeline extract <school-or-path>` and inspect `.cds_pipeline/<slug>/review.md`.
+2. Export or finalize `src/data/schools/<slug>.json` with complete, source-backed data.
 2. Register the school once in `src/data/schools/index.ts`.
 3. Add the school color in `src/lib/types.ts`.
 4. Add aliases in `src/components/SearchBar.tsx` if the school needs abbreviation support.

@@ -46,3 +46,6 @@ __pycache__/
 *$py.class
 .venv/
 venv/
+
+# Extraction pipeline artifacts
+.cds_pipeline/

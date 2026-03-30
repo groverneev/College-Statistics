@@ -38,6 +38,26 @@ Adding a new school should usually require:
 3. add its color in `SCHOOL_COLORS`
 4. add search aliases if needed
 
+## Extraction Architecture
+
+The preferred extraction flow is now the `cds_pipeline` package.
+
+It follows a classifier-plus-cascade model:
+
+- classify each PDF as `acroform`, `native_text`, `layout_sensitive`, or `scanned`
+- run the matching extractor chain
+- normalize into the `SchoolData` schema
+- validate each document
+- emit review artifacts for low-confidence cases
+
+Important directories:
+
+- `cds_pipeline/`: pipeline package
+- `cds_pipeline/configs/`: school-specific hints and aliases
+- `.cds_pipeline/`: generated extraction artifacts
+
+The pipeline should be the default path for new school ingestion. Older `scripts/extract_*.py` files are legacy utilities.
+
 ## Chart Layer
 
 The active chart barrel exports only the trend charts used by the school dashboard:
