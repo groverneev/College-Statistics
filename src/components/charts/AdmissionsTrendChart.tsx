@@ -38,6 +38,10 @@ export default function AdmissionsTrendChart({
   }));
 
   const hasEarlyDecision = trendData.some((d) => d.edApplied > 0);
+  const acceptanceRateAxisMax = Math.max(
+    15,
+    Math.ceil((Math.max(...trendData.map((d) => d.acceptanceRate)) + 5) / 10) * 10
+  );
 
   return (
     <div className="space-y-6">
@@ -72,8 +76,8 @@ export default function AdmissionsTrendChart({
                 orientation="right"
                 tick={{ fontSize: 12, fill: "#666" }}
                 axisLine={{ stroke: "#e5e5e5" }}
-                tickFormatter={(v) => `${v}%`}
-                domain={[0, 15]}
+                tickFormatter={(v) => `${Math.round(v)}%`}
+                domain={[0, acceptanceRateAxisMax]}
                 label={{
                   value: "Acceptance Rate (%)",
                   angle: 90,

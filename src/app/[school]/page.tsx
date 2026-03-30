@@ -18,8 +18,10 @@ import ucsanDiegoData from "@/data/schools/ucsandiego.json";
 import uciData from "@/data/schools/uci.json";
 import uchicagoData from "@/data/schools/uchicago.json";
 import uiucData from "@/data/schools/uiuc.json";
+import uncChapelHillData from "@/data/schools/uncchapelhill.json";
 import upennData from "@/data/schools/upenn.json";
 import uscData from "@/data/schools/usc.json";
+import uwmadisonData from "@/data/schools/uwmadison.json";
 import uwashingtonData from "@/data/schools/uwashington.json";
 import utexasaustinData from "@/data/schools/utexasaustin.json";
 import uvaData from "@/data/schools/uva.json";
@@ -62,9 +64,11 @@ const schoolDataMap: Record<string, SchoolData> = {
   uci: uciData as SchoolData,
   uchicago: uchicagoData as SchoolData,
   uiuc: uiucData as SchoolData,
+  uncchapelhill: uncChapelHillData as SchoolData,
   umich: umichData as SchoolData,
   upenn: upennData as SchoolData,
   usc: uscData as SchoolData,
+  uwmadison: uwmadisonData as SchoolData,
   uwashington: uwashingtonData as SchoolData,
   utexasaustin: utexasaustinData as SchoolData,
   uva: uvaData as SchoolData,

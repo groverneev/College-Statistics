@@ -14,41 +14,106 @@ interface SearchBarProps {
 }
 
 const SCHOOL_ALIASES: Record<string, string[]> = {
-  mit:          ["MIT", "Massachusetts Institute of Technology"],
-  upenn:        ["UPenn", "Penn", "U Penn", "University of Pennsylvania"],
-  caltech:      ["Caltech", "Cal Tech", "CIT"],
-  cmu:          ["CMU", "Carnegie Mellon", "Carnegie-Mellon"],
-  ucla:         ["UCLA", "University of California Los Angeles", "UC Los Angeles"],
-  ucberkeley:   ["UC Berkeley", "Cal", "Berkeley", "University of California Berkeley"],
-  ucdavis:      ["UC Davis", "University of California Davis", "University of California, Davis", "Davis"],
-  ucsandiego:   ["UCSD", "UC San Diego", "University of California San Diego", "University of California, San Diego", "San Diego"],
-  uci:          ["UCI", "UC Irvine", "University of California Irvine", "University of California, Irvine", "Irvine"],
-  uiuc:         ["UIUC", "University of Illinois Urbana-Champaign", "University of Illinois", "Illinois", "U of I", "Urbana-Champaign"],
-  usc:          ["USC", "Southern Cal", "University of Southern California"],
-  brown:        ["Brown"],
+  mit: ["MIT", "Massachusetts Institute of Technology"],
+  upenn: ["UPenn", "Penn", "U Penn", "University of Pennsylvania"],
+  caltech: ["Caltech", "Cal Tech", "CIT"],
+  cmu: ["CMU", "Carnegie Mellon", "Carnegie-Mellon"],
+  ucla: ["UCLA", "University of California Los Angeles", "UC Los Angeles"],
+  ucberkeley: [
+    "UC Berkeley",
+    "Cal",
+    "Berkeley",
+    "University of California Berkeley",
+  ],
+  ucdavis: [
+    "UC Davis",
+    "University of California Davis",
+    "University of California, Davis",
+    "Davis",
+  ],
+  ucsandiego: [
+    "UCSD",
+    "UC San Diego",
+    "University of California San Diego",
+    "University of California, San Diego",
+    "San Diego",
+  ],
+  uci: [
+    "UCI",
+    "UC Irvine",
+    "University of California Irvine",
+    "University of California, Irvine",
+    "Irvine",
+  ],
+  uiuc: [
+    "UIUC",
+    "University of Illinois Urbana-Champaign",
+    "University of Illinois",
+    "Illinois",
+    "U of I",
+    "Urbana-Champaign",
+  ],
+  uncchapelhill: [
+    "UNC",
+    "UNC Chapel Hill",
+    "UNC-Chapel Hill",
+    "Carolina",
+    "University of North Carolina",
+    "University of North Carolina at Chapel Hill",
+  ],
+  usc: ["USC", "Southern Cal", "University of Southern California"],
+  brown: ["Brown"],
   bostonuniversity: ["BU", "Boston U", "Boston University"],
-  columbia:     ["Columbia"],
-  cornell:      ["Cornell"],
-  dartmouth:    ["Dartmouth"],
-  duke:         ["Duke"],
-  emory:        ["Emory", "Emory University"],
-  georgiatech:  ["Georgia Tech", "Georgia Institute of Technology", "Georgia Tech University", "GaTech", "GT"],
-  harvard:      ["Harvard"],
+  columbia: ["Columbia"],
+  cornell: ["Cornell"],
+  dartmouth: ["Dartmouth"],
+  duke: ["Duke"],
+  emory: ["Emory", "Emory University"],
+  georgiatech: [
+    "Georgia Tech",
+    "Georgia Institute of Technology",
+    "Georgia Tech University",
+    "GaTech",
+    "GT",
+  ],
+  harvard: ["Harvard"],
   johnshopkins: ["JHU", "Johns Hopkins", "Johns Hopkins University", "Hopkins"],
   northeastern: ["Northeastern", "Northeastern University", "NEU"],
-  notredame:    ["Notre Dame", "University of Notre Dame", "ND"],
-  nyu:          ["NYU", "New York University"],
+  notredame: ["Notre Dame", "University of Notre Dame", "ND"],
+  nyu: ["NYU", "New York University"],
   northwestern: ["NU", "Northwestern"],
-  princeton:    ["Princeton"],
-  rice:         ["Rice", "Rice University", "William Marsh Rice University"],
-  purdue:       ["Purdue", "Purdue University", "Purdue West Lafayette"],
-  stanford:     ["Stanford"],
-  uchicago:     ["UChicago", "University of Chicago", "Chicago"],
-  umich:        ["UMich", "U-M", "Michigan", "University of Michigan", "University of Michigan Ann Arbor", "UM Ann Arbor"],
-  utexasaustin: ["UT Austin", "UTexasAustin", "UTexas", "University of Texas at Austin", "University of Texas Austin"],
-  uva:          ["UVA", "University of Virginia", "Virginia", "U. Virginia"],
-  vanderbilt:   ["Vanderbilt", "Vandy", "Vanderbilt University"],
-  yale:         ["Yale"],
+  princeton: ["Princeton"],
+  rice: ["Rice", "Rice University", "William Marsh Rice University"],
+  purdue: ["Purdue", "Purdue University", "Purdue West Lafayette"],
+  stanford: ["Stanford"],
+  uchicago: ["UChicago", "University of Chicago", "Chicago"],
+  umich: [
+    "UMich",
+    "U-M",
+    "Michigan",
+    "University of Michigan",
+    "University of Michigan Ann Arbor",
+    "UM Ann Arbor",
+  ],
+  uwmadison: [
+    "UW Madison",
+    "UW-Madison",
+    "Wisconsin",
+    "Wisconsin Madison",
+    "University of Wisconsin",
+    "University of Wisconsin Madison",
+    "University of Wisconsin-Madison",
+  ],
+  utexasaustin: [
+    "UT Austin",
+    "UTexasAustin",
+    "UTexas",
+    "University of Texas at Austin",
+    "University of Texas Austin",
+  ],
+  uva: ["UVA", "University of Virginia", "Virginia", "U. Virginia"],
+  vanderbilt: ["Vanderbilt", "Vandy", "Vanderbilt University"],
+  yale: ["Yale"],
 };
 
 export default function SearchBar({ schools }: SearchBarProps) {
@@ -59,7 +124,6 @@ export default function SearchBar({ schools }: SearchBarProps) {
   const dropdownRef = useRef<HTMLDivElement>(null);
   const router = useRouter();
 
-  // Filter schools based on query (name or aliases)
   const filteredSchools = query.trim()
     ? schools
         .filter((school) => {
@@ -71,7 +135,6 @@ export default function SearchBar({ schools }: SearchBarProps) {
         .slice(0, 6)
     : [];
 
-  // Handle click outside to close dropdown
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
       if (
@@ -88,7 +151,6 @@ export default function SearchBar({ schools }: SearchBarProps) {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  // Reset highlighted index when results change
   useEffect(() => {
     setHighlightedIndex(0);
   }, [filteredSchools.length]);
@@ -101,7 +163,6 @@ export default function SearchBar({ schools }: SearchBarProps) {
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (!isOpen || filteredSchools.length === 0) {
       if (e.key === "Enter" && filteredSchools.length === 0 && query.trim()) {
-        // No results, do nothing
         return;
       }
       return;
@@ -145,7 +206,6 @@ export default function SearchBar({ schools }: SearchBarProps) {
 
   return (
     <div className="relative w-full max-w-xl mx-auto">
-      {/* Search Input */}
       <div className="relative">
         <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
           <svg
@@ -175,7 +235,6 @@ export default function SearchBar({ schools }: SearchBarProps) {
         />
       </div>
 
-      {/* Autocomplete Dropdown */}
       {isOpen && query.trim() && (
         <div
           ref={dropdownRef}
