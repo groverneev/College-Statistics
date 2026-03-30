@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { allSchools } from "@/data/schools";
 
 export default function HowItWorksPage() {
   const metrics = [
@@ -231,7 +232,7 @@ export default function HowItWorksPage() {
           <p className="text-gray-600 mb-4">Our current coverage includes:</p>
           <ul className="list-disc list-inside text-gray-600 space-y-2 ml-4 mb-4">
             <li>
-              <strong>36 universities</strong>
+              <strong>{allSchools.length} universities</strong>
             </li>
             <li>
               <strong>8-10 years of data</strong> per school: Academic years

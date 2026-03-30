@@ -14,7 +14,6 @@ import {
 interface SchoolPageClientProps {
   schoolData: SchoolData;
   schoolColor: string;
-  availableSchools: string[];
 }
 
 export default function SchoolPageClient({

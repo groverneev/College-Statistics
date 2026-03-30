@@ -2,6 +2,7 @@
 
 import { useState, useRef, useEffect } from "react";
 import { useRouter } from "next/navigation";
+import { formatPercent } from "@/utils/dataHelpers";
 
 interface School {
   name: string;
@@ -198,10 +199,6 @@ export default function SearchBar({ schools }: SearchBarProps) {
     setQuery("");
     setIsOpen(false);
     router.push(`/${slug}`);
-  };
-
-  const formatPercent = (value: number) => {
-    return `${(value * 100).toFixed(1)}%`;
   };
 
   return (

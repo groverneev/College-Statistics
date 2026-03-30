@@ -2,99 +2,7 @@ import Link from "next/link";
 import { SchoolData, SCHOOL_COLORS } from "@/lib/types";
 import { formatNumber, formatPercent } from "@/utils/dataHelpers";
 import SearchBar from "@/components/SearchBar";
-
-// Import school data
-import brownData from "@/data/schools/brown.json";
-import bostonUniversityData from "@/data/schools/bostonuniversity.json";
-import caltechData from "@/data/schools/caltech.json";
-import cornellData from "@/data/schools/cornell.json";
-import dartmouthData from "@/data/schools/dartmouth.json";
-import harvardData from "@/data/schools/harvard.json";
-import princetonData from "@/data/schools/princeton.json";
-import stanfordData from "@/data/schools/stanford.json";
-import uclaData from "@/data/schools/ucla.json";
-import ucberkeleyData from "@/data/schools/ucberkeley.json";
-import ucdavisData from "@/data/schools/ucdavis.json";
-import ucsanDiegoData from "@/data/schools/ucsandiego.json";
-import uciData from "@/data/schools/uci.json";
-import uchicagoData from "@/data/schools/uchicago.json";
-import uiucData from "@/data/schools/uiuc.json";
-import uncChapelHillData from "@/data/schools/uncchapelhill.json";
-import upennData from "@/data/schools/upenn.json";
-import uscData from "@/data/schools/usc.json";
-import uwmadisonData from "@/data/schools/uwmadison.json";
-import uwashingtonData from "@/data/schools/uwashington.json";
-import utexasaustinData from "@/data/schools/utexasaustin.json";
-import uvaData from "@/data/schools/uva.json";
-import yaleData from "@/data/schools/yale.json";
-import columbiaData from "@/data/schools/columbia.json";
-import cmuData from "@/data/schools/cmu.json";
-import mitData from "@/data/schools/mit.json";
-import northeasternData from "@/data/schools/northeastern.json";
-import northwesternData from "@/data/schools/northwestern.json";
-import notreDameData from "@/data/schools/notredame.json";
-import nyuData from "@/data/schools/nyu.json";
-import purdueData from "@/data/schools/purdue.json";
-import riceData from "@/data/schools/rice.json";
-import umichData from "@/data/schools/umich.json";
-import dukeData from "@/data/schools/duke.json";
-import emoryData from "@/data/schools/emory.json";
-import georgiaTechData from "@/data/schools/georgiatech.json";
-import johnsHopkinsData from "@/data/schools/johnshopkins.json";
-import vanderbiltData from "@/data/schools/vanderbilt.json";
-
-const schools: SchoolData[] = [
-  bostonUniversityData as SchoolData,
-  brownData as SchoolData,
-  caltechData as SchoolData,
-  cmuData as SchoolData,
-  columbiaData as SchoolData,
-  cornellData as SchoolData,
-  dartmouthData as SchoolData,
-  dukeData as SchoolData,
-  emoryData as SchoolData,
-  georgiaTechData as SchoolData,
-  harvardData as SchoolData,
-  johnsHopkinsData as SchoolData,
-  mitData as SchoolData,
-  northeasternData as SchoolData,
-  northwesternData as SchoolData,
-  notreDameData as SchoolData,
-  nyuData as SchoolData,
-  princetonData as SchoolData,
-  riceData as SchoolData,
-  purdueData as SchoolData,
-  stanfordData as SchoolData,
-  uclaData as SchoolData,
-  ucberkeleyData as SchoolData,
-  ucdavisData as SchoolData,
-  ucsanDiegoData as SchoolData,
-  uciData as SchoolData,
-  uchicagoData as SchoolData,
-  uiucData as SchoolData,
-  uncChapelHillData as SchoolData,
-  umichData as SchoolData,
-  upennData as SchoolData,
-  uscData as SchoolData,
-  uwmadisonData as SchoolData,
-  uwashingtonData as SchoolData,
-  utexasaustinData as SchoolData,
-  uvaData as SchoolData,
-  vanderbiltData as SchoolData,
-  yaleData as SchoolData,
-];
-
-// Prepare search data
-const searchableSchools = schools.map((school) => {
-  const years = Object.keys(school.years).sort();
-  const latestYear = years[years.length - 1];
-  const latestData = school.years[latestYear];
-  return {
-    name: school.name,
-    slug: school.slug,
-    acceptanceRate: latestData.admissions.acceptanceRate,
-  };
-});
+import { allSchools, searchableSchools } from "@/data/schools";
 
 export default function HomePage() {
   return (
@@ -120,7 +28,7 @@ export default function HomePage() {
         </h2>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {schools.map((school) => {
+          {allSchools.map((school: SchoolData) => {
             const years = Object.keys(school.years).sort();
             const latestYear = years[years.length - 1];
             const latestData = school.years[latestYear];
@@ -183,7 +91,7 @@ export default function HomePage() {
           })}
         </div>
 
-        {schools.length === 0 && (
+        {allSchools.length === 0 && (
           <div className="text-center py-12">
             <p className="text-gray-500">No school data available yet.</p>
           </div>
