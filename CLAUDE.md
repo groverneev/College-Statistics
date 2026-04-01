@@ -11,6 +11,8 @@
 > - `docs/architecture.md`
 > - `docs/pdf-extraction-pipeline.md`
 
+> **DEPENDENCIES:** If extra local tooling is needed, tell the user exactly what to install instead of assuming it is available or trying to work around missing packages silently.
+
 ## Repo Purpose
 
 This is a Next.js site for exploring Common Data Set trends across colleges. The repo contains:
