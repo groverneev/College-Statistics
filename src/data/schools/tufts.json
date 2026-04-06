@@ -382,25 +382,25 @@
       },
       "demographics": {
         "enrollment": {
-          "total": 0,
-          "undergraduate": 0,
-          "graduate": 0
+          "total": 13274,
+          "undergraduate": 6877,
+          "graduate": 6397
         },
         "byRace": {
-          "international": 0,
-          "hispanicLatino": 0,
-          "blackAfricanAmerican": 0,
-          "white": 0,
-          "asian": 0,
-          "americanIndianAlaskaNative": 0,
-          "nativeHawaiianPacificIslander": 0,
-          "twoOrMoreRaces": 0,
-          "unknown": 0
+          "international": 839,
+          "hispanicLatino": 691,
+          "blackAfricanAmerican": 449,
+          "white": 2877,
+          "asian": 1134,
+          "americanIndianAlaskaNative": 2,
+          "nativeHawaiianPacificIslander": 9,
+          "twoOrMoreRaces": 540,
+          "unknown": 336
         },
         "byResidency": {
-          "inState": 0,
-          "outOfState": 0,
-          "international": 0
+          "inState": 1745,
+          "outOfState": 4293,
+          "international": 839
         }
       },
       "costs": {
