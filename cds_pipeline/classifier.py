@@ -34,22 +34,30 @@ def classify_pdf(pdf_path: str, config: dict[str, Any] | None = None) -> dict[st
     extractor_chain_map = {
         "acroform": [
             "AcroFormExtractor",
+            "VisionLLMExtractor",
+            "TableExtractor",
             "NativeTextExtractor",
             "StructuredLayoutExtractor",
             "OcrFallbackExtractor",
         ],
         "native_text": [
+            "VisionLLMExtractor",
+            "TableExtractor",
             "NativeTextExtractor",
             "StructuredLayoutExtractor",
             "OcrFallbackExtractor",
         ],
         "layout_sensitive": [
+            "VisionLLMExtractor",
+            "TableExtractor",
             "StructuredLayoutExtractor",
             "NativeTextExtractor",
             "OcrFallbackExtractor",
         ],
         "scanned": [
+            "VisionLLMExtractor",
             "OcrFallbackExtractor",
+            "TableExtractor",
             "StructuredLayoutExtractor",
             "NativeTextExtractor",
         ],
@@ -58,6 +66,9 @@ def classify_pdf(pdf_path: str, config: dict[str, Any] | None = None) -> dict[st
     hints = config.get("source_hints", {}) if config else {}
     preferred = hints.get("preferred_extractor")
     extractor_chain = extractor_chain_map[doc_type]
+    vision_enabled = bool((config or {}).get("vision", {}).get("enabled", True))
+    if not vision_enabled:
+        extractor_chain = [name for name in extractor_chain if name != "VisionLLMExtractor"]
     if preferred and preferred in extractor_chain:
         extractor_chain = [preferred, *[name for name in extractor_chain if name != preferred]]
 

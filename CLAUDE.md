@@ -4,7 +4,7 @@
 
 > **PDF HANDLING:** Do not read PDFs directly with the Read tool. Use Python extraction scripts or shell-based extraction instead.
 
-> **DATA RULE:** Never invent data. If extraction is incomplete, verify against official institutional sources and keep definitions consistent within a school's time series.
+> **DATA RULE:** Never invent data. If extraction is incomplete, verify against official institutional sources and keep definitions consistent within a school's time series. Moreover, feel free to conduct web searches if pdfs contain incomplete data.
 
 > **DOCS:** Detailed reference material lives in:
 > - `docs/data-extraction.md`
@@ -12,6 +12,8 @@
 > - `docs/pdf-extraction-pipeline.md`
 
 > **DEPENDENCIES:** If extra local tooling is needed, tell the user exactly what to install instead of assuming it is available or trying to work around missing packages silently.
+
+> **PATCH SIZE:** Prefer smaller, staged edits over sweeping all-at-once patches. Large multi-file changes may get rejected by the editing tool, so break them into focused chunks when implementing bigger features.
 
 ## Repo Purpose
 

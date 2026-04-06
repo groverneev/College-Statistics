@@ -11,6 +11,8 @@ from .extractors import (
     NativeTextExtractor,
     OcrFallbackExtractor,
     StructuredLayoutExtractor,
+    TableExtractor,
+    VisionLLMExtractor,
 )
 from .normalizer import normalize_document
 from .review import build_review_payload, review_markdown
@@ -20,6 +22,8 @@ from .validator import validate_document
 
 EXTRACTOR_REGISTRY = {
     "AcroFormExtractor": AcroFormExtractor,
+    "VisionLLMExtractor": VisionLLMExtractor,
+    "TableExtractor": TableExtractor,
     "NativeTextExtractor": NativeTextExtractor,
     "StructuredLayoutExtractor": StructuredLayoutExtractor,
     "OcrFallbackExtractor": OcrFallbackExtractor,
@@ -52,12 +56,17 @@ def extract_documents(
     *,
     explicit_config: str | None = None,
     workspace_dir: str | Path = ".cds_pipeline",
+    enable_vision: bool | None = None,
 ) -> dict[str, Any]:
     if not resolved_documents:
         raise ValueError("No documents resolved for extraction.")
 
     school_slug = resolved_documents[0]["school_slug"]
     config = load_config(school_slug, explicit_config=explicit_config)
+    if enable_vision is not None:
+        vision_config = dict(config.get("vision", {}))
+        vision_config["enabled"] = enable_vision
+        config["vision"] = vision_config
     school_name = config.get("school_name", school_slug.replace("-", " ").title())
 
     documents: list[dict[str, Any]] = []
@@ -91,6 +100,12 @@ def extract_documents(
                 "classification": classification,
                 "extractors_used": extractors_used,
                 "extractor_notes": extractor_notes,
+                "raw_payload_summary": {
+                    "vision_sections": raw_payload.get("vision_sections", {}),
+                    "vision_missing_sections": raw_payload.get("vision_missing_sections", []),
+                    "vision_notes": raw_payload.get("vision_notes", []),
+                    "vision_rendered_page_count": raw_payload.get("vision_rendered_page_count", 0),
+                },
                 "data": data,
                 "field_meta": field_meta,
                 "validation": validation,

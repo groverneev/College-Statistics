@@ -29,6 +29,7 @@ def _cmd_extract(args: argparse.Namespace) -> int:
         resolved,
         explicit_config=args.config,
         workspace_dir=args.workspace_dir,
+        enable_vision=not args.disable_vision,
     )
     summary = {
         "school_slug": result["candidate"]["school_slug"],
@@ -80,6 +81,7 @@ def build_parser() -> argparse.ArgumentParser:
     extract_parser.add_argument("target")
     extract_parser.add_argument("--config", help="Optional config override JSON path")
     extract_parser.add_argument("--workspace-dir", default=".cds_pipeline")
+    extract_parser.add_argument("--disable-vision", action="store_true", help="Disable OpenAI vision extraction for this run")
     extract_parser.set_defaults(func=_cmd_extract)
 
     validate_parser = subparsers.add_parser("validate", help="Validate a candidate.json artifact")

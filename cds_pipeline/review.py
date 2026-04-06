@@ -12,6 +12,10 @@ def build_review_payload(candidate: dict[str, Any]) -> dict[str, Any]:
                 "source_path": document.get("source_path"),
                 "document_type": document.get("classification", {}).get("document_type"),
                 "extractors_used": document.get("extractors_used", []),
+                "vision_sections": document.get("raw_payload_summary", {}).get("vision_sections", {}),
+                "vision_missing_sections": document.get("raw_payload_summary", {}).get("vision_missing_sections", []),
+                "vision_notes": document.get("raw_payload_summary", {}).get("vision_notes", []),
+                "vision_rendered_page_count": document.get("raw_payload_summary", {}).get("vision_rendered_page_count", 0),
                 "issue_count": document.get("validation", {}).get("issue_count", 0),
                 "issues": document.get("validation", {}).get("issues", []),
                 "low_confidence_fields": document.get("validation", {}).get("low_confidence_fields", []),
@@ -43,6 +47,18 @@ def review_markdown(review_payload: dict[str, Any]) -> str:
         lines.append(f"- Document type: `{document.get('document_type', 'unknown')}`")
         extractors = ", ".join(document.get("extractors_used", [])) or "none"
         lines.append(f"- Extractors used: {extractors}")
+        if document.get("vision_rendered_page_count"):
+            lines.append(f"- Vision-rendered pages: {document.get('vision_rendered_page_count', 0)}")
+        vision_sections = document.get("vision_sections", {})
+        if vision_sections:
+            found_sections = ", ".join(
+                f"{section} (pages {','.join(str(page) for page in value.get('pages', []))})"
+                for section, value in sorted(vision_sections.items())
+            )
+            lines.append(f"- Vision sections found: {found_sections}")
+        missing_sections = document.get("vision_missing_sections", [])
+        if missing_sections:
+            lines.append(f"- Vision sections not found: {', '.join(missing_sections)}")
         lines.append(f"- Validation issues: {document.get('issue_count', 0)}")
 
         low_conf = document.get("low_confidence_fields", [])
@@ -58,6 +74,11 @@ def review_markdown(review_payload: dict[str, Any]) -> str:
             lines.append("- Issues:")
             for issue in issues[:12]:
                 lines.append(f"  - {issue.get('message')}")
+        vision_notes = document.get("vision_notes", [])
+        if vision_notes:
+            lines.append("- Vision notes:")
+            for note in vision_notes[:12]:
+                lines.append(f"  - {note}")
         lines.append("")
 
     return "\n".join(lines).rstrip() + "\n"
