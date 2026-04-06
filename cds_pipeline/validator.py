@@ -58,6 +58,13 @@ def validate_document(data: dict[str, Any], field_meta: dict[str, dict[str, Any]
                     "message": f"Expected acceptanceRate {expected}, found {acceptance_rate}.",
                 }
             )
+    elif not any([applied, admitted, enrolled]):
+        issues.append(
+            {
+                "kind": "missing_admissions_counts",
+                "message": "Admissions counts were not extracted.",
+            }
+        )
     if admitted and enrolled:
         expected = round(enrolled / admitted, 4)
         if abs(expected - yield_rate) > 0.002:
@@ -80,6 +87,13 @@ def validate_document(data: dict[str, Any], field_meta: dict[str, dict[str, Any]
                     "message": f"Expected enrollment total {expected}, found {total}.",
                 }
             )
+    else:
+        issues.append(
+            {
+                "kind": "missing_enrollment_counts",
+                "message": "Enrollment counts were not extracted.",
+            }
+        )
 
     race_total = sum(
         [
@@ -130,6 +144,13 @@ def validate_document(data: dict[str, Any], field_meta: dict[str, dict[str, Any]
                     "message": f"Expected totalCOA {expected}, found {total_coa}.",
                 }
             )
+    else:
+        issues.append(
+            {
+                "kind": "missing_cost_fields",
+                "message": "Core cost fields were not extracted.",
+            }
+        )
 
     return {
         "core_coverage": round(present / len(CORE_FIELDS), 3),

@@ -100,6 +100,30 @@ class VisionNormalizerTests(unittest.TestCase):
         self.assertEqual(document["vision_missing_sections"], ["H2"])
         self.assertEqual(document["vision_sections"]["C1"]["pages"], [7])
 
+    def test_incomplete_test_score_block_is_suppressed(self) -> None:
+        raw_payload = {
+            "vision_field_candidates": [
+                {
+                    "field": "testScores.sat.submissionRate",
+                    "value": "49%",
+                    "confidence": 0.95,
+                    "evidence_label": "Percent submitting SAT scores",
+                    "page": 8,
+                    "section": "C9",
+                },
+                {
+                    "field": "testScores.sat.readingWriting.p25",
+                    "value": "680",
+                    "confidence": 0.95,
+                    "evidence_label": "SAT ERW 25th percentile",
+                    "page": 8,
+                    "section": "C9",
+                },
+            ]
+        }
+        data, _ = normalize_document(raw_payload, {"school_slug": "test"})
+        self.assertEqual(data["testScores"], {})
+
 
 class VisionHelperTests(unittest.TestCase):
     def test_expand_hint_pages(self) -> None:

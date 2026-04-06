@@ -198,7 +198,7 @@ def _select_pages_for_section(
     page_count: int,
 ) -> list[int]:
     hinted_pages = _expand_hint_pages(page_hints.get(section), page_count)
-    found_pages = list(section_map.get(section, {}).get("pages", []))
+    found_pages = sorted(set(section_map.get(section, {}).get("pages", [])))
     if hinted_pages:
         intersection = [page for page in found_pages if page in hinted_pages]
         if intersection:

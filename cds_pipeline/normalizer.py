@@ -144,9 +144,12 @@ def _finalize_score_blocks(data: dict[str, Any], field_meta: dict[str, dict[str,
             "p75": _get_nested(data, "testScores.sat.math.p75"),
         },
     }
-    sat_present = any(any(value for value in block.values()) for block in sat_fields.values())
+    sat_complete = all(
+        all(value is not None for value in block.values())
+        for block in sat_fields.values()
+    )
     sat_submission = _get_nested(data, "testScores.sat.submissionRate") or 0
-    if sat_present or sat_submission:
+    if sat_complete:
         sat = {
             "submissionRate": sat_submission,
             "composite": sat_fields["composite"],
@@ -170,6 +173,9 @@ def _finalize_score_blocks(data: dict[str, Any], field_meta: dict[str, dict[str,
             source_ref="C9",
             notes=[],
         ).to_dict()
+    else:
+        data["testScores"].pop("sat", None)
+        field_meta.pop("testScores.sat", None)
 
     act_submission = _get_nested(data, "testScores.act.submissionRate") or 0
     act_composite = {
@@ -177,7 +183,8 @@ def _finalize_score_blocks(data: dict[str, Any], field_meta: dict[str, dict[str,
         "p50": _get_nested(data, "testScores.act.composite.p50"),
         "p75": _get_nested(data, "testScores.act.composite.p75"),
     }
-    if any(act_composite.values()) or act_submission:
+    act_complete = all(value is not None for value in act_composite.values())
+    if act_complete:
         act = {
             "submissionRate": act_submission,
             "composite": act_composite,
@@ -197,6 +204,9 @@ def _finalize_score_blocks(data: dict[str, Any], field_meta: dict[str, dict[str,
             source_ref="C9",
             notes=[],
         ).to_dict()
+    else:
+        data["testScores"].pop("act", None)
+        field_meta.pop("testScores.act", None)
 
 
 def _apply_vision_candidates(
