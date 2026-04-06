@@ -26,51 +26,61 @@ class OpenAIVisionClient:
 
         self._client = OpenAI(api_key=self.api_key)
 
-    def classify_page(
+    def classify_pages(
         self,
         *,
-        page_number: int,
-        image_bytes: bytes,
+        page_images: list[dict[str, Any]],
         section_aliases: dict[str, list[str]] | None = None,
     ) -> dict[str, Any]:
         aliases = section_aliases or {}
         alias_lines = [f"- {section}: {', '.join(values)}" for section, values in sorted(aliases.items()) if values]
         alias_text = "\n".join(alias_lines) or "- none"
+        pages_text = ", ".join(str(item["page"]) for item in page_images)
         prompt = (
-            "You are reviewing a single Common Data Set PDF page image. "
-            "Identify which CDS sections from this fixed list are meaningfully present on the page: "
+            "You are reviewing a small batch of Common Data Set PDF page images. "
+            "For each page, identify which CDS sections from this fixed list are meaningfully present: "
             "B1, B2, C1, C9, F1, G1, H2. "
-            "Do not guess. Only return sections that are visibly present on this page.\n\n"
+            "Do not guess. Only return sections that are visibly present on each page.\n\n"
             f"Known school-specific aliases:\n{alias_text}\n\n"
-            f"Current page number: {page_number}\n"
+            f"Current pages in order: {pages_text}\n"
             "Return JSON with this shape: "
-            '{"page": <int>, "sections": [{"section": "C1", "confidence": 0.97}]}.'
+            '{"pages": [{"page": <int>, "sections": [{"section": "C1", "confidence": 0.97}]}]}.'
         )
         schema = {
-            "name": "page_classification",
+            "name": "page_batch_classification",
             "strict": True,
             "schema": {
                 "type": "object",
                 "additionalProperties": False,
                 "properties": {
-                    "page": {"type": "integer"},
-                    "sections": {
+                    "pages": {
                         "type": "array",
                         "items": {
                             "type": "object",
                             "additionalProperties": False,
                             "properties": {
-                                "section": {"type": "string", "enum": ["B1", "B2", "C1", "C9", "F1", "G1", "H2"]},
-                                "confidence": {"type": "number"},
+                                "page": {"type": "integer"},
+                                "sections": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object",
+                                        "additionalProperties": False,
+                                        "properties": {
+                                            "section": {"type": "string", "enum": ["B1", "B2", "C1", "C9", "F1", "G1", "H2"]},
+                                            "confidence": {"type": "number"},
+                                        },
+                                        "required": ["section", "confidence"],
+                                    },
+                                },
                             },
-                            "required": ["section", "confidence"],
+                            "required": ["page", "sections"],
                         },
                     },
                 },
-                "required": ["page", "sections"],
+                "required": ["pages"],
             },
         }
-        return self._json_chat(prompt=prompt, image_bytes=image_bytes, schema=schema)
+        return self._json_chat(prompt=prompt, image_bytes_list=[item["image_bytes"] for item in page_images], schema=schema)
 
     def extract_section(
         self,
@@ -122,22 +132,18 @@ class OpenAIVisionClient:
                 "required": ["section", "page", "candidates", "notes"],
             },
         }
-        return self._json_chat(prompt=prompt, image_bytes=image_bytes, schema=schema)
+        return self._json_chat(prompt=prompt, image_bytes_list=[image_bytes], schema=schema)
 
-    def _json_chat(self, *, prompt: str, image_bytes: bytes, schema: dict[str, Any]) -> dict[str, Any]:
-        data_url = _image_bytes_to_data_url(image_bytes)
+    def _json_chat(self, *, prompt: str, image_bytes_list: list[bytes], schema: dict[str, Any]) -> dict[str, Any]:
+        content: list[dict[str, Any]] = [{"type": "text", "text": prompt}]
+        for image_bytes in image_bytes_list:
+            content.append({"type": "image_url", "image_url": {"url": _image_bytes_to_data_url(image_bytes)}})
         response = self._client.chat.completions.create(
             model=self.model,
             temperature=0,
             messages=[
                 {"role": "system", "content": "Return only schema-valid JSON. Never add commentary outside JSON."},
-                {
-                    "role": "user",
-                    "content": [
-                        {"type": "text", "text": prompt},
-                        {"type": "image_url", "image_url": {"url": data_url}},
-                    ],
-                },
+                {"role": "user", "content": content},
             ],
             response_format={"type": "json_schema", "json_schema": schema},
         )
@@ -184,4 +190,4 @@ def _load_local_env() -> None:
     except Exception:
         return
 
-    load_dotenv(env_path, override=False)
+    load_dotenv(env_path, override=True)

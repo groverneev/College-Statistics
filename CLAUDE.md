@@ -56,5 +56,12 @@ Run these after significant changes:
 
 ## Notes
 
-- The shared school registry in `src/data/schools/index.ts` is the canonical source of truth for school ordering and route registration.
+- The shared school registry in `src/data/schools/index.ts` is the source of truth for school ordering and route registration.
 - Keep internal refactors behavior-preserving unless the task explicitly asks for product changes.
+- Current CDS extraction is vision-first only:
+  - every PDF is treated as a `vision_pdf`
+  - pages are rendered to PNG screenshots with PyMuPDF
+  - OpenAI vision first classifies pages in small batches to find which ones contain `B1`, `B2`, `C1`, `C9`, `F1`, `G1`, `H2`
+  - OpenAI vision then extracts only allowed schema fields from those pages into structured candidates
+  - the normalizer converts those candidates into the existing school JSON shape, derives rates/totals, and applies guardrails
+  - review artifacts record found sections, missing sections, low-confidence fields, and validation issues

@@ -102,6 +102,7 @@ export const SCHOOL_COLORS: Record<string, string> = {
   dartmouth: "#00693E",
   upenn: "#011F5B",
   stanford: "#8C1515",
+  tufts: "#3E8EDE",
   caltech: "#FF6C0C",
   ucla: "#2774AE",
   ucdavis: "#022851",

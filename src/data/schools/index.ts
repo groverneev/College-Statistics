@@ -21,6 +21,7 @@ import princetonData from "./princeton.json";
 import purdueData from "./purdue.json";
 import riceData from "./rice.json";
 import stanfordData from "./stanford.json";
+import tuftsData from "./tufts.json";
 import uclaData from "./ucla.json";
 import ucberkeleyData from "./ucberkeley.json";
 import ucdavisData from "./ucdavis.json";
@@ -67,6 +68,7 @@ export const allSchools: SchoolData[] = [
   riceData as SchoolData,
   purdueData as SchoolData,
   stanfordData as SchoolData,
+  tuftsData as SchoolData,
   uclaData as SchoolData,
   ucberkeleyData as SchoolData,
   ucdavisData as SchoolData,

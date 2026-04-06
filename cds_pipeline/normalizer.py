@@ -404,7 +404,8 @@ def _sanitize_document(data: dict[str, Any], field_meta: dict[str, dict[str, Any
     sat = data["testScores"].get("sat")
     if sat:
         composite = sat.get("composite", {})
-        if any(composite.values()) and not (400 <= composite.get("p25", 0) <= composite.get("p50", 0) <= composite.get("p75", 0) <= 1600):
+        sat_values = [composite.get("p25"), composite.get("p50"), composite.get("p75")]
+        if all(value is not None for value in sat_values) and not (400 <= sat_values[0] <= sat_values[1] <= sat_values[2] <= 1600):
             data["testScores"].pop("sat", None)
             field_meta["testScores.sat"] = FieldMeta(
                 value={},
@@ -418,7 +419,8 @@ def _sanitize_document(data: dict[str, Any], field_meta: dict[str, dict[str, Any
     act = data["testScores"].get("act")
     if act:
         composite = act.get("composite", {})
-        if any(composite.values()) and not (1 <= composite.get("p25", 0) <= composite.get("p50", 0) <= composite.get("p75", 0) <= 36):
+        act_values = [composite.get("p25"), composite.get("p50"), composite.get("p75")]
+        if all(value is not None for value in act_values) and not (1 <= act_values[0] <= act_values[1] <= act_values[2] <= 36):
             data["testScores"].pop("act", None)
             field_meta["testScores.act"] = FieldMeta(
                 value={},

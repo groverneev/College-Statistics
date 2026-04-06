@@ -5,7 +5,7 @@ from pathlib import Path
 from unittest.mock import patch
 
 from cds_pipeline import openai_client
-from cds_pipeline.extractors.vision_llm import _expand_hint_pages
+from cds_pipeline.extractors.vision_llm import _batched_page_numbers, _expand_hint_pages
 from cds_pipeline.normalizer import normalize_document
 from cds_pipeline.review import build_review_payload
 
@@ -106,6 +106,11 @@ class VisionHelperTests(unittest.TestCase):
         self.assertEqual(_expand_hint_pages([3, 5], 10), [3, 4, 5])
         self.assertEqual(_expand_hint_pages(4, 10), [4])
         self.assertEqual(_expand_hint_pages([2, 4, 12], 10), [2, 4])
+
+    def test_batched_page_numbers(self) -> None:
+        self.assertEqual(_batched_page_numbers(0, 6), [])
+        self.assertEqual(_batched_page_numbers(5, 6), [[1, 2, 3, 4, 5]])
+        self.assertEqual(_batched_page_numbers(13, 6), [[1, 2, 3, 4, 5, 6], [7, 8, 9, 10, 11, 12], [13]])
 
     def test_load_local_env_reads_dotenv_local(self) -> None:
         env_path = Path(openai_client.__file__).resolve().parent.parent / ".env.local"

@@ -1,68 +1,87 @@
 # Data Extraction Guide
 
-This project primarily uses official institutional Common Data Set sources. Use the school's local files in `College-Data/<School>/` when available and keep all extracted values source-backed.
+This project uses official institutional Common Data Set sources and a vision-first PDF pipeline. Use the school's local files in `College-Data/<School>/` when available and keep all extracted values source-backed.
 
 ## Core Rules
 
 - Do not invent data.
 - Prefer official CDS archive pages and institution-hosted PDFs.
-- Do not read PDFs directly with the Read tool; use Python-based extraction instead.
+- Do not read PDFs directly with the Read tool; use the pipeline or Python-based helpers.
 - If a value is missing or extraction fails, verify against official web sources before using a manual override.
 - If a time series looks unnaturally flat or overly round, treat it as suspicious and re-check it.
 
 ## Recommended Workflow
 
-1. Start with the local-first pipeline in `cds_pipeline/`.
-2. Inspect the generated `candidate.json` and `review.md` before making dataset changes.
-3. Pull values from the official CDS first, then reconcile with official institutional web pages if the CDS is incomplete or machine-unreadable.
-4. Patch all affected years for that school in one pass to avoid mixed-quality series.
-5. Run consistency checks before considering the data complete.
+1. Run `python -m cds_pipeline extract <school-or-path>`.
+2. Inspect `.cds_pipeline/<slug>/candidate.json` and `.cds_pipeline/<slug>/review.md`.
+3. Check missing sections, low-confidence fields, and validation issues before exporting anything.
+4. Reconcile unclear values against official institutional sources when the PDF or model result is incomplete.
+5. Patch all affected years for that school in one pass to avoid mixed-quality series.
 
 See `docs/pdf-extraction-pipeline.md` for the current command flow.
 
-## Common Extraction Techniques
+## What The Model Extracts
+
+The current pipeline asks the vision model to find and extract fields from these CDS sections:
+
+- `B1`: undergraduate and graduate enrollment
+- `B2`: undergraduate race and ethnicity counts
+- `C1`: applicants, admitted students, enrolled students
+- `C9`: SAT and ACT submission rates and percentiles
+- `F1`: residency counts or out-of-state percentage
+- `G1`: tuition, fees, room and board, total cost
+- `H2`: aid rates and average grant/package values
+
+The model is constrained to strict JSON and section-specific field allowlists.
+
+## Normalization Notes
+
+After extraction, the normalizer:
+
+- keeps the highest-confidence candidate per field
+- records provenance in `field_meta`
+- derives:
+  - acceptance rate
+  - yield
+  - total enrollment
+  - total cost of attendance
+  - residency counts from out-of-state percentage when necessary
+- applies guardrails to suppress implausible values
+
+## Practical Extraction Notes
 
 ### Admissions (`C1`)
 
-- Search for gendered application/admit/enroll totals and sum them.
-- Newer CDS files may place men/women values on one line for the current fall.
+- The model should return total first-time, first-year applicants, admitted students, and enrolled students.
+- Acceptance rate and yield are derived later.
 
 ### Test Scores (`C9`)
 
-- Prefer text extraction for SAT/ACT ranges.
-- Treat test-optional gaps carefully; missing values are not always extraction bugs.
+- The model should return visible SAT/ACT submission rates and percentile values only.
+- SAT/ACT composite blocks are reconstructed after extraction.
+- Invalid percentile ordering is suppressed by guardrails.
 
 ### Costs (`G1`)
 
-- Extract tuition, required fees, and room/board separately when possible.
-- Some schools publish a broader financial-aid cost-of-attendance figure that does not match CDS `G1`; keep definitions consistent within the dataset.
-- Newer forms may say `Food and housing` instead of `Room and Board`.
+- Keep tuition, required fees, and room/board separate when possible.
+- `Food and housing` can map to `roomAndBoard`.
+- `totalCOA` is re-derived from tuition + fees + roomAndBoard even if the PDF shows a total.
 
 ### Demographics (`B2`)
 
 - Use total undergraduate counts for race/ethnicity reconciliation.
-- `Nonresident` / `Nonresident alien` usually maps to the `international` bucket.
+- `Nonresident` / `Nonresident alien` maps to `international`.
 
 ### Residency (`F1`)
 
-- Residency often requires calculation rather than direct counts:
+- If direct in-state/out-of-state counts are not shown but out-of-state percentage is visible, residency may be derived as:
   - `domestic = undergraduate - international`
-  - `outOfState = round(domestic * outPct / 100)`
+  - `outOfState = round(domestic * outPct)`
   - `inState = domestic - outOfState`
 
 ### Financial Aid (`H2`)
 
-- Rows `J` and `K` are usually the fastest path to average aid package and average need-based grant.
-
-## PDF Handling Notes
-
-- Prefer the extractor cascade in `cds_pipeline/` over direct ad hoc parsing.
-- Use `pypdf` for AcroForm fields and low-level PDF metadata.
-- Use `PyMuPDF` for block-aware native-text extraction.
-- Use `Docling` when layout recovery matters.
-- Use OCR only when the PDF is scanned or text extraction is corrupted.
-- Fillable forms can have empty-looking extracted tables while still exposing usable field values through form metadata.
-- Newer PDFs may contain encoding artifacts; join lines and try alternate text patterns before falling back to web research.
+- The model should target first-year aid rates and average package/grant values only.
 
 ## Verification Checklist
 
@@ -79,7 +98,8 @@ For each updated year:
 Use an official web-backed/manual override only when:
 
 - the local CDS is missing the value
-- the PDF structure is unreadable after reasonable extraction attempts
+- the model could not find the needed section or field
+- the PDF is too ambiguous to verify safely from the extracted candidate alone
 - the official institutional web source clearly states the needed value
 
-Document the reason in commit notes or task notes when a school needs this treatment.
+Document the reason in task notes or commit notes when a school needs this treatment.

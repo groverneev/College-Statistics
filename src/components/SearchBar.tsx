@@ -87,6 +87,7 @@ const SCHOOL_ALIASES: Record<string, string[]> = {
   rice: ["Rice", "Rice University", "William Marsh Rice University"],
   purdue: ["Purdue", "Purdue University", "Purdue West Lafayette"],
   stanford: ["Stanford"],
+  tufts: ["Tufts", "Tufts University"],
   uchicago: ["UChicago", "University of Chicago", "Chicago"],
   umich: [
     "UMich",

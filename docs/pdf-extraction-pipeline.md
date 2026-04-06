@@ -1,18 +1,19 @@
 # PDF Extraction Pipeline
 
-This repo now has a local-first CDS extraction pipeline under `cds_pipeline/`.
+This repo now uses a vision-first CDS extraction pipeline under `cds_pipeline/`.
 
-The goal is to replace one-off `extract_*.py` scripts with a single command flow that:
+The goal is to turn Common Data Set PDFs into structured school JSON by:
 
-- classifies each PDF before extraction
-- uses the right extractor for that document type
-- normalizes into the site schema
-- validates the output
-- emits review artifacts instead of silently guessing
+- rendering PDF pages into screenshots
+- using an OpenAI vision model to find relevant CDS sections
+- extracting only schema-allowed fields from those section pages
+- normalizing into the site schema
+- validating the result
+- emitting review artifacts instead of silently guessing
 
 ## Default Recommendation
 
-Use the new pipeline first:
+Use the pipeline directly:
 
 ```bash
 python -m cds_pipeline extract <school-or-path>
@@ -21,43 +22,74 @@ python -m cds_pipeline extract <school-or-path>
 Examples:
 
 ```bash
-python -m cds_pipeline classify uwmadison
-python -m cds_pipeline extract uwmadison
-python -m cds_pipeline review .cds_pipeline/uwmadison/candidate.json
-python -m cds_pipeline export .cds_pipeline/uwmadison/candidate.json
+python -m cds_pipeline classify tufts
+python -m cds_pipeline extract tufts
+python -m cds_pipeline review .cds_pipeline/tufts/candidate.json
+python -m cds_pipeline export .cds_pipeline/tufts/candidate.json
 ```
 
-No paid service is required for this workflow.
+The current pipeline requires:
+
+- `OPENAI_API_KEY`
+- optionally `OPENAI_MODEL`
+
+These can be supplied via environment variables or a repo-local `.env.local` file.
 
 ## Pipeline Stages
 
 ### 1. Classify
 
-The classifier labels each PDF as one of:
+Each PDF is treated as a `vision_pdf`.
 
-- `acroform`
-- `native_text`
-- `layout_sensitive`
-- `scanned`
+The classifier currently records:
 
-This determines the extractor cascade for that file.
+- `document_type = vision_pdf`
+- page count
+- extractor chain
 
-### 2. Extract
+The extractor chain is currently just:
 
-The local extractor stack is:
+- `VisionLLMExtractor`
 
-- `AcroFormExtractor`
-  - uses `pypdf` form fields first
-- `NativeTextExtractor`
-  - uses `PyMuPDF` block-aware extraction, with `pypdf` fallback
-- `StructuredLayoutExtractor`
-  - uses `Docling` for structure-aware conversion
-- `OcrFallbackExtractor`
-  - uses rendered-page OCR only when needed
+### 2. Render And Section Classify
 
-### 3. Normalize
+The vision extractor renders PDF pages to PNG screenshots using PyMuPDF.
 
-The normalizer maps extractor output into the existing school JSON schema:
+It then sends pages to OpenAI vision in small batches and asks which CDS sections are present on each page from this fixed set:
+
+- `B1`
+- `B2`
+- `C1`
+- `C9`
+- `F1`
+- `G1`
+- `H2`
+
+The model must return strict JSON only.
+
+### 3. Section Extraction
+
+For each detected section page, the pipeline sends that page back to OpenAI vision with:
+
+- a section-specific prompt
+- a strict allowlist of field paths for that section
+
+Examples:
+
+- `C1` can return only admissions counts
+- `G1` can return only costs fields
+- `H2` can return only financial-aid fields
+
+The extractor writes raw payload keys such as:
+
+- `vision_sections`
+- `vision_field_candidates`
+- `vision_missing_sections`
+- `vision_notes`
+
+### 4. Normalize
+
+The normalizer converts the vision field candidates into the existing school JSON schema:
 
 - admissions
 - test scores
@@ -65,9 +97,15 @@ The normalizer maps extractor output into the existing school JSON schema:
 - costs
 - financial aid
 
-Each extracted field records provenance and confidence.
+It keeps the highest-confidence candidate per field, records provenance in `field_meta`, and derives secondary values such as:
 
-### 4. Validate
+- `acceptanceRate`
+- `yield`
+- `totalCOA`
+- total enrollment
+- residency counts derived from out-of-state percentage when needed
+
+### 5. Validate
 
 The validator checks:
 
@@ -78,7 +116,7 @@ The validator checks:
 - residency totals vs undergraduate enrollment
 - `totalCOA == tuition + fees + roomAndBoard`
 
-### 5. Review
+### 6. Review
 
 The pipeline writes artifacts to:
 
@@ -92,7 +130,13 @@ Artifacts:
 - `review.json`
 - `review.md`
 
-Use these when a school still needs manual follow-up.
+Review output includes:
+
+- sections found
+- sections not found
+- low-confidence fields
+- validation issues
+- extractor notes
 
 ## School Configs
 
@@ -102,40 +146,29 @@ School-specific rules belong in:
 cds_pipeline/configs/<slug>.json
 ```
 
-Keep these small. Prefer config over new parser scripts.
-
 Supported config categories today:
 
 - `school_name`
 - `source_hints`
-- `form_aliases`
-- `text_patterns`
+- `vision.enabled`
+- `vision.model`
+- `vision.render_dpi`
+- `vision.classify_batch_size`
+- `vision.max_pages_per_section`
+- `vision.section_targets`
+- `vision.section_aliases`
+- `vision.page_range_hints`
 
 Typical use cases:
 
-- map school-specific AcroForm field names
-- add alternate text patterns
-- hint a preferred extractor for a messy source family
+- narrow the pages searched for a section
+- add school-specific section aliases
+- reduce or increase batch size
+- disable vision temporarily for debugging
 
-## When To Use Older Scripts
+## Current Constraints
 
-Treat the older `scripts/extract_*.py` files as legacy helpers.
-
-They are still useful for:
-
-- comparing behavior while migrating a school
-- checking old parser assumptions
-- temporary one-off recovery work
-
-They should not be the default path for new school onboarding.
-
-## Paid Services
-
-Not recommended for v1.
-
-If the local pipeline still leaves too many low-confidence PDFs, add one optional fallback behind a feature flag. If you go that route, prefer one provider only:
-
-- Azure Document Intelligence
-- Google Document AI
-
-Do not make a paid provider the default operating path unless the local-first flow proves insufficient.
+- The pipeline is vision-first only; legacy text, OCR, and table extractors are no longer part of the active flow.
+- Structured outputs depend on OpenAI returning schema-valid JSON.
+- Long school archives can still take time because every PDF page must be rendered and classified, even though classification is now batched.
+- Validation and review are still required; the model output is not trusted blindly.

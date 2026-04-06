@@ -7,6 +7,7 @@
     "enabled": true,
     "model": null,
     "render_dpi": 170,
+    "classify_batch_size": 6,
     "max_pages_per_section": 2,
     "section_targets": ["B1", "B2", "C1", "C9", "F1", "G1", "H2"],
     "section_aliases": {},
