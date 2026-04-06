@@ -6,14 +6,7 @@ from typing import Any
 from .classifier import classify_pdf
 from .config import load_config
 from .exporter import export_school_json
-from .extractors import (
-    AcroFormExtractor,
-    NativeTextExtractor,
-    OcrFallbackExtractor,
-    StructuredLayoutExtractor,
-    TableExtractor,
-    VisionLLMExtractor,
-)
+from .extractors import VisionLLMExtractor
 from .normalizer import normalize_document
 from .review import build_review_payload, review_markdown
 from .utils import ensure_dir, write_json
@@ -21,12 +14,7 @@ from .validator import validate_document
 
 
 EXTRACTOR_REGISTRY = {
-    "AcroFormExtractor": AcroFormExtractor,
     "VisionLLMExtractor": VisionLLMExtractor,
-    "TableExtractor": TableExtractor,
-    "NativeTextExtractor": NativeTextExtractor,
-    "StructuredLayoutExtractor": StructuredLayoutExtractor,
-    "OcrFallbackExtractor": OcrFallbackExtractor,
 }
 
 
