@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { SchoolData } from "@/lib/types";
+import { AdmissionsFactorImportance, SchoolData } from "@/lib/types";
 import { formatNumber, formatPercent } from "@/utils/dataHelpers";
 import {
   AdmissionsTrendChart,
@@ -16,6 +16,22 @@ interface SchoolPageClientProps {
   schoolColor: string;
 }
 
+type AdmissionsFactorRow = [label: string, importance: AdmissionsFactorImportance];
+
+const IMPORTANCE_LABELS: Record<AdmissionsFactorImportance, string> = {
+  very_important: "Very Important",
+  important: "Important",
+  considered: "Considered",
+  not_considered: "Not Considered",
+};
+
+const IMPORTANCE_ORDER: AdmissionsFactorImportance[] = [
+  "very_important",
+  "important",
+  "considered",
+  "not_considered",
+];
+
 export default function SchoolPageClient({
   schoolData,
   schoolColor,
@@ -24,6 +40,41 @@ export default function SchoolPageClient({
   const latestYear = years[years.length - 1];
   const latestData = schoolData.years[latestYear];
   const yearRange = `${years[0].split("-")[0]}-${years[years.length - 1].split("-")[1]}`;
+  const admissionsFactors = schoolData.profile?.admissionsFactors;
+  const academicFactors: AdmissionsFactorRow[] = admissionsFactors
+    ? [
+        ["Rigor of secondary school record", admissionsFactors.academic.rigorOfSecondarySchoolRecord],
+        ["Class rank", admissionsFactors.academic.classRank],
+        ["Academic GPA", admissionsFactors.academic.academicGpa],
+        ["Standardized test scores", admissionsFactors.academic.standardizedTestScores],
+        ["Application essay", admissionsFactors.academic.applicationEssay],
+        ["Recommendation(s)", admissionsFactors.academic.recommendations],
+      ]
+    : [];
+  const nonacademicFactors: AdmissionsFactorRow[] = admissionsFactors
+    ? [
+        ["Interview", admissionsFactors.nonacademic.interview],
+        ["Extracurricular activities", admissionsFactors.nonacademic.extracurricularActivities],
+        ["Talent/ability", admissionsFactors.nonacademic.talentAbility],
+        ["Character/personal qualities", admissionsFactors.nonacademic.characterPersonalQualities],
+        ["First generation", admissionsFactors.nonacademic.firstGeneration],
+        ["Alumni/ae relation", admissionsFactors.nonacademic.alumniRelation],
+        ["Geographical residence", admissionsFactors.nonacademic.geographicalResidence],
+        ["State residency", admissionsFactors.nonacademic.stateResidency],
+        ["Religious affiliation/commitment", admissionsFactors.nonacademic.religiousAffiliationCommitment],
+        ["Volunteer work", admissionsFactors.nonacademic.volunteerWork],
+        ["Work experience", admissionsFactors.nonacademic.workExperience],
+        ["Level of applicant's interest", admissionsFactors.nonacademic.levelOfApplicantsInterest],
+      ]
+    : [];
+
+  const renderImportanceCell = (
+    activeImportance: AdmissionsFactorImportance,
+    columnImportance: AdmissionsFactorImportance
+  ) => {
+    if (activeImportance !== columnImportance) return null;
+    return <span aria-label={IMPORTANCE_LABELS[activeImportance]}>✓</span>;
+  };
 
   return (
     <div className="min-h-screen" style={{ background: "#f5f5f5" }}>
@@ -118,6 +169,82 @@ export default function SchoolPageClient({
             yearData={schoolData.years}
             schoolColor={schoolColor}
           />
+
+          {admissionsFactors && (
+            <div className="card p-6" style={{ backgroundColor: "#ffffff" }}>
+              <div className="flex flex-col gap-2 mb-4 md:flex-row md:items-end md:justify-between">
+                <div>
+                  <h3 className="text-lg font-semibold text-gray-800">
+                    Admissions Factors
+                  </h3>
+                  <p className="text-sm text-gray-600 mt-1">
+                    Relative importance reported in the latest available Common Data Set.
+                  </p>
+                </div>
+                <div className="text-sm text-gray-500">
+                  Source: CDS {admissionsFactors.sourceYear}, Section {admissionsFactors.section}
+                </div>
+              </div>
+
+              <div className="overflow-x-auto">
+                <table className="data-table">
+                  <thead>
+                    <tr>
+                      <th style={{ textAlign: "left" }}>Factor</th>
+                      <th style={{ textAlign: "center" }}>Very Important</th>
+                      <th style={{ textAlign: "center" }}>Important</th>
+                      <th style={{ textAlign: "center" }}>Considered</th>
+                      <th style={{ textAlign: "center" }}>Not Considered</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr style={{ backgroundColor: "#f3f4f6" }}>
+                      <td
+                        colSpan={5}
+                        style={{ textAlign: "left", fontWeight: 700, color: schoolColor, paddingTop: "0.5rem", paddingBottom: "0.5rem" }}
+                      >
+                        Academic
+                      </td>
+                    </tr>
+                    {academicFactors.map(([label, importance]) => (
+                      <tr key={`academic-${label}`}>
+                        <td style={{ textAlign: "left" }}>{label}</td>
+                        {IMPORTANCE_ORDER.map((columnImportance) => (
+                          <td
+                            key={`academic-${label}-${columnImportance}`}
+                            style={{ textAlign: "center" }}
+                          >
+                            {renderImportanceCell(importance, columnImportance)}
+                          </td>
+                        ))}
+                      </tr>
+                    ))}
+                    <tr style={{ backgroundColor: "#f3f4f6" }}>
+                      <td
+                        colSpan={5}
+                        style={{ textAlign: "left", fontWeight: 700, color: schoolColor, paddingTop: "0.5rem", paddingBottom: "0.5rem" }}
+                      >
+                        Nonacademic
+                      </td>
+                    </tr>
+                    {nonacademicFactors.map(([label, importance]) => (
+                      <tr key={`nonacademic-${label}`}>
+                        <td style={{ textAlign: "left" }}>{label}</td>
+                        {IMPORTANCE_ORDER.map((columnImportance) => (
+                          <td
+                            key={`nonacademic-${label}-${columnImportance}`}
+                            style={{ textAlign: "center" }}
+                          >
+                            {renderImportanceCell(importance, columnImportance)}
+                          </td>
+                        ))}
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </div>

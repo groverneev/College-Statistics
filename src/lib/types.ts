@@ -1,9 +1,49 @@
 export interface SchoolData {
   name: string;
   slug: string;
+  profile?: SchoolProfile;
   years: {
     [year: string]: YearData;
   };
+}
+
+export interface SchoolProfile {
+  admissionsFactors?: AdmissionsFactorsData;
+}
+
+export type AdmissionsFactorImportance =
+  | "very_important"
+  | "important"
+  | "considered"
+  | "not_considered";
+
+export interface AdmissionsFactorsData {
+  sourceYear: string;
+  sourcePdf: string;
+  section: string;
+  academic: {
+    rigorOfSecondarySchoolRecord: AdmissionsFactorImportance;
+    classRank: AdmissionsFactorImportance;
+    academicGpa: AdmissionsFactorImportance;
+    standardizedTestScores: AdmissionsFactorImportance;
+    applicationEssay: AdmissionsFactorImportance;
+    recommendations: AdmissionsFactorImportance;
+  };
+  nonacademic: {
+    interview: AdmissionsFactorImportance;
+    extracurricularActivities: AdmissionsFactorImportance;
+    talentAbility: AdmissionsFactorImportance;
+    characterPersonalQualities: AdmissionsFactorImportance;
+    firstGeneration: AdmissionsFactorImportance;
+    alumniRelation: AdmissionsFactorImportance;
+    geographicalResidence: AdmissionsFactorImportance;
+    stateResidency: AdmissionsFactorImportance;
+    religiousAffiliationCommitment: AdmissionsFactorImportance;
+    volunteerWork: AdmissionsFactorImportance;
+    workExperience: AdmissionsFactorImportance;
+    levelOfApplicantsInterest: AdmissionsFactorImportance;
+  };
+  notes?: string;
 }
 
 export interface YearData {
