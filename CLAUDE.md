@@ -32,6 +32,7 @@ The repo contains:
 
 School datasets follow the `SchoolData` / `YearData` schema in `src/lib/types.ts`:
 
+- optional school-level `profile` metadata
 - admissions
 - test scores
 - demographics
@@ -39,6 +40,8 @@ School datasets follow the `SchoolData` / `YearData` schema in `src/lib/types.ts
 - financial aid
 
 Each school JSON is keyed by academic year, typically from the late 2010s through the mid-2020s.
+
+School-level metadata should be used for information that is not primarily a yearly trend series. The current example is `profile.admissionsFactors`, which stores the latest available CDS C7 admissions-factor matrix plus source metadata.
 
 ## Shared School Registry
 
@@ -142,6 +145,8 @@ The subagent may derive obvious schema values when the visible source values sup
 
 If an optional field is not visible, omit it. If a required field cannot be recovered safely, note that explicitly instead of guessing.
 
+For each school, Codex should also proactively check the latest available CDS for section `C7` and populate school-level `profile.admissionsFactors` metadata when it can be recovered safely. Treat this as a latest-known school attribute, not a year-by-year time series, and store the source year / source PDF alongside the factor matrix.
+
 ## Add A New School
 
 Use this checklist:
@@ -149,12 +154,13 @@ Use this checklist:
 1. Run `python -m cds_pipeline prepare <school-or-path>`.
 2. Use the per-year manifests and screenshots for Codex extraction.
 3. Finalize `src/data/schools/<slug>.json` with complete, source-backed data.
-4. Register the school in `src/data/schools/index.ts`.
-5. Add the school color in `src/lib/types.ts`.
-6. Add aliases in `src/components/SearchBar.tsx` if the school needs abbreviation support.
-7. Update any user-facing hardcoded copy only if it is not already derived from the registry.
-8. Update `README.md` only if the public-facing behavior or documented coverage changed.
-9. Run `npm run build`.
+4. Proactively extract the latest CDS `C7` admissions-factor matrix into `profile.admissionsFactors` when available.
+5. Register the school in `src/data/schools/index.ts`.
+6. Add the school color in `src/lib/types.ts`.
+7. Add aliases in `src/components/SearchBar.tsx` if the school needs abbreviation support.
+8. Update any user-facing hardcoded copy only if it is not already derived from the registry.
+9. Update `README.md` only if the public-facing behavior or documented coverage changed.
+10. Run `npm run build`.
 
 ## Data Quality Checks
 
@@ -229,5 +235,6 @@ If a comparison page or single-year chart flow is reintroduced, keep that surfac
 - Keep UI and route behavior stable when refactoring.
 - Preserve school ordering from the shared registry.
 - Prefer internal simplifications over visible product changes.
+- When working on a school dataset, proactively look for latest CDS `C7` admissions-factor data and add `profile.admissionsFactors` if it is source-backed.
 - Run `npm run build` after school-registration or route changes.
 - Always update `CLAUDE.md` and `README.md` after changing workflow or architecture guidance.

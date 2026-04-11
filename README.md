@@ -1,6 +1,6 @@
 # College Statistics
 
-A data visualization dashboard for comparing colleges using Common Data Set (CDS) metrics. View historical trends for admissions, test scores, costs, financial aid, and demographics.
+A data visualization dashboard for comparing colleges using Common Data Set (CDS) metrics. View historical trends for admissions, test scores, costs, financial aid, demographics, and latest-known admissions-factor metadata from CDS section C7.
 
 **Live Site:** [collegestatistics.org](https://collegestatistics.org)
 
@@ -15,6 +15,7 @@ A data visualization dashboard for comparing colleges using Common Data Set (CDS
 - **Cost of Attendance** - Tuition, fees, room & board breakdown
 - **Financial Aid** - Average grants, percent receiving aid, net price
 - **Demographics** - Enrollment trends and racial/ethnic composition over time
+- **Admissions Factors** - Latest CDS C7 matrix showing how schools classify academic and nonacademic admissions factors
 - **Trends** - Data-driven stories and analyses (e.g. UC application volume comparisons)
 
 ## Currently Available Schools
@@ -59,7 +60,7 @@ A data visualization dashboard for comparing colleges using Common Data Set (CDS
 ## Pages
 
 - **Home** (`/`) - School selector with key stats
-- **School Dashboard** (`/[school]`) - Detailed charts and data for each school
+- **School Dashboard** (`/[school]`) - Detailed charts, tables, and school-level admissions-factor metadata
 - **Trends** (`/trends`) - Data-driven stories with charts and analysis
 - **About** (`/about`) - Information about the project and creator
 - **How it Works** (`/how-it-works`) - Explanation of CDS data and how to use the dashboard
@@ -105,7 +106,7 @@ College-Statistics/
 
 ## Data Sources
 
-Most data is extracted from official Common Data Set (CDS) publications released by each institution. The CDS is a collaborative effort among data providers in higher education that provides comparable data across institutions. Some schools in this repo use PDF sources, Northeastern publishes year-by-year CDS data as webpages, Rice uses a dedicated parser for its official 2016-2025 CDS PDF archive, USC uses its official CDS archive pages plus linked PDFs, UChicago uses a dedicated PDF parser for its official 2021-2025 CDS archive, UCI uses a dedicated PDF parser for its CDS archive with web-backed cost overrides for 2018-2019 through 2020-2021, UIUC uses a dedicated Excel extractor for its 2016-2025 CDS workbooks, Johns Hopkins uses a dedicated parser for its local 2021-2025 CDS PDFs plus a mixed-source web backfill for older missing years, Michigan uses a dedicated parser for its 2016-2025 CDS PDFs, Washington uses a mixed Excel/PDF extractor against its local 2018-2026 CDS files, UVA currently uses a mixed official-source dataset built from local 2022-2025 CDS PDFs plus UVA's official 2020-2022 CDS webpages and a web-sourced 2019-2020 backfill, Vanderbilt uses CDS Excel workbooks, and Purdue uses a mixed Excel/PDF archive across 2016-2026.
+Most data is extracted from official Common Data Set (CDS) publications released by each institution. The CDS is a collaborative effort among data providers in higher education that provides comparable data across institutions. The site stores both year-by-year trend data and selected school-level metadata such as the latest available CDS section C7 admissions-factor matrix. Some schools in this repo use PDF sources, Northeastern publishes year-by-year CDS data as webpages, Rice uses a dedicated parser for its official 2016-2025 CDS PDF archive, USC uses its official CDS archive pages plus linked PDFs, UChicago uses a dedicated PDF parser for its official 2021-2025 CDS archive, UCI uses a dedicated PDF parser for its CDS archive with web-backed cost overrides for 2018-2019 through 2020-2021, UIUC uses a dedicated Excel extractor for its 2016-2025 CDS workbooks, Johns Hopkins uses a dedicated parser for its local 2021-2025 CDS PDFs plus a mixed-source web backfill for older missing years, Michigan uses a dedicated parser for its 2016-2025 CDS PDFs, Washington uses a mixed Excel/PDF extractor against its local 2018-2026 CDS files, UVA currently uses a mixed official-source dataset built from local 2022-2025 CDS PDFs plus UVA's official 2020-2022 CDS webpages and a web-sourced 2019-2020 backfill, Vanderbilt uses CDS Excel workbooks, and Purdue uses a mixed Excel/PDF archive across 2016-2026.
 
 ## Tech Stack
 
