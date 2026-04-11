@@ -100,10 +100,7 @@ College-Statistics/
 
 ## Development Docs
 
-- Operational rules: `CLAUDE.md`
-- Extraction reference: `docs/data-extraction.md`
-- Screenshot prep workflow: `docs/pdf-extraction-pipeline.md`
-- Architecture notes: `docs/architecture.md`
+- Workflow, extraction, and architecture guidance: `CLAUDE.md`
 
 ## Data Sources
 

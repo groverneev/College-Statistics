@@ -4,12 +4,7 @@
 
 > **PDF HANDLING:** Do not read PDFs directly with the Read tool. Use the screenshot prep command or shell-based helpers instead.
 
-> **DATA RULE:** Never invent data. If extraction is incomplete, verify against official institutional sources and keep definitions consistent within a school's time series. Moreover, feel free to conduct web searches if pdfs contain incomplete data.
-
-> **DOCS:** Detailed reference material lives in:
-> - `docs/data-extraction.md`
-> - `docs/architecture.md`
-> - `docs/pdf-extraction-pipeline.md`
+> **DATA RULE:** Never invent data. If extraction is incomplete, verify against official institutional sources and keep definitions consistent within a school's time series. Feel free to use web searches if local PDFs are incomplete or ambiguous.
 
 > **DEPENDENCIES:** If extra local tooling is needed, tell the user exactly what to install instead of assuming it is available or trying to work around missing packages silently.
 
@@ -17,24 +12,149 @@
 
 ## Repo Purpose
 
-This is a Next.js site for exploring Common Data Set trends across colleges. The repo contains:
+This is a Next.js site for exploring Common Data Set trends across colleges.
+
+The repo contains:
 
 - local source files in `College-Data/<School>/`
-- extraction scripts in `scripts/`
+- screenshot prep and validation helpers in `cds_pipeline/`
 - normalized datasets in `src/data/schools/`
+
+## App Structure
+
+- `src/app/page.tsx`: homepage with the featured school grid and search
+- `src/app/[school]/page.tsx`: dynamic route for individual school dashboards
+- `src/app/[school]/SchoolPageClient.tsx`: client-side dashboard layout
+- `src/components/charts/`: trend visualizations used on school pages
+- `src/data/schools/`: normalized school datasets plus the shared registry manifest
+
+## Data Model
+
+School datasets follow the `SchoolData` / `YearData` schema in `src/lib/types.ts`:
+
+- admissions
+- test scores
+- demographics
+- costs
+- financial aid
+
+Each school JSON is keyed by academic year, typically from the late 2010s through the mid-2020s.
+
+## Shared School Registry
+
+`src/data/schools/index.ts` is the canonical source of truth for registered schools.
+
+It owns:
+
+- the ordered `allSchools` array used by the homepage
+- the `schoolDataMap` used by dynamic routes
+- `availableSchoolSlugs`
+- `searchableSchools` derived from the latest year of each dataset
+
+Adding a new school should usually require:
+
+1. add `src/data/schools/<slug>.json`
+2. register it in `src/data/schools/index.ts`
+3. add its color in `SCHOOL_COLORS`
+4. add search aliases if needed
+
+## Codex-First CDS Workflow
+
+This repo uses a Codex-first screenshot workflow for school ingestion.
+
+The repo-side automation is intentionally narrow:
+
+- resolve a school's local CDS PDFs
+- group them by year
+- render every PDF page to PNG screenshots
+- write per-year manifests for Codex subagents
+- run lightweight deterministic guardrails on the resulting JSON
+
+Codex then reads those screenshots and produces the structured year JSON used for the website.
+
+### Default Command
+
+Use:
+
+```bash
+python -m cds_pipeline prepare <school-or-path>
+```
+
+`python -m cds_pipeline extract <school-or-path>` remains as a backward-compatible alias for the same render-only prep step.
+
+### Workspace Output
+
+The prep step writes artifacts to:
+
+```text
+.cds_pipeline/<school-slug>/
+```
+
+For each year it creates:
+
+- `pages/`: rendered PNG screenshots in page order
+- `manifest.json`: the year handoff packet for a Codex subagent
+
+It also writes:
+
+- `school_manifest.json`: summary of all year manifests for the school
+
+Each year manifest includes:
+
+- `school_slug`
+- `school_name`
+- `year`
+- `source_pdfs`
+- `page_count`
+- `screenshot_paths`
+- `screenshots`
+- `subagent_prompt`
+- `output_contract`
+
+### Codex Handoff Model
+
+Recommended operator flow:
+
+1. Add new CDS PDFs to `College-Data/<School>/`.
+2. Run `python -m cds_pipeline prepare <school-or-path>`.
+3. Inspect `.cds_pipeline/<slug>/school_manifest.json` and the per-year manifests.
+4. Give one year's manifest and screenshots to one Codex subagent.
+5. Have that subagent return strict JSON with `year`, `data`, and `notes`.
+6. Merge the per-year outputs into `src/data/schools/<slug>.json`.
+7. Run guardrails and site wiring checks before finishing.
+
+### What Codex Should Extract
+
+Per year, the subagent should build the existing `YearData` schema:
+
+- admissions
+- test scores
+- demographics
+- costs
+- financial aid
+
+The subagent may derive obvious schema values when the visible source values support them directly:
+
+- acceptance rate
+- yield
+- total enrollment
+- total cost of attendance
+
+If an optional field is not visible, omit it. If a required field cannot be recovered safely, note that explicitly instead of guessing.
 
 ## Add A New School
 
 Use this checklist:
 
-1. Run `python -m cds_pipeline prepare <school-or-path>` and inspect `.cds_pipeline/<slug>/school_manifest.json`.
-2. Use the per-year manifests and screenshots for Codex extraction, then finalize `src/data/schools/<slug>.json` with complete, source-backed data.
-2. Register the school once in `src/data/schools/index.ts`.
-3. Add the school color in `src/lib/types.ts`.
-4. Add aliases in `src/components/SearchBar.tsx` if the school needs abbreviation support.
-5. Update any user-facing hardcoded copy only if it is not already derived from the registry.
-6. Update `README.md` only if the public-facing behavior or documented coverage changed.
-7. Run `npm run build`.
+1. Run `python -m cds_pipeline prepare <school-or-path>`.
+2. Use the per-year manifests and screenshots for Codex extraction.
+3. Finalize `src/data/schools/<slug>.json` with complete, source-backed data.
+4. Register the school in `src/data/schools/index.ts`.
+5. Add the school color in `src/lib/types.ts`.
+6. Add aliases in `src/components/SearchBar.tsx` if the school needs abbreviation support.
+7. Update any user-facing hardcoded copy only if it is not already derived from the registry.
+8. Update `README.md` only if the public-facing behavior or documented coverage changed.
+9. Run `npm run build`.
 
 ## Data Quality Checks
 
@@ -45,6 +165,26 @@ Before finishing school data work:
 - verify race/residency totals reconcile with undergraduate enrollment
 - verify costs and admissions values look consistent year over year
 
+## Validation
+
+The lightweight validator is deterministic only. It checks:
+
+- `acceptanceRate == admitted / applied`
+- `yield == enrolled / admitted`
+- `total enrollment == undergraduate + graduate`
+- race totals are plausible against undergraduate enrollment
+- residency totals are plausible against undergraduate enrollment
+- `totalCOA == tuition + fees + roomAndBoard`
+
+These checks are guardrails, not a second extraction pipeline.
+
+Use official web-backed/manual overrides only when:
+
+- the local CDS is missing the value
+- the screenshots do not show the needed field clearly
+- the PDF is too ambiguous to verify safely from the screenshots alone
+- the official institutional web source clearly states the needed value
+
 ## Verification Checklist
 
 Run these after significant changes:
@@ -54,13 +194,40 @@ Run these after significant changes:
 - verify at least one direct school route works
 - verify search still finds schools and aliases
 
-## Notes
+For each updated year:
 
-- The shared school registry in `src/data/schools/index.ts` is the source of truth for school ordering and route registration.
-- Keep internal refactors behavior-preserving unless the task explicitly asks for product changes.
-- Current CDS ingestion is Codex-first:
-  - every PDF is rendered to PNG screenshots with PyMuPDF
-  - the prep step groups screenshots by year and writes per-year manifests under `.cds_pipeline/<slug>/`
-  - one Codex subagent should review one year at a time and return strict `YearData` JSON plus notes
-  - the main agent merges the year outputs into the final school JSON and runs light deterministic guardrails
-  - Always update CLAUDE.md and the relevant docs after making any changes
+- `undergraduate + graduate == total`
+- `sum(byRace)` is plausible against undergraduate enrollment
+- `sum(byResidency)` is plausible against undergraduate enrollment
+- costs look plausible and vary year over year
+- acceptance rate and yield reconcile with applied/admitted/enrolled counts
+
+## Architecture Notes
+
+The screenshot prep step should be the default path for new school ingestion. Older `scripts/extract_*.py` files are legacy utilities.
+
+Important directories:
+
+- `cds_pipeline/`: screenshot prep and validation package
+- `cds_pipeline/configs/`: school-specific hints and aliases
+- `.cds_pipeline/`: generated screenshot manifests and rendered pages
+
+## Chart Layer
+
+The active chart barrel exports only the trend charts used by the school dashboard:
+
+- admissions
+- test scores
+- costs
+- financial aid
+- demographics
+
+If a comparison page or single-year chart flow is reintroduced, keep that surface separate from the active dashboard exports.
+
+## Behavior Constraints
+
+- Keep UI and route behavior stable when refactoring.
+- Preserve school ordering from the shared registry.
+- Prefer internal simplifications over visible product changes.
+- Run `npm run build` after school-registration or route changes.
+- Always update `CLAUDE.md` and `README.md` after changing workflow or architecture guidance.
