@@ -187,7 +187,7 @@ export default function SchoolPageClient({
               </div>
 
               <div className="overflow-x-auto">
-                <table className="data-table">
+                <table className="data-table compact">
                   <thead>
                     <tr>
                       <th style={{ textAlign: "left" }}>Factor</th>
@@ -198,10 +198,17 @@ export default function SchoolPageClient({
                     </tr>
                   </thead>
                   <tbody>
-                    <tr style={{ backgroundColor: "#f3f4f6" }}>
+                    <tr style={{ backgroundColor: `${schoolColor}18`, borderTop: `2px solid ${schoolColor}40` }}>
                       <td
                         colSpan={5}
-                        style={{ textAlign: "left", fontWeight: 700, color: schoolColor, paddingTop: "0.5rem", paddingBottom: "0.5rem" }}
+                        style={{
+                          textAlign: "left",
+                          fontWeight: 700,
+                          fontSize: "0.7rem",
+                          letterSpacing: "0.08em",
+                          textTransform: "uppercase",
+                          color: schoolColor,
+                        }}
                       >
                         Academic
                       </td>
@@ -219,10 +226,17 @@ export default function SchoolPageClient({
                         ))}
                       </tr>
                     ))}
-                    <tr style={{ backgroundColor: "#f3f4f6" }}>
+                    <tr style={{ backgroundColor: `${schoolColor}18`, borderTop: `2px solid ${schoolColor}40` }}>
                       <td
                         colSpan={5}
-                        style={{ textAlign: "left", fontWeight: 700, color: schoolColor, paddingTop: "0.5rem", paddingBottom: "0.5rem" }}
+                        style={{
+                          textAlign: "left",
+                          fontWeight: 700,
+                          fontSize: "0.7rem",
+                          letterSpacing: "0.08em",
+                          textTransform: "uppercase",
+                          color: schoolColor,
+                        }}
                       >
                         Nonacademic
                       </td>
