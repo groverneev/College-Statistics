@@ -1,174 +1,86 @@
-# PDF Extraction Pipeline
+# PDF Screenshot Prep Workflow
 
-This repo now uses a vision-first CDS extraction pipeline under `cds_pipeline/`.
+This repo now uses a Codex-first CDS ingestion workflow under `cds_pipeline/`.
 
-The goal is to turn Common Data Set PDFs into structured school JSON by:
+The repo-side automation is intentionally narrow:
 
-- rendering PDF pages into screenshots
-- using an OpenAI vision model to find relevant CDS sections
-- extracting only schema-allowed fields from those section pages
-- normalizing into the site schema
-- validating the result
-- emitting review artifacts instead of silently guessing
+- discover CDS PDFs
+- group them by year
+- render every PDF page to PNG screenshots
+- write a simple per-year manifest for Codex/subagent handoff
+
+Codex then reads those screenshots and produces the structured year JSON used for the website.
 
 ## Default Recommendation
 
-Use the pipeline directly:
+Use the prep step directly:
 
 ```bash
-python -m cds_pipeline extract <school-or-path>
+python -m cds_pipeline prepare <school-or-path>
 ```
+
+`extract` remains as a backward-compatible alias, but it now performs the same render-only prep step.
 
 Examples:
 
 ```bash
-python -m cds_pipeline classify tufts
+python -m cds_pipeline prepare tufts
 python -m cds_pipeline extract tufts
-python -m cds_pipeline review .cds_pipeline/tufts/candidate.json
-python -m cds_pipeline export .cds_pipeline/tufts/candidate.json
+python -m cds_pipeline validate .cds_pipeline/tufts/2024-2025/subagent-output.json
+python -m cds_pipeline validate src/data/schools/tufts.json
 ```
 
-The current pipeline requires:
+## Workspace Output
 
-- `OPENAI_API_KEY`
-- optionally `OPENAI_MODEL`
-
-These can be supplied via environment variables or a repo-local `.env.local` file.
-
-## Pipeline Stages
-
-### 1. Classify
-
-Each PDF is treated as a `vision_pdf`.
-
-The classifier currently records:
-
-- `document_type = vision_pdf`
-- page count
-- extractor chain
-
-The extractor chain is currently just:
-
-- `VisionLLMExtractor`
-
-### 2. Render And Section Classify
-
-The vision extractor renders PDF pages to PNG screenshots using PyMuPDF.
-
-It then sends pages to OpenAI vision in small batches and asks which CDS sections are present on each page from this fixed set:
-
-- `B1`
-- `B2`
-- `C1`
-- `C9`
-- `F1`
-- `G1`
-- `H2`
-
-The model must return strict JSON only.
-
-### 3. Section Extraction
-
-For each detected section page, the pipeline sends that page back to OpenAI vision with:
-
-- a section-specific prompt
-- a strict allowlist of field paths for that section
-
-Examples:
-
-- `C1` can return only admissions counts
-- `G1` can return only costs fields
-- `H2` can return only financial-aid fields
-
-The extractor writes raw payload keys such as:
-
-- `vision_sections`
-- `vision_field_candidates`
-- `vision_missing_sections`
-- `vision_notes`
-
-### 4. Normalize
-
-The normalizer converts the vision field candidates into the existing school JSON schema:
-
-- admissions
-- test scores
-- demographics
-- costs
-- financial aid
-
-It keeps the highest-confidence candidate per field, records provenance in `field_meta`, and derives secondary values such as:
-
-- `acceptanceRate`
-- `yield`
-- `totalCOA`
-- total enrollment
-- residency counts derived from out-of-state percentage when needed
-
-### 5. Validate
-
-The validator checks:
-
-- admissions rate reconciliation
-- yield reconciliation
-- enrollment totals
-- race totals vs undergraduate enrollment
-- residency totals vs undergraduate enrollment
-- `totalCOA == tuition + fees + roomAndBoard`
-
-### 6. Review
-
-The pipeline writes artifacts to:
+The prep step writes artifacts to:
 
 ```text
 .cds_pipeline/<school-slug>/
 ```
 
-Artifacts:
+For each year it creates:
 
-- `candidate.json`
-- `review.json`
-- `review.md`
+- `pages/`: rendered PNG screenshots in page order
+- `manifest.json`: the year handoff packet for a Codex subagent
 
-Review output includes:
+It also writes:
 
-- sections found
-- sections not found
-- low-confidence fields
-- validation issues
-- extractor notes
+- `school_manifest.json`: summary of all year manifests for the school
 
-## School Configs
+## Per-Year Manifest Shape
 
-School-specific rules belong in:
+Each year manifest includes:
 
-```text
-cds_pipeline/configs/<slug>.json
-```
-
-Supported config categories today:
-
+- `school_slug`
 - `school_name`
-- `source_hints`
-- `vision.enabled`
-- `vision.model`
-- `vision.render_dpi`
-- `vision.classify_batch_size`
-- `vision.max_pages_per_section`
-- `vision.section_targets`
-- `vision.section_aliases`
-- `vision.page_range_hints`
+- `year`
+- `source_pdfs`
+- `page_count`
+- `screenshot_paths`
+- `screenshots`
+- `subagent_prompt`
+- `output_contract`
 
-Typical use cases:
+## Codex Handoff Model
 
-- narrow the pages searched for a section
-- add school-specific section aliases
-- reduce or increase batch size
-- disable vision temporarily for debugging
+Recommended operator flow:
 
-## Current Constraints
+1. Add new CDS PDFs to `College-Data/<School>/`.
+2. Run `python -m cds_pipeline prepare <school-or-path>`.
+3. Give one year's manifest and screenshots to one Codex subagent.
+4. Have that subagent return strict JSON with `year`, `data`, and `notes`.
+5. Merge the per-year outputs into `src/data/schools/<slug>.json`.
+6. Run guardrails and site wiring checks before finishing.
 
-- The pipeline is vision-first only; legacy text, OCR, and table extractors are no longer part of the active flow.
-- Structured outputs depend on OpenAI returning schema-valid JSON.
-- Long school archives can still take time because every PDF page must be rendered and classified, even though classification is now batched.
-- Validation and review are still required; the model output is not trusted blindly.
+## Validation
+
+The lightweight validator is deterministic only. It checks:
+
+- `acceptanceRate == admitted / applied`
+- `yield == enrolled / admitted`
+- `total enrollment == undergraduate + graduate`
+- race totals are plausible against undergraduate enrollment
+- residency totals are plausible against undergraduate enrollment
+- `totalCOA == tuition + fees + roomAndBoard`
+
+These checks are guardrails, not a second extraction pipeline.

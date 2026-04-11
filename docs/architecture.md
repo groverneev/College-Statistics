@@ -40,23 +40,24 @@ Adding a new school should usually require:
 
 ## Extraction Architecture
 
-The preferred extraction flow is now the `cds_pipeline` package.
+The preferred ingestion flow is now the `cds_pipeline` package.
 
-It follows a classifier-plus-cascade model:
+It follows a render-plus-review model:
 
-- classify each PDF as `acroform`, `native_text`, `layout_sensitive`, or `scanned`
-- run the matching extractor chain
-- normalize into the `SchoolData` schema
-- validate each document
-- emit review artifacts for low-confidence cases
+- resolve a school's local CDS PDFs
+- group them by year
+- render every page to PNG screenshots
+- write per-year manifests for Codex subagents
+- merge the resulting year JSON into the final `SchoolData` schema
+- run lightweight deterministic guardrails before site wiring
 
 Important directories:
 
 - `cds_pipeline/`: pipeline package
 - `cds_pipeline/configs/`: school-specific hints and aliases
-- `.cds_pipeline/`: generated extraction artifacts
+- `.cds_pipeline/`: generated screenshot manifests and rendered pages
 
-The pipeline should be the default path for new school ingestion. Older `scripts/extract_*.py` files are legacy utilities.
+The screenshot prep step should be the default path for new school ingestion. Older `scripts/extract_*.py` files are legacy utilities.
 
 ## Chart Layer
 

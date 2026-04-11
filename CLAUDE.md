@@ -2,7 +2,7 @@
 
 > **WORKTREE:** Work directly in the main repository. Do not create git worktrees.
 
-> **PDF HANDLING:** Do not read PDFs directly with the Read tool. Use Python extraction scripts or shell-based extraction instead.
+> **PDF HANDLING:** Do not read PDFs directly with the Read tool. Use the screenshot prep command or shell-based helpers instead.
 
 > **DATA RULE:** Never invent data. If extraction is incomplete, verify against official institutional sources and keep definitions consistent within a school's time series. Moreover, feel free to conduct web searches if pdfs contain incomplete data.
 
@@ -27,8 +27,8 @@ This is a Next.js site for exploring Common Data Set trends across colleges. The
 
 Use this checklist:
 
-1. Run `python -m cds_pipeline extract <school-or-path>` and inspect `.cds_pipeline/<slug>/review.md`.
-2. Export or finalize `src/data/schools/<slug>.json` with complete, source-backed data.
+1. Run `python -m cds_pipeline prepare <school-or-path>` and inspect `.cds_pipeline/<slug>/school_manifest.json`.
+2. Use the per-year manifests and screenshots for Codex extraction, then finalize `src/data/schools/<slug>.json` with complete, source-backed data.
 2. Register the school once in `src/data/schools/index.ts`.
 3. Add the school color in `src/lib/types.ts`.
 4. Add aliases in `src/components/SearchBar.tsx` if the school needs abbreviation support.
@@ -58,10 +58,9 @@ Run these after significant changes:
 
 - The shared school registry in `src/data/schools/index.ts` is the source of truth for school ordering and route registration.
 - Keep internal refactors behavior-preserving unless the task explicitly asks for product changes.
-- Current CDS extraction is vision-first only:
-  - every PDF is treated as a `vision_pdf`
-  - pages are rendered to PNG screenshots with PyMuPDF
-  - OpenAI vision first classifies pages in small batches to find which ones contain `B1`, `B2`, `C1`, `C9`, `F1`, `G1`, `H2`
-  - OpenAI vision then extracts only allowed schema fields from those pages into structured candidates
-  - the normalizer converts those candidates into the existing school JSON shape, derives rates/totals, and applies guardrails
-  - review artifacts record found sections, missing sections, low-confidence fields, and validation issues
+- Current CDS ingestion is Codex-first:
+  - every PDF is rendered to PNG screenshots with PyMuPDF
+  - the prep step groups screenshots by year and writes per-year manifests under `.cds_pipeline/<slug>/`
+  - one Codex subagent should review one year at a time and return strict `YearData` JSON plus notes
+  - the main agent merges the year outputs into the final school JSON and runs light deterministic guardrails
+  - Always update CLAUDE.md and the relevant docs after making any changes

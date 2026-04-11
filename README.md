@@ -102,7 +102,7 @@ College-Statistics/
 
 - Operational rules: `CLAUDE.md`
 - Extraction reference: `docs/data-extraction.md`
-- Extraction pipeline: `docs/pdf-extraction-pipeline.md`
+- Screenshot prep workflow: `docs/pdf-extraction-pipeline.md`
 - Architecture notes: `docs/architecture.md`
 
 ## Data Sources
@@ -115,7 +115,7 @@ Most data is extracted from official Common Data Set (CDS) publications released
 - **Language:** [TypeScript](https://www.typescriptlang.org/)
 - **Styling:** [Tailwind CSS v4](https://tailwindcss.com/)
 - **Charts:** [Recharts](https://recharts.org/)
-- **Data Extraction:** Python with [pypdf](https://pypdf.readthedocs.io/), [PyMuPDF](https://pymupdf.readthedocs.io/), [Docling](https://docling-project.github.io/docling/), [pdfplumber](https://github.com/jsvine/pdfplumber), [openpyxl](https://openpyxl.readthedocs.io/), and [xlrd](https://xlrd.readthedocs.io/)
+- **Data Extraction:** Python with [PyMuPDF](https://pymupdf.readthedocs.io/) plus Codex-assisted screenshot review
 - **Contact Form:** [Formspree](https://formspree.io/)
 
 ## Contributing

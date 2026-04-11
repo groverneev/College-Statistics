@@ -1,5 +1,3 @@
-from .vision_llm import VisionLLMExtractor
+"""Legacy extractor package kept only for compatibility."""
 
-EXTRACTOR_REGISTRY = {
-    "VisionLLMExtractor": VisionLLMExtractor,
-}
+__all__: list[str] = []

@@ -4,98 +4,75 @@ import argparse
 import json
 from pathlib import Path
 
-from .classifier import classify_pdf
-from .exporter import export_school_json
-from .pipeline import extract_documents
+from .prepare import prepare_documents
 from .resolver import resolve_target
-from .review import build_review_payload, review_markdown
-from .utils import read_json, write_json
-from .validator import validate_document
+from .utils import read_json
+from .validator import validate_school_data, validate_year_submission
 
 
-def _cmd_classify(args: argparse.Namespace) -> int:
+def _cmd_prepare(args: argparse.Namespace) -> int:
     resolved = resolve_target(args.target)
-    results = []
-    for item in resolved:
-        classification = classify_pdf(item["pdf_path"])
-        results.append({**item, "classification": classification})
-    print(json.dumps(results, indent=2))
-    return 0
-
-
-def _cmd_extract(args: argparse.Namespace) -> int:
-    resolved = resolve_target(args.target)
-    result = extract_documents(
+    result = prepare_documents(
         resolved,
         explicit_config=args.config,
         workspace_dir=args.workspace_dir,
-        enable_vision=not args.disable_vision,
+        render_dpi=args.render_dpi,
     )
     summary = {
-        "school_slug": result["candidate"]["school_slug"],
-        "school_name": result["candidate"]["school_name"],
-        "documents": len(result["candidate"]["documents"]),
+        "school_slug": result["school_slug"],
+        "school_name": result["school_name"],
         "workspace": result["workspace"],
-        "total_issues": result["review"]["total_issue_count"],
+        "years": [
+            {
+                "year": item["year"],
+                "page_count": item["page_count"],
+                "manifest_path": item["manifest_path"],
+            }
+            for item in result["years"]
+        ],
     }
     print(json.dumps(summary, indent=2))
     return 0
 
 
+def _cmd_extract(args: argparse.Namespace) -> int:
+    return _cmd_prepare(args)
+
+
 def _cmd_validate(args: argparse.Namespace) -> int:
-    candidate = read_json(Path(args.candidate_json))
-    validations = []
-    for document in candidate.get("documents", []):
-        validation = validate_document(document["data"], document.get("field_meta", {}))
-        validations.append({"year": document.get("year"), "validation": validation})
-    print(json.dumps(validations, indent=2))
-    return 0
-
-
-def _cmd_review(args: argparse.Namespace) -> int:
     payload = read_json(Path(args.input_json))
-    if payload.get("documents") and payload["documents"][0].get("data") is not None:
-        payload = build_review_payload(payload)
-    print(review_markdown(payload))
-    return 0
+    if isinstance(payload, dict) and "year" in payload and "data" in payload:
+        print(json.dumps(validate_year_submission(payload), indent=2))
+        return 0
 
+    if isinstance(payload, dict) and "years" in payload:
+        print(json.dumps(validate_school_data(payload), indent=2))
+        return 0
 
-def _cmd_export(args: argparse.Namespace) -> int:
-    candidate = read_json(Path(args.candidate_json))
-    exported = export_school_json(candidate)
-    output_path = Path(args.output) if args.output else Path("src/data/schools") / f"{exported['slug']}.json"
-    write_json(output_path, exported)
-    print(json.dumps({"output": str(output_path), "years": len(exported["years"])}, indent=2))
-    return 0
+    raise ValueError("Input JSON must be either a per-year submission payload or a school dataset payload.")
 
 
 def build_parser() -> argparse.ArgumentParser:
-    parser = argparse.ArgumentParser(description="CDS extraction pipeline")
+    parser = argparse.ArgumentParser(description="CDS screenshot preparation workflow")
     subparsers = parser.add_subparsers(dest="command", required=True)
 
-    classify_parser = subparsers.add_parser("classify", help="Classify one PDF or a school PDF set")
-    classify_parser.add_argument("target")
-    classify_parser.set_defaults(func=_cmd_classify)
+    prepare_parser = subparsers.add_parser("prepare", help="Render PDFs into per-year screenshot workspaces")
+    prepare_parser.add_argument("target")
+    prepare_parser.add_argument("--config", help="Optional config override JSON path")
+    prepare_parser.add_argument("--workspace-dir", default=".cds_pipeline")
+    prepare_parser.add_argument("--render-dpi", type=int, help="Optional render DPI override")
+    prepare_parser.set_defaults(func=_cmd_prepare)
 
-    extract_parser = subparsers.add_parser("extract", help="Run the full extraction pipeline")
+    extract_parser = subparsers.add_parser("extract", help="Backward-compatible alias for prepare")
     extract_parser.add_argument("target")
     extract_parser.add_argument("--config", help="Optional config override JSON path")
     extract_parser.add_argument("--workspace-dir", default=".cds_pipeline")
-    extract_parser.add_argument("--disable-vision", action="store_true", help="Disable OpenAI vision extraction for this run")
+    extract_parser.add_argument("--render-dpi", type=int, help="Optional render DPI override")
     extract_parser.set_defaults(func=_cmd_extract)
 
-    validate_parser = subparsers.add_parser("validate", help="Validate a candidate.json artifact")
-    validate_parser.add_argument("candidate_json")
+    validate_parser = subparsers.add_parser("validate", help="Validate a per-year submission or school dataset JSON")
+    validate_parser.add_argument("input_json")
     validate_parser.set_defaults(func=_cmd_validate)
-
-    review_parser = subparsers.add_parser("review", help="Render a markdown review from candidate/review JSON")
-    review_parser.add_argument("input_json")
-    review_parser.set_defaults(func=_cmd_review)
-
-    export_parser = subparsers.add_parser("export", help="Export candidate data to site JSON shape")
-    export_parser.add_argument("candidate_json")
-    export_parser.add_argument("--output")
-    export_parser.set_defaults(func=_cmd_export)
 
     return parser
 
