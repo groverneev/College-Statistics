@@ -73,7 +73,7 @@ export default function SchoolPageClient({
     columnImportance: AdmissionsFactorImportance
   ) => {
     if (activeImportance !== columnImportance) return null;
-    return <span aria-label={IMPORTANCE_LABELS[activeImportance]}>✓</span>;
+    return <span aria-label={IMPORTANCE_LABELS[activeImportance]} style={{ color: schoolColor, opacity: 0.85, fontSize: "1.1rem", fontWeight: 600 }}>✓</span>;
   };
 
   return (
@@ -187,7 +187,14 @@ export default function SchoolPageClient({
               </div>
 
               <div className="overflow-x-auto">
-                <table className="data-table compact">
+                <table className="data-table compact" style={{ tableLayout: "fixed" }}>
+                  <colgroup>
+                    <col style={{ width: "40%" }} />
+                    <col style={{ width: "15%" }} />
+                    <col style={{ width: "15%" }} />
+                    <col style={{ width: "15%" }} />
+                    <col style={{ width: "15%" }} />
+                  </colgroup>
                   <thead>
                     <tr>
                       <th style={{ textAlign: "left" }}>Factor</th>

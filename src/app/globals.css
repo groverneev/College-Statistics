@@ -113,6 +113,11 @@ body {
   padding: 0.35rem 0.75rem;
 }
 
+.data-table.compact th {
+  font-size: 0.875rem;
+  color: #444444;
+}
+
 /* Override dark text colors */
 .text-gray-800,
 .text-gray-900 {
