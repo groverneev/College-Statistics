@@ -121,6 +121,7 @@ export const SCHOOL_COLORS: Record<string, string> = {
   rice: "#00205B",
   duke: "#012169",
   emory: "#012169",
+  georgetown: "#041E42",
   umich: "#00274C",
   johnshopkins: "#002D72",
   vanderbilt: "#866D4B",

@@ -10,6 +10,7 @@ import dartmouthData from "./dartmouth.json";
 import dukeData from "./duke.json";
 import emoryData from "./emory.json";
 import georgiaTechData from "./georgiatech.json";
+import georgetownData from "./georgetown.json";
 import harvardData from "./harvard.json";
 import johnsHopkinsData from "./johnshopkins.json";
 import mitData from "./mit.json";
@@ -57,6 +58,7 @@ export const allSchools: SchoolData[] = [
   dukeData as SchoolData,
   emoryData as SchoolData,
   georgiaTechData as SchoolData,
+  georgetownData as SchoolData,
   harvardData as SchoolData,
   johnsHopkinsData as SchoolData,
   mitData as SchoolData,

@@ -31,6 +31,7 @@ A data visualization dashboard for comparing colleges using Common Data Set (CDS
 | Duke University | 2016-2025 | 9 years |
 | Emory University | 2017-2025 | 8 years |
 | Georgia Institute of Technology | 2016-2026 | 10 years |
+| Georgetown University | 2016-2025 | 8 years |
 | Harvard University | 2016-2025 | 9 years |
 | Johns Hopkins University | 2016-2025 | 9 years |
 | Massachusetts Institute of Technology (MIT) | 2016-2025 | 9 years |

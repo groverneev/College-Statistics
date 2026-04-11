@@ -77,6 +77,7 @@ const SCHOOL_ALIASES: Record<string, string[]> = {
     "GaTech",
     "GT",
   ],
+  georgetown: ["Georgetown", "Georgetown University", "GU"],
   harvard: ["Harvard"],
   johnshopkins: ["JHU", "Johns Hopkins", "Johns Hopkins University", "Hopkins"],
   northeastern: ["Northeastern", "Northeastern University", "NEU"],
