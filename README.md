@@ -50,6 +50,7 @@ A data visualization dashboard for comparing colleges using Common Data Set (CDS
 | University of Illinois Urbana-Champaign (UIUC) | 2016-2025 | 9 years |
 | University of Michigan Ann Arbor | 2016-2025 | 9 years |
 | University of Pennsylvania (UPenn) | 2016-2025 | 9 years |
+| University of Pittsburgh | 2017-2025 | 8 years |
 | University of Southern California (USC) | 2016-2025 | 9 years |
 | University of Washington | 2018-2026 | 8 years |
 | The University of Texas at Austin | 2016-2025 | 9 years |

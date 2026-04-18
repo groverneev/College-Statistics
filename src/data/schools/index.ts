@@ -35,6 +35,7 @@ import uiucData from "./uiuc.json";
 import umichData from "./umich.json";
 import uncChapelHillData from "./uncchapelhill.json";
 import upennData from "./upenn.json";
+import universityPittsburghData from "./universitypittsburgh.json";
 import uscData from "./usc.json";
 import utexasaustinData from "./utexasaustin.json";
 import uvaData from "./uva.json";
@@ -86,6 +87,7 @@ export const allSchools: SchoolData[] = [
   uncChapelHillData as SchoolData,
   umichData as SchoolData,
   upennData as SchoolData,
+  universityPittsburghData as SchoolData,
   uscData as SchoolData,
   uwmadisonData as SchoolData,
   uwashingtonData as SchoolData,

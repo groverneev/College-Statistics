@@ -166,6 +166,7 @@ export const SCHOOL_COLORS: Record<string, string> = {
   georgetown: "#041E42",
   umich: "#00274C",
   johnshopkins: "#002D72",
+  universitypittsburgh: "#003594",
   vanderbilt: "#866D4B",
   ucberkeley: "#003262",
   uchicago: "#800000",

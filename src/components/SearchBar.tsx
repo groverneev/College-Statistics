@@ -106,6 +106,14 @@ const SCHOOL_ALIASES: Record<string, string[]> = {
     "University of Michigan Ann Arbor",
     "UM Ann Arbor",
   ],
+  universitypittsburgh: [
+    "Pitt",
+    "University of Pittsburgh",
+    "Pittsburgh",
+    "Pittsburgh Campus",
+    "UPitt",
+    "U Pitt",
+  ],
   uwmadison: [
     "UW Madison",
     "UW-Madison",
