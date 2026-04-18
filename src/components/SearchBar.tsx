@@ -32,6 +32,13 @@ const SCHOOL_ALIASES: Record<string, string[]> = {
     "University of California, Davis",
     "Davis",
   ],
+  ucsb: [
+    "UCSB",
+    "UC Santa Barbara",
+    "University of California Santa Barbara",
+    "University of California, Santa Barbara",
+    "Santa Barbara",
+  ],
   ucsandiego: [
     "UCSD",
     "UC San Diego",
@@ -46,6 +53,7 @@ const SCHOOL_ALIASES: Record<string, string[]> = {
     "University of California, Irvine",
     "Irvine",
   ],
+  uflorida: ["UF", "UFlorida", "U of F", "Florida", "University of Florida"],
   uiuc: [
     "UIUC",
     "University of Illinois Urbana-Champaign",
@@ -116,6 +124,14 @@ const SCHOOL_ALIASES: Record<string, string[]> = {
   ],
   uva: ["UVA", "University of Virginia", "Virginia", "U. Virginia"],
   vanderbilt: ["Vanderbilt", "Vandy", "Vanderbilt University"],
+  washu: [
+    "WashU",
+    "Wash U",
+    "WUSTL",
+    "Washington University",
+    "Washington University in St. Louis",
+    "Washington University in St Louis",
+  ],
   yale: ["Yale"],
 };
 

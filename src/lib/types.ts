@@ -146,8 +146,10 @@ export const SCHOOL_COLORS: Record<string, string> = {
   caltech: "#FF6C0C",
   ucla: "#2774AE",
   ucdavis: "#022851",
+  ucsb: "#003660",
   ucsandiego: "#182B49",
   uci: "#0064A4",
+  uflorida: "#0021A5",
   columbia: "#1D4F91",
   georgiatech: "#B3A369",
   uiuc: "#13294B",
@@ -173,4 +175,5 @@ export const SCHOOL_COLORS: Record<string, string> = {
   uwashington: "#4B2E83",
   utexasaustin: "#BF5700",
   uva: "#232D4B",
+  washu: "#A51417",
 };

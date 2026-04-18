@@ -28,6 +28,8 @@ import ucberkeleyData from "./ucberkeley.json";
 import ucdavisData from "./ucdavis.json";
 import uchicagoData from "./uchicago.json";
 import uciData from "./uci.json";
+import ufloridaData from "./uflorida.json";
+import ucsbData from "./ucsb.json";
 import ucsanDiegoData from "./ucsandiego.json";
 import uiucData from "./uiuc.json";
 import umichData from "./umich.json";
@@ -39,6 +41,7 @@ import uvaData from "./uva.json";
 import uwashingtonData from "./uwashington.json";
 import uwmadisonData from "./uwmadison.json";
 import vanderbiltData from "./vanderbilt.json";
+import washuData from "./washu.json";
 import yaleData from "./yale.json";
 
 export interface SearchableSchool {
@@ -74,9 +77,11 @@ export const allSchools: SchoolData[] = [
   uclaData as SchoolData,
   ucberkeleyData as SchoolData,
   ucdavisData as SchoolData,
+  ucsbData as SchoolData,
   ucsanDiegoData as SchoolData,
   uciData as SchoolData,
   uchicagoData as SchoolData,
+  ufloridaData as SchoolData,
   uiucData as SchoolData,
   uncChapelHillData as SchoolData,
   umichData as SchoolData,
@@ -87,6 +92,7 @@ export const allSchools: SchoolData[] = [
   utexasaustinData as SchoolData,
   uvaData as SchoolData,
   vanderbiltData as SchoolData,
+  washuData as SchoolData,
   yaleData as SchoolData,
 ];
 
