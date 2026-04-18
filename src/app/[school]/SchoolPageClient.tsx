@@ -1,5 +1,6 @@
 "use client";
 
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { AdmissionsFactorImportance, SchoolData } from "@/lib/types";
 import { formatNumber, formatPercent } from "@/utils/dataHelpers";
@@ -36,6 +37,9 @@ export default function SchoolPageClient({
   schoolData,
   schoolColor,
 }: SchoolPageClientProps) {
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
+
   const years = Object.keys(schoolData.years).sort();
   const latestYear = years[years.length - 1];
   const latestData = schoolData.years[latestYear];
@@ -144,31 +148,35 @@ export default function SchoolPageClient({
 
         {/* Charts */}
         <div className="space-y-6">
-          <AdmissionsTrendChart
-            yearData={schoolData.years}
-            schoolColor={schoolColor}
-          />
+          {mounted && (
+            <>
+              <AdmissionsTrendChart
+                yearData={schoolData.years}
+                schoolColor={schoolColor}
+              />
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-            <TestScoresTrendChart
-              yearData={schoolData.years}
-              schoolColor={schoolColor}
-            />
-            <FinancialAidTrendChart
-              yearData={schoolData.years}
-              schoolColor={schoolColor}
-            />
-          </div>
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <TestScoresTrendChart
+                  yearData={schoolData.years}
+                  schoolColor={schoolColor}
+                />
+                <FinancialAidTrendChart
+                  yearData={schoolData.years}
+                  schoolColor={schoolColor}
+                />
+              </div>
 
-          <CostsTrendChart
-            yearData={schoolData.years}
-            schoolColor={schoolColor}
-          />
+              <CostsTrendChart
+                yearData={schoolData.years}
+                schoolColor={schoolColor}
+              />
 
-          <DemographicsTrendChart
-            yearData={schoolData.years}
-            schoolColor={schoolColor}
-          />
+              <DemographicsTrendChart
+                yearData={schoolData.years}
+                schoolColor={schoolColor}
+              />
+            </>
+          )}
 
           {admissionsFactors && (
             <div className="card p-6" style={{ backgroundColor: "#ffffff" }}>
@@ -186,7 +194,45 @@ export default function SchoolPageClient({
                 </div>
               </div>
 
-              <div className="overflow-x-auto">
+              {/* Mobile: 2-column layout (factor + rating label) */}
+              <div className="md:hidden">
+                <table className="data-table compact w-full">
+                  <thead>
+                    <tr>
+                      <th style={{ textAlign: "left" }}>Factor</th>
+                      <th style={{ textAlign: "right" }}>Rating</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {[
+                      { label: "Academic", rows: academicFactors },
+                      { label: "Nonacademic", rows: nonacademicFactors },
+                    ].map(({ label, rows }) => (
+                      <React.Fragment key={`mobile-group-${label}`}>
+                        <tr style={{ backgroundColor: `${schoolColor}18`, borderTop: `2px solid ${schoolColor}40` }}>
+                          <td
+                            colSpan={2}
+                            style={{ fontWeight: 700, fontSize: "0.7rem", letterSpacing: "0.08em", textTransform: "uppercase", color: schoolColor }}
+                          >
+                            {label}
+                          </td>
+                        </tr>
+                        {rows.map(([rowLabel, importance]) => (
+                          <tr key={`mobile-${label}-${rowLabel}`}>
+                            <td style={{ textAlign: "left" }}>{rowLabel}</td>
+                            <td style={{ textAlign: "right", color: schoolColor, fontWeight: 500, fontSize: "0.8rem", whiteSpace: "nowrap" }}>
+                              {IMPORTANCE_LABELS[importance]}
+                            </td>
+                          </tr>
+                        ))}
+                      </React.Fragment>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+
+              {/* Desktop: full checkmark grid */}
+              <div className="hidden md:block overflow-x-auto">
                 <table className="data-table compact" style={{ tableLayout: "fixed" }}>
                   <colgroup>
                     <col style={{ width: "40%" }} />
@@ -208,14 +254,7 @@ export default function SchoolPageClient({
                     <tr style={{ backgroundColor: `${schoolColor}18`, borderTop: `2px solid ${schoolColor}40` }}>
                       <td
                         colSpan={5}
-                        style={{
-                          textAlign: "left",
-                          fontWeight: 700,
-                          fontSize: "0.7rem",
-                          letterSpacing: "0.08em",
-                          textTransform: "uppercase",
-                          color: schoolColor,
-                        }}
+                        style={{ textAlign: "left", fontWeight: 700, fontSize: "0.7rem", letterSpacing: "0.08em", textTransform: "uppercase", color: schoolColor }}
                       >
                         Academic
                       </td>
@@ -236,14 +275,7 @@ export default function SchoolPageClient({
                     <tr style={{ backgroundColor: `${schoolColor}18`, borderTop: `2px solid ${schoolColor}40` }}>
                       <td
                         colSpan={5}
-                        style={{
-                          textAlign: "left",
-                          fontWeight: 700,
-                          fontSize: "0.7rem",
-                          letterSpacing: "0.08em",
-                          textTransform: "uppercase",
-                          color: schoolColor,
-                        }}
+                        style={{ textAlign: "left", fontWeight: 700, fontSize: "0.7rem", letterSpacing: "0.08em", textTransform: "uppercase", color: schoolColor }}
                       >
                         Nonacademic
                       </td>
