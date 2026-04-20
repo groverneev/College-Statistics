@@ -91,6 +91,13 @@ const SCHOOL_ALIASES: Record<string, string[]> = {
   northeastern: ["Northeastern", "Northeastern University", "NEU"],
   notredame: ["Notre Dame", "University of Notre Dame", "ND"],
   nyu: ["NYU", "New York University"],
+  ohiostate: [
+    "OSU",
+    "Ohio State",
+    "Ohio State University",
+    "The Ohio State University",
+    "tOSU",
+  ],
   northwestern: ["NU", "Northwestern"],
   princeton: ["Princeton"],
   rice: ["Rice", "Rice University", "William Marsh Rice University"],

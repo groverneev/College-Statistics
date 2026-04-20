@@ -18,6 +18,7 @@ import northeasternData from "./northeastern.json";
 import northwesternData from "./northwestern.json";
 import notreDameData from "./notredame.json";
 import nyuData from "./nyu.json";
+import ohioStateData from "./ohiostate.json";
 import princetonData from "./princeton.json";
 import purdueData from "./purdue.json";
 import riceData from "./rice.json";
@@ -70,6 +71,7 @@ export const allSchools: SchoolData[] = [
   northwesternData as SchoolData,
   notreDameData as SchoolData,
   nyuData as SchoolData,
+  ohioStateData as SchoolData,
   princetonData as SchoolData,
   riceData as SchoolData,
   purdueData as SchoolData,

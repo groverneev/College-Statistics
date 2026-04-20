@@ -159,6 +159,7 @@ export const SCHOOL_COLORS: Record<string, string> = {
   notredame: "#0C2340",
   nyu: "#57068C",
   northwestern: "#4E2A84",
+  ohiostate: "#BB0000",
   purdue: "#CFB991",
   rice: "#00205B",
   duke: "#012169",
