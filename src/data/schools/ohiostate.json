@@ -3,8 +3,8 @@
   "slug": "ohiostate",
   "profile": {
     "admissionsFactors": {
-      "sourceYear": "2023-2024",
-      "sourcePdf": "College-Data/Ohio-State/2023-24 Ohio State University.pdf",
+      "sourceYear": "2024-2025",
+      "sourcePdf": "College-Data/Ohio-State/CDS-2024-2025-The-Ohio-State-University-Columbus.pdf",
       "section": "C7",
       "academic": {
         "rigorOfSecondarySchoolRecord": "very_important",
@@ -189,7 +189,7 @@
           "unknown": 1338
         },
         "byResidency": {
-          "inState": 35553,
+          "inState": 35453,
           "outOfState": 8216,
           "international": 3215
         }
@@ -308,6 +308,150 @@
         "totalCOA": 26451
       },
       "financialAid": {}
+    },
+    "2023-2024": {
+      "admissions": {
+        "applied": 70028,
+        "admitted": 35588,
+        "enrolled": 8062,
+        "acceptanceRate": 0.5082,
+        "yield": 0.2265
+      },
+      "testScores": {
+        "sat": {
+          "composite": {
+            "p25": 1290,
+            "p50": 1360,
+            "p75": 1440
+          },
+          "readingWriting": {
+            "p25": 620,
+            "p50": 670,
+            "p75": 710
+          },
+          "math": {
+            "p25": 640,
+            "p50": 700,
+            "p75": 750
+          },
+          "submissionRate": 0.21
+        },
+        "act": {
+          "composite": {
+            "p25": 27,
+            "p50": 30,
+            "p75": 32
+          },
+          "submissionRate": 0.46
+        }
+      },
+      "demographics": {
+        "enrollment": {
+          "total": 60046,
+          "undergraduate": 45728,
+          "graduate": 14318
+        },
+        "byRace": {
+          "international": 3238,
+          "hispanicLatino": 2580,
+          "blackAfricanAmerican": 3649,
+          "white": 28139,
+          "americanIndianAlaskaNative": 26,
+          "asian": 4569,
+          "nativeHawaiianPacificIslander": 21,
+          "twoOrMoreRaces": 2108,
+          "unknown": 1398
+        },
+        "byResidency": {
+          "inState": 33652,
+          "outOfState": 8838,
+          "international": 3238
+        }
+      },
+      "costs": {
+        "tuition": 13244,
+        "fees": 0,
+        "roomAndBoard": 14810,
+        "totalCOA": 28054
+      },
+      "financialAid": {
+        "percentReceivingAid": 0.4279,
+        "averageAidPackage": 18536,
+        "averageNeedBasedGrant": 16203,
+        "percentNeedFullyMet": 0.2667
+      }
+    },
+    "2024-2025": {
+      "admissions": {
+        "applied": 72829,
+        "admitted": 44116,
+        "enrolled": 9607,
+        "acceptanceRate": 0.6057,
+        "yield": 0.2178
+      },
+      "testScores": {
+        "sat": {
+          "composite": {
+            "p25": 1280,
+            "p50": 1360,
+            "p75": 1430
+          },
+          "readingWriting": {
+            "p25": 620,
+            "p50": 670,
+            "p75": 710
+          },
+          "math": {
+            "p25": 640,
+            "p50": 700,
+            "p75": 740
+          },
+          "submissionRate": 0.24
+        },
+        "act": {
+          "composite": {
+            "p25": 26,
+            "p50": 29,
+            "p75": 32
+          },
+          "submissionRate": 0.4
+        }
+      },
+      "demographics": {
+        "enrollment": {
+          "total": 61443,
+          "undergraduate": 46815,
+          "graduate": 14628
+        },
+        "byRace": {
+          "international": 3564,
+          "hispanicLatino": 2699,
+          "blackAfricanAmerican": 3735,
+          "white": 27832,
+          "americanIndianAlaskaNative": 27,
+          "asian": 5145,
+          "nativeHawaiianPacificIslander": 20,
+          "twoOrMoreRaces": 2266,
+          "unknown": 1527
+        },
+        "byResidency": {
+          "inState": 33736,
+          "outOfState": 9515,
+          "international": 3564
+        }
+      },
+      "costs": {
+        "tuition": 13641,
+        "fees": 0,
+        "roomAndBoard": 15252,
+        "totalCOA": 28893
+      },
+      "financialAid": {
+        "percentReceivingAid": 0.3849,
+        "averageAidPackage": 20876,
+        "averageNeedBasedGrant": 17144,
+        "percentNeedFullyMet": 0.3409
+      }
     }
   }
 }
