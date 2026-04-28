@@ -1,6 +1,9 @@
 # Colleges
 /College-Data/
 
+# UC Data
+/uc-data/
+
 # Dependencies
 /node_modules
 /.pnp
