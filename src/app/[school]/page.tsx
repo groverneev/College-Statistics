@@ -1,3 +1,4 @@
+import { notFound } from "next/navigation";
 import { SCHOOL_COLORS } from "@/lib/types";
 import { schoolDataMap } from "@/data/schools";
 import SchoolPageClient from "./SchoolPageClient";
@@ -19,19 +20,7 @@ export default async function SchoolPage({ params }: PageProps) {
   const schoolData = schoolDataMap[schoolSlug];
 
   if (!schoolData) {
-    return (
-      <div className="text-center py-12">
-        <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
-          School Not Found
-        </h1>
-        <p className="text-gray-500">
-          Data for &quot;{school}&quot; is not available yet.
-        </p>
-        <a href="/" className="text-blue-500 hover:underline mt-4 inline-block">
-          Back to home
-        </a>
-      </div>
-    );
+    notFound();
   }
 
   const schoolColor = SCHOOL_COLORS[schoolData.slug] || "#4B5563";

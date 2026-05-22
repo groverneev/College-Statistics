@@ -1,6 +1,36 @@
 {
   "name": "University of California, San Diego",
   "slug": "ucsandiego",
+  "profile": {
+    "admissionsFactors": {
+      "sourceYear": "2025-2026",
+      "sourcePdf": "College-Data/UCSanDiego/CDS_2024-2025_Final1.pdf",
+      "section": "C7",
+      "academic": {
+        "rigorOfSecondarySchoolRecord": "very_important",
+        "classRank": "considered",
+        "academicGpa": "very_important",
+        "standardizedTestScores": "not_considered",
+        "applicationEssay": "very_important",
+        "recommendations": "not_considered"
+      },
+      "nonacademic": {
+        "interview": "not_considered",
+        "extracurricularActivities": "important",
+        "talentAbility": "important",
+        "characterPersonalQualities": "important",
+        "firstGeneration": "considered",
+        "alumniRelation": "not_considered",
+        "geographicalResidence": "considered",
+        "stateResidency": "important",
+        "religiousAffiliationCommitment": "not_considered",
+        "volunteerWork": "important",
+        "workExperience": "considered",
+        "levelOfApplicantsInterest": "not_considered"
+      },
+      "notes": "The local source PDF filename is `CDS_2024-2025_Final1.pdf`, but the document header is labeled `Common Data Set 2025-2026`."
+    }
+  },
   "years": {
     "2016-2017": {
       "admissions": {

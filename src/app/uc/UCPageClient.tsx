@@ -292,8 +292,10 @@ export default function UCPageClient({ dataByYear, availableYears }: Props) {
   // Compare mode state
   const [compareACode, setCompareACode] = useState("UCB");
   const [compareADisc, setCompareADisc] = useState<UCDiscipline | "All">("All");
+  const [compareAYear, setCompareAYear] = useState(availableYears[0]);
   const [compareBCode, setCompareBCode] = useState("UCLA");
   const [compareBDisc, setCompareBDisc] = useState<UCDiscipline | "All">("All");
+  const [compareBYear, setCompareBYear] = useState(availableYears[0]);
 
   const yearData = dataByYear[selectedYear];
   const campusCodes = UC_CAMPUS_ORDER.filter(c => yearData.campuses[c]);
@@ -307,12 +309,17 @@ export default function UCPageClient({ dataByYear, availableYears }: Props) {
   const colorB = UC_CAMPUS_COLORS[compareBCode] ?? "#2D68C4";
   const exploreColor = UC_CAMPUS_COLORS[exploreCampus] ?? "#003262";
 
+  const yearDataA = dataByYear[compareAYear];
+  const yearDataB = dataByYear[compareBYear];
+  const campusCodesA = UC_CAMPUS_ORDER.filter(c => yearDataA.campuses[c]);
+  const campusCodesB = UC_CAMPUS_ORDER.filter(c => yearDataB.campuses[c]);
+
   // Available disciplines for compare selectors
-  const discA = yearData.campuses[compareACode]
-    ? (Object.keys(yearData.campuses[compareACode].disciplines) as UCDiscipline[]).sort()
+  const discA = yearDataA.campuses[compareACode]
+    ? (Object.keys(yearDataA.campuses[compareACode].disciplines) as UCDiscipline[]).sort()
     : [];
-  const discB = yearData.campuses[compareBCode]
-    ? (Object.keys(yearData.campuses[compareBCode].disciplines) as UCDiscipline[]).sort()
+  const discB = yearDataB.campuses[compareBCode]
+    ? (Object.keys(yearDataB.campuses[compareBCode].disciplines) as UCDiscipline[]).sort()
     : [];
 
   const selectClass =
@@ -322,12 +329,9 @@ export default function UCPageClient({ dataByYear, availableYears }: Props) {
     <div className="min-h-screen" style={{ background: "#f5f5f5" }}>
       {/* Hero */}
       <div className="bg-gradient-to-r from-gray-800 to-gray-900 py-14 px-4 text-center text-white">
-        <div className="inline-flex items-center gap-2 text-xs font-medium px-3 py-1 bg-white/10 rounded-full mb-4">
-          UC System · {yearData.fallTerm}
-        </div>
         <h1 className="text-3xl md:text-4xl font-bold mb-3">UC Campus Explorer</h1>
         <p className="text-gray-300 text-lg max-w-2xl mx-auto">
-          Admissions data across all 9 UC campuses — by campus, by discipline, or side-by-side.
+          Admissions data across all 9 UC campuses
         </p>
       </div>
 
@@ -352,8 +356,8 @@ export default function UCPageClient({ dataByYear, availableYears }: Props) {
             ))}
           </div>
 
-          {/* Year selector */}
-          {availableYears.length > 1 && (
+          {/* Year selector — only in explore mode */}
+          {availableYears.length > 1 && mode === "explore" && (
             <select
               className={selectClass}
               value={selectedYear}
@@ -531,10 +535,19 @@ export default function UCPageClient({ dataByYear, availableYears }: Props) {
                 <div className="flex flex-col gap-2">
                   <select
                     className={selectClass}
+                    value={compareAYear}
+                    onChange={e => setCompareAYear(Number(e.target.value))}
+                  >
+                    {availableYears.map(y => (
+                      <option key={y} value={y}>Fall {y}</option>
+                    ))}
+                  </select>
+                  <select
+                    className={selectClass}
                     value={compareACode}
                     onChange={e => { setCompareACode(e.target.value); setCompareADisc("All"); }}
                   >
-                    {campusCodes.map(c => (
+                    {campusCodesA.map(c => (
                       <option key={c} value={c}>{UC_CAMPUS_NAMES[c]}</option>
                     ))}
                   </select>
@@ -554,10 +567,19 @@ export default function UCPageClient({ dataByYear, availableYears }: Props) {
                 <div className="flex flex-col gap-2">
                   <select
                     className={selectClass}
+                    value={compareBYear}
+                    onChange={e => setCompareBYear(Number(e.target.value))}
+                  >
+                    {availableYears.map(y => (
+                      <option key={y} value={y}>Fall {y}</option>
+                    ))}
+                  </select>
+                  <select
+                    className={selectClass}
                     value={compareBCode}
                     onChange={e => { setCompareBCode(e.target.value); setCompareBDisc("All"); }}
                   >
-                    {campusCodes.map(c => (
+                    {campusCodesB.map(c => (
                       <option key={c} value={c}>{UC_CAMPUS_NAMES[c]}</option>
                     ))}
                   </select>
@@ -577,7 +599,7 @@ export default function UCPageClient({ dataByYear, availableYears }: Props) {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="card p-6">
                 <CampusPanel
-                  yearData={yearData}
+                  yearData={yearDataA}
                   campusCode={compareACode}
                   discipline={compareADisc}
                   color={colorA}
@@ -585,7 +607,7 @@ export default function UCPageClient({ dataByYear, availableYears }: Props) {
               </div>
               <div className="card p-6">
                 <CampusPanel
-                  yearData={yearData}
+                  yearData={yearDataB}
                   campusCode={compareBCode}
                   discipline={compareBDisc}
                   color={colorB}
@@ -597,12 +619,12 @@ export default function UCPageClient({ dataByYear, availableYears }: Props) {
             {(() => {
               const dA =
                 compareADisc === "All"
-                  ? yearData.campuses[compareACode]?.overall
-                  : yearData.campuses[compareACode]?.disciplines[compareADisc as UCDiscipline];
+                  ? yearDataA.campuses[compareACode]?.overall
+                  : yearDataA.campuses[compareACode]?.disciplines[compareADisc as UCDiscipline];
               const dB =
                 compareBDisc === "All"
-                  ? yearData.campuses[compareBCode]?.overall
-                  : yearData.campuses[compareBCode]?.disciplines[compareBDisc as UCDiscipline];
+                  ? yearDataB.campuses[compareBCode]?.overall
+                  : yearDataB.campuses[compareBCode]?.disciplines[compareBDisc as UCDiscipline];
               if (!dA || !dB) return null;
               const arA = admitRate(dA);
               const arB = admitRate(dB);
@@ -638,7 +660,7 @@ export default function UCPageClient({ dataByYear, availableYears }: Props) {
         )}
 
         <p className="text-xs text-gray-400 text-center mt-8">
-          Source: UC Information Center · Fall {selectedYear} · GPA is UC-calculated (may exceed 4.0 with honors courses)
+          Source: UC Information Center · {mode === "compare" ? `Fall ${compareAYear} / Fall ${compareBYear}` : `Fall ${selectedYear}`} · GPA is UC-calculated (may exceed 4.0 with honors courses)
         </p>
       </div>
     </div>
