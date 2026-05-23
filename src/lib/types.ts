@@ -134,6 +134,7 @@ export interface SchoolInfo {
 
 export const SCHOOL_COLORS: Record<string, string> = {
   brown: "#4E3629",
+  bostoncollege: "#98002E",
   bostonuniversity: "#CC0000",
   harvard: "#A51C30",
   yale: "#00356B",
@@ -144,6 +145,7 @@ export const SCHOOL_COLORS: Record<string, string> = {
   stanford: "#8C1515",
   tufts: "#3E8EDE",
   caltech: "#FF6C0C",
+  casewesternreserve: "#0C2340",
   ucla: "#2774AE",
   ucdavis: "#022851",
   ucsb: "#003660",
@@ -160,8 +162,10 @@ export const SCHOOL_COLORS: Record<string, string> = {
   nyu: "#57068C",
   northwestern: "#4E2A84",
   ohiostate: "#BB0000",
+  pennstate: "#001E44",
   purdue: "#CFB991",
   rice: "#00205B",
+  rutgersnewbrunswick: "#CC0033",
   duke: "#012169",
   emory: "#012169",
   georgetown: "#041E42",
@@ -178,4 +182,5 @@ export const SCHOOL_COLORS: Record<string, string> = {
   utexasaustin: "#BF5700",
   uva: "#232D4B",
   washu: "#A51417",
+  wakeforest: "#9E7E38",
 };

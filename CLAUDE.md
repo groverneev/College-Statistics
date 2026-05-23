@@ -6,6 +6,8 @@
 
 > **DATA RULE:** Never invent data. If extraction is incomplete, verify against official institutional sources and keep definitions consistent within a school's time series. Feel free to use web searches if local PDFs are incomplete or ambiguous.
 
+> **SOURCE DISCOVERY:** When official school CDS links are stale or hard to find, check the College Transitions Common Data Set Repository first as a discovery index, then download and verify the actual linked CDS file before using it in the dataset.
+
 > **DEPENDENCIES:** If extra local tooling is needed, tell the user exactly what to install instead of assuming it is available or trying to work around missing packages silently.
 
 > **PATCH SIZE:** Prefer smaller, staged edits over sweeping all-at-once patches. Large multi-file changes may get rejected by the editing tool, so break them into focused chunks when implementing bigger features.
@@ -119,6 +121,8 @@ Each year manifest includes:
 Recommended operator flow:
 
 1. Add new CDS PDFs to `College-Data/<School>/`.
+   - If the school's official archive is incomplete or broken, use the College Transitions Common Data Set Repository as a discovery aid for missing CDS files:
+     `https://www.collegetransitions.com/dataverse/common-data-set-repository/`
 2. Run `python -m cds_pipeline prepare <school-or-path>`.
 3. Inspect `.cds_pipeline/<slug>/school_manifest.json` and the per-year manifests.
 4. Give one year's manifest and screenshots to one Codex subagent.

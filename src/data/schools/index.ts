@@ -1,8 +1,10 @@
 import { SchoolData } from "@/lib/types";
 
+import bostonCollegeData from "./bostoncollege.json";
 import bostonUniversityData from "./bostonuniversity.json";
 import brownData from "./brown.json";
 import caltechData from "./caltech.json";
+import caseWesternReserveData from "./casewesternreserve.json";
 import cmuData from "./cmu.json";
 import columbiaData from "./columbia.json";
 import cornellData from "./cornell.json";
@@ -19,9 +21,11 @@ import northwesternData from "./northwestern.json";
 import notreDameData from "./notredame.json";
 import nyuData from "./nyu.json";
 import ohioStateData from "./ohiostate.json";
+import pennStateData from "./pennstate.json";
 import princetonData from "./princeton.json";
 import purdueData from "./purdue.json";
 import riceData from "./rice.json";
+import rutgersNewBrunswickData from "./rutgersnewbrunswick.json";
 import stanfordData from "./stanford.json";
 import tuftsData from "./tufts.json";
 import uclaData from "./ucla.json";
@@ -43,6 +47,7 @@ import uvaData from "./uva.json";
 import uwashingtonData from "./uwashington.json";
 import uwmadisonData from "./uwmadison.json";
 import vanderbiltData from "./vanderbilt.json";
+import wakeForestData from "./wakeforest.json";
 import washuData from "./washu.json";
 import yaleData from "./yale.json";
 
@@ -53,9 +58,11 @@ export interface SearchableSchool {
 }
 
 export const allSchools: SchoolData[] = [
+  bostonCollegeData as SchoolData,
   bostonUniversityData as SchoolData,
   brownData as SchoolData,
   caltechData as SchoolData,
+  caseWesternReserveData as SchoolData,
   cmuData as SchoolData,
   columbiaData as SchoolData,
   cornellData as SchoolData,
@@ -72,9 +79,11 @@ export const allSchools: SchoolData[] = [
   notreDameData as SchoolData,
   nyuData as SchoolData,
   ohioStateData as SchoolData,
+  pennStateData as SchoolData,
   princetonData as SchoolData,
   riceData as SchoolData,
   purdueData as SchoolData,
+  rutgersNewBrunswickData as SchoolData,
   stanfordData as SchoolData,
   tuftsData as SchoolData,
   uclaData as SchoolData,
@@ -96,6 +105,7 @@ export const allSchools: SchoolData[] = [
   utexasaustinData as SchoolData,
   uvaData as SchoolData,
   vanderbiltData as SchoolData,
+  wakeForestData as SchoolData,
   washuData as SchoolData,
   yaleData as SchoolData,
 ];

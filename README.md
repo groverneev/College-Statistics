@@ -22,9 +22,11 @@ A data visualization dashboard for comparing colleges using Common Data Set (CDS
 
 | School | Years | Data Points |
 |--------|-------|-------------|
+| Boston College | 2017-2025 | 8 years |
 | Boston University | 2016-2025 | 9 years |
 | Brown University | 2016-2025 | 9 years |
 | California Institute of Technology (Caltech) | 2016-2025 | 9 years |
+| Case Western Reserve University | 2024-2025 | 1 year |
 | Carnegie Mellon University (CMU) | 2016-2025 | 9 years |
 | Columbia University | 2016-2025 | 9 years |
 | Cornell University | 2017-2025 | 8 years |
@@ -39,9 +41,11 @@ A data visualization dashboard for comparing colleges using Common Data Set (CDS
 | Northeastern University | 2016-2025 | 9 years |
 | New York University (NYU) | 2017-2025 | 8 years |
 | Northwestern University | 2016-2025 | 9 years |
+| Penn State University Park | 2020-2025 | 5 years |
 | Princeton University | 2016-2025 | 9 years |
 | Rice University | 2016-2025 | 9 years |
 | Purdue University | 2016-2026 | 10 years |
+| Rutgers University-New Brunswick | 2016-2024 | 8 years |
 | Stanford University | 2016-2025 | 9 years |
 | UCLA | 2017-2025 | 8 years |
 | University of California, Berkeley (UC Berkeley) | 2016-2025 | 9 years |
@@ -56,6 +60,7 @@ A data visualization dashboard for comparing colleges using Common Data Set (CDS
 | The University of Texas at Austin | 2016-2025 | 9 years |
 | University of Virginia | 2019-2025 | 6 years |
 | Vanderbilt University | 2016-2025 | 9 years |
+| Wake Forest University | 2016-2025 | 9 years |
 | Washington University in St. Louis | 2016-2025 | 9 years |
 | Yale University | 2016-2025 | 9 years |
 
