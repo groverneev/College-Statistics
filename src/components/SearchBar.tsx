@@ -16,6 +16,7 @@ interface SearchBarProps {
 
 const SCHOOL_ALIASES: Record<string, string[]> = {
   mit: ["MIT", "Massachusetts Institute of Technology"],
+  miami: ["Miami", "University of Miami", "UM", "The U"],
   upenn: ["UPenn", "Penn", "U Penn", "University of Pennsylvania"],
   caltech: ["Caltech", "Cal Tech", "CIT"],
   cmu: ["CMU", "Carnegie Mellon", "Carnegie-Mellon"],
@@ -114,6 +115,7 @@ const SCHOOL_ALIASES: Record<string, string[]> = {
   northwestern: ["NU", "Northwestern"],
   princeton: ["Princeton"],
   rice: ["Rice", "Rice University", "William Marsh Rice University"],
+  rochester: ["Rochester", "University of Rochester", "UR"],
   purdue: ["Purdue", "Purdue University", "Purdue West Lafayette"],
   rutgersnewbrunswick: [
     "Rutgers",
@@ -123,7 +125,16 @@ const SCHOOL_ALIASES: Record<string, string[]> = {
   ],
   stanford: ["Stanford"],
   tufts: ["Tufts", "Tufts University"],
+  tulane: ["Tulane", "Tulane University"],
   uchicago: ["UChicago", "University of Chicago", "Chicago"],
+  umd: [
+    "UMD",
+    "Maryland",
+    "College Park",
+    "University of Maryland",
+    "University of Maryland College Park",
+    "University of Maryland, College Park",
+  ],
   umich: [
     "UMich",
     "U-M",
@@ -166,6 +177,12 @@ const SCHOOL_ALIASES: Record<string, string[]> = {
     "Washington University",
     "Washington University in St. Louis",
     "Washington University in St Louis",
+  ],
+  williamandmary: [
+    "William and Mary",
+    "William & Mary",
+    "W&M",
+    "William Mary",
   ],
   yale: ["Yale"],
 };

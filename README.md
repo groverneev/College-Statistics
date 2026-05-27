@@ -38,20 +38,24 @@ A data visualization dashboard for comparing colleges using Common Data Set (CDS
 | Harvard University | 2016-2025 | 9 years |
 | Johns Hopkins University | 2016-2025 | 9 years |
 | Massachusetts Institute of Technology (MIT) | 2016-2025 | 9 years |
+| University of Miami | 2022-2025 | 3 years |
 | Northeastern University | 2016-2025 | 9 years |
 | New York University (NYU) | 2017-2025 | 8 years |
 | Northwestern University | 2016-2025 | 9 years |
 | Penn State University Park | 2020-2025 | 5 years |
 | Princeton University | 2016-2025 | 9 years |
 | Rice University | 2016-2025 | 9 years |
+| University of Rochester | 2024-2026 | 2 years |
 | Purdue University | 2016-2026 | 10 years |
 | Rutgers University-New Brunswick | 2016-2024 | 8 years |
 | Stanford University | 2016-2025 | 9 years |
+| Tulane University | 2022-2026 | 4 years |
 | UCLA | 2017-2025 | 8 years |
 | University of California, Berkeley (UC Berkeley) | 2016-2025 | 9 years |
 | University of California, Irvine (UCI) | 2016-2025 | 9 years |
 | University of Chicago (UChicago) | 2021-2025 | 4 years |
 | University of Illinois Urbana-Champaign (UIUC) | 2016-2025 | 9 years |
+| University of Maryland, College Park (UMD) | 2016-2026 | 10 years |
 | University of Michigan Ann Arbor | 2016-2025 | 9 years |
 | University of Pennsylvania (UPenn) | 2016-2025 | 9 years |
 | University of Pittsburgh | 2017-2025 | 8 years |
@@ -62,6 +66,7 @@ A data visualization dashboard for comparing colleges using Common Data Set (CDS
 | Vanderbilt University | 2016-2025 | 9 years |
 | Wake Forest University | 2016-2025 | 9 years |
 | Washington University in St. Louis | 2016-2025 | 9 years |
+| William & Mary | 2017-2026 | 9 years |
 | Yale University | 2016-2025 | 9 years |
 
 ## Pages

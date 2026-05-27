@@ -16,6 +16,7 @@ import georgetownData from "./georgetown.json";
 import harvardData from "./harvard.json";
 import johnsHopkinsData from "./johnshopkins.json";
 import mitData from "./mit.json";
+import miamiData from "./miami.json";
 import northeasternData from "./northeastern.json";
 import northwesternData from "./northwestern.json";
 import notreDameData from "./notredame.json";
@@ -25,9 +26,11 @@ import pennStateData from "./pennstate.json";
 import princetonData from "./princeton.json";
 import purdueData from "./purdue.json";
 import riceData from "./rice.json";
+import rochesterData from "./rochester.json";
 import rutgersNewBrunswickData from "./rutgersnewbrunswick.json";
 import stanfordData from "./stanford.json";
 import tuftsData from "./tufts.json";
+import tulaneData from "./tulane.json";
 import uclaData from "./ucla.json";
 import ucberkeleyData from "./ucberkeley.json";
 import ucdavisData from "./ucdavis.json";
@@ -37,6 +40,7 @@ import ufloridaData from "./uflorida.json";
 import ucsbData from "./ucsb.json";
 import ucsanDiegoData from "./ucsandiego.json";
 import uiucData from "./uiuc.json";
+import umdData from "./umd.json";
 import umichData from "./umich.json";
 import uncChapelHillData from "./uncchapelhill.json";
 import upennData from "./upenn.json";
@@ -49,6 +53,7 @@ import uwmadisonData from "./uwmadison.json";
 import vanderbiltData from "./vanderbilt.json";
 import wakeForestData from "./wakeforest.json";
 import washuData from "./washu.json";
+import williamAndMaryData from "./williamandmary.json";
 import yaleData from "./yale.json";
 
 export interface SearchableSchool {
@@ -74,6 +79,7 @@ export const allSchools: SchoolData[] = [
   harvardData as SchoolData,
   johnsHopkinsData as SchoolData,
   mitData as SchoolData,
+  miamiData as SchoolData,
   northeasternData as SchoolData,
   northwesternData as SchoolData,
   notreDameData as SchoolData,
@@ -82,10 +88,12 @@ export const allSchools: SchoolData[] = [
   pennStateData as SchoolData,
   princetonData as SchoolData,
   riceData as SchoolData,
+  rochesterData as SchoolData,
   purdueData as SchoolData,
   rutgersNewBrunswickData as SchoolData,
   stanfordData as SchoolData,
   tuftsData as SchoolData,
+  tulaneData as SchoolData,
   uclaData as SchoolData,
   ucberkeleyData as SchoolData,
   ucdavisData as SchoolData,
@@ -95,6 +103,7 @@ export const allSchools: SchoolData[] = [
   uchicagoData as SchoolData,
   ufloridaData as SchoolData,
   uiucData as SchoolData,
+  umdData as SchoolData,
   uncChapelHillData as SchoolData,
   umichData as SchoolData,
   upennData as SchoolData,
@@ -107,6 +116,7 @@ export const allSchools: SchoolData[] = [
   vanderbiltData as SchoolData,
   wakeForestData as SchoolData,
   washuData as SchoolData,
+  williamAndMaryData as SchoolData,
   yaleData as SchoolData,
 ];
 
