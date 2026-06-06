@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
-import { useSession, signIn } from "next-auth/react";
+import { useSession } from "next-auth/react";
 import { useSavedSchools } from "@/components/SavedSchoolsContext";
 
 type Category = "REACH" | "TARGET" | "SAFETY" | "UNDECIDED";
@@ -25,7 +25,7 @@ export default function SaveSchoolButton({
   variant = "icon",
 }: SaveSchoolButtonProps) {
   const { data: session } = useSession();
-  const { isSaved, getCategory, saveSchool, removeSchool } = useSavedSchools();
+  const { isSaved, getCategory, saveSchool, removeSchool, promptSignIn } = useSavedSchools();
   const [popoverOpen, setPopoverOpen] = useState(false);
   const popoverRef = useRef<HTMLDivElement>(null);
 
@@ -47,7 +47,7 @@ export default function SaveSchoolButton({
     e.preventDefault();
     e.stopPropagation();
     if (!session) {
-      signIn("google");
+      promptSignIn();
       return;
     }
     setPopoverOpen(!popoverOpen);

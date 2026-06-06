@@ -2,6 +2,7 @@
 
 import { createContext, useContext, useEffect, useState, useCallback } from "react";
 import { useSession } from "next-auth/react";
+import SignInPrompt from "@/components/SignInPrompt";
 
 type Category = "REACH" | "TARGET" | "SAFETY" | "UNDECIDED";
 
@@ -16,6 +17,7 @@ interface SavedSchoolsContextValue {
   getCategory: (slug: string) => Category | null;
   saveSchool: (slug: string, category: Category) => Promise<void>;
   removeSchool: (slug: string) => Promise<void>;
+  promptSignIn: () => void;
   isLoggedIn: boolean;
   loading: boolean;
 }
@@ -35,6 +37,9 @@ export function SavedSchoolsProvider({
   // Initialize directly with server data — present during SSR, no post-hydration flash
   const [savedSchools, setSavedSchools] = useState<SavedSchool[]>(initialSavedSchools);
   const [loading, setLoading] = useState(false);
+  const [signInPromptOpen, setSignInPromptOpen] = useState(false);
+
+  const promptSignIn = useCallback(() => setSignInPromptOpen(true), []);
 
   // Only fetch client-side if the user logs in AFTER initial load (e.g. signs in
   // without a full reload). On a normal page load the server already seeded us.
@@ -102,9 +107,13 @@ export function SavedSchoolsProvider({
 
   return (
     <SavedSchoolsContext.Provider
-      value={{ savedSchools, isSaved, getCategory, saveSchool, removeSchool, isLoggedIn, loading }}
+      value={{ savedSchools, isSaved, getCategory, saveSchool, removeSchool, promptSignIn, isLoggedIn, loading }}
     >
       {children}
+      <SignInPrompt
+        open={signInPromptOpen}
+        onClose={() => setSignInPromptOpen(false)}
+      />
     </SavedSchoolsContext.Provider>
   );
 }
