@@ -1,12 +1,12 @@
-import { notFound } from "next/navigation";
+import { redirect } from "next/navigation";
 import SavedSchoolsDashboard from "@/components/SavedSchoolsDashboard";
 import { getSession } from "@/lib/savedSchools";
 
 export default async function MySchoolsPage() {
   const session = await getSession();
-  // Signed out — this page doesn't exist for you
+  // Signed out — send them home instead of showing a 404
   if (!session) {
-    notFound();
+    redirect("/");
   }
 
   return (
