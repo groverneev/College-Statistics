@@ -172,6 +172,7 @@ export const SCHOOL_COLORS: Record<string, string> = {
   emory: "#012169",
   georgetown: "#041E42",
   tulane: "#006747",
+  texasam: "#500000",
   umd: "#E21833",
   umich: "#00274C",
   johnshopkins: "#002D72",

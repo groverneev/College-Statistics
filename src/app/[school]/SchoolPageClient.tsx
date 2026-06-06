@@ -11,6 +11,7 @@ import {
   FinancialAidTrendChart,
   DemographicsTrendChart,
 } from "@/components/charts";
+import SaveSchoolButton from "@/components/SaveSchoolButton";
 
 interface SchoolPageClientProps {
   schoolData: SchoolData;
@@ -111,9 +112,16 @@ export default function SchoolPageClient({
         <h1 className="text-3xl md:text-4xl font-bold mb-2">
           {schoolData.name}
         </h1>
-        <p className="text-white/80 text-sm md:text-base">
+        <p className="text-white/80 text-sm md:text-base mb-4">
           Admissions Data Dashboard | Common Data Set {yearRange}
         </p>
+        <div className="flex justify-center">
+          <SaveSchoolButton
+            schoolSlug={schoolData.slug}
+            schoolName={schoolData.name}
+            variant="button"
+          />
+        </div>
       </div>
 
       {/* Main Content */}

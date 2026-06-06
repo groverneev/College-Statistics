@@ -29,6 +29,7 @@ import riceData from "./rice.json";
 import rochesterData from "./rochester.json";
 import rutgersNewBrunswickData from "./rutgersnewbrunswick.json";
 import stanfordData from "./stanford.json";
+import texasAmData from "./texasam.json";
 import tuftsData from "./tufts.json";
 import tulaneData from "./tulane.json";
 import uclaData from "./ucla.json";
@@ -92,6 +93,7 @@ export const allSchools: SchoolData[] = [
   purdueData as SchoolData,
   rutgersNewBrunswickData as SchoolData,
   stanfordData as SchoolData,
+  texasAmData as SchoolData,
   tuftsData as SchoolData,
   tulaneData as SchoolData,
   uclaData as SchoolData,

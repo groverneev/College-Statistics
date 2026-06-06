@@ -52,3 +52,5 @@ venv/
 
 # Extraction pipeline artifacts
 .cds_pipeline/
+
+/src/generated/prisma

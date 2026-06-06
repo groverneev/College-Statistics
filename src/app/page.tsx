@@ -1,7 +1,5 @@
-import Link from "next/link";
-import { SchoolData, SCHOOL_COLORS } from "@/lib/types";
-import { formatNumber, formatPercent } from "@/utils/dataHelpers";
 import SearchBar from "@/components/SearchBar";
+import HomePageContent from "@/components/HomePageContent";
 import { allSchools, searchableSchools } from "@/data/schools";
 
 export default function HomePage() {
@@ -16,87 +14,11 @@ export default function HomePage() {
           Explore and compare Common Data Set metrics across top universities.
           View historical trends in admissions, test scores, costs, and more.
         </p>
-
-        {/* Search Bar */}
         <SearchBar schools={searchableSchools} />
       </div>
 
-      {/* School Grid */}
-      <div className="max-w-6xl mx-auto px-4 py-12">
-        <h2 className="text-2xl font-semibold text-gray-800 mb-6">
-          Featured Schools
-        </h2>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {allSchools.map((school: SchoolData) => {
-            const years = Object.keys(school.years).sort();
-            const latestYear = years[years.length - 1];
-            const latestData = school.years[latestYear];
-            const color = SCHOOL_COLORS[school.slug] || "#4B5563";
-
-            return (
-              <Link key={school.slug} href={`/${school.slug}`}>
-                <div
-                  className="card p-6 hover:shadow-lg transition-shadow cursor-pointer border-t-4"
-                  style={{ borderTopColor: color }}
-                >
-                  <h3 className="text-xl font-semibold mb-1" style={{ color }}>
-                    {school.name}
-                  </h3>
-                  <p className="text-sm text-gray-500 mb-4">
-                    {years.length} years of data ({years[0].split("-")[0]}-
-                    {latestYear.split("-")[1]})
-                  </p>
-
-                  <div className="grid grid-cols-2 gap-4">
-                    <div>
-                      <div className="text-2xl font-bold text-gray-800">
-                        {formatPercent(latestData.admissions.acceptanceRate)}
-                      </div>
-                      <div className="text-xs text-gray-500">
-                        Acceptance Rate
-                      </div>
-                    </div>
-                    <div>
-                      <div className="text-2xl font-bold text-gray-800">
-                        {formatNumber(latestData.admissions.enrolled)}
-                      </div>
-                      <div className="text-xs text-gray-500">Class Size</div>
-                    </div>
-                    {latestData.testScores.sat && (
-                      <div>
-                        <div className="text-lg font-semibold text-gray-700">
-                          {latestData.testScores.sat.composite.p25}-
-                          {latestData.testScores.sat.composite.p75}
-                        </div>
-                        <div className="text-xs text-gray-500">SAT Range</div>
-                      </div>
-                    )}
-                    <div>
-                      <div className="text-lg font-semibold text-gray-700">
-                        ${(latestData.costs.totalCOA / 1000).toFixed(0)}k
-                      </div>
-                      <div className="text-xs text-gray-500">Total Cost</div>
-                    </div>
-                  </div>
-
-                  <div className="mt-4 pt-4 border-t border-gray-100">
-                    <span className="text-sm font-medium" style={{ color }}>
-                      View Dashboard &rarr;
-                    </span>
-                  </div>
-                </div>
-              </Link>
-            );
-          })}
-        </div>
-
-        {allSchools.length === 0 && (
-          <div className="text-center py-12">
-            <p className="text-gray-500">No school data available yet.</p>
-          </div>
-        )}
-      </div>
+      {/* Dynamic content: saved schools (logged in) or featured schools (logged out) */}
+      <HomePageContent allSchools={allSchools} />
     </div>
   );
 }
