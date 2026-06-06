@@ -1,58 +1,99 @@
 import Link from "next/link";
-import { SchoolData, SCHOOL_COLORS } from "@/lib/types";
-import { getLatestYear, formatNumber, formatPercent } from "@/utils/dataHelpers";
+import { getSchoolColor } from "@/data/schools";
+import SaveSchoolButton from "@/components/SaveSchoolButton";
+import { SchoolData } from "@/lib/types";
+import {
+  formatNumber,
+  formatPercent,
+  getLatestYear,
+  getLatestYearData,
+  getSchoolYearRange,
+  getSortedYears,
+} from "@/utils/dataHelpers";
 
 interface SchoolCardProps {
   school: SchoolData;
+  showSaveButton?: boolean;
 }
 
-export default function SchoolCard({ school }: SchoolCardProps) {
+export default function SchoolCard({
+  school,
+  showSaveButton = false,
+}: SchoolCardProps) {
+  const years = getSortedYears(school);
   const latestYear = getLatestYear(school);
-  const data = latestYear ? school.years[latestYear] : null;
-  const color = SCHOOL_COLORS[school.slug] || "#4B5563";
+  const latestData = getLatestYearData(school);
+  const yearRange = getSchoolYearRange(school);
+  const color = getSchoolColor(school.slug);
+
+  if (!latestYear || !latestData || !yearRange) {
+    return null;
+  }
 
   return (
-    <Link href={`/${school.slug}`}>
-      <div
-        className="bg-white dark:bg-gray-800 rounded-lg shadow-sm hover:shadow-md transition-shadow p-6 border-l-4"
-        style={{ borderLeftColor: color }}
-      >
-        <h2 className="text-xl font-semibold mb-1" style={{ color }}>
-          {school.name}
-        </h2>
-        <p className="text-sm text-gray-500 mb-4">{latestYear}</p>
+    <div className="relative">
+      {showSaveButton && (
+        <div className="absolute top-3 right-3 z-10">
+          <SaveSchoolButton
+            schoolSlug={school.slug}
+            schoolName={school.name}
+            variant="icon"
+          />
+        </div>
+      )}
 
-        {data && (
+      <Link href={`/${school.slug}`}>
+        <div
+          className="card p-6 hover:shadow-lg transition-shadow cursor-pointer border-t-4"
+          style={{ borderTopColor: color }}
+        >
+          <h3
+            className={`text-xl font-semibold mb-1 ${showSaveButton ? "pr-8" : ""}`}
+            style={{ color }}
+          >
+            {school.name}
+          </h3>
+          <p className="text-sm text-gray-500 mb-4">
+            {years.length} years of data ({yearRange})
+          </p>
+
           <div className="grid grid-cols-2 gap-4">
             <div>
-              <div className="text-2xl font-bold">
-                {formatPercent(data.admissions.acceptanceRate)}
+              <div className="text-2xl font-bold text-gray-800">
+                {formatPercent(latestData.admissions.acceptanceRate)}
               </div>
               <div className="text-xs text-gray-500">Acceptance Rate</div>
             </div>
             <div>
-              <div className="text-2xl font-bold">
-                {formatNumber(data.admissions.enrolled)}
+              <div className="text-2xl font-bold text-gray-800">
+                {formatNumber(latestData.admissions.enrolled)}
               </div>
               <div className="text-xs text-gray-500">Class Size</div>
             </div>
-            {data.testScores.sat && (
+            {latestData.testScores.sat && (
               <div>
-                <div className="text-lg font-semibold">
-                  {data.testScores.sat.composite.p25}-{data.testScores.sat.composite.p75}
+                <div className="text-lg font-semibold text-gray-700">
+                  {latestData.testScores.sat.composite.p25}-
+                  {latestData.testScores.sat.composite.p75}
                 </div>
                 <div className="text-xs text-gray-500">SAT Range</div>
               </div>
             )}
             <div>
-              <div className="text-lg font-semibold">
-                ${(data.costs.totalCOA / 1000).toFixed(0)}k
+              <div className="text-lg font-semibold text-gray-700">
+                ${(latestData.costs.totalCOA / 1000).toFixed(0)}k
               </div>
               <div className="text-xs text-gray-500">Total Cost</div>
             </div>
           </div>
-        )}
-      </div>
-    </Link>
+
+          <div className="mt-4 pt-4 border-t border-gray-100">
+            <span className="text-sm font-medium" style={{ color }}>
+              View Dashboard &rarr;
+            </span>
+          </div>
+        </div>
+      </Link>
+    </div>
   );
 }

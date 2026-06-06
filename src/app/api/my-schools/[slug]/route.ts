@@ -1,64 +1,71 @@
-import { getServerSession } from "next-auth";
-import { authOptions } from "@/lib/auth";
-import { prisma } from "@/lib/prisma";
 import { NextResponse } from "next/server";
-import { Category } from "@prisma/client";
-import { revalidateTag } from "next/cache";
+import {
+  getAuthenticatedUserId,
+  invalidCategoryResponse,
+  invalidSchoolSlugResponse,
+  isValidCategory,
+  isValidSchoolSlug,
+  revalidateSavedSchools,
+  unauthorizedResponse,
+} from "@/app/api/my-schools/shared";
+import { prisma } from "@/lib/prisma";
 
-const VALID_CATEGORIES = Object.values(Category) as string[];
-
-// PATCH /api/my-schools/[slug] — update category
 export async function PATCH(
   req: Request,
   { params }: { params: Promise<{ slug: string }> }
 ) {
-  const session = await getServerSession(authOptions);
-  if (!session?.user?.id) {
-    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  const userId = await getAuthenticatedUserId();
+  if (!userId) {
+    return unauthorizedResponse();
   }
 
   const { slug } = await params;
   const { category } = await req.json();
 
-  if (!VALID_CATEGORIES.includes(category)) {
-    return NextResponse.json({ error: "Invalid category" }, { status: 400 });
+  if (!isValidSchoolSlug(slug)) {
+    return invalidSchoolSlugResponse();
+  }
+  if (!isValidCategory(category)) {
+    return invalidCategoryResponse();
   }
 
   const updated = await prisma.savedSchool.update({
     where: {
       userId_schoolSlug: {
-        userId: session.user.id,
+        userId,
         schoolSlug: slug,
       },
     },
-    data: { category: category as Category },
+    data: { category },
   });
 
-  revalidateTag(`saved-schools-${session.user.id}`, { expire: 0 });
+  revalidateSavedSchools(userId);
   return NextResponse.json(updated);
 }
 
-// DELETE /api/my-schools/[slug] — remove a saved school
 export async function DELETE(
   _req: Request,
   { params }: { params: Promise<{ slug: string }> }
 ) {
-  const session = await getServerSession(authOptions);
-  if (!session?.user?.id) {
-    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  const userId = await getAuthenticatedUserId();
+  if (!userId) {
+    return unauthorizedResponse();
   }
 
   const { slug } = await params;
+  if (!isValidSchoolSlug(slug)) {
+    return invalidSchoolSlugResponse();
+  }
 
   await prisma.savedSchool.delete({
     where: {
       userId_schoolSlug: {
-        userId: session.user.id,
+        userId,
         schoolSlug: slug,
       },
     },
   });
 
-  revalidateTag(`saved-schools-${session.user.id}`, { expire: 0 });
+  revalidateSavedSchools(userId);
   return NextResponse.json({ success: true });
 }

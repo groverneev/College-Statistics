@@ -60,8 +60,7 @@ Adding a new school should usually require:
 
 1. add `src/data/schools/<slug>.json`
 2. register it in `src/data/schools/index.ts`
-3. add its color in `SCHOOL_COLORS`
-4. add search aliases if needed
+3. add its metadata there as needed (`SCHOOL_METADATA` color, aliases, featured flag)
 
 ## Accounts & Saved Schools
 
@@ -246,13 +245,14 @@ For each updated year:
 
 ## Architecture Notes
 
-The screenshot prep step should be the default path for new school ingestion. Older `scripts/extract_*.py` files are legacy utilities.
+The screenshot prep step is the only supported path for new school ingestion.
 
 Important directories:
 
 - `cds_pipeline/`: screenshot prep and validation package
 - `cds_pipeline/configs/`: school-specific hints and aliases
 - `.cds_pipeline/`: generated screenshot manifests and rendered pages
+- `src/data/schools/index.ts`: canonical school registry plus app-facing metadata (colors, aliases, featured schools)
 
 ## Chart Layer
 

@@ -1,15 +1,28 @@
 import { SchoolData, YearData } from "@/lib/types";
 
-export function getLatestYear(school: SchoolData): string | null {
-  const years = Object.keys(school.years).sort().reverse();
-  return years.length > 0 ? years[0] : null;
+export function getSortedYears(school: SchoolData): string[] {
+  return Object.keys(school.years).sort();
 }
 
-export function getYearData(
-  school: SchoolData,
-  year: string
-): YearData | null {
-  return school.years[year] || null;
+export function getLatestYear(school: SchoolData): string | null {
+  const years = getSortedYears(school);
+  return years.length > 0 ? years[years.length - 1] : null;
+}
+
+export function getLatestYearData(school: SchoolData): YearData | null {
+  const latestYear = getLatestYear(school);
+  return latestYear ? school.years[latestYear] ?? null : null;
+}
+
+export function getSchoolYearRange(school: SchoolData): string | null {
+  const years = getSortedYears(school);
+  if (years.length === 0) {
+    return null;
+  }
+
+  const firstYear = years[0];
+  const latestYear = years[years.length - 1];
+  return `${firstYear.split("-")[0]}-${latestYear.split("-")[1]}`;
 }
 
 export function formatNumber(num: number): string {
@@ -26,12 +39,4 @@ export function formatCurrency(num: number): string {
     currency: "USD",
     maximumFractionDigits: 0,
   }).format(num);
-}
-
-export function calculateAcceptanceRate(admitted: number, applied: number): number {
-  return applied > 0 ? admitted / applied : 0;
-}
-
-export function calculateYield(enrolled: number, admitted: number): number {
-  return admitted > 0 ? enrolled / admitted : 0;
 }

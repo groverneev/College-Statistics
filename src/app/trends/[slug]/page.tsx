@@ -1,7 +1,6 @@
 import { notFound } from "next/navigation";
 import { trends } from "@/data/trends/index";
-import UC2026Story from "@/components/trends/stories/UC2026Story";
-import CommonApp2026Story from "@/components/trends/stories/CommonApp2026Story";
+import { getStoryComponent } from "@/data/trends/storyRegistry";
 
 export function generateStaticParams() {
   return trends.map((t) => ({ slug: t.slug }));
@@ -28,7 +27,9 @@ export default async function StoryPage({
 }) {
   const { slug } = await params;
   const story = trends.find((t) => t.slug === slug);
+  const StoryComponent = getStoryComponent(slug);
   if (!story) notFound();
+  if (!StoryComponent) notFound();
 
   return (
     <div className="min-h-screen" style={{ background: "#f5f5f5" }}>
@@ -62,8 +63,7 @@ export default async function StoryPage({
 
       {/* Story Content */}
       <div className="max-w-5xl mx-auto px-4 py-10">
-        {slug === "common-app-2026" && <CommonApp2026Story />}
-        {slug === "uc-2026-applications" && <UC2026Story />}
+        <StoryComponent />
       </div>
     </div>
   );

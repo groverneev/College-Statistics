@@ -4,12 +4,15 @@ import Link from "next/link";
 import Image from "next/image";
 import { useState, useRef, useEffect } from "react";
 import { useSession, signIn, signOut } from "next-auth/react";
+import { useSavedSchools } from "@/components/SavedSchoolsContext";
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [userMenuOpen, setUserMenuOpen] = useState(false);
   const userMenuRef = useRef<HTMLDivElement>(null);
   const { data: session } = useSession();
+  const { isLoggedIn, promptSignIn } = useSavedSchools();
+  const signedIn = isLoggedIn || !!session;
 
   // Close user menu when clicking outside
   useEffect(() => {
@@ -27,6 +30,7 @@ export default function Header() {
 
   const navLinks = [
     { href: "/schools", label: "Browse Schools" },
+    { href: "/my-schools", label: "My Schools" },
     { href: "/about", label: "About" },
     { href: "/how-it-works", label: "How it Works" },
     { href: "/trends", label: "Trends" },
@@ -46,17 +50,29 @@ export default function Header() {
           </Link>
 
           {/* Desktop Navigation + Auth — grouped right */}
-          <div className="hidden md:flex items-center space-x-8 ml-auto">
+          <div className="hidden lg:flex items-center space-x-8 ml-auto">
             <nav className="flex items-center space-x-6">
-              {navLinks.map((link) => (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  className="text-gray-600 hover:text-gray-900 font-medium transition-colors text-sm"
-                >
-                  {link.label}
-                </Link>
-              ))}
+              {navLinks.map((link) => {
+                const className =
+                  "text-gray-600 hover:text-gray-900 font-medium transition-colors text-base";
+                // "My Schools" is gated: signed out, open the sign-in popup instead of navigating
+                if (link.href === "/my-schools" && !signedIn) {
+                  return (
+                    <button
+                      key={link.href}
+                      onClick={promptSignIn}
+                      className={className}
+                    >
+                      {link.label}
+                    </button>
+                  );
+                }
+                return (
+                  <Link key={link.href} href={link.href} className={className}>
+                    {link.label}
+                  </Link>
+                );
+              })}
             </nav>
           <div className="flex items-center">
             {session ? (
@@ -129,7 +145,7 @@ export default function Header() {
 
           {/* Mobile Menu Button */}
           <button
-            className="md:hidden ml-auto p-2 rounded-md text-gray-600 hover:text-gray-900 hover:bg-gray-100"
+            className="lg:hidden ml-auto p-2 rounded-md text-gray-600 hover:text-gray-900 hover:bg-gray-100"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             aria-label="Toggle menu"
           >
@@ -167,18 +183,37 @@ export default function Header() {
 
         {/* Mobile Menu */}
         {mobileMenuOpen && (
-          <div className="md:hidden border-t border-gray-100 py-4">
+          <div className="lg:hidden border-t border-gray-100 py-4">
             <nav className="flex flex-col space-y-4">
-              {navLinks.map((link) => (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  className="text-gray-600 hover:text-gray-900 font-medium px-2 py-1"
-                  onClick={() => setMobileMenuOpen(false)}
-                >
-                  {link.label}
-                </Link>
-              ))}
+              {navLinks.map((link) => {
+                const className =
+                  "text-gray-600 hover:text-gray-900 font-medium px-2 py-1 text-left";
+                // "My Schools" is gated: signed out, open the sign-in popup instead of navigating
+                if (link.href === "/my-schools" && !signedIn) {
+                  return (
+                    <button
+                      key={link.href}
+                      onClick={() => {
+                        setMobileMenuOpen(false);
+                        promptSignIn();
+                      }}
+                      className={className}
+                    >
+                      {link.label}
+                    </button>
+                  );
+                }
+                return (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    className={className}
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    {link.label}
+                  </Link>
+                );
+              })}
               <div className="border-t border-gray-100 pt-4 px-2">
                 {session ? (
                   <div className="flex items-center justify-between">

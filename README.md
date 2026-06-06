@@ -61,11 +61,9 @@ College-Statistics/
 |   |   |-- prisma.ts                 # Prisma client singleton
 |   |   `-- savedSchools.ts           # Cached server fetch + session helper
 |   `-- utils/
+|-- cds_pipeline/                     # PDF prep + validation workflow
 |-- prisma/
 |   `-- schema.prisma                 # User, Account, SavedSchool
-|-- scripts/
-|   |-- extract_cds.py
-|   `-- extract_*.py
 |-- College-Data/
 |   |-- Brown/
 |   |-- Harvard/
@@ -80,6 +78,17 @@ College-Statistics/
 
 - Workflow, extraction, and architecture guidance: `CLAUDE.md`
 
+## CDS Workflow
+
+The supported ingestion workflow is:
+
+```bash
+python -m cds_pipeline prepare <school-or-path>
+python -m cds_pipeline validate <json-file>
+```
+
+`prepare` renders source PDFs into `.cds_pipeline/<slug>/...` manifests and page screenshots for Codex review. The older one-off extractor scripts have been removed in favor of this single path.
+
 ## Data Sources
 
 Most data is extracted from official Common Data Set (CDS) publications released by each institution.
@@ -92,7 +101,7 @@ Most data is extracted from official Common Data Set (CDS) publications released
 - **Charts:** [Recharts](https://recharts.org/)
 - **Auth:** [NextAuth.js](https://next-auth.js.org/) with Google OAuth (JWT sessions)
 - **Database:** [Supabase](https://supabase.com/) Postgres via [Prisma](https://www.prisma.io/) (stores users and saved schools)
-- **Data Extraction:** Python with [PyMuPDF](https://pymupdf.readthedocs.io/) plus Codex-assisted screenshot review
+- **Data Preparation:** Python with [PyMuPDF](https://pymupdf.readthedocs.io/) plus Codex-assisted screenshot review
 - **Contact Form:** [Formspree](https://formspree.io/)
 
 ## Environment Variables

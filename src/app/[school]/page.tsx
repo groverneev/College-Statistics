@@ -1,6 +1,5 @@
 import { notFound } from "next/navigation";
-import { SCHOOL_COLORS } from "@/lib/types";
-import { schoolDataMap } from "@/data/schools";
+import { getSchoolColor, schoolDataMap } from "@/data/schools";
 import SchoolPageClient from "./SchoolPageClient";
 
 // Generate static params for all schools
@@ -23,7 +22,7 @@ export default async function SchoolPage({ params }: PageProps) {
     notFound();
   }
 
-  const schoolColor = SCHOOL_COLORS[schoolData.slug] || "#4B5563";
+  const schoolColor = getSchoolColor(schoolData.slug);
 
   return (
     <SchoolPageClient

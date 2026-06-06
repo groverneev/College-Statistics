@@ -1,22 +1,24 @@
-import { getServerSession } from "next-auth";
-import { authOptions } from "@/lib/auth";
-import { prisma } from "@/lib/prisma";
-import { NextResponse } from "next/server";
 import { Category } from "@prisma/client";
-import { revalidateTag } from "next/cache";
-import { availableSchoolSlugs } from "@/data/schools";
+import { NextResponse } from "next/server";
+import {
+  getAuthenticatedUserId,
+  invalidCategoryResponse,
+  invalidSchoolSlugResponse,
+  isValidCategory,
+  isValidSchoolSlug,
+  revalidateSavedSchools,
+  unauthorizedResponse,
+} from "@/app/api/my-schools/shared";
+import { prisma } from "@/lib/prisma";
 
-const VALID_CATEGORIES = Object.values(Category) as string[];
-
-// GET /api/my-schools — fetch the logged-in user's saved schools
 export async function GET() {
-  const session = await getServerSession(authOptions);
-  if (!session?.user?.id) {
-    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  const userId = await getAuthenticatedUserId();
+  if (!userId) {
+    return unauthorizedResponse();
   }
 
   const saved = await prisma.savedSchool.findMany({
-    where: { userId: session.user.id },
+    where: { userId },
     select: { schoolSlug: true, category: true },
     orderBy: { savedAt: "desc" },
   });
@@ -24,39 +26,37 @@ export async function GET() {
   return NextResponse.json(saved);
 }
 
-// POST /api/my-schools — save a school
 export async function POST(req: Request) {
-  const session = await getServerSession(authOptions);
-  if (!session?.user?.id) {
-    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  const userId = await getAuthenticatedUserId();
+  if (!userId) {
+    return unauthorizedResponse();
   }
 
   const { schoolSlug, category } = await req.json();
-
-  if (!schoolSlug || !availableSchoolSlugs.includes(schoolSlug)) {
-    return NextResponse.json({ error: "Invalid schoolSlug" }, { status: 400 });
+  if (!isValidSchoolSlug(schoolSlug)) {
+    return invalidSchoolSlugResponse();
   }
 
-  const resolvedCategory: Category = category ?? Category.UNDECIDED;
-  if (!VALID_CATEGORIES.includes(resolvedCategory)) {
-    return NextResponse.json({ error: "Invalid category" }, { status: 400 });
+  const resolvedCategory = category ?? Category.UNDECIDED;
+  if (!isValidCategory(resolvedCategory)) {
+    return invalidCategoryResponse();
   }
 
   const saved = await prisma.savedSchool.upsert({
     where: {
       userId_schoolSlug: {
-        userId: session.user.id,
+        userId,
         schoolSlug,
       },
     },
     update: { category: resolvedCategory },
     create: {
-      userId: session.user.id,
+      userId,
       schoolSlug,
       category: resolvedCategory,
     },
   });
 
-  revalidateTag(`saved-schools-${session.user.id}`, { expire: 0 });
+  revalidateSavedSchools(userId);
   return NextResponse.json(saved);
 }

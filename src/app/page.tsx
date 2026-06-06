@@ -1,6 +1,6 @@
 import SearchBar from "@/components/SearchBar";
 import HomePageContent from "@/components/HomePageContent";
-import { allSchools, searchableSchools } from "@/data/schools";
+import { searchableSchools } from "@/data/schools";
 
 export default function HomePage() {
   return (
@@ -17,8 +17,8 @@ export default function HomePage() {
         <SearchBar schools={searchableSchools} />
       </div>
 
-      {/* Dynamic content: saved schools (logged in) or featured schools (logged out) */}
-      <HomePageContent allSchools={allSchools} />
+      {/* Featured schools — same view for all visitors */}
+      <HomePageContent />
     </div>
   );
 }
