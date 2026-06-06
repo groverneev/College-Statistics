@@ -9,16 +9,18 @@ import { useSavedSchools } from "@/components/SavedSchoolsContext";
 
 type Category = "REACH" | "TARGET" | "SAFETY" | "UNDECIDED";
 
+// Curated schools shown on the logged-out homepage (order matters)
+const FEATURED_SLUGS = ["stanford", "mit", "harvard"];
+
 const CATEGORY_CONFIG: {
   value: Category;
   label: string;
-  color: string;
-  bg: string;
+  borderColor: string;
 }[] = [
-  { value: "REACH", label: "Reach", color: "text-red-600", bg: "bg-red-50" },
-  { value: "TARGET", label: "Target", color: "text-yellow-600", bg: "bg-yellow-50" },
-  { value: "SAFETY", label: "Safety", color: "text-green-600", bg: "bg-green-50" },
-  { value: "UNDECIDED", label: "Undecided", color: "text-gray-500", bg: "bg-gray-50" },
+  { value: "REACH", label: "Reach", borderColor: "#ef4444" },
+  { value: "TARGET", label: "Target", borderColor: "#f59e0b" },
+  { value: "SAFETY", label: "Safety", borderColor: "#22c55e" },
+  { value: "UNDECIDED", label: "Undecided", borderColor: "#9ca3af" },
 ];
 
 interface HomePageContentProps {
@@ -60,7 +62,7 @@ export default function HomePageContent({ allSchools }: HomePageContentProps) {
 
         {hasSaved ? (
           <div className="space-y-10">
-            {CATEGORY_CONFIG.map(({ value, label, color, bg }) => {
+            {CATEGORY_CONFIG.map(({ value, label, borderColor }) => {
               const schoolsInCategory = savedSchools.filter(
                 (s) => s.category === value
               );
@@ -68,10 +70,11 @@ export default function HomePageContent({ allSchools }: HomePageContentProps) {
 
               return (
                 <div key={value}>
-                  <div className="flex items-center space-x-2 mb-4">
-                    <span
-                      className={`text-xs font-bold uppercase tracking-widest px-2 py-1 rounded-full ${color} ${bg}`}
-                    >
+                  <div
+                    className="flex items-baseline space-x-3 mb-4 pl-3 border-l-4"
+                    style={{ borderColor }}
+                  >
+                    <span className="text-sm font-semibold uppercase tracking-widest text-gray-700">
                       {label}
                     </span>
                     <span className="text-sm text-gray-400">
@@ -199,14 +202,26 @@ export default function HomePageContent({ allSchools }: HomePageContentProps) {
     );
   }
 
-  // Logged out — original featured schools grid
+  // Logged out — curated featured schools + link to the full list
+  const featuredSchools = FEATURED_SLUGS.map((slug) => schoolDataMap[slug]).filter(
+    (s): s is SchoolData => Boolean(s)
+  );
+
   return (
     <div className="max-w-6xl mx-auto px-4 py-12">
-      <h2 className="text-2xl font-semibold text-gray-800 mb-6">
-        Featured Schools
-      </h2>
+      <div className="flex items-center justify-between mb-6">
+        <h2 className="text-2xl font-semibold text-gray-800">
+          Featured Schools
+        </h2>
+        <Link
+          href="/schools"
+          className="text-sm font-medium text-blue-600 hover:text-blue-700"
+        >
+          Browse all schools →
+        </Link>
+      </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {allSchools.map((school: SchoolData) => {
+        {featuredSchools.map((school: SchoolData) => {
           const years = Object.keys(school.years).sort();
           const latestYear = years[years.length - 1];
           const latestData = school.years[latestYear];

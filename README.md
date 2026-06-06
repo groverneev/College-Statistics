@@ -17,11 +17,13 @@ A data visualization dashboard for comparing colleges using Common Data Set (CDS
 - **Demographics** - Enrollment trends and racial/ethnic composition over time
 - **Admissions Factors** - Latest CDS C7 matrix showing how schools classify academic and nonacademic admissions factors
 - **Trends** - Data-driven stories and analyses (e.g. UC application volume comparisons)
+- **Saved Schools** - Sign in with Google to save schools to a personal list, categorized as Reach / Target / Safety / Undecided. Logged-in users see their saved list (grouped by category) on the homepage instead of the featured grid.
 
 ## Pages
 
-- **Home** (`/`) - School selector with key stats
-- **School Dashboard** (`/[school]`) - Detailed charts, tables, and school-level admissions-factor metadata
+- **Home** (`/`) - For logged-out visitors: featured school grid with key stats. For logged-in users: their saved schools grouped by Reach / Target / Safety / Undecided.
+- **Browse Schools** (`/schools`) - Full school grid with a save button on each card (available to everyone)
+- **School Dashboard** (`/[school]`) - Detailed charts, tables, school-level admissions-factor metadata, and a "Save to My List" button
 - **Trends** (`/trends`) - Data-driven stories with charts and analysis
 - **About** (`/about`) - Information about the project and creator
 - **How it Works** (`/how-it-works`) - Explanation of CDS data and how to use the dashboard
@@ -34,12 +36,20 @@ College-Statistics/
 |-- src/
 |   |-- app/
 |   |   |-- page.tsx
+|   |   |-- schools/                 # Browse-all-schools page
 |   |   |-- [school]/
 |   |   |   `-- SchoolPageClient.tsx
+|   |   |-- api/
+|   |   |   |-- auth/[...nextauth]/   # NextAuth handler
+|   |   |   `-- my-schools/           # Saved-schools CRUD (GET/POST, PATCH/DELETE)
 |   |   `-- trends/
 |   |-- components/
 |   |   |-- charts/
-|   |   `-- trends/
+|   |   |-- trends/
+|   |   |-- Header.tsx                # Nav + sign in / avatar
+|   |   |-- SaveSchoolButton.tsx      # Bookmark + category popover
+|   |   |-- SavedSchoolsContext.tsx   # Client cache of the user's saved list
+|   |   `-- SessionWrapper.tsx        # NextAuth SessionProvider
 |   |-- data/
 |   |   |-- schools/
 |   |   |   |-- brown.json
@@ -47,7 +57,12 @@ College-Statistics/
 |   |   |   `-- ...
 |   |   `-- trends/
 |   |-- lib/
+|   |   |-- auth.ts                   # NextAuth options (Google, JWT)
+|   |   |-- prisma.ts                 # Prisma client singleton
+|   |   `-- savedSchools.ts           # Cached server fetch + session helper
 |   `-- utils/
+|-- prisma/
+|   `-- schema.prisma                 # User, Account, SavedSchool
 |-- scripts/
 |   |-- extract_cds.py
 |   `-- extract_*.py
@@ -75,8 +90,30 @@ Most data is extracted from official Common Data Set (CDS) publications released
 - **Language:** [TypeScript](https://www.typescriptlang.org/)
 - **Styling:** [Tailwind CSS v4](https://tailwindcss.com/)
 - **Charts:** [Recharts](https://recharts.org/)
+- **Auth:** [NextAuth.js](https://next-auth.js.org/) with Google OAuth (JWT sessions)
+- **Database:** [Supabase](https://supabase.com/) Postgres via [Prisma](https://www.prisma.io/) (stores users and saved schools)
 - **Data Extraction:** Python with [PyMuPDF](https://pymupdf.readthedocs.io/) plus Codex-assisted screenshot review
 - **Contact Form:** [Formspree](https://formspree.io/)
+
+## Environment Variables
+
+Login and saved schools require the following in `.env.local` (and in your hosting provider's settings for production):
+
+```bash
+# Supabase Postgres
+DATABASE_URL=     # pooler connection string (port 6543, append ?pgbouncer=true)
+DIRECT_URL=       # direct connection string (port 5432) — used only by Prisma migrations
+
+# NextAuth
+NEXTAUTH_URL=     # e.g. http://localhost:3000 in dev
+NEXTAUTH_SECRET=  # any random secret string
+
+# Google OAuth (from Google Cloud Console)
+GOOGLE_CLIENT_ID=
+GOOGLE_CLIENT_SECRET=
+```
+
+The database schema lives in `prisma/schema.prisma`. After changing it, run `npx prisma generate`. Apply schema changes to Supabase via the SQL editor (the local network may block the direct migration port).
 
 ## Contributing
 

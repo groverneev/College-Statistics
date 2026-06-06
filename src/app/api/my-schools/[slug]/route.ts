@@ -5,6 +5,8 @@ import { NextResponse } from "next/server";
 import { Category } from "@prisma/client";
 import { revalidateTag } from "next/cache";
 
+const VALID_CATEGORIES = Object.values(Category) as string[];
+
 // PATCH /api/my-schools/[slug] — update category
 export async function PATCH(
   req: Request,
@@ -17,6 +19,10 @@ export async function PATCH(
 
   const { slug } = await params;
   const { category } = await req.json();
+
+  if (!VALID_CATEGORIES.includes(category)) {
+    return NextResponse.json({ error: "Invalid category" }, { status: 400 });
+  }
 
   const updated = await prisma.savedSchool.update({
     where: {

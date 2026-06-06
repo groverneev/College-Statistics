@@ -63,6 +63,38 @@ Adding a new school should usually require:
 3. add its color in `SCHOOL_COLORS`
 4. add search aliases if needed
 
+## Accounts & Saved Schools
+
+The site has optional Google login backed by a Supabase Postgres database (via Prisma). Logged-in users can save schools to a personal list, categorized as Reach / Target / Safety / Undecided.
+
+### Key files
+
+- `src/lib/auth.ts`: NextAuth options. Google provider, **JWT session strategy** (the user id is carried in the encrypted cookie via the `jwt`/`session` callbacks — no DB lookup per request). `PrismaAdapter` persists `User` + `Account` rows on sign-in.
+- `src/lib/prisma.ts`: Prisma client singleton.
+- `src/lib/savedSchools.ts`: `getSession` (React-cached `getServerSession`) and `getSavedSchoolsForUser` (per-user `unstable_cache`, tagged `saved-schools-<userId>`).
+- `src/app/api/auth/[...nextauth]/route.ts`: NextAuth handler.
+- `src/app/api/my-schools/`: saved-schools CRUD. `GET`/`POST` on the collection, `PATCH`/`DELETE` on `[slug]`. All require a session and validate `schoolSlug` against `availableSchoolSlugs` and `category` against the `Category` enum. Mutations call `revalidateTag` to purge the user's cache.
+- `src/components/SavedSchoolsContext.tsx`: client-side cache of the user's list. **Initialized directly from server-seeded data** (`useState(initialSavedSchools)`) so SSR renders the list with no flash. Mutations are optimistic (update local state first, sync in the background).
+- `src/components/SaveSchoolButton.tsx`: bookmark icon (cards) and full button (school page) with the category popover. Reads/writes through the context — never fetches per-button.
+- `src/components/Header.tsx`: nav with Browse Schools link + sign in / avatar.
+
+### Data flow (important)
+
+- The **root layout** (`src/app/layout.tsx`) is the single place that resolves auth: it calls `getSession()` and, when logged in, `getSavedSchoolsForUser()`, then seeds `SessionWrapper` and `SavedSchoolsProvider`. Because the layout reads the session cookie, all routes are server-rendered (`ƒ`), not static. With JWT sessions this is cheap (no DB round trip for auth).
+- Do **not** reintroduce per-component `fetch("/api/my-schools")` for reads. The provider already holds the list; components should use `useSavedSchools()`.
+
+### Schema
+
+`prisma/schema.prisma` defines `User`, `Account`, and `SavedSchool` only. `Session` and `VerificationToken` were intentionally removed because the JWT strategy does not use them — do not re-add them unless switching to database sessions or a passwordless/email provider.
+
+### Database changes
+
+The local network may block the Prisma migration port (5432). Generate SQL with `npx prisma migrate diff --from-empty --to-schema-datamodel prisma/schema.prisma --script` (or a targeted diff) and run it in the Supabase SQL editor. Always run `npx prisma generate` after editing the schema. The dev server locks the Prisma engine on Windows — stop it before regenerating.
+
+### Required environment variables
+
+`DATABASE_URL` (pooler, `?pgbouncer=true`), `DIRECT_URL` (direct, migrations only), `NEXTAUTH_URL`, `NEXTAUTH_SECRET`, `GOOGLE_CLIENT_ID`, `GOOGLE_CLIENT_SECRET`. See `README.md` for details.
+
 ## Codex-First CDS Workflow
 
 This repo uses a Codex-first screenshot workflow for school ingestion.

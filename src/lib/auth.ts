@@ -12,12 +12,20 @@ export const authOptions: NextAuthOptions = {
     }),
   ],
   session: {
-    strategy: "database",
+    // JWT sessions are validated from an encrypted cookie — no DB lookup per request
+    strategy: "jwt",
   },
   callbacks: {
-    session({ session, user }) {
+    jwt({ token, user }) {
+      // `user` is only present on initial sign-in; persist the DB id into the token
+      if (user) {
+        token.id = user.id;
+      }
+      return token;
+    },
+    session({ session, token }) {
       if (session.user) {
-        session.user.id = user.id;
+        session.user.id = token.id as string;
       }
       return session;
     },
