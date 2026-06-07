@@ -18,12 +18,13 @@ A data visualization dashboard for comparing colleges using Common Data Set (CDS
 - **Admissions Factors** - Latest CDS C7 matrix showing how schools classify academic and nonacademic admissions factors
 - **Trends** - Data-driven stories and analyses (e.g. UC application volume comparisons)
 - **Saved Schools** - Sign in with Google to save schools to a personal list, categorized as Reach / Target / Safety / Undecided. Logged-in users see their saved list (grouped by category) on the homepage instead of the featured grid.
+- **Notes** - Logged-in users can write a private, freeform note about any school (one note per school). Notes appear on the school dashboard and as a subtle indicator on school cards. Only the author can see their notes.
 
 ## Pages
 
 - **Home** (`/`) - For logged-out visitors: featured school grid with key stats. For logged-in users: their saved schools grouped by Reach / Target / Safety / Undecided.
 - **Browse Schools** (`/schools`) - Full school grid with a save button on each card (available to everyone)
-- **School Dashboard** (`/[school]`) - Detailed charts, tables, school-level admissions-factor metadata, and a "Save to My List" button
+- **School Dashboard** (`/[school]`) - Detailed charts, tables, school-level admissions-factor metadata, a "Save to My List" button, and a private notes panel for logged-in users
 - **Trends** (`/trends`) - Data-driven stories with charts and analysis
 - **About** (`/about`) - Information about the project and creator
 - **How it Works** (`/how-it-works`) - Explanation of CDS data and how to use the dashboard
@@ -41,7 +42,8 @@ College-Statistics/
 |   |   |   `-- SchoolPageClient.tsx
 |   |   |-- api/
 |   |   |   |-- auth/[...nextauth]/   # NextAuth handler
-|   |   |   `-- my-schools/           # Saved-schools CRUD (GET/POST, PATCH/DELETE)
+|   |   |   |-- my-schools/           # Saved-schools CRUD (GET/POST, PATCH/DELETE)
+|   |   |   `-- my-notes/             # Per-school notes (GET/POST upsert, DELETE)
 |   |   `-- trends/
 |   |-- components/
 |   |   |-- charts/
@@ -49,6 +51,7 @@ College-Statistics/
 |   |   |-- Header.tsx                # Nav + sign in / avatar
 |   |   |-- SaveSchoolButton.tsx      # Bookmark + category popover
 |   |   |-- SavedSchoolsContext.tsx   # Client cache of the user's saved list
+|   |-- NotesContext.tsx          # Client cache of the user's per-school notes
 |   |   `-- SessionWrapper.tsx        # NextAuth SessionProvider
 |   |-- data/
 |   |   |-- schools/
@@ -63,7 +66,7 @@ College-Statistics/
 |   `-- utils/
 |-- cds_pipeline/                     # PDF prep + validation workflow
 |-- prisma/
-|   `-- schema.prisma                 # User, Account, SavedSchool
+|   `-- schema.prisma                 # User, Account, SavedSchool, SchoolNote
 |-- College-Data/
 |   |-- Brown/
 |   |-- Harvard/

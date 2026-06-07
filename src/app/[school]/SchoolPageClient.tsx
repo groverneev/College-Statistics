@@ -1,7 +1,8 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Link from "next/link";
+import { useSession } from "next-auth/react";
 import { AdmissionsFactorImportance, SchoolData } from "@/lib/types";
 import { formatNumber, formatPercent } from "@/utils/dataHelpers";
 import {
@@ -12,6 +13,9 @@ import {
   DemographicsTrendChart,
 } from "@/components/charts";
 import SaveSchoolButton from "@/components/SaveSchoolButton";
+import SchoolNotes from "@/components/SchoolNotes";
+import { useNotes } from "@/components/NotesContext";
+import { useSavedSchools } from "@/components/SavedSchoolsContext";
 
 interface SchoolPageClientProps {
   schoolData: SchoolData;
@@ -40,6 +44,33 @@ export default function SchoolPageClient({
 }: SchoolPageClientProps) {
   const [mounted, setMounted] = useState(false);
   useEffect(() => setMounted(true), []);
+
+  const { data: session } = useSession();
+  const { hasNote } = useNotes();
+  const { promptSignIn } = useSavedSchools();
+  const noteExists = hasNote(schoolData.slug);
+  const [composing, setComposing] = useState(false);
+  const showNotes = noteExists || composing;
+  const notesRef = useRef<HTMLDivElement>(null);
+
+  function handleAddNote() {
+    if (!session) {
+      promptSignIn({
+        icon: "📝",
+        title: "Sign in to add notes",
+        description:
+          "Keep private notes on any school — reminders, pros and cons, people to contact. Sign in with Google to get started.",
+      });
+      return;
+    }
+    setComposing(true);
+  }
+
+  useEffect(() => {
+    if (composing) {
+      notesRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
+    }
+  }, [composing]);
 
   const years = Object.keys(schoolData.years).sort();
   const latestYear = years[years.length - 1];
@@ -115,12 +146,27 @@ export default function SchoolPageClient({
         <p className="text-white/80 text-sm md:text-base mb-4">
           Admissions Data Dashboard | Common Data Set {yearRange}
         </p>
-        <div className="flex justify-center">
+        <div className="flex justify-center gap-2">
           <SaveSchoolButton
             schoolSlug={schoolData.slug}
             schoolName={schoolData.name}
             variant="button"
           />
+          {!noteExists && (
+            <button
+              onClick={handleAddNote}
+              className="flex items-center space-x-2 px-4 py-2 rounded-lg font-medium text-sm transition-colors bg-white/10 border border-white/30 text-white hover:bg-white/20"
+            >
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"
+                />
+              </svg>
+              <span>Add note</span>
+            </button>
+          )}
         </div>
       </div>
 
@@ -153,6 +199,18 @@ export default function SchoolPageClient({
             <div className="subtext">{latestYear}</div>
           </div>
         </div>
+
+        {/* Notes — only rendered once a note exists or the user is composing one */}
+        {showNotes && (
+          <div className="mb-8" ref={notesRef}>
+            <SchoolNotes
+              schoolSlug={schoolData.slug}
+              schoolColor={schoolColor}
+              startEditing={composing && !noteExists}
+              onClose={() => setComposing(false)}
+            />
+          </div>
+        )}
 
         {/* Charts */}
         <div className="space-y-6">

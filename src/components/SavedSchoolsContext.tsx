@@ -11,13 +11,19 @@ interface SavedSchool {
   category: Category;
 }
 
+export interface SignInPromptOptions {
+  icon?: string;
+  title?: string;
+  description?: string;
+}
+
 interface SavedSchoolsContextValue {
   savedSchools: SavedSchool[];
   isSaved: (slug: string) => boolean;
   getCategory: (slug: string) => Category | null;
   saveSchool: (slug: string, category: Category) => Promise<void>;
   removeSchool: (slug: string) => Promise<void>;
-  promptSignIn: () => void;
+  promptSignIn: (options?: SignInPromptOptions) => void;
   isLoggedIn: boolean;
   loading: boolean;
 }
@@ -38,8 +44,12 @@ export function SavedSchoolsProvider({
   const [savedSchools, setSavedSchools] = useState<SavedSchool[]>(initialSavedSchools);
   const [loading, setLoading] = useState(false);
   const [signInPromptOpen, setSignInPromptOpen] = useState(false);
+  const [signInPromptOptions, setSignInPromptOptions] = useState<SignInPromptOptions>({});
 
-  const promptSignIn = useCallback(() => setSignInPromptOpen(true), []);
+  const promptSignIn = useCallback((options: SignInPromptOptions = {}) => {
+    setSignInPromptOptions(options);
+    setSignInPromptOpen(true);
+  }, []);
 
   // Only fetch client-side if the user logs in AFTER initial load (e.g. signs in
   // without a full reload). On a normal page load the server already seeded us.
@@ -113,6 +123,9 @@ export function SavedSchoolsProvider({
       <SignInPrompt
         open={signInPromptOpen}
         onClose={() => setSignInPromptOpen(false)}
+        icon={signInPromptOptions.icon}
+        title={signInPromptOptions.title}
+        description={signInPromptOptions.description}
       />
     </SavedSchoolsContext.Provider>
   );

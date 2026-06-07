@@ -37,6 +37,7 @@ model User {
   image         String?
   accounts      Account[]
   savedSchools  SavedSchool[]
+  notes         SchoolNote[]
 }
 
 // --- App models ---
@@ -47,6 +48,19 @@ model SavedSchool {
   schoolSlug String
   category   Category @default(UNDECIDED)
   savedAt    DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, schoolSlug])
+}
+
+model SchoolNote {
+  id         String   @id @default(cuid())
+  userId     String
+  schoolSlug String
+  body       String   @db.Text
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 

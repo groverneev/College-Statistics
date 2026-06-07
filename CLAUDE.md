@@ -64,31 +64,38 @@ Adding a new school should usually require:
 
 ## Accounts & Saved Schools
 
-The site has optional Google login backed by a Supabase Postgres database (via Prisma). Logged-in users can save schools to a personal list, categorized as Reach / Target / Safety / Undecided.
+The site has optional Google login backed by a Supabase Postgres database (via Prisma). Logged-in users can save schools to a personal list, categorized as Reach / Target / Safety / Undecided, and can write a private freeform note about any school (one note per school, independent of whether it is saved).
 
 ### Key files
 
 - `src/lib/auth.ts`: NextAuth options. Google provider, **JWT session strategy** (the user id is carried in the encrypted cookie via the `jwt`/`session` callbacks — no DB lookup per request). `PrismaAdapter` persists `User` + `Account` rows on sign-in.
 - `src/lib/prisma.ts`: Prisma client singleton.
 - `src/lib/savedSchools.ts`: `getSession` (React-cached `getServerSession`) and `getSavedSchoolsForUser` (per-user `unstable_cache`, tagged `saved-schools-<userId>`).
+- `src/lib/notes.ts`: `getNotesForUser` (per-user `unstable_cache`, tagged `school-notes-<userId>`). Reuses `getSession` from `savedSchools.ts`.
 - `src/app/api/auth/[...nextauth]/route.ts`: NextAuth handler.
 - `src/app/api/my-schools/`: saved-schools CRUD. `GET`/`POST` on the collection, `PATCH`/`DELETE` on `[slug]`. All require a session and validate `schoolSlug` against `availableSchoolSlugs` and `category` against the `Category` enum. Mutations call `revalidateTag` to purge the user's cache.
+- `src/app/api/my-notes/`: per-school notes. `GET` (list) / `POST` (upsert by `userId + schoolSlug`) on the collection, `DELETE` on `[slug]`. Session-gated, slug-validated against `availableSchoolSlugs`, note body validated (non-empty, max 5000 chars). `shared.ts` re-exports the auth/slug helpers from `my-schools/shared`. Mutations `revalidateTag` the user's notes cache.
 - `src/components/SavedSchoolsContext.tsx`: client-side cache of the user's list. **Initialized directly from server-seeded data** (`useState(initialSavedSchools)`) so SSR renders the list with no flash. Mutations are optimistic (update local state first, sync in the background).
+- `src/components/NotesContext.tsx`: client-side cache of the user's notes, same server-seeded + optimistic pattern as `SavedSchoolsContext`. Exposes `getNote` / `hasNote` / `saveNote` / `deleteNote`.
 - `src/components/SaveSchoolButton.tsx`: bookmark icon (cards) and full button (school page) with the category popover. Reads/writes through the context — never fetches per-button.
+- `src/components/SchoolNotes.tsx`: notes panel on the school dashboard (view / empty / editor states). Logged-out clicks call `promptSignIn` from `SavedSchoolsContext`.
+- `src/components/CardNoteIndicator.tsx`: subtle "Note" chip + one-line preview on school cards; renders nothing when the school has no note.
 - `src/components/Header.tsx`: nav with Browse Schools link + sign in / avatar.
 
 ### Data flow (important)
 
-- The **root layout** (`src/app/layout.tsx`) is the single place that resolves auth: it calls `getSession()` and, when logged in, `getSavedSchoolsForUser()`, then seeds `SessionWrapper` and `SavedSchoolsProvider`. Because the layout reads the session cookie, all routes are server-rendered (`ƒ`), not static. With JWT sessions this is cheap (no DB round trip for auth).
-- Do **not** reintroduce per-component `fetch("/api/my-schools")` for reads. The provider already holds the list; components should use `useSavedSchools()`.
+- The **root layout** (`src/app/layout.tsx`) is the single place that resolves auth: it calls `getSession()` and, when logged in, `getSavedSchoolsForUser()` + `getNotesForUser()` (in parallel), then seeds `SessionWrapper`, `SavedSchoolsProvider`, and `NotesProvider`. Because the layout reads the session cookie, all routes are server-rendered (`ƒ`), not static. With JWT sessions this is cheap (no DB round trip for auth).
+- Do **not** reintroduce per-component `fetch("/api/my-schools")` or `fetch("/api/my-notes")` for reads. The providers already hold the data; components should use `useSavedSchools()` / `useNotes()`.
 
 ### Schema
 
-`prisma/schema.prisma` defines `User`, `Account`, and `SavedSchool` only. `Session` and `VerificationToken` were intentionally removed because the JWT strategy does not use them — do not re-add them unless switching to database sessions or a passwordless/email provider.
+`prisma/schema.prisma` defines `User`, `Account`, `SavedSchool`, and `SchoolNote` only. `Session` and `VerificationToken` were intentionally removed because the JWT strategy does not use them — do not re-add them unless switching to database sessions or a passwordless/email provider. `SchoolNote` is keyed `@@unique([userId, schoolSlug])` (one note per user per school) with `onDelete: Cascade` from `User`.
 
 ### Database changes
 
-The local network may block the Prisma migration port (5432). Generate SQL with `npx prisma migrate diff --from-empty --to-schema-datamodel prisma/schema.prisma --script` (or a targeted diff) and run it in the Supabase SQL editor. Always run `npx prisma generate` after editing the schema. The dev server locks the Prisma engine on Windows — stop it before regenerating.
+The local network may block the Prisma migration port (5432). Generate SQL with `npx prisma migrate diff --from-empty --to-schema-datamodel prisma/schema.prisma --script` (or a targeted diff) and run it in the Supabase SQL editor. Always run `npx prisma generate` after editing the schema. The dev server locks the Prisma engine on Windows — stop it before regenerating. Hand-written/targeted migration SQL is kept under `prisma/migrations_manual/` (e.g. `add_school_note.sql`) for pasting into the Supabase SQL editor.
+
+> **Migration ordering:** the root layout calls the per-user data loaders on every logged-in page load, so a new table must exist in Supabase **before** the code that reads it goes live — otherwise logged-in page loads error. Run the SQL first, then deploy/restart.
 
 ### Required environment variables
 

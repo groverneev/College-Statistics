@@ -38,8 +38,11 @@ import ucdavisData from "./ucdavis.json";
 import uchicagoData from "./uchicago.json";
 import uciData from "./uci.json";
 import uclaData from "./ucla.json";
+import ucmercedData from "./ucmerced.json";
+import ucSantaCruzData from "./ucsantacruz.json";
 import ucsanDiegoData from "./ucsandiego.json";
 import ucsbData from "./ucsb.json";
+import ucriversideData from "./ucriverside.json";
 import ufloridaData from "./uflorida.json";
 import uiucData from "./uiuc.json";
 import umdData from "./umd.json";
@@ -107,8 +110,11 @@ export const allSchools: SchoolData[] = [
   ucberkeleyData as SchoolData,
   ucdavisData as SchoolData,
   ucsbData as SchoolData,
+  ucSantaCruzData as SchoolData,
   ucsanDiegoData as SchoolData,
   uciData as SchoolData,
+  ucmercedData as SchoolData,
+  ucriversideData as SchoolData,
   uchicagoData as SchoolData,
   ufloridaData as SchoolData,
   uiucData as SchoolData,
@@ -280,6 +286,15 @@ export const SCHOOL_METADATA: Record<string, SchoolMetadata> = {
     ],
     color: "#022851",
   },
+  ucmerced: {
+    aliases: [
+      "UC Merced",
+      "University of California Merced",
+      "University of California, Merced",
+      "Merced",
+    ],
+    color: "#0F2D52",
+  },
   uchicago: {
     aliases: ["UChicago", "University of Chicago", "Chicago"],
     color: "#800000",
@@ -321,6 +336,26 @@ export const SCHOOL_METADATA: Record<string, SchoolMetadata> = {
       "Santa Barbara",
     ],
     color: "#003660",
+  },
+  ucsantacruz: {
+    aliases: [
+      "UCSC",
+      "UC Santa Cruz",
+      "University of California Santa Cruz",
+      "University of California, Santa Cruz",
+      "Santa Cruz",
+    ],
+    color: "#003C6C",
+  },
+  ucriverside: {
+    aliases: [
+      "UCR",
+      "UC Riverside",
+      "University of California Riverside",
+      "University of California, Riverside",
+      "Riverside",
+    ],
+    color: "#003DA5",
   },
   uflorida: {
     aliases: ["UF", "UFlorida", "U of F", "Florida", "University of Florida"],

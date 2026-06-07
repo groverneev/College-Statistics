@@ -60,7 +60,7 @@ export default function Header() {
                   return (
                     <button
                       key={link.href}
-                      onClick={promptSignIn}
+                      onClick={() => promptSignIn()}
                       className={className}
                     >
                       {link.label}

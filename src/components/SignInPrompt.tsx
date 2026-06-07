@@ -6,9 +6,18 @@ import { signIn } from "next-auth/react";
 interface SignInPromptProps {
   open: boolean;
   onClose: () => void;
+  icon?: string;
+  title?: string;
+  description?: string;
 }
 
-export default function SignInPrompt({ open, onClose }: SignInPromptProps) {
+export default function SignInPrompt({
+  open,
+  onClose,
+  icon = "🔖",
+  title = "Sign in to save schools",
+  description = "Create your free college list and organize schools as Reach, Target, or Safety. Sign in with Google to get started.",
+}: SignInPromptProps) {
   // Close on Escape
   useEffect(() => {
     if (!open) return;
@@ -37,17 +46,14 @@ export default function SignInPrompt({ open, onClose }: SignInPromptProps) {
 
       {/* Card */}
       <div className="relative w-full max-w-sm bg-white rounded-2xl shadow-xl p-6 text-center">
-        <div className="text-4xl mb-3">🔖</div>
+        <div className="text-4xl mb-3">{icon}</div>
         <h2
           id="signin-prompt-title"
           className="text-lg font-semibold text-gray-800 mb-2"
         >
-          Sign in to save schools
+          {title}
         </h2>
-        <p className="text-sm text-gray-500 mb-6">
-          Create your free college list and organize schools as Reach, Target,
-          or Safety. Sign in with Google to get started.
-        </p>
+        <p className="text-sm text-gray-500 mb-6">{description}</p>
 
         <button
           onClick={() => signIn("google")}

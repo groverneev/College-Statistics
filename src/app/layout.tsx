@@ -4,7 +4,9 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import SessionWrapper from "@/components/SessionWrapper";
 import { SavedSchoolsProvider } from "@/components/SavedSchoolsContext";
+import { NotesProvider } from "@/components/NotesContext";
 import { getSession, getSavedSchoolsForUser } from "@/lib/savedSchools";
+import { getNotesForUser } from "@/lib/notes";
 
 export const metadata: Metadata = {
   title: "College Statistics - Compare University Data",
@@ -19,9 +21,12 @@ export default async function RootLayout({
 }>) {
   const session = await getSession();
 
-  const initialSavedSchools = session?.user?.id
-    ? await getSavedSchoolsForUser(session.user.id)
-    : [];
+  const [initialSavedSchools, initialNotes] = session?.user?.id
+    ? await Promise.all([
+        getSavedSchoolsForUser(session.user.id),
+        getNotesForUser(session.user.id),
+      ])
+    : [[], []];
 
   return (
     <html lang="en" className="light" style={{ colorScheme: "light" }}>
@@ -31,9 +36,11 @@ export default async function RootLayout({
             initialSavedSchools={initialSavedSchools}
             isLoggedIn={!!session}
           >
-            <Header />
-            <main className="flex-1 pt-16">{children}</main>
-            <Footer />
+            <NotesProvider initialNotes={initialNotes} isLoggedIn={!!session}>
+              <Header />
+              <main className="flex-1 pt-16">{children}</main>
+              <Footer />
+            </NotesProvider>
           </SavedSchoolsProvider>
         </SessionWrapper>
       </body>
