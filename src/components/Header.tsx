@@ -31,11 +31,8 @@ export default function Header() {
   const navLinks = [
     { href: "/schools", label: "Browse Schools" },
     { href: "/my-schools", label: "My Schools" },
-    { href: "/about", label: "About" },
-    { href: "/how-it-works", label: "How it Works" },
     { href: "/trends", label: "Trends" },
     { href: "/uc", label: "UC Explorer" },
-    { href: "/contact", label: "Contact" },
   ];
 
   return (
@@ -50,7 +47,7 @@ export default function Header() {
           </Link>
 
           {/* Desktop Navigation + Auth — grouped right */}
-          <div className="hidden lg:flex items-center space-x-8 ml-auto">
+          <div className="hidden md:flex items-center space-x-8 ml-auto">
             <nav className="flex items-center space-x-6">
               {navLinks.map((link) => {
                 const className =
@@ -145,7 +142,7 @@ export default function Header() {
 
           {/* Mobile Menu Button */}
           <button
-            className="lg:hidden ml-auto p-2 rounded-md text-gray-600 hover:text-gray-900 hover:bg-gray-100"
+            className="md:hidden ml-auto p-2 rounded-md text-gray-600 hover:text-gray-900 hover:bg-gray-100"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             aria-label="Toggle menu"
           >
@@ -183,7 +180,7 @@ export default function Header() {
 
         {/* Mobile Menu */}
         {mobileMenuOpen && (
-          <div className="lg:hidden border-t border-gray-100 py-4">
+          <div className="md:hidden border-t border-gray-100 py-4">
             <nav className="flex flex-col space-y-4">
               {navLinks.map((link) => {
                 const className =
