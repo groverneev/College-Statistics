@@ -122,7 +122,7 @@ export default function SchoolPageClient({
         }}
       >
         <Link
-          href="/"
+          href="/schools"
           className="inline-flex items-center text-white/80 hover:text-white text-sm mb-4 transition-colors"
         >
           <svg

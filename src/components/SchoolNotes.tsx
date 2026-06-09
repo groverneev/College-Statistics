@@ -1,9 +1,19 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState, type CSSProperties } from "react";
 import { useNotes } from "@/components/NotesContext";
+import ConfirmDialog from "@/components/ConfirmDialog";
 
 const MAX_NOTE_LENGTH = 5000;
+
+/** How many lines of a note to show before collapsing behind "Show more". */
+const COLLAPSED_NOTE_LINES = 8;
+const COLLAPSED_NOTE_STYLE: CSSProperties = {
+  display: "-webkit-box",
+  WebkitLineClamp: COLLAPSED_NOTE_LINES,
+  WebkitBoxOrient: "vertical",
+  overflow: "hidden",
+};
 
 interface SchoolNotesProps {
   schoolSlug: string;
@@ -37,6 +47,27 @@ export default function SchoolNotes({
   const note = getNote(schoolSlug);
   const [editing, setEditing] = useState(startEditing);
   const [draft, setDraft] = useState(startEditing ? note ?? "" : "");
+  const [confirmingDelete, setConfirmingDelete] = useState(false);
+
+  // Collapse long notes to a fixed number of lines with a "Show more" toggle.
+  const noteRef = useRef<HTMLParagraphElement>(null);
+  const [collapsed, setCollapsed] = useState(true);
+  const [isOverflowing, setIsOverflowing] = useState(false);
+
+  useEffect(() => {
+    const el = noteRef.current;
+    if (!el || !collapsed) return;
+    setIsOverflowing(el.scrollHeight > el.clientHeight + 1);
+  }, [note, collapsed, editing]);
+
+  // Auto-grow the editor textarea so it fits its content without inner scrolling.
+  const textareaRef = useRef<HTMLTextAreaElement>(null);
+  useEffect(() => {
+    const el = textareaRef.current;
+    if (!editing || !el) return;
+    el.style.height = "auto";
+    el.style.height = `${el.scrollHeight}px`;
+  }, [editing, draft]);
 
   function startEdit() {
     setDraft(note ?? "");
@@ -63,7 +94,8 @@ export default function SchoolNotes({
     setDraft("");
   }
 
-  async function handleDelete() {
+  async function confirmDelete() {
+    setConfirmingDelete(false);
     await deleteNote(schoolSlug);
     setEditing(false);
     setDraft("");
@@ -78,25 +110,35 @@ export default function SchoolNotes({
           My note
         </h3>
         {!editing && note && (
-          <button
-            onClick={startEdit}
-            className="text-sm font-medium transition-colors hover:opacity-80"
-            style={{ color: schoolColor }}
-          >
-            Edit
-          </button>
+          <div className="flex items-center gap-3">
+            <button
+              onClick={startEdit}
+              className="text-sm font-medium transition-colors hover:opacity-80"
+              style={{ color: schoolColor }}
+            >
+              Edit
+            </button>
+            <button
+              onClick={() => setConfirmingDelete(true)}
+              className="text-sm font-medium transition-colors hover:opacity-80"
+              style={{ color: schoolColor }}
+            >
+              Delete
+            </button>
+          </div>
         )}
       </div>
 
       {editing ? (
         <div>
           <textarea
+            ref={textareaRef}
             value={draft}
             onChange={(e) => setDraft(e.target.value)}
             maxLength={MAX_NOTE_LENGTH}
             autoFocus
             placeholder="What stood out about this school? Reminders, pros/cons, people to contact…"
-            className="w-full min-h-[110px] rounded-lg border border-gray-300 px-3 py-2.5 text-sm text-gray-700 resize-y focus:outline-none focus:ring-2"
+            className="w-full min-h-[160px] max-h-[60vh] overflow-y-auto rounded-lg border border-gray-300 px-3 py-2.5 text-sm text-gray-700 resize-y focus:outline-none focus:ring-2"
             style={{ outlineColor: schoolColor }}
           />
           <div className="flex items-center justify-between mt-2.5">
@@ -104,14 +146,6 @@ export default function SchoolNotes({
               {draft.length}/{MAX_NOTE_LENGTH}
             </span>
             <div className="flex items-center gap-2">
-              {note && (
-                <button
-                  onClick={handleDelete}
-                  className="px-4 py-1.5 rounded-lg text-sm text-red-500 hover:bg-red-50 transition-colors"
-                >
-                  Delete
-                </button>
-              )}
               <button
                 onClick={cancel}
                 className="px-4 py-1.5 rounded-lg text-sm text-gray-600 border border-gray-200 hover:bg-gray-50 transition-colors"
@@ -130,10 +164,35 @@ export default function SchoolNotes({
         </div>
       ) : (
         <div>
-          <p className="text-sm text-gray-700 leading-relaxed whitespace-pre-wrap">{note}</p>
+          <p
+            ref={noteRef}
+            className="text-sm text-gray-700 leading-relaxed whitespace-pre-wrap"
+            style={collapsed ? COLLAPSED_NOTE_STYLE : undefined}
+          >
+            {note}
+          </p>
+          {isOverflowing && (
+            <button
+              onClick={() => setCollapsed((c) => !c)}
+              className="mt-1.5 text-sm font-medium transition-colors hover:opacity-80"
+              style={{ color: schoolColor }}
+            >
+              {collapsed ? "Show more" : "Show less"}
+            </button>
+          )}
           <p className="text-xs text-gray-400 mt-2.5">Only you can see this</p>
         </div>
       )}
+
+      <ConfirmDialog
+        open={confirmingDelete}
+        onClose={() => setConfirmingDelete(false)}
+        onConfirm={confirmDelete}
+        title="Delete this note?"
+        description="This will permanently remove your note for this school. This can't be undone."
+        confirmLabel="Delete note"
+        confirmColor={schoolColor}
+      />
     </div>
   );
 }
