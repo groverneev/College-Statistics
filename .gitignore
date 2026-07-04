@@ -54,3 +54,7 @@ venv/
 .cds_pipeline/
 
 /src/generated/prisma
+
+# Slidedeck for competition
+/deck/
+College-Statistics-Deck.pptx
