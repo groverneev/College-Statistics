@@ -17,12 +17,12 @@ A data visualization dashboard for comparing colleges using Common Data Set (CDS
 - **Demographics** - Enrollment trends and racial/ethnic composition over time
 - **Admissions Factors** - Latest CDS C7 matrix showing how schools classify academic and nonacademic admissions factors
 - **Trends** - Data-driven stories and analyses (e.g. UC application volume comparisons)
-- **Saved Schools** - Sign in with Google to save schools to a personal list, categorized as Reach / Target / Safety / Undecided. Logged-in users see their saved list (grouped by category) on the homepage instead of the featured grid.
+- **Saved Schools** - Sign in with Google to save schools to a personal list, categorized as Reach / Target / Safety / Undecided. Logged-in users see their saved list as a quick-link chip row near the top of the homepage.
 - **Notes** - Logged-in users can write a private, freeform note about any school (one note per school). Notes appear on the school dashboard and as a subtle indicator on school cards. Only the author can see their notes.
 
 ## Pages
 
-- **Home** (`/`) - For logged-out visitors: featured school grid with key stats. For logged-in users: their saved schools grouped by Reach / Target / Safety / Undecided.
+- **Home** (`/`) - Dark landing page: an animated hero chart of real acceptance-rate trends with search, explore cards linking to Browse Schools / UC Explorer / Trends, and a full-catalog chip wall CTA. Logged-in users also get a quick-link row of their saved schools.
 - **Browse Schools** (`/schools`) - Full school grid with a save button on each card (available to everyone)
 - **School Dashboard** (`/[school]`) - Detailed charts, tables, school-level admissions-factor metadata, a "Save to My List" button, and a private notes panel for logged-in users
 - **Trends** (`/trends`) - Data-driven stories with charts and analysis

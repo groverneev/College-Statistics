@@ -9,6 +9,16 @@ export interface TrendMeta {
 
 export const trends: TrendMeta[] = [
   {
+    slug: "cs-enrollment-reversal",
+    title: "Computer Science Interest Turns Down Across Every Level, 2024–2026",
+    subtitle:
+      "AP exams, the UC system, elite privates, and national counts all reversed together",
+    date: "2026-07-07",
+    tags: ["Computer Science", "Enrollment", "AP Exams", "AI"],
+    preview:
+      "After two decades as the fastest-growing field in American education, CS interest turned down everywhere at once: AP CS A down 17% from its 2024 peak, UC majors down 9%, and national enrollment posting the steepest drop of any field — right as GenAI coding tools arrived.",
+  },
+  {
     slug: "common-app-2026",
     title: "2026 Application Season: Five Fault Lines",
     subtitle: "Record totals mask growing divides in who's applying, and where",

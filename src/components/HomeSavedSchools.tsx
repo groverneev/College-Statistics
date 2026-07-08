@@ -3,9 +3,13 @@
 import Link from "next/link";
 import { useSavedSchools } from "@/components/SavedSchoolsContext";
 import { schoolDataMap } from "@/data/schools";
-import SchoolCard from "@/components/SchoolCard";
 
-const MAX_PREVIEW = 6;
+const CATEGORY_COLORS: Record<string, string> = {
+  REACH: "#ef4444",
+  TARGET: "#f59e0b",
+  SAFETY: "#22c55e",
+  UNDECIDED: "#9ca3af",
+};
 
 export default function HomeSavedSchools() {
   const { isLoggedIn, savedSchools } = useSavedSchools();
@@ -13,32 +17,43 @@ export default function HomeSavedSchools() {
   if (!isLoggedIn || savedSchools.length === 0) return null;
 
   const schools = savedSchools
-    .map((saved) => schoolDataMap[saved.schoolSlug])
-    .filter((school): school is NonNullable<typeof school> => Boolean(school));
+    .map((saved) => ({
+      saved,
+      school: schoolDataMap[saved.schoolSlug],
+    }))
+    .filter((entry) => Boolean(entry.school));
 
   if (schools.length === 0) return null;
 
-  const preview = schools.slice(0, MAX_PREVIEW);
-
   return (
-    <div className="max-w-6xl mx-auto px-4 pt-12">
-      <div className="flex items-center justify-between mb-6">
-        <h2 className="text-2xl font-semibold text-gray-800">
-          Your saved schools
-        </h2>
+    <div className="max-w-6xl mx-auto px-4 pt-14">
+      <div className="flex items-baseline justify-between mb-4">
+        <h2 className="section-label">Your schools</h2>
         <Link
           href="/my-schools"
-          className="text-sm font-medium text-blue-600 hover:text-blue-700 whitespace-nowrap"
+          className="text-sm font-medium link-dark whitespace-nowrap"
         >
-          {schools.length > MAX_PREVIEW
-            ? `View all ${schools.length} saved`
-            : "Go to My Schools"}{" "}
-          &rarr;
+          My Schools &rarr;
         </Link>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {preview.map((school) => (
-          <SchoolCard key={school.slug} school={school} showSaveButton />
+      <div className="flex flex-wrap gap-2">
+        {schools.map(({ saved, school }) => (
+          <Link
+            key={saved.schoolSlug}
+            href={`/${saved.schoolSlug}`}
+            className="chip-dark flex items-center gap-2 rounded-full px-3.5 py-1.5 text-sm font-medium"
+          >
+            <span
+              className="w-2 h-2 rounded-full flex-shrink-0"
+              style={{
+                background:
+                  CATEGORY_COLORS[saved.category] ?? CATEGORY_COLORS.UNDECIDED,
+              }}
+              aria-hidden
+              title={saved.category.toLowerCase()}
+            />
+            {school.name}
+          </Link>
         ))}
       </div>
     </div>

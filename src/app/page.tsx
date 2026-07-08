@@ -1,10 +1,38 @@
 import SearchBar from "@/components/SearchBar";
-import HomePageContent from "@/components/HomePageContent";
 import HomeSavedSchools from "@/components/HomeSavedSchools";
 import ExploreTiles from "@/components/ExploreTiles";
-import HomeDataTeaser from "@/components/HomeDataTeaser";
-import { allSchools, searchableSchools } from "@/data/schools";
+import SchoolChipWall from "@/components/SchoolChipWall";
+import HeroTrendChart, { HeroSeries, HeroPoint } from "@/components/HeroTrendChart";
+import { allSchools, searchableSchools, schoolDataMap } from "@/data/schools";
 import { getSortedYears } from "@/utils/dataHelpers";
+
+// Registry brand colors brightened for legibility on the dark hero canvas
+// (Harvard, MIT, and Northeastern are near-identical dark crimsons at full depth;
+// MIT uses its official silver-gray secondary).
+const HERO_SCHOOLS: { slug: string; label: string; color: string }[] = [
+  { slug: "harvard", label: "Harvard", color: "#EE5A66" },
+  { slug: "mit", label: "MIT", color: "#C3C8D2" },
+  { slug: "ucla", label: "UCLA", color: "#53A8E8" },
+  { slug: "nyu", label: "NYU", color: "#AE66F0" },
+  { slug: "northeastern", label: "Northeastern", color: "#FF5540" },
+];
+
+function getHeroSeries(): HeroSeries[] {
+  return HERO_SCHOOLS.flatMap(({ slug, label, color }) => {
+    const school = schoolDataMap[slug];
+    if (!school) return [];
+
+    const points = getSortedYears(school)
+      .map((year) => {
+        const rate = school.years[year]?.admissions.acceptanceRate;
+        const start = parseInt(year.split("-")[0], 10);
+        return rate && !Number.isNaN(start) ? { year: start, rate } : null;
+      })
+      .filter((p): p is HeroPoint => p !== null);
+
+    return points.length >= 2 ? [{ slug, name: label, color, points }] : [];
+  });
+}
 
 function getHeroStats() {
   let schoolYears = 0;
@@ -36,6 +64,7 @@ function getHeroStats() {
 
 export default function HomePage() {
   const stats = getHeroStats();
+  const heroSeries = getHeroSeries();
 
   const chips = [
     `${stats.schools} schools`,
@@ -45,29 +74,59 @@ export default function HomePage() {
   ].filter(Boolean) as string[];
 
   return (
-    <div className="min-h-screen" style={{ background: "#f5f5f5" }}>
+    // -mt-16 pulls the dark canvas up behind the fixed translucent header
+    <div className="min-h-screen -mt-16 hero-dark">
       {/* Hero Section */}
-      <div className="bg-gradient-to-r from-gray-800 to-gray-900 py-16 px-4 text-center text-white">
-        <h1 className="text-4xl md:text-5xl font-bold mb-3">
-          College Statistics
-        </h1>
-        <p className="text-gray-300 text-lg max-w-2xl mx-auto mb-8">
-          Explore and compare Common Data Set metrics across top universities.
-          View historical trends in admissions, test scores, costs, and more.
-        </p>
-        <SearchBar schools={searchableSchools} />
+      <div className="relative overflow-hidden px-4 pt-32 pb-20 sm:pt-36 sm:pb-24 text-center">
+        {/* Ambient glow at the top of the canvas */}
+        <div
+          aria-hidden
+          className="absolute inset-x-0 top-0 h-80 pointer-events-none"
+          style={{
+            background:
+              "radial-gradient(60% 100% at 50% 0%, rgba(94, 106, 210, 0.16) 0%, transparent 70%)",
+          }}
+        />
 
-        <div className="flex flex-wrap items-center justify-center gap-x-3 gap-y-2 mt-8 text-sm text-gray-300">
-          {chips.map((chip, index) => (
-            <span key={chip} className="flex items-center gap-3">
-              {index > 0 && (
-                <span className="text-gray-500" aria-hidden>
-                  &middot;
-                </span>
-              )}
-              <span>{chip}</span>
-            </span>
-          ))}
+        <div className="relative max-w-4xl mx-auto">
+          <h1
+            className="hero-rise text-4xl sm:text-5xl md:text-6xl font-semibold text-white mb-5"
+            style={{ letterSpacing: "-0.025em", lineHeight: 1.08 }}
+          >
+            Getting in keeps
+            <br />
+            getting harder.
+          </h1>
+          <p
+            className="hero-rise text-base sm:text-lg max-w-2xl mx-auto mb-8"
+            style={{ color: "#8a8f98", animationDelay: "0.1s" }}
+          >
+            Track a decade of admissions, test scores, costs, and financial aid
+            across {stats.schools} top universities — every number straight from
+            official Common Data Sets.
+          </p>
+
+          <div className="hero-rise" style={{ animationDelay: "0.18s" }}>
+            <SearchBar schools={searchableSchools} />
+          </div>
+
+          <div
+            className="hero-rise flex flex-wrap items-center justify-center gap-x-3 gap-y-2 mt-7 mb-14 text-sm"
+            style={{ color: "#62666d", animationDelay: "0.24s" }}
+          >
+            {chips.map((chip, index) => (
+              <span key={chip} className="flex items-center gap-3">
+                {index > 0 && (
+                  <span style={{ color: "#3a3d43" }} aria-hidden>
+                    &middot;
+                  </span>
+                )}
+                <span>{chip}</span>
+              </span>
+            ))}
+          </div>
+
+          <HeroTrendChart series={heroSeries} />
         </div>
       </div>
 
@@ -77,11 +136,8 @@ export default function HomePage() {
       {/* Capability gateways */}
       <ExploreTiles />
 
-      {/* Live proof of the trend data */}
-      <HomeDataTeaser />
-
-      {/* Sample of the full school catalog */}
-      <HomePageContent />
+      {/* Finale: CTA + full catalog as a chip wall */}
+      <SchoolChipWall />
     </div>
   );
 }

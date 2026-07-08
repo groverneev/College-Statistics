@@ -61,7 +61,13 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="bg-gray-800 text-white">
+    <footer
+      className="text-white"
+      style={{
+        background: "#0b0c0e",
+        borderTop: "1px solid rgba(255, 255, 255, 0.08)",
+      }}
+    >
       <div className="max-w-6xl mx-auto px-4 py-12">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {/* Site Info */}

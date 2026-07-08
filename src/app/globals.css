@@ -187,8 +187,34 @@ select.form-input {
 }
 
 /* Header styles */
-header {
+header:not(.header-dark) {
   background-color: #ffffff !important;
+}
+
+/* Homepage-only translucent dark header */
+header.header-dark {
+  background-color: rgba(8, 9, 10, 0.75);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.header-dark-logo {
+  color: #f7f8f8;
+}
+
+.header-dark-link,
+.link-dark {
+  color: #9ca1a8;
+  transition: color 0.15s ease;
+}
+
+.header-dark-link:hover,
+.link-dark:hover {
+  color: #f7f8f8;
+}
+
+.header-dark .header-dark-border {
+  border-color: rgba(255, 255, 255, 0.08) !important;
 }
 
 /* Search box animation */
@@ -213,4 +239,110 @@ header {
 /* Footer link hover */
 footer a:hover {
   color: #ffffff;
+}
+
+/* ===== Linear-style dark hero ===== */
+.hero-dark {
+  background-color: #08090a;
+}
+
+@keyframes hero-rise {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hero-rise {
+  opacity: 0;
+  animation: hero-rise 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes hero-draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.hero-line {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: hero-draw 1.5s ease-in-out forwards;
+}
+
+@keyframes hero-fade {
+  to {
+    opacity: 1;
+  }
+}
+
+.hero-fade {
+  opacity: 0;
+  animation: hero-fade 0.5s ease-out forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-rise,
+  .hero-line,
+  .hero-fade {
+    animation: none;
+    opacity: 1;
+    stroke-dashoffset: 0;
+    transform: none;
+  }
+}
+
+/* ===== Dark homepage surfaces ===== */
+.section-label {
+  color: #62666d;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.explore-card {
+  background: #101114;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  transition: border-color 0.2s ease, transform 0.2s ease;
+}
+
+.explore-card:hover {
+  border-color: rgba(255, 255, 255, 0.22);
+  transform: translateY(-2px);
+}
+
+.chip-dark {
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: #9ca1a8;
+  transition: color 0.15s ease, border-color 0.15s ease;
+}
+
+.chip-dark:hover {
+  border-color: rgba(255, 255, 255, 0.28);
+  color: #f7f8f8;
+}
+
+.btn-primary-light {
+  background: #f7f8f8;
+  color: #08090a;
+  transition: background 0.15s ease;
+}
+
+.btn-primary-light:hover {
+  background: #ffffff;
+}
+
+.btn-ghost-dark {
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  color: #e6e8eb;
+  transition: border-color 0.15s ease;
+}
+
+.btn-ghost-dark:hover {
+  border-color: rgba(255, 255, 255, 0.32);
 }

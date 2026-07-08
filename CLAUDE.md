@@ -24,7 +24,7 @@ The repo contains:
 
 ## App Structure
 
-- `src/app/page.tsx`: homepage with the featured school grid and search
+- `src/app/page.tsx`: dark Linear-style homepage, built as a funnel to /schools, /uc, and /trends — hero search + `HeroTrendChart` (real acceptance-rate lines in a floating window), `HomeSavedSchools` chip row (logged-in only), `ExploreTiles` dark cards, and `SchoolChipWall` (CTA + all-school chip wall). The full card catalog lives at `/schools`, not on the homepage. `Header` renders a translucent dark variant on `/` only; dark-surface utilities (`.hero-dark`, `.explore-card`, `.chip-dark`, `.btn-primary-light`) live in `globals.css`.
 - `src/app/[school]/page.tsx`: dynamic route for individual school dashboards
 - `src/app/[school]/SchoolPageClient.tsx`: client-side dashboard layout
 - `src/components/charts/`: trend visualizations used on school pages

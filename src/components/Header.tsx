@@ -3,16 +3,27 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useState, useRef, useEffect } from "react";
+import { usePathname } from "next/navigation";
 import { useSession, signIn, signOut } from "next-auth/react";
 import { useSavedSchools } from "@/components/SavedSchoolsContext";
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [userMenuOpen, setUserMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const userMenuRef = useRef<HTMLDivElement>(null);
   const { data: session } = useSession();
   const { isLoggedIn, promptSignIn } = useSavedSchools();
   const signedIn = isLoggedIn || !!session;
+  const isHome = usePathname() === "/";
+
+  useEffect(() => {
+    if (!isHome) return;
+    const onScroll = () => setScrolled(window.scrollY > 8);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, [isHome]);
 
   // Close user menu when clicking outside
   useEffect(() => {
@@ -35,13 +46,35 @@ export default function Header() {
     { href: "/uc", label: "UC Explorer" },
   ];
 
+  const desktopLinkClass = isHome
+    ? "header-dark-link font-medium text-base"
+    : "text-gray-600 hover:text-gray-900 font-medium transition-colors text-base";
+
   return (
-    <header className="fixed top-0 left-0 right-0 bg-white shadow-sm z-50">
+    <header
+      className={`fixed top-0 left-0 right-0 z-50 ${
+        isHome ? "header-dark" : "bg-white shadow-sm"
+      }`}
+      style={
+        isHome
+          ? {
+              borderBottom: `1px solid rgba(255, 255, 255, ${
+                scrolled ? 0.08 : 0
+              })`,
+              transition: "border-color 0.2s ease",
+            }
+          : undefined
+      }
+    >
       <div className="max-w-6xl mx-auto px-4">
         <div className="flex items-center h-16">
           {/* Logo */}
           <Link href="/" className="flex items-center space-x-2">
-            <span className="text-xl font-bold text-gray-800">
+            <span
+              className={`text-xl font-bold ${
+                isHome ? "header-dark-logo" : "text-gray-800"
+              }`}
+            >
               College Statistics
             </span>
           </Link>
@@ -50,8 +83,7 @@ export default function Header() {
           <div className="hidden md:flex items-center space-x-8 ml-auto">
             <nav className="flex items-center space-x-6">
               {navLinks.map((link) => {
-                const className =
-                  "text-gray-600 hover:text-gray-900 font-medium transition-colors text-base";
+                const className = desktopLinkClass;
                 // "My Schools" is gated: signed out, open the sign-in popup instead of navigating
                 if (link.href === "/my-schools" && !signedIn) {
                   return (
@@ -142,7 +174,11 @@ export default function Header() {
 
           {/* Mobile Menu Button */}
           <button
-            className="md:hidden ml-auto p-2 rounded-md text-gray-600 hover:text-gray-900 hover:bg-gray-100"
+            className={`md:hidden ml-auto p-2 rounded-md ${
+              isHome
+                ? "header-dark-link"
+                : "text-gray-600 hover:text-gray-900 hover:bg-gray-100"
+            }`}
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             aria-label="Toggle menu"
           >
@@ -180,11 +216,16 @@ export default function Header() {
 
         {/* Mobile Menu */}
         {mobileMenuOpen && (
-          <div className="md:hidden border-t border-gray-100 py-4">
+          <div
+            className={`md:hidden border-t py-4 ${
+              isHome ? "header-dark-border" : "border-gray-100"
+            }`}
+          >
             <nav className="flex flex-col space-y-4">
               {navLinks.map((link) => {
-                const className =
-                  "text-gray-600 hover:text-gray-900 font-medium px-2 py-1 text-left";
+                const className = isHome
+                  ? "header-dark-link font-medium px-2 py-1 text-left"
+                  : "text-gray-600 hover:text-gray-900 font-medium px-2 py-1 text-left";
                 // "My Schools" is gated: signed out, open the sign-in popup instead of navigating
                 if (link.href === "/my-schools" && !signedIn) {
                   return (
@@ -211,18 +252,35 @@ export default function Header() {
                   </Link>
                 );
               })}
-              <div className="border-t border-gray-100 pt-4 px-2">
+              <div
+                className={`border-t pt-4 px-2 ${
+                  isHome ? "header-dark-border" : "border-gray-100"
+                }`}
+              >
                 {session ? (
                   <div className="flex items-center justify-between">
                     <div>
-                      <p className="text-sm font-medium text-gray-800">
+                      <p
+                        className={`text-sm font-medium ${
+                          isHome ? "header-dark-logo" : "text-gray-800"
+                        }`}
+                      >
                         {session.user?.name}
                       </p>
-                      <p className="text-xs text-gray-500">{session.user?.email}</p>
+                      <p
+                        className="text-xs"
+                        style={isHome ? { color: "#8a8f98" } : undefined}
+                      >
+                        {session.user?.email}
+                      </p>
                     </div>
                     <button
                       onClick={() => signOut()}
-                      className="text-sm text-gray-600 hover:text-gray-900 font-medium"
+                      className={`text-sm font-medium ${
+                        isHome
+                          ? "header-dark-link"
+                          : "text-gray-600 hover:text-gray-900"
+                      }`}
                     >
                       Sign out
                     </button>
@@ -230,7 +288,11 @@ export default function Header() {
                 ) : (
                   <button
                     onClick={() => signIn("google")}
-                    className="flex items-center space-x-2 text-gray-600 hover:text-gray-900 font-medium"
+                    className={`flex items-center space-x-2 font-medium ${
+                      isHome
+                        ? "header-dark-link"
+                        : "text-gray-600 hover:text-gray-900"
+                    }`}
                   >
                     <span>Sign in with Google</span>
                   </button>

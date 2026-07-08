@@ -5,7 +5,7 @@ interface Tile {
   title: string;
   description: string;
   cta: string;
-  icon: React.ReactNode;
+  visual: React.ReactNode;
 }
 
 const tiles: Tile[] = [
@@ -15,9 +15,12 @@ const tiles: Tile[] = [
     description:
       "Sort every school by acceptance rate, class size, test scores, cost, and yield.",
     cta: "Browse schools",
-    icon: (
-      <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth={1.8} viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" d="M3 6h18M3 12h18M3 18h18" />
+    visual: (
+      // Sorted bars
+      <svg viewBox="0 0 120 40" className="w-28 h-10" aria-hidden>
+        <rect x="0" y="4" width="104" height="7" rx="3.5" fill="rgba(255,255,255,0.14)" />
+        <rect x="0" y="16" width="72" height="7" rx="3.5" fill="#53A8E8" />
+        <rect x="0" y="28" width="44" height="7" rx="3.5" fill="rgba(255,255,255,0.14)" />
       </svg>
     ),
   },
@@ -27,9 +30,19 @@ const tiles: Tile[] = [
     description:
       "Compare admit rates, GPA ranges, and yield across all nine UC campuses by discipline.",
     cta: "Explore UC data",
-    icon: (
-      <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth={1.8} viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+    visual: (
+      // Nine campuses
+      <svg viewBox="0 0 120 40" className="w-28 h-10" aria-hidden>
+        {[0, 1, 2, 3, 4, 5, 6, 7, 8].map((i) => (
+          <circle
+            key={i}
+            cx={10 + (i % 5) * 22}
+            cy={i < 5 ? 10 : 30}
+            r="5"
+            fill={i % 2 === 0 ? "#53A8E8" : "#FFB81C"}
+            opacity={0.55 + (i % 3) * 0.15}
+          />
+        ))}
       </svg>
     ),
   },
@@ -39,9 +52,17 @@ const tiles: Tile[] = [
     description:
       "Data-driven analysis of application volumes, selectivity, and shifts in who's applying.",
     cta: "Read the trends",
-    icon: (
-      <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth={1.8} viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" d="M3 17l6-6 4 4 8-8m0 0h-5m5 0v5" />
+    visual: (
+      // Sparkline
+      <svg viewBox="0 0 120 40" className="w-28 h-10" aria-hidden>
+        <path
+          d="M2 32 C 18 30, 26 24, 38 22 S 62 26, 74 18 S 102 6, 118 4"
+          fill="none"
+          stroke="#AE66F0"
+          strokeWidth="2.5"
+          strokeLinecap="round"
+        />
+        <circle cx="118" cy="4" r="3" fill="#AE66F0" />
       </svg>
     ),
   },
@@ -49,23 +70,33 @@ const tiles: Tile[] = [
 
 export default function ExploreTiles() {
   return (
-    <div className="max-w-6xl mx-auto px-4 py-12">
-      <h2 className="text-2xl font-semibold text-gray-800 mb-6">
-        Three ways to explore
-      </h2>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+    <div className="max-w-6xl mx-auto px-4 pt-16 pb-4">
+      <h2 className="section-label mb-5">Explore</h2>
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         {tiles.map((tile) => (
-          <Link key={tile.href} href={tile.href}>
-            <div className="card p-6 h-full flex flex-col hover:shadow-lg transition-shadow cursor-pointer">
-              <div className="w-11 h-11 rounded-lg bg-gray-100 flex items-center justify-center text-gray-700 mb-4">
-                {tile.icon}
-              </div>
-              <h3 className="text-lg font-semibold text-gray-800 mb-1">
+          <Link key={tile.href} href={tile.href} className="group">
+            <div className="explore-card rounded-xl p-6 h-full flex flex-col">
+              <div className="mb-5">{tile.visual}</div>
+              <h3
+                className="text-lg font-semibold mb-1.5"
+                style={{ color: "#f7f8f8" }}
+              >
                 {tile.title}
               </h3>
-              <p className="text-sm text-gray-600 flex-1">{tile.description}</p>
-              <span className="mt-4 text-sm font-medium text-blue-600">
-                {tile.cta}{" "}&rarr;
+              <p className="text-sm flex-1" style={{ color: "#8a8f98" }}>
+                {tile.description}
+              </p>
+              <span
+                className="mt-5 text-sm font-medium"
+                style={{ color: "#c9cdd3" }}
+              >
+                {tile.cta}{" "}
+                <span
+                  aria-hidden
+                  className="inline-block transition-transform group-hover:translate-x-0.5"
+                >
+                  &rarr;
+                </span>
               </span>
             </div>
           </Link>
