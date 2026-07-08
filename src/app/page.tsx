@@ -101,9 +101,7 @@ export default function HomePage() {
             className="hero-rise text-base sm:text-lg max-w-2xl mx-auto mb-8"
             style={{ color: "#8a8f98", animationDelay: "0.1s" }}
           >
-            Track a decade of admissions, test scores, costs, and financial aid
-            across {stats.schools} top universities — every number straight from
-            official Common Data Sets.
+            Track a decade of admissions, test scores, financial aid, and more across {stats.schools} top universities
           </p>
 
           <div className="hero-rise" style={{ animationDelay: "0.18s" }}>
