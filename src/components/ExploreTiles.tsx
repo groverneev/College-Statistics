@@ -70,7 +70,7 @@ const tiles: Tile[] = [
 
 export default function ExploreTiles() {
   return (
-    <div className="max-w-6xl mx-auto px-4 pt-16 pb-4">
+    <div className="max-w-6xl mx-auto px-4 pt-16 pb-24">
       <h2 className="section-label mb-5">Explore</h2>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         {tiles.map((tile) => (

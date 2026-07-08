@@ -22,7 +22,7 @@ A data visualization dashboard for comparing colleges using Common Data Set (CDS
 
 ## Pages
 
-- **Home** (`/`) - Dark landing page: an animated hero chart of real acceptance-rate trends with search, explore cards linking to Browse Schools / UC Explorer / Trends, and a full-catalog chip wall CTA. Logged-in users also get a quick-link row of their saved schools.
+- **Home** (`/`) - Dark landing page: an animated hero chart of real acceptance-rate trends with search, an auto-scrolling carousel of all school cards, and explore cards linking to Browse Schools / UC Explorer / Trends. Logged-in users also get a quick-link row of their saved schools.
 - **Browse Schools** (`/schools`) - Full school grid with a save button on each card (available to everyone)
 - **School Dashboard** (`/[school]`) - Detailed charts, tables, school-level admissions-factor metadata, a "Save to My List" button, and a private notes panel for logged-in users
 - **Trends** (`/trends`) - Data-driven stories with charts and analysis

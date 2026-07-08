@@ -1,7 +1,7 @@
 import SearchBar from "@/components/SearchBar";
 import HomeSavedSchools from "@/components/HomeSavedSchools";
 import ExploreTiles from "@/components/ExploreTiles";
-import SchoolChipWall from "@/components/SchoolChipWall";
+import SchoolCarousel from "@/components/SchoolCarousel";
 import HeroTrendChart, { HeroSeries, HeroPoint } from "@/components/HeroTrendChart";
 import { allSchools, searchableSchools, schoolDataMap } from "@/data/schools";
 import { getSortedYears } from "@/utils/dataHelpers";
@@ -130,14 +130,14 @@ export default function HomePage() {
         </div>
       </div>
 
+      {/* Full catalog as an auto-scrolling marquee of school cards */}
+      <SchoolCarousel />
+
       {/* Personalized: only renders for logged-in users with saved schools */}
       <HomeSavedSchools />
 
       {/* Capability gateways */}
       <ExploreTiles />
-
-      {/* Finale: CTA + full catalog as a chip wall */}
-      <SchoolChipWall />
     </div>
   );
 }
