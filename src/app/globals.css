@@ -191,12 +191,10 @@ header:not(.header-dark) {
   background-color: #ffffff !important;
 }
 
-/* Homepage-only translucent header (light variant floating over the hero).
+/* Homepage-only header (light variant floating over the hero).
    Class names retain the historical "dark" suffix; the styling is now light. */
 header.header-dark {
-  background-color: rgba(247, 248, 250, 0.72);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  background-color: #f7f8fa;
 }
 
 .header-dark-logo {
