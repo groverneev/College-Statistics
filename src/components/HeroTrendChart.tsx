@@ -103,7 +103,7 @@ export default function HeroTrendChart({ series }: HeroTrendChartProps) {
         className="absolute -inset-x-10 -inset-y-12 pointer-events-none"
         style={{
           background:
-            "radial-gradient(45% 55% at 30% 40%, rgba(94, 106, 210, 0.22) 0%, transparent 70%), radial-gradient(40% 50% at 75% 55%, rgba(174, 102, 240, 0.14) 0%, transparent 70%)",
+            "radial-gradient(45% 55% at 30% 40%, rgba(94, 106, 210, 0.14) 0%, transparent 70%), radial-gradient(40% 50% at 75% 55%, rgba(174, 102, 240, 0.10) 0%, transparent 70%)",
         }}
       />
 
@@ -111,23 +111,23 @@ export default function HeroTrendChart({ series }: HeroTrendChartProps) {
       <div
         className="relative rounded-2xl overflow-hidden"
         style={{
-          border: "1px solid rgba(255, 255, 255, 0.09)",
-          background: "linear-gradient(180deg, #111216 0%, #0b0c0e 100%)",
+          border: "1px solid rgba(0, 0, 0, 0.08)",
+          background: "linear-gradient(180deg, #ffffff 0%, #fbfbfd 100%)",
           boxShadow:
-            "0 0 0 1px rgba(0,0,0,0.4), 0 32px 80px -24px rgba(0, 0, 0, 0.75)",
+            "0 0 0 1px rgba(0,0,0,0.03), 0 32px 80px -24px rgba(23, 26, 43, 0.22)",
         }}
       >
         {/* Title bar */}
         <div
           className="flex items-center gap-3 px-4 sm:px-5 py-3"
-          style={{ borderBottom: "1px solid rgba(255, 255, 255, 0.07)" }}
+          style={{ borderBottom: "1px solid rgba(0, 0, 0, 0.06)" }}
         >
           <div className="flex items-center gap-1.5" aria-hidden>
-            <span className="w-2.5 h-2.5 rounded-full" style={{ background: "#42464e" }} />
-            <span className="w-2.5 h-2.5 rounded-full" style={{ background: "#42464e" }} />
-            <span className="w-2.5 h-2.5 rounded-full" style={{ background: "#42464e" }} />
+            <span className="w-2.5 h-2.5 rounded-full" style={{ background: "#d5d8dd" }} />
+            <span className="w-2.5 h-2.5 rounded-full" style={{ background: "#d5d8dd" }} />
+            <span className="w-2.5 h-2.5 rounded-full" style={{ background: "#d5d8dd" }} />
           </div>
-          <span className="text-xs sm:text-sm font-medium" style={{ color: "#b4b8bf" }}>
+          <span className="text-xs sm:text-sm font-medium" style={{ color: "#3a3d43" }}>
             Acceptance rate, {chart.minYear}–{chart.maxYear + 1}
           </span>
           <span className="ml-auto hidden sm:block text-xs" style={{ color: "#62666d" }}>
@@ -149,9 +149,9 @@ export default function HeroTrendChart({ series }: HeroTrendChartProps) {
                 onClick={() => router.push(`/${s.slug}`)}
                 className="flex items-center gap-2 rounded-full px-3 py-1.5 text-xs font-medium transition-colors cursor-pointer"
                 style={{
-                  border: `1px solid ${active === s.slug ? "rgba(255,255,255,0.28)" : "rgba(255,255,255,0.1)"}`,
-                  color: isDimmed(s.slug) ? "#62666d" : "#e6e8eb",
-                  background: active === s.slug ? "rgba(255,255,255,0.06)" : "transparent",
+                  border: `1px solid ${active === s.slug ? "rgba(0,0,0,0.22)" : "rgba(0,0,0,0.1)"}`,
+                  color: isDimmed(s.slug) ? "#9096a0" : "#1a1a1a",
+                  background: active === s.slug ? "rgba(0,0,0,0.04)" : "transparent",
                 }}
                 title={`Open ${s.name} dashboard`}
               >
@@ -184,7 +184,7 @@ export default function HeroTrendChart({ series }: HeroTrendChartProps) {
                 x2={W - PAD.right}
                 y1={chart.y(r)}
                 y2={chart.y(r)}
-                stroke="rgba(255,255,255,0.06)"
+                stroke="rgba(0,0,0,0.06)"
               />
               <text
                 x={PAD.left - 10}
@@ -203,7 +203,7 @@ export default function HeroTrendChart({ series }: HeroTrendChartProps) {
             x2={W - PAD.right}
             y1={chart.y(0)}
             y2={chart.y(0)}
-            stroke="rgba(255,255,255,0.12)"
+            stroke="rgba(0,0,0,0.14)"
           />
           {/* X labels */}
           {chart.xTicks.map((yr) => (

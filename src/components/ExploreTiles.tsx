@@ -18,9 +18,9 @@ const tiles: Tile[] = [
     visual: (
       // Sorted bars
       <svg viewBox="0 0 120 40" className="w-28 h-10" aria-hidden>
-        <rect x="0" y="4" width="104" height="7" rx="3.5" fill="rgba(255,255,255,0.14)" />
-        <rect x="0" y="16" width="72" height="7" rx="3.5" fill="#53A8E8" />
-        <rect x="0" y="28" width="44" height="7" rx="3.5" fill="rgba(255,255,255,0.14)" />
+        <rect x="0" y="4" width="104" height="7" rx="3.5" fill="rgba(0,0,0,0.1)" />
+        <rect x="0" y="16" width="72" height="7" rx="3.5" fill="#2D7DD2" />
+        <rect x="0" y="28" width="44" height="7" rx="3.5" fill="rgba(0,0,0,0.1)" />
       </svg>
     ),
   },
@@ -79,16 +79,16 @@ export default function ExploreTiles() {
               <div className="mb-5">{tile.visual}</div>
               <h3
                 className="text-lg font-semibold mb-1.5"
-                style={{ color: "#f7f8f8" }}
+                style={{ color: "#0d0e10" }}
               >
                 {tile.title}
               </h3>
-              <p className="text-sm flex-1" style={{ color: "#8a8f98" }}>
+              <p className="text-sm flex-1" style={{ color: "#5a5f66" }}>
                 {tile.description}
               </p>
               <span
                 className="mt-5 text-sm font-medium"
-                style={{ color: "#c9cdd3" }}
+                style={{ color: "#3a3d43" }}
               >
                 {tile.cta}{" "}
                 <span

@@ -1,20 +1,21 @@
+import Link from "next/link";
 import SearchBar from "@/components/SearchBar";
-import HomeSavedSchools from "@/components/HomeSavedSchools";
 import ExploreTiles from "@/components/ExploreTiles";
 import SchoolCarousel from "@/components/SchoolCarousel";
+import HomeSavedSchools from "@/components/HomeSavedSchools";
 import HeroTrendChart, { HeroSeries, HeroPoint } from "@/components/HeroTrendChart";
 import { allSchools, searchableSchools, schoolDataMap } from "@/data/schools";
 import { getSortedYears } from "@/utils/dataHelpers";
 
-// Registry brand colors brightened for legibility on the dark hero canvas
-// (Harvard, MIT, and Northeastern are near-identical dark crimsons at full depth;
-// MIT uses its official silver-gray secondary).
+// Registry brand colors tuned for legibility on the light hero chart
+// (Harvard, MIT, and Northeastern are near-identical crimsons at full depth, so
+// MIT takes a neutral charcoal and Northeastern a warmer orange-red to separate).
 const HERO_SCHOOLS: { slug: string; label: string; color: string }[] = [
-  { slug: "harvard", label: "Harvard", color: "#EE5A66" },
-  { slug: "mit", label: "MIT", color: "#C3C8D2" },
-  { slug: "ucla", label: "UCLA", color: "#53A8E8" },
-  { slug: "nyu", label: "NYU", color: "#AE66F0" },
-  { slug: "northeastern", label: "Northeastern", color: "#FF5540" },
+  { slug: "harvard", label: "Harvard", color: "#C0392B" },
+  { slug: "mit", label: "MIT", color: "#6E7079" },
+  { slug: "ucla", label: "UCLA", color: "#2D7DD2" },
+  { slug: "nyu", label: "NYU", color: "#7B3FE4" },
+  { slug: "northeastern", label: "Northeastern", color: "#E05A2B" },
 ];
 
 function getHeroSeries(): HeroSeries[] {
@@ -84,14 +85,14 @@ export default function HomePage() {
           className="absolute inset-x-0 top-0 h-80 pointer-events-none"
           style={{
             background:
-              "radial-gradient(60% 100% at 50% 0%, rgba(94, 106, 210, 0.16) 0%, transparent 70%)",
+              "radial-gradient(60% 100% at 50% 0%, rgba(94, 106, 210, 0.10) 0%, transparent 70%)",
           }}
         />
 
         <div className="relative max-w-4xl mx-auto">
           <h1
-            className="hero-rise text-4xl sm:text-5xl md:text-6xl font-semibold text-white mb-5"
-            style={{ letterSpacing: "-0.025em", lineHeight: 1.08 }}
+            className="hero-rise text-4xl sm:text-5xl md:text-6xl font-semibold mb-5"
+            style={{ color: "#0d0e10", letterSpacing: "-0.025em", lineHeight: 1.08 }}
           >
             Getting in keeps
             <br />
@@ -99,7 +100,7 @@ export default function HomePage() {
           </h1>
           <p
             className="hero-rise text-base sm:text-lg max-w-2xl mx-auto mb-8"
-            style={{ color: "#8a8f98", animationDelay: "0.1s" }}
+            style={{ color: "#5a5f66", animationDelay: "0.1s" }}
           >
             Track a decade of admissions, test scores, financial aid, and more across {stats.schools} top universities
           </p>
@@ -108,14 +109,21 @@ export default function HomePage() {
             <SearchBar schools={searchableSchools} />
           </div>
 
+          <div className="hero-rise mt-5" style={{ animationDelay: "0.21s" }}>
+            <Link href="/schools" className="hero-browse-btn">
+              Browse all {stats.schools} schools
+              <span aria-hidden>&rarr;</span>
+            </Link>
+          </div>
+
           <div
             className="hero-rise flex flex-wrap items-center justify-center gap-x-3 gap-y-2 mt-7 mb-14 text-sm"
-            style={{ color: "#62666d", animationDelay: "0.24s" }}
+            style={{ color: "#6b7078", animationDelay: "0.24s" }}
           >
             {chips.map((chip, index) => (
               <span key={chip} className="flex items-center gap-3">
                 {index > 0 && (
-                  <span style={{ color: "#3a3d43" }} aria-hidden>
+                  <span style={{ color: "#c4c8ce" }} aria-hidden>
                     &middot;
                   </span>
                 )}
@@ -128,11 +136,11 @@ export default function HomePage() {
         </div>
       </div>
 
+      {/* Signed-in users see their saved list before the full catalog */}
+      <HomeSavedSchools />
+
       {/* Full catalog as an auto-scrolling marquee of school cards */}
       <SchoolCarousel />
-
-      {/* Personalized: only renders for logged-in users with saved schools */}
-      <HomeSavedSchools />
 
       {/* Capability gateways */}
       <ExploreTiles />

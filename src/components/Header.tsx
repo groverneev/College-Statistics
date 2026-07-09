@@ -58,7 +58,7 @@ export default function Header() {
       style={
         isHome
           ? {
-              borderBottom: `1px solid rgba(255, 255, 255, ${
+              borderBottom: `1px solid rgba(0, 0, 0, ${
                 scrolled ? 0.08 : 0
               })`,
               transition: "border-color 0.2s ease",

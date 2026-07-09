@@ -125,7 +125,7 @@ export default function SearchBar({ schools }: SearchBarProps) {
           onKeyDown={handleKeyDown}
           onFocus={() => query.trim() && setIsOpen(true)}
           placeholder="Search for a college..."
-          className="search-input-animate w-full pl-12 pr-4 py-4 text-lg rounded-full border-2 border-white/30 focus:outline-none focus:border-white text-gray-800 placeholder-gray-500 bg-white"
+          className="search-input-animate w-full pl-12 pr-4 py-4 text-lg rounded-full border-2 border-black/10 focus:outline-none focus:border-indigo-400 text-gray-800 placeholder-gray-500 bg-white"
           autoComplete="off"
         />
       </div>

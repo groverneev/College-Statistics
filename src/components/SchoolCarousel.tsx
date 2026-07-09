@@ -5,14 +5,15 @@ import { allSchools } from "@/data/schools";
 export default function SchoolCarousel() {
   return (
     <div className="pt-4 pb-8 overflow-hidden">
-      <div className="max-w-6xl mx-auto px-4 flex items-baseline justify-between mb-5">
+      <div className="max-w-6xl mx-auto px-6 sm:px-4 flex items-baseline justify-between mb-5">
         <h2 className="section-label">All {allSchools.length} schools</h2>
-        <Link href="/schools" className="text-sm font-medium link-dark whitespace-nowrap">
-          Browse all &rarr;
+        <Link href="/schools" className="browse-all-btn">
+          Browse all
+          <span aria-hidden>&rarr;</span>
         </Link>
       </div>
 
-      <div className="marquee-mask">
+      <div className="marquee-mask max-w-6xl mx-auto px-6 sm:px-4">
         <div className="marquee-track">
           {/* Two identical copies make the -50% translate loop seamless. The
               second is decorative only, so it's hidden from AT and tab order. */}
