@@ -123,9 +123,9 @@ export default function HeroTrendChart({ series }: HeroTrendChartProps) {
           style={{ borderBottom: "1px solid rgba(0, 0, 0, 0.06)" }}
         >
           <div className="flex items-center gap-1.5" aria-hidden>
-            <span className="w-2.5 h-2.5 rounded-full" style={{ background: "#d5d8dd" }} />
-            <span className="w-2.5 h-2.5 rounded-full" style={{ background: "#d5d8dd" }} />
-            <span className="w-2.5 h-2.5 rounded-full" style={{ background: "#d5d8dd" }} />
+            <span className="w-2.5 h-2.5 rounded-full" style={{ background: "#ff5f57" }} />
+            <span className="w-2.5 h-2.5 rounded-full" style={{ background: "#febc2e" }} />
+            <span className="w-2.5 h-2.5 rounded-full" style={{ background: "#28c840" }} />
           </div>
           <span className="text-xs sm:text-sm font-medium" style={{ color: "#3a3d43" }}>
             Acceptance rate, {chart.minYear}–{chart.maxYear + 1}

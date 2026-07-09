@@ -218,8 +218,9 @@ export default function Header() {
         {mobileMenuOpen && (
           <div
             className={`md:hidden border-t py-4 ${
-              isHome ? "header-dark-border" : "border-gray-100"
+              isHome ? "header-dark-border" : "border-gray-100 bg-white"
             }`}
+            style={isHome ? { backgroundColor: "#f7f8fa" } : undefined}
           >
             <nav className="flex flex-col space-y-4">
               {navLinks.map((link) => {
