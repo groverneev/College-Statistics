@@ -43,12 +43,10 @@ export default function HomeSavedSchools() {
               key={value}
               className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4"
             >
-              <div className="flex items-center gap-2 flex-shrink-0 sm:w-28">
-                <span
-                  className="w-2 h-2 rounded-full flex-shrink-0"
-                  style={{ background: color }}
-                  aria-hidden
-                />
+              <div
+                className="flex items-center gap-2 flex-shrink-0 sm:w-28 border-l-4 pl-3"
+                style={{ borderColor: color }}
+              >
                 <span
                   className="text-xs font-semibold uppercase tracking-wide"
                   style={{ color: "#5a5f66" }}
