@@ -397,25 +397,26 @@ footer a:hover {
 .marquee-track {
   display: flex;
   width: max-content;
-  animation: marquee-scroll 430s linear infinite;
+  cursor: grab;
+  touch-action: pan-y;
+  user-select: none;
+  -webkit-user-select: none;
 }
 
-.marquee-track:hover {
-  animation-play-state: paused;
+.marquee-dragging .marquee-track {
+  cursor: grabbing;
 }
 
-@keyframes marquee-scroll {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(-50%);
-  }
+.marquee-track a,
+.marquee-track img {
+  -webkit-user-drag: none;
+  user-drag: none;
 }
 
 @media (prefers-reduced-motion: reduce) {
   .marquee-track {
-    animation: none;
+    cursor: auto;
+    touch-action: auto;
   }
 
   .marquee-mask {

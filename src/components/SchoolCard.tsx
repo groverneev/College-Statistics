@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { getSchoolColor } from "@/data/schools";
 import SaveSchoolButton from "@/components/SaveSchoolButton";
-import CardNoteIndicator from "@/components/CardNoteIndicator";
 import { SchoolData } from "@/lib/types";
 import {
   formatNumber,
@@ -87,8 +86,6 @@ export default function SchoolCard({
               <div className="text-xs text-gray-500">Total Cost</div>
             </div>
           </div>
-
-          <CardNoteIndicator schoolSlug={school.slug} />
 
           <div className="mt-4 pt-4 border-t border-gray-100">
             <span className="text-sm font-medium" style={{ color }}>
