@@ -78,7 +78,7 @@ export default function HomePage() {
     // -mt-16 pulls the dark canvas up behind the fixed translucent header
     <div className="min-h-screen -mt-16 hero-dark">
       {/* Hero Section */}
-      <div className="relative overflow-hidden px-4 pt-32 pb-20 sm:pt-36 sm:pb-24 text-center">
+      <div className="relative overflow-hidden pt-32 pb-20 sm:pt-36 sm:pb-24 text-center">
         {/* Ambient glow at the top of the canvas */}
         <div
           aria-hidden
@@ -89,21 +89,23 @@ export default function HomePage() {
           }}
         />
 
-        <div className="relative max-w-4xl mx-auto">
-          <h1
-            className="hero-rise text-4xl sm:text-5xl md:text-6xl font-semibold mb-5"
-            style={{ color: "#0d0e10", letterSpacing: "-0.025em", lineHeight: 1.08 }}
-          >
-            Getting in keeps
-            <br />
-            getting harder.
-          </h1>
-          <p
-            className="hero-rise text-base sm:text-lg max-w-2xl mx-auto mb-8"
-            style={{ color: "#5a5f66", animationDelay: "0.1s" }}
-          >
-            Track a decade of admissions, test scores, financial aid, and more across {stats.schools} top universities
-          </p>
+        <div className="relative max-w-6xl mx-auto px-6 sm:px-4">
+          <div className="max-w-4xl mx-auto">
+            <h1
+              className="hero-rise text-4xl sm:text-5xl md:text-6xl font-semibold mb-5"
+              style={{ color: "#0d0e10", letterSpacing: "-0.025em", lineHeight: 1.08 }}
+            >
+              Getting in keeps
+              <br />
+              getting harder.
+            </h1>
+            <p
+              className="hero-rise text-base sm:text-lg max-w-2xl mx-auto mb-8"
+              style={{ color: "#5a5f66", animationDelay: "0.1s" }}
+            >
+              Track a decade of admissions, test scores, financial aid, and more across {stats.schools} top universities
+            </p>
+          </div>
 
           <div className="hero-rise" style={{ animationDelay: "0.18s" }}>
             <SearchBar schools={searchableSchools} />

@@ -94,7 +94,7 @@ export default function HeroTrendChart({ series }: HeroTrendChartProps) {
 
   return (
     <div
-      className="relative hero-rise mx-auto max-w-5xl text-left"
+      className="relative hero-rise mx-auto w-full text-left"
       style={{ animationDelay: "0.3s" }}
     >
       {/* Glow behind the window */}
