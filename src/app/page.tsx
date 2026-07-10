@@ -103,17 +103,17 @@ export default function HomePage() {
               className="hero-rise text-base sm:text-lg max-w-2xl mx-auto mb-8"
               style={{ color: "#5a5f66", animationDelay: "0.1s" }}
             >
-              Track a decade of admissions, test scores, financial aid, and more across {stats.schools} top universities
+              Track a decade of admissions, test scores, financial aid, and more across top universities
             </p>
           </div>
 
-          <div className="hero-rise" style={{ animationDelay: "0.18s" }}>
+          <div className="hero-rise relative z-20" style={{ animationDelay: "0.18s" }}>
             <SearchBar schools={searchableSchools} />
           </div>
 
           <div className="hero-rise mt-5" style={{ animationDelay: "0.21s" }}>
             <Link href="/schools" className="hero-browse-btn">
-              Browse all {stats.schools} schools
+              Browse all Schools
               <span aria-hidden>&rarr;</span>
             </Link>
           </div>
