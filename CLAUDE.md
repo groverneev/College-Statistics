@@ -117,13 +117,13 @@ Codex then reads those screenshots and produces the structured year JSON used fo
 
 ### Default Command
 
-Use:
+The Python pipeline is managed with [uv](https://docs.astral.sh/uv/). Run `uv sync` once to set up the environment, then use:
 
 ```bash
-python -m cds_pipeline prepare <school-or-path>
+uv run python -m cds_pipeline prepare <school-or-path>
 ```
 
-`python -m cds_pipeline extract <school-or-path>` remains as a backward-compatible alias for the same render-only prep step.
+`uv run python -m cds_pipeline extract <school-or-path>` remains as a backward-compatible alias for the same render-only prep step.
 
 ### Workspace Output
 
@@ -161,7 +161,7 @@ Recommended operator flow:
 1. Add new CDS PDFs to `College-Data/<School>/`.
    - If the school's official archive is incomplete or broken, use the College Transitions Common Data Set Repository as a discovery aid for missing CDS files:
      `https://www.collegetransitions.com/dataverse/common-data-set-repository/`
-2. Run `python -m cds_pipeline prepare <school-or-path>`.
+2. Run `uv run python -m cds_pipeline prepare <school-or-path>`.
 3. Inspect `.cds_pipeline/<slug>/school_manifest.json` and the per-year manifests.
 4. Give one year's manifest and screenshots to one Codex subagent.
 5. Have that subagent return strict JSON with `year`, `data`, and `notes`.
@@ -193,7 +193,7 @@ For each school, Codex should also proactively check the latest available CDS fo
 
 Use this checklist:
 
-1. Run `python -m cds_pipeline prepare <school-or-path>`.
+1. Run `uv run python -m cds_pipeline prepare <school-or-path>`.
 2. Use the per-year manifests and screenshots for Codex extraction.
 3. Finalize `src/data/schools/<slug>.json` with complete, source-backed data.
 4. Proactively extract the latest CDS `C7` admissions-factor matrix into `profile.admissionsFactors` when available.

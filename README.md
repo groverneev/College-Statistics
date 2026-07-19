@@ -83,11 +83,17 @@ College-Statistics/
 
 ## CDS Workflow
 
+The Python pipeline is managed with [uv](https://docs.astral.sh/uv/). Set it up once with:
+
+```bash
+uv sync
+```
+
 The supported ingestion workflow is:
 
 ```bash
-python -m cds_pipeline prepare <school-or-path>
-python -m cds_pipeline validate <json-file>
+uv run python -m cds_pipeline prepare <school-or-path>
+uv run python -m cds_pipeline validate <json-file>
 ```
 
 `prepare` renders source PDFs into `.cds_pipeline/<slug>/...` manifests and page screenshots for Codex review. The older one-off extractor scripts have been removed in favor of this single path.
@@ -104,7 +110,7 @@ Most data is extracted from official Common Data Set (CDS) publications released
 - **Charts:** [Recharts](https://recharts.org/)
 - **Auth:** [NextAuth.js](https://next-auth.js.org/) with Google OAuth (JWT sessions)
 - **Database:** [Supabase](https://supabase.com/) Postgres via [Prisma](https://www.prisma.io/) (stores users and saved schools)
-- **Data Preparation:** Python with [PyMuPDF](https://pymupdf.readthedocs.io/) plus Codex-assisted screenshot review
+- **Data Preparation:** Python (managed with [uv](https://docs.astral.sh/uv/)) with [PyMuPDF](https://pymupdf.readthedocs.io/) plus Codex-assisted screenshot review
 - **Contact Form:** [Formspree](https://formspree.io/)
 
 ## Environment Variables
