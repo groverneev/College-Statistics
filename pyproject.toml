@@ -1,0 +1,23 @@
+[project]
+name = "cds-pipeline"
+version = "0.1.0"
+description = "Local-first CDS PDF screenshot-prep and validation pipeline for College-Statistics."
+requires-python = ">=3.11,<3.14"
+dependencies = [
+    "pymupdf>=1.24",
+]
+
+[dependency-groups]
+dev = [
+    "pytest>=8.0",
+]
+
+# The pipeline is run as `python -m cds_pipeline` from the repo root, not installed
+# as a distribution, so uv manages the environment without trying to build it.
+[tool.uv]
+package = false
+
+[tool.pytest.ini_options]
+# cds_pipeline is imported from the repo root (not installed), so put root on the path.
+pythonpath = ["."]
+testpaths = ["tests"]
