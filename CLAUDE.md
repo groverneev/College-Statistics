@@ -281,3 +281,8 @@ If a comparison page or single-year chart flow is reintroduced, keep that surfac
 - When working on a school dataset, proactively look for latest CDS `C7` admissions-factor data and add `profile.admissionsFactors` if it is source-backed.
 - Run `npm run build` after school-registration or route changes.
 - Always update `CLAUDE.md` and `README.md` after changing workflow or architecture guidance.
+
+## Git Commits
+
+- Do **not** add a `Co-Authored-By: Claude ...` trailer to commit messages. Commits in this repo are authored by the repo owner only.
+- Commit only when asked.
