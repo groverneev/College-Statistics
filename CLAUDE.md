@@ -106,7 +106,7 @@ The supported path for adding a college is an automated acquisition-to-publicati
 Install once:
 
 ```bash
-python -m pip install -e ".[dev]"
+uv sync --extra dev
 ollama pull qwen3.5:9b
 ollama pull gemma4:12b
 ```
@@ -114,7 +114,7 @@ ollama pull gemma4:12b
 Run the complete workflow:
 
 ```bash
-python -m cds_pipeline add "Pomona College" --extractor auto --publish --strict
+uv run python -m cds_pipeline add "Pomona College" --extractor auto --publish --strict
 ```
 
 No API key is required. Ollama is the default local runtime. Qwen 3.5 9B and Gemma 4 12B must independently agree on the latest visual C7 matrix, Gemma handles nonstandard local layouts, and a signed-in Codex CLI is an opt-in adjudicator using saved ChatGPT authentication. `--publish` is deliberately blocked unless structured evidence exists and every required validation passes.
@@ -137,13 +137,13 @@ School-name targets always use discovery, even when `College-Data/<slug>/` alrea
 Staged commands for diagnosis or manual review:
 
 ```bash
-python -m cds_pipeline discover "Pomona College"
-python -m cds_pipeline add "Pomona College" --extractor auto --strict
-python -m cds_pipeline compile pomona
-python -m cds_pipeline compile pomona --publish
-python -m cds_pipeline benchmark .cds_pipeline/brown/packets/2024-2025 --gold tests/fixtures/brown_2024_2025_gold.json --models qwen3.5:9b gemma4:12b
-python -m cds_pipeline validate <json-file>
-python -m cds_pipeline registry --check
+uv run python -m cds_pipeline discover "Pomona College"
+uv run python -m cds_pipeline add "Pomona College" --extractor auto --strict
+uv run python -m cds_pipeline compile pomona
+uv run python -m cds_pipeline compile pomona --publish
+uv run python -m cds_pipeline benchmark .cds_pipeline/brown/packets/2024-2025 --gold tests/fixtures/brown_2024_2025_gold.json --models qwen3.5:9b gemma4:12b
+uv run python -m cds_pipeline validate <json-file>
+uv run python -m cds_pipeline registry --check
 ```
 
 If a school uses a nonstandard archive that discovery cannot locate, pass its official page with `--archive-url`. Use `--years 0` for all available years; the default is the newest eight.
@@ -184,8 +184,8 @@ The deterministic validator checks admissions ordering and rate reconciliation, 
 After pipeline or school-registration changes, run:
 
 ```bash
-python -m unittest discover -s tests -v
-python -m cds_pipeline registry --check
+uv run python -m unittest discover -s tests -v
+uv run python -m cds_pipeline registry --check
 npm run build
 ```
 
@@ -216,3 +216,8 @@ If a comparison page or single-year chart flow is reintroduced, keep that surfac
 - When working on a school dataset, proactively look for latest CDS `C7` admissions-factor data and add `profile.admissionsFactors` if it is source-backed.
 - Run `npm run build` after school-registration or route changes.
 - Always update `CLAUDE.md` and `README.md` after changing workflow or architecture guidance.
+
+## Git Commits
+
+- Do **not** add a `Co-Authored-By: Claude ...` trailer to commit messages. Commits in this repo are authored by the repo owner only.
+- Commit only when asked.

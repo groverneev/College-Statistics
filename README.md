@@ -83,10 +83,10 @@ College-Statistics/
 
 ## CDS Workflow
 
-Install the pipeline once:
+The Python pipeline is managed with [uv](https://docs.astral.sh/uv/). Set it up once with:
 
 ```bash
-python -m pip install -e ".[dev]"
+uv sync --extra dev
 ```
 
 The default workflow is local and needs no API key. Install Ollama, then pull the two GPU models once:
@@ -99,7 +99,7 @@ ollama pull gemma4:12b
 Then acquire, extract, validate, add, and register a new college with one command:
 
 ```bash
-python -m cds_pipeline add "Pomona College" --extractor auto --publish --strict
+uv run python -m cds_pipeline add "Pomona College" --extractor auto --publish --strict
 ```
 
 The command resolves the institution through College Scorecard, searches its official CDS archive, uses the College Transitions repository only as a fallback, downloads recent PDFs with provenance and hashes, and verifies the institution/year from the document itself. Stable C1, B1/B2, C9, G1, and H2 tables are extracted deterministically. Qwen 3.5 9B and Gemma 4 12B must independently agree on the latest visual C7 matrix; Gemma also handles nonstandard local layouts. Only routed table pages or pages needing OCR are rendered. Every published value is revalidated against the manifest's document, year, page, and source quote, and publication is blocked for missing evidence, conflicts, incomplete required fields, unresolved OCR, or failed semantic checks.
@@ -109,13 +109,13 @@ The command resolves the institution through College Scorecard, searches its off
 Useful staged commands:
 
 ```bash
-python -m cds_pipeline discover "Pomona College"
-python -m cds_pipeline add "Pomona College" --extractor auto --strict
-python -m cds_pipeline compile pomona
-python -m cds_pipeline compile pomona --publish
-python -m cds_pipeline benchmark .cds_pipeline/brown/packets/2024-2025 --gold tests/fixtures/brown_2024_2025_gold.json --models qwen3.5:9b gemma4:12b
-python -m cds_pipeline registry --check
-python -m unittest discover -s tests -v
+uv run python -m cds_pipeline discover "Pomona College"
+uv run python -m cds_pipeline add "Pomona College" --extractor auto --strict
+uv run python -m cds_pipeline compile pomona
+uv run python -m cds_pipeline compile pomona --publish
+uv run python -m cds_pipeline benchmark .cds_pipeline/brown/packets/2024-2025 --gold tests/fixtures/brown_2024_2025_gold.json --models qwen3.5:9b gemma4:12b
+uv run python -m cds_pipeline registry --check
+uv run python -m unittest discover -s tests -v
 ```
 
 A target that is not an existing filesystem path is always treated as a school name and goes through source discovery. Pass an explicit PDF or directory path only when intentionally ingesting local files. `--years` applies to the records selected for the current discovery run even when the school's download directory already contains older cached PDFs.
@@ -159,7 +159,7 @@ Most data is extracted from official Common Data Set (CDS) publications released
 - **Charts:** [Recharts](https://recharts.org/)
 - **Auth:** [NextAuth.js](https://next-auth.js.org/) with Google OAuth (JWT sessions)
 - **Database:** [Supabase](https://supabase.com/) Postgres via [Prisma](https://www.prisma.io/) (stores users and saved schools)
-- **Data Preparation:** Python with PyMuPDF native extraction, selective OCR adapters, evidence-backed structured extraction, and blocking semantic validation
+- **Data Preparation:** Python managed with [uv](https://docs.astral.sh/uv/), using PyMuPDF native extraction, selective OCR adapters, evidence-backed structured extraction, and blocking semantic validation
 - **Contact Form:** [Formspree](https://formspree.io/)
 
 ## Environment Variables

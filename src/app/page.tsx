@@ -95,15 +95,14 @@ export default function HomePage() {
               className="hero-rise text-4xl sm:text-5xl md:text-6xl font-semibold mb-5"
               style={{ color: "#0d0e10", letterSpacing: "-0.025em", lineHeight: 1.08 }}
             >
-              Getting in keeps
-              <br />
-              getting harder.
+              College Admissions Data, Simplified
             </h1>
             <p
               className="hero-rise text-base sm:text-lg max-w-2xl mx-auto mb-8"
               style={{ color: "#5a5f66", animationDelay: "0.1s" }}
             >
-              Track a decade of admissions, test scores, financial aid, and more across top universities
+              Free, accurate, and transparent college insights &mdash; sourced directly from official
+              Common Data Set reports.
             </p>
           </div>
 
