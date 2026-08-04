@@ -132,6 +132,8 @@ The command:
 9. emits strict, source-quoted observations into `.cds_pipeline/<slug>/extractions/`;
 10. derives rates and totals, runs blocking semantic validation, writes the school JSON, and regenerates the registry.
 
+School-name targets always use discovery, even when `College-Data/<slug>/` already exists. Only an explicit PDF or directory path requests local-file ingestion. The discovery `--years` selection is authoritative and must not be replaced by rescanning older files in the cache directory. Analyze PDFs serially: PyMuPDF table extraction can leak table state across documents when called concurrently in threads. Flattened native-text continuations without formal table artifacts must remain routed to their inherited CDS domain.
+
 Staged commands for diagnosis or manual review:
 
 ```bash

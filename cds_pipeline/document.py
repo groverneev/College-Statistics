@@ -151,6 +151,20 @@ def _detect_academic_year(
             )
         return chosen, candidates, warnings, True, filename_year != "unknown" and filename_year != chosen
     if filename_year != "unknown":
+        start_year = filename_year[:4]
+        body = "\n".join(texts)
+        reporting_hits = len(
+            re.findall(
+                rf"\b(?:Fall|October\s+15,?)\s+{re.escape(start_year)}\b",
+                body,
+                flags=re.IGNORECASE,
+            )
+        )
+        has_core_cds_sections = bool(
+            re.search(r"(?m)^\s*B1\.", body) and re.search(r"(?m)^\s*C1\.", body)
+        )
+        if reporting_hits >= 2 and has_core_cds_sections:
+            return filename_year, candidates, warnings, True, False
         warnings.append("Academic year was inferred from the filename because the body had no clear year.")
         return filename_year, candidates, warnings, False, False
     warnings.append("Academic year could not be determined.")
@@ -233,7 +247,12 @@ def analyze_pdf(
         continuation_indexes = {index + 1 for index in routed_indexes if index + 1 < len(texts)}
         routed_indexes.update(continuation_indexes)
         for index in sorted(continuation_indexes):
-            if not page_domains[index] and index > 0:
+            if (
+                index > 0
+                and not page_questions[index]
+                and page_domains[index - 1]
+                and (not page_domains[index] or "continued" in texts[index].lower())
+            ):
                 page_domains[index] = list(page_domains[index - 1])
 
         if scanned_document:

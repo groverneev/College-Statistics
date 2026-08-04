@@ -21,6 +21,7 @@ import nyuData from "./nyu.json";
 import northeasternData from "./northeastern.json";
 import northwesternData from "./northwestern.json";
 import pennStateData from "./pennstate.json";
+import pomonacollegeData from "./pomonacollege.json";
 import princetonData from "./princeton.json";
 import purdueData from "./purdue.json";
 import riceData from "./rice.json";
@@ -133,6 +134,7 @@ export const allSchools: SchoolData[] = [
   washuData as SchoolData,
   williamAndMaryData as SchoolData,
   yaleData as SchoolData,
+  pomonacollegeData as SchoolData,
 ];
 
 export const SCHOOL_METADATA: Record<string, SchoolMetadata> = {

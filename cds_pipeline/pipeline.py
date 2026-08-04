@@ -80,8 +80,10 @@ def _build_packets(
             current_question_ids = extract_question_ids(page.text)
             if current_question_ids or page.extraction_method != "native":
                 current_domains = domains_for_page(page.text, current_question_ids)
-            elif page.tables and page.domains:
-                # Native multi-page tables often omit the repeated question ID.
+            elif page.domains:
+                # Native multi-page sections often omit the repeated question ID.
+                # Keep inherited text continuations even when the PDF table finder
+                # cannot reconstruct a formal table (common for flattened forms).
                 current_domains = list(page.domains)
             else:
                 current_domains = []
@@ -247,13 +249,16 @@ def add_school(
 ) -> SchoolManifest:
     workspace = Path(workspace_dir)
     acquisition_warnings: list[str] = []
-    try:
+    target_path = Path(target)
+    if target_path.exists():
         source_root, pdf_paths = resolve_pdf_paths(target)
         name = school_name or humanize_name(source_root.name)
         slug = validate_slug(school_slug or slugify(name))
-    except ValueError:
+    else:
         if not discover_if_missing:
-            raise
+            raise ValueError(
+                f"Target is not an explicit local path and discovery is disabled: {target}"
+            )
         name = school_name or humanize_name(target)
         slug = validate_slug(school_slug or slugify(name))
         discovery = discover_school(
@@ -275,22 +280,24 @@ def add_school(
                 f"No verified PDF candidates could be downloaded for {name}. "
                 f"Inspect {workspace / slug / 'discovery.json'} or provide --archive-url."
             )
-        _, pdf_paths = resolve_pdf_paths(str(source_root))
+        # The downloader may reuse a directory that already contains older CDS
+        # files.  Only analyze the records selected for this invocation; scanning
+        # the directory again would silently defeat --years and redo the entire
+        # local archive.
+        pdf_paths = [Path(record.local_path) for record in records]
 
-    documents: list[DocumentArtifact] = []
-    with ThreadPoolExecutor(max_workers=max(1, jobs)) as executor:
-        futures = {
-            executor.submit(
-                analyze_pdf,
-                pdf_path,
-                school_name=name,
-                school_slug=slug,
-                document_dir=_document_workspace(workspace, slug, pdf_path),
-            ): pdf_path
-            for pdf_path in pdf_paths
-        }
-        for future in as_completed(futures):
-            documents.append(future.result())
+    # PyMuPDF's table finder can leak table state across documents when invoked
+    # concurrently in threads. Native document analysis is inexpensive relative
+    # to model inference, so keep it serial for deterministic evidence artifacts.
+    documents = [
+        analyze_pdf(
+            pdf_path,
+            school_name=name,
+            school_slug=slug,
+            document_dir=_document_workspace(workspace, slug, pdf_path),
+        )
+        for pdf_path in pdf_paths
+    ]
     documents.sort(key=lambda item: (item.academic_year or "9999", item.filename))
 
     if any(document.ocr_pending_pages for document in documents):

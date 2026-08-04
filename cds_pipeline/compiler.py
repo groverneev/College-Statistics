@@ -144,6 +144,16 @@ def _quote_supports_number(quote: str, value: int | float) -> bool:
     return False
 
 
+def _quote_supports_native_sum(quote: str, value: int | float) -> bool:
+    values: list[float] = []
+    for match in re.findall(r"[-+]?\$?\s*\d[\d,]*(?:\.\d+)?", quote):
+        try:
+            values.append(float(match.replace("$", "").replace(",", "").replace(" ", "")))
+        except ValueError:
+            return False
+    return len(values) >= 2 and abs(sum(values) - float(value)) < 1e-9
+
+
 def compile_school(
     target: str,
     *,
@@ -244,10 +254,17 @@ def compile_school(
                     continue
                 if isinstance(observation.value, bool):
                     continue
-                if isinstance(observation.value, (int, float)) and not _quote_supports_number(
-                    evidence.quote, observation.value
-                ):
-                    continue
+                if isinstance(observation.value, (int, float)):
+                    direct_support = _quote_supports_number(evidence.quote, observation.value)
+                    summed_c1_support = (
+                        observation.method == "native-rule"
+                        and observation.notes
+                        == "Deterministic sum of the numeric C1 gender columns in the quoted row."
+                        and evidence.question_id == "C1"
+                        and _quote_supports_native_sum(evidence.quote, observation.value)
+                    )
+                    if not direct_support and not summed_c1_support:
+                        continue
                 if evidence.question_id and evidence.question_id not in page.question_ids:
                     inherited_continuation = (
                         not page.question_ids and extraction_path.stem in page.domains

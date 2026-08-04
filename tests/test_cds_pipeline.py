@@ -68,6 +68,56 @@ class EvidencePipelineTests(unittest.TestCase):
             rendered = [page for page in manifest.documents[0].pages if page.image_path]
             self.assertEqual([page.page for page in rendered], [2, 4, 7])
 
+    def test_discovered_year_limit_does_not_rescan_cached_archive(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            selected = root / "college-data" / "sample-cds-2024-2025.pdf"
+            selected.parent.mkdir(parents=True)
+            selected.touch()
+            artifact = DocumentArtifact(
+                document_id="sha256:selected",
+                source_path=str(selected.resolve()),
+                filename=selected.name,
+                sha256="selected",
+                size_bytes=0,
+                page_count=0,
+                school_name="Sample College",
+                school_slug="samplecollege",
+                academic_year="2024-2025",
+                year_verified=True,
+                document_type="cds",
+                classification_score=1,
+            )
+
+            with (
+                patch("cds_pipeline.pipeline.resolve_pdf_paths") as resolve,
+                patch(
+                    "cds_pipeline.pipeline.discover_school",
+                    return_value=SimpleNamespace(warnings=[]),
+                ),
+                patch(
+                    "cds_pipeline.pipeline.download_discovered_sources",
+                    return_value=(
+                        selected.parent,
+                        [SimpleNamespace(local_path=str(selected.resolve()))],
+                        [],
+                    ),
+                ),
+                patch("cds_pipeline.pipeline.analyze_pdf", return_value=artifact) as analyze,
+                patch("cds_pipeline.pipeline._build_packets", return_value=[]),
+            ):
+                manifest = add_school(
+                    "Sample College",
+                    workspace_dir=root / "workspace",
+                    college_data_dir=selected.parent,
+                    download_years=1,
+                    jobs=1,
+                )
+
+            self.assertEqual(resolve.call_count, 0)
+            self.assertEqual(analyze.call_args.args[0], selected.resolve())
+            self.assertEqual(len(manifest.documents), 1)
+
     def test_unrelated_research_pdf_is_rejected_and_not_year_2095(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)
@@ -388,10 +438,46 @@ class EvidencePipelineTests(unittest.TestCase):
         self.assertEqual(values["costs.fees"], 2950)
         self.assertTrue(all(observation.method == "native-rule" for observation in extraction.observations))
 
+    def test_native_admissions_sums_flattened_gender_columns(self) -> None:
+        page = PacketPage(
+            document_id="sha256:pomona",
+            source_path="pomona.pdf",
+            page=13,
+            question_ids=["C1"],
+            text=(
+                "C1. Applications: First-time, First-year Students\n"
+                "Total first-time, first-year students who applied in Fall 2023  4,985  7,133  3\n"
+                "Total first-time, first-year students admitted in Fall 2023  377  440  2\n"
+                "Total first-time, first-year students enrolled in Fall 2023  189  217  2\n"
+            ),
+        )
+        packet = SectionPacket(
+            school_name="Pomona College",
+            school_slug="pomonacollege",
+            academic_year="2023-2024",
+            domain="admissions",
+            metric_paths=[
+                "admissions.applied",
+                "admissions.admitted",
+                "admissions.enrolled",
+                "admissions.byGender.men.applied",
+                "admissions.byGender.women.applied",
+            ],
+            pages=[page],
+        )
+        extraction, complete = extract_packet_native(packet)
+        values = {observation.path: observation.value for observation in extraction.observations}
+        self.assertTrue(complete)
+        self.assertEqual(values["admissions.applied"], 12121)
+        self.assertEqual(values["admissions.admitted"], 819)
+        self.assertEqual(values["admissions.enrolled"], 408)
+        self.assertEqual(values["admissions.byGender.men.applied"], 4985)
+        self.assertEqual(values["admissions.byGender.women.applied"], 7133)
+
     def test_question_parser_does_not_treat_numeric_table_row_as_g1(self) -> None:
         self.assertEqual(extract_question_ids("G     1     2     0\nH2 Number of students"), ["H2"])
 
-    def test_packet_builder_keeps_native_table_continuation_page(self) -> None:
+    def test_packet_builder_keeps_native_text_continuation_page(self) -> None:
         document = DocumentArtifact(
             document_id="sha256:continuation",
             source_path="continuation.pdf",
@@ -418,7 +504,6 @@ class EvidencePipelineTests(unittest.TestCase):
                     height=792,
                     text="International 10 20 30",
                     domains=["enrollment"],
-                    tables=[TableArtifact(rows=[["International", "10", "20", "30"]])],
                 ),
             ],
         )

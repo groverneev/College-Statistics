@@ -1,0 +1,114 @@
+{
+  "name": "Pomona College",
+  "slug": "pomonacollege",
+  "years": {
+    "2023-2024": {
+      "admissions": {
+        "applied": 12121,
+        "byGender": {
+          "men": {
+            "applied": 4985,
+            "admitted": 377,
+            "enrolled": 189
+          },
+          "women": {
+            "applied": 7133,
+            "admitted": 440,
+            "enrolled": 217
+          }
+        },
+        "admitted": 819,
+        "enrolled": 408,
+        "earlyDecision": {
+          "applied": 1691,
+          "admitted": 212
+        },
+        "acceptanceRate": 0.0676,
+        "yield": 0.4982
+      },
+      "costs": {
+        "tuition": 65000,
+        "fees": 420,
+        "roomAndBoard": 21394,
+        "totalCOA": 86814
+      },
+      "demographics": {
+        "enrollment": {
+          "undergraduate": 1761,
+          "graduate": 0,
+          "total": 1761
+        },
+        "byRace": {
+          "international": 227,
+          "hispanicLatino": 286,
+          "blackAfricanAmerican": 178,
+          "white": 529,
+          "asian": 311,
+          "americanIndianAlaskaNative": 0,
+          "nativeHawaiianPacificIslander": 10,
+          "twoOrMoreRaces": 162,
+          "unknown": 58
+        }
+      },
+      "financialAid": {
+        "averageAidPackage": 67819,
+        "averageNeedBasedGrant": 65925,
+        "percentReceivingAid": 0.5583,
+        "percentNeedFullyMet": 1.0
+      },
+      "testScores": {
+        "sat": {
+          "submissionRate": 0.29,
+          "composite": {
+            "p25": 1480,
+            "p75": 1550
+          },
+          "readingWriting": {
+            "p25": 730,
+            "p75": 770
+          },
+          "math": {
+            "p25": 750,
+            "p75": 790
+          }
+        },
+        "act": {
+          "submissionRate": 0.15,
+          "composite": {
+            "p25": 33,
+            "p75": 35
+          }
+        }
+      }
+    }
+  },
+  "profile": {
+    "admissionsFactors": {
+      "academic": {
+        "rigorOfSecondarySchoolRecord": "very_important",
+        "classRank": "very_important",
+        "academicGpa": "very_important",
+        "recommendations": "very_important",
+        "standardizedTestScores": "considered",
+        "applicationEssay": "very_important"
+      },
+      "nonacademic": {
+        "interview": "considered",
+        "extracurricularActivities": "very_important",
+        "talentAbility": "very_important",
+        "characterPersonalQualities": "very_important",
+        "firstGeneration": "considered",
+        "alumniRelation": "not_considered",
+        "geographicalResidence": "considered",
+        "stateResidency": "not_considered",
+        "religiousAffiliationCommitment": "not_considered",
+        "volunteerWork": "considered",
+        "workExperience": "considered",
+        "levelOfApplicantsInterest": "not_considered"
+      },
+      "sourceYear": "2023-2024",
+      "section": "C7",
+      "sourcePdf": "College-Data/pomonacollege/pomonacollege-cds-2023-2024.pdf"
+    }
+  }
+}

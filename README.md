@@ -118,7 +118,11 @@ python -m cds_pipeline registry --check
 python -m unittest discover -s tests -v
 ```
 
+A target that is not an existing filesystem path is always treated as a school name and goes through source discovery. Pass an explicit PDF or directory path only when intentionally ingesting local files. `--years` applies to the records selected for the current discovery run even when the school's download directory already contains older cached PDFs.
+
 Override the role-based local defaults with `CDS_LOCAL_VISION_MODEL`, `CDS_LOCAL_EXTRACTION_MODEL`, `CDS_OLLAMA_CONTEXT`, or `--model`. Local GPU extraction is serialized by default to avoid model/context thrashing; set `CDS_LOCAL_EXTRACTION_JOBS` only after measuring available VRAM.
+
+Flattened CDS forms are parsed from exact positioned text, including section continuations that omit the repeated question ID. Native PDF analysis is intentionally serial because PyMuPDF table discovery is not thread-safe across simultaneous documents; model extraction remains the dominant runtime.
 
 Generated evidence and extraction packets live in `.cds_pipeline/<slug>/`. Downloaded source records live in `College-Data/<slug>/sources.json`. `src/data/schools/index.ts` is generated from the school JSON files during publication, so adding imports by hand is no longer part of the workflow.
 

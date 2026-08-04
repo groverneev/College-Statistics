@@ -6,7 +6,7 @@ from typing import Any, Literal
 from pydantic import BaseModel, Field
 
 
-PIPELINE_VERSION = "3.1"
+PIPELINE_VERSION = "3.4"
 
 
 class BoundingBox(BaseModel):
