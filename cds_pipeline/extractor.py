@@ -392,7 +392,29 @@ def extract_packet_local_best(
 
 def _codex_binary() -> str | None:
     configured = os.environ.get("CDS_CODEX_BIN")
-    return configured or shutil.which("codex")
+    if configured:
+        return configured
+    # The Microsoft Store app advertises a WindowsApps executable that is not
+    # necessarily launchable by child processes. Prefer the standard npm CLI
+    # payload when present.
+    if os.name == "nt" and os.environ.get("APPDATA"):
+        npm_binary = (
+            Path(os.environ["APPDATA"])
+            / "npm"
+            / "node_modules"
+            / "@openai"
+            / "codex"
+            / "node_modules"
+            / "@openai"
+            / "codex-win32-x64"
+            / "vendor"
+            / "x86_64-pc-windows-msvc"
+            / "bin"
+            / "codex.exe"
+        )
+        if npm_binary.exists():
+            return str(npm_binary)
+    return shutil.which("codex")
 
 
 def _codex_environment() -> dict[str, str]:
@@ -414,6 +436,25 @@ def _codex_environment() -> dict[str, str]:
     return {key: value for key, value in os.environ.items() if key.upper() in allowed}
 
 
+def _strict_codex_schema(schema: dict[str, Any]) -> dict[str, Any]:
+    """Make Pydantic JSON Schema acceptable to Codex structured outputs."""
+
+    def visit(node: Any) -> None:
+        if isinstance(node, dict):
+            properties = node.get("properties")
+            if isinstance(properties, dict):
+                node["additionalProperties"] = False
+                node["required"] = list(properties)
+            for value in node.values():
+                visit(value)
+        elif isinstance(node, list):
+            for value in node:
+                visit(value)
+
+    visit(schema)
+    return schema
+
+
 def codex_available(*, timeout: float = 10) -> bool:
     binary = _codex_binary()
     if not binary:
@@ -424,6 +465,8 @@ def codex_available(*, timeout: float = 10) -> bool:
             [binary, "login", "status"],
             capture_output=True,
             text=True,
+            encoding="utf-8",
+            errors="replace",
             timeout=timeout,
             env=environment,
             check=False,
@@ -451,16 +494,22 @@ def extract_packet_codex(
         schema_path = root / "section-extraction.schema.json"
         output_path = root / "section-extraction.json"
         schema_path.write_text(
-            json.dumps(SectionExtraction.model_json_schema(), indent=2), encoding="utf-8"
+            json.dumps(
+                _strict_codex_schema(SectionExtraction.model_json_schema()), indent=2
+            ),
+            encoding="utf-8",
         )
         command = [
             binary,
-            "exec",
-            "--ephemeral",
-            "--sandbox",
-            "read-only",
             "--ask-for-approval",
             "never",
+            "exec",
+            "--ephemeral",
+            "--skip-git-repo-check",
+            "--ignore-user-config",
+            "--ignore-rules",
+            "--sandbox",
+            "read-only",
             "--output-schema",
             str(schema_path),
             "--output-last-message",
@@ -486,6 +535,8 @@ def extract_packet_codex(
                 input=_structured_prompt(packet),
                 capture_output=True,
                 text=True,
+                encoding="utf-8",
+                errors="replace",
                 timeout=1800,
                 cwd=root,
                 env=environment,
@@ -508,7 +559,12 @@ def extract_packet_codex(
 ExtractorFunction = Callable[[SectionPacket], SectionExtraction]
 
 
-def extractor_chain(name: str, *, model: str | None = None) -> list[tuple[str, ExtractorFunction]]:
+def extractor_chain(
+    name: str,
+    *,
+    model: str | None = None,
+    allow_codex: bool = True,
+) -> list[tuple[str, ExtractorFunction]]:
     normalized = name.lower()
     if normalized == "none":
         return []
@@ -517,12 +573,10 @@ def extractor_chain(name: str, *, model: str | None = None) -> list[tuple[str, E
         providers = []
         if ollama_model_available():
             providers.append("local")
-        if os.environ.get("CDS_ENABLE_CODEX_FALLBACK", "").lower() in {
-            "1",
-            "true",
-            "yes",
-            "on",
-        } and codex_available():
+        codex_disabled = os.environ.get("CDS_DISABLE_CODEX", "").lower() in {
+            "1", "true", "yes", "on"
+        }
+        if allow_codex and not codex_disabled and codex_available():
             providers.append("codex")
         if os.environ.get("OPENAI_API_KEY"):
             providers.append("openai")
@@ -532,6 +586,8 @@ def extractor_chain(name: str, *, model: str | None = None) -> list[tuple[str, E
                 "`ollama pull gemma4:12b`; or install Codex CLI and run `codex login`."
             )
     elif normalized in {"local", "codex", "openai"}:
+        if normalized == "codex" and not allow_codex:
+            raise RuntimeError("Codex was selected as the extractor but disabled for this run.")
         providers = [normalized]
     else:
         raise ValueError(f"Unknown structured extractor: {name}")

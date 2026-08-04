@@ -7,10 +7,11 @@ from pathlib import Path
 from .benchmark import benchmark_local_models
 from .compiler import compile_school
 from .discovery import discover_school
-from .models import DocumentArtifact, SectionExtraction
+from .models import DocumentArtifact, SectionExtraction, SourceCandidate
 from .pipeline import add_school
 from .registry import generate_registry
-from .utils import read_json
+from .rescue import CodexRescueError, recovery_sources, run_codex_rescue
+from .utils import humanize_name, read_json, slugify, validate_slug
 from .validator import (
     validate_school_data,
     validate_section_extraction,
@@ -18,23 +19,57 @@ from .validator import (
 )
 
 
-def _cmd_add(args: argparse.Namespace) -> int:
-    manifest = add_school(
-        args.target,
-        school_name=args.name,
-        school_slug=args.slug,
-        workspace_dir=args.workspace_dir,
-        jobs=args.jobs,
-        ocr_provider=args.ocr,
-        extractor=args.extractor,
-        model=args.model,
-        include_unknown=args.include_unknown,
-        discover_if_missing=not args.no_discover,
-        archive_url=args.archive_url,
-        repository_fallback=not args.no_repository_fallback,
-        download_years=None if args.years == 0 else args.years,
-        college_data_dir=args.college_data_dir,
-    )
+class _PipelineRunFailure(RuntimeError):
+    def __init__(self, stage: str, error: BaseException):
+        super().__init__(str(error))
+        self.stage = stage
+        self.error = error
+
+
+def _run_add_once(
+    args: argparse.Namespace,
+    *,
+    archive_url: str | None = None,
+    rescue_candidates: list[SourceCandidate] | None = None,
+) -> int:
+    try:
+        manifest = add_school(
+            args.target,
+            school_name=args.name,
+            school_slug=args.slug,
+            workspace_dir=args.workspace_dir,
+            jobs=args.jobs,
+            ocr_provider=args.ocr,
+            extractor=args.extractor,
+            model=args.model,
+            include_unknown=args.include_unknown,
+            discover_if_missing=not args.no_discover,
+            archive_url=archive_url if archive_url is not None else args.archive_url,
+            repository_fallback=not args.no_repository_fallback,
+            download_years=None if args.years == 0 else args.years,
+            college_data_dir=args.college_data_dir,
+            allow_codex=not args.no_codex,
+            rescue_candidates=rescue_candidates,
+        )
+    except Exception as exc:
+        raise _PipelineRunFailure("add_school", exc) from exc
+
+    if not manifest.documents:
+        raise _PipelineRunFailure(
+            "document_analysis",
+            RuntimeError("No verified Common Data Set documents survived document analysis."),
+        )
+    if not manifest.packet_paths:
+        raise _PipelineRunFailure(
+            "document_analysis",
+            RuntimeError("No routed CDS section packets were produced from the downloaded documents."),
+        )
+    if args.extractor != "none" and not manifest.extraction_paths:
+        raise _PipelineRunFailure(
+            "extraction",
+            RuntimeError("Structured extraction produced no results."),
+        )
+
     summary = {
         "school_name": manifest.school_name,
         "school_slug": manifest.school_slug,
@@ -50,15 +85,71 @@ def _cmd_add(args: argparse.Namespace) -> int:
         "warnings": manifest.warnings,
     }
     if args.publish:
-        if args.extractor == "none":
-            raise ValueError("--publish requires a structured extractor.")
-        summary["publication"] = compile_school(
-            str(Path(manifest.workspace) / "school_manifest.json"),
-            workspace_dir=args.workspace_dir,
-            publish=True,
-        )
+        try:
+            summary["publication"] = compile_school(
+                str(Path(manifest.workspace) / "school_manifest.json"),
+                workspace_dir=args.workspace_dir,
+                publish=True,
+            )
+        except Exception as exc:
+            raise _PipelineRunFailure("publication", exc) from exc
     print(json.dumps(summary, indent=2))
     return 2 if manifest.review_required and args.strict else 0
+
+
+def _rescue_identity(args: argparse.Namespace) -> tuple[str, str]:
+    target_path = Path(args.target)
+    fallback = target_path.stem if target_path.is_file() else target_path.name
+    school_name = args.name or humanize_name(fallback or args.target)
+    return school_name, validate_slug(args.slug or slugify(school_name))
+
+
+def _cmd_add(args: argparse.Namespace) -> int:
+    if args.publish and args.extractor == "none":
+        raise ValueError("--publish requires a structured extractor.")
+    try:
+        return _run_add_once(args)
+    except _PipelineRunFailure as failure:
+        if args.no_codex:
+            raise failure.error
+
+        school_name, school_slug = _rescue_identity(args)
+        try:
+            decision = run_codex_rescue(
+                school_name=school_name,
+                school_slug=school_slug,
+                target=args.target,
+                stage=failure.stage,
+                error=failure.error,
+                workspace_dir=args.workspace_dir,
+            )
+        except CodexRescueError as rescue_error:
+            raise RuntimeError(
+                f"Pipeline failed during {failure.stage}: {failure.error}. "
+                f"Automatic Codex escalation was unavailable: {rescue_error}"
+            ) from failure.error
+
+        candidates = recovery_sources(decision)
+        if decision.retry_recommended and (decision.archive_url or candidates):
+            try:
+                return _run_add_once(
+                    args,
+                    archive_url=decision.archive_url,
+                    rescue_candidates=candidates,
+                )
+            except _PipelineRunFailure as retry_failure:
+                report_path = Path(args.workspace_dir) / school_slug / "codex_rescue.json"
+                raise RuntimeError(
+                    f"Pipeline failed during {failure.stage}; Codex recommended one recovery retry, "
+                    f"which then failed during {retry_failure.stage}: {retry_failure.error}. "
+                    f"Rescue report: {report_path}"
+                ) from retry_failure.error
+
+        report_path = Path(args.workspace_dir) / school_slug / "codex_rescue.json"
+        raise RuntimeError(
+            f"Pipeline failed during {failure.stage}: {failure.error}. Codex diagnosed "
+            f"{decision.category}: {decision.operator_message} Rescue report: {report_path}"
+        ) from failure.error
 
 
 def _cmd_discover(args: argparse.Namespace) -> int:
@@ -158,6 +249,11 @@ def build_parser() -> argparse.ArgumentParser:
     add_parser.add_argument("--no-repository-fallback", action="store_true")
     add_parser.add_argument("--years", type=int, default=8, help="Number of recent years to download; 0 means all")
     add_parser.add_argument("--college-data-dir", default="College-Data")
+    add_parser.add_argument(
+        "--no-codex",
+        action="store_true",
+        help="Disable both Codex packet adjudication and automatic major-failure rescue",
+    )
     add_parser.add_argument("--strict", action="store_true", help="Exit nonzero when review is required")
     add_parser.add_argument(
         "--publish",

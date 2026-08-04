@@ -104,7 +104,9 @@ uv run python -m cds_pipeline add "Pomona College" --extractor auto --publish --
 
 The command resolves the institution through College Scorecard, searches its official CDS archive, uses the College Transitions repository only as a fallback, downloads recent PDFs with provenance and hashes, and verifies the institution/year from the document itself. Stable C1, B1/B2, C7, C9, G1, and H2 rows are extracted deterministically across both legacy and current CDS layouts. C7 falls back to independent Qwen 3.5 9B and Gemma 4 12B agreement only when its exact labeled rows cannot be recovered. Only routed table pages or pages needing OCR are rendered. Every published value is revalidated against the manifest's document, year, page, and source quote. Years are compiled independently: unsafe or incomplete years are reported and excluded without discarding other verified years, while publication still fails if no complete year survives or a compiled year fails semantic validation.
 
-`--extractor auto` uses Ollama first. A signed-in Codex CLI can become the no-API-key adjudicator for unresolved packets using saved ChatGPT authentication, but it is opt-in because it launches an agent on document content: install the CLI, run `codex login`, and set `CDS_ENABLE_CODEX_FALLBACK=1`. The subprocess receives an allowlisted environment with project secrets removed. A direct OpenAI API remains optional through `--extractor openai` plus `OPENAI_API_KEY`; it is not required for the local workflow.
+`--extractor auto` uses Ollama first and a signed-in Codex CLI as the no-API-key adjudicator for unresolved packets. If discovery, downloading, document analysis, extraction, or publication fails outright, the command automatically launches one read-only Codex rescue agent using saved ChatGPT authentication. The rescue agent can search for an official archive and propose PDF URLs, but its URLs are marked untrusted and must pass the normal download, document-identity, year, evidence, semantic-validation, and publication gates. It cannot edit the repository or publish data, and a failed recovery is never recursively escalated.
+
+Install and authenticate the CLI once with `npm install --global @openai/codex` and `codex login`. No API key is required. Codex subprocesses inherit only an allowlisted runtime/authentication environment; API keys and project secrets are removed. Use `--no-codex` (or `CDS_DISABLE_CODEX=1`) to disable both packet adjudication and automatic rescue. A direct OpenAI API remains optional through `--extractor openai` plus `OPENAI_API_KEY`.
 
 Useful staged commands:
 
@@ -125,6 +127,8 @@ Override the role-based local defaults with `CDS_LOCAL_VISION_MODEL`, `CDS_LOCAL
 Flattened CDS forms are parsed from exact positioned text, including section continuations that omit the repeated question ID. Native PDF analysis is intentionally serial because PyMuPDF table discovery is not thread-safe across simultaneous documents. Packet results are content-addressed by packet hash, pipeline/parser version, extractor chain, and model configuration, so unchanged reruns reuse both successful native/model results and review results. Cache hit/miss counts are printed by `add`.
 
 Generated evidence and extraction packets live in `.cds_pipeline/<slug>/`. Downloaded source records live in `College-Data/<slug>/sources.json`. `src/data/schools/index.ts` is generated from the school JSON files during publication, so adding imports by hand is no longer part of the workflow.
+
+When automatic rescue runs, its diagnosis, proposed sources, and accepted recovery inputs are recorded in `.cds_pipeline/<slug>/codex_rescue.json`. If Codex cannot find a safe corrective input, the original operation remains failed with the report path in the error message.
 
 ### OCR choices
 

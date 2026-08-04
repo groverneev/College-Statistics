@@ -13,15 +13,22 @@ from cds_pipeline.discovery import (
     extract_candidates_from_page,
 )
 from cds_pipeline.compiler import PUBLISH_REQUIRED_PATHS, compile_school
+from cds_pipeline.cli import _PipelineRunFailure, _cmd_add, build_parser
 from cds_pipeline.downloader import _direct_download_url, download_discovered_sources
 from cds_pipeline.document import analyze_pdf
-from cds_pipeline.extractor import extract_packet_codex, extract_packet_local
+from cds_pipeline.extractor import (
+    _strict_codex_schema,
+    extract_packet_codex,
+    extract_packet_local,
+    extractor_chain,
+)
 from cds_pipeline.models import DiscoveryManifest, DocumentArtifact, DownloadRecord, PageArtifact, SourceCandidate
 from cds_pipeline.models import PacketPage, SectionPacket, TableArtifact
 from cds_pipeline.native import extract_packet_native
 from cds_pipeline.ocr import OllamaOcrProvider, OcrResult, _clean_unlimited_ocr_text
 from cds_pipeline.pipeline import _build_packets, _extract_packets, add_school
 from cds_pipeline.registry import generate_registry
+from cds_pipeline.rescue import RescueDecision, recovery_sources, run_codex_rescue
 from cds_pipeline.specs import extract_question_ids
 from cds_pipeline.utils import extract_year_from_filename, validate_slug
 from cds_pipeline.utils import sha256_file
@@ -686,10 +693,145 @@ class EvidencePipelineTests(unittest.TestCase):
         self.assertIn("read-only", command)
         self.assertIn("never", command)
         self.assertIn("--output-schema", command)
+        self.assertIn("--skip-git-repo-check", command)
         self.assertNotIn("OPENAI_API_KEY", captured["environment"])
         self.assertNotIn("CODEX_API_KEY", captured["environment"])
         self.assertNotIn("DATABASE_URL", captured["environment"])
         self.assertEqual(extraction.observations[0].value, 1000)
+
+    def test_auto_extractor_uses_signed_in_codex_by_default(self) -> None:
+        with patch("cds_pipeline.extractor.ollama_model_available", return_value=False), patch(
+            "cds_pipeline.extractor.codex_available", return_value=True
+        ), patch.dict("os.environ", {}, clear=True):
+            providers = [name for name, _ in extractor_chain("auto")]
+        self.assertEqual(providers, ["codex"])
+
+    def test_codex_output_schema_is_strict_at_every_object(self) -> None:
+        schema = _strict_codex_schema(RescueDecision.model_json_schema())
+
+        def assert_strict(node):
+            if isinstance(node, dict):
+                if "properties" in node:
+                    self.assertFalse(node["additionalProperties"])
+                    self.assertEqual(set(node["required"]), set(node["properties"]))
+                for value in node.values():
+                    assert_strict(value)
+            elif isinstance(node, list):
+                for value in node:
+                    assert_strict(value)
+
+        assert_strict(schema)
+
+    def test_codex_rescue_is_read_only_secret_free_and_schema_constrained(self) -> None:
+        captured: dict[str, object] = {}
+
+        def fake_run(command, **kwargs):
+            captured["command"] = command
+            captured["environment"] = kwargs["env"]
+            output_path = Path(command[command.index("--output-last-message") + 1])
+            output_path.write_text(
+                json.dumps(
+                    {
+                        "category": "source_discovery",
+                        "diagnosis": "The normal crawler did not find the official archive.",
+                        "retry_recommended": True,
+                        "archive_url": "https://example.edu/institutional-research/cds",
+                        "sources": [
+                            {
+                                "url": "https://example.edu/cds/CDS_2024-2025.pdf",
+                                "label": "Common Data Set 2024-2025",
+                                "academic_year": "2024-2025",
+                                "discovery_url": "https://example.edu/institutional-research/cds",
+                            }
+                        ],
+                        "operator_message": "Retry with the located official archive.",
+                    }
+                ),
+                encoding="utf-8",
+            )
+            return SimpleNamespace(returncode=0, stdout="", stderr="")
+
+        with tempfile.TemporaryDirectory() as tmp, patch(
+            "cds_pipeline.rescue.codex_available", return_value=True
+        ), patch("cds_pipeline.rescue._codex_binary", return_value="codex"), patch(
+            "cds_pipeline.rescue.subprocess.run", side_effect=fake_run
+        ), patch.dict(
+            "os.environ",
+            {
+                "OPENAI_API_KEY": "should-not-pass",
+                "CODEX_API_KEY": "also-remove",
+                "DATABASE_URL": "must-not-pass",
+            },
+        ):
+            root = Path(tmp)
+            decision = run_codex_rescue(
+                school_name="Example College",
+                school_slug="examplecollege",
+                target="Example College",
+                stage="add_school",
+                error=RuntimeError("no PDFs found"),
+                workspace_dir=root / "workspace",
+                repository_root=root,
+            )
+
+            self.assertTrue((root / "workspace" / "examplecollege" / "codex_rescue.json").exists())
+
+        command = captured["command"]
+        self.assertIn("--search", command)
+        self.assertIn("read-only", command)
+        self.assertIn("never", command)
+        self.assertIn("--output-schema", command)
+        self.assertNotIn("OPENAI_API_KEY", captured["environment"])
+        self.assertNotIn("CODEX_API_KEY", captured["environment"])
+        self.assertNotIn("DATABASE_URL", captured["environment"])
+        candidates = recovery_sources(decision)
+        self.assertEqual(candidates[0].academic_year, "2024-2025")
+        self.assertFalse(candidates[0].official)
+
+    def test_codex_rescue_rejects_local_urls(self) -> None:
+        decision = RescueDecision(
+            category="source_discovery",
+            diagnosis="A local URL was suggested.",
+            retry_recommended=True,
+            sources=[
+                {
+                    "url": "http://127.0.0.1/private.pdf",
+                    "label": "CDS 2024-2025",
+                    "academic_year": "2024-2025",
+                }
+            ],
+            operator_message="Do not use it.",
+        )
+        self.assertEqual(recovery_sources(decision), [])
+
+    def test_add_command_uses_only_one_codex_recovery_retry(self) -> None:
+        args = build_parser().parse_args(
+            ["add", "Example College", "--extractor", "auto"]
+        )
+        decision = RescueDecision(
+            category="source_discovery",
+            diagnosis="The crawler missed the archive.",
+            retry_recommended=True,
+            archive_url="https://example.edu/cds",
+            sources=[],
+            operator_message="Retry the official archive once.",
+        )
+        first_failure = _PipelineRunFailure(
+            "add_school", RuntimeError("No verified PDFs were downloaded.")
+        )
+        second_failure = _PipelineRunFailure(
+            "publication", RuntimeError("No complete years can be published.")
+        )
+        with patch(
+            "cds_pipeline.cli._run_add_once",
+            side_effect=[first_failure, second_failure],
+        ) as run_once, patch(
+            "cds_pipeline.cli.run_codex_rescue", return_value=decision
+        ) as rescue:
+            with self.assertRaisesRegex(RuntimeError, "one recovery retry"):
+                _cmd_add(args)
+        self.assertEqual(run_once.call_count, 2)
+        self.assertEqual(rescue.call_count, 1)
 
     def test_compiler_derives_rates_and_requires_evidence(self) -> None:
         values = {

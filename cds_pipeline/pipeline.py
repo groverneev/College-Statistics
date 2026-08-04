@@ -19,6 +19,7 @@ from .models import (
     SchoolManifest,
     SectionExtraction,
     SectionPacket,
+    SourceCandidate,
     TableArtifact,
 )
 from .native import blocking_paths, extract_packet_native
@@ -177,10 +178,11 @@ def _extract_packets(
     extractor_name: str,
     model: str | None,
     jobs: int,
+    allow_codex: bool = True,
 ) -> tuple[list[str], int]:
     output_paths: list[str] = []
     cache_hits = 0
-    chain = extractor_chain(extractor_name, model=model)
+    chain = extractor_chain(extractor_name, model=model, allow_codex=allow_codex)
     worker_count = max(1, jobs)
     if any(provider_name == "local" for provider_name, _ in chain):
         worker_count = min(
@@ -195,7 +197,7 @@ def _extract_packets(
         "local_model": os.environ.get("CDS_LOCAL_EXTRACTION_MODEL", "gemma4:12b"),
         "vision_model": os.environ.get("CDS_LOCAL_VISION_MODEL", "qwen3.5:9b"),
         "local_context": os.environ.get("CDS_OLLAMA_CONTEXT", "16384"),
-        "codex_enabled": os.environ.get("CDS_ENABLE_CODEX_FALLBACK", ""),
+        "codex_allowed": allow_codex and not os.environ.get("CDS_DISABLE_CODEX", "").lower() in {"1", "true", "yes", "on"},
         "hosted_model": model or "gpt-5-mini",
         "providers": [provider_name for provider_name, _ in chain],
     }
@@ -324,6 +326,8 @@ def add_school(
     repository_fallback: bool = True,
     download_years: int | None = 8,
     college_data_dir: str | Path = "College-Data",
+    allow_codex: bool = True,
+    rescue_candidates: list[SourceCandidate] | None = None,
 ) -> SchoolManifest:
     workspace = Path(workspace_dir)
     acquisition_warnings: list[str] = []
@@ -346,6 +350,23 @@ def add_school(
             archive_url=archive_url,
             repository_fallback=repository_fallback,
         )
+        if rescue_candidates:
+            merged = {
+                (candidate.url, candidate.academic_year): candidate
+                for candidate in discovery.candidates + rescue_candidates
+            }
+            discovery.candidates = sorted(
+                merged.values(),
+                key=lambda item: (item.academic_year or "0000", item.official, item.score),
+                reverse=True,
+            )
+            discovery.warnings.append(
+                f"Codex rescue supplied {len(rescue_candidates)} untrusted source candidate(s); all remain subject to normal verification."
+            )
+            write_json(
+                workspace / slug / "discovery.json",
+                discovery.model_dump(mode="json"),
+            )
         source_root, records, download_warnings = download_discovered_sources(
             discovery,
             college_data_dir=college_data_dir,
@@ -423,6 +444,7 @@ def add_school(
             extractor_name=extractor,
             model=model,
             jobs=jobs,
+            allow_codex=allow_codex,
         )
 
     extraction_review = 0

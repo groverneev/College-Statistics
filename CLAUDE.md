@@ -128,7 +128,7 @@ The command:
 5. uses native PDF text, words, and tables first;
 6. extracts stable B1/B2, C1, C9, G1, and H2 rows deterministically and routes only the exact question blocks needed;
 7. renders table-heavy B/H evidence, visual C7 evidence, and pages that actually require OCR;
-8. sends only nonstandard or visual leftovers to local models, with Codex/OpenAI fallback when configured;
+8. sends only nonstandard or visual leftovers to local models, with signed-in Codex fallback by default and OpenAI API fallback only when configured;
 9. emits strict, source-quoted observations into `.cds_pipeline/<slug>/extractions/`;
 10. derives rates and totals, excludes unsafe/incomplete years with explicit reasons, runs blocking semantic validation on the retained years, writes the school JSON, and regenerates the registry.
 
@@ -152,10 +152,11 @@ If a school uses a nonstandard archive that discovery cannot locate, pass its of
 
 ### Structured Extraction Policy
 
-- `--extractor auto` is the supported default: deterministic table rules first, then Ollama, then Codex only when `CDS_ENABLE_CODEX_FALLBACK=1`, then OpenAI only if configured.
+- `--extractor auto` is the supported default: deterministic table rules first, then Ollama, then a signed-in Codex CLI, then OpenAI only if configured.
 - `CDS_LOCAL_VISION_MODEL` defaults to `qwen3.5:9b`; `CDS_LOCAL_EXTRACTION_MODEL` defaults to `gemma4:12b`.
 - The local model is called only when deterministic extraction is incomplete. Local calls are serialized by default; override with `CDS_LOCAL_EXTRACTION_JOBS` only after measuring VRAM.
 - Codex runs ephemerally, read-only, approval-free, and schema-constrained. It receives an environment allowlist with project credentials and API keys removed so it uses saved ChatGPT authentication without exposing repo secrets.
+- A major add/publish failure launches one default-on Codex rescue attempt with live search. The agent may diagnose the failure and return an official archive or direct PDF candidates, but it cannot edit or publish. Returned URLs are treated as untrusted inputs and must pass every normal downloader, identity, evidence, validation, and publication gate. Never recursively rescue a failed rescue/retry. Use `--no-codex` or `CDS_DISABLE_CODEX=1` to opt out.
 - A non-null value is invalid unless its quote is on a routed page and contains the reported numeric value. Deterministic semantic validation still runs after extraction.
 - Use the checked-in Brown gold fixture and `cds_pipeline benchmark` before changing default models. Model release recency alone is not a selection criterion.
 
