@@ -61,12 +61,12 @@ export interface AdmissionsData {
   acceptanceRate: number;
   yield: number;
   earlyDecision?: {
-    applied: number;
-    admitted: number;
+    applied?: number;
+    admitted?: number;
   };
   earlyAction?: {
-    applied: number;
-    admitted: number;
+    applied?: number;
+    admitted?: number;
   };
   byGender?: {
     men: { applied: number; admitted: number; enrolled: number };
@@ -76,14 +76,14 @@ export interface AdmissionsData {
 
 export interface TestScoresData {
   sat?: {
-    composite: { p25: number; p50?: number; p75: number };
-    readingWriting: { p25: number; p50?: number; p75: number };
-    math: { p25: number; p50?: number; p75: number };
-    submissionRate: number;
+    composite?: { p25: number; p50?: number; p75: number };
+    readingWriting?: { p25: number; p50?: number; p75: number };
+    math?: { p25: number; p50?: number; p75: number };
+    submissionRate?: number;
   };
   act?: {
-    composite: { p25: number; p50?: number; p75: number };
-    submissionRate: number;
+    composite?: { p25: number; p50?: number; p75: number };
+    submissionRate?: number;
   };
 }
 

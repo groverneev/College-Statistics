@@ -6,7 +6,7 @@ from typing import Any, Literal
 from pydantic import BaseModel, Field
 
 
-PIPELINE_VERSION = "3.4"
+PIPELINE_VERSION = "4.1"
 
 
 class BoundingBox(BaseModel):
@@ -133,6 +133,8 @@ class SchoolManifest(BaseModel):
     documents: list[DocumentArtifact]
     packet_paths: list[str] = Field(default_factory=list)
     extraction_paths: list[str] = Field(default_factory=list)
+    extraction_cache_hits: int = 0
+    extraction_cache_misses: int = 0
     rejected_documents: list[dict[str, Any]] = Field(default_factory=list)
     review_required: bool = False
     warnings: list[str] = Field(default_factory=list)

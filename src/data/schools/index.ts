@@ -27,6 +27,7 @@ import purdueData from "./purdue.json";
 import riceData from "./rice.json";
 import rutgersNewBrunswickData from "./rutgersnewbrunswick.json";
 import stanfordData from "./stanford.json";
+import swarthmorecollegeData from "./swarthmorecollege.json";
 import texasAmData from "./texasam.json";
 import ohioStateData from "./ohiostate.json";
 import utexasaustinData from "./utexasaustin.json";
@@ -135,6 +136,7 @@ export const allSchools: SchoolData[] = [
   williamAndMaryData as SchoolData,
   yaleData as SchoolData,
   pomonacollegeData as SchoolData,
+  swarthmorecollegeData as SchoolData,
 ];
 
 export const SCHOOL_METADATA: Record<string, SchoolMetadata> = {

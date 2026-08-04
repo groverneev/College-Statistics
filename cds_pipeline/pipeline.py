@@ -1,6 +1,8 @@
 from __future__ import annotations
 
 from concurrent.futures import ThreadPoolExecutor, as_completed
+from hashlib import sha256
+import json
 import os
 from pathlib import Path
 from typing import Any
@@ -24,6 +26,9 @@ from .ocr import create_ocr_provider, provider_setup_help
 from .resolver import resolve_pdf_paths
 from .specs import domains_for_page, extract_question_ids, spec_for_domain, text_for_question_ids
 from .utils import humanize_name, read_json, sha256_file, slugify, validate_slug, write_json
+
+
+EXTRACTION_CACHE_VERSION = "5"
 
 
 def _document_workspace(workspace: Path, school_slug: str, pdf_path: Path) -> Path:
@@ -76,10 +81,36 @@ def _build_packets(
     for document in documents:
         if document.document_type != "cds" or not document.academic_year:
             continue
-        for page in document.pages:
-            current_question_ids = extract_question_ids(page.text)
+        pages = sorted(document.pages, key=lambda item: item.page)
+        detected_ids = [extract_question_ids(page.text) for page in pages]
+        for index, page in enumerate(pages):
+            current_question_ids = detected_ids[index]
+            inherited_question_ids: list[str] = []
+            if not current_question_ids:
+                previous = next(
+                    (detected_ids[item] for item in range(index - 1, -1, -1) if detected_ids[item]),
+                    [],
+                )
+                following = next(
+                    (detected_ids[item] for item in range(index + 1, len(pages)) if detected_ids[item]),
+                    [],
+                )
+                if (
+                    previous
+                    and following
+                    and pages[index + 1].page - page.page <= 1
+                    and {item[0] for item in previous + following if item}
+                    == {previous[0][0]}
+                ):
+                    # CDS sections frequently continue onto an unnumbered page.
+                    # When it is bracketed by adjacent questions from the same
+                    # lettered section, inherit the preceding question instead
+                    # of trusting broad keywords such as "first-time".
+                    inherited_question_ids = previous
             if current_question_ids or page.extraction_method != "native":
                 current_domains = domains_for_page(page.text, current_question_ids)
+            elif inherited_question_ids:
+                current_domains = domains_for_page(page.text, inherited_question_ids)
             elif page.domains:
                 # Native multi-page sections often omit the repeated question ID.
                 # Keep inherited text continuations even when the PDF table finder
@@ -89,7 +120,11 @@ def _build_packets(
                 current_domains = []
             for domain in current_domains:
                 spec = spec_for_domain(domain)
-                routed_text = text_for_question_ids(page.text, spec.question_ids)
+                routed_text = (
+                    page.text
+                    if inherited_question_ids
+                    else text_for_question_ids(page.text, spec.question_ids)
+                )
                 if current_question_ids and not routed_text:
                     continue
                 grouped.setdefault((document.academic_year, domain), []).append(
@@ -98,7 +133,11 @@ def _build_packets(
                         source_path=document.source_path,
                         page=page.page,
                         text=routed_text,
-                        question_ids=sorted(set(current_question_ids).intersection(spec.question_ids)),
+                        question_ids=sorted(
+                            set(current_question_ids or inherited_question_ids).intersection(
+                                spec.question_ids
+                            )
+                        ),
                         words=page.words,
                         tables=page.tables,
                         image_path=page.image_path,
@@ -109,13 +148,11 @@ def _build_packets(
     packet_paths: list[str] = []
     packet_root = workspace / school_slug / "packets"
     factor_years = sorted(
-        academic_year
-        for academic_year, domain in grouped
-        if domain == "admissions_factors"
+        academic_year for academic_year, domain in grouped if domain == "admissions_factors"
     )
-    latest_factor_year = factor_years[-1] if factor_years else None
+    retained_factor_years = set(factor_years[-2:])
     for (academic_year, domain), pages in sorted(grouped.items()):
-        if domain == "admissions_factors" and academic_year != latest_factor_year:
+        if domain == "admissions_factors" and academic_year not in retained_factor_years:
             continue
         unique_pages: dict[tuple[str, int], PacketPage] = {
             (page.document_id, page.page): page for page in pages
@@ -140,8 +177,9 @@ def _extract_packets(
     extractor_name: str,
     model: str | None,
     jobs: int,
-) -> list[str]:
+) -> tuple[list[str], int]:
     output_paths: list[str] = []
+    cache_hits = 0
     chain = extractor_chain(extractor_name, model=model)
     worker_count = max(1, jobs)
     if any(provider_name == "local" for provider_name, _ in chain):
@@ -150,9 +188,40 @@ def _extract_packets(
             max(1, int(os.environ.get("CDS_LOCAL_EXTRACTION_JOBS", "1"))),
         )
 
-    def extract_one(packet_path: str) -> str:
+    cache_config = {
+        "extraction_cache_version": EXTRACTION_CACHE_VERSION,
+        "extractor": extractor_name,
+        "model": model,
+        "local_model": os.environ.get("CDS_LOCAL_EXTRACTION_MODEL", "gemma4:12b"),
+        "vision_model": os.environ.get("CDS_LOCAL_VISION_MODEL", "qwen3.5:9b"),
+        "local_context": os.environ.get("CDS_OLLAMA_CONTEXT", "16384"),
+        "codex_enabled": os.environ.get("CDS_ENABLE_CODEX_FALLBACK", ""),
+        "hosted_model": model or "gpt-5-mini",
+        "providers": [provider_name for provider_name, _ in chain],
+    }
+
+    def extract_one(packet_path: str) -> tuple[str, bool]:
         path = Path(packet_path)
         packet = SectionPacket.model_validate(read_json(path))
+        output_path = Path(str(path).replace("\\packets\\", "\\extractions\\").replace("/packets/", "/extractions/"))
+        cache_path = output_path.with_suffix(".cache.json")
+        signature_payload = {
+            **cache_config,
+            "pipeline_version": packet.pipeline_version,
+            "packet_sha256": sha256_file(path),
+        }
+        signature = sha256(
+            json.dumps(signature_payload, sort_keys=True).encode("utf-8")
+        ).hexdigest()
+        if cache_path.exists():
+            try:
+                cached = read_json(cache_path)
+                if cached.get("signature") == signature:
+                    extraction = SectionExtraction.model_validate(cached["extraction"])
+                    write_json(output_path, extraction.model_dump(mode="json"))
+                    return str(output_path.resolve()), True
+            except (KeyError, TypeError, ValueError):
+                pass
         native_extraction, native_complete = extract_packet_native(packet)
         extraction = native_extraction if native_complete else None
         failures: list[str] = []
@@ -219,15 +288,24 @@ def _extract_packets(
             )
         if failures:
             extraction.notes.append("Extractor fallback history: " + " | ".join(failures))
-        output_path = Path(str(path).replace("\\packets\\", "\\extractions\\").replace("/packets/", "/extractions/"))
         write_json(output_path, extraction.model_dump(mode="json"))
-        return str(output_path.resolve())
+        write_json(
+            cache_path,
+            {
+                "signature": signature,
+                "config": signature_payload,
+                "extraction": extraction.model_dump(mode="json"),
+            },
+        )
+        return str(output_path.resolve()), False
 
     with ThreadPoolExecutor(max_workers=worker_count) as executor:
         futures = [executor.submit(extract_one, path) for path in packet_paths]
         for future in as_completed(futures):
-            output_paths.append(future.result())
-    return sorted(output_paths)
+            output_path, hit = future.result()
+            output_paths.append(output_path)
+            cache_hits += int(hit)
+    return sorted(output_paths), cache_hits
 
 
 def add_school(
@@ -338,8 +416,9 @@ def add_school(
         school_slug=slug,
     )
     extraction_paths: list[str] = []
+    extraction_cache_hits = 0
     if extractor != "none":
-        extraction_paths = _extract_packets(
+        extraction_paths, extraction_cache_hits = _extract_packets(
             packet_paths,
             extractor_name=extractor,
             model=model,
@@ -410,6 +489,8 @@ def add_school(
         documents=accepted,
         packet_paths=packet_paths,
         extraction_paths=extraction_paths,
+        extraction_cache_hits=extraction_cache_hits,
+        extraction_cache_misses=len(extraction_paths) - extraction_cache_hits,
         rejected_documents=rejected,
         review_required=bool(
             rejected

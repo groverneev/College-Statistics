@@ -1,0 +1,331 @@
+{
+  "name": "Swarthmore College",
+  "slug": "swarthmorecollege",
+  "years": {
+    "2019-2020": {
+      "admissions": {
+        "byGender": {
+          "men": {
+            "applied": 4763,
+            "admitted": 478,
+            "enrolled": 202
+          },
+          "women": {
+            "applied": 6679,
+            "admitted": 544,
+            "enrolled": 215
+          }
+        },
+        "applied": 11442,
+        "admitted": 1022,
+        "enrolled": 417,
+        "acceptanceRate": 0.0893,
+        "yield": 0.408
+      },
+      "costs": {
+        "tuition": 54256,
+        "fees": 400,
+        "roomAndBoard": 16088,
+        "totalCOA": 70744
+      },
+      "demographics": {
+        "enrollment": {
+          "undergraduate": 1667,
+          "graduate": 0,
+          "total": 1667
+        },
+        "byRace": {
+          "blackAfricanAmerican": 128,
+          "nativeHawaiianPacificIslander": 2,
+          "international": 234,
+          "hispanicLatino": 211,
+          "white": 636,
+          "asian": 258,
+          "americanIndianAlaskaNative": 6,
+          "twoOrMoreRaces": 126,
+          "unknown": 66
+        }
+      },
+      "financialAid": {
+        "averageAidPackage": 56923,
+        "percentReceivingAid": 0.5564,
+        "percentNeedFullyMet": 1.0
+      },
+      "testScores": {
+        "sat": {
+          "submissionRate": 0.68,
+          "readingWriting": {
+            "p25": 680,
+            "p75": 750
+          },
+          "composite": {
+            "p25": 1390,
+            "p75": 1530
+          },
+          "math": {
+            "p25": 700,
+            "p75": 790
+          }
+        },
+        "act": {
+          "submissionRate": 0.37,
+          "composite": {
+            "p25": 31,
+            "p75": 35
+          }
+        }
+      }
+    },
+    "2020-2021": {
+      "admissions": {
+        "byGender": {
+          "men": {
+            "applied": 4798,
+            "admitted": 515,
+            "enrolled": 187
+          },
+          "women": {
+            "applied": 6832,
+            "admitted": 539,
+            "enrolled": 187
+          }
+        },
+        "applied": 11630,
+        "admitted": 1054,
+        "enrolled": 374,
+        "earlyDecision": {
+          "applied": 994,
+          "admitted": 237
+        },
+        "acceptanceRate": 0.0906,
+        "yield": 0.3548
+      },
+      "costs": {
+        "tuition": 55856,
+        "fees": 200,
+        "roomAndBoard": 17150,
+        "totalCOA": 73206
+      },
+      "demographics": {
+        "enrollment": {
+          "undergraduate": 1437,
+          "graduate": 0,
+          "total": 1437
+        },
+        "byRace": {
+          "international": 216,
+          "hispanicLatino": 188,
+          "blackAfricanAmerican": 117,
+          "white": 474,
+          "asian": 256,
+          "americanIndianAlaskaNative": 4,
+          "nativeHawaiianPacificIslander": 2,
+          "twoOrMoreRaces": 128,
+          "unknown": 52
+        }
+      },
+      "testScores": {
+        "sat": {
+          "submissionRate": 0.68,
+          "readingWriting": {
+            "p25": 716,
+            "p75": 730
+          },
+          "composite": {
+            "p25": 1400,
+            "p75": 1530
+          },
+          "math": {
+            "p25": 705,
+            "p75": 790
+          }
+        },
+        "act": {
+          "submissionRate": 0.4,
+          "composite": {
+            "p25": 31,
+            "p75": 34
+          }
+        }
+      },
+      "financialAid": {}
+    },
+    "2021-2022": {
+      "admissions": {
+        "byGender": {
+          "men": {
+            "applied": 5374,
+            "admitted": 480,
+            "enrolled": 216
+          },
+          "women": {
+            "applied": 7638,
+            "admitted": 533,
+            "enrolled": 238
+          }
+        },
+        "applied": 13012,
+        "admitted": 1013,
+        "enrolled": 454,
+        "earlyDecision": {
+          "applied": 984,
+          "admitted": 234
+        },
+        "acceptanceRate": 0.0779,
+        "yield": 0.4482
+      },
+      "costs": {
+        "tuition": 58928,
+        "fees": 400,
+        "roomAndBoard": 18026,
+        "totalCOA": 77354
+      },
+      "demographics": {
+        "enrollment": {
+          "undergraduate": 1651,
+          "graduate": 0,
+          "total": 1651
+        },
+        "byRace": {
+          "international": 255,
+          "hispanicLatino": 225,
+          "blackAfricanAmerican": 127,
+          "white": 550,
+          "asian": 287,
+          "americanIndianAlaskaNative": 5,
+          "nativeHawaiianPacificIslander": 2,
+          "twoOrMoreRaces": 153,
+          "unknown": 47
+        }
+      },
+      "testScores": {
+        "sat": {
+          "submissionRate": 0.39,
+          "readingWriting": {
+            "p25": 710,
+            "p75": 770
+          },
+          "composite": {
+            "p25": 1440,
+            "p75": 1540
+          },
+          "math": {
+            "p25": 720,
+            "p75": 790
+          }
+        },
+        "act": {
+          "submissionRate": 0.21,
+          "composite": {
+            "p25": 33,
+            "p75": 35
+          }
+        }
+      },
+      "financialAid": {}
+    },
+    "2022-2023": {
+      "admissions": {
+        "byGender": {
+          "men": {
+            "applied": 6047,
+            "admitted": 489,
+            "enrolled": 204
+          },
+          "women": {
+            "applied": 8660,
+            "admitted": 530,
+            "enrolled": 229
+          }
+        },
+        "applied": 14707,
+        "admitted": 1019,
+        "enrolled": 433,
+        "earlyDecision": {
+          "applied": 1158,
+          "admitted": 222
+        },
+        "acceptanceRate": 0.0693,
+        "yield": 0.4249
+      },
+      "costs": {
+        "tuition": 61992,
+        "fees": 420,
+        "roomAndBoard": 18964,
+        "totalCOA": 81376
+      },
+      "demographics": {
+        "enrollment": {
+          "undergraduate": 1625,
+          "graduate": 0,
+          "total": 1625
+        },
+        "byRace": {
+          "international": 227,
+          "hispanicLatino": 234,
+          "blackAfricanAmerican": 146,
+          "white": 514,
+          "asian": 287,
+          "americanIndianAlaskaNative": 7,
+          "nativeHawaiianPacificIslander": 1,
+          "twoOrMoreRaces": 158,
+          "unknown": 51
+        }
+      },
+      "testScores": {
+        "sat": {
+          "submissionRate": 0.42,
+          "readingWriting": {
+            "p25": 750,
+            "p75": 738
+          },
+          "composite": {
+            "p25": 1455,
+            "p75": 1540
+          },
+          "math": {
+            "p25": 730,
+            "p75": 790
+          }
+        },
+        "act": {
+          "submissionRate": 0.19,
+          "composite": {
+            "p25": 32,
+            "p75": 35
+          }
+        }
+      },
+      "financialAid": {}
+    }
+  },
+  "profile": {
+    "admissionsFactors": {
+      "academic": {
+        "rigorOfSecondarySchoolRecord": "very_important",
+        "classRank": "very_important",
+        "academicGpa": "very_important",
+        "standardizedTestScores": "considered",
+        "applicationEssay": "very_important",
+        "recommendations": "very_important"
+      },
+      "nonacademic": {
+        "interview": "considered",
+        "extracurricularActivities": "considered",
+        "talentAbility": "considered",
+        "characterPersonalQualities": "very_important",
+        "firstGeneration": "considered",
+        "alumniRelation": "considered",
+        "geographicalResidence": "considered",
+        "stateResidency": "considered",
+        "religiousAffiliationCommitment": "considered",
+        "volunteerWork": "considered",
+        "workExperience": "considered",
+        "levelOfApplicantsInterest": "not_considered"
+      },
+      "sourceYear": "2023-2024",
+      "section": "C7",
+      "sourcePdf": "College-Data/swarthmorecollege/swarthmorecollege-cds-2023-2024.pdf"
+    }
+  }
+}

@@ -4,8 +4,9 @@ from pathlib import Path
 import re
 from typing import Any
 
-from .models import SchoolManifest, SectionExtraction
+from .models import SchoolManifest, SectionExtraction, SectionPacket
 from .registry import generate_registry
+from .specs import spec_for_domain
 from .utils import read_json, validate_slug, write_json
 from .validator import validate_school_data, validate_section_extraction
 
@@ -169,18 +170,52 @@ def compile_school(
         document.academic_year for document in manifest.documents if document.academic_year
     }
     extraction_root = (manifest_path.parent / "extractions").resolve()
+    routed_evidence_pages: set[tuple[str, str, str, int]] = set()
+    for packet_path_value in manifest.packet_paths:
+        packet_path = Path(packet_path_value)
+        if not packet_path.exists():
+            continue
+        packet = SectionPacket.model_validate(read_json(packet_path))
+        routed_evidence_pages.update(
+            (
+                packet.academic_year,
+                packet.domain,
+                packet_page.document_id,
+                packet_page.page,
+            )
+            for packet_page in packet.pages
+        )
 
     years: dict[str, dict[str, Any]] = {}
     profiles: dict[str, dict[str, Any]] = {}
     issues: list[dict[str, str]] = []
+    year_blockers: dict[str, list[str]] = {}
+
+    def block_year(academic_year: str, reason: str) -> None:
+        year_blockers.setdefault(academic_year, []).append(reason)
+
     if manifest.review_required:
         issues.append(
             {
-                "severity": "error",
+                "severity": "warning",
                 "kind": "manifest_requires_review",
-                "message": "Acquisition or document analysis still requires review.",
+                "message": "Some acquisition or document analysis items require review; safe complete years are evaluated independently.",
             }
         )
+    for document in manifest.documents if manifest.review_required else []:
+        if not document.academic_year:
+            continue
+        reasons: list[str] = []
+        if document.ocr_pending_pages:
+            reasons.append("routed pages still require OCR")
+        if not document.year_verified:
+            reasons.append("academic year is not verified")
+        if document.year_conflict:
+            reasons.append("filename and document year conflict")
+        if document.school_match_score < 0.5:
+            reasons.append("document weakly matches the requested school")
+        for reason in reasons:
+            block_year(document.academic_year, reason)
     seen: dict[tuple[str, str], Any] = {}
     for extraction_path_value in manifest.extraction_paths:
         extraction_path = Path(extraction_path_value).resolve()
@@ -212,22 +247,30 @@ def compile_school(
             and observation.value is not None
             for observation in extraction.observations
         )
+        c7_complete = set(spec_for_domain("admissions_factors").metric_paths).issubset(
+            {
+                observation.path
+                for observation in extraction.observations
+                if observation.value is not None and not observation.review_required
+            }
+        )
         c7_verified = any(
             marker in note
             for note in extraction.notes
             for marker in (
                 "C7 independently verified",
+                "C7 deterministically verified",
                 "Manual C7 verification",
                 "Structured extraction provider: Codex",
                 "Structured extraction provider: openai/",
             )
         )
-        if has_c7 and not c7_verified:
+        if has_c7 and (not c7_verified or not c7_complete):
             issues.append(
                 {
-                    "severity": "error",
+                    "severity": "warning",
                     "kind": "unverified_c7_matrix",
-                    "message": f"{academic_year} C7 lacks independent or hosted adjudication.",
+                    "message": f"{academic_year} C7 is incomplete or lacks independent adjudication.",
                 }
             )
         extraction_validation = validate_section_extraction(extraction.model_dump(mode="json"))
@@ -235,13 +278,27 @@ def compile_school(
             issues.append(
                 {
                     **issue,
+                    "severity": "warning",
                     "message": f"{academic_year} {extraction_path.stem}: {issue['message']}",
                 }
             )
         for observation in extraction.observations:
             if observation.value is None:
                 continue
+            if observation.review_required:
+                issues.append(
+                    {
+                        "severity": "warning",
+                        "kind": "observation_requires_review",
+                        "message": f"{academic_year} {observation.path} was excluded because it requires review.",
+                    }
+                )
+                if observation.path in PUBLISH_REQUIRED_PATHS:
+                    block_year(academic_year, f"{observation.path} requires review")
+                continue
             evidence_valid = False
+            aggregate_values: list[float] = []
+            aggregate_evidence_valid = True
             for evidence in observation.evidence:
                 document = documents.get(evidence.document_id)
                 if document is None or document.academic_year != academic_year:
@@ -263,58 +320,89 @@ def compile_school(
                         and evidence.question_id == "C1"
                         and _quote_supports_native_sum(evidence.quote, observation.value)
                     )
-                    if not direct_support and not summed_c1_support:
+                    normalized_percent_support = (
+                        observation.method == "native-rule"
+                        and observation.notes
+                        == "Percent value normalized from CDS numeric percent cell."
+                        and _quote_supports_number(evidence.quote, float(observation.value) * 100)
+                    )
+                    if not direct_support and not summed_c1_support and not normalized_percent_support:
+                        if observation.notes == "Deterministic sum of cited C1 gender cells.":
+                            numbers = re.findall(r"[-+]?\$?\s*\d[\d,]*(?:\.\d+)?", evidence.quote)
+                            if len(numbers) == 1:
+                                aggregate_values.append(
+                                    float(numbers[0].replace("$", "").replace(",", "").replace(" ", ""))
+                                )
+                                continue
+                        aggregate_evidence_valid = False
                         continue
                 if evidence.question_id and evidence.question_id not in page.question_ids:
                     inherited_continuation = (
-                        not page.question_ids and extraction_path.stem in page.domains
+                        not page.question_ids
+                        and (
+                            academic_year,
+                            extraction_path.stem,
+                            evidence.document_id,
+                            evidence.page,
+                        )
+                        in routed_evidence_pages
                     )
                     if not inherited_continuation:
                         continue
                 evidence_valid = True
                 break
+            if (
+                not evidence_valid
+                and observation.notes == "Deterministic sum of cited C1 gender cells."
+                and aggregate_evidence_valid
+                and len(aggregate_values) >= 2
+                and abs(sum(aggregate_values) - float(observation.value)) < 1e-9
+            ):
+                evidence_valid = True
             if not evidence_valid:
                 issues.append(
                     {
-                        "severity": "error",
+                        "severity": "warning",
                         "kind": "invalid_source_evidence",
-                        "message": f"{academic_year} {observation.path} lacks matching manifest evidence.",
+                        "message": f"{academic_year} {observation.path} was excluded because its evidence did not match the manifest.",
                     }
                 )
+                if observation.path in PUBLISH_REQUIRED_PATHS:
+                    block_year(academic_year, f"{observation.path} lacks valid source evidence")
+                continue
             key = (academic_year, observation.path)
             if key in seen and seen[key] != observation.value:
                 issues.append(
                     {
-                        "severity": "error",
+                        "severity": "warning",
                         "kind": "conflicting_observation",
                         "message": f"{academic_year} {observation.path} has conflicting values.",
                     }
                 )
+                block_year(academic_year, f"{observation.path} has conflicting values")
                 continue
             seen[key] = observation.value
-            if observation.review_required:
-                issues.append(
-                    {
-                        "severity": "error",
-                        "kind": "observation_requires_review",
-                        "message": f"{academic_year} {observation.path} requires review.",
-                    }
-                )
             if observation.path.startswith("profile."):
-                _set_nested(profiles.setdefault(academic_year, {}), observation.path, observation.value)
+                if c7_verified and c7_complete:
+                    _set_nested(profiles.setdefault(academic_year, {}), observation.path, observation.value)
             else:
                 _set_nested(years.setdefault(academic_year, {}), observation.path, observation.value)
 
     complete_years: dict[str, dict[str, Any]] = {}
+    excluded_years: dict[str, list[str]] = {}
     for academic_year, year_data in sorted(years.items()):
         _derive(year_data)
         missing = [path for path in PUBLISH_REQUIRED_PATHS if _get_nested(year_data, path) is None]
+        reasons = list(dict.fromkeys(year_blockers.get(academic_year, [])))
         if missing:
+            reasons.append("missing required metrics: " + ", ".join(missing))
+        if reasons:
+            excluded_years[academic_year] = reasons
             issues.append(
                 {
-                    "severity": "error",
-                    "kind": "incomplete_year",
-                    "message": f"{academic_year} is missing: {', '.join(missing)}",
+                    "severity": "warning",
+                    "kind": "excluded_year",
+                    "message": f"{academic_year} was excluded: {'; '.join(reasons)}",
                 }
             )
         else:
@@ -355,6 +443,7 @@ def compile_school(
         "school_name": manifest.school_name,
         "school_slug": manifest.school_slug,
         "compiled_years": sorted(complete_years),
+        "excluded_years": excluded_years,
         "issue_count": len(issues),
         "error_count": sum(issue.get("severity") == "error" for issue in issues),
         "warning_count": sum(issue.get("severity") == "warning" for issue in issues),

@@ -26,10 +26,11 @@ export default function TestScoresTrendChart({
 
   // Calculate min score for Y-axis (rounded down to nearest 50)
   const allScores = years
-    .filter((year) => yearData[year].testScores.sat)
+    .filter((year) => yearData[year].testScores.sat?.composite)
     .flatMap((year) => {
       const sat = yearData[year].testScores.sat!;
-      return [sat.composite.p25, sat.composite.p50, sat.composite.p75].filter(
+      const composite = sat.composite!;
+      return [composite.p25, composite.p50, composite.p75].filter(
         (score): score is number => typeof score === "number"
       );
     });
@@ -38,16 +39,17 @@ export default function TestScoresTrendChart({
   const maxScore = 1600;
 
   const satTrendData = years
-    .filter((year) => yearData[year].testScores.sat)
+    .filter((year) => yearData[year].testScores.sat?.composite)
     .map((year) => {
       const sat = yearData[year].testScores.sat!;
+      const composite = sat.composite!;
       return {
         year: year.split("-")[0],
         fullYear: year,
-        p25: sat.composite.p25,
-        p50: sat.composite.p50,
-        p75: sat.composite.p75,
-        range: [sat.composite.p25, sat.composite.p75],
+        p25: composite.p25,
+        p50: composite.p50,
+        p75: composite.p75,
+        range: [composite.p25, composite.p75],
       };
     });
 

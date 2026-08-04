@@ -70,7 +70,7 @@ export default function SchoolCard({
               </div>
               <div className="text-xs text-gray-500">Class Size</div>
             </div>
-            {latestData.testScores.sat && (
+            {latestData.testScores.sat?.composite && (
               <div>
                 <div className="text-lg font-semibold text-gray-700">
                   {latestData.testScores.sat.composite.p25}-

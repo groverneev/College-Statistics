@@ -43,6 +43,8 @@ def _cmd_add(args: argparse.Namespace) -> int:
         "years": sorted({document.academic_year for document in manifest.documents if document.academic_year}),
         "packets": len(manifest.packet_paths),
         "extractions": len(manifest.extraction_paths),
+        "extraction_cache_hits": manifest.extraction_cache_hits,
+        "extraction_cache_misses": manifest.extraction_cache_misses,
         "rejected_documents": len(manifest.rejected_documents),
         "review_required": manifest.review_required,
         "warnings": manifest.warnings,

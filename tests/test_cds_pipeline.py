@@ -20,7 +20,7 @@ from cds_pipeline.models import DiscoveryManifest, DocumentArtifact, DownloadRec
 from cds_pipeline.models import PacketPage, SectionPacket, TableArtifact
 from cds_pipeline.native import extract_packet_native
 from cds_pipeline.ocr import OllamaOcrProvider, OcrResult, _clean_unlimited_ocr_text
-from cds_pipeline.pipeline import _build_packets, add_school
+from cds_pipeline.pipeline import _build_packets, _extract_packets, add_school
 from cds_pipeline.registry import generate_registry
 from cds_pipeline.specs import extract_question_ids
 from cds_pipeline.utils import extract_year_from_filename, validate_slug
@@ -474,6 +474,128 @@ class EvidencePipelineTests(unittest.TestCase):
         self.assertEqual(values["admissions.byGender.men.applied"], 4985)
         self.assertEqual(values["admissions.byGender.women.applied"], 7133)
 
+    def test_native_legacy_pomona_rows_avoid_model_fallback(self) -> None:
+        packet = SectionPacket(
+            school_name="Pomona College",
+            school_slug="pomonacollege",
+            academic_year="2017-2018",
+            domain="admissions",
+            metric_paths=[
+                "admissions.applied",
+                "admissions.admitted",
+                "admissions.enrolled",
+                "admissions.byGender.men.applied",
+                "admissions.byGender.women.applied",
+                "admissions.byGender.men.admitted",
+                "admissions.byGender.women.admitted",
+                "admissions.byGender.men.enrolled",
+                "admissions.byGender.women.enrolled",
+            ],
+            pages=[
+                PacketPage(
+                    document_id="sha256:pomona-old",
+                    source_path="pomona-old.pdf",
+                    page=8,
+                    question_ids=["C1"],
+                    text=(
+                        "C1 Total first-time, first-year (freshman) men who applied 3500\n"
+                        "C1 Total first-time, first-year (freshman) women who applied 5545\n"
+                        "C1 Total first-time, first-year (freshman) men who were admitted 357\n"
+                        "C1 Total first-time, first-year (freshman) women who were admitted 399\n"
+                        "C1 Total full-time, first-time, first-year (freshman) men who enrolled 192\n"
+                        "C1 Total full-time, first-time, first-year (freshman) women who enrolled 220\n"
+                    ),
+                )
+            ],
+        )
+        extraction, complete = extract_packet_native(packet)
+        values = {observation.path: observation.value for observation in extraction.observations}
+        self.assertTrue(complete)
+        self.assertEqual(values["admissions.applied"], 9045)
+        self.assertEqual(values["admissions.admitted"], 756)
+        self.assertEqual(values["admissions.enrolled"], 412)
+
+    def test_native_legacy_score_table_uses_second_column_as_p75(self) -> None:
+        packet = SectionPacket(
+            school_name="Swarthmore College",
+            school_slug="swarthmorecollege",
+            academic_year="2019-2020",
+            domain="test_scores",
+            metric_paths=[
+                "testScores.sat.composite.p25",
+                "testScores.sat.composite.p75",
+                "testScores.act.composite.p25",
+                "testScores.act.composite.p75",
+            ],
+            pages=[
+                PacketPage(
+                    document_id="sha256:swarthmore-scores",
+                    source_path="swarthmore.pdf",
+                    page=12,
+                    question_ids=["C9"],
+                    text=(
+                        "SAT Composite 1390 1530 1452 1470\n"
+                        "ACT Composite 31 35 32.4 33\n"
+                    ),
+                    tables=[
+                        TableArtifact(
+                            rows=[
+                                ["Assessment", "25th Percentile", "75th Percentile", "Average", "Median"],
+                                ["SAT Composite", "1390", "1530", "1452", "1470"],
+                                ["ACT Composite", "31", "35", "32.4", "33"],
+                            ]
+                        )
+                    ],
+                )
+            ],
+        )
+        extraction, complete = extract_packet_native(packet)
+        values = {observation.path: observation.value for observation in extraction.observations}
+        self.assertTrue(complete)
+        self.assertEqual(values["testScores.sat.composite.p75"], 1530)
+        self.assertEqual(values["testScores.act.composite.p75"], 35)
+
+    def test_extraction_cache_reuses_identical_packet(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            packet_path = Path(tmp) / "packets" / "2024-2025" / "admissions.json"
+            packet_path.parent.mkdir(parents=True)
+            packet = SectionPacket(
+                school_name="Sample University",
+                school_slug="sample",
+                academic_year="2024-2025",
+                domain="admissions",
+                metric_paths=["admissions.applied", "admissions.admitted", "admissions.enrolled"],
+                pages=[
+                    PacketPage(
+                        document_id="sha256:sample",
+                        source_path="sample.pdf",
+                        page=1,
+                        question_ids=["C1"],
+                        text=(
+                            "Total first-time, first-year students applied 60 40\n"
+                            "Total first-time, first-year students admitted 20 10\n"
+                            "Total first-time, first-year students enrolled 8 7\n"
+                        ),
+                    )
+                ],
+            )
+            packet_path.write_text(packet.model_dump_json(), encoding="utf-8")
+            paths, first_hits = _extract_packets(
+                [str(packet_path)], extractor_name="local", model=None, jobs=1
+            )
+            cached_paths, second_hits = _extract_packets(
+                [str(packet_path)], extractor_name="local", model=None, jobs=1
+            )
+            packet.pages[0].text = packet.pages[0].text.replace("60 40", "61 40")
+            packet_path.write_text(packet.model_dump_json(), encoding="utf-8")
+            _, changed_packet_hits = _extract_packets(
+                [str(packet_path)], extractor_name="local", model=None, jobs=1
+            )
+        self.assertEqual(first_hits, 0)
+        self.assertEqual(second_hits, 1)
+        self.assertEqual(changed_packet_hits, 0)
+        self.assertEqual(paths, cached_paths)
+
     def test_question_parser_does_not_treat_numeric_table_row_as_g1(self) -> None:
         self.assertEqual(extract_question_ids("G     1     2     0\nH2 Number of students"), ["H2"])
 
@@ -655,6 +777,61 @@ class EvidencePipelineTests(unittest.TestCase):
             self.assertEqual(year["admissions"]["acceptanceRate"], 0.25)
             self.assertEqual(year["admissions"]["yield"], 0.4)
             self.assertEqual(year["costs"]["totalCOA"], 79000)
+
+            incomplete_path = root / "extractions" / "2023-2024" / "admissions.json"
+            incomplete_path.parent.mkdir(parents=True)
+            incomplete_path.write_text(
+                json.dumps(
+                    {
+                        "observations": [
+                            {
+                                "path": "admissions.applied",
+                                "value": 900,
+                                "confidence": 1,
+                                "evidence": [
+                                    {
+                                        "document_id": "sha256:incomplete",
+                                        "page": 1,
+                                        "quote": "Applicants 900",
+                                    }
+                                ],
+                            }
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            manifest_payload = json.loads(manifest_path.read_text(encoding="utf-8"))
+            manifest_payload["documents"].append(
+                {
+                    "document_id": "sha256:incomplete",
+                    "source_path": str(root / "incomplete.pdf"),
+                    "filename": "incomplete.pdf",
+                    "sha256": "1" * 64,
+                    "size_bytes": 1,
+                    "page_count": 1,
+                    "school_name": "Sample University",
+                    "school_slug": "sample",
+                    "academic_year": "2023-2024",
+                    "year_verified": True,
+                    "school_match_score": 1,
+                    "document_type": "cds",
+                    "pages": [
+                        {
+                            "page": 1,
+                            "width": 612,
+                            "height": 792,
+                            "text": "Applicants 900",
+                        }
+                    ],
+                }
+            )
+            manifest_payload["extraction_paths"].append(str(incomplete_path))
+            manifest_path.write_text(json.dumps(manifest_payload), encoding="utf-8")
+            partial_report = compile_school(str(manifest_path))
+            self.assertEqual(partial_report["error_count"], 0)
+            self.assertEqual(partial_report["compiled_years"], ["2024-2025"])
+            self.assertIn("2023-2024", partial_report["excluded_years"])
 
             observations[0]["evidence"][0]["page"] = 999
             extraction_path.write_text(

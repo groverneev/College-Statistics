@@ -117,7 +117,7 @@ Run the complete workflow:
 uv run python -m cds_pipeline add "Pomona College" --extractor auto --publish --strict
 ```
 
-No API key is required. Ollama is the default local runtime. Qwen 3.5 9B and Gemma 4 12B must independently agree on the latest visual C7 matrix, Gemma handles nonstandard local layouts, and a signed-in Codex CLI is an opt-in adjudicator using saved ChatGPT authentication. `--publish` is deliberately blocked unless structured evidence exists and every required validation passes.
+No API key is required. Exact labeled CDS rows, including C7, are parsed deterministically first. Qwen 3.5 9B and Gemma 4 12B independently verify C7 only when deterministic recovery is incomplete; Gemma handles other nonstandard local layouts, and a signed-in Codex CLI is an opt-in adjudicator using saved ChatGPT authentication. `--publish` includes every independently safe, complete year, reports and excludes incomplete years, and remains blocked when no complete year survives or compiled data fails validation.
 
 The command:
 
@@ -130,7 +130,9 @@ The command:
 7. renders table-heavy B/H evidence, visual C7 evidence, and pages that actually require OCR;
 8. sends only nonstandard or visual leftovers to local models, with Codex/OpenAI fallback when configured;
 9. emits strict, source-quoted observations into `.cds_pipeline/<slug>/extractions/`;
-10. derives rates and totals, runs blocking semantic validation, writes the school JSON, and regenerates the registry.
+10. derives rates and totals, excludes unsafe/incomplete years with explicit reasons, runs blocking semantic validation on the retained years, writes the school JSON, and regenerates the registry.
+
+Document analysis and packet extraction are cached separately. Extraction cache signatures include the packet hash, extraction parser version, provider chain, and local/hosted model configuration. An unchanged rerun must report cache hits and must not repeat model inference.
 
 School-name targets always use discovery, even when `College-Data/<slug>/` already exists. Only an explicit PDF or directory path requests local-file ingestion. The discovery `--years` selection is authoritative and must not be replaced by rescanning older files in the cache directory. Analyze PDFs serially: PyMuPDF table extraction can leak table state across documents when called concurrently in threads. Flattened native-text continuations without formal table artifacts must remain routed to their inherited CDS domain.
 
@@ -152,7 +154,7 @@ If a school uses a nonstandard archive that discovery cannot locate, pass its of
 
 - `--extractor auto` is the supported default: deterministic table rules first, then Ollama, then Codex only when `CDS_ENABLE_CODEX_FALLBACK=1`, then OpenAI only if configured.
 - `CDS_LOCAL_VISION_MODEL` defaults to `qwen3.5:9b`; `CDS_LOCAL_EXTRACTION_MODEL` defaults to `gemma4:12b`.
-- The local model is normally called only for C7 or a nonstandard layout. Local calls are serialized by default; override with `CDS_LOCAL_EXTRACTION_JOBS` only after measuring VRAM.
+- The local model is called only when deterministic extraction is incomplete. Local calls are serialized by default; override with `CDS_LOCAL_EXTRACTION_JOBS` only after measuring VRAM.
 - Codex runs ephemerally, read-only, approval-free, and schema-constrained. It receives an environment allowlist with project credentials and API keys removed so it uses saved ChatGPT authentication without exposing repo secrets.
 - A non-null value is invalid unless its quote is on a routed page and contains the reported numeric value. Deterministic semantic validation still runs after extraction.
 - Use the checked-in Brown gold fixture and `cds_pipeline benchmark` before changing default models. Model release recency alone is not a selection criterion.
@@ -175,7 +177,7 @@ When configured, Unlimited-OCR takes priority over Ollama. The main pipeline sup
 - Prefer official sources. Repository mirrors are allowed only with post-download institution/year/CDS verification and recorded provenance.
 - Treat C7 admissions factors as latest-known school metadata and retain its source year/PDF.
 - The compiler, not the extractor, derives acceptance rate, yield, enrollment total when components exist, and the site's displayed tuition + fees + room/board total.
-- Missing required fields, conflicting observations, ambiguous years, weak institution matches, rejected documents, or unresolved OCR block publication.
+- Missing required fields or document-level safety problems exclude the affected academic year. Conflicts, ambiguous years, weak institution matches, unresolved OCR, and invalid evidence may never leak values into a retained year. Publication fails when no complete verified year remains or retained data fails semantic validation.
 
 ### Validation and Verification
 
