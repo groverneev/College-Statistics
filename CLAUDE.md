@@ -109,6 +109,8 @@ Install once:
 uv sync --extra dev
 ollama pull qwen3.5:9b
 ollama pull gemma4:12b
+npm install --global @openai/codex
+codex login
 ```
 
 Run the complete workflow:
@@ -117,7 +119,7 @@ Run the complete workflow:
 uv run python -m cds_pipeline add "Pomona College" --extractor auto --publish --strict
 ```
 
-No API key is required. Exact labeled CDS rows, including C7, are parsed deterministically first. Qwen 3.5 9B and Gemma 4 12B independently verify C7 only when deterministic recovery is incomplete; Gemma handles other nonstandard local layouts, and a signed-in Codex CLI is an opt-in adjudicator using saved ChatGPT authentication. `--publish` includes every independently safe, complete year, reports and excludes incomplete years, and remains blocked when no complete year survives or compiled data fails validation.
+No API key is required. Exact labeled CDS rows, including C7, are parsed deterministically first. Qwen 3.5 9B and Gemma 4 12B independently verify C7 only when deterministic recovery is incomplete; Gemma handles other nonstandard local layouts, and a signed-in Codex CLI is the default adjudicator after local extraction using saved ChatGPT authentication. `--publish` includes every independently safe, complete year, reports and excludes incomplete years, and remains blocked when no complete year survives or compiled data fails validation.
 
 The command:
 
@@ -157,6 +159,7 @@ If a school uses a nonstandard archive that discovery cannot locate, pass its of
 - The local model is called only when deterministic extraction is incomplete. Local calls are serialized by default; override with `CDS_LOCAL_EXTRACTION_JOBS` only after measuring VRAM.
 - Codex runs ephemerally, read-only, approval-free, and schema-constrained. It receives an environment allowlist with project credentials and API keys removed so it uses saved ChatGPT authentication without exposing repo secrets.
 - A major add/publish failure launches one default-on Codex rescue attempt with live search. The agent may diagnose the failure and return an official archive or direct PDF candidates, but it cannot edit or publish. Returned URLs are treated as untrusted inputs and must pass every normal downloader, identity, evidence, validation, and publication gate. Never recursively rescue a failed rescue/retry. Use `--no-codex` or `CDS_DISABLE_CODEX=1` to opt out.
+- Rescue orchestration belongs to the complete `add` command, including its optional publication stage. Standalone `discover` and `compile` commands report their failures directly and do not launch rescue. If Codex is missing or signed out, `add` remains failed and reports that automatic escalation was unavailable; it does not require or silently substitute an API key.
 - A non-null value is invalid unless its quote is on a routed page and contains the reported numeric value. Deterministic semantic validation still runs after extraction.
 - Use the checked-in Brown gold fixture and `cds_pipeline benchmark` before changing default models. Model release recency alone is not a selection criterion.
 
@@ -164,8 +167,8 @@ If a school uses a nonstandard archive that discovery cannot locate, pass its of
 
 OCR is a fallback, never the default for every page. `--ocr auto` selects the first configured provider:
 
-- Ollama vision OCR: zero-key fallback using `qwen3.5:9b` (override with `CDS_LOCAL_OCR_MODEL`).
 - Unlimited-OCR: run the official vLLM server and set `CDS_UNLIMITED_OCR_URL=http://127.0.0.1:8000/v1`.
+- Ollama vision OCR: zero-key fallback using `qwen3.5:9b` (override with `CDS_LOCAL_OCR_MODEL`).
 - Mistral OCR 4: set `MISTRAL_API_KEY`.
 - PaddleOCR-VL 1.6: use a Python 3.12 environment and install `paddlepaddle paddleocr`.
 

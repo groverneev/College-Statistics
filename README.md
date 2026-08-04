@@ -130,12 +130,14 @@ Generated evidence and extraction packets live in `.cds_pipeline/<slug>/`. Downl
 
 When automatic rescue runs, its diagnosis, proposed sources, and accepted recovery inputs are recorded in `.cds_pipeline/<slug>/codex_rescue.json`. If Codex cannot find a safe corrective input, the original operation remains failed with the report path in the error message.
 
+Automatic rescue is part of the complete `add` command, including its `--publish` stage. The standalone `discover` and `compile` diagnostic commands report failures directly and do not launch an agent. If Codex is not installed or is signed out, `add` remains failed with an automatic-escalation setup message; it never silently switches to an API key.
+
 ### OCR choices
 
 Most CDS PDFs already contain usable text, so no OCR service is needed for them. For scanned or broken pages, `--ocr auto` uses the first configured provider:
 
-- **Ollama vision OCR** (zero-key default): uses `qwen3.5:9b`; override with `CDS_LOCAL_OCR_MODEL`.
 - **Unlimited-OCR** (recommended for a local NVIDIA GPU): run the official vLLM server and set `CDS_UNLIMITED_OCR_URL=http://127.0.0.1:8000/v1`.
+- **Ollama vision OCR** (zero-key fallback): uses `qwen3.5:9b`; override with `CDS_LOCAL_OCR_MODEL`.
 - **Mistral OCR 4**: set `MISTRAL_API_KEY`.
 - **PaddleOCR-VL 1.6**: use Python 3.12 and install `paddlepaddle paddleocr`.
 
