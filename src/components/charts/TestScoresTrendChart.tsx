@@ -29,7 +29,9 @@ export default function TestScoresTrendChart({
     .filter((year) => yearData[year].testScores.sat)
     .flatMap((year) => {
       const sat = yearData[year].testScores.sat!;
-      return [sat.composite.p25, sat.composite.p50, sat.composite.p75];
+      return [sat.composite.p25, sat.composite.p50, sat.composite.p75].filter(
+        (score): score is number => typeof score === "number"
+      );
     });
 
   const minScore = Math.floor(Math.min(...allScores) / 50) * 50 - 50; // Round down and add padding
@@ -52,6 +54,7 @@ export default function TestScoresTrendChart({
   if (satTrendData.length === 0) {
     return null;
   }
+  const hasReportedMedian = satTrendData.some((point) => point.p50 != null);
 
   return (
     <div className="card p-6 h-full">
@@ -92,7 +95,9 @@ export default function TestScoresTrendChart({
                     <div className="bg-white p-3 border border-gray-200 rounded-lg shadow-lg">
                       <p className="font-semibold text-gray-800">{d.fullYear}</p>
                       <p className="text-sm text-gray-600">75th: {d.p75}</p>
-                      <p className="text-sm text-gray-600">50th: {d.p50}</p>
+                      {d.p50 != null && (
+                        <p className="text-sm text-gray-600">50th: {d.p50}</p>
+                      )}
                       <p className="text-sm text-gray-600">25th: {d.p25}</p>
                     </div>
                   );
@@ -116,14 +121,16 @@ export default function TestScoresTrendChart({
               strokeWidth={2}
               name="range"
             />
-            <Line
-              type="monotone"
-              dataKey="p50"
-              stroke="#2980b9"
-              strokeWidth={3}
-              dot={{ fill: "#2980b9", r: 5 }}
-              name="p50"
-            />
+            {hasReportedMedian && (
+              <Line
+                type="monotone"
+                dataKey="p50"
+                stroke="#2980b9"
+                strokeWidth={3}
+                dot={{ fill: "#2980b9", r: 5 }}
+                name="p50"
+              />
+            )}
           </AreaChart>
         </ResponsiveContainer>
       </div>
@@ -140,7 +147,7 @@ export default function TestScoresTrendChart({
           <div>
             <div className="text-gray-500">50th Percentile</div>
             <div className="font-semibold text-blue-600">
-              {satTrendData[satTrendData.length - 1]?.p50}
+              {satTrendData[satTrendData.length - 1]?.p50 ?? "Not reported"}
             </div>
           </div>
           <div>

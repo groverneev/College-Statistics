@@ -1,0 +1,29 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "college-statistics-cds"
+version = "3.1.0"
+description = "Evidence-first Common Data Set ingestion for College Statistics"
+requires-python = ">=3.11"
+dependencies = [
+  "beautifulsoup4>=4.13,<5",
+  "pydantic>=2.12,<3",
+  "pymupdf>=1.27,<2",
+  "requests>=2.32,<3",
+]
+
+[project.optional-dependencies]
+extract = ["openai>=2.30,<3"]
+paddle = ["paddleocr>=3.4", "paddlepaddle>=3.2"]
+dev = ["pytest>=8"]
+
+[project.scripts]
+cds = "cds_pipeline.cli:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["cds_pipeline"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

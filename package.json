@@ -7,6 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
+    "data:check": "python -m cds_pipeline registry --check",
+    "data:test": "python -m unittest discover -s tests -v",
     "postinstall": "prisma generate"
   },
   "dependencies": {

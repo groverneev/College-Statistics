@@ -19,7 +19,7 @@ This is a Next.js site for exploring Common Data Set trends across colleges.
 The repo contains:
 
 - local source files in `College-Data/<School>/`
-- screenshot prep and validation helpers in `cds_pipeline/`
+- acquisition, extraction, validation, and publishing automation in `cds_pipeline/`
 - normalized datasets in `src/data/schools/`
 
 ## App Structure
@@ -56,11 +56,7 @@ It owns:
 - `availableSchoolSlugs`
 - `searchableSchools` derived from the latest year of each dataset
 
-Adding a new school should usually require:
-
-1. add `src/data/schools/<slug>.json`
-2. register it in `src/data/schools/index.ts`
-3. add its metadata there as needed (`SCHOOL_METADATA` color, aliases, featured flag)
+The pipeline writes `src/data/schools/<slug>.json` and regenerates the import/array portions of `index.ts` during publication. `SCHOOL_METADATA` remains hand-curated only when a custom color, aliases, or featured status is desired; new schools safely use the default color and their canonical name without it.
 
 ## Accounts & Saved Schools
 
@@ -101,165 +97,102 @@ The local network may block the Prisma migration port (5432). Generate SQL with 
 
 `DATABASE_URL` (pooler, `?pgbouncer=true`), `DIRECT_URL` (direct, migrations only), `NEXTAUTH_URL`, `NEXTAUTH_SECRET`, `GOOGLE_CLIENT_ID`, `GOOGLE_CLIENT_SECRET`. See `README.md` for details.
 
-## Codex-First CDS Workflow
+## Evidence-First CDS Workflow
 
-This repo uses a Codex-first screenshot workflow for school ingestion.
+The supported path for adding a college is an automated acquisition-to-publication pipeline. Do not revive the old render-every-page workflow or school-specific extraction configs.
 
-The repo-side automation is intentionally narrow:
+### Add A New School
 
-- resolve a school's local CDS PDFs
-- group them by year
-- render every PDF page to PNG screenshots
-- write per-year manifests for Codex subagents
-- run lightweight deterministic guardrails on the resulting JSON
-
-Codex then reads those screenshots and produces the structured year JSON used for the website.
-
-### Default Command
-
-Use:
+Install once:
 
 ```bash
-python -m cds_pipeline prepare <school-or-path>
+python -m pip install -e ".[dev]"
+ollama pull qwen3.5:9b
+ollama pull gemma4:12b
 ```
 
-`python -m cds_pipeline extract <school-or-path>` remains as a backward-compatible alias for the same render-only prep step.
+Run the complete workflow:
 
-### Workspace Output
-
-The prep step writes artifacts to:
-
-```text
-.cds_pipeline/<school-slug>/
+```bash
+python -m cds_pipeline add "Pomona College" --extractor auto --publish --strict
 ```
 
-For each year it creates:
+No API key is required. Ollama is the default local runtime. Qwen 3.5 9B and Gemma 4 12B must independently agree on the latest visual C7 matrix, Gemma handles nonstandard local layouts, and a signed-in Codex CLI is an opt-in adjudicator using saved ChatGPT authentication. `--publish` is deliberately blocked unless structured evidence exists and every required validation passes.
 
-- `pages/`: rendered PNG screenshots in page order
-- `manifest.json`: the year handoff packet for a Codex subagent
+The command:
 
-It also writes:
+1. resolves the official institution domain through College Scorecard;
+2. discovers official CDS archive links and then fills missing years from College Transitions;
+3. downloads recent PDFs atomically and records URLs, hashes, year labels, and official/mirror provenance in `College-Data/<slug>/sources.json`;
+4. verifies the document's CDS identity, institution match, and academic year from its contents;
+5. uses native PDF text, words, and tables first;
+6. extracts stable B1/B2, C1, C9, G1, and H2 rows deterministically and routes only the exact question blocks needed;
+7. renders table-heavy B/H evidence, visual C7 evidence, and pages that actually require OCR;
+8. sends only nonstandard or visual leftovers to local models, with Codex/OpenAI fallback when configured;
+9. emits strict, source-quoted observations into `.cds_pipeline/<slug>/extractions/`;
+10. derives rates and totals, runs blocking semantic validation, writes the school JSON, and regenerates the registry.
 
-- `school_manifest.json`: summary of all year manifests for the school
+Staged commands for diagnosis or manual review:
 
-Each year manifest includes:
+```bash
+python -m cds_pipeline discover "Pomona College"
+python -m cds_pipeline add "Pomona College" --extractor auto --strict
+python -m cds_pipeline compile pomona
+python -m cds_pipeline compile pomona --publish
+python -m cds_pipeline benchmark .cds_pipeline/brown/packets/2024-2025 --gold tests/fixtures/brown_2024_2025_gold.json --models qwen3.5:9b gemma4:12b
+python -m cds_pipeline validate <json-file>
+python -m cds_pipeline registry --check
+```
 
-- `school_slug`
-- `school_name`
-- `year`
-- `source_pdfs`
-- `page_count`
-- `screenshot_paths`
-- `screenshots`
-- `subagent_prompt`
-- `output_contract`
+If a school uses a nonstandard archive that discovery cannot locate, pass its official page with `--archive-url`. Use `--years 0` for all available years; the default is the newest eight.
 
-### Codex Handoff Model
+### Structured Extraction Policy
 
-Recommended operator flow:
+- `--extractor auto` is the supported default: deterministic table rules first, then Ollama, then Codex only when `CDS_ENABLE_CODEX_FALLBACK=1`, then OpenAI only if configured.
+- `CDS_LOCAL_VISION_MODEL` defaults to `qwen3.5:9b`; `CDS_LOCAL_EXTRACTION_MODEL` defaults to `gemma4:12b`.
+- The local model is normally called only for C7 or a nonstandard layout. Local calls are serialized by default; override with `CDS_LOCAL_EXTRACTION_JOBS` only after measuring VRAM.
+- Codex runs ephemerally, read-only, approval-free, and schema-constrained. It receives an environment allowlist with project credentials and API keys removed so it uses saved ChatGPT authentication without exposing repo secrets.
+- A non-null value is invalid unless its quote is on a routed page and contains the reported numeric value. Deterministic semantic validation still runs after extraction.
+- Use the checked-in Brown gold fixture and `cds_pipeline benchmark` before changing default models. Model release recency alone is not a selection criterion.
 
-1. Add new CDS PDFs to `College-Data/<School>/`.
-   - If the school's official archive is incomplete or broken, use the College Transitions Common Data Set Repository as a discovery aid for missing CDS files:
-     `https://www.collegetransitions.com/dataverse/common-data-set-repository/`
-2. Run `python -m cds_pipeline prepare <school-or-path>`.
-3. Inspect `.cds_pipeline/<slug>/school_manifest.json` and the per-year manifests.
-4. Give one year's manifest and screenshots to one Codex subagent.
-5. Have that subagent return strict JSON with `year`, `data`, and `notes`.
-6. Merge the per-year outputs into `src/data/schools/<slug>.json`.
-7. Run guardrails and site wiring checks before finishing.
+### OCR Policy
 
-### What Codex Should Extract
+OCR is a fallback, never the default for every page. `--ocr auto` selects the first configured provider:
 
-Per year, the subagent should build the existing `YearData` schema:
+- Ollama vision OCR: zero-key fallback using `qwen3.5:9b` (override with `CDS_LOCAL_OCR_MODEL`).
+- Unlimited-OCR: run the official vLLM server and set `CDS_UNLIMITED_OCR_URL=http://127.0.0.1:8000/v1`.
+- Mistral OCR 4: set `MISTRAL_API_KEY`.
+- PaddleOCR-VL 1.6: use a Python 3.12 environment and install `paddlepaddle paddleocr`.
 
-- admissions
-- test scores
-- demographics
-- costs
-- financial aid
+When configured, Unlimited-OCR takes priority over Ollama. The main pipeline supports Python 3.11+. Keep a local Unlimited-OCR/vLLM or Paddle environment separate rather than forcing CUDA dependencies into the application environment. If no provider is configured and routed pages need OCR, the manifest remains review-required and publication is blocked.
 
-The subagent may derive obvious schema values when the visible source values support them directly:
+### Evidence and Data Rules
 
-- acceptance rate
-- yield
-- total enrollment
-- total cost of attendance
+- Never publish a non-null extracted value without a document ID, page, and quote that matches the routed source text.
+- Never estimate, interpolate, or copy values across years.
+- Prefer official sources. Repository mirrors are allowed only with post-download institution/year/CDS verification and recorded provenance.
+- Treat C7 admissions factors as latest-known school metadata and retain its source year/PDF.
+- The compiler, not the extractor, derives acceptance rate, yield, enrollment total when components exist, and the site's displayed tuition + fees + room/board total.
+- Missing required fields, conflicting observations, ambiguous years, weak institution matches, rejected documents, or unresolved OCR block publication.
 
-If an optional field is not visible, omit it. If a required field cannot be recovered safely, note that explicitly instead of guessing.
+### Validation and Verification
 
-For each school, Codex should also proactively check the latest available CDS for section `C7` and populate school-level `profile.admissionsFactors` metadata when it can be recovered safely. Treat this as a latest-known school attribute, not a year-by-year time series, and store the source year / source PDF alongside the factor matrix.
+The deterministic validator checks admissions ordering and rate reconciliation, percentile ordering, percentage ranges, enrollment reconciliation, race/residency plausibility, negative values, and cost reconciliation. These are guardrails; they do not replace source verification.
 
-## Add A New School
+After pipeline or school-registration changes, run:
 
-Use this checklist:
-
-1. Run `python -m cds_pipeline prepare <school-or-path>`.
-2. Use the per-year manifests and screenshots for Codex extraction.
-3. Finalize `src/data/schools/<slug>.json` with complete, source-backed data.
-4. Proactively extract the latest CDS `C7` admissions-factor matrix into `profile.admissionsFactors` when available.
-5. Register the school in `src/data/schools/index.ts`.
-6. Add the school color in `src/lib/types.ts`.
-7. Add aliases in `src/components/SearchBar.tsx` if the school needs abbreviation support.
-8. Update any user-facing hardcoded copy only if it is not already derived from the registry.
-9. Update `README.md` only if the public-facing behavior or documented coverage changed.
-10. Run `npm run build`.
-
-## Data Quality Checks
-
-Before finishing school data work:
-
-- confirm values are source-backed
-- check for suspiciously flat or overly round trends
-- verify race/residency totals reconcile with undergraduate enrollment
-- verify costs and admissions values look consistent year over year
-
-## Validation
-
-The lightweight validator is deterministic only. It checks:
-
-- `acceptanceRate == admitted / applied`
-- `yield == enrolled / admitted`
-- `total enrollment == undergraduate + graduate`
-- race totals are plausible against undergraduate enrollment
-- residency totals are plausible against undergraduate enrollment
-- `totalCOA == tuition + fees + roomAndBoard`
-
-These checks are guardrails, not a second extraction pipeline.
-
-Use official web-backed/manual overrides only when:
-
-- the local CDS is missing the value
-- the screenshots do not show the needed field clearly
-- the PDF is too ambiguous to verify safely from the screenshots alone
-- the official institutional web source clearly states the needed value
-
-## Verification Checklist
-
-Run these after significant changes:
-
-- `npm run build`
-- verify the homepage still renders the expected schools
-- verify at least one direct school route works
-- verify search still finds schools and aliases
-
-For each updated year:
-
-- `undergraduate + graduate == total`
-- `sum(byRace)` is plausible against undergraduate enrollment
-- `sum(byResidency)` is plausible against undergraduate enrollment
-- costs look plausible and vary year over year
-- acceptance rate and yield reconcile with applied/admitted/enrolled counts
-
-## Architecture Notes
-
-The screenshot prep step is the only supported path for new school ingestion.
+```bash
+python -m unittest discover -s tests -v
+python -m cds_pipeline registry --check
+npm run build
+```
 
 Important directories:
 
-- `cds_pipeline/`: screenshot prep and validation package
-- `cds_pipeline/configs/`: school-specific hints and aliases
-- `.cds_pipeline/`: generated screenshot manifests and rendered pages
-- `src/data/schools/index.ts`: canonical school registry plus app-facing metadata (colors, aliases, featured schools)
+- `cds_pipeline/`: acquisition, document analysis, selective OCR, extraction, compilation, validation, and registry generation
+- `.cds_pipeline/<slug>/`: cached evidence artifacts, packets, observations, manifests, and compiler reports
+- `College-Data/<slug>/`: downloaded PDFs and source provenance
+- `src/data/schools/`: publishable school JSON and generated static registry
 
 ## Chart Layer
 

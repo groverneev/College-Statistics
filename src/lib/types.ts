@@ -76,13 +76,13 @@ export interface AdmissionsData {
 
 export interface TestScoresData {
   sat?: {
-    composite: { p25: number; p50: number; p75: number };
-    readingWriting: { p25: number; p50: number; p75: number };
-    math: { p25: number; p50: number; p75: number };
+    composite: { p25: number; p50?: number; p75: number };
+    readingWriting: { p25: number; p50?: number; p75: number };
+    math: { p25: number; p50?: number; p75: number };
     submissionRate: number;
   };
   act?: {
-    composite: { p25: number; p50: number; p75: number };
+    composite: { p25: number; p50?: number; p75: number };
     submissionRate: number;
   };
 }
@@ -104,7 +104,7 @@ export interface DemographicsData {
     twoOrMoreRaces: number;
     unknown: number;
   };
-  byResidency: {
+  byResidency?: {
     inState: number;
     outOfState: number;
     international: number;

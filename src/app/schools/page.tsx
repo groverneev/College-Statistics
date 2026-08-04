@@ -20,7 +20,7 @@ export default function BrowseSchoolsPage() {
         name: school.name,
         acceptanceRate: latest?.admissions.acceptanceRate ?? null,
         classSize: latest?.admissions.enrolled ?? null,
-        satMid: sat ? sat.p50 : null,
+        satMid: sat?.p50 ?? null,
         totalCost: latest?.costs.totalCOA ?? null,
         yieldRate: latest?.admissions.yield ?? null,
         yearsOfData: getSortedYears(school).length,

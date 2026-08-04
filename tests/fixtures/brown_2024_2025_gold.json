@@ -1,0 +1,82 @@
+{
+  "school": "Brown University",
+  "academic_year": "2024-2025",
+  "source_document_id": "sha256:5ad83112fd8a0ccb18b7f8650eed443908257dbde62519d4daf29187879264ce",
+  "source_pages": [2, 3, 6, 8, 9, 10, 11, 20, 22, 23, 24, 25],
+  "domains": {
+    "admissions": {
+      "admissions.applied": 48904,
+      "admissions.admitted": 2638,
+      "admissions.enrolled": 1719,
+      "admissions.earlyDecision.applied": 6251,
+      "admissions.earlyDecision.admitted": 898,
+      "admissions.byGender.men.applied": 18960,
+      "admissions.byGender.men.admitted": 1326,
+      "admissions.byGender.men.enrolled": 855,
+      "admissions.byGender.women.applied": 29917,
+      "admissions.byGender.women.admitted": 1309,
+      "admissions.byGender.women.enrolled": 863
+    },
+    "admissions_factors": {
+      "profile.admissionsFactors.academic.rigorOfSecondarySchoolRecord": "very_important",
+      "profile.admissionsFactors.academic.classRank": "very_important",
+      "profile.admissionsFactors.academic.academicGpa": "very_important",
+      "profile.admissionsFactors.academic.standardizedTestScores": "very_important",
+      "profile.admissionsFactors.academic.applicationEssay": "very_important",
+      "profile.admissionsFactors.academic.recommendations": "very_important",
+      "profile.admissionsFactors.nonacademic.interview": "not_considered",
+      "profile.admissionsFactors.nonacademic.extracurricularActivities": "important",
+      "profile.admissionsFactors.nonacademic.talentAbility": "very_important",
+      "profile.admissionsFactors.nonacademic.characterPersonalQualities": "very_important",
+      "profile.admissionsFactors.nonacademic.firstGeneration": "considered",
+      "profile.admissionsFactors.nonacademic.alumniRelation": "considered",
+      "profile.admissionsFactors.nonacademic.geographicalResidence": "considered",
+      "profile.admissionsFactors.nonacademic.stateResidency": "considered",
+      "profile.admissionsFactors.nonacademic.religiousAffiliationCommitment": "not_considered",
+      "profile.admissionsFactors.nonacademic.volunteerWork": "considered",
+      "profile.admissionsFactors.nonacademic.workExperience": "considered",
+      "profile.admissionsFactors.nonacademic.levelOfApplicantsInterest": "not_considered"
+    },
+    "costs": {
+      "costs.tuition": 71700,
+      "costs.fees": 2950,
+      "costs.room": 10410,
+      "costs.board": 8104,
+      "costs.roomAndBoard": 18514
+    },
+    "enrollment": {
+      "demographics.enrollment.undergraduate": 7910,
+      "demographics.enrollment.graduate": 4046,
+      "demographics.enrollment.total": 11956,
+      "demographics.byRace.international": 1069,
+      "demographics.byRace.hispanicLatino": 890,
+      "demographics.byRace.blackAfricanAmerican": 596,
+      "demographics.byRace.white": 2401,
+      "demographics.byRace.asian": 1678,
+      "demographics.byRace.americanIndianAlaskaNative": 15,
+      "demographics.byRace.nativeHawaiianPacificIslander": 8,
+      "demographics.byRace.twoOrMoreRaces": 583,
+      "demographics.byRace.unknown": 670
+    },
+    "financial_aid": {
+      "_source.financialAid.cohortSize": 1719,
+      "_source.financialAid.aidRecipientCount": 829,
+      "_source.financialAid.financialNeedCount": 829,
+      "_source.financialAid.needFullyMetCount": 829,
+      "financialAid.averageAidPackage": 68926,
+      "financialAid.averageNeedBasedGrant": 65370
+    },
+    "test_scores": {
+      "testScores.sat.composite.p25": 1510,
+      "testScores.sat.composite.p75": 1560,
+      "testScores.sat.readingWriting.p25": 740,
+      "testScores.sat.readingWriting.p75": 780,
+      "testScores.sat.math.p25": 770,
+      "testScores.sat.math.p75": 800,
+      "testScores.sat.submissionRate": 0.61,
+      "testScores.act.composite.p25": 34,
+      "testScores.act.composite.p75": 35,
+      "testScores.act.submissionRate": 0.24
+    }
+  }
+}
