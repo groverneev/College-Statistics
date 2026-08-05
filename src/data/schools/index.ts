@@ -3,6 +3,7 @@ import { getLatestYear } from "@/utils/dataHelpers";
 
 import bostonCollegeData from "./bostoncollege.json";
 import bostonUniversityData from "./bostonuniversity.json";
+import bowdoincollegeData from "./bowdoincollege.json";
 import brownData from "./brown.json";
 import caltechData from "./caltech.json";
 import cmuData from "./cmu.json";
@@ -137,6 +138,7 @@ export const allSchools: SchoolData[] = [
   yaleData as SchoolData,
   pomonacollegeData as SchoolData,
   swarthmorecollegeData as SchoolData,
+  bowdoincollegeData as SchoolData,
 ];
 
 export const SCHOOL_METADATA: Record<string, SchoolMetadata> = {

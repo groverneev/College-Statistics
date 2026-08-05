@@ -522,6 +522,118 @@ class EvidencePipelineTests(unittest.TestCase):
         self.assertEqual(values["admissions.admitted"], 756)
         self.assertEqual(values["admissions.enrolled"], 412)
 
+    def test_native_legacy_rows_accept_underscores_and_sum_part_time_enrollment(self) -> None:
+        packet = SectionPacket(
+            school_name="Bowdoin College",
+            school_slug="bowdoincollege",
+            academic_year="2018-2019",
+            domain="admissions",
+            metric_paths=[
+                "admissions.applied",
+                "admissions.admitted",
+                "admissions.enrolled",
+                "admissions.byGender.men.enrolled",
+                "admissions.byGender.women.enrolled",
+            ],
+            pages=[
+                PacketPage(
+                    document_id="sha256:bowdoin-old",
+                    source_path="bowdoin-old.pdf",
+                    page=7,
+                    question_ids=["C1"],
+                    text=(
+                        "Total first-time, first-year (freshman) men who applied _____3,741____\n"
+                        "Total first-time, first-year (freshman) women who applied _____5,340____\n"
+                        "Total first-time, first-year (freshman) men who were admitted ______433____\n"
+                        "Total first-time, first-year (freshman) women who were admitted ______499____\n"
+                        "Total full-time, first-time, first-year (freshman) men who enrolled ______244____\n"
+                        "Total part-time, first-time, first-year (freshman) men who enrolled ________0____\n"
+                        "Total full-time, first-time, first-year (freshman) women who enrolled ______266____\n"
+                        "Total part-time, first-time, first-year (freshman) women who enrolled ________0____\n"
+                    ),
+                )
+            ],
+        )
+        extraction, complete = extract_packet_native(packet)
+        values = {observation.path: observation.value for observation in extraction.observations}
+        self.assertTrue(complete)
+        self.assertEqual(values["admissions.applied"], 9081)
+        self.assertEqual(values["admissions.admitted"], 932)
+        self.assertEqual(values["admissions.enrolled"], 510)
+        self.assertEqual(values["admissions.byGender.men.enrolled"], 244)
+        self.assertEqual(values["admissions.byGender.women.enrolled"], 266)
+
+    def test_native_financial_aid_uses_lettered_h2_rows(self) -> None:
+        packet = SectionPacket(
+            school_name="Bowdoin College",
+            school_slug="bowdoincollege",
+            academic_year="2024-2025",
+            domain="financial_aid",
+            metric_paths=[
+                "_source.financialAid.cohortSize",
+                "_source.financialAid.aidRecipientCount",
+                "_source.financialAid.financialNeedCount",
+                "_source.financialAid.needFullyMetCount",
+                "financialAid.averageAidPackage",
+                "financialAid.averageNeedBasedGrant",
+            ],
+            pages=[
+                PacketPage(
+                    document_id="sha256:bowdoin-aid",
+                    source_path="bowdoin-aid.pdf",
+                    page=31,
+                    question_ids=["H2"],
+                    text="H2. Number of Enrolled Students Awarded Aid",
+                    tables=[
+                        TableArtifact(
+                            rows=[
+                                ["A", "Number of degree-seeking undergraduate students", "507"],
+                                ["C", "Number of students determined to have financial need", "268"],
+                                ["D", "Number of students awarded any financial aid", "268"],
+                                ["H", "Number of students whose need was fully met", "268"],
+                                ["J", "The average financial aid package", "$68055"],
+                                ["K", "Average need-based scholarship or grant award", "$66151"],
+                            ]
+                        )
+                    ],
+                )
+            ],
+        )
+        extraction, complete = extract_packet_native(packet)
+        values = {observation.path: observation.value for observation in extraction.observations}
+        self.assertTrue(complete)
+        self.assertEqual(values["financialAid.averageAidPackage"], 68055)
+        self.assertEqual(values["financialAid.averageNeedBasedGrant"], 66151)
+
+    def test_native_score_extractor_normalizes_numeric_percent_cells(self) -> None:
+        packet = SectionPacket(
+            school_name="Bowdoin College",
+            school_slug="bowdoincollege",
+            academic_year="2024-2025",
+            domain="test_scores",
+            metric_paths=["testScores.sat.submissionRate", "testScores.act.submissionRate"],
+            pages=[
+                PacketPage(
+                    document_id="sha256:bowdoin-c9",
+                    source_path="bowdoin-c9.pdf",
+                    page=17,
+                    question_ids=["C9"],
+                    text="Submitting SAT Scores 31.16 158\nSubmitting ACT Scores 16.77 85",
+                )
+            ],
+        )
+        extraction, complete = extract_packet_native(packet)
+        values = {observation.path: observation.value for observation in extraction.observations}
+        self.assertTrue(complete)
+        self.assertEqual(values["testScores.sat.submissionRate"], 0.3116)
+        self.assertEqual(values["testScores.act.submissionRate"], 0.1677)
+        self.assertTrue(
+            all(
+                observation.notes == "Percent value normalized from CDS numeric percent cell."
+                for observation in extraction.observations
+            )
+        )
+
     def test_native_legacy_score_table_uses_second_column_as_p75(self) -> None:
         packet = SectionPacket(
             school_name="Swarthmore College",
@@ -645,6 +757,48 @@ class EvidencePipelineTests(unittest.TestCase):
             )
             packet = SectionPacket.model_validate_json(Path(paths[0]).read_text(encoding="utf-8"))
         self.assertEqual([page.page for page in packet.pages], [1, 2])
+
+    def test_packet_builder_keeps_table_prefix_before_next_question(self) -> None:
+        document = DocumentArtifact(
+            document_id="sha256:split-table",
+            source_path="split-table.pdf",
+            filename="split-table.pdf",
+            sha256="0" * 64,
+            size_bytes=1,
+            page_count=2,
+            school_name="Sample University",
+            school_slug="sample",
+            academic_year="2024-2025",
+            document_type="cds",
+            pages=[
+                PageArtifact(
+                    page=1,
+                    width=612,
+                    height=792,
+                    text="B2. Enrollment by Racial/Ethnic Category",
+                    question_ids=["B2"],
+                    domains=["enrollment"],
+                ),
+                PageArtifact(
+                    page=2,
+                    width=612,
+                    height=792,
+                    text="Nonresidents 41 125 129\nB3. Persistence",
+                    question_ids=["B3"],
+                ),
+            ],
+        )
+        with tempfile.TemporaryDirectory() as tmp:
+            paths = _build_packets(
+                [document],
+                workspace=Path(tmp),
+                school_name="Sample University",
+                school_slug="sample",
+            )
+            packet = SectionPacket.model_validate_json(Path(paths[0]).read_text(encoding="utf-8"))
+        self.assertEqual([page.page for page in packet.pages], [1, 2])
+        self.assertEqual(packet.pages[1].question_ids, ["B2"])
+        self.assertEqual(packet.pages[1].text, "Nonresidents 41 125 129")
 
     def test_codex_extractor_uses_saved_auth_and_read_only_schema_output(self) -> None:
         packet = self._sample_packet()

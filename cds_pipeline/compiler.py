@@ -338,15 +338,11 @@ def compile_school(
                         continue
                 if evidence.question_id and evidence.question_id not in page.question_ids:
                     inherited_continuation = (
-                        not page.question_ids
-                        and (
-                            academic_year,
-                            extraction_path.stem,
-                            evidence.document_id,
-                            evidence.page,
-                        )
-                        in routed_evidence_pages
-                    )
+                        academic_year,
+                        extraction_path.stem,
+                        evidence.document_id,
+                        evidence.page,
+                    ) in routed_evidence_pages
                     if not inherited_continuation:
                         continue
                 evidence_valid = True

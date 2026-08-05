@@ -25,11 +25,11 @@ from .models import (
 from .native import blocking_paths, extract_packet_native
 from .ocr import create_ocr_provider, provider_setup_help
 from .resolver import resolve_pdf_paths
-from .specs import domains_for_page, extract_question_ids, spec_for_domain, text_for_question_ids
+from .specs import QUESTION_RE, domains_for_page, extract_question_ids, spec_for_domain, text_for_question_ids
 from .utils import humanize_name, read_json, sha256_file, slugify, validate_slug, write_json
 
 
-EXTRACTION_CACHE_VERSION = "5"
+EXTRACTION_CACHE_VERSION = "6"
 
 
 def _document_workspace(workspace: Path, school_slug: str, pdf_path: Path) -> Path:
@@ -119,6 +119,42 @@ def _build_packets(
                 current_domains = list(page.domains)
             else:
                 current_domains = []
+
+            # Some native CDS tables continue onto a page that introduces the
+            # next question below the table. Preserve the leading table text for
+            # the preceding domain instead of silently dropping it.
+            if current_question_ids and index > 0:
+                first_question = QUESTION_RE.search(page.text)
+                prefix = page.text[: first_question.start()].strip() if first_question else ""
+                previous_ids = next(
+                    (detected_ids[item] for item in range(index - 1, -1, -1) if detected_ids[item]),
+                    [],
+                )
+                previous_domains = list(pages[index - 1].domains) or domains_for_page(
+                    pages[index - 1].text,
+                    previous_ids,
+                )
+                if not previous_domains:
+                    previous_domains = list(pages[index - 1].domains)
+                if prefix and previous_domains:
+                    for domain in previous_domains:
+                        spec = spec_for_domain(domain)
+                        inherited_ids = sorted(set(previous_ids).intersection(spec.question_ids))
+                        if not inherited_ids:
+                            continue
+                        grouped.setdefault((document.academic_year, domain), []).append(
+                            PacketPage(
+                                document_id=document.document_id,
+                                source_path=document.source_path,
+                                page=page.page,
+                                text=prefix,
+                                question_ids=inherited_ids,
+                                words=page.words,
+                                tables=page.tables,
+                                image_path=page.image_path,
+                                extraction_method=page.extraction_method,
+                            )
+                        )
             for domain in current_domains:
                 spec = spec_for_domain(domain)
                 routed_text = (

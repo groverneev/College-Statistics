@@ -291,6 +291,7 @@ def _extract_admissions(packet: SectionPacket) -> list[MetricObservation]:
             )
 
         separate_rows: dict[str, list[tuple[object, str]]] = {}
+        gender_cells: dict[tuple[str, str], list[tuple[object, str]]] = {}
         for gender, gender_key in (
             ("men", "men"),
             ("women", "women"),
@@ -301,7 +302,7 @@ def _extract_admissions(packet: SectionPacket) -> list[MetricObservation]:
             for verb, suffix in (("applied", "applied"), ("were admitted", "admitted"), ("enrolled", "enrolled")):
                 match = re.search(
                     rf"(?im)(?:^|\n).*?(?:C1(?:\d{{2}})?\s+)?Total (?:full-time,\s*)?first-time,\s*first-year(?:\s*\(freshman\))?\s+"
-                    rf"{re.escape(gender)}\s+who\s+(?:were\s+)?{verb.replace('were ', '')}\s+([\d,]+)(?:\s+.*)?$",
+                    rf"{re.escape(gender)}\s+who\s+(?:were\s+)?{verb.replace('were ', '')}\s+_*\s*([\d,]+)\s*_*(?:\s+.*)?$",
                     page.text,
                 )
                 if not match:
@@ -312,16 +313,15 @@ def _extract_admissions(packet: SectionPacket) -> list[MetricObservation]:
                     continue
                 separate_rows.setdefault(suffix, []).append((page, raw))
                 if gender_key in {"men", "women"}:
-                    observations.append(
-                        _observation(
-                            f"admissions.byGender.{gender_key}.{suffix}",
-                            value,
-                            packet_page=page,
-                            question_id="C1",
-                            quote=raw,
-                            label=match.group(0),
-                        )
-                    )
+                    gender_cells.setdefault((gender_key, suffix), []).append((page, raw))
+        for (gender_key, suffix), cells in gender_cells.items():
+            observations.append(
+                _summed_cells_observation(
+                    f"admissions.byGender.{gender_key}.{suffix}",
+                    cells,
+                    question_id="C1",
+                )
+            )
         for suffix, cells in separate_rows.items():
             if len(cells) >= 2:
                 observations.append(
@@ -496,20 +496,24 @@ def _extract_test_scores(packet: SectionPacket) -> list[MetricObservation]:
             ("ACT", "testScores.act.submissionRate"),
         ):
             match = re.search(
-                rf"(?im)^\s*(?:C9\s+)?(?:Percent\s+)?Submitting {test_name}(?: scores)?\s+(\d+(?:\.\d+)?%)",
+                rf"(?im)^\s*(?:C9\s+)?(?:Percent\s+)?Submitting {test_name}(?: scores)?\s+(\d+(?:\.\d+)?%?)",
                 packet_page.text,
             )
             if match and (value := _number(match.group(1))) is not None:
-                observations.append(
-                    _observation(
-                        path,
-                        value,
-                        packet_page=packet_page,
-                        question_id="C9",
-                        quote=match.group(1),
-                        label=f"Submitting {test_name} Scores",
-                    )
+                normalized_percent = not match.group(1).endswith("%")
+                if normalized_percent:
+                    value /= 100
+                observation = _observation(
+                    path,
+                    value,
+                    packet_page=packet_page,
+                    question_id="C9",
+                    quote=match.group(1),
+                    label=f"Submitting {test_name} Scores",
                 )
+                if normalized_percent:
+                    observation.notes = "Percent value normalized from CDS numeric percent cell."
+                observations.append(observation)
         reading_match = re.search(
             r"(?im)^\s*(?:C9\s+)?SAT Evidence-Based(?:\s+Reading)?"
             r"\s*(?:and\s+Writing)?\s+(?P<values>\d+(?:\.\d+)?(?:\s+\d+(?:\.\d+)?){1,3})",
@@ -623,15 +627,15 @@ def _extract_enrollment(packet: SectionPacket) -> list[MetricObservation]:
     observations: list[MetricObservation] = []
     totals = (
         (
-            r"(?im)^\s*(?:(?:B1\s+)?Total\s+(?:of\s+)?all\s+undergraduates?(?:\s+students)?(?:\s+enrolled)?|Totalallundergraduates):?\s+([\d,]+)\s*$",
+            r"(?im)^\s*(?:(?:B1\s+)?Total\s+(?:of\s+)?all\s+undergraduates?(?:\s+students)?(?:\s+enrolled)?|Totalallundergraduates):?[\s_]+([\d,]+)_*\s*$",
             "demographics.enrollment.undergraduate",
         ),
         (
-            r"(?im)^\s*(?:(?:B1\s+)?Total\s+(?:of\s+)?all\s+graduate(?:\s+and\s+professional)?(?:\s+students?)?(?:\s+enrolled)?|Totalallgraduate):?\s+([\d,]+)(?:\s+.*)?$",
+            r"(?im)^\s*(?:(?:B1\s+)?Total\s+(?:of\s+)?all\s+graduate(?:\s+and\s+professional)?(?:\s+students?)?(?:\s+enrolled)?|Totalallgraduate):?[\s_]+([\d,]+)_*\s*(?:\s+.*)?$",
             "demographics.enrollment.graduate",
         ),
         (
-            r"(?im)^\s*(?:B1\s+)?(?:GRAND TOTAL ALL STUDENTS|GrandTotalAllStudents):?\s+([\d,]+)\s*$",
+            r"(?im)^\s*(?:B1\s+)?(?:GRAND TOTAL ALL STUDENTS|GrandTotalAllStudents):?[\s_]+([\d,]+)_*\s*$",
             "demographics.enrollment.total",
         ),
     )
@@ -737,20 +741,68 @@ def _extract_financial_aid(packet: SectionPacket) -> list[MetricObservation]:
         (("line c who were awarded any financial aid",), "_source.financialAid.aidRecipientCount"),
         (("whose need was fully met",), "_source.financialAid.needFullyMetCount"),
         (("average financial aid package",), "financialAid.averageAidPackage"),
-        (("average need based scholarship and grant award",), "financialAid.averageNeedBasedGrant"),
+        (("average need based scholarship", "grant award"), "financialAid.averageNeedBasedGrant"),
     )
     observations: list[MetricObservation] = []
-    for row in _rows(page):
-        row_label = _label(row[0])
-        for needles, path in mappings:
-            if not all(needle in row_label for needle in needles) or len(row) < 2:
+    letter_mappings = {
+        "a": "_source.financialAid.cohortSize",
+        "c": "_source.financialAid.financialNeedCount",
+        "d": "_source.financialAid.aidRecipientCount",
+        "h": "_source.financialAid.needFullyMetCount",
+        "j": "financialAid.averageAidPackage",
+        "k": "financialAid.averageNeedBasedGrant",
+    }
+    for table in page.tables:
+        for row in table.rows:
+            if not row:
                 continue
-            value = _number(row[1])
-            if value is not None:
-                observations.append(_observation(path, value, packet_page=page, question_id="H2", quote=row[1] or "", label=row[0] or path))
-            break
+            path = letter_mappings.get(_label(row[0]))
+            if not path:
+                continue
+            label_index = 1 if _label(row[0]) in letter_mappings and len(row) > 1 else 0
+            raw = next(
+                (cell for cell in row[label_index + 1 :] if _number(cell) is not None),
+                None,
+            )
+            if raw is None or (value := _number(raw)) is None:
+                continue
+            observations.append(
+                _observation(
+                    path,
+                    value,
+                    packet_page=page,
+                    question_id="H2",
+                    quote=raw,
+                    label=row[label_index] or path,
+                )
+            )
 
     observed_paths = {observation.path for observation in observations}
+    for row in _rows(page):
+        row_label = _label(" ".join(cell or "" for cell in row[:2]))
+        for needles, path in mappings:
+            if path in observed_paths or not all(needle in row_label for needle in needles) or len(row) < 2:
+                continue
+            first_value_index = 2 if _label(row[0]) in letter_mappings and len(row) > 2 else 1
+            raw = next(
+                (cell for cell in row[first_value_index:] if _number(cell) is not None),
+                None,
+            )
+            value = _number(raw)
+            if value is not None:
+                observations.append(
+                    _observation(
+                        path,
+                        value,
+                        packet_page=page,
+                        question_id="H2",
+                        quote=raw or "",
+                        label=" ".join(cell or "" for cell in row[:2]) or path,
+                    )
+                )
+                observed_paths.add(path)
+            break
+
     text_specs = (
         (
             r"H\. Number of students in line \(D\) who(?:se)? need was fully met.*?(\d[\d,]*)",
@@ -977,11 +1029,6 @@ BLOCKING_PATHS = {
 
 def _section_is_explicitly_incomplete(packet: SectionPacket) -> bool:
     text = "\n".join(page.text for page in packet.pages)
-    race_row_with_totals = re.search(
-        r"(?im)^(?:B2\d*\s+)?(?:Nonresidents?|Hispanic/Latino|White,\s*non-Hispanic)"
-        r"[^\n]*\b[\d,]+\s+[\d,]+\s+[\d,]+\s*$",
-        text,
-    )
     return bool(
         (
             packet.domain == "admissions"
@@ -992,16 +1039,6 @@ def _section_is_explicitly_incomplete(packet: SectionPacket) -> bool:
             packet.domain == "costs"
             and re.search(r"(?m)^G101\b", text)
             and not re.search(r"(?m)^G(?:107|108)\b", text)
-        )
-        or (
-            packet.domain == "enrollment"
-            and re.search(r"(?m)^B101\b", text)
-            and not re.search(r"(?im)Total\s+All\s+Undergraduates", text)
-        )
-        or (
-            packet.domain == "enrollment"
-            and re.search(r"(?im)^\s*B2[.\s]", text)
-            and not race_row_with_totals
         )
         or (
             packet.domain == "admissions_factors"
@@ -1027,19 +1064,13 @@ def extract_packet_native(packet: SectionPacket) -> tuple[SectionExtraction, boo
     observations = extractor(packet) if extractor else []
     allowed = set(packet.metric_paths)
     unique = {observation.path: observation for observation in observations if observation.path in allowed}
-    required = REQUIRED_NATIVE_PATHS.get(packet.domain, set())
+    required = REQUIRED_NATIVE_PATHS.get(packet.domain, set()).intersection(allowed)
     if packet.domain == "costs" and not re.search(
         r"\$\s*\d", " ".join(page.text for page in packet.pages)
     ):
         # A routed G1 page with no reported currency values is an intentionally
         # blank section, not a reason to ask a model to invent costs.
         required = set()
-    elif packet.domain == "financial_aid":
-        required = set(unique)
-    elif packet.domain == "test_scores":
-        # Score rows change across CDS versions (some omit SAT composite or
-        # medians entirely). They enrich a year but never gate publication.
-        required = set(unique)
     elif packet.domain == "admissions_factors":
         required = set(packet.metric_paths)
     coded_section_is_incomplete = _section_is_explicitly_incomplete(packet)
