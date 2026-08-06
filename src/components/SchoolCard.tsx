@@ -70,7 +70,8 @@ export default function SchoolCard({
               </div>
               <div className="text-xs text-gray-500">Class Size</div>
             </div>
-            {latestData.testScores.sat?.composite && (
+            {typeof latestData.testScores.sat?.composite?.p25 === "number" &&
+              typeof latestData.testScores.sat.composite.p75 === "number" && (
               <div>
                 <div className="text-lg font-semibold text-gray-700">
                   {latestData.testScores.sat.composite.p25}-
@@ -81,7 +82,9 @@ export default function SchoolCard({
             )}
             <div>
               <div className="text-lg font-semibold text-gray-700">
-                ${(latestData.costs.totalCOA / 1000).toFixed(0)}k
+                {typeof latestData.costs.totalCOA === "number"
+                  ? `$${(latestData.costs.totalCOA / 1000).toFixed(0)}k`
+                  : "—"}
               </div>
               <div className="text-xs text-gray-500">Total Cost</div>
             </div>

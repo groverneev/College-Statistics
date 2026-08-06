@@ -1,7 +1,7 @@
 "use client";
 
 import { YearData } from "@/lib/types";
-import { formatNumber } from "@/utils/dataHelpers";
+import { formatNumber, formatPercent } from "@/utils/dataHelpers";
 import {
   ComposedChart,
   Line,
@@ -25,22 +25,30 @@ export default function AdmissionsTrendChart({
 }: AdmissionsTrendChartProps) {
   const years = Object.keys(yearData).sort();
 
-  const trendData = years.map((year) => ({
-    year: year.split("-")[0],
-    fullYear: year,
-    applications: yearData[year].admissions.applied,
-    admitted: yearData[year].admissions.admitted,
-    enrolled: yearData[year].admissions.enrolled,
-    acceptanceRate: yearData[year].admissions.acceptanceRate * 100,
-    yieldRate: yearData[year].admissions.yield * 100,
-    edApplied: yearData[year].admissions.earlyDecision?.applied || 0,
-    edAdmitted: yearData[year].admissions.earlyDecision?.admitted || 0,
-  }));
+  const trendData = years.map((year) => {
+    const admissions = yearData[year].admissions;
+    return {
+      year: year.split("-")[0],
+      fullYear: year,
+      applications: admissions.applied,
+      admitted: admissions.admitted,
+      enrolled: admissions.enrolled,
+      acceptanceRate:
+        typeof admissions.acceptanceRate === "number"
+          ? admissions.acceptanceRate * 100
+          : null,
+      yieldRate: typeof admissions.yield === "number" ? admissions.yield * 100 : null,
+      edApplied: admissions.earlyDecision?.applied ?? 0,
+      edAdmitted: admissions.earlyDecision?.admitted ?? 0,
+    };
+  });
 
   const hasEarlyDecision = trendData.some((d) => d.edApplied > 0);
   const acceptanceRateAxisMax = Math.max(
     15,
-    Math.ceil((Math.max(...trendData.map((d) => d.acceptanceRate)) + 5) / 10) * 10
+    Math.ceil(
+      (Math.max(...trendData.map((d) => d.acceptanceRate ?? 0)) + 5) / 10
+    ) * 10
   );
 
   return (
@@ -210,8 +218,12 @@ export default function AdmissionsTrendChart({
                   <td style={{ textAlign: "right" }}>{formatNumber(row.applications)}</td>
                   <td style={{ textAlign: "right" }}>{formatNumber(row.admitted)}</td>
                   <td style={{ textAlign: "right" }}>{formatNumber(row.enrolled)}</td>
-                  <td style={{ textAlign: "right" }}>{row.acceptanceRate.toFixed(1)}%</td>
-                  <td style={{ textAlign: "right" }}>{row.yieldRate.toFixed(1)}%</td>
+                  <td style={{ textAlign: "right" }}>{formatPercent(
+                    row.acceptanceRate == null ? undefined : row.acceptanceRate / 100
+                  )}</td>
+                  <td style={{ textAlign: "right" }}>{formatPercent(
+                    row.yieldRate == null ? undefined : row.yieldRate / 100
+                  )}</td>
                   {hasEarlyDecision && (
                     <>
                       <td style={{ textAlign: "right" }}>{row.edApplied > 0 ? formatNumber(row.edApplied) : "-"}</td>

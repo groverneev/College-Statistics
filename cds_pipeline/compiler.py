@@ -104,6 +104,11 @@ def _derive(year_data: dict[str, Any]) -> None:
         costs.pop("board", None)
     year_data.pop("_source", None)
 
+    year_data.setdefault("admissions", {})
+    demographics = year_data.setdefault("demographics", {})
+    demographics.setdefault("enrollment", {})
+    demographics.setdefault("byRace", {})
+    year_data.setdefault("costs", {})
     year_data.setdefault("testScores", {})
     year_data.setdefault("financialAid", {})
 
@@ -199,7 +204,7 @@ def compile_school(
             {
                 "severity": "warning",
                 "kind": "manifest_requires_review",
-                "message": "Some acquisition or document analysis items require review; safe complete years are evaluated independently.",
+                "message": "Some acquisition or document analysis items require review; safe source-verified values are evaluated independently.",
             }
         )
     for document in manifest.documents if manifest.review_required else []:
@@ -282,8 +287,25 @@ def compile_school(
                     "message": f"{academic_year} {extraction_path.stem}: {issue['message']}",
                 }
             )
+        cost_year_mismatch = extraction_path.stem == "costs" and any(
+            re.search(
+                r"G1 explicitly reports charges for the full\s+\d{4}-\d{4}\s+academic year",
+                note,
+                flags=re.IGNORECASE,
+            )
+            for note in extraction.notes
+        )
         for observation in extraction.observations:
             if observation.value is None:
+                continue
+            if cost_year_mismatch and observation.path.startswith("costs."):
+                issues.append(
+                    {
+                        "severity": "warning",
+                        "kind": "cost_year_mismatch",
+                        "message": f"{academic_year} {observation.path} was excluded because G1 reports a different academic year.",
+                    }
+                )
                 continue
             if observation.review_required:
                 issues.append(
@@ -293,8 +315,6 @@ def compile_school(
                         "message": f"{academic_year} {observation.path} was excluded because it requires review.",
                     }
                 )
-                if observation.path in PUBLISH_REQUIRED_PATHS:
-                    block_year(academic_year, f"{observation.path} requires review")
                 continue
             evidence_valid = False
             aggregate_values: list[float] = []
@@ -363,8 +383,6 @@ def compile_school(
                         "message": f"{academic_year} {observation.path} was excluded because its evidence did not match the manifest.",
                     }
                 )
-                if observation.path in PUBLISH_REQUIRED_PATHS:
-                    block_year(academic_year, f"{observation.path} lacks valid source evidence")
                 continue
             key = (academic_year, observation.path)
             if key in seen and seen[key] != observation.value:
@@ -384,14 +402,13 @@ def compile_school(
             else:
                 _set_nested(years.setdefault(academic_year, {}), observation.path, observation.value)
 
-    complete_years: dict[str, dict[str, Any]] = {}
+    publishable_years: dict[str, dict[str, Any]] = {}
     excluded_years: dict[str, list[str]] = {}
+    partial_years: dict[str, list[str]] = {}
     for academic_year, year_data in sorted(years.items()):
         _derive(year_data)
         missing = [path for path in PUBLISH_REQUIRED_PATHS if _get_nested(year_data, path) is None]
         reasons = list(dict.fromkeys(year_blockers.get(academic_year, [])))
-        if missing:
-            reasons.append("missing required metrics: " + ", ".join(missing))
         if reasons:
             excluded_years[academic_year] = reasons
             issues.append(
@@ -402,12 +419,21 @@ def compile_school(
                 }
             )
         else:
-            complete_years[academic_year] = year_data
+            publishable_years[academic_year] = year_data
+            if missing:
+                partial_years[academic_year] = missing
+                issues.append(
+                    {
+                        "severity": "warning",
+                        "kind": "partial_year",
+                        "message": f"{academic_year} was published with missing metrics: {', '.join(missing)}",
+                    }
+                )
 
     school_data: dict[str, Any] = {
         "name": manifest.school_name,
         "slug": manifest.school_slug,
-        "years": complete_years,
+        "years": publishable_years,
     }
     if profiles:
         latest_profile_year = sorted(profiles)[-1]
@@ -432,13 +458,14 @@ def compile_school(
 
     validation = validate_school_data(school_data)
     issues.extend(validation["issues"])
-    if not complete_years:
-        issues.append({"severity": "error", "kind": "no_complete_years", "message": "No complete years can be published."})
+    if not publishable_years:
+        issues.append({"severity": "error", "kind": "no_publishable_years", "message": "No source-verified years can be published."})
 
     report = {
         "school_name": manifest.school_name,
         "school_slug": manifest.school_slug,
-        "compiled_years": sorted(complete_years),
+        "compiled_years": sorted(publishable_years),
+        "partial_years": partial_years,
         "excluded_years": excluded_years,
         "issue_count": len(issues),
         "error_count": sum(issue.get("severity") == "error" for issue in issues),

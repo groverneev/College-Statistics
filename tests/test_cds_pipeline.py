@@ -1126,19 +1126,25 @@ class EvidencePipelineTests(unittest.TestCase):
             manifest_path.write_text(json.dumps(manifest_payload), encoding="utf-8")
             partial_report = compile_school(str(manifest_path))
             self.assertEqual(partial_report["error_count"], 0)
-            self.assertEqual(partial_report["compiled_years"], ["2024-2025"])
-            self.assertIn("2023-2024", partial_report["excluded_years"])
+            self.assertEqual(partial_report["compiled_years"], ["2023-2024", "2024-2025"])
+            self.assertEqual(partial_report["partial_years"]["2023-2024"], list(values)[1:])
+            compiled = json.loads(Path(partial_report["compiled_path"]).read_text(encoding="utf-8"))
+            self.assertEqual(compiled["years"]["2023-2024"]["admissions"]["applied"], 900)
 
             observations[0]["evidence"][0]["page"] = 999
             extraction_path.write_text(
                 json.dumps({"observations": observations}), encoding="utf-8"
             )
             invalid_report = compile_school(str(manifest_path))
-            self.assertGreater(invalid_report["error_count"], 0)
+            self.assertEqual(invalid_report["error_count"], 0)
             self.assertIn(
                 "invalid_source_evidence",
                 {issue["kind"] for issue in invalid_report["issues"]},
             )
+            invalid_compiled = json.loads(
+                Path(invalid_report["compiled_path"]).read_text(encoding="utf-8")
+            )
+            self.assertNotIn("applied", invalid_compiled["years"]["2024-2025"]["admissions"])
 
     def test_validator_rejects_string_metrics_and_slug_traversal(self) -> None:
         result = validate_section_extraction(

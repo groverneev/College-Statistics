@@ -119,7 +119,7 @@ Run the complete workflow:
 uv run python -m cds_pipeline add "Pomona College" --extractor auto --publish --strict
 ```
 
-No API key is required. Exact labeled CDS rows, including C7, are parsed deterministically first. Qwen 3.5 9B and Gemma 4 12B independently verify C7 only when deterministic recovery is incomplete; Gemma handles other nonstandard local layouts, and a signed-in Codex CLI is the default adjudicator after local extraction using saved ChatGPT authentication. `--publish` includes every independently safe, complete year, reports and excludes incomplete years, and remains blocked when no complete year survives or compiled data fails validation.
+No API key is required. Exact labeled CDS rows, including C7, are parsed deterministically first. Qwen 3.5 9B and Gemma 4 12B independently verify C7 only when deterministic recovery is incomplete; Gemma handles other nonstandard local layouts, and a signed-in Codex CLI is the default adjudicator after local extraction using saved ChatGPT authentication. `--publish` includes every independently safe, source-verified year, even when some metrics are unavailable; it reports missing metrics as partial-year warnings and remains blocked only when no source-verified year survives or compiled data fails validation.
 
 The command:
 
@@ -132,7 +132,7 @@ The command:
 7. renders table-heavy B/H evidence, visual C7 evidence, and pages that actually require OCR;
 8. sends only nonstandard or visual leftovers to local models, with signed-in Codex fallback by default and OpenAI API fallback only when configured;
 9. emits strict, source-quoted observations into `.cds_pipeline/<slug>/extractions/`;
-10. derives rates and totals, excludes unsafe/incomplete years with explicit reasons, runs blocking semantic validation on the retained years, writes the school JSON, and regenerates the registry.
+10. derives rates and totals, publishes partial years with only their source-verified values, excludes unsafe years with explicit reasons, runs blocking semantic validation on the retained years, writes the school JSON, and regenerates the registry.
 
 Document analysis and packet extraction are cached separately. Extraction cache signatures include the packet hash, extraction parser version, provider chain, and local/hosted model configuration. An unchanged rerun must report cache hits and must not repeat model inference.
 
@@ -181,7 +181,7 @@ When configured, Unlimited-OCR takes priority over Ollama. The main pipeline sup
 - Prefer official sources. Repository mirrors are allowed only with post-download institution/year/CDS verification and recorded provenance.
 - Treat C7 admissions factors as latest-known school metadata and retain its source year/PDF.
 - The compiler, not the extractor, derives acceptance rate, yield, enrollment total when components exist, and the site's displayed tuition + fees + room/board total.
-- Missing required fields or document-level safety problems exclude the affected academic year. Conflicts, ambiguous years, weak institution matches, unresolved OCR, and invalid evidence may never leak values into a retained year. Publication fails when no complete verified year remains or retained data fails semantic validation.
+- Missing fields and review-required metrics do not block publication; they are omitted and reported as partial-year warnings. Document-level safety problems, conflicts, ambiguous years, weak institution matches, unresolved OCR, and invalid evidence still exclude the affected academic year or value. Publication fails only when no source-verified year remains or retained data fails semantic validation.
 
 ### Validation and Verification
 

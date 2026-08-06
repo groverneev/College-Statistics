@@ -192,7 +192,8 @@ export default function SchoolPageClient({
           <div className="stat-card">
             <div className="label">SAT Middle 50%</div>
             <div className="value">
-              {latestData.testScores.sat?.composite
+              {typeof latestData.testScores.sat?.composite?.p25 === "number" &&
+              typeof latestData.testScores.sat.composite.p75 === "number"
                 ? `${latestData.testScores.sat.composite.p25}-${latestData.testScores.sat.composite.p75}`
                 : "N/A"}
             </div>

@@ -42,46 +42,51 @@ export default function DemographicsTrendChart({
 }: DemographicsTrendChartProps) {
   const years = Object.keys(yearData).sort();
   const yearsWithEnrollment = years.filter(
-    (year) => yearData[year].demographics.enrollment.undergraduate > 0
+    (year) => (yearData[year].demographics.enrollment.undergraduate ?? 0) > 0
   );
   const latestYear = yearsWithEnrollment[yearsWithEnrollment.length - 1] || years[years.length - 1];
   const latestDemo = yearData[latestYear].demographics;
-  const totalUndergrad = latestDemo.enrollment.undergraduate;
+  const totalUndergrad = latestDemo.enrollment.undergraduate ?? 0;
+  const latestInternational = latestDemo.byRace.international ?? 0;
+  const latestWhite = latestDemo.byRace.white ?? 0;
+  const hasRaceSummary = totalUndergrad > 0 && (latestInternational > 0 || latestWhite > 0);
 
   // Enrollment trend data
   const enrollmentData = yearsWithEnrollment.map((year) => ({
     year: year.split("-")[0],
     fullYear: year,
-    undergraduate: yearData[year].demographics.enrollment.undergraduate,
+    undergraduate: yearData[year].demographics.enrollment.undergraduate ?? 0,
     graduate: yearData[year].demographics.enrollment.graduate || 0,
   }));
 
   // Demographics trend data (percentages over time)
   const demographicsData = yearsWithEnrollment.map((year) => {
     const demo = yearData[year].demographics;
-    const total = demo.enrollment.undergraduate;
+    const total = demo.enrollment.undergraduate ?? 0;
+    const race = demo.byRace;
+    const white = race.white ?? 0;
+    const asian = race.asian ?? 0;
+    const hispanicLatino = race.hispanicLatino ?? 0;
+    const blackAfricanAmerican = race.blackAfricanAmerican ?? 0;
+    const international = race.international ?? 0;
+    const twoOrMoreRaces = race.twoOrMoreRaces ?? 0;
     const hasDetailedRaceData =
-      demo.byRace.white +
-        demo.byRace.asian +
-        demo.byRace.hispanicLatino +
-        demo.byRace.blackAfricanAmerican +
-        demo.byRace.international +
-        demo.byRace.twoOrMoreRaces >
+      white + asian + hispanicLatino + blackAfricanAmerican + international + twoOrMoreRaces >
       0;
 
     return {
       year: year.split("-")[0],
       fullYear: year,
-      white: total > 0 && hasDetailedRaceData ? (demo.byRace.white / total) * 100 : null,
-      asian: total > 0 && hasDetailedRaceData ? (demo.byRace.asian / total) * 100 : null,
+      white: total > 0 && hasDetailedRaceData ? (white / total) * 100 : null,
+      asian: total > 0 && hasDetailedRaceData ? (asian / total) * 100 : null,
       hispanicLatino:
-        total > 0 && hasDetailedRaceData ? (demo.byRace.hispanicLatino / total) * 100 : null,
+        total > 0 && hasDetailedRaceData ? (hispanicLatino / total) * 100 : null,
       blackAfricanAmerican:
-        total > 0 && hasDetailedRaceData ? (demo.byRace.blackAfricanAmerican / total) * 100 : null,
+        total > 0 && hasDetailedRaceData ? (blackAfricanAmerican / total) * 100 : null,
       international:
-        total > 0 && hasDetailedRaceData ? (demo.byRace.international / total) * 100 : null,
+        total > 0 && hasDetailedRaceData ? (international / total) * 100 : null,
       twoOrMoreRaces:
-        total > 0 && hasDetailedRaceData ? (demo.byRace.twoOrMoreRaces / total) * 100 : null,
+        total > 0 && hasDetailedRaceData ? (twoOrMoreRaces / total) * 100 : null,
     };
   });
 
@@ -251,13 +256,13 @@ export default function DemographicsTrendChart({
           <div>
             <div className="text-gray-500">International</div>
             <div className="font-semibold text-lg text-purple-600">
-              {((latestDemo.byRace.international / totalUndergrad) * 100).toFixed(0)}%
+              {hasRaceSummary ? `${((latestInternational / totalUndergrad) * 100).toFixed(0)}%` : "—"}
             </div>
           </div>
           <div>
             <div className="text-gray-500">Students of Color</div>
             <div className="font-semibold text-lg text-green-600">
-              {(100 - (latestDemo.byRace.white / totalUndergrad) * 100).toFixed(0)}%
+              {hasRaceSummary ? `${(100 - (latestWhite / totalUndergrad) * 100).toFixed(0)}%` : "—"}
             </div>
           </div>
         </div>

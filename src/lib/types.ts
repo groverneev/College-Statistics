@@ -55,11 +55,11 @@ export interface YearData {
 }
 
 export interface AdmissionsData {
-  applied: number;
-  admitted: number;
-  enrolled: number;
-  acceptanceRate: number;
-  yield: number;
+  applied?: number;
+  admitted?: number;
+  enrolled?: number;
+  acceptanceRate?: number;
+  yield?: number;
   earlyDecision?: {
     applied?: number;
     admitted?: number;
@@ -69,40 +69,40 @@ export interface AdmissionsData {
     admitted?: number;
   };
   byGender?: {
-    men: { applied: number; admitted: number; enrolled: number };
-    women: { applied: number; admitted: number; enrolled: number };
+    men: { applied?: number; admitted?: number; enrolled?: number };
+    women: { applied?: number; admitted?: number; enrolled?: number };
   };
 }
 
 export interface TestScoresData {
   sat?: {
-    composite?: { p25: number; p50?: number; p75: number };
-    readingWriting?: { p25: number; p50?: number; p75: number };
-    math?: { p25: number; p50?: number; p75: number };
+    composite?: { p25?: number; p50?: number; p75?: number };
+    readingWriting?: { p25?: number; p50?: number; p75?: number };
+    math?: { p25?: number; p50?: number; p75?: number };
     submissionRate?: number;
   };
   act?: {
-    composite?: { p25: number; p50?: number; p75: number };
+    composite?: { p25?: number; p50?: number; p75?: number };
     submissionRate?: number;
   };
 }
 
 export interface DemographicsData {
   enrollment: {
-    total: number;
-    undergraduate: number;
+    total?: number;
+    undergraduate?: number;
     graduate?: number;
   };
   byRace: {
-    international: number;
-    hispanicLatino: number;
-    blackAfricanAmerican: number;
-    white: number;
-    asian: number;
-    americanIndianAlaskaNative: number;
-    nativeHawaiianPacificIslander: number;
-    twoOrMoreRaces: number;
-    unknown: number;
+    international?: number;
+    hispanicLatino?: number;
+    blackAfricanAmerican?: number;
+    white?: number;
+    asian?: number;
+    americanIndianAlaskaNative?: number;
+    nativeHawaiianPacificIslander?: number;
+    twoOrMoreRaces?: number;
+    unknown?: number;
   };
   byResidency?: {
     inState: number;
@@ -112,10 +112,10 @@ export interface DemographicsData {
 }
 
 export interface CostsData {
-  tuition: number;
-  fees: number;
-  roomAndBoard: number;
-  totalCOA: number;
+  tuition?: number;
+  fees?: number;
+  roomAndBoard?: number;
+  totalCOA?: number;
 }
 
 export interface FinancialAidData {

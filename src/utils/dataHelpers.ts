@@ -25,15 +25,18 @@ export function getSchoolYearRange(school: SchoolData): string | null {
   return `${firstYear.split("-")[0]}-${latestYear.split("-")[1]}`;
 }
 
-export function formatNumber(num: number): string {
+export function formatNumber(num: number | null | undefined): string {
+  if (typeof num !== "number" || !Number.isFinite(num)) return "—";
   return new Intl.NumberFormat("en-US").format(num);
 }
 
-export function formatPercent(num: number): string {
+export function formatPercent(num: number | null | undefined): string {
+  if (typeof num !== "number" || !Number.isFinite(num)) return "—";
   return `${(num * 100).toFixed(1)}%`;
 }
 
-export function formatCurrency(num: number): string {
+export function formatCurrency(num: number | null | undefined): string {
+  if (typeof num !== "number" || !Number.isFinite(num)) return "—";
   return new Intl.NumberFormat("en-US", {
     style: "currency",
     currency: "USD",
