@@ -70,7 +70,7 @@ export default function SaveSchoolButton({
       <div className="relative inline-block" ref={popoverRef}>
         <button
           onClick={handleClick}
-          className={`flex items-center space-x-2 px-4 py-2 rounded-lg font-medium text-sm transition-colors ${
+          className={`flex min-h-11 items-center space-x-2 px-4 py-2 rounded-lg font-medium text-sm transition-colors ${
             saved
               ? "bg-white/20 border border-white/40 text-white hover:bg-white/30"
               : "bg-white/10 border border-white/30 text-white hover:bg-white/20"
@@ -102,7 +102,7 @@ export default function SaveSchoolButton({
                 <button
                   key={cat.value}
                   onClick={() => handleSave(cat.value)}
-                  className={`w-full text-left px-3 py-1.5 rounded-lg text-sm font-medium transition-colors flex items-center justify-between ${
+                  className={`w-full min-h-11 text-left px-3 py-2 rounded-lg text-sm font-medium transition-colors flex items-center justify-between ${
                     category === cat.value && saved ? "bg-gray-100" : "hover:bg-gray-50"
                   }`}
                 >
@@ -119,7 +119,7 @@ export default function SaveSchoolButton({
               <div className="mt-2 pt-2 border-t border-gray-100">
                 <button
                   onClick={handleRemove}
-                  className="w-full text-left px-3 py-1.5 rounded-lg text-sm text-red-500 hover:bg-red-50 transition-colors"
+                  className="w-full min-h-11 text-left px-3 py-2 rounded-lg text-sm text-red-500 hover:bg-red-50 transition-colors"
                 >
                   Remove from list
                 </button>
@@ -136,7 +136,7 @@ export default function SaveSchoolButton({
     <div className="relative" ref={popoverRef}>
       <button
         onClick={handleClick}
-        className={`p-1.5 rounded-full transition-colors ${
+        className={`flex h-11 w-11 items-center justify-center rounded-full transition-colors ${
           saved
             ? "text-blue-600 bg-blue-50 hover:bg-blue-100"
             : "text-gray-400 hover:text-gray-600 hover:bg-gray-100"
@@ -168,7 +168,7 @@ export default function SaveSchoolButton({
               <button
                 key={cat.value}
                 onClick={() => handleSave(cat.value)}
-                className={`w-full text-left px-3 py-1.5 rounded-lg text-sm font-medium transition-colors flex items-center justify-between ${
+                className={`w-full min-h-11 text-left px-3 py-2 rounded-lg text-sm font-medium transition-colors flex items-center justify-between ${
                   category === cat.value && saved ? "bg-gray-100" : "hover:bg-gray-50"
                 }`}
               >
@@ -185,7 +185,7 @@ export default function SaveSchoolButton({
             <div className="mt-2 pt-2 border-t border-gray-100">
               <button
                 onClick={handleRemove}
-                className="w-full text-left px-3 py-1.5 rounded-lg text-sm text-red-500 hover:bg-red-50 transition-colors"
+                className="w-full min-h-11 text-left px-3 py-2 rounded-lg text-sm text-red-500 hover:bg-red-50 transition-colors"
               >
                 Remove from list
               </button>

@@ -111,7 +111,7 @@ export default function ContactPage() {
       <div className="max-w-4xl mx-auto px-4 py-12">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {/* Contact Form */}
-          <div className="card p-8">
+          <div className="card p-5 sm:p-8">
             <h2 className="text-2xl font-bold text-gray-800 mb-6">
               Send a Message
             </h2>
@@ -249,7 +249,7 @@ export default function ContactPage() {
 
           {/* Contact Info */}
           <div className="space-y-6">
-            <div className="card p-8">
+            <div className="card p-5 sm:p-8">
               <h2 className="text-2xl font-bold text-gray-800 mb-4">
                 Other Ways to Reach Me
               </h2>
@@ -276,11 +276,11 @@ export default function ContactPage() {
               </div>
             </div>
 
-            <div className="card p-8">
+            <div className="card p-5 sm:p-8">
               <h2 className="text-xl font-bold text-gray-800 mb-4">
                 Connect on Social
               </h2>
-              <div className="flex space-x-3">
+              <div className="grid grid-cols-4 gap-3">
                 {socialLinks.map((link) => (
                   <a
                     key={link.href}
@@ -296,7 +296,7 @@ export default function ContactPage() {
               </div>
             </div>
 
-            <div className="card p-8 bg-gray-800 text-black">
+            <div className="card p-5 sm:p-8 bg-gray-800 text-black">
               <h2 className="text-xl font-bold mb-3">Found a Data Error?</h2>
               <p className="text-black-300 text-sm mb-4">
                 We take data accuracy seriously. If you notice any discrepancies

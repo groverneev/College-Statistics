@@ -133,7 +133,7 @@ export default function SearchBar({ schools }: SearchBarProps) {
       {isOpen && query.trim() && (
         <div
           ref={dropdownRef}
-          className="absolute top-full left-0 right-0 mt-2 bg-white rounded-2xl shadow-xl overflow-hidden z-50"
+          className="absolute top-full left-0 right-0 mt-2 max-h-[min(24rem,calc(100dvh-12rem))] bg-white rounded-2xl shadow-xl overflow-y-auto overscroll-contain z-50"
         >
           {filteredSchools.length > 0 ? (
             <ul className="py-2">
@@ -142,16 +142,16 @@ export default function SearchBar({ schools }: SearchBarProps) {
                   <button
                     onClick={() => navigateToSchool(school.slug)}
                     onMouseEnter={() => setHighlightedIndex(index)}
-                    className={`w-full px-4 py-3 flex items-center justify-between text-left transition-colors ${
+                    className={`w-full min-h-11 px-4 py-3 flex items-center justify-between gap-3 text-left transition-colors ${
                       index === highlightedIndex
                         ? "bg-gray-100"
                         : "hover:bg-gray-50"
                     }`}
                   >
-                    <span className="font-medium text-gray-800">
+                    <span className="min-w-0 font-medium text-gray-800">
                       {school.name}
                     </span>
-                    <span className="text-sm text-gray-500">
+                    <span className="flex-shrink-0 text-sm text-gray-500">
                       {formatPercent(school.acceptanceRate)} acceptance
                     </span>
                   </button>

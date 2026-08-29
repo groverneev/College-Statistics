@@ -49,13 +49,57 @@ function fmtPct(v: unknown): string {
   return `${v > 0 ? "+" : ""}${v}%`;
 }
 
+type MobilePercentRow = {
+  label: string;
+  value: number;
+  note?: string;
+  color?: string;
+};
+
+function MobilePercentBars({
+  rows,
+  unsigned = false,
+}: {
+  rows: MobilePercentRow[];
+  unsigned?: boolean;
+}) {
+  const maxMagnitude = Math.max(1, ...rows.map((row) => Math.abs(row.value)));
+
+  return (
+    <div className="space-y-3 lg:hidden">
+      {rows.map((row) => (
+        <div key={row.label}>
+          <div className="mb-1 flex items-start justify-between gap-3">
+            <div className="min-w-0">
+              <div className="text-sm font-medium text-gray-700">{row.label}</div>
+              {row.note && <div className="text-xs text-gray-400">{row.note}</div>}
+            </div>
+            <span className="shrink-0 text-sm font-semibold tabular-nums text-gray-800">
+              {unsigned ? `${row.value}%` : fmtPct(row.value)}
+            </span>
+          </div>
+          <div className="h-2 overflow-hidden rounded-full bg-gray-100">
+            <div
+              className="h-full rounded-full"
+              style={{
+                width: `${(Math.abs(row.value) / maxMagnitude) * 100}%`,
+                backgroundColor: row.color ?? (row.value < 0 ? NEGATIVE : ACCENT),
+              }}
+            />
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+}
+
 // ─── Section 1: Platform Stat Cards ──────────────────────────────────────────
 
 function PlatformStats() {
   return (
     <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
       {platformStats.map((s) => (
-        <div key={s.label} className="card p-5 text-center">
+        <div key={s.label} className="card p-4 text-center sm:p-5">
           <p className="text-xs font-medium text-gray-500 uppercase tracking-wide mb-1">
             {s.label}
           </p>
@@ -87,14 +131,14 @@ function DemographicGrowthChart() {
   const tickFontSize = isMobile ? 10 : 12;
 
   return (
-    <div className="card p-6">
+    <div className="card p-4 sm:p-6">
       <h3 className="text-lg font-semibold text-gray-800 mb-1">
         Application Growth by Group, 2024-25 → 2025-26
       </h3>
       <p className="text-sm text-gray-500 mb-5">
         % change in applicants vs the same point in the prior season
       </p>
-      <ResponsiveContainer width="100%" height={380}>
+      <ResponsiveContainer initialDimension={{ width: 1, height: 1 }} width="100%" height={380}>
         <BarChart
           layout="vertical"
           data={sorted}
@@ -156,43 +200,37 @@ function InternationalRegionChart() {
   const data = [...internationalByRegion].sort((a, b) => b.growth - a.growth);
 
   return (
-    <div className="card p-6">
+    <div className="card p-4 sm:p-6">
       <h3 className="text-lg font-semibold text-gray-800 mb-1">
         International Applicants by Region
       </h3>
       <p className="text-sm text-gray-500 mb-5">
         % change vs same point in 2024-25 season
       </p>
-      <ResponsiveContainer width="100%" height={220}>
-        <BarChart
-          data={data}
-          margin={{ top: 4, right: 16, left: 8, bottom: 4 }}
-        >
-          <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
-          <XAxis dataKey="region" tick={{ fontSize: 12 }} />
-          <YAxis
-            tickFormatter={(v) => `${v}%`}
-            tick={{ fontSize: 12 }}
-            domain={[-20, 8]}
-          />
-          <Tooltip formatter={fmtPct} cursor={{ fill: LIGHT_GRAY }} />
-          <ReferenceLine y={0} stroke="#9CA3AF" />
-          <Bar dataKey="growth" radius={[3, 3, 0, 0]} name="Growth">
-            <LabelList
-              dataKey="growth"
-              position="top"
-              formatter={fmtPct}
-              style={{ fontSize: 11, fontWeight: 600, fill: "#374151" }}
-            />
-            {data.map((entry) => (
-              <Cell
-                key={entry.region}
-                fill={entry.growth >= 0 ? POSITIVE : NEGATIVE}
-              />
-            ))}
-          </Bar>
-        </BarChart>
-      </ResponsiveContainer>
+      <MobilePercentBars
+        rows={data.map((row) => ({
+          label: row.region,
+          value: row.growth,
+          color: row.growth >= 0 ? POSITIVE : NEGATIVE,
+        }))}
+      />
+      <div className="hidden lg:block">
+        <ResponsiveContainer initialDimension={{ width: 1, height: 1 }} width="100%" height={220}>
+          <BarChart data={data} margin={{ top: 4, right: 16, left: 8, bottom: 4 }}>
+            <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
+            <XAxis dataKey="region" tick={{ fontSize: 12 }} />
+            <YAxis tickFormatter={(v) => `${v}%`} tick={{ fontSize: 12 }} domain={[-20, 8]} />
+            <Tooltip formatter={fmtPct} cursor={{ fill: LIGHT_GRAY }} />
+            <ReferenceLine y={0} stroke="#9CA3AF" />
+            <Bar dataKey="growth" radius={[3, 3, 0, 0]} name="Growth">
+              <LabelList dataKey="growth" position="top" formatter={fmtPct} style={{ fontSize: 11, fontWeight: 600, fill: "#374151" }} />
+              {data.map((entry) => (
+                <Cell key={entry.region} fill={entry.growth >= 0 ? POSITIVE : NEGATIVE} />
+              ))}
+            </Bar>
+          </BarChart>
+        </ResponsiveContainer>
+      </div>
       <p className="text-xs text-gray-400 mt-2">
         Source: Common App Deadline Update, 2025-2026, through February 1.
       </p>
@@ -212,71 +250,51 @@ function CountryChangesChart() {
   ];
 
   return (
-    <div className="card p-6">
+    <div className="card p-4 sm:p-6">
       <h3 className="text-lg font-semibold text-gray-800 mb-1">
         Country-Level Standouts
       </h3>
       <p className="text-sm text-gray-500 mb-5">
         % change in applicants vs 2024-25 — top gains and notable declines
       </p>
-      <ResponsiveContainer width="100%" height={260}>
-        <BarChart
-          layout="vertical"
-          data={data}
-          margin={{ top: 4, right: 64, left: 80, bottom: 4 }}
-        >
-          <CartesianGrid
-            strokeDasharray="3 3"
-            stroke="#f0f0f0"
-            horizontal={false}
-          />
-          <XAxis
-            type="number"
-            tickFormatter={(v) => `${v}%`}
-            tick={{ fontSize: 12 }}
-            domain={[-50, 150]}
-          />
-          <YAxis
-            type="category"
-            dataKey="country"
-            tick={{ fontSize: 12 }}
-            width={76}
-          />
-          <Tooltip formatter={fmtPct} cursor={{ fill: LIGHT_GRAY }} />
-          <ReferenceLine x={0} stroke="#9CA3AF" />
-          <Bar dataKey="growth" radius={[0, 3, 3, 0]} name="Growth">
-            <LabelList
-              dataKey="growth"
-              content={(props) => {
-                const x = Number(props.x ?? 0);
-                const y = Number(props.y ?? 0);
-                const width = Number(props.width ?? 0);
-                const height = Number(props.height ?? 0);
-                const value = Number(props.value ?? 0);
-                return (
-                  <text
-                    x={x + Math.max(width, 0) + 4}
-                    y={y + height / 2}
-                    textAnchor="start"
-                    dominantBaseline="middle"
-                    fontSize={11}
-                    fontWeight={600}
-                    fill="#374151"
-                  >
-                    {fmtPct(value)}
-                  </text>
-                );
-              }}
-            />
-            {data.map((entry) => (
-              <Cell
-                key={entry.country}
-                fill={entry.growth >= 0 ? POSITIVE : NEGATIVE}
+      <MobilePercentBars
+        rows={data.map((row) => ({
+          label: row.country,
+          value: row.growth,
+          color: row.growth >= 0 ? POSITIVE : NEGATIVE,
+        }))}
+      />
+      <div className="hidden lg:block">
+        <ResponsiveContainer initialDimension={{ width: 1, height: 1 }} width="100%" height={260}>
+          <BarChart layout="vertical" data={data} margin={{ top: 4, right: 64, left: 80, bottom: 4 }}>
+            <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" horizontal={false} />
+            <XAxis type="number" tickFormatter={(v) => `${v}%`} tick={{ fontSize: 12 }} domain={[-50, 150]} />
+            <YAxis type="category" dataKey="country" tick={{ fontSize: 12 }} width={76} />
+            <Tooltip formatter={fmtPct} cursor={{ fill: LIGHT_GRAY }} />
+            <ReferenceLine x={0} stroke="#9CA3AF" />
+            <Bar dataKey="growth" radius={[0, 3, 3, 0]} name="Growth">
+              <LabelList
+                dataKey="growth"
+                content={(props) => {
+                  const x = Number(props.x ?? 0);
+                  const y = Number(props.y ?? 0);
+                  const width = Number(props.width ?? 0);
+                  const height = Number(props.height ?? 0);
+                  const value = Number(props.value ?? 0);
+                  return (
+                    <text x={x + Math.max(width, 0) + 4} y={y + height / 2} textAnchor="start" dominantBaseline="middle" fontSize={11} fontWeight={600} fill="#374151">
+                      {fmtPct(value)}
+                    </text>
+                  );
+                }}
               />
-            ))}
-          </Bar>
-        </BarChart>
-      </ResponsiveContainer>
+              {data.map((entry) => (
+                <Cell key={entry.country} fill={entry.growth >= 0 ? POSITIVE : NEGATIVE} />
+              ))}
+            </Bar>
+          </BarChart>
+        </ResponsiveContainer>
+      </div>
       <p className="text-xs text-gray-400 mt-2">
         Source: Common App Deadline Update, 2025-2026, through February 1.
       </p>
@@ -288,14 +306,18 @@ function CountryChangesChart() {
 
 function ScoreReportingChart() {
   return (
-    <div className="card p-6">
+    <div className="card p-4 sm:p-6">
       <h3 className="text-lg font-semibold text-gray-800 mb-1">
         Score Reporters vs Non-Reporters
       </h3>
       <p className="text-sm text-gray-500 mb-5">
         % change in applicants by test score reporting behavior, 2024-25 → 2025-26
       </p>
-      <ResponsiveContainer width="100%" height={180}>
+      <MobilePercentBars
+        rows={scoreReportingGrowth.map((row) => ({ label: row.group, value: row.growth }))}
+      />
+      <div className="hidden lg:block">
+      <ResponsiveContainer initialDimension={{ width: 1, height: 1 }} width="100%" height={180}>
         <BarChart
           data={scoreReportingGrowth}
           margin={{ top: 4, right: 60, left: 16, bottom: 4 }}
@@ -325,20 +347,26 @@ function ScoreReportingChart() {
           </Bar>
         </BarChart>
       </ResponsiveContainer>
+      </div>
     </div>
   );
 }
 
 function TestRequirementChart() {
   return (
-    <div className="card p-6">
+    <div className="card p-4 sm:p-6">
       <h3 className="text-lg font-semibold text-gray-800 mb-1">
         % of Common App Members Requiring Test Scores
       </h3>
       <p className="text-sm text-gray-500 mb-5">
         The test-optional wave — from majority to near-zero in five years
       </p>
-      <ResponsiveContainer width="100%" height={200}>
+      <MobilePercentBars
+        rows={testRequirementHistory.map((row) => ({ label: row.season, value: row.pctRequiring, color: ACCENT }))}
+        unsigned
+      />
+      <div className="hidden lg:block">
+      <ResponsiveContainer initialDimension={{ width: 1, height: 1 }} width="100%" height={200}>
         <BarChart
           data={testRequirementHistory}
           margin={{ top: 4, right: 16, left: 8, bottom: 4 }}
@@ -366,6 +394,7 @@ function TestRequirementChart() {
           </Bar>
         </BarChart>
       </ResponsiveContainer>
+      </div>
       <p className="text-xs text-gray-400 mt-2">
         Only 2019-20 and 2023-24 through 2025-26 are explicitly reported in the source document.
         Source: Common App Deadline Update, 2025-2026; Common App research reports.
@@ -378,14 +407,23 @@ function TestRequirementChart() {
 
 function SelectivityChart() {
   return (
-    <div className="card p-6">
+    <div className="card p-4 sm:p-6">
       <h3 className="text-lg font-semibold text-gray-800 mb-1">
         Application Growth by Institutional Selectivity
       </h3>
       <p className="text-sm text-gray-500 mb-5">
         % change in applications by member admit rate band, 2024-25 → 2025-26
       </p>
-      <ResponsiveContainer width="100%" height={240}>
+      <MobilePercentBars
+        rows={selectivityGrowth.map((row) => ({
+          label: row.band,
+          value: row.growth,
+          note: row.admitRange,
+          color: row.band === "Most Selective" ? "#9CA3AF" : ACCENT,
+        }))}
+      />
+      <div className="hidden lg:block">
+      <ResponsiveContainer initialDimension={{ width: 1, height: 1 }} width="100%" height={240}>
         <BarChart
           data={selectivityGrowth}
           margin={{ top: 4, right: 16, left: 8, bottom: 4 }}
@@ -424,6 +462,7 @@ function SelectivityChart() {
           </Bar>
         </BarChart>
       </ResponsiveContainer>
+      </div>
       <p className="text-xs text-gray-400 mt-2">
         "Most Selective" = member admit rates below 25%, which includes all schools tracked on this site.
         Source: Common App Deadline Update, 2025-2026, through February 1.
@@ -436,9 +475,9 @@ function SelectivityChart() {
 
 export default function CommonApp2026Story() {
   return (
-    <div className="space-y-8">
+    <div className="space-y-6 sm:space-y-8">
       {/* Lede */}
-      <div className="card p-6">
+      <div className="card p-4 sm:p-6">
         <p className="text-gray-700 leading-relaxed text-base">{lede}</p>
       </div>
 
@@ -498,7 +537,7 @@ export default function CommonApp2026Story() {
           <ScoreReportingChart />
           <TestRequirementChart />
         </div>
-        <div className="card p-5 mt-6">
+        <div className="card mt-6 p-4 sm:p-5">
           <p className="text-sm font-semibold text-gray-700 mb-2">
             Groups less likely to submit a test score:
           </p>
@@ -533,7 +572,7 @@ export default function CommonApp2026Story() {
       </div>
 
       {/* Key Takeaways */}
-      <div className="card p-6">
+      <div className="card p-4 sm:p-6">
         <h3 className="text-lg font-semibold text-gray-800 mb-4">
           Key Takeaways
         </h3>

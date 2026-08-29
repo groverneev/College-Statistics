@@ -10,7 +10,6 @@ import {
   CartesianGrid,
   Tooltip,
   ResponsiveContainer,
-  Legend,
 } from "recharts";
 
 interface DemographicsTrendChartProps {
@@ -95,7 +94,7 @@ export default function DemographicsTrendChart({
   }
 
   return (
-    <div className="card p-6">
+    <div className="card p-4 sm:p-6">
       <h3 className="text-lg font-semibold mb-4 text-gray-800">
         Student Demographics
       </h3>
@@ -107,7 +106,7 @@ export default function DemographicsTrendChart({
             Enrollment Over Time
           </h4>
           <div className="h-64">
-            <ResponsiveContainer width="100%" height="100%">
+            <ResponsiveContainer initialDimension={{ width: 1, height: 1 }} width="100%" height="100%">
               <LineChart data={enrollmentData}>
                 <CartesianGrid strokeDasharray="3 3" stroke="#e5e5e5" />
                 <XAxis
@@ -116,7 +115,8 @@ export default function DemographicsTrendChart({
                   axisLine={{ stroke: "#e5e5e5" }}
                 />
                 <YAxis
-                  tick={{ fontSize: 12, fill: "#666" }}
+                  width={44}
+                  tick={{ fontSize: 10, fill: "#666" }}
                   axisLine={{ stroke: "#e5e5e5" }}
                   tickFormatter={(v) => formatNumber(v)}
                 />
@@ -129,7 +129,6 @@ export default function DemographicsTrendChart({
                   formatter={(value) => [formatNumber(value as number), ""]}
                   labelFormatter={(label) => `${label}-${parseInt(label as string) + 1}`}
                 />
-                <Legend />
                 <Line
                   type="monotone"
                   dataKey="undergraduate"
@@ -149,6 +148,10 @@ export default function DemographicsTrendChart({
               </LineChart>
             </ResponsiveContainer>
           </div>
+          <div className="mt-3 flex flex-wrap justify-center gap-x-4 gap-y-2 text-xs text-gray-600">
+            <span className="flex items-center gap-1.5"><span className="h-0.5 w-4" style={{ backgroundColor: schoolColor }} />Undergraduate</span>
+            <span className="flex items-center gap-1.5"><span className="h-0.5 w-4 bg-green-600" />Graduate</span>
+          </div>
         </div>
 
         {/* Demographics Trend Chart */}
@@ -157,8 +160,8 @@ export default function DemographicsTrendChart({
             Demographics Over Time (% of Undergraduates)
           </h4>
           <div className="h-80">
-            <ResponsiveContainer width="100%" height="100%">
-              <LineChart data={demographicsData} margin={{ bottom: 50 }}>
+            <ResponsiveContainer initialDimension={{ width: 1, height: 1 }} width="100%" height="100%">
+              <LineChart data={demographicsData} margin={{ bottom: 8 }}>
                 <CartesianGrid strokeDasharray="3 3" stroke="#e5e5e5" />
                 <XAxis
                   dataKey="year"
@@ -166,7 +169,8 @@ export default function DemographicsTrendChart({
                   axisLine={{ stroke: "#e5e5e5" }}
                 />
                 <YAxis
-                  tick={{ fontSize: 12, fill: "#666" }}
+                  width={36}
+                  tick={{ fontSize: 10, fill: "#666" }}
                   axisLine={{ stroke: "#e5e5e5" }}
                   tickFormatter={(v) => `${v.toFixed(0)}%`}
                   domain={[0, 'auto']}
@@ -179,10 +183,6 @@ export default function DemographicsTrendChart({
                   }}
                   formatter={(value) => [`${(value as number).toFixed(1)}%`, ""]}
                   labelFormatter={(label) => `${label}-${parseInt(label as string) + 1}`}
-                />
-                <Legend
-                  verticalAlign="bottom"
-                  wrapperStyle={{ paddingTop: 12 }}
                 />
                 <Line
                   type="monotone"
@@ -234,6 +234,14 @@ export default function DemographicsTrendChart({
                 />
               </LineChart>
             </ResponsiveContainer>
+          </div>
+          <div className="mt-3 grid grid-cols-2 sm:grid-cols-3 gap-x-3 gap-y-2 text-xs text-gray-600">
+            {Object.entries(RACE_LABELS).map(([key, label]) => (
+              <span key={key} className="flex min-w-0 items-center gap-1.5">
+                <span className="h-0.5 w-4 flex-shrink-0" style={{ backgroundColor: RACE_COLORS[key] }} />
+                <span className="min-w-0 leading-snug">{label}</span>
+              </span>
+            ))}
           </div>
         </div>
       </div>

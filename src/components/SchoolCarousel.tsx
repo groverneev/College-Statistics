@@ -111,7 +111,7 @@ export default function SchoolCarousel() {
 
   return (
     <div className="pt-4 pb-8 overflow-hidden">
-      <div className="max-w-6xl mx-auto px-6 sm:px-4 flex items-baseline justify-between mb-5">
+      <div className="max-w-6xl mx-auto px-4 flex items-baseline justify-between mb-5">
         <h2 className="section-label">All {allSchools.length} schools</h2>
         <Link href="/schools" className="browse-all-btn">
           Browse all
@@ -124,7 +124,7 @@ export default function SchoolCarousel() {
           padding on the overflow:hidden element itself doesn't stop a
           transformed child from reaching the true edge, only a narrower
           box does. */}
-      <div className="max-w-6xl mx-auto px-6 sm:px-4">
+      <div className="max-w-6xl mx-auto px-4">
         <div
           className={`marquee-mask${isDragging ? " marquee-dragging" : ""}`}
           onMouseEnter={() => {
@@ -150,7 +150,7 @@ export default function SchoolCarousel() {
                 {allSchools.map((school) => (
                   <div
                     key={`${copy}-${school.slug}`}
-                    className="w-80 flex-shrink-0 mr-4"
+                    className="w-[calc(100vw-3rem)] max-w-80 flex-shrink-0 mr-4"
                   >
                     <SchoolCard school={school} showSaveButton />
                   </div>

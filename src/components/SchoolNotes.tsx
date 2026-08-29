@@ -103,7 +103,7 @@ export default function SchoolNotes({
   }
 
   return (
-    <div className="card p-6" style={{ backgroundColor: "#ffffff" }}>
+    <div className="card p-4 sm:p-6" style={{ backgroundColor: "#ffffff" }}>
       <div className="flex items-center justify-between mb-3">
         <h3 className="flex items-center gap-2 text-base font-semibold text-gray-800">
           <NoteIcon className="w-[18px] h-[18px]" />
@@ -113,14 +113,14 @@ export default function SchoolNotes({
           <div className="flex items-center gap-3">
             <button
               onClick={startEdit}
-              className="text-sm font-medium transition-colors hover:opacity-80"
+              className="min-h-11 px-2 text-sm font-medium transition-colors hover:opacity-80"
               style={{ color: schoolColor }}
             >
               Edit
             </button>
             <button
               onClick={() => setConfirmingDelete(true)}
-              className="text-sm font-medium transition-colors hover:opacity-80"
+              className="min-h-11 px-2 text-sm font-medium transition-colors hover:opacity-80"
               style={{ color: schoolColor }}
             >
               Delete
@@ -148,13 +148,13 @@ export default function SchoolNotes({
             <div className="flex items-center gap-2">
               <button
                 onClick={cancel}
-                className="px-4 py-1.5 rounded-lg text-sm text-gray-600 border border-gray-200 hover:bg-gray-50 transition-colors"
+                className="min-h-11 px-4 py-2 rounded-lg text-sm text-gray-600 border border-gray-200 hover:bg-gray-50 transition-colors"
               >
                 Cancel
               </button>
               <button
                 onClick={save}
-                className="px-4 py-1.5 rounded-lg text-sm font-medium text-white transition-opacity hover:opacity-90"
+                className="min-h-11 px-4 py-2 rounded-lg text-sm font-medium text-white transition-opacity hover:opacity-90"
                 style={{ backgroundColor: schoolColor }}
               >
                 Save note
@@ -174,7 +174,7 @@ export default function SchoolNotes({
           {isOverflowing && (
             <button
               onClick={() => setCollapsed((c) => !c)}
-              className="mt-1.5 text-sm font-medium transition-colors hover:opacity-80"
+              className="mt-1.5 min-h-11 text-sm font-medium transition-colors hover:opacity-80"
               style={{ color: schoolColor }}
             >
               {collapsed ? "Show more" : "Show less"}

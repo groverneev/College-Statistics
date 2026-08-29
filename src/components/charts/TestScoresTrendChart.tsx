@@ -10,7 +10,6 @@ import {
   CartesianGrid,
   Tooltip,
   ResponsiveContainer,
-  Legend,
 } from "recharts";
 
 interface TestScoresTrendChartProps {
@@ -65,12 +64,12 @@ export default function TestScoresTrendChart({
   const hasReportedMedian = satTrendData.some((point) => point.p50 != null);
 
   return (
-    <div className="card p-6 h-full">
+    <div className="card p-4 sm:p-6 h-full min-w-0">
       <h3 className="text-lg font-semibold mb-4 text-gray-800">
         SAT Score Trends (Middle 50%)
       </h3>
       <div className="h-64">
-        <ResponsiveContainer width="100%" height="100%">
+        <ResponsiveContainer initialDimension={{ width: 1, height: 1 }} width="100%" height="100%">
           <AreaChart data={satTrendData}>
             <CartesianGrid strokeDasharray="3 3" stroke="#e5e5e5" />
             <XAxis
@@ -79,15 +78,10 @@ export default function TestScoresTrendChart({
               axisLine={{ stroke: "#e5e5e5" }}
             />
             <YAxis
+              width={42}
               domain={[minScore, maxScore]}
-              tick={{ fontSize: 12, fill: "#666" }}
+              tick={{ fontSize: 10, fill: "#666" }}
               axisLine={{ stroke: "#e5e5e5" }}
-              label={{
-                value: "SAT Score",
-                angle: -90,
-                position: "insideLeft",
-                style: { textAnchor: "middle", fill: "#666", fontSize: 12 },
-              }}
             />
             <Tooltip
               contentStyle={{
@@ -113,13 +107,6 @@ export default function TestScoresTrendChart({
                 return null;
               }}
             />
-            <Legend
-              formatter={(value) => {
-                if (value === "p50") return "50th Percentile (Median)";
-                if (value === "range") return "Middle 50% Range";
-                return value;
-              }}
-            />
             <Area
               type="monotone"
               dataKey="range"
@@ -142,10 +129,14 @@ export default function TestScoresTrendChart({
           </AreaChart>
         </ResponsiveContainer>
       </div>
+      <div className="mt-3 flex flex-wrap justify-center gap-x-4 gap-y-2 text-xs text-gray-600">
+        {hasReportedMedian && <span className="flex items-center gap-1.5"><span className="h-0.5 w-4 bg-blue-600" />Median</span>}
+        <span className="flex items-center gap-1.5"><span className="h-2.5 w-4 rounded-sm opacity-30" style={{ backgroundColor: schoolColor }} />Middle 50% Range</span>
+      </div>
 
       {/* Simple data summary */}
       <div className="mt-4 pt-4 border-t border-gray-200">
-        <div className="grid grid-cols-3 gap-4 text-center text-sm">
+        <div className="grid grid-cols-3 gap-2 sm:gap-4 text-center text-sm">
           <div>
             <div className="text-gray-500">25th Percentile</div>
             <div className="font-semibold" style={{ color: schoolColor }}>

@@ -96,13 +96,13 @@ function KpiCard({
 }) {
   return (
     <div
-      className="card p-5 border-t-4"
+      className="card p-4 sm:p-5 border-t-4 min-w-0"
       style={{ borderTopColor: color }}
     >
       <div className="text-xs font-semibold uppercase tracking-wide text-gray-500 mb-1">
         {label}
       </div>
-      <div className="text-3xl font-bold text-gray-800">{value}</div>
+      <div className="text-2xl sm:text-3xl font-bold text-gray-800 break-words">{value}</div>
       {sub && <div className="text-sm text-gray-400 mt-0.5">{sub}</div>}
     </div>
   );
@@ -162,8 +162,81 @@ function DisciplineTable({
     "text-left text-xs font-semibold uppercase tracking-wide text-gray-500 pb-2 cursor-pointer select-none hover:text-gray-800 whitespace-nowrap";
 
   return (
-    <div className="overflow-x-auto">
-      <table className="w-full text-sm">
+    <>
+      <div className="md:hidden mb-4">
+        <div className="grid grid-cols-[minmax(0,1fr)_auto] gap-2 mb-3">
+          <select
+            aria-label="Sort disciplines"
+            value={sortKey}
+            onChange={(event) => {
+              const nextSort = event.target.value as SortKey;
+              setSortKey(nextSort);
+              setSortDir(nextSort === "discipline" ? "asc" : "desc");
+            }}
+            className="min-w-0 w-full min-h-11 border border-gray-200 rounded-lg px-3 text-sm text-gray-700 bg-white"
+          >
+            <option value="discipline">Discipline</option>
+            <option value="applicants">Applicants</option>
+            <option value="admits">Admits</option>
+            <option value="admitRate">Admit rate</option>
+            <option value="enrollees">Enrolled</option>
+            <option value="yieldRate">Yield</option>
+          </select>
+          <button
+            type="button"
+            onClick={() => setSortDir((direction) => direction === "asc" ? "desc" : "asc")}
+            className="min-h-11 min-w-11 rounded-lg border border-gray-200 bg-white text-gray-600"
+            aria-label={`Sort ${sortDir === "asc" ? "descending" : "ascending"}`}
+          >
+            {sortDir === "asc" ? "↑" : "↓"}
+          </button>
+        </div>
+
+        <div className="divide-y divide-gray-100 border-y border-gray-100">
+          {rows.map(([disc, data]) => (
+            <article key={`mobile-${disc}`} className="py-4 first:pt-2">
+              <div className="flex items-start justify-between gap-3 mb-3">
+                <h3 className="font-semibold text-gray-800 leading-snug">{disc}</h3>
+                <div className="text-right flex-shrink-0">
+                  <div className="text-[10px] uppercase tracking-wide text-gray-400">Admit rate</div>
+                  <div className="text-lg font-bold" style={{ color }}>
+                    {fmtPct(admitRate(data), 1)}
+                  </div>
+                </div>
+              </div>
+              <dl className="grid grid-cols-3 gap-2 text-sm">
+                {[
+                  ["Applicants", fmtNum(data.applicants)],
+                  ["Admits", fmtNum(data.admits)],
+                  ["Enrolled", fmtNum(data.enrollees)],
+                ].map(([label, value]) => (
+                  <div key={label}>
+                    <dt className="text-[10px] uppercase tracking-wide text-gray-400">{label}</dt>
+                    <dd className="font-medium text-gray-700 mt-0.5">{value}</dd>
+                  </div>
+                ))}
+              </dl>
+              <dl className="grid grid-cols-3 gap-2 text-sm mt-3 pt-3 border-t border-gray-100">
+                <div>
+                  <dt className="text-[10px] uppercase tracking-wide text-gray-400">Yield</dt>
+                  <dd className="font-medium text-gray-700 mt-0.5">{fmtPct(yieldRate(data), 1)}</dd>
+                </div>
+                <div>
+                  <dt className="text-[10px] uppercase tracking-wide text-gray-400">Admit GPA</dt>
+                  <dd className="font-medium text-gray-700 mt-0.5 whitespace-nowrap">{fmtGpa(data.admitGpaRange)}</dd>
+                </div>
+                <div>
+                  <dt className="text-[10px] uppercase tracking-wide text-gray-400">Enrollee GPA</dt>
+                  <dd className="font-medium text-gray-700 mt-0.5 whitespace-nowrap">{fmtGpa(data.enrolleeGpaRange)}</dd>
+                </div>
+              </dl>
+            </article>
+          ))}
+        </div>
+      </div>
+
+      <div className="hidden md:block overflow-x-auto">
+        <table className="w-full text-sm">
         <thead>
           <tr className="border-b border-gray-200">
             <th className={thClass} onClick={() => toggleSort("discipline")}>
@@ -204,8 +277,9 @@ function DisciplineTable({
             </tr>
           ))}
         </tbody>
-      </table>
-    </div>
+        </table>
+      </div>
+    </>
   );
 }
 
@@ -252,7 +326,7 @@ function CampusPanel({
         <div className="text-gray-400 text-sm italic">No data for this selection.</div>
       ) : (
         <>
-          <div className="grid grid-cols-2 gap-3 mb-5">
+          <div className="grid grid-cols-1 min-[360px]:grid-cols-2 gap-3 mb-5">
             <KpiCard label="Applicants" value={fmtNum(data.applicants)} color={color} />
             <KpiCard label="Admits" value={fmtNum(data.admits)} color={color} />
             <KpiCard
@@ -323,7 +397,7 @@ export default function UCPageClient({ dataByYear, availableYears }: Props) {
     : [];
 
   const selectClass =
-    "border border-gray-200 rounded-md px-3 py-2 text-sm text-gray-700 bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent";
+    "w-full sm:w-auto min-w-0 min-h-11 border border-gray-200 rounded-md px-3 py-2 text-sm text-gray-700 bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent";
 
   return (
     <div className="min-h-screen" style={{ background: "#f5f5f5" }}>
@@ -335,17 +409,17 @@ export default function UCPageClient({ dataByYear, availableYears }: Props) {
         </p>
       </div>
 
-      <div className="max-w-6xl mx-auto px-4 py-8">
+      <div className="max-w-6xl mx-auto px-4 py-6 sm:py-8">
 
         {/* Controls */}
-        <div className="card p-4 mb-6 flex flex-wrap items-center gap-3">
+        <div className="card p-4 mb-6 flex flex-col sm:flex-row sm:flex-wrap sm:items-center gap-3">
           {/* Mode toggle */}
-          <div className="flex rounded-md border border-gray-200 overflow-hidden">
+          <div className="flex w-full sm:w-auto rounded-md border border-gray-200 overflow-hidden">
             {(["explore", "compare"] as const).map(m => (
               <button
                 key={m}
                 onClick={() => setMode(m)}
-                className={`px-4 py-2 text-sm font-medium capitalize transition-colors ${
+                className={`flex-1 sm:flex-none min-h-11 px-4 py-2 text-sm font-medium capitalize transition-colors ${
                   mode === m
                     ? "bg-gray-800 text-white"
                     : "bg-white text-gray-600 hover:bg-gray-50"
@@ -401,7 +475,7 @@ export default function UCPageClient({ dataByYear, availableYears }: Props) {
           <>
             {/* KPI + GPA */}
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
-              <div className="lg:col-span-2 grid grid-cols-2 md:grid-cols-4 gap-4">
+              <div className="lg:col-span-2 grid grid-cols-1 min-[360px]:grid-cols-2 md:grid-cols-4 gap-4">
                 {(() => {
                   const d =
                     exploreDiscipline === "All"
@@ -445,7 +519,7 @@ export default function UCPageClient({ dataByYear, availableYears }: Props) {
 
             {/* Discipline table — only show when "All" selected */}
             {exploreDiscipline === "All" && exploreCampusData && (
-              <div className="card p-6">
+              <div className="card p-4 sm:p-6">
                 <h2 className="text-base font-semibold text-gray-800 mb-4">
                   By Discipline — {UC_CAMPUS_NAMES[exploreCampus]}
                 </h2>
@@ -461,11 +535,68 @@ export default function UCPageClient({ dataByYear, availableYears }: Props) {
             )}
 
             {/* All-campus comparison table */}
-            <div className="card p-6 mt-6">
+            <div className="card p-4 sm:p-6 mt-6">
               <h2 className="text-base font-semibold text-gray-800 mb-4">
                 All Campuses — {exploreDiscipline === "All" ? "Overall" : exploreDiscipline}
               </h2>
-              <div className="overflow-x-auto">
+              <div className="md:hidden divide-y divide-gray-100 border-y border-gray-100">
+                {campusCodes.map(code => {
+                  const camp = yearData.campuses[code];
+                  const d = exploreDiscipline === "All"
+                    ? camp.overall
+                    : camp.disciplines[exploreDiscipline as UCDiscipline];
+                  const isSel = code === exploreCampus;
+                  const color = UC_CAMPUS_COLORS[code];
+                  return (
+                    <button
+                      type="button"
+                      key={`mobile-${code}`}
+                      className={`w-full min-h-11 py-4 text-left ${isSel ? "bg-blue-50" : ""}`}
+                      onClick={() => setExploreCampus(code)}
+                    >
+                      <div className="flex items-start justify-between gap-3 mb-3">
+                        <span className="font-semibold leading-snug" style={{ color }}>
+                          {UC_CAMPUS_NAMES[code]}
+                        </span>
+                        <span className="text-right flex-shrink-0">
+                          <span className="block text-[10px] uppercase tracking-wide text-gray-400">Admit rate</span>
+                          <span className="block text-lg font-bold" style={{ color }}>
+                            {d ? fmtPct(admitRate(d), 1) : "—"}
+                          </span>
+                        </span>
+                      </div>
+                      <span className="grid grid-cols-3 gap-2 text-sm">
+                        {[
+                          ["Applicants", d ? fmtNum(d.applicants) : "—"],
+                          ["Admits", d ? fmtNum(d.admits) : "—"],
+                          ["Enrolled", d ? fmtNum(d.enrollees) : "—"],
+                        ].map(([label, value]) => (
+                          <span key={label}>
+                            <span className="block text-[10px] uppercase tracking-wide text-gray-400">{label}</span>
+                            <span className="block font-medium text-gray-700 mt-0.5">{value}</span>
+                          </span>
+                        ))}
+                      </span>
+                      <span className="grid grid-cols-3 gap-2 text-sm mt-3 pt-3 border-t border-gray-100">
+                        <span>
+                          <span className="block text-[10px] uppercase tracking-wide text-gray-400">Yield</span>
+                          <span className="block font-medium text-gray-700 mt-0.5">{d ? fmtPct(yieldRate(d), 1) : "—"}</span>
+                        </span>
+                        <span>
+                          <span className="block text-[10px] uppercase tracking-wide text-gray-400">Admit GPA</span>
+                          <span className="block font-medium text-gray-700 mt-0.5 whitespace-nowrap">{d ? fmtGpa(d.admitGpaRange) : "—"}</span>
+                        </span>
+                        <span>
+                          <span className="block text-[10px] uppercase tracking-wide text-gray-400">Enrollee GPA</span>
+                          <span className="block font-medium text-gray-700 mt-0.5 whitespace-nowrap">{d ? fmtGpa(d.enrolleeGpaRange) : "—"}</span>
+                        </span>
+                      </span>
+                    </button>
+                  );
+                })}
+              </div>
+
+              <div className="hidden md:block overflow-x-auto">
                 <table className="w-full text-sm">
                   <thead>
                     <tr className="border-b border-gray-200">
@@ -519,7 +650,7 @@ export default function UCPageClient({ dataByYear, availableYears }: Props) {
                   </tbody>
                 </table>
               </div>
-              <p className="text-xs text-gray-400 mt-3">Click a row to select that campus above.</p>
+              <p className="text-xs text-gray-400 mt-3">Select a campus to update the summary above.</p>
             </div>
           </>
         )}
@@ -597,7 +728,7 @@ export default function UCPageClient({ dataByYear, availableYears }: Props) {
 
             {/* Side by side panels */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div className="card p-6">
+              <div className="card p-4 sm:p-6 min-w-0">
                 <CampusPanel
                   yearData={yearDataA}
                   campusCode={compareACode}
@@ -605,7 +736,7 @@ export default function UCPageClient({ dataByYear, availableYears }: Props) {
                   color={colorA}
                 />
               </div>
-              <div className="card p-6">
+              <div className="card p-4 sm:p-6 min-w-0">
                 <CampusPanel
                   yearData={yearDataB}
                   campusCode={compareBCode}
@@ -636,7 +767,7 @@ export default function UCPageClient({ dataByYear, availableYears }: Props) {
                 return `${d >= 0 ? "+" : ""}${(d * 100).toFixed(1)} pp`;
               };
               return (
-                <div className="card p-5 mt-4">
+                <div className="card p-4 sm:p-5 mt-4">
                   <div className="text-xs font-semibold uppercase tracking-wide text-gray-500 mb-3">
                     Difference (A minus B)
                   </div>

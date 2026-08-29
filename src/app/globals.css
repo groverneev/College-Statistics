@@ -76,6 +76,16 @@ body {
   margin-top: 0.25rem;
 }
 
+@media (max-width: 639px) {
+  .stat-card {
+    padding: 1rem;
+  }
+
+  .stat-card .value {
+    font-size: 1.65rem;
+  }
+}
+
 /* Table styling */
 .data-table {
   width: 100%;
@@ -341,6 +351,7 @@ footer a:hover {
   border-radius: 9999px;
   font-size: 0.9rem;
   font-weight: 500;
+  min-height: 2.75rem;
   transition: background-color 0.15s ease, transform 0.15s ease;
 }
 
@@ -363,6 +374,7 @@ footer a:hover {
   font-size: 0.85rem;
   font-weight: 600;
   white-space: nowrap;
+  min-height: 2.75rem;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
   transition: background-color 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease;
 }

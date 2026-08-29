@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { useSession } from "next-auth/react";
 import { AdmissionsFactorImportance, SchoolData } from "@/lib/types";
@@ -123,7 +123,7 @@ export default function SchoolPageClient({
       >
         <Link
           href="/schools"
-          className="inline-flex items-center text-white/80 hover:text-white text-sm mb-4 transition-colors"
+          className="inline-flex min-h-11 items-center text-white/80 hover:text-white text-sm mb-4 transition-colors"
         >
           <svg
             className="w-4 h-4 mr-1"
@@ -146,7 +146,7 @@ export default function SchoolPageClient({
         <p className="text-white/80 text-sm md:text-base mb-4">
           Admissions Data Dashboard | Common Data Set {yearRange}
         </p>
-        <div className="flex justify-center gap-2">
+        <div className="flex flex-wrap justify-center gap-2">
           <SaveSchoolButton
             schoolSlug={schoolData.slug}
             schoolName={schoolData.name}
@@ -155,7 +155,7 @@ export default function SchoolPageClient({
           {!noteExists && (
             <button
               onClick={handleAddNote}
-              className="flex items-center space-x-2 px-4 py-2 rounded-lg font-medium text-sm transition-colors bg-white/10 border border-white/30 text-white hover:bg-white/20"
+              className="flex min-h-11 items-center space-x-2 px-4 py-2 rounded-lg font-medium text-sm transition-colors bg-white/10 border border-white/30 text-white hover:bg-white/20"
             >
               <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
                 <path
@@ -173,7 +173,7 @@ export default function SchoolPageClient({
       {/* Main Content */}
       <div className="max-w-6xl mx-auto px-4 py-8 -mt-4">
         {/* Key Stats Row */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 mb-8">
           <div className="stat-card">
             <div className="label">Total Applications</div>
             <div className="value">{formatNumber(latestData.admissions.applied)}</div>
@@ -246,7 +246,7 @@ export default function SchoolPageClient({
           )}
 
           {admissionsFactors && (
-            <div className="card p-6" style={{ backgroundColor: "#ffffff" }}>
+            <div className="card p-4 sm:p-6" style={{ backgroundColor: "#ffffff" }}>
               <div className="flex flex-col gap-2 mb-4 md:flex-row md:items-end md:justify-between">
                 <div>
                   <h3 className="text-lg font-semibold text-gray-800">
@@ -261,41 +261,34 @@ export default function SchoolPageClient({
                 </div>
               </div>
 
-              {/* Mobile: 2-column layout (factor + rating label) */}
-              <div className="md:hidden">
-                <table className="data-table compact w-full">
-                  <thead>
-                    <tr>
-                      <th style={{ textAlign: "left" }}>Factor</th>
-                      <th style={{ textAlign: "right" }}>Rating</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {[
-                      { label: "Academic", rows: academicFactors },
-                      { label: "Nonacademic", rows: nonacademicFactors },
-                    ].map(({ label, rows }) => (
-                      <React.Fragment key={`mobile-group-${label}`}>
-                        <tr style={{ backgroundColor: `${schoolColor}18`, borderTop: `2px solid ${schoolColor}40` }}>
-                          <td
-                            colSpan={2}
-                            style={{ fontWeight: 700, fontSize: "0.7rem", letterSpacing: "0.08em", textTransform: "uppercase", color: schoolColor }}
-                          >
-                            {label}
-                          </td>
-                        </tr>
-                        {rows.map(([rowLabel, importance]) => (
-                          <tr key={`mobile-${label}-${rowLabel}`}>
-                            <td style={{ textAlign: "left" }}>{rowLabel}</td>
-                            <td style={{ textAlign: "right", color: schoolColor, fontWeight: 500, fontSize: "0.8rem", whiteSpace: "nowrap" }}>
-                              {IMPORTANCE_LABELS[importance]}
-                            </td>
-                          </tr>
-                        ))}
-                      </React.Fragment>
-                    ))}
-                  </tbody>
-                </table>
+              {/* Mobile: stacked rows keep every factor and rating visible. */}
+              <div className="md:hidden space-y-5">
+                {[
+                  { label: "Academic", rows: academicFactors },
+                  { label: "Nonacademic", rows: nonacademicFactors },
+                ].map(({ label, rows }) => (
+                  <section key={`mobile-group-${label}`}>
+                    <h4
+                      className="px-3 py-2 text-[0.7rem] font-bold uppercase tracking-[0.08em] border-t-2"
+                      style={{ color: schoolColor, backgroundColor: `${schoolColor}18`, borderColor: `${schoolColor}40` }}
+                    >
+                      {label}
+                    </h4>
+                    <dl className="divide-y divide-gray-100">
+                      {rows.map(([rowLabel, importance]) => (
+                        <div
+                          key={`mobile-${label}-${rowLabel}`}
+                          className="grid grid-cols-[minmax(0,1fr)_6.25rem] items-start gap-3 px-3 py-3 text-sm"
+                        >
+                          <dt className="min-w-0 text-gray-700 leading-snug">{rowLabel}</dt>
+                          <dd className="text-right text-xs font-medium leading-snug" style={{ color: schoolColor }}>
+                            {IMPORTANCE_LABELS[importance]}
+                          </dd>
+                        </div>
+                      ))}
+                    </dl>
+                  </section>
+                ))}
               </div>
 
               {/* Desktop: full checkmark grid */}

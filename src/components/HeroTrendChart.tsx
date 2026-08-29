@@ -147,7 +147,7 @@ export default function HeroTrendChart({ series }: HeroTrendChartProps) {
                 onFocus={() => setActive(s.slug)}
                 onBlur={() => setActive(null)}
                 onClick={() => router.push(`/${s.slug}`)}
-                className="flex items-center gap-2 rounded-full px-3 py-1.5 text-xs font-medium transition-colors cursor-pointer"
+                className="flex min-h-11 items-center gap-2 rounded-full px-3 py-2 text-xs font-medium transition-colors cursor-pointer"
                 style={{
                   border: `1px solid ${active === s.slug ? "rgba(0,0,0,0.22)" : "rgba(0,0,0,0.1)"}`,
                   color: isDimmed(s.slug) ? "#9096a0" : "#1a1a1a",
@@ -169,10 +169,55 @@ export default function HeroTrendChart({ series }: HeroTrendChartProps) {
           })}
         </div>
 
-        {/* Chart */}
+        {/* Compact phone view: each series gets enough room for readable labels. */}
+        <div className="sm:hidden px-4 py-5 space-y-4">
+          {series.map((item) => {
+            const rates = item.points.map((point) => point.rate);
+            const minRate = Math.min(...rates);
+            const maxRate = Math.max(...rates);
+            const rateSpan = Math.max(maxRate - minRate, 0.01);
+            const sparkline = item.points
+              .map((point, index) => {
+                const x = item.points.length === 1 ? 50 : (index / (item.points.length - 1)) * 100;
+                const y = 26 - ((point.rate - minRate) / rateSpan) * 22;
+                return `${x.toFixed(1)},${y.toFixed(1)}`;
+              })
+              .join(" ");
+            const first = item.points[0];
+            const last = item.points[item.points.length - 1];
+            return (
+              <div key={`mobile-chart-${item.slug}`}>
+                <div className="flex items-baseline justify-between gap-3 mb-1.5">
+                  <span className="text-sm font-semibold" style={{ color: item.color }}>{item.name}</span>
+                  <span className="text-sm tabular-nums text-gray-600">
+                    {(first.rate * 100).toFixed(1)}% → {(last.rate * 100).toFixed(1)}%
+                  </span>
+                </div>
+                <svg viewBox="0 0 100 30" className="block w-full h-8" aria-hidden="true" preserveAspectRatio="none">
+                  <line x1="0" x2="100" y1="28" y2="28" stroke="rgba(0,0,0,0.08)" />
+                  <polyline
+                    points={sparkline}
+                    fill="none"
+                    stroke={item.color}
+                    strokeWidth="2.5"
+                    vectorEffect="non-scaling-stroke"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+                <div className="flex justify-between text-[10px] text-gray-400 mt-0.5">
+                  <span>{first.year}</span>
+                  <span>{last.year}</span>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+
+        {/* Full chart */}
         <svg
           viewBox={`0 0 ${W} ${H}`}
-          className="w-full h-auto block"
+          className="hidden sm:block w-full h-auto"
           role="img"
           aria-label="Line chart of acceptance rates over time for five universities"
         >

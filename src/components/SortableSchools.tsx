@@ -140,15 +140,15 @@ export default function SortableSchools({ items }: SortableSchoolsProps) {
           All Schools ({items.length})
         </h2>
 
-        <div className="flex items-center gap-2 text-sm text-gray-600">
-          <span className="font-medium">Sort by</span>
-          <div className="relative" ref={menuRef}>
+        <div className="grid grid-cols-[minmax(0,1fr)_auto] sm:flex sm:items-center gap-2 w-full sm:w-auto text-sm text-gray-600">
+          <span className="col-span-2 sm:col-span-1 font-medium">Sort by</span>
+          <div className="relative min-w-0" ref={menuRef}>
             <button
               type="button"
               onClick={() => setOpen((v) => !v)}
               aria-haspopup="listbox"
               aria-expanded={open}
-              className="flex items-center justify-between gap-2 min-w-[15rem] rounded-lg border border-gray-300 bg-white pl-4 pr-3 py-2 text-sm font-medium text-gray-700 shadow-sm transition-colors hover:bg-gray-50 focus:border-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400"
+              className="flex min-h-11 w-full sm:w-auto items-center justify-between gap-2 sm:min-w-[15rem] rounded-lg border border-gray-300 bg-white pl-4 pr-3 py-2 text-sm font-medium text-gray-700 shadow-sm transition-colors hover:bg-gray-50 focus:border-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400"
             >
               <span>{activeLabel}</span>
               <svg
@@ -169,7 +169,7 @@ export default function SortableSchools({ items }: SortableSchoolsProps) {
             {open && (
               <div
                 role="listbox"
-                className="absolute right-0 mt-2 w-64 bg-white rounded-xl shadow-lg border border-gray-100 p-1.5 z-50"
+                className="absolute left-0 sm:left-auto sm:right-0 mt-2 w-full sm:w-64 bg-white rounded-xl shadow-lg border border-gray-100 p-1.5 z-50"
               >
                 {SORT_OPTIONS.map((option) => {
                   const selected = option.value === sort;
@@ -184,7 +184,7 @@ export default function SortableSchools({ items }: SortableSchoolsProps) {
                         setDirection(option.defaultDir);
                         setOpen(false);
                       }}
-                      className={`w-full text-left px-3 py-1.5 rounded-lg text-sm font-medium transition-colors flex items-center justify-between ${
+                      className={`w-full min-h-11 text-left px-3 py-2 rounded-lg text-sm font-medium transition-colors flex items-center justify-between ${
                         selected ? "bg-gray-100 text-gray-900" : "text-gray-700 hover:bg-gray-50"
                       }`}
                     >
@@ -216,7 +216,7 @@ export default function SortableSchools({ items }: SortableSchoolsProps) {
               direction === "asc" ? "ascending" : "descending"
             })`}
             aria-label="Reverse sort order"
-            className="flex items-center justify-center rounded-lg border border-gray-300 bg-white p-2 shadow-sm transition-colors hover:bg-gray-50 focus:border-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400"
+            className="flex min-h-11 min-w-11 items-center justify-center rounded-lg border border-gray-300 bg-white p-2 shadow-sm transition-colors hover:bg-gray-50 focus:border-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400"
           >
             <svg
               className={`w-4 h-4 text-gray-600 transition-transform ${

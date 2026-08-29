@@ -65,7 +65,7 @@ export default function HomeSavedSchools() {
                     <Link
                       key={saved.schoolSlug}
                       href={`/${saved.schoolSlug}`}
-                      className="chip-dark flex items-center gap-1.5 rounded-full px-3 py-1 text-sm"
+                      className="chip-dark flex min-h-11 items-center gap-1.5 rounded-full px-3 py-2 text-sm"
                     >
                       {school!.name}
                       {rate !== undefined && (

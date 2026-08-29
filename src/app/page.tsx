@@ -121,14 +121,12 @@ export default function HomePage() {
             className="hero-rise flex flex-wrap items-center justify-center gap-x-3 gap-y-2 mt-7 mb-14 text-sm"
             style={{ color: "#6b7078", animationDelay: "0.24s" }}
           >
-            {chips.map((chip, index) => (
-              <span key={chip} className="flex items-center gap-3">
-                {index > 0 && (
-                  <span style={{ color: "#c4c8ce" }} aria-hidden>
-                    &middot;
-                  </span>
-                )}
-                <span>{chip}</span>
+            {chips.map((chip) => (
+              <span
+                key={chip}
+                className="rounded-full border border-black/8 bg-white px-3 py-1.5"
+              >
+                {chip}
               </span>
             ))}
           </div>

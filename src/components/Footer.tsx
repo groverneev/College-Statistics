@@ -89,7 +89,7 @@ export default function Footer() {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-gray-300 hover:text-white transition-colors"
+                    className="inline-flex min-h-11 items-center text-gray-300 hover:text-white transition-colors"
                   >
                     {link.label}
                   </Link>
@@ -110,7 +110,7 @@ export default function Footer() {
                   href={link.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-gray-400 hover:text-white transition-colors"
+                  className="flex h-11 w-11 items-center justify-center text-gray-400 hover:text-white transition-colors"
                   aria-label={link.label}
                 >
                   {link.icon}

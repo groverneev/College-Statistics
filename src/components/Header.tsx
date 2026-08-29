@@ -39,6 +39,15 @@ export default function Header() {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
+  useEffect(() => {
+    if (!mobileMenuOpen) return;
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = previousOverflow;
+    };
+  }, [mobileMenuOpen]);
+
   const navLinks = [
     { href: "/schools", label: "Browse Schools" },
     { href: "/my-schools", label: "My Schools" },
@@ -174,13 +183,15 @@ export default function Header() {
 
           {/* Mobile Menu Button */}
           <button
-            className={`md:hidden ml-auto p-2 rounded-md ${
+            className={`md:hidden ml-auto min-h-11 min-w-11 p-2 rounded-md ${
               isHome
                 ? "header-dark-link"
                 : "text-gray-600 hover:text-gray-900 hover:bg-gray-100"
             }`}
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             aria-label="Toggle menu"
+            aria-expanded={mobileMenuOpen}
+            aria-controls="mobile-navigation"
           >
             {mobileMenuOpen ? (
               <svg
@@ -217,6 +228,7 @@ export default function Header() {
         {/* Mobile Menu */}
         {mobileMenuOpen && (
           <div
+            id="mobile-navigation"
             className={`md:hidden border-t py-4 ${
               isHome ? "header-dark-border" : "border-gray-100 bg-white"
             }`}
@@ -225,8 +237,8 @@ export default function Header() {
             <nav className="flex flex-col space-y-4">
               {navLinks.map((link) => {
                 const className = isHome
-                  ? "header-dark-link font-medium px-2 py-1 text-left"
-                  : "text-gray-600 hover:text-gray-900 font-medium px-2 py-1 text-left";
+                  ? "header-dark-link font-medium px-2 py-2.5 min-h-11 text-left"
+                  : "text-gray-600 hover:text-gray-900 font-medium px-2 py-2.5 min-h-11 text-left";
                 // "My Schools" is gated: signed out, open the sign-in popup instead of navigating
                 if (link.href === "/my-schools" && !signedIn) {
                   return (
@@ -277,7 +289,7 @@ export default function Header() {
                     </div>
                     <button
                       onClick={() => signOut()}
-                      className={`text-sm font-medium ${
+                      className={`min-h-11 text-sm font-medium ${
                         isHome
                           ? "header-dark-link"
                           : "text-gray-600 hover:text-gray-900"
@@ -289,7 +301,7 @@ export default function Header() {
                 ) : (
                   <button
                     onClick={() => signIn("google")}
-                    className={`flex items-center space-x-2 font-medium ${
+                    className={`flex min-h-11 items-center space-x-2 font-medium ${
                       isHome
                         ? "header-dark-link"
                         : "text-gray-600 hover:text-gray-900"

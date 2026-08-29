@@ -34,7 +34,7 @@ export default function AboutPage() {
       {/* Content */}
       <div className="max-w-4xl mx-auto px-4 py-12">
         {/* About the Project */}
-        <section className="card p-8 mb-8">
+        <section className="card p-5 sm:p-8 mb-8">
           <h2 className="text-2xl font-bold text-gray-800 mb-4">
             About College Statistics
           </h2>
@@ -60,13 +60,13 @@ export default function AboutPage() {
         </section>
 
         {/* About the Creator */}
-        <section className="card p-8">
+        <section className="card p-5 sm:p-8">
           <h2 className="text-2xl font-bold text-gray-800 mb-6">
             About the Creator
           </h2>
           <div className="flex flex-col md:flex-row gap-8">
             {/* Photo */}
-            <div className="flex-shrink-0">
+            <div className="flex-shrink-0 self-center md:self-auto">
               <Image
                 src="/neev-grover.png"
                 alt="Neev Grover"
@@ -104,7 +104,7 @@ export default function AboutPage() {
                     href={link.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center px-4 py-2 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-lg text-sm font-medium transition-colors"
+                    className="inline-flex min-h-11 items-center px-4 py-2 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-lg text-sm font-medium transition-colors"
                   >
                     {link.label}
                     <svg

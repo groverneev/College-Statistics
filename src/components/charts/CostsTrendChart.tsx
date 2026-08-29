@@ -10,7 +10,6 @@ import {
   CartesianGrid,
   Tooltip,
   ResponsiveContainer,
-  Legend,
 } from "recharts";
 
 interface CostsTrendChartProps {
@@ -53,12 +52,12 @@ export default function CostsTrendChart({
   const costIncrease = ((latestData.total - earliestData.total) / earliestData.total) * 100;
 
   return (
-    <div className="card p-6">
-      <div className="flex justify-between items-start mb-4">
+    <div className="card p-4 sm:p-6">
+      <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-2 mb-4">
         <h3 className="text-lg font-semibold text-gray-800">
           Cost of Attendance Over Time
         </h3>
-        <div className="text-right">
+        <div className="text-left sm:text-right">
           <div className="text-2xl font-bold" style={{ color: schoolColor }}>
             {formatCurrency(latestData.total)}
           </div>
@@ -69,7 +68,7 @@ export default function CostsTrendChart({
       </div>
 
       <div className="h-72">
-        <ResponsiveContainer width="100%" height="100%">
+        <ResponsiveContainer initialDimension={{ width: 1, height: 1 }} width="100%" height="100%">
           <AreaChart data={trendData}>
             <CartesianGrid strokeDasharray="3 3" stroke="#e5e5e5" />
             <XAxis
@@ -78,7 +77,8 @@ export default function CostsTrendChart({
               axisLine={{ stroke: "#e5e5e5" }}
             />
             <YAxis
-              tick={{ fontSize: 12, fill: "#666" }}
+              width={44}
+              tick={{ fontSize: 10, fill: "#666" }}
               axisLine={{ stroke: "#e5e5e5" }}
               tickFormatter={(v) => `$${(v / 1000).toFixed(0)}k`}
             />
@@ -94,11 +94,6 @@ export default function CostsTrendChart({
                 name === "tuition" ? "Tuition" : name === "fees" ? "Fees" : "Room & Board",
               ]}
               labelFormatter={(label) => `${label}-${parseInt(label as string) + 1}`}
-            />
-            <Legend
-              formatter={(value) =>
-                value === "tuition" ? "Tuition" : value === "fees" ? "Fees" : "Room & Board"
-              }
             />
             <Area
               type="monotone"
@@ -127,10 +122,15 @@ export default function CostsTrendChart({
           </AreaChart>
         </ResponsiveContainer>
       </div>
+      <div className="mt-3 flex flex-wrap justify-center gap-x-4 gap-y-2 text-xs text-gray-600">
+        <span className="flex items-center gap-1.5"><span className="h-2.5 w-2.5 rounded-sm" style={{ backgroundColor: schoolColor }} />Tuition</span>
+        <span className="flex items-center gap-1.5"><span className="h-2.5 w-2.5 rounded-sm bg-orange-500" />Fees</span>
+        <span className="flex items-center gap-1.5"><span className="h-2.5 w-2.5 rounded-sm bg-green-600" />Room &amp; Board</span>
+      </div>
 
       {/* Cost breakdown */}
       <div className="mt-4 pt-4 border-t border-gray-200">
-        <div className="grid grid-cols-4 gap-4 text-center text-sm">
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 text-center text-sm">
           <div>
             <div className="text-gray-500">Tuition</div>
             <div className="font-semibold" style={{ color: schoolColor }}>

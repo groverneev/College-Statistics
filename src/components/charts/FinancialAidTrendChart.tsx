@@ -11,7 +11,6 @@ import {
   CartesianGrid,
   Tooltip,
   ResponsiveContainer,
-  Legend,
 } from "recharts";
 
 interface FinancialAidTrendChartProps {
@@ -53,12 +52,12 @@ export default function FinancialAidTrendChart({
   const latestData = trendData[trendData.length - 1];
 
   return (
-    <div className="card p-6 h-full">
+    <div className="card p-4 sm:p-6 h-full min-w-0">
       <h3 className="text-lg font-semibold mb-4 text-gray-800">
         Financial Aid Overview
       </h3>
       <div className="h-64">
-        <ResponsiveContainer width="100%" height="100%">
+        <ResponsiveContainer initialDimension={{ width: 1, height: 1 }} width="100%" height="100%">
           <ComposedChart data={trendData}>
             <CartesianGrid strokeDasharray="3 3" stroke="#e5e5e5" />
             <XAxis
@@ -67,7 +66,8 @@ export default function FinancialAidTrendChart({
               axisLine={{ stroke: "#e5e5e5" }}
             />
             <YAxis
-              tick={{ fontSize: 12, fill: "#666" }}
+              width={44}
+              tick={{ fontSize: 10, fill: "#666" }}
               axisLine={{ stroke: "#e5e5e5" }}
               tickFormatter={(v) => `$${(v / 1000).toFixed(0)}k`}
             />
@@ -84,11 +84,6 @@ export default function FinancialAidTrendChart({
               ]}
               labelFormatter={(label) => `${label}-${parseInt(label as string) + 1}`}
             />
-            <Legend
-              formatter={(value) =>
-                value === "totalCOA" ? "Total Cost" : "Avg Aid Package"
-              }
-            />
             <Bar
               dataKey="totalCOA"
               fill="#e5e5e5"
@@ -101,6 +96,10 @@ export default function FinancialAidTrendChart({
             />
           </ComposedChart>
         </ResponsiveContainer>
+      </div>
+      <div className="mt-3 flex flex-wrap justify-center gap-x-4 gap-y-2 text-xs text-gray-600">
+        <span className="flex items-center gap-1.5"><span className="h-2.5 w-2.5 rounded-sm bg-green-600" />Avg Aid Package</span>
+        <span className="flex items-center gap-1.5"><span className="h-2.5 w-2.5 rounded-sm bg-gray-200" />Total Cost</span>
       </div>
 
       {/* Key stats */}

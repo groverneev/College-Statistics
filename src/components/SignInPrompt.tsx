@@ -21,11 +21,16 @@ export default function SignInPrompt({
   // Close on Escape
   useEffect(() => {
     if (!open) return;
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
     function onKey(e: KeyboardEvent) {
       if (e.key === "Escape") onClose();
     }
     document.addEventListener("keydown", onKey);
-    return () => document.removeEventListener("keydown", onKey);
+    return () => {
+      document.removeEventListener("keydown", onKey);
+      document.body.style.overflow = previousOverflow;
+    };
   }, [open, onClose]);
 
   if (!open) return null;
@@ -45,7 +50,7 @@ export default function SignInPrompt({
       />
 
       {/* Card */}
-      <div className="relative w-full max-w-sm bg-white rounded-2xl shadow-xl p-6 text-center">
+      <div className="relative w-full max-w-sm max-h-[calc(100dvh-2rem)] overflow-y-auto bg-white rounded-2xl shadow-xl p-6 text-center">
         <div className="text-4xl mb-3">{icon}</div>
         <h2
           id="signin-prompt-title"
@@ -57,7 +62,7 @@ export default function SignInPrompt({
 
         <button
           onClick={() => signIn("google")}
-          className="w-full flex items-center justify-center space-x-2 bg-white border border-gray-300 rounded-lg px-4 py-2.5 text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors shadow-sm"
+          className="w-full min-h-11 flex items-center justify-center space-x-2 bg-white border border-gray-300 rounded-lg px-4 py-2.5 text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors shadow-sm"
         >
           <svg className="w-4 h-4" viewBox="0 0 24 24">
             <path
@@ -82,7 +87,7 @@ export default function SignInPrompt({
 
         <button
           onClick={onClose}
-          className="mt-3 w-full text-sm text-gray-400 hover:text-gray-600 transition-colors"
+          className="mt-3 w-full min-h-11 text-sm text-gray-400 hover:text-gray-600 transition-colors"
         >
           Maybe later
         </button>

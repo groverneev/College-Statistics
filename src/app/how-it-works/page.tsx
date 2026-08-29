@@ -145,7 +145,7 @@ export default function HowItWorksPage() {
       {/* Content */}
       <div className="max-w-4xl mx-auto px-4 py-12">
         {/* What is CDS */}
-        <section className="card p-8 mb-8">
+        <section className="card p-5 sm:p-8 mb-8">
           <h2 className="text-2xl font-bold text-gray-800 mb-4">
             What is the Common Data Set?
           </h2>
@@ -172,7 +172,7 @@ export default function HowItWorksPage() {
         </section>
 
         {/* Available Metrics */}
-        <section className="card p-8 mb-8">
+        <section className="card p-5 sm:p-8 mb-8">
           <h2 className="text-2xl font-bold text-gray-800 mb-6">
             Available Metrics
           </h2>
@@ -197,7 +197,7 @@ export default function HowItWorksPage() {
         </section>
 
         {/* How to Use */}
-        <section className="card p-8 mb-8">
+        <section className="card p-5 sm:p-8 mb-8">
           <h2 className="text-2xl font-bold text-gray-800 mb-6">
             How to Use the Dashboard
           </h2>
@@ -219,7 +219,7 @@ export default function HowItWorksPage() {
         </section>
 
         {/* Data Sources */}
-        <section className="card p-8">
+        <section className="card p-5 sm:p-8">
           <h2 className="text-2xl font-bold text-gray-800 mb-4">
             Data Sources &amp; Accuracy
           </h2>
