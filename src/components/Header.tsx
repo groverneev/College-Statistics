@@ -53,6 +53,7 @@ export default function Header() {
     { href: "/my-schools", label: "My Schools" },
     { href: "/trends", label: "Trends" },
     { href: "/uc", label: "UC Explorer" },
+    { href: "/csu", label: "CSU Explorer" },
   ];
 
   const desktopLinkClass = isHome
