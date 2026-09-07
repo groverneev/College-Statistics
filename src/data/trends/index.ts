@@ -9,6 +9,16 @@ export interface TrendMeta {
 
 export const trends: TrendMeta[] = [
   {
+    slug: "international-enrollment-exposure",
+    title: "International Students Make Up More Than 10% of Undergraduates at Half of Leading Colleges",
+    subtitle:
+      "30 of 58 schools reported double-digit international enrollment in 2024–25; long-term trends split in both directions",
+    date: "2026-09-06",
+    tags: ["International Students", "Enrollment", "Admissions", "Common Data Set"],
+    preview:
+      "30 of 58 schools in the 2024–25 comparison reported international undergraduates at 10% or more. Across 40 schools with endpoint data, 24 gained share and 13 declined.",
+  },
+  {
     slug: "cs-enrollment-reversal",
     title: "Computer Science Interest Turns Down Across Every Level, 2024–2026",
     subtitle:

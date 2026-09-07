@@ -18,3 +18,7 @@ College Statistics is a data visualization dashboard for exploring and comparing
 ## Data
 
 The project uses Common Data Set publications from colleges and universities. Values are source-backed, and unavailable data is left missing rather than estimated.
+
+## Reporter preview
+
+The international-enrollment story is protected by HTTP Basic Auth. Configure `REPORTER_PREVIEW_USERNAME` and `REPORTER_PREVIEW_PASSWORD` in the local or production environment before sharing the page. The route fails closed when either value is missing; keep the credentials out of the repository and share them separately from the preview URL.
