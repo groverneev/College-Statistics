@@ -1,5 +1,7 @@
 import { trends } from "@/data/trends/index";
 import StoryCard from "@/components/trends/StoryCard";
+import InternationalPreviewPrompt from "@/components/trends/InternationalPreviewPrompt";
+import { INTERNATIONAL_PREVIEW_SLUG } from "@/lib/internationalPreviewConfig";
 
 export const metadata = {
   title: "Trends – College Statistics",
@@ -7,7 +9,14 @@ export const metadata = {
     "Data-driven analysis of college admissions trends, application volumes, and more.",
 };
 
-export default function TrendsPage() {
+export default async function TrendsPage({
+  searchParams,
+}: {
+  searchParams?: Promise<{ preview?: string | string[] }>;
+}) {
+  const params = await searchParams;
+  const preview = Array.isArray(params?.preview) ? params.preview[0] : params?.preview;
+
   const sorted = [...trends].sort(
     (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
   );
@@ -35,6 +44,8 @@ export default function TrendsPage() {
           </div>
         )}
       </div>
+
+      <InternationalPreviewPrompt open={preview === INTERNATIONAL_PREVIEW_SLUG} />
     </div>
   );
 }

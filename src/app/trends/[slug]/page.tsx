@@ -1,6 +1,12 @@
-import { notFound } from "next/navigation";
+import { cookies } from "next/headers";
+import { notFound, redirect } from "next/navigation";
 import { trends } from "@/data/trends/index";
 import { getStoryComponent } from "@/data/trends/storyRegistry";
+import {
+  getInternationalPreviewToken,
+  INTERNATIONAL_PREVIEW_COOKIE,
+} from "@/lib/internationalPreview";
+import { INTERNATIONAL_PREVIEW_SLUG } from "@/lib/internationalPreviewConfig";
 
 export function generateStaticParams() {
   return trends.map((t) => ({ slug: t.slug }));
@@ -30,6 +36,18 @@ export default async function StoryPage({
   const StoryComponent = getStoryComponent(slug);
   if (!story) notFound();
   if (!StoryComponent) notFound();
+
+  if (slug === INTERNATIONAL_PREVIEW_SLUG) {
+    const previewPassword = process.env.REPORTER_PREVIEW_PASSWORD;
+    const previewCookie = (await cookies()).get(INTERNATIONAL_PREVIEW_COOKIE)?.value;
+    const isAuthorized =
+      previewPassword !== undefined &&
+      previewCookie === getInternationalPreviewToken(previewPassword);
+
+    if (!isAuthorized) {
+      redirect(`/trends?preview=${INTERNATIONAL_PREVIEW_SLUG}`);
+    }
+  }
 
   return (
     <div className="min-h-screen" style={{ background: "#f5f5f5" }}>

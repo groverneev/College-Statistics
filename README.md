@@ -18,3 +18,7 @@ College Statistics is a data visualization dashboard for exploring and comparing
 ## Data
 
 The project uses Common Data Set publications from colleges and universities. Values are source-backed, and unavailable data is left missing rather than estimated.
+
+## Private trend stories
+
+Set `REPORTER_PREVIEW_PASSWORD` in the local or production environment to enable access to the private international-enrollment story. The password is never committed to the repository.
