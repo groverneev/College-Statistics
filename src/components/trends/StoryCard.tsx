@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { TrendMeta } from "@/data/trends/index";
+import { INTERNATIONAL_PREVIEW_SLUG } from "@/lib/internationalPreviewConfig";
 
 function formatDate(iso: string) {
   return new Date(iso).toLocaleDateString("en-US", {
@@ -10,9 +11,18 @@ function formatDate(iso: string) {
   });
 }
 
-export default function StoryCard({ story }: { story: TrendMeta }) {
+export default function StoryCard({
+  story,
+  href,
+}: {
+  story: TrendMeta;
+  href?: string;
+}) {
   return (
-    <Link href={`/trends/${story.slug}`}>
+    <Link
+      href={href ?? `/trends/${story.slug}`}
+      prefetch={story.slug === INTERNATIONAL_PREVIEW_SLUG ? false : undefined}
+    >
       <div className="card p-6 hover:shadow-lg transition-shadow cursor-pointer border-t-4 border-t-gray-800 h-full flex flex-col">
         {/* Tags */}
         <div className="flex flex-wrap gap-2 mb-3">

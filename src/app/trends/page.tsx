@@ -1,6 +1,11 @@
+import { cookies } from "next/headers";
 import { trends } from "@/data/trends/index";
 import StoryCard from "@/components/trends/StoryCard";
 import InternationalPreviewPrompt from "@/components/trends/InternationalPreviewPrompt";
+import {
+  getInternationalPreviewToken,
+  INTERNATIONAL_PREVIEW_COOKIE,
+} from "@/lib/internationalPreview";
 import { INTERNATIONAL_PREVIEW_SLUG } from "@/lib/internationalPreviewConfig";
 
 export const metadata = {
@@ -16,6 +21,11 @@ export default async function TrendsPage({
 }) {
   const params = await searchParams;
   const preview = Array.isArray(params?.preview) ? params.preview[0] : params?.preview;
+  const previewPassword = process.env.REPORTER_PREVIEW_PASSWORD;
+  const previewCookie = (await cookies()).get(INTERNATIONAL_PREVIEW_COOKIE)?.value;
+  const hasPreviewAccess =
+    previewPassword !== undefined &&
+    previewCookie === getInternationalPreviewToken(previewPassword);
 
   const sorted = [...trends].sort(
     (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
@@ -39,7 +49,15 @@ export default async function TrendsPage({
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {sorted.map((story) => (
-              <StoryCard key={story.slug} story={story} />
+              <StoryCard
+                key={story.slug}
+                story={story}
+                href={
+                  story.slug === INTERNATIONAL_PREVIEW_SLUG && !hasPreviewAccess
+                    ? `/trends?preview=${INTERNATIONAL_PREVIEW_SLUG}`
+                    : undefined
+                }
+              />
             ))}
           </div>
         )}

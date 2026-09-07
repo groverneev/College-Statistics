@@ -6,7 +6,9 @@ import { INTERNATIONAL_PREVIEW_SLUG } from "@/lib/internationalPreviewConfig";
 
 export default function InternationalPreviewPrompt({ open }: { open: boolean }) {
   const router = useRouter();
+  const dialogRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
+  const isSubmittingRef = useRef(false);
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -15,12 +17,41 @@ export default function InternationalPreviewPrompt({ open }: { open: boolean }) 
     if (!open) return;
 
     const previousOverflow = document.body.style.overflow;
+    const previouslyFocused =
+      document.activeElement instanceof HTMLElement ? document.activeElement : null;
     document.body.style.overflow = "hidden";
-    inputRef.current?.focus();
+    inputRef.current?.focus({ preventScroll: true });
 
     function onKeyDown(event: KeyboardEvent) {
-      if (event.key === "Escape") {
+      if (event.key === "Escape" && !isSubmittingRef.current) {
+        event.preventDefault();
+        setPassword("");
+        setError("");
         router.replace("/trends", { scroll: false });
+      }
+
+      if (event.key !== "Tab") return;
+
+      const focusable = dialogRef.current?.querySelectorAll<HTMLElement>(
+        'button:not([disabled]), input:not([disabled]), [href], [tabindex]:not([tabindex="-1"])',
+      );
+      if (!focusable?.length) {
+        event.preventDefault();
+        dialogRef.current?.focus({ preventScroll: true });
+        return;
+      }
+
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      if (!dialogRef.current?.contains(document.activeElement)) {
+        event.preventDefault();
+        (event.shiftKey ? last : first).focus();
+      } else if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
       }
     }
 
@@ -28,6 +59,7 @@ export default function InternationalPreviewPrompt({ open }: { open: boolean }) 
     return () => {
       document.removeEventListener("keydown", onKeyDown);
       document.body.style.overflow = previousOverflow;
+      previouslyFocused?.focus({ preventScroll: true });
     };
   }, [open, router]);
 
@@ -35,6 +67,9 @@ export default function InternationalPreviewPrompt({ open }: { open: boolean }) 
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    if (isSubmittingRef.current) return;
+
+    isSubmittingRef.current = true;
     setError("");
     setIsSubmitting(true);
 
@@ -44,33 +79,45 @@ export default function InternationalPreviewPrompt({ open }: { open: boolean }) 
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ password }),
       });
-      const result = (await response.json()) as { error?: string };
+      const result = (await response.json().catch(() => ({}))) as { error?: string };
 
       if (!response.ok) {
         setError(result.error ?? "Unable to unlock this story.");
+        isSubmittingRef.current = false;
         setIsSubmitting(false);
+        requestAnimationFrame(() => {
+          inputRef.current?.focus({ preventScroll: true });
+          inputRef.current?.select();
+        });
         return;
       }
 
-      // Use a full navigation so the server evaluates the newly-set cookie
-      // instead of reusing a prefetched redirect from the locked route.
-      window.location.assign(`/trends/${INTERNATIONAL_PREVIEW_SLUG}`);
+      // Replace the prompt URL so Back returns to the trends list instead of
+      // reopening the password prompt. A full navigation makes the server
+      // evaluate the newly set cookie rather than a cached protected route.
+      window.location.replace(`/trends/${INTERNATIONAL_PREVIEW_SLUG}`);
     } catch {
       setError("Something went wrong. Please try again.");
+      isSubmittingRef.current = false;
       setIsSubmitting(false);
+      requestAnimationFrame(() => {
+        inputRef.current?.focus({ preventScroll: true });
+        inputRef.current?.select();
+      });
     }
   }
 
   function closePrompt() {
-    if (!isSubmitting) router.replace("/trends", { scroll: false });
+    if (isSubmittingRef.current) return;
+
+    setPassword("");
+    setError("");
+    router.replace("/trends", { scroll: false });
   }
 
   return (
     <div
       className="fixed inset-0 z-[100] flex items-center justify-center p-4"
-      role="dialog"
-      aria-modal="true"
-      aria-labelledby="international-preview-title"
     >
       <button
         type="button"
@@ -79,7 +126,15 @@ export default function InternationalPreviewPrompt({ open }: { open: boolean }) 
         aria-label="Close preview password prompt"
       />
 
-      <div className="relative w-full max-w-sm rounded-2xl bg-white p-6 text-center shadow-xl sm:p-7">
+      <div
+        ref={dialogRef}
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="international-preview-title"
+        aria-describedby="international-preview-description"
+        tabIndex={-1}
+        className="relative w-full max-w-sm rounded-2xl bg-white p-6 text-center shadow-xl sm:p-7"
+      >
         <div
           className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-gray-100 text-2xl"
           aria-hidden="true"
@@ -92,7 +147,10 @@ export default function InternationalPreviewPrompt({ open }: { open: boolean }) 
         >
           This story is private
         </h2>
-        <p className="mb-6 text-sm leading-relaxed text-gray-500">
+        <p
+          id="international-preview-description"
+          className="mb-6 text-sm leading-relaxed text-gray-500"
+        >
           Enter the password shared with you to read the international enrollment story.
         </p>
 
@@ -116,6 +174,7 @@ export default function InternationalPreviewPrompt({ open }: { open: boolean }) 
             className="form-input min-h-11"
             aria-invalid={Boolean(error)}
             aria-describedby={error ? "international-preview-error" : undefined}
+            aria-errormessage={error ? "international-preview-error" : undefined}
           />
           {error && (
             <p
