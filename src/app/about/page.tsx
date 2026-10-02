@@ -1,5 +1,13 @@
 import Image from "next/image";
 import Link from "next/link";
+import { pageMetadata } from "@/lib/seo";
+
+export const metadata = pageMetadata({
+  title: "About – College Statistics",
+  description:
+    "College Statistics is a free tool for students, parents and educators to explore and compare college admissions data from official Common Data Set reports.",
+  path: "/about",
+});
 
 export default function AboutPage() {
   const socialLinks = [

@@ -7,11 +7,23 @@ import { SavedSchoolsProvider } from "@/components/SavedSchoolsContext";
 import { NotesProvider } from "@/components/NotesContext";
 import { getSession, getSavedSchoolsForUser } from "@/lib/savedSchools";
 import { getNotesForUser } from "@/lib/notes";
+import { SITE_NAME, SITE_URL } from "@/lib/seo";
 
+// No canonical here: child pages would inherit it and all point at the home page.
 export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
   title: "College Statistics - Compare University Data",
   description:
     "Compare university admissions data, test scores, costs, and financial aid across top colleges using official Common Data Set reports.",
+  applicationName: SITE_NAME,
+  openGraph: {
+    siteName: SITE_NAME,
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+  },
 };
 
 export default async function RootLayout({

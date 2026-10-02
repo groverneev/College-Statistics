@@ -7,6 +7,7 @@ import {
   INTERNATIONAL_PREVIEW_COOKIE,
 } from "@/lib/internationalPreview";
 import { INTERNATIONAL_PREVIEW_SLUG } from "@/lib/internationalPreviewConfig";
+import { pageMetadata } from "@/lib/seo";
 
 export function generateStaticParams() {
   return trends.map((t) => ({ slug: t.slug }));
@@ -20,10 +21,17 @@ export async function generateMetadata({
   const { slug } = await params;
   const story = trends.find((t) => t.slug === slug);
   if (!story) return {};
-  return {
+  const metadata = pageMetadata({
     title: `${story.title} – College Statistics`,
     description: story.preview,
-  };
+    path: `/trends/${story.slug}`,
+    type: "article",
+  });
+  // Password-gated preview story stays out of search results until it is public.
+  if (slug === INTERNATIONAL_PREVIEW_SLUG) {
+    metadata.robots = { index: false, follow: false };
+  }
+  return metadata;
 }
 
 export default async function StoryPage({

@@ -7,12 +7,14 @@ import {
   INTERNATIONAL_PREVIEW_COOKIE,
 } from "@/lib/internationalPreview";
 import { INTERNATIONAL_PREVIEW_SLUG } from "@/lib/internationalPreviewConfig";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata = {
+export const metadata = pageMetadata({
   title: "Trends – College Statistics",
   description:
     "Data-driven analysis of college admissions trends, application volumes, and more.",
-};
+  path: "/trends",
+});
 
 export default async function TrendsPage({
   searchParams,

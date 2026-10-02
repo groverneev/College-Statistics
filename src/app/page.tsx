@@ -6,6 +6,14 @@ import HomeSavedSchools from "@/components/HomeSavedSchools";
 import HeroTrendChart, { HeroSeries, HeroPoint } from "@/components/HeroTrendChart";
 import { allSchools, searchableSchools, schoolDataMap } from "@/data/schools";
 import { getSortedYears } from "@/utils/dataHelpers";
+import { pageMetadata } from "@/lib/seo";
+
+export const metadata = pageMetadata({
+  title: "College Statistics - Compare University Data",
+  description:
+    "Compare university admissions data, test scores, costs, and financial aid across top colleges using official Common Data Set reports.",
+  path: "/",
+});
 
 // Registry brand colors tuned for legibility on the light hero chart
 // (Harvard, MIT, and Northeastern are near-identical crimsons at full depth, so
