@@ -1,5 +1,13 @@
 import Link from "next/link";
 import { allSchools } from "@/data/schools";
+import { pageMetadata } from "@/lib/seo";
+
+export const metadata = pageMetadata({
+  title: "How it Works: The Common Data Set Explained – College Statistics",
+  description:
+    "What the Common Data Set is, which admissions, test score, cost, financial aid and enrollment metrics it covers, and how to read the College Statistics dashboards.",
+  path: "/how-it-works",
+});
 
 export default function HowItWorksPage() {
   const metrics = [

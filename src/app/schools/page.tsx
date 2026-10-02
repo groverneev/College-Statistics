@@ -5,6 +5,13 @@ import SortableSchools, {
 } from "@/components/SortableSchools";
 import { allSchools, searchableSchools } from "@/data/schools";
 import { getLatestYearData, getSortedYears } from "@/utils/dataHelpers";
+import { pageMetadata } from "@/lib/seo";
+
+export const metadata = pageMetadata({
+  title: "Browse Colleges: Acceptance Rates, SAT Scores & Costs – College Statistics",
+  description: `Compare acceptance rates, SAT ranges, class sizes, yield and cost of attendance for ${allSchools.length} top U.S. colleges, sourced from official Common Data Set reports.`,
+  path: "/schools",
+});
 
 export default function BrowseSchoolsPage() {
   // Build the lightweight sort payload + pre-rendered cards on the server so the

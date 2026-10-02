@@ -20,6 +20,7 @@ import { useSavedSchools } from "@/components/SavedSchoolsContext";
 interface SchoolPageClientProps {
   schoolData: SchoolData;
   schoolColor: string;
+  summary: string[];
 }
 
 type AdmissionsFactorRow = [label: string, importance: AdmissionsFactorImportance];
@@ -41,10 +42,8 @@ const IMPORTANCE_ORDER: AdmissionsFactorImportance[] = [
 export default function SchoolPageClient({
   schoolData,
   schoolColor,
+  summary,
 }: SchoolPageClientProps) {
-  const [mounted, setMounted] = useState(false);
-  useEffect(() => setMounted(true), []);
-
   const { data: session } = useSession();
   const { hasNote } = useNotes();
   const { promptSignIn } = useSavedSchools();
@@ -201,6 +200,15 @@ export default function SchoolPageClient({
           </div>
         </div>
 
+        {summary.length > 0 && (
+          <section className="card p-4 sm:p-6 mb-8" style={{ backgroundColor: "#ffffff" }}>
+            <h2 className="text-lg font-semibold text-gray-800 mb-2">
+              {schoolData.name} Admissions at a Glance
+            </h2>
+            <p className="text-gray-600 leading-relaxed">{summary.join(" ")}</p>
+          </section>
+        )}
+
         {/* Notes — only rendered once a note exists or the user is composing one */}
         {showNotes && (
           <div className="mb-8" ref={notesRef}>
@@ -215,35 +223,31 @@ export default function SchoolPageClient({
 
         {/* Charts */}
         <div className="space-y-6">
-          {mounted && (
-            <>
-              <AdmissionsTrendChart
-                yearData={schoolData.years}
-                schoolColor={schoolColor}
-              />
+          <AdmissionsTrendChart
+            yearData={schoolData.years}
+            schoolColor={schoolColor}
+          />
 
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                <TestScoresTrendChart
-                  yearData={schoolData.years}
-                  schoolColor={schoolColor}
-                />
-                <FinancialAidTrendChart
-                  yearData={schoolData.years}
-                  schoolColor={schoolColor}
-                />
-              </div>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <TestScoresTrendChart
+              yearData={schoolData.years}
+              schoolColor={schoolColor}
+            />
+            <FinancialAidTrendChart
+              yearData={schoolData.years}
+              schoolColor={schoolColor}
+            />
+          </div>
 
-              <CostsTrendChart
-                yearData={schoolData.years}
-                schoolColor={schoolColor}
-              />
+          <CostsTrendChart
+            yearData={schoolData.years}
+            schoolColor={schoolColor}
+          />
 
-              <DemographicsTrendChart
-                yearData={schoolData.years}
-                schoolColor={schoolColor}
-              />
-            </>
-          )}
+          <DemographicsTrendChart
+            yearData={schoolData.years}
+            schoolColor={schoolColor}
+          />
 
           {admissionsFactors && (
             <div className="card p-4 sm:p-6" style={{ backgroundColor: "#ffffff" }}>
