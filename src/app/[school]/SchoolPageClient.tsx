@@ -4,7 +4,6 @@ import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { useSession } from "next-auth/react";
 import { AdmissionsFactorImportance, SchoolData } from "@/lib/types";
-import { formatNumber, formatPercent } from "@/utils/dataHelpers";
 import {
   AdmissionsTrendChart,
   TestScoresTrendChart,
@@ -72,8 +71,6 @@ export default function SchoolPageClient({
   }, [composing]);
 
   const years = Object.keys(schoolData.years).sort();
-  const latestYear = years[years.length - 1];
-  const latestData = schoolData.years[latestYear];
   const yearRange = `${years[0].split("-")[0]}-${years[years.length - 1].split("-")[1]}`;
   const admissionsFactors = schoolData.profile?.admissionsFactors;
   const academicFactors: AdmissionsFactorRow[] = admissionsFactors
@@ -171,39 +168,6 @@ export default function SchoolPageClient({
 
       {/* Main Content */}
       <div className="max-w-6xl mx-auto px-4 py-8 -mt-4">
-        {/* Key Stats Row */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 mb-8">
-          <div className="stat-card">
-            <div className="label">Total Applications</div>
-            <div className="value">{formatNumber(latestData.admissions.applied)}</div>
-            <div className="subtext">{latestYear}</div>
-          </div>
-          <div className="stat-card">
-            <div className="label">Acceptance Rate</div>
-            <div className="value">{formatPercent(latestData.admissions.acceptanceRate)}</div>
-            <div className="subtext">{latestYear}</div>
-          </div>
-          <div className="stat-card">
-            <div className="label">Enrolled Students</div>
-            <div className="value">{formatNumber(latestData.admissions.enrolled)}</div>
-            <div className="subtext">{latestYear}</div>
-          </div>
-          <div className="stat-card">
-            <div className="label">SAT Middle 50%</div>
-            <div className="value">
-              {typeof latestData.testScores.sat?.composite?.p25 === "number" &&
-              typeof latestData.testScores.sat.composite.p75 === "number"
-                ? `${latestData.testScores.sat.composite.p25}-${latestData.testScores.sat.composite.p75}`
-                : "N/A"}
-            </div>
-            <div className="subtext">{latestYear}</div>
-          </div>
-        </div>
-
-        {latestData.notes && (
-          <p className="mb-8 text-sm text-gray-600">{latestData.notes}</p>
-        )}
-
         {summary.length > 0 && (
           <section className="card p-4 sm:p-6 mb-8" style={{ backgroundColor: "#ffffff" }}>
             <h2 className="text-lg font-semibold text-gray-800 mb-2">
