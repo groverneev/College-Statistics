@@ -200,6 +200,10 @@ export default function SchoolPageClient({
           </div>
         </div>
 
+        {latestData.notes && (
+          <p className="mb-8 text-sm text-gray-600">{latestData.notes}</p>
+        )}
+
         {summary.length > 0 && (
           <section className="card p-4 sm:p-6 mb-8" style={{ backgroundColor: "#ffffff" }}>
             <h2 className="text-lg font-semibold text-gray-800 mb-2">

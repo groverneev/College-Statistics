@@ -3,8 +3,8 @@
   "slug": "caltech",
   "profile": {
     "admissionsFactors": {
-      "sourceYear": "2024-2025",
-      "sourcePdf": "College-Data/Caltech/Caltech_CDS_2024-2025_May_2025.pdf",
+      "sourceYear": "2025-2026",
+      "sourcePdf": "College-Data/Caltech/caltech cds 2025-26.pdf",
       "section": "C7",
       "academic": {
         "rigorOfSecondarySchoolRecord": "very_important",
@@ -678,6 +678,81 @@
         "averageNeedBasedGrant": 73312,
         "percentNeedFullyMet": 1.0
       }
+    },
+    "2025-2026": {
+      "admissions": {
+        "applied": 11285,
+        "admitted": 428,
+        "enrolled": 248,
+        "acceptanceRate": 0.0379,
+        "yield": 0.5794,
+        "byGender": {
+          "men": {
+            "applied": 7772,
+            "admitted": 224,
+            "enrolled": 136
+          },
+          "women": {
+            "applied": 3513,
+            "admitted": 204,
+            "enrolled": 112
+          }
+        }
+      },
+      "testScores": {
+        "sat": {
+          "readingWriting": {
+            "p25": 760,
+            "p50": 760,
+            "p75": 780
+          },
+          "math": {
+            "p25": 790,
+            "p50": 790,
+            "p75": 800
+          },
+          "submissionRate": 0.78
+        },
+        "act": {
+          "composite": {
+            "p25": 35,
+            "p50": 35,
+            "p75": 36
+          },
+          "submissionRate": 0.22
+        }
+      },
+      "demographics": {
+        "enrollment": {
+          "total": 2369,
+          "undergraduate": 971,
+          "graduate": 1398
+        },
+        "byRace": {
+          "international": 154,
+          "hispanicLatino": 122,
+          "blackAfricanAmerican": 41,
+          "white": 194,
+          "asian": 385,
+          "americanIndianAlaskaNative": 0,
+          "nativeHawaiianPacificIslander": 1,
+          "twoOrMoreRaces": 70,
+          "unknown": 4
+        }
+      },
+      "costs": {
+        "tuition": 68574,
+        "fees": 2655,
+        "roomAndBoard": 21996,
+        "totalCOA": 93225
+      },
+      "financialAid": {
+        "percentReceivingAid": 0.4779,
+        "averageAidPackage": 74952,
+        "averageNeedBasedGrant": 72099,
+        "percentNeedFullyMet": 1.0
+      },
+      "notes": "The 2025\u20132026 CDS does not report SAT composite percentiles. Its cost table is labeled 2026\u20132027; the displayed $93,225 total covers tuition, continuing undergraduate fees, and food and housing, excluding books, personal expenses, and transportation. Financial aid figures are 2025\u20132026 estimates; the share receiving aid reflects undergraduates with demonstrated need who received aid."
     }
   }
 }
