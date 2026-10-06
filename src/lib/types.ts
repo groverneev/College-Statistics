@@ -47,7 +47,6 @@ export interface AdmissionsFactorsData {
 }
 
 export interface YearData {
-  notes?: string;
   admissions: AdmissionsData;
   testScores: TestScoresData;
   demographics: DemographicsData;
