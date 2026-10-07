@@ -90,7 +90,7 @@ export default function AboutPage() {
                 Neev Grover
               </h3>
               <p className="text-gray-500 mb-4">
-                Rising Junior at the Harker School
+                Junior at the Harker School
               </p>
               <p className="text-gray-600 mb-4">
                 I&apos;m passionate about making information accessible and building
