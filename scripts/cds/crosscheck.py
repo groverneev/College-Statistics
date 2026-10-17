@@ -15,7 +15,7 @@ def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("slug")
     parser.add_argument("year")
-    parser.add_argument("--model")
+    parser.add_argument("--model", default="gpt-6.1-sol")
     parser.add_argument("--timeout", type=int, default=1200)
     args = parser.parse_args()
 
@@ -37,9 +37,7 @@ def main() -> None:
         "-C", str(ROOT),
         "-o", str(out.with_suffix(".log")),
     ]
-    if args.model:
-        command += ["-m", args.model]
-    command.append("-")
+    command += ["-m", args.model, "-"]
 
     subprocess.run(command, input=prompt, text=True, encoding="utf-8", timeout=args.timeout, check=True)
     if not out.exists():

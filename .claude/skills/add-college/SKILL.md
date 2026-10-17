@@ -47,10 +47,10 @@ This writes per-page text, PNGs for the listed sections, and `index.json` mappin
 ## 5. Extract twice, independently
 
 For each year, in parallel:
-- **Claude**: launch a general-purpose subagent whose prompt is the output of `python -I scripts/cds/prompt.py <slug> <year> --extractor claude`. It writes `College-Data/<slug>/extract/<year>.claude.json`. Run up to 4 subagents at once.
-- **Codex** (a different model family, so its mistakes are not correlated): `python -I scripts/cds/crosscheck.py <slug> <year>` writes `<year>.codex.json`. Run it in the background while the Claude subagents work.
+- **Claude**: launch a general-purpose subagent with `model: "sonnet"` (Sonnet 5.5) whose prompt is the output of `python -I scripts/cds/prompt.py <slug> <year> --extractor claude`. It writes `College-Data/<slug>/extract/<year>.claude.json`. Run up to 4 subagents at once. Never use any Claude model other than Sonnet 5.5 or Haiku 5.5 for subagents.
+- **Codex** (a different model family, so its mistakes are not correlated): `python -I scripts/cds/crosscheck.py <slug> <year>` writes `<year>.codex.json` using `gpt-6.1-sol`. Run it in the background while the Claude subagents work.
 
-If Codex is unavailable, launch a second Claude subagent with `--extractor claude2` and compare against that instead.
+If Codex is unavailable, launch a second Claude subagent with `model: "haiku"` (Haiku 5.5) and `--extractor claude2`, and compare against that instead.
 
 ## 6. Reconcile
 
