@@ -67,6 +67,7 @@ import amherstcollegeData from "./amherstcollege.json";
 import williamscollegeData from "./williamscollege.json";
 import claremontmckennaData from "./claremontmckenna.json";
 import harveymuddData from "./harveymudd.json";
+import universityofgeorgiaData from "./universityofgeorgia.json";
 
 export interface SearchableSchool {
   name: string;
@@ -147,6 +148,7 @@ export const allSchools: SchoolData[] = [
   williamscollegeData as SchoolData,
   claremontmckennaData as SchoolData,
   harveymuddData as SchoolData,
+  universityofgeorgiaData as SchoolData,
 ];
 
 export const SCHOOL_METADATA: Record<string, SchoolMetadata> = {
@@ -470,6 +472,10 @@ export const SCHOOL_METADATA: Record<string, SchoolMetadata> = {
   harveymudd: {
     aliases: ["Harvey Mudd", "Mudd", "HMC", "Harvey Mudd College"],
     color: "#FDB913",
+  },
+  universityofgeorgia: {
+    aliases: ["UGA", "Georgia", "University of Georgia", "Georgia Bulldogs"],
+    color: "#BA0C2F",
   },
 };
 
