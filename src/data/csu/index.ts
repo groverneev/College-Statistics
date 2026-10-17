@@ -16,7 +16,9 @@ export const CSU_EARLIEST_FALL = csuData.fallYears[0];
 
 export const CSU_DISCIPLINE_FALL = CSU_LATEST_FALL;
 
-export function admitRate(a: CSUAdmissions | { applied: number; admitted: number | null }): number | null {
+export function admitRate(
+  a: CSUAdmissions | { applied: number; admitted: number | null },
+): number | null {
   if (!a.applied || a.admitted == null) return null;
   return (100 * a.admitted) / a.applied;
 }
@@ -43,11 +45,11 @@ export const csuCampusesBySelectivity: string[] = Object.keys(csuData.campuses)
   });
 
 export const csuCampusesByName: string[] = [...csuCampusesBySelectivity].sort((a, b) =>
-  campusName(a).localeCompare(campusName(b))
+  campusName(a).localeCompare(campusName(b)),
 );
 
 export const csuAreasByVolume: string[] = Object.keys(csuData.areas).sort(
-  (a, b) => csuData.areas[b].applied - csuData.areas[a].applied
+  (a, b) => csuData.areas[b].applied - csuData.areas[a].applied,
 );
 
 export const csuMatrixAreas: string[] = csuAreasByVolume
@@ -55,10 +57,14 @@ export const csuMatrixAreas: string[] = csuAreasByVolume
   .slice(0, 12);
 
 const areaIndex = new Map<string, CSUCampusArea>(
-  csuData.campusAreas.map((row) => [`${row.campus}|${row.area}|${row.level}`, row])
+  csuData.campusAreas.map((row) => [`${row.campus}|${row.area}|${row.level}`, row]),
 );
 
-export function campusArea(campus: string, area: string, level: CSULevel): CSUCampusArea | undefined {
+export function campusArea(
+  campus: string,
+  area: string,
+  level: CSULevel,
+): CSUCampusArea | undefined {
   return areaIndex.get(`${campus}|${area}|${level}`);
 }
 
@@ -78,7 +84,7 @@ export function campusLevelTotals(campus: string, level: CSULevel): CSUCampusAre
         admitted: total.admitted + row.admitted,
         enrolled: row.enrolled == null ? total.enrolled : (total.enrolled ?? 0) + row.enrolled,
       }),
-      { campus, area: "All", level, applied: 0, admitted: 0, enrolled: null }
+      { campus, area: "All", level, applied: 0, admitted: 0, enrolled: null },
     );
 }
 

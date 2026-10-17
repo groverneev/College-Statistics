@@ -48,23 +48,14 @@ export default function ConfirmDialog({
       aria-modal="true"
       aria-labelledby="confirm-dialog-title"
     >
-      <div
-        className="absolute inset-0 bg-black/40"
-        onClick={onClose}
-        aria-hidden="true"
-      />
+      <div className="absolute inset-0 bg-black/40" onClick={onClose} aria-hidden="true" />
 
       <div className="relative w-full max-w-sm max-h-[calc(100dvh-2rem)] overflow-y-auto bg-white rounded-2xl shadow-xl p-6 text-center">
         <div className="text-4xl mb-3">{icon}</div>
-        <h2
-          id="confirm-dialog-title"
-          className="text-lg font-semibold text-gray-800 mb-2"
-        >
+        <h2 id="confirm-dialog-title" className="text-lg font-semibold text-gray-800 mb-2">
           {title}
         </h2>
-        {description && (
-          <p className="text-sm text-gray-500 mb-6">{description}</p>
-        )}
+        {description && <p className="text-sm text-gray-500 mb-6">{description}</p>}
 
         <button
           onClick={onConfirm}

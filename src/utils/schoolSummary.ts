@@ -1,10 +1,5 @@
-import { SchoolData } from "@/lib/types";
-import {
-  formatCurrency,
-  formatNumber,
-  formatPercent,
-  getSortedYears,
-} from "@/utils/dataHelpers";
+import type { SchoolData } from "@/lib/types";
+import { formatCurrency, formatNumber, formatPercent, getSortedYears } from "@/utils/dataHelpers";
 
 function isNumber(value: unknown): value is number {
   return typeof value === "number" && Number.isFinite(value);
@@ -29,7 +24,7 @@ export function buildSchoolDescription(school: SchoolData): string {
       `${school.name}'s acceptance rate was ${formatPercent(admissions.acceptanceRate)} in ${latestYear}` +
         (isNumber(admissions.applied)
           ? ` with ${formatNumber(admissions.applied)} applicants.`
-          : ".")
+          : "."),
     );
   }
   if (sat) {
@@ -60,14 +55,14 @@ export function buildSchoolSummary(school: SchoolData): string[] {
     sentences.push(`${sentence}.`);
   } else if (isNumber(acceptanceRate)) {
     sentences.push(
-      `${school.name}'s acceptance rate was ${formatPercent(acceptanceRate)} in ${latestYear}.`
+      `${school.name}'s acceptance rate was ${formatPercent(acceptanceRate)} in ${latestYear}.`,
     );
   }
 
   const firstRate = first?.admissions.acceptanceRate;
   if (firstYear !== latestYear && isNumber(firstRate) && isNumber(acceptanceRate)) {
     sentences.push(
-      `That compares with an acceptance rate of ${formatPercent(firstRate)} in ${firstYear}.`
+      `That compares with an acceptance rate of ${formatPercent(firstRate)} in ${firstYear}.`,
     );
   }
 
@@ -76,13 +71,13 @@ export function buildSchoolSummary(school: SchoolData): string[] {
   const hasAct = isNumber(act?.p25) && isNumber(act?.p75);
   if (sat && hasAct) {
     sentences.push(
-      `The middle 50% of enrolled first-year students scored ${sat} on the SAT and ${act!.p25}–${act!.p75} on the ACT.`
+      `The middle 50% of enrolled first-year students scored ${sat} on the SAT and ${act!.p25}–${act!.p75} on the ACT.`,
     );
   } else if (sat) {
     sentences.push(`The middle 50% of enrolled first-year students scored ${sat} on the SAT.`);
   } else if (hasAct) {
     sentences.push(
-      `The middle 50% of enrolled first-year students scored ${act!.p25}–${act!.p75} on the ACT.`
+      `The middle 50% of enrolled first-year students scored ${act!.p25}–${act!.p75} on the ACT.`,
     );
   }
 

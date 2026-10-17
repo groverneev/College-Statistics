@@ -23,7 +23,13 @@ interface SchoolNotesProps {
 
 function NoteIcon({ className }: { className?: string }) {
   return (
-    <svg className={className} fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+    <svg
+      className={className}
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={2}
+      viewBox="0 0 24 24"
+    >
       <path
         strokeLinecap="round"
         strokeLinejoin="round"
@@ -43,7 +49,7 @@ export default function SchoolNotes({
 
   const note = getNote(schoolSlug);
   const [editing, setEditing] = useState(startEditing);
-  const [draft, setDraft] = useState(startEditing ? note ?? "" : "");
+  const [draft, setDraft] = useState(startEditing ? (note ?? "") : "");
   const [confirmingDelete, setConfirmingDelete] = useState(false);
 
   const noteRef = useRef<HTMLParagraphElement>(null);

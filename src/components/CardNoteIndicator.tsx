@@ -7,12 +7,22 @@ export default function CardNoteIndicator({ schoolSlug }: { schoolSlug: string }
   const note = getNote(schoolSlug);
   if (!note) return null;
 
-  const preview = note.split("\n").find((line) => line.trim().length > 0)?.trim() ?? "";
+  const preview =
+    note
+      .split("\n")
+      .find((line) => line.trim().length > 0)
+      ?.trim() ?? "";
 
   return (
     <div className="mt-3">
       <span className="inline-flex items-center gap-1.5 text-xs text-gray-500 bg-gray-100 px-2.5 py-1 rounded-full">
-        <svg className="w-3 h-3" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+        <svg
+          className="w-3 h-3"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth={2}
+          viewBox="0 0 24 24"
+        >
           <path
             strokeLinecap="round"
             strokeLinejoin="round"

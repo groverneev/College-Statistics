@@ -1,4 +1,4 @@
-import { UCYearData } from "./types";
+import type { UCYearData } from "./types";
 
 export const uc2024: UCYearData = {
   year: 2024,
@@ -15,7 +15,7 @@ export const uc2024: UCYearData = {
         enrolleeGpaRange: [4.11, 4.28],
       },
       disciplines: {
-        "Architecture": {
+        Architecture: {
           applicants: 2939,
           admits: 211,
           enrollees: 102,
@@ -29,33 +29,33 @@ export const uc2024: UCYearData = {
           admitGpaRange: [4.07, 4.28],
           enrolleeGpaRange: [4.03, 4.25],
         },
-        "Business": {
+        Business: {
           applicants: 8069,
           admits: 327,
           enrollees: 191,
-          admitGpaRange: [4.20, 4.30],
-          enrolleeGpaRange: [4.16, 4.30],
+          admitGpaRange: [4.2, 4.3],
+          enrolleeGpaRange: [4.16, 4.3],
         },
         "Computer Science": {
           applicants: 13437,
           admits: 515,
           enrollees: 343,
-          admitGpaRange: [4.20, 4.30],
-          enrolleeGpaRange: [4.17, 4.30],
+          admitGpaRange: [4.2, 4.3],
+          enrolleeGpaRange: [4.17, 4.3],
         },
-        "Engineering": {
+        Engineering: {
           applicants: 21831,
           admits: 1698,
           enrollees: 906,
-          admitGpaRange: [4.21, 4.30],
-          enrolleeGpaRange: [4.19, 4.30],
+          admitGpaRange: [4.21, 4.3],
+          enrolleeGpaRange: [4.19, 4.3],
         },
         "Life Sciences": {
           applicants: 16970,
           admits: 2998,
           enrollees: 1264,
           admitGpaRange: [4.16, 4.29],
-          enrolleeGpaRange: [4.10, 4.28],
+          enrolleeGpaRange: [4.1, 4.28],
         },
         "Other/Interdisciplinary": {
           applicants: 6847,
@@ -68,7 +68,7 @@ export const uc2024: UCYearData = {
           applicants: 11487,
           admits: 1821,
           enrollees: 812,
-          admitGpaRange: [4.19, 4.30],
+          admitGpaRange: [4.19, 4.3],
           enrolleeGpaRange: [4.14, 4.29],
         },
         "Public Admin": {
@@ -82,8 +82,8 @@ export const uc2024: UCYearData = {
           applicants: 2713,
           admits: 62,
           enrollees: 16,
-          admitGpaRange: [4.14, 4.30],
-          enrolleeGpaRange: [4.11, 4.30],
+          admitGpaRange: [4.14, 4.3],
+          enrolleeGpaRange: [4.11, 4.3],
         },
         "Social Sciences": {
           applicants: 18816,
@@ -92,7 +92,7 @@ export const uc2024: UCYearData = {
           admitGpaRange: [4.16, 4.29],
           enrolleeGpaRange: [4.11, 4.28],
         },
-        "Undeclared": {
+        Undeclared: {
           applicants: 11956,
           admits: 1432,
           enrollees: 709,
@@ -108,11 +108,11 @@ export const uc2024: UCYearData = {
         applicants: 98864,
         admits: 41353,
         enrollees: 6767,
-        admitGpaRange: [4.00, 4.26],
+        admitGpaRange: [4.0, 4.26],
         enrolleeGpaRange: [3.92, 4.21],
       },
       disciplines: {
-        "Architecture": {
+        Architecture: {
           applicants: 601,
           admits: 166,
           enrollees: 19,
@@ -126,7 +126,7 @@ export const uc2024: UCYearData = {
           admitGpaRange: [3.92, 4.23],
           enrolleeGpaRange: [3.76, 4.08],
         },
-        "Business": {
+        Business: {
           applicants: 2404,
           admits: 800,
           enrollees: 122,
@@ -137,22 +137,22 @@ export const uc2024: UCYearData = {
           applicants: 6950,
           admits: 1175,
           enrollees: 97,
-          admitGpaRange: [4.20, 4.30],
+          admitGpaRange: [4.2, 4.3],
           enrolleeGpaRange: [4.14, 4.29],
         },
-        "Education": {
+        Education: {
           applicants: 395,
           admits: 133,
           enrollees: 24,
-          admitGpaRange: [4.00, 4.22],
+          admitGpaRange: [4.0, 4.22],
           enrolleeGpaRange: [3.99, 4.26],
         },
-        "Engineering": {
+        Engineering: {
           applicants: 16933,
           admits: 6354,
           enrollees: 1020,
           admitGpaRange: [4.09, 4.29],
-          enrolleeGpaRange: [4.00, 4.26],
+          enrolleeGpaRange: [4.0, 4.26],
         },
         "Life Sciences": {
           applicants: 23020,
@@ -172,15 +172,15 @@ export const uc2024: UCYearData = {
           applicants: 6625,
           admits: 2940,
           enrollees: 453,
-          admitGpaRange: [4.00, 4.25],
-          enrolleeGpaRange: [3.86, 4.20],
+          admitGpaRange: [4.0, 4.25],
+          enrolleeGpaRange: [3.86, 4.2],
         },
         "Physical Sciences/Math": {
           applicants: 5909,
           admits: 3476,
           enrollees: 534,
           admitGpaRange: [4.03, 4.27],
-          enrolleeGpaRange: [3.91, 4.20],
+          enrolleeGpaRange: [3.91, 4.2],
         },
         "Public Admin": {
           applicants: 130,
@@ -193,15 +193,15 @@ export const uc2024: UCYearData = {
           applicants: 20986,
           admits: 7592,
           enrollees: 904,
-          admitGpaRange: [4.00, 4.25],
-          enrolleeGpaRange: [3.90, 4.19],
+          admitGpaRange: [4.0, 4.25],
+          enrolleeGpaRange: [3.9, 4.19],
         },
-        "Undeclared": {
+        Undeclared: {
           applicants: 7590,
           admits: 3423,
           enrollees: 636,
           admitGpaRange: [3.94, 4.22],
-          enrolleeGpaRange: [3.80, 4.11],
+          enrolleeGpaRange: [3.8, 4.11],
         },
       },
     },
@@ -213,7 +213,7 @@ export const uc2024: UCYearData = {
         admits: 35045,
         enrollees: 6736,
         admitGpaRange: [4.04, 4.27],
-        enrolleeGpaRange: [4.00, 4.25],
+        enrolleeGpaRange: [4.0, 4.25],
       },
       disciplines: {
         "Arts & Humanities": {
@@ -223,12 +223,12 @@ export const uc2024: UCYearData = {
           admitGpaRange: [3.95, 4.23],
           enrolleeGpaRange: [3.82, 4.15],
         },
-        "Business": {
+        Business: {
           applicants: 16133,
           admits: 2035,
           enrollees: 274,
           admitGpaRange: [4.09, 4.28],
-          enrolleeGpaRange: [4.00, 4.26],
+          enrolleeGpaRange: [4.0, 4.26],
         },
         "Computer Science": {
           applicants: 9187,
@@ -237,42 +237,42 @@ export const uc2024: UCYearData = {
           admitGpaRange: [4.18, 4.29],
           enrolleeGpaRange: [4.15, 4.29],
         },
-        "Education": {
+        Education: {
           applicants: 1918,
           admits: 682,
           enrollees: 144,
           admitGpaRange: [3.92, 4.21],
           enrolleeGpaRange: [3.81, 4.17],
         },
-        "Engineering": {
+        Engineering: {
           applicants: 19342,
           admits: 5446,
           enrollees: 1106,
           admitGpaRange: [4.14, 4.29],
-          enrolleeGpaRange: [4.10, 4.28],
+          enrolleeGpaRange: [4.1, 4.28],
         },
         "Life Sciences": {
           applicants: 16979,
           admits: 5706,
           enrollees: 911,
-          admitGpaRange: [4.10, 4.28],
+          admitGpaRange: [4.1, 4.28],
           enrolleeGpaRange: [4.05, 4.27],
         },
-        "Nursing": {
+        Nursing: {
           applicants: 5885,
           admits: 65,
           enrollees: 33,
           admitGpaRange: [4.25, 4.31],
-          enrolleeGpaRange: [4.25, 4.30],
+          enrolleeGpaRange: [4.25, 4.3],
         },
         "Other/Interdisciplinary": {
           applicants: 4838,
           admits: 1500,
           enrollees: 188,
           admitGpaRange: [4.05, 4.27],
-          enrolleeGpaRange: [3.90, 4.21],
+          enrolleeGpaRange: [3.9, 4.21],
         },
-        "Pharmacy": {
+        Pharmacy: {
           applicants: 1487,
           admits: 598,
           enrollees: 175,
@@ -284,23 +284,23 @@ export const uc2024: UCYearData = {
           admits: 2785,
           enrollees: 403,
           admitGpaRange: [4.06, 4.28],
-          enrolleeGpaRange: [4.00, 4.22],
+          enrolleeGpaRange: [4.0, 4.22],
         },
         "Public Health": {
           applicants: 3119,
           admits: 1319,
           enrollees: 299,
           admitGpaRange: [4.06, 4.26],
-          enrolleeGpaRange: [4.00, 4.22],
+          enrolleeGpaRange: [4.0, 4.22],
         },
         "Social Sciences": {
           applicants: 20159,
           admits: 5859,
           enrollees: 928,
-          admitGpaRange: [4.00, 4.25],
-          enrolleeGpaRange: [3.95, 4.20],
+          admitGpaRange: [4.0, 4.25],
+          enrolleeGpaRange: [3.95, 4.2],
         },
-        "Undeclared": {
+        Undeclared: {
           applicants: 10026,
           admits: 4568,
           enrollees: 1484,
@@ -316,8 +316,8 @@ export const uc2024: UCYearData = {
         applicants: 146272,
         admits: 13114,
         enrollees: 6610,
-        admitGpaRange: [4.20, 4.30],
-        enrolleeGpaRange: [4.18, 4.30],
+        admitGpaRange: [4.2, 4.3],
+        enrolleeGpaRange: [4.18, 4.3],
       },
       disciplines: {
         "Arts & Humanities": {
@@ -325,30 +325,30 @@ export const uc2024: UCYearData = {
           admits: 1244,
           enrollees: 630,
           admitGpaRange: [4.04, 4.29],
-          enrolleeGpaRange: [4.00, 4.27],
+          enrolleeGpaRange: [4.0, 4.27],
         },
-        "Business": {
+        Business: {
           applicants: 13634,
           admits: 1110,
           enrollees: 555,
-          admitGpaRange: [4.20, 4.30],
-          enrolleeGpaRange: [4.16, 4.30],
+          admitGpaRange: [4.2, 4.3],
+          enrolleeGpaRange: [4.16, 4.3],
         },
         "Computer Science": {
           applicants: 10530,
           admits: 435,
           enrollees: 143,
-          admitGpaRange: [4.25, 4.30],
+          admitGpaRange: [4.25, 4.3],
           enrolleeGpaRange: [4.25, 4.32],
         },
-        "Education": {
+        Education: {
           applicants: 1265,
           admits: 79,
           enrollees: 53,
           admitGpaRange: [4.07, 4.28],
           enrolleeGpaRange: [4.04, 4.27],
         },
-        "Engineering": {
+        Engineering: {
           applicants: 22301,
           admits: 1329,
           enrollees: 587,
@@ -359,28 +359,28 @@ export const uc2024: UCYearData = {
           applicants: 23472,
           admits: 3092,
           enrollees: 1691,
-          admitGpaRange: [4.21, 4.30],
+          admitGpaRange: [4.21, 4.3],
           enrolleeGpaRange: [4.21, 4.31],
         },
-        "Nursing": {
+        Nursing: {
           applicants: 5790,
           admits: 55,
           enrollees: 40,
-          admitGpaRange: [4.25, 4.30],
+          admitGpaRange: [4.25, 4.3],
           enrolleeGpaRange: [4.23, 4.31],
         },
         "Other Health Science": {
           applicants: 2470,
           admits: 285,
           enrollees: 140,
-          admitGpaRange: [4.20, 4.30],
-          enrolleeGpaRange: [4.20, 4.30],
+          admitGpaRange: [4.2, 4.3],
+          enrolleeGpaRange: [4.2, 4.3],
         },
         "Other/Interdisciplinary": {
           applicants: 4591,
           admits: 597,
           enrollees: 294,
-          admitGpaRange: [4.21, 4.30],
+          admitGpaRange: [4.21, 4.3],
           enrolleeGpaRange: [4.21, 4.31],
         },
         "Physical Sciences/Math": {
@@ -394,22 +394,22 @@ export const uc2024: UCYearData = {
           applicants: 826,
           admits: 117,
           enrollees: 52,
-          admitGpaRange: [4.20, 4.30],
+          admitGpaRange: [4.2, 4.3],
           enrolleeGpaRange: [4.21, 4.29],
         },
         "Social Sciences": {
           applicants: 23884,
           admits: 2234,
           enrollees: 1166,
-          admitGpaRange: [4.17, 4.30],
-          enrolleeGpaRange: [4.14, 4.30],
+          admitGpaRange: [4.17, 4.3],
+          enrolleeGpaRange: [4.14, 4.3],
         },
-        "Undeclared": {
+        Undeclared: {
           applicants: 10059,
           admits: 693,
           enrollees: 436,
           admitGpaRange: [4.17, 4.31],
-          enrolleeGpaRange: [4.16, 4.30],
+          enrolleeGpaRange: [4.16, 4.3],
         },
       },
     },
@@ -431,14 +431,14 @@ export const uc2024: UCYearData = {
           admitGpaRange: [3.31, 3.95],
           enrolleeGpaRange: [3.16, 3.84],
         },
-        "Business": {
+        Business: {
           applicants: 3140,
           admits: 2788,
           enrollees: 140,
           admitGpaRange: [3.34, 3.95],
-          enrolleeGpaRange: [3.20, 3.83],
+          enrolleeGpaRange: [3.2, 3.83],
         },
-        "Engineering": {
+        Engineering: {
           applicants: 6429,
           admits: 5990,
           enrollees: 563,
@@ -463,14 +463,14 @@ export const uc2024: UCYearData = {
           applicants: 3346,
           admits: 3013,
           enrollees: 208,
-          admitGpaRange: [3.50, 4.11],
+          admitGpaRange: [3.5, 4.11],
           enrolleeGpaRange: [3.27, 3.84],
         },
         "Public Health": {
           applicants: 1856,
           admits: 1654,
           enrollees: 91,
-          admitGpaRange: [3.34, 4.00],
+          admitGpaRange: [3.34, 4.0],
           enrolleeGpaRange: [3.31, 3.94],
         },
         "Social Sciences": {
@@ -480,7 +480,7 @@ export const uc2024: UCYearData = {
           admitGpaRange: [3.35, 3.96],
           enrolleeGpaRange: [3.18, 3.78],
         },
-        "Undeclared": {
+        Undeclared: {
           applicants: 5187,
           admits: 4683,
           enrollees: 467,
@@ -497,7 +497,7 @@ export const uc2024: UCYearData = {
         admits: 44343,
         enrollees: 5422,
         admitGpaRange: [3.67, 4.15],
-        enrolleeGpaRange: [3.54, 4.00],
+        enrolleeGpaRange: [3.54, 4.0],
       },
       disciplines: {
         "Arts & Humanities": {
@@ -507,11 +507,11 @@ export const uc2024: UCYearData = {
           admitGpaRange: [3.54, 4.04],
           enrolleeGpaRange: [3.45, 3.88],
         },
-        "Business": {
+        Business: {
           applicants: 4824,
           admits: 3699,
           enrollees: 762,
-          admitGpaRange: [3.72, 4.10],
+          admitGpaRange: [3.72, 4.1],
           enrolleeGpaRange: [3.54, 3.93],
         },
         "Computer Science": {
@@ -521,14 +521,14 @@ export const uc2024: UCYearData = {
           admitGpaRange: [4.03, 4.27],
           enrolleeGpaRange: [3.95, 4.22],
         },
-        "Education": {
+        Education: {
           applicants: 1232,
           admits: 934,
           enrollees: 113,
-          admitGpaRange: [3.49, 4.00],
+          admitGpaRange: [3.49, 4.0],
           enrolleeGpaRange: [3.43, 3.84],
         },
-        "Engineering": {
+        Engineering: {
           applicants: 8486,
           admits: 5979,
           enrollees: 662,
@@ -540,42 +540,42 @@ export const uc2024: UCYearData = {
           admits: 9697,
           enrollees: 1475,
           admitGpaRange: [3.78, 4.19],
-          enrolleeGpaRange: [3.64, 4.00],
+          enrolleeGpaRange: [3.64, 4.0],
         },
         "Other/Interdisciplinary": {
           applicants: 172,
           admits: 149,
           enrollees: 5,
           admitGpaRange: [3.61, 4.07],
-          enrolleeGpaRange: [3.54, 4.00],
+          enrolleeGpaRange: [3.54, 4.0],
         },
         "Physical Sciences/Math": {
           applicants: 2782,
           admits: 2390,
           enrollees: 224,
-          admitGpaRange: [3.70, 4.16],
-          enrolleeGpaRange: [3.60, 4.03],
+          admitGpaRange: [3.7, 4.16],
+          enrolleeGpaRange: [3.6, 4.03],
         },
         "Public Admin": {
           applicants: 703,
           admits: 609,
           enrollees: 73,
           admitGpaRange: [3.44, 4.08],
-          enrolleeGpaRange: [3.29, 3.70],
+          enrolleeGpaRange: [3.29, 3.7],
         },
         "Social Sciences": {
           applicants: 13615,
           admits: 10681,
           enrollees: 1192,
           admitGpaRange: [3.58, 4.07],
-          enrolleeGpaRange: [3.48, 3.90],
+          enrolleeGpaRange: [3.48, 3.9],
         },
-        "Undeclared": {
+        Undeclared: {
           applicants: 4089,
           admits: 3305,
           enrollees: 333,
-          admitGpaRange: [3.48, 4.00],
-          enrolleeGpaRange: [3.40, 3.80],
+          admitGpaRange: [3.48, 4.0],
+          enrolleeGpaRange: [3.4, 3.8],
         },
       },
     },
@@ -586,16 +586,16 @@ export const uc2024: UCYearData = {
         applicants: 134450,
         admits: 35916,
         enrollees: 7331,
-        admitGpaRange: [4.10, 4.28],
+        admitGpaRange: [4.1, 4.28],
         enrolleeGpaRange: [4.04, 4.26],
       },
       disciplines: {
-        "Architecture": {
+        Architecture: {
           applicants: 722,
           admits: 189,
           enrollees: 47,
-          admitGpaRange: [4.00, 4.24],
-          enrolleeGpaRange: [4.00, 4.20],
+          admitGpaRange: [4.0, 4.24],
+          enrolleeGpaRange: [4.0, 4.2],
         },
         "Arts & Humanities": {
           applicants: 7501,
@@ -604,7 +604,7 @@ export const uc2024: UCYearData = {
           admitGpaRange: [4.08, 4.27],
           enrolleeGpaRange: [4.04, 4.25],
         },
-        "Business": {
+        Business: {
           applicants: 8727,
           admits: 1600,
           enrollees: 297,
@@ -615,21 +615,21 @@ export const uc2024: UCYearData = {
           applicants: 12519,
           admits: 1666,
           enrollees: 479,
-          admitGpaRange: [4.16, 4.30],
-          enrolleeGpaRange: [4.12, 4.30],
+          admitGpaRange: [4.16, 4.3],
+          enrolleeGpaRange: [4.12, 4.3],
         },
-        "Education": {
+        Education: {
           applicants: 997,
           admits: 293,
           enrollees: 55,
           admitGpaRange: [4.06, 4.26],
-          enrolleeGpaRange: [4.00, 4.20],
+          enrolleeGpaRange: [4.0, 4.2],
         },
-        "Engineering": {
+        Engineering: {
           applicants: 18443,
           admits: 3102,
           enrollees: 797,
-          admitGpaRange: [4.16, 4.30],
+          admitGpaRange: [4.16, 4.3],
           enrolleeGpaRange: [4.12, 4.29],
         },
         "Life Sciences": {
@@ -651,7 +651,7 @@ export const uc2024: UCYearData = {
           admits: 3162,
           enrollees: 654,
           admitGpaRange: [4.09, 4.28],
-          enrolleeGpaRange: [4.00, 4.25],
+          enrolleeGpaRange: [4.0, 4.25],
         },
         "Physical Sciences/Math": {
           applicants: 11750,
@@ -672,14 +672,14 @@ export const uc2024: UCYearData = {
           admits: 6069,
           enrollees: 1205,
           admitGpaRange: [4.06, 4.27],
-          enrolleeGpaRange: [4.00, 4.23],
+          enrolleeGpaRange: [4.0, 4.23],
         },
-        "Undeclared": {
+        Undeclared: {
           applicants: 10783,
           admits: 3836,
           enrollees: 656,
           admitGpaRange: [4.06, 4.28],
-          enrolleeGpaRange: [4.00, 4.24],
+          enrolleeGpaRange: [4.0, 4.24],
         },
       },
     },
@@ -699,9 +699,9 @@ export const uc2024: UCYearData = {
           admits: 3292,
           enrollees: 315,
           admitGpaRange: [4.09, 4.28],
-          enrolleeGpaRange: [4.00, 4.26],
+          enrolleeGpaRange: [4.0, 4.26],
         },
-        "Business": {
+        Business: {
           applicants: 435,
           admits: 140,
           enrollees: 37,
@@ -715,12 +715,12 @@ export const uc2024: UCYearData = {
           admitGpaRange: [4.25, 4.31],
           enrolleeGpaRange: [4.23, 4.32],
         },
-        "Engineering": {
+        Engineering: {
           applicants: 11873,
           admits: 2445,
           enrollees: 337,
-          admitGpaRange: [4.20, 4.30],
-          enrolleeGpaRange: [4.16, 4.30],
+          admitGpaRange: [4.2, 4.3],
+          enrolleeGpaRange: [4.16, 4.3],
         },
         "Life Sciences": {
           applicants: 20941,
@@ -733,7 +733,7 @@ export const uc2024: UCYearData = {
           applicants: 5201,
           admits: 1433,
           enrollees: 267,
-          admitGpaRange: [4.10, 4.28],
+          admitGpaRange: [4.1, 4.28],
           enrolleeGpaRange: [4.06, 4.27],
         },
         "Physical Sciences/Math": {
@@ -750,11 +750,11 @@ export const uc2024: UCYearData = {
           admitGpaRange: [4.11, 4.28],
           enrolleeGpaRange: [4.07, 4.26],
         },
-        "Undeclared": {
+        Undeclared: {
           applicants: 7768,
           admits: 2799,
           enrollees: 366,
-          admitGpaRange: [4.10, 4.28],
+          admitGpaRange: [4.1, 4.28],
           enrolleeGpaRange: [4.04, 4.27],
         },
       },
@@ -777,32 +777,32 @@ export const uc2024: UCYearData = {
           admitGpaRange: [3.82, 4.18],
           enrolleeGpaRange: [3.75, 4.08],
         },
-        "Business": {
+        Business: {
           applicants: 6749,
           admits: 4067,
           enrollees: 252,
-          admitGpaRange: [3.80, 4.16],
+          admitGpaRange: [3.8, 4.16],
           enrolleeGpaRange: [3.75, 4.03],
         },
         "Computer Science": {
           applicants: 6597,
           admits: 4278,
           enrollees: 593,
-          admitGpaRange: [4.00, 4.26],
-          enrolleeGpaRange: [3.88, 4.20],
+          admitGpaRange: [4.0, 4.26],
+          enrolleeGpaRange: [3.88, 4.2],
         },
-        "Education": {
+        Education: {
           applicants: 405,
           admits: 287,
           enrollees: 18,
           admitGpaRange: [3.87, 4.25],
           enrolleeGpaRange: [3.64, 4.07],
         },
-        "Engineering": {
+        Engineering: {
           applicants: 5018,
           admits: 3450,
           enrollees: 448,
-          admitGpaRange: [3.90, 4.23],
+          admitGpaRange: [3.9, 4.23],
           enrolleeGpaRange: [3.78, 4.09],
         },
         "Life Sciences": {
@@ -831,28 +831,28 @@ export const uc2024: UCYearData = {
           admits: 2481,
           enrollees: 210,
           admitGpaRange: [3.92, 4.25],
-          enrolleeGpaRange: [3.80, 4.13],
+          enrolleeGpaRange: [3.8, 4.13],
         },
         "Public Admin": {
           applicants: 215,
           admits: 114,
           enrollees: 10,
           admitGpaRange: [3.72, 4.16],
-          enrolleeGpaRange: [3.70, 4.09],
+          enrolleeGpaRange: [3.7, 4.09],
         },
         "Social Sciences": {
           applicants: 11938,
           admits: 7493,
           enrollees: 708,
-          admitGpaRange: [3.80, 4.17],
+          admitGpaRange: [3.8, 4.17],
           enrolleeGpaRange: [3.75, 4.07],
         },
-        "Undeclared": {
+        Undeclared: {
           applicants: 11117,
           admits: 7275,
           enrollees: 583,
-          admitGpaRange: [3.83, 4.20],
-          enrolleeGpaRange: [3.75, 4.10],
+          admitGpaRange: [3.83, 4.2],
+          enrolleeGpaRange: [3.75, 4.1],
         },
       },
     },

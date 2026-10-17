@@ -1,7 +1,6 @@
 import type { MetadataRoute } from "next";
 import { allSchools } from "@/data/schools";
 import { trends } from "@/data/trends/index";
-import { INTERNATIONAL_PREVIEW_SLUG } from "@/lib/internationalPreviewConfig";
 import { SITE_URL } from "@/lib/seo";
 
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -22,14 +21,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.9,
   }));
 
-  const trendPages: MetadataRoute.Sitemap = trends
-    .filter((story) => story.slug !== INTERNATIONAL_PREVIEW_SLUG)
-    .map((story) => ({
-      url: `${SITE_URL}/trends/${story.slug}`,
-      lastModified: story.date,
-      changeFrequency: "monthly",
-      priority: 0.7,
-    }));
+  const trendPages: MetadataRoute.Sitemap = trends.map((story) => ({
+    url: `${SITE_URL}/trends/${story.slug}`,
+    lastModified: story.date,
+    changeFrequency: "monthly",
+    priority: 0.7,
+  }));
 
   return [...staticPages, ...schoolPages, ...trendPages];
 }

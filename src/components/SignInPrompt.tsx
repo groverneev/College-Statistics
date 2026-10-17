@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
-import { signIn } from "next-auth/react";
+import { signInWithGoogle } from "@/lib/auth-client";
 
 interface SignInPromptProps {
   open: boolean;
@@ -41,24 +41,17 @@ export default function SignInPrompt({
       aria-modal="true"
       aria-labelledby="signin-prompt-title"
     >
-      <div
-        className="absolute inset-0 bg-black/40"
-        onClick={onClose}
-        aria-hidden="true"
-      />
+      <div className="absolute inset-0 bg-black/40" onClick={onClose} aria-hidden="true" />
 
       <div className="relative w-full max-w-sm max-h-[calc(100dvh-2rem)] overflow-y-auto bg-white rounded-2xl shadow-xl p-6 text-center">
         <div className="text-4xl mb-3">{icon}</div>
-        <h2
-          id="signin-prompt-title"
-          className="text-lg font-semibold text-gray-800 mb-2"
-        >
+        <h2 id="signin-prompt-title" className="text-lg font-semibold text-gray-800 mb-2">
           {title}
         </h2>
         <p className="text-sm text-gray-500 mb-6">{description}</p>
 
         <button
-          onClick={() => signIn("google")}
+          onClick={() => signInWithGoogle()}
           className="w-full min-h-11 flex items-center justify-center space-x-2 bg-white border border-gray-300 rounded-lg px-4 py-2.5 text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors shadow-sm"
         >
           <svg className="w-4 h-4" viewBox="0 0 24 24">

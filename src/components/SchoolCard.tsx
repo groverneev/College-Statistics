@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { getSchoolColor } from "@/data/schools";
 import SaveSchoolButton from "@/components/SaveSchoolButton";
-import { SchoolData } from "@/lib/types";
+import type { SchoolData } from "@/lib/types";
 import {
   formatNumber,
   formatPercent,
@@ -16,10 +16,7 @@ interface SchoolCardProps {
   showSaveButton?: boolean;
 }
 
-export default function SchoolCard({
-  school,
-  showSaveButton = false,
-}: SchoolCardProps) {
+export default function SchoolCard({ school, showSaveButton = false }: SchoolCardProps) {
   const years = getSortedYears(school);
   const latestYear = getLatestYear(school);
   const latestData = getLatestYearData(school);
@@ -34,11 +31,7 @@ export default function SchoolCard({
     <div className="relative">
       {showSaveButton && (
         <div className="absolute top-3 right-3 z-10">
-          <SaveSchoolButton
-            schoolSlug={school.slug}
-            schoolName={school.name}
-            variant="icon"
-          />
+          <SaveSchoolButton schoolSlug={school.slug} schoolName={school.name} variant="icon" />
         </div>
       )}
 
@@ -72,14 +65,14 @@ export default function SchoolCard({
             </div>
             {typeof latestData.testScores.sat?.composite?.p25 === "number" &&
               typeof latestData.testScores.sat.composite.p75 === "number" && (
-              <div>
-                <div className="text-lg font-semibold text-gray-700">
-                  {latestData.testScores.sat.composite.p25}-
-                  {latestData.testScores.sat.composite.p75}
+                <div>
+                  <div className="text-lg font-semibold text-gray-700">
+                    {latestData.testScores.sat.composite.p25}-
+                    {latestData.testScores.sat.composite.p75}
+                  </div>
+                  <div className="text-xs text-gray-500">SAT Range</div>
                 </div>
-                <div className="text-xs text-gray-500">SAT Range</div>
-              </div>
-            )}
+              )}
             <div>
               <div className="text-lg font-semibold text-gray-700">
                 {typeof latestData.costs.totalCOA === "number"

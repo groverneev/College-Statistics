@@ -32,48 +32,46 @@ export default async function Image({ params }: { params: Promise<{ school: stri
   ];
 
   return new ImageResponse(
-    (
-      <div
-        style={{
-          width: "100%",
-          height: "100%",
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "space-between",
-          padding: "72px",
-          background: `linear-gradient(135deg, ${color} 0%, ${color}dd 100%)`,
-          color: "white",
-        }}
-      >
-        <div style={{ display: "flex", flexDirection: "column" }}>
-          <div style={{ fontSize: 32, opacity: 0.8, marginBottom: 16 }}>
-            {`Admissions Statistics${latestYear ? ` · ${latestYear}` : ""}`}
-          </div>
-          <div style={{ fontSize: 72, fontWeight: 700, lineHeight: 1.1 }}>
-            {schoolData?.name ?? SITE_NAME}
-          </div>
+    <div
+      style={{
+        width: "100%",
+        height: "100%",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "space-between",
+        padding: "72px",
+        background: `linear-gradient(135deg, ${color} 0%, ${color}dd 100%)`,
+        color: "white",
+      }}
+    >
+      <div style={{ display: "flex", flexDirection: "column" }}>
+        <div style={{ fontSize: 32, opacity: 0.8, marginBottom: 16 }}>
+          {`Admissions Statistics${latestYear ? ` · ${latestYear}` : ""}`}
         </div>
-        <div style={{ display: "flex", gap: 32 }}>
-          {stats.map((stat) => (
-            <div
-              key={stat.label}
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                flex: 1,
-                padding: "28px 32px",
-                borderRadius: 20,
-                background: "rgba(255, 255, 255, 0.14)",
-              }}
-            >
-              <div style={{ fontSize: 26, opacity: 0.8, marginBottom: 8 }}>{stat.label}</div>
-              <div style={{ fontSize: 50, fontWeight: 700, whiteSpace: "nowrap" }}>{stat.value}</div>
-            </div>
-          ))}
+        <div style={{ fontSize: 72, fontWeight: 700, lineHeight: 1.1 }}>
+          {schoolData?.name ?? SITE_NAME}
         </div>
-        <div style={{ fontSize: 28, opacity: 0.8 }}>{`${SITE_NAME} · Common Data Set`}</div>
       </div>
-    ),
-    size
+      <div style={{ display: "flex", gap: 32 }}>
+        {stats.map((stat) => (
+          <div
+            key={stat.label}
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              flex: 1,
+              padding: "28px 32px",
+              borderRadius: 20,
+              background: "rgba(255, 255, 255, 0.14)",
+            }}
+          >
+            <div style={{ fontSize: 26, opacity: 0.8, marginBottom: 8 }}>{stat.label}</div>
+            <div style={{ fontSize: 50, fontWeight: 700, whiteSpace: "nowrap" }}>{stat.value}</div>
+          </div>
+        ))}
+      </div>
+      <div style={{ fontSize: 28, opacity: 0.8 }}>{`${SITE_NAME} · Common Data Set`}</div>
+    </div>,
+    size,
   );
 }

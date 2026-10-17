@@ -5,7 +5,7 @@ import { useSavedSchools } from "@/components/SavedSchoolsContext";
 import { schoolDataMap } from "@/data/schools";
 import { getLatestYearData, formatPercent } from "@/utils/dataHelpers";
 
-type Category = "REACH" | "TARGET" | "SAFETY" | "UNDECIDED";
+import type { Category } from "@/db/schema";
 
 const CATEGORY_CONFIG: { value: Category; label: string; color: string }[] = [
   { value: "REACH", label: "Reach", color: "#ef4444" },
@@ -39,10 +39,7 @@ export default function HomeSavedSchools() {
           if (schools.length === 0) return null;
 
           return (
-            <div
-              key={value}
-              className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4"
-            >
+            <div key={value} className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4">
               <div
                 className="flex items-center gap-2 flex-shrink-0 sm:w-28 border-l-4 pl-3"
                 style={{ borderColor: color }}
@@ -69,9 +66,7 @@ export default function HomeSavedSchools() {
                     >
                       {school!.name}
                       {rate !== undefined && (
-                        <span style={{ color: "#9ca1a8" }}>
-                          {formatPercent(rate)}
-                        </span>
+                        <span style={{ color: "#9ca1a8" }}>{formatPercent(rate)}</span>
                       )}
                     </Link>
                   );

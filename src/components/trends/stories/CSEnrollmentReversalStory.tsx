@@ -36,7 +36,7 @@ function formatK(val: number | string | undefined) {
   return `${(val / 1000).toFixed(0)}k`;
 }
 
-function fmtNum(val: number | string | undefined) {
+function fmtNum(val: unknown) {
   if (typeof val !== "number") return "";
   return val.toLocaleString();
 }
@@ -64,7 +64,10 @@ function MobileDeclinesList({
           <div className="h-2 overflow-hidden rounded-full bg-gray-100">
             <div
               className="h-full rounded-full"
-              style={{ width: `${(Math.abs(row.change) / maxMagnitude) * 100}%`, backgroundColor: RED }}
+              style={{
+                width: `${(Math.abs(row.change) / maxMagnitude) * 100}%`,
+                backgroundColor: RED,
+              }}
             />
           </div>
         </div>
@@ -98,9 +101,7 @@ function Section({
           ))}
         </ul>
       )}
-      {coda && (
-        <p className="text-gray-700 leading-relaxed text-sm mt-3">{coda}</p>
-      )}
+      {coda && <p className="text-gray-700 leading-relaxed text-sm mt-3">{coda}</p>}
     </div>
   );
 }
@@ -143,8 +144,8 @@ function ApCsaChart() {
         </LineChart>
       </ResponsiveContainer>
       <p className="text-xs text-gray-400 mt-3">
-        The 2026 count (~81,500) is down about 17% from the 2024 peak of 98,136,
-        returning the exam to its 2022–2023 range. Source: College Board.
+        The 2026 count (~81,500) is down about 17% from the 2024 peak of 98,136, returning the exam
+        to its 2022–2023 range. Source: College Board.
       </p>
     </div>
   );
@@ -161,9 +162,7 @@ function SciIndexedChart() {
 
   return (
     <div className="card p-4 sm:p-6">
-      <h3 className="text-lg font-semibold text-gray-800 mb-1">
-        AP Science Exams Indexed to 2024
-      </h3>
+      <h3 className="text-lg font-semibold text-gray-800 mb-1">AP Science Exams Indexed to 2024</h3>
       <p className="text-sm text-gray-500 mb-4">
         2024 = 100 · each exam indexed to its own 2024 total · 2026 preliminary
       </p>
@@ -206,8 +205,8 @@ function SciIndexedChart() {
         </LineChart>
       </ResponsiveContainer>
       <p className="text-xs text-gray-400 mt-3">
-        By 2026, Biology and Chemistry are up about 22% and Physics 1 about 12%,
-        while CS A is down about 17%. Source: College Board.
+        By 2026, Biology and Chemistry are up about 22% and Physics 1 about 12%, while CS A is down
+        about 17%. Source: College Board.
       </p>
     </div>
   );
@@ -230,11 +229,7 @@ function CsSplitChart() {
         <LineChart data={data} margin={{ top: 4, right: 16, left: 8, bottom: 0 }}>
           <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
           <XAxis dataKey="year" tick={{ fontSize: 13 }} />
-          <YAxis
-            domain={[0, 190000]}
-            tickFormatter={formatK}
-            tick={{ fontSize: 12 }}
-          />
+          <YAxis domain={[0, 190000]} tickFormatter={formatK} tick={{ fontSize: 12 }} />
           <Tooltip formatter={fmtNum} />
           <Legend />
           <Line
@@ -254,9 +249,8 @@ function CsSplitChart() {
         </LineChart>
       </ResponsiveContainer>
       <p className="text-xs text-gray-400 mt-3">
-        Both peaked in 2024. CS Principles held roughly flat through 2025 before
-        dipping; CS A fell in both 2025 and 2026, about 2.5x faster off the peak.
-        Source: College Board.
+        Both peaked in 2024. CS Principles held roughly flat through 2025 before dipping; CS A fell
+        in both 2025 and 2026, about 2.5x faster off the peak. Source: College Board.
       </p>
     </div>
   );
@@ -270,9 +264,7 @@ function DeclinesBySourceChart() {
 
   return (
     <div className="card p-4 sm:p-6">
-      <h3 className="text-lg font-semibold text-gray-800 mb-1">
-        CS Enrollment Declines by Source
-      </h3>
+      <h3 className="text-lg font-semibold text-gray-800 mb-1">CS Enrollment Declines by Source</h3>
       <p className="text-sm text-gray-500 mb-4">
         Percent change · measurement window noted per bar
       </p>
@@ -291,28 +283,16 @@ function DeclinesBySourceChart() {
               tickFormatter={(v) => `${v}%`}
               tick={{ fontSize: 12 }}
             />
-            <YAxis
-              type="category"
-              dataKey="source"
-              tick={{ fontSize: 11 }}
-              width={140}
-            />
+            <YAxis type="category" dataKey="source" tick={{ fontSize: 11 }} width={140} />
             <Tooltip formatter={(v) => `${v}%`} />
             <ReferenceLine x={0} stroke="#9CA3AF" />
-            <Bar
-              dataKey="change"
-              fill={RED}
-              radius={[0, 2, 2, 0]}
-              name="Change"
-              barSize={28}
-            />
+            <Bar dataKey="change" fill={RED} radius={[0, 2, 2, 0]} name="Change" barSize={28} />
           </BarChart>
         </ResponsiveContainer>
       </div>
       <p className="text-xs text-gray-400 mt-3">
-        Windows differ: AP is a two-year change from the 2024 peak; UC is a
-        two-year change; National Student Clearinghouse and Goldman figures are
-        single-year (fall 2025 / 2025–26).
+        Windows differ: AP is a two-year change from the 2024 peak; UC is a two-year change;
+        National Student Clearinghouse and Goldman figures are single-year (fall 2025 / 2025–26).
       </p>
     </div>
   );
@@ -351,25 +331,16 @@ export default function CSEnrollmentReversalStory() {
       <Section heading={sections.apPeak.heading} body={sections.apPeak.body} />
       <ApCsaChart />
 
-      <Section
-        heading={sections.labSciences.heading}
-        body={sections.labSciences.body}
-      />
+      <Section heading={sections.labSciences.heading} body={sections.labSciences.body} />
       <SciIndexedChart />
 
       <Section heading={sections.csaVsCsp.heading} body={sections.csaVsCsp.body} />
       <CsSplitChart />
 
       <Section heading={sections.ucSystem.heading} body={sections.ucSystem.body} />
-      <Section
-        heading={sections.elitePrivates.heading}
-        bullets={sections.elitePrivates.bullets}
-      />
+      <Section heading={sections.elitePrivates.heading} bullets={sections.elitePrivates.bullets} />
 
-      <Section
-        heading={sections.nationalContext.heading}
-        body={sections.nationalContext.body}
-      />
+      <Section heading={sections.nationalContext.heading} body={sections.nationalContext.body} />
       <DeclinesBySourceChart />
 
       <Section

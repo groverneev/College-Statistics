@@ -70,10 +70,7 @@ function signed(n: number, digits = 1): string {
 function Delta({ value, suffix }: { value: number; suffix: string }) {
   return (
     <>
-      <span
-        className="font-semibold"
-        style={{ color: value >= 0 ? "#0E6584" : POPPY }}
-      >
+      <span className="font-semibold" style={{ color: value >= 0 ? "#0E6584" : POPPY }}>
         {signed(value)}
         {suffix}
       </span>{" "}
@@ -100,7 +97,9 @@ function FunnelStage({
   const metaOverFill = width > 70;
   return (
     <div className="grid items-center gap-3" style={{ gridTemplateColumns: "6.5rem 1fr" }}>
-      <div className="text-[11px] font-semibold uppercase tracking-wider text-gray-500">{label}</div>
+      <div className="text-[11px] font-semibold uppercase tracking-wider text-gray-500">
+        {label}
+      </div>
       <div className="relative h-9 overflow-hidden rounded bg-gray-100">
         <div
           className="absolute inset-y-0 left-0 flex items-center justify-between gap-3 rounded px-3.5"
@@ -177,7 +176,8 @@ function SystemwideView() {
             value: fmtNum(applied),
             detail: (
               <>
-                <Delta value={appGrowth} suffix="%" />since Fall {CSU_EARLIEST_FALL}
+                <Delta value={appGrowth} suffix="%" />
+                since Fall {CSU_EARLIEST_FALL}
               </>
             ),
           },
@@ -200,7 +200,8 @@ function SystemwideView() {
             value: fmtNum(enrolled),
             detail: (
               <>
-                <Delta value={enrGrowth} suffix="%" />since Fall {CSU_EARLIEST_FALL}
+                <Delta value={enrGrowth} suffix="%" />
+                since Fall {CSU_EARLIEST_FALL}
               </>
             ),
           },
@@ -337,7 +338,7 @@ function CampusView() {
           },
         };
       }),
-    [selected]
+    [selected],
   );
 
   return (
@@ -371,7 +372,8 @@ function CampusView() {
             value: fmtNum(latest.applied),
             detail: (
               <>
-                <Delta value={appGrowth} suffix="%" />since Fall {CSU_EARLIEST_FALL}
+                <Delta value={appGrowth} suffix="%" />
+                since Fall {CSU_EARLIEST_FALL}
               </>
             ),
           },
@@ -411,7 +413,10 @@ function CampusView() {
           <GroupedBars
             groups={csuData.fallYears.map((y) => ({
               key: `Fall ’${String(y).slice(2)}`,
-              values: csuData.campuses[selected][String(y)] as unknown as Record<string, number | null>,
+              values: csuData.campuses[selected][String(y)] as unknown as Record<
+                string,
+                number | null
+              >,
             }))}
             series={[
               { key: "applied", name: "Applied", color: HEAT_RAMP[7] },
@@ -478,7 +483,7 @@ function HeatCell({ campus, area, level }: { campus: string; area: string; level
             { label: "Admit rate", value: fmtPct(rate) },
           ],
         }
-      : null
+      : null,
   );
 
   if (!row || rate == null) {
@@ -556,7 +561,9 @@ function MatrixView() {
           <div className="overflow-x-auto pb-1">
             <div
               className="grid min-w-[46rem] gap-0.5"
-              style={{ gridTemplateColumns: `8.5rem repeat(${csuMatrixAreas.length}, minmax(2.4rem, 1fr))` }}
+              style={{
+                gridTemplateColumns: `8.5rem repeat(${csuMatrixAreas.length}, minmax(2.4rem, 1fr))`,
+              }}
             >
               <div className="sticky left-0 z-10 bg-white" />
               {csuMatrixAreas.map((area) => (
@@ -595,12 +602,17 @@ function MatrixView() {
               >
                 <span className="text-right text-[11px] tabular-nums text-gray-400">{i + 1}</span>
                 <span className="min-w-0">
-                  <span className="block text-xs font-medium leading-snug text-gray-800">{p.major}</span>
+                  <span className="block text-xs font-medium leading-snug text-gray-800">
+                    {p.major}
+                  </span>
                   <span className="block text-[11px] text-gray-400">
                     {campusName(p.campus)} · {fmtNum(p.applied)} applicants
                   </span>
                 </span>
-                <span className="text-right text-sm font-semibold tabular-nums" style={{ color: "#08465A" }}>
+                <span
+                  className="text-right text-sm font-semibold tabular-nums"
+                  style={{ color: "#08465A" }}
+                >
                   {fmtPct(p.admitRate)}
                 </span>
               </li>
@@ -627,7 +639,10 @@ function PipelineView() {
 
   const points: ScatterPoint[] = useMemo(() => {
     const biggest = new Set(
-      [...csuData.counties].sort((a, b) => b.graduates - a.graduates).slice(0, 4).map((c) => c.name)
+      [...csuData.counties]
+        .sort((a, b) => b.graduates - a.graduates)
+        .slice(0, 4)
+        .map((c) => c.name),
     );
     return csuData.counties.map((c) => ({
       key: c.name,
@@ -753,7 +768,7 @@ export default function CSUPageClient() {
 
   const majorCount = useMemo(
     () => new Set(csuData.largest.concat(csuData.mostSelective).map((p) => p.major)).size,
-    []
+    [],
   );
 
   return (
@@ -766,10 +781,15 @@ export default function CSUPageClient() {
               <h1 className="text-xl font-bold text-gray-900">CSU Explorer</h1>
               <p className="text-xs text-gray-400">
                 Fall {CSU_EARLIEST_FALL}–{CSU_LATEST_FALL} admissions ·{" "}
-                {csuCampusesBySelectivity.length} campuses · {csuAreasByVolume.length} discipline areas
+                {csuCampusesBySelectivity.length} campuses · {csuAreasByVolume.length} discipline
+                areas
               </p>
             </div>
-            <nav className="mt-3 flex gap-0.5 overflow-x-auto" role="tablist" aria-label="CSU dashboards">
+            <nav
+              className="mt-3 flex gap-0.5 overflow-x-auto"
+              role="tablist"
+              aria-label="CSU dashboards"
+            >
               {TABS.map((item) => {
                 const active = item.id === tab;
                 return (

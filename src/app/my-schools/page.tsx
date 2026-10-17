@@ -1,6 +1,6 @@
 import { redirect } from "next/navigation";
 import SavedSchoolsDashboard from "@/components/SavedSchoolsDashboard";
-import { getSession } from "@/lib/savedSchools";
+import { getSession } from "@/lib/auth";
 
 export const metadata = {
   title: "My Schools – College Statistics",

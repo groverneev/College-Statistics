@@ -10,10 +10,5 @@ export const metadata = pageMetadata({
 });
 
 export default function UCPage() {
-  return (
-    <UCPageClient
-      dataByYear={ucDataByYear}
-      availableYears={availableUCYears}
-    />
-  );
+  return <UCPageClient dataByYear={ucDataByYear} availableYears={availableUCYears} />;
 }

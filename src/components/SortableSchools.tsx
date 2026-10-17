@@ -23,14 +23,7 @@ interface SortableSchoolsProps {
   items: SortableSchoolItem[];
 }
 
-type SortValue =
-  | "acceptance"
-  | "name"
-  | "classSize"
-  | "sat"
-  | "cost"
-  | "yield"
-  | "years";
+type SortValue = "acceptance" | "name" | "classSize" | "sat" | "cost" | "yield" | "years";
 
 type Direction = "asc" | "desc";
 
@@ -44,10 +37,7 @@ const SORT_OPTIONS: { value: SortValue; label: string; defaultDir: Direction }[]
   { value: "years", label: "Years of data", defaultDir: "desc" },
 ];
 
-function numericField(
-  metric: SchoolSortMetric,
-  sort: SortValue
-): number | null {
+function numericField(metric: SchoolSortMetric, sort: SortValue): number | null {
   switch (sort) {
     case "acceptance":
       return metric.acceptanceRate;
@@ -66,11 +56,7 @@ function numericField(
   }
 }
 
-function compareNumeric(
-  a: number | null,
-  b: number | null,
-  dir: Direction
-): number {
+function compareNumeric(a: number | null, b: number | null, dir: Direction): number {
   if (a === null && b === null) return 0;
   if (a === null) return 1;
   if (b === null) return -1;
@@ -80,7 +66,7 @@ function compareNumeric(
 function sortItems(
   items: SortableSchoolItem[],
   sort: SortValue,
-  dir: Direction
+  dir: Direction,
 ): SortableSchoolItem[] {
   const byNameAsc = (a: SortableSchoolItem, b: SortableSchoolItem) =>
     a.metric.name.localeCompare(b.metric.name);
@@ -92,11 +78,7 @@ function sortItems(
         ? dir === "asc"
           ? byNameAsc(a, b)
           : -byNameAsc(a, b)
-        : compareNumeric(
-            numericField(a.metric, sort),
-            numericField(b.metric, sort),
-            dir
-          );
+        : compareNumeric(numericField(a.metric, sort), numericField(b.metric, sort), dir);
     return primary !== 0 ? primary : byNameAsc(a, b);
   });
   return sorted;
@@ -130,9 +112,7 @@ export default function SortableSchools({ items }: SortableSchoolsProps) {
   return (
     <>
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-6">
-        <h2 className="text-2xl font-semibold text-gray-800">
-          All Schools ({items.length})
-        </h2>
+        <h2 className="text-2xl font-semibold text-gray-800">All Schools ({items.length})</h2>
 
         <div className="grid grid-cols-[minmax(0,1fr)_auto] sm:flex sm:items-center gap-2 w-full sm:w-auto text-sm text-gray-600">
           <span className="col-span-2 sm:col-span-1 font-medium">Sort by</span>
@@ -152,11 +132,7 @@ export default function SortableSchools({ items }: SortableSchoolsProps) {
                 strokeWidth={2}
                 viewBox="0 0 24 24"
               >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M19 9l-7 7-7-7"
-                />
+                <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
               </svg>
             </button>
 
@@ -206,9 +182,7 @@ export default function SortableSchools({ items }: SortableSchoolsProps) {
           <button
             type="button"
             onClick={() => setDirection((d) => (d === "asc" ? "desc" : "asc"))}
-            title={`Reverse order (currently ${
-              direction === "asc" ? "ascending" : "descending"
-            })`}
+            title={`Reverse order (currently ${direction === "asc" ? "ascending" : "descending"})`}
             aria-label="Reverse sort order"
             className="flex min-h-11 min-w-11 items-center justify-center rounded-lg border border-gray-300 bg-white p-2 shadow-sm transition-colors hover:bg-gray-50 focus:border-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400"
           >
@@ -221,11 +195,7 @@ export default function SortableSchools({ items }: SortableSchoolsProps) {
               strokeWidth={2}
               viewBox="0 0 24 24"
             >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M12 5v14M19 12l-7 7-7-7"
-              />
+              <path strokeLinecap="round" strokeLinejoin="round" d="M12 5v14M19 12l-7 7-7-7" />
             </svg>
           </button>
         </div>

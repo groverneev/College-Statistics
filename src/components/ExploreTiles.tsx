@@ -12,8 +12,7 @@ const tiles: Tile[] = [
   {
     href: "/schools",
     title: "Browse & Compare",
-    description:
-      "Sort every school by acceptance rate, class size, test scores, cost, and yield.",
+    description: "Sort every school by acceptance rate, class size, test scores, cost, and yield.",
     cta: "Browse schools",
     visual: (
       <svg viewBox="0 0 120 40" className="w-28 h-10" aria-hidden>
@@ -74,19 +73,13 @@ export default function ExploreTiles() {
           <Link key={tile.href} href={tile.href} className="group">
             <div className="explore-card rounded-xl p-6 h-full flex flex-col">
               <div className="mb-5">{tile.visual}</div>
-              <h3
-                className="text-lg font-semibold mb-1.5"
-                style={{ color: "#0d0e10" }}
-              >
+              <h3 className="text-lg font-semibold mb-1.5" style={{ color: "#0d0e10" }}>
                 {tile.title}
               </h3>
               <p className="text-sm flex-1" style={{ color: "#5a5f66" }}>
                 {tile.description}
               </p>
-              <span
-                className="mt-5 text-sm font-medium"
-                style={{ color: "#3a3d43" }}
-              >
+              <span className="mt-5 text-sm font-medium" style={{ color: "#3a3d43" }}>
                 {tile.cta}{" "}
                 <span
                   aria-hidden

@@ -1,4 +1,4 @@
-import { UCYearData } from "./types";
+import type { UCYearData } from "./types";
 import { uc2025 } from "./2025";
 import { uc2024 } from "./2024";
 

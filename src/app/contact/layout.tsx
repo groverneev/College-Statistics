@@ -2,8 +2,7 @@ import { pageMetadata } from "@/lib/seo";
 
 export const metadata = pageMetadata({
   title: "Contact – College Statistics",
-  description:
-    "Questions, feedback, or suggestions about College Statistics? Get in touch.",
+  description: "Questions, feedback, or suggestions about College Statistics? Get in touch.",
   path: "/contact",
 });
 

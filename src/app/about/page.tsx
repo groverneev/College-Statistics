@@ -40,34 +40,27 @@ export default function AboutPage() {
 
       <div className="max-w-4xl mx-auto px-4 py-12">
         <section className="card p-5 sm:p-8 mb-8">
-          <h2 className="text-2xl font-bold text-gray-800 mb-4">
-            About College Statistics
-          </h2>
+          <h2 className="text-2xl font-bold text-gray-800 mb-4">About College Statistics</h2>
           <p className="text-gray-600 mb-4">
-            College Statistics is a free tool designed to help students,
-            parents, and educators explore and compare admissions data from top
-            universities. Our data comes directly from official Common Data Set
-            (CDS) reports, ensuring accuracy and reliability.
+            College Statistics is a free tool designed to help students, parents, and educators
+            explore and compare admissions data from top universities. Our data comes directly from
+            official Common Data Set (CDS) reports, ensuring accuracy and reliability.
           </p>
           <p className="text-gray-600 mb-4">
-            The Common Data Set initiative is a collaborative effort among
-            colleges, publishers, and data users to improve the quality and
-            accuracy of information provided to students and their families.
-            Each year, participating institutions complete a standardized survey
-            with data about admissions, enrollment, costs, financial aid, and
-            more.
+            The Common Data Set initiative is a collaborative effort among colleges, publishers, and
+            data users to improve the quality and accuracy of information provided to students and
+            their families. Each year, participating institutions complete a standardized survey
+            with data about admissions, enrollment, costs, financial aid, and more.
           </p>
           <p className="text-gray-600">
-            We believe that access to clear, accurate college data shouldn&apos;t
-            require expensive consultants or confusing government databases. Our
-            goal is to make this information accessible to everyone.
+            We believe that access to clear, accurate college data shouldn&apos;t require expensive
+            consultants or confusing government databases. Our goal is to make this information
+            accessible to everyone.
           </p>
         </section>
 
         <section className="card p-5 sm:p-8">
-          <h2 className="text-2xl font-bold text-gray-800 mb-6">
-            About the Creator
-          </h2>
+          <h2 className="text-2xl font-bold text-gray-800 mb-6">About the Creator</h2>
           <div className="flex flex-col md:flex-row gap-8">
             <div className="flex-shrink-0 self-center md:self-auto">
               <Image
@@ -80,22 +73,16 @@ export default function AboutPage() {
             </div>
 
             <div className="flex-1">
-              <h3 className="text-xl font-semibold text-gray-800 mb-1">
-                Neev Grover
-              </h3>
-              <p className="text-gray-500 mb-4">
-                Junior at the Harker School
-              </p>
+              <h3 className="text-xl font-semibold text-gray-800 mb-1">Neev Grover</h3>
+              <p className="text-gray-500 mb-4">Junior at the Harker School</p>
               <p className="text-gray-600 mb-4">
-                I&apos;m passionate about making information accessible and building
-                tools that help people make better decisions. College Statistics
-                started as a personal project to help myself and my peers
-                navigate the college admissions process with better data.
+                I&apos;m passionate about making information accessible and building tools that help
+                people make better decisions. College Statistics started as a personal project to
+                help myself and my peers navigate the college admissions process with better data.
               </p>
               <p className="text-gray-600 mb-6">
-                When I&apos;m not coding, you can find me writing about technology on
-                my blog, exploring new ideas, and working on various side
-                projects.
+                When I&apos;m not coding, you can find me writing about technology on my blog,
+                exploring new ideas, and working on various side projects.
               </p>
 
               <div className="flex flex-wrap gap-3">
@@ -134,12 +121,7 @@ export default function AboutPage() {
             className="inline-flex items-center px-6 py-3 bg-gray-800 hover:bg-gray-900 text-white rounded-lg font-medium transition-colors"
           >
             Get in Touch
-            <svg
-              className="w-4 h-4 ml-2"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
+            <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path
                 strokeLinecap="round"
                 strokeLinejoin="round"

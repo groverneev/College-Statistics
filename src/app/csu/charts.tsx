@@ -1,13 +1,6 @@
 "use client";
 
-import {
-  createContext,
-  useCallback,
-  useContext,
-  useMemo,
-  useState,
-  type ReactNode,
-} from "react";
+import { createContext, useCallback, useContext, useMemo, useState, type ReactNode } from "react";
 
 export const TEAL = "#0A84A8";
 export const TEAL_DEEP = "#08465A";
@@ -109,7 +102,7 @@ export function TooltipProvider({ children }: { children: ReactNode }) {
       move: place,
       hide: () => setContent(null),
     }),
-    [place]
+    [place],
   );
 
   const width = 250;
@@ -317,25 +310,59 @@ export function LineChart({
   lo -= span * 0.18;
   hi += span * 0.18;
 
-  const x = (i: number) => pad.left + (points.length === 1 ? iw / 2 : (i / (points.length - 1)) * iw);
+  const x = (i: number) =>
+    pad.left + (points.length === 1 ? iw / 2 : (i / (points.length - 1)) * iw);
   const y = (v: number) => pad.top + ih - ((v - lo) / (hi - lo)) * ih;
 
   const ticks = [lo + (hi - lo) * 0.08, lo + (hi - lo) * 0.5, hi - (hi - lo) * 0.08];
-  const path = points.map((p, i) => `${i ? "L" : "M"}${x(i).toFixed(1)},${y(p.value).toFixed(1)}`).join(" ");
+  const path = points
+    .map((p, i) => `${i ? "L" : "M"}${x(i).toFixed(1)},${y(p.value).toFixed(1)}`)
+    .join(" ");
   const last = points[points.length - 1];
 
   return (
-    <svg viewBox={`0 0 ${width} ${height}`} width="100%" height={height} role="img" aria-label={label}>
+    <svg
+      viewBox={`0 0 ${width} ${height}`}
+      width="100%"
+      height={height}
+      role="img"
+      aria-label={label}
+    >
       {ticks.map((t) => (
         <g key={t}>
-          <line x1={pad.left} x2={width - pad.right} y1={y(t)} y2={y(t)} stroke="#f1f3f5" strokeWidth={1} />
-          <text x={pad.left - 7} y={y(t) + 3.5} textAnchor="end" fontSize={10} fill="#9ca3af" className="tabular-nums">
+          <line
+            x1={pad.left}
+            x2={width - pad.right}
+            y1={y(t)}
+            y2={y(t)}
+            stroke="#f1f3f5"
+            strokeWidth={1}
+          />
+          <text
+            x={pad.left - 7}
+            y={y(t) + 3.5}
+            textAnchor="end"
+            fontSize={10}
+            fill="#9ca3af"
+            className="tabular-nums"
+          >
             {formatValue(t)}
           </text>
         </g>
       ))}
-      <path d={`${path} L${x(points.length - 1).toFixed(1)},${pad.top + ih} L${x(0).toFixed(1)},${pad.top + ih} Z`} fill={color} fillOpacity={0.1} />
-      <path d={path} fill="none" stroke={color} strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" />
+      <path
+        d={`${path} L${x(points.length - 1).toFixed(1)},${pad.top + ih} L${x(0).toFixed(1)},${pad.top + ih} Z`}
+        fill={color}
+        fillOpacity={0.1}
+      />
+      <path
+        d={path}
+        fill="none"
+        stroke={color}
+        strokeWidth={2}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
       {points.map((p, i) => (
         <g key={p.key}>
           <circle
@@ -386,17 +413,38 @@ export function GroupedBars({
   const iw = width - pad.left - pad.right;
   const ih = height - pad.top - pad.bottom;
 
-  const peak = Math.max(...groups.flatMap((g) => series.map((s) => g.values[s.key] ?? 0)), 1) * 1.08;
+  const peak =
+    Math.max(...groups.flatMap((g) => series.map((s) => g.values[s.key] ?? 0)), 1) * 1.08;
   const groupWidth = iw / groups.length;
   const barWidth = Math.min(20, (groupWidth - 12) / series.length);
   const y = (v: number) => pad.top + ih - (v / peak) * ih;
 
   return (
-    <svg viewBox={`0 0 ${width} ${height}`} width="100%" height={height} role="img" aria-label={label}>
+    <svg
+      viewBox={`0 0 ${width} ${height}`}
+      width="100%"
+      height={height}
+      role="img"
+      aria-label={label}
+    >
       {[0, 0.25, 0.5, 0.75, 1].map((f) => (
         <g key={f}>
-          <line x1={pad.left} x2={width - pad.right} y1={y(peak * f)} y2={y(peak * f)} stroke="#f1f3f5" strokeWidth={1} />
-          <text x={pad.left - 7} y={y(peak * f) + 3.5} textAnchor="end" fontSize={10} fill="#9ca3af" className="tabular-nums">
+          <line
+            x1={pad.left}
+            x2={width - pad.right}
+            y1={y(peak * f)}
+            y2={y(peak * f)}
+            stroke="#f1f3f5"
+            strokeWidth={1}
+          />
+          <text
+            x={pad.left - 7}
+            y={y(peak * f) + 3.5}
+            textAnchor="end"
+            fontSize={10}
+            fill="#9ca3af"
+            className="tabular-nums"
+          >
             {formatValue(peak * f)}
           </text>
         </g>
@@ -442,7 +490,19 @@ export interface ScatterPoint {
   tooltip?: TooltipContent;
 }
 
-function Dot({ point, cx, cy, r, fill }: { point: ScatterPoint; cx: number; cy: number; r: number; fill: string }) {
+function Dot({
+  point,
+  cx,
+  cy,
+  r,
+  fill,
+}: {
+  point: ScatterPoint;
+  cx: number;
+  cy: number;
+  r: number;
+  fill: string;
+}) {
   const hover = useHover(point.tooltip ?? null);
   return (
     <circle
@@ -492,20 +552,48 @@ export function Scatter({
   const radius = (p: ScatterPoint) => 4 + Math.sqrt(p.size / maxSize) * 13;
 
   const yTicks = [20, 30, 40, 50, 60, 70].filter((t) => t >= yLo && t <= yHi);
-  const xTicks = [100, 1000, 10000, 50000].filter((v) => Math.log10(v) >= xLo && Math.log10(v) <= xHi);
+  const xTicks = [100, 1000, 10000, 50000].filter(
+    (v) => Math.log10(v) >= xLo && Math.log10(v) <= xHi,
+  );
   const drawOrder = [...points].sort((a, b) => b.size - a.size);
 
   return (
-    <svg viewBox={`0 0 ${width} ${height}`} width="100%" height={height} role="img" aria-label={`${yLabel} against ${xLabel}`}>
+    <svg
+      viewBox={`0 0 ${width} ${height}`}
+      width="100%"
+      height={height}
+      role="img"
+      aria-label={`${yLabel} against ${xLabel}`}
+    >
       {yTicks.map((t) => (
         <g key={`y${t}`}>
-          <line x1={pad.left} x2={width - pad.right} y1={y(t)} y2={y(t)} stroke="#f1f3f5" strokeWidth={1} />
-          <text x={pad.left - 7} y={y(t) + 3.5} textAnchor="end" fontSize={10} fill="#9ca3af">{`${t}%`}</text>
+          <line
+            x1={pad.left}
+            x2={width - pad.right}
+            y1={y(t)}
+            y2={y(t)}
+            stroke="#f1f3f5"
+            strokeWidth={1}
+          />
+          <text
+            x={pad.left - 7}
+            y={y(t) + 3.5}
+            textAnchor="end"
+            fontSize={10}
+            fill="#9ca3af"
+          >{`${t}%`}</text>
         </g>
       ))}
       {xTicks.map((v) => (
         <g key={`x${v}`}>
-          <line x1={x(v)} x2={x(v)} y1={pad.top} y2={pad.top + ih} stroke="#f1f3f5" strokeWidth={1} />
+          <line
+            x1={x(v)}
+            x2={x(v)}
+            y1={pad.top}
+            y2={pad.top + ih}
+            stroke="#f1f3f5"
+            strokeWidth={1}
+          />
           <text x={x(v)} y={height - 24} textAnchor="middle" fontSize={10} fill="#9ca3af">
             {v >= 1000 ? `${v / 1000}k` : v}
           </text>
@@ -513,8 +601,23 @@ export function Scatter({
       ))}
       {refY != null && (
         <g>
-          <line x1={pad.left} x2={width - pad.right} y1={y(refY)} y2={y(refY)} stroke={POPPY} strokeWidth={1.5} strokeDasharray="5 4" />
-          <text x={width - pad.right} y={y(refY) - 7} textAnchor="end" fontSize={10.5} fontWeight={600} fill={POPPY}>
+          <line
+            x1={pad.left}
+            x2={width - pad.right}
+            y1={y(refY)}
+            y2={y(refY)}
+            stroke={POPPY}
+            strokeWidth={1.5}
+            strokeDasharray="5 4"
+          />
+          <text
+            x={width - pad.right}
+            y={y(refY) - 7}
+            textAnchor="end"
+            fontSize={10.5}
+            fontWeight={600}
+            fill={POPPY}
+          >
             {refLabel}
           </text>
         </g>
@@ -544,10 +647,27 @@ export function Scatter({
             {p.key}
           </text>
         ))}
-      <text x={pad.left + iw / 2} y={height - 5} textAnchor="middle" fontSize={10} fontWeight={600} fill="#9ca3af" letterSpacing="0.08em">
+      <text
+        x={pad.left + iw / 2}
+        y={height - 5}
+        textAnchor="middle"
+        fontSize={10}
+        fontWeight={600}
+        fill="#9ca3af"
+        letterSpacing="0.08em"
+      >
         {xLabel.toUpperCase()}
       </text>
-      <text x={-(pad.top + ih / 2)} y={12} transform="rotate(-90)" textAnchor="middle" fontSize={10} fontWeight={600} fill="#9ca3af" letterSpacing="0.08em">
+      <text
+        x={-(pad.top + ih / 2)}
+        y={12}
+        transform="rotate(-90)"
+        textAnchor="middle"
+        fontSize={10}
+        fontWeight={600}
+        fill="#9ca3af"
+        letterSpacing="0.08em"
+      >
         {yLabel.toUpperCase()}
       </text>
     </svg>

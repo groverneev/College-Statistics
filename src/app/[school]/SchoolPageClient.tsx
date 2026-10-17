@@ -2,8 +2,8 @@
 
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
-import { useSession } from "next-auth/react";
-import { AdmissionsFactorImportance, SchoolData } from "@/lib/types";
+import { useSession } from "@/lib/auth-client";
+import type { AdmissionsFactorImportance, SchoolData } from "@/lib/types";
 import { formatNumber, formatPercent } from "@/utils/dataHelpers";
 import {
   AdmissionsTrendChart,
@@ -78,7 +78,10 @@ export default function SchoolPageClient({
   const admissionsFactors = schoolData.profile?.admissionsFactors;
   const academicFactors: AdmissionsFactorRow[] = admissionsFactors
     ? [
-        ["Rigor of secondary school record", admissionsFactors.academic.rigorOfSecondarySchoolRecord],
+        [
+          "Rigor of secondary school record",
+          admissionsFactors.academic.rigorOfSecondarySchoolRecord,
+        ],
         ["Class rank", admissionsFactors.academic.classRank],
         ["Academic GPA", admissionsFactors.academic.academicGpa],
         ["Standardized test scores", admissionsFactors.academic.standardizedTestScores],
@@ -96,7 +99,10 @@ export default function SchoolPageClient({
         ["Alumni/ae relation", admissionsFactors.nonacademic.alumniRelation],
         ["Geographical residence", admissionsFactors.nonacademic.geographicalResidence],
         ["State residency", admissionsFactors.nonacademic.stateResidency],
-        ["Religious affiliation/commitment", admissionsFactors.nonacademic.religiousAffiliationCommitment],
+        [
+          "Religious affiliation/commitment",
+          admissionsFactors.nonacademic.religiousAffiliationCommitment,
+        ],
         ["Volunteer work", admissionsFactors.nonacademic.volunteerWork],
         ["Work experience", admissionsFactors.nonacademic.workExperience],
         ["Level of applicant's interest", admissionsFactors.nonacademic.levelOfApplicantsInterest],
@@ -105,10 +111,17 @@ export default function SchoolPageClient({
 
   const renderImportanceCell = (
     activeImportance: AdmissionsFactorImportance,
-    columnImportance: AdmissionsFactorImportance
+    columnImportance: AdmissionsFactorImportance,
   ) => {
     if (activeImportance !== columnImportance) return null;
-    return <span aria-label={IMPORTANCE_LABELS[activeImportance]} style={{ color: schoolColor, opacity: 0.85, fontSize: "1.1rem", fontWeight: 600 }}>✓</span>;
+    return (
+      <span
+        aria-label={IMPORTANCE_LABELS[activeImportance]}
+        style={{ color: schoolColor, opacity: 0.85, fontSize: "1.1rem", fontWeight: 600 }}
+      >
+        ✓
+      </span>
+    );
   };
 
   return (
@@ -123,12 +136,7 @@ export default function SchoolPageClient({
           href="/schools"
           className="inline-flex min-h-11 items-center text-white/80 hover:text-white text-sm mb-4 transition-colors"
         >
-          <svg
-            className="w-4 h-4 mr-1"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
+          <svg className="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path
               strokeLinecap="round"
               strokeLinejoin="round"
@@ -138,9 +146,7 @@ export default function SchoolPageClient({
           </svg>
           Back to Schools
         </Link>
-        <h1 className="text-3xl md:text-4xl font-bold mb-2">
-          {schoolData.name}
-        </h1>
+        <h1 className="text-3xl md:text-4xl font-bold mb-2">{schoolData.name}</h1>
         <p className="text-white/80 text-sm md:text-base mb-4">
           Admissions Data Dashboard | Common Data Set {yearRange}
         </p>
@@ -155,7 +161,13 @@ export default function SchoolPageClient({
               onClick={handleAddNote}
               className="flex min-h-11 items-center space-x-2 px-4 py-2 rounded-lg font-medium text-sm transition-colors bg-white/10 border border-white/30 text-white hover:bg-white/20"
             >
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+              <svg
+                className="w-4 h-4"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth={2}
+                viewBox="0 0 24 24"
+              >
                 <path
                   strokeLinecap="round"
                   strokeLinejoin="round"
@@ -218,39 +230,22 @@ export default function SchoolPageClient({
         )}
 
         <div className="space-y-6">
-          <AdmissionsTrendChart
-            yearData={schoolData.years}
-            schoolColor={schoolColor}
-          />
+          <AdmissionsTrendChart yearData={schoolData.years} schoolColor={schoolColor} />
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-            <TestScoresTrendChart
-              yearData={schoolData.years}
-              schoolColor={schoolColor}
-            />
-            <FinancialAidTrendChart
-              yearData={schoolData.years}
-              schoolColor={schoolColor}
-            />
+            <TestScoresTrendChart yearData={schoolData.years} schoolColor={schoolColor} />
+            <FinancialAidTrendChart yearData={schoolData.years} schoolColor={schoolColor} />
           </div>
 
-          <CostsTrendChart
-            yearData={schoolData.years}
-            schoolColor={schoolColor}
-          />
+          <CostsTrendChart yearData={schoolData.years} schoolColor={schoolColor} />
 
-          <DemographicsTrendChart
-            yearData={schoolData.years}
-            schoolColor={schoolColor}
-          />
+          <DemographicsTrendChart yearData={schoolData.years} schoolColor={schoolColor} />
 
           {admissionsFactors && (
             <div className="card p-4 sm:p-6" style={{ backgroundColor: "#ffffff" }}>
               <div className="flex flex-col gap-2 mb-4 md:flex-row md:items-end md:justify-between">
                 <div>
-                  <h3 className="text-lg font-semibold text-gray-800">
-                    Admissions Factors
-                  </h3>
+                  <h3 className="text-lg font-semibold text-gray-800">Admissions Factors</h3>
                   <p className="text-sm text-gray-600 mt-1">
                     Relative importance reported in the latest available Common Data Set.
                   </p>
@@ -268,7 +263,11 @@ export default function SchoolPageClient({
                   <section key={`mobile-group-${label}`}>
                     <h4
                       className="px-3 py-2 text-[0.7rem] font-bold uppercase tracking-[0.08em] border-t-2"
-                      style={{ color: schoolColor, backgroundColor: `${schoolColor}18`, borderColor: `${schoolColor}40` }}
+                      style={{
+                        color: schoolColor,
+                        backgroundColor: `${schoolColor}18`,
+                        borderColor: `${schoolColor}40`,
+                      }}
                     >
                       {label}
                     </h4>
@@ -279,7 +278,10 @@ export default function SchoolPageClient({
                           className="grid grid-cols-[minmax(0,1fr)_6.25rem] items-start gap-3 px-3 py-3 text-sm"
                         >
                           <dt className="min-w-0 text-gray-700 leading-snug">{rowLabel}</dt>
-                          <dd className="text-right text-xs font-medium leading-snug" style={{ color: schoolColor }}>
+                          <dd
+                            className="text-right text-xs font-medium leading-snug"
+                            style={{ color: schoolColor }}
+                          >
                             {IMPORTANCE_LABELS[importance]}
                           </dd>
                         </div>
@@ -308,10 +310,22 @@ export default function SchoolPageClient({
                     </tr>
                   </thead>
                   <tbody>
-                    <tr style={{ backgroundColor: `${schoolColor}18`, borderTop: `2px solid ${schoolColor}40` }}>
+                    <tr
+                      style={{
+                        backgroundColor: `${schoolColor}18`,
+                        borderTop: `2px solid ${schoolColor}40`,
+                      }}
+                    >
                       <td
                         colSpan={5}
-                        style={{ textAlign: "left", fontWeight: 700, fontSize: "0.7rem", letterSpacing: "0.08em", textTransform: "uppercase", color: schoolColor }}
+                        style={{
+                          textAlign: "left",
+                          fontWeight: 700,
+                          fontSize: "0.7rem",
+                          letterSpacing: "0.08em",
+                          textTransform: "uppercase",
+                          color: schoolColor,
+                        }}
                       >
                         Academic
                       </td>
@@ -329,10 +343,22 @@ export default function SchoolPageClient({
                         ))}
                       </tr>
                     ))}
-                    <tr style={{ backgroundColor: `${schoolColor}18`, borderTop: `2px solid ${schoolColor}40` }}>
+                    <tr
+                      style={{
+                        backgroundColor: `${schoolColor}18`,
+                        borderTop: `2px solid ${schoolColor}40`,
+                      }}
+                    >
                       <td
                         colSpan={5}
-                        style={{ textAlign: "left", fontWeight: 700, fontSize: "0.7rem", letterSpacing: "0.08em", textTransform: "uppercase", color: schoolColor }}
+                        style={{
+                          textAlign: "left",
+                          fontWeight: 700,
+                          fontSize: "0.7rem",
+                          letterSpacing: "0.08em",
+                          textTransform: "uppercase",
+                          color: schoolColor,
+                        }}
                       >
                         Nonacademic
                       </td>

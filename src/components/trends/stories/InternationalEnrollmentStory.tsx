@@ -50,10 +50,12 @@ function InternationalShareChart() {
   return (
     <div className="card p-4 sm:p-6">
       <h3 className="text-lg font-semibold text-gray-800 mb-1">
-        {metrics.schoolsAtLeastTenPercent} of {metrics.reportSchoolCount} Schools Reported Double-Digit International Enrollment
+        {metrics.schoolsAtLeastTenPercent} of {metrics.reportSchoolCount} Schools Reported
+        Double-Digit International Enrollment
       </h3>
       <p className="text-sm text-gray-500 mb-4">
-        {reportYear} · 15 highest shares shown; international undergraduates as a share of all undergraduates
+        {reportYear} · 15 highest shares shown; international undergraduates as a share of all
+        undergraduates
       </p>
 
       {isDesktop ? (
@@ -112,7 +114,8 @@ function InternationalShareChart() {
       )}
 
       <p className="text-xs text-gray-400 mt-3">
-        Share is calculated as CDS-reported international undergraduates divided by total undergraduate enrollment.
+        Share is calculated as CDS-reported international undergraduates divided by total
+        undergraduate enrollment.
       </p>
     </div>
   );
@@ -122,20 +125,18 @@ function MedianShareTrendChart() {
   return (
     <div className="card p-4 sm:p-6">
       <h3 className="text-lg font-semibold text-gray-800 mb-1">
-        Median Share Rose from {metrics.medianBaseShare.toFixed(1)}% to {metrics.medianReportShare.toFixed(1)}%
+        Median Share Rose from {metrics.medianBaseShare.toFixed(1)}% to{" "}
+        {metrics.medianReportShare.toFixed(1)}%
       </h3>
       <p className="text-sm text-gray-500 mb-4">
-        {baseYear} to {reportYear} · median across the same {metrics.comparisonSchoolCount}-school panel
+        {baseYear} to {reportYear} · median across the same {metrics.comparisonSchoolCount}-school
+        panel
       </p>
       <ResponsiveContainer initialDimension={{ width: 1, height: 1 }} width="100%" height={280}>
         <LineChart data={annualMedianRows} margin={{ top: 4, right: 16, left: 8, bottom: 0 }}>
           <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
           <XAxis dataKey="year" tick={{ fontSize: 12 }} />
-          <YAxis
-            domain={[9, 12]}
-            tickFormatter={(value) => `${value}%`}
-            tick={{ fontSize: 12 }}
-          />
+          <YAxis domain={[9, 12]} tickFormatter={(value) => `${value}%`} tick={{ fontSize: 12 }} />
           <Tooltip
             formatter={(value, _name, item) => [
               `${Number(value).toFixed(1)}% (n=${item?.payload?.schoolCount ?? "—"})`,
@@ -155,7 +156,8 @@ function MedianShareTrendChart() {
         </LineChart>
       </ResponsiveContainer>
       <p className="text-xs text-gray-400 mt-3">
-        The panel includes schools with data in both endpoint years; one school is missing in 2022–23.
+        The panel includes schools with data in both endpoint years; one school is missing in
+        2022–23.
       </p>
     </div>
   );
@@ -218,8 +220,11 @@ function ShareChangeChart() {
             <div key={row.school} className="border-b border-gray-100 pb-3 last:border-0 last:pb-0">
               <div className="flex items-center justify-between gap-3">
                 <span className="font-medium text-gray-700">{row.school}</span>
-                <span className={`text-sm font-semibold tabular-nums ${row.change >= 0 ? "text-blue-700" : "text-red-600"}`}>
-                  {row.change >= 0 ? "+" : ""}{row.change.toFixed(1)} pp
+                <span
+                  className={`text-sm font-semibold tabular-nums ${row.change >= 0 ? "text-blue-700" : "text-red-600"}`}
+                >
+                  {row.change >= 0 ? "+" : ""}
+                  {row.change.toFixed(1)} pp
                 </span>
               </div>
               <div className="mt-1 text-xs text-gray-400">
@@ -231,7 +236,8 @@ function ShareChangeChart() {
       )}
 
       <p className="text-xs text-gray-400 mt-4">
-        Positive examples are shown in blue; negative examples are shown in red. Changes are calculated from the same school’s undergraduate enrollment in each endpoint year.
+        Positive examples are shown in blue; negative examples are shown in red. Changes are
+        calculated from the same school’s undergraduate enrollment in each endpoint year.
       </p>
     </div>
   );
@@ -262,8 +268,14 @@ export default function InternationalEnrollmentStory() {
         <p className="text-gray-700 leading-relaxed text-base">{lede}</p>
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mt-5">
           {[
-            { value: `${chartRows[0]?.share.toFixed(1)}%`, label: `${chartRows[0]?.school} international share` },
-            { value: `${metrics.schoolsAtLeastTenPercent}/${metrics.reportSchoolCount}`, label: "schools at 10% or higher" },
+            {
+              value: `${chartRows[0]?.share.toFixed(1)}%`,
+              label: `${chartRows[0]?.school} international share`,
+            },
+            {
+              value: `${metrics.schoolsAtLeastTenPercent}/${metrics.reportSchoolCount}`,
+              label: "schools at 10% or higher",
+            },
             { value: `${metrics.schoolsDown}`, label: "schools down more than 0.5 pp" },
           ].map((stat) => (
             <div key={stat.label} className="rounded-lg bg-gray-50 px-4 py-3">

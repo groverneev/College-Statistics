@@ -16,12 +16,7 @@ export default function HowItWorksPage() {
       description:
         "Applications received, acceptance rates, yield rates, and early decision/action statistics",
       icon: (
-        <svg
-          className="w-6 h-6"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-        >
+        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path
             strokeLinecap="round"
             strokeLinejoin="round"
@@ -36,12 +31,7 @@ export default function HowItWorksPage() {
       description:
         "SAT and ACT score distributions, including 25th, 50th, and 75th percentile ranges",
       icon: (
-        <svg
-          className="w-6 h-6"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-        >
+        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path
             strokeLinecap="round"
             strokeLinejoin="round"
@@ -53,15 +43,9 @@ export default function HowItWorksPage() {
     },
     {
       title: "Costs",
-      description:
-        "Tuition, fees, room and board, and total cost of attendance breakdowns",
+      description: "Tuition, fees, room and board, and total cost of attendance breakdowns",
       icon: (
-        <svg
-          className="w-6 h-6"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-        >
+        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path
             strokeLinecap="round"
             strokeLinejoin="round"
@@ -76,12 +60,7 @@ export default function HowItWorksPage() {
       description:
         "Percentage receiving aid, average aid packages, need-based grants, and net price",
       icon: (
-        <svg
-          className="w-6 h-6"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-        >
+        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path
             strokeLinecap="round"
             strokeLinejoin="round"
@@ -93,15 +72,9 @@ export default function HowItWorksPage() {
     },
     {
       title: "Demographics",
-      description:
-        "Enrollment totals, racial/ethnic breakdowns, and geographic distribution",
+      description: "Enrollment totals, racial/ethnic breakdowns, and geographic distribution",
       icon: (
-        <svg
-          className="w-6 h-6"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-        >
+        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path
             strokeLinecap="round"
             strokeLinejoin="round"
@@ -151,21 +124,17 @@ export default function HowItWorksPage() {
 
       <div className="max-w-4xl mx-auto px-4 py-12">
         <section className="card p-5 sm:p-8 mb-8">
-          <h2 className="text-2xl font-bold text-gray-800 mb-4">
-            What is the Common Data Set?
-          </h2>
+          <h2 className="text-2xl font-bold text-gray-800 mb-4">What is the Common Data Set?</h2>
           <p className="text-gray-600 mb-4">
-            The Common Data Set (CDS) initiative is a collaborative effort among
-            higher education institutions, The College Board, Peterson&apos;s,
-            and U.S. News &amp; World Report. It establishes standardized data
-            items and definitions to ensure consistent, comparable data about
-            colleges and universities.
+            The Common Data Set (CDS) initiative is a collaborative effort among higher education
+            institutions, The College Board, Peterson&apos;s, and U.S. News &amp; World Report. It
+            establishes standardized data items and definitions to ensure consistent, comparable
+            data about colleges and universities.
           </p>
           <p className="text-gray-600 mb-4">
-            Each year, participating colleges complete the CDS survey, providing
-            detailed information about their admissions process, enrolled
-            students, academic offerings, student life, and financial aid. This
-            data is used by:
+            Each year, participating colleges complete the CDS survey, providing detailed
+            information about their admissions process, enrolled students, academic offerings,
+            student life, and financial aid. This data is used by:
           </p>
           <ul className="list-disc list-inside text-gray-600 space-y-2 ml-4">
             <li>College ranking publications</li>
@@ -177,9 +146,7 @@ export default function HowItWorksPage() {
         </section>
 
         <section className="card p-5 sm:p-8 mb-8">
-          <h2 className="text-2xl font-bold text-gray-800 mb-6">
-            Available Metrics
-          </h2>
+          <h2 className="text-2xl font-bold text-gray-800 mb-6">Available Metrics</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {metrics.map((metric) => (
               <div
@@ -190,9 +157,7 @@ export default function HowItWorksPage() {
                   {metric.icon}
                 </div>
                 <div>
-                  <h3 className="font-semibold text-gray-800 mb-1">
-                    {metric.title}
-                  </h3>
+                  <h3 className="font-semibold text-gray-800 mb-1">{metric.title}</h3>
                   <p className="text-sm text-gray-600">{metric.description}</p>
                 </div>
               </div>
@@ -201,9 +166,7 @@ export default function HowItWorksPage() {
         </section>
 
         <section className="card p-5 sm:p-8 mb-8">
-          <h2 className="text-2xl font-bold text-gray-800 mb-6">
-            How to Use the Dashboard
-          </h2>
+          <h2 className="text-2xl font-bold text-gray-800 mb-6">How to Use the Dashboard</h2>
           <div className="space-y-6">
             {steps.map((step) => (
               <div key={step.number} className="flex items-start space-x-4">
@@ -211,9 +174,7 @@ export default function HowItWorksPage() {
                   {step.number}
                 </div>
                 <div>
-                  <h3 className="font-semibold text-gray-800 mb-1">
-                    {step.title}
-                  </h3>
+                  <h3 className="font-semibold text-gray-800 mb-1">{step.title}</h3>
                   <p className="text-gray-600">{step.description}</p>
                 </div>
               </div>
@@ -222,14 +183,12 @@ export default function HowItWorksPage() {
         </section>
 
         <section className="card p-5 sm:p-8">
-          <h2 className="text-2xl font-bold text-gray-800 mb-4">
-            Data Sources &amp; Accuracy
-          </h2>
+          <h2 className="text-2xl font-bold text-gray-800 mb-4">Data Sources &amp; Accuracy</h2>
           <p className="text-gray-600 mb-4">
-            All data on College Statistics is extracted directly from official
-            Common Data Set reports published by each institution. We do not
-            modify, interpolate, or estimate any values. If data is unavailable
-            for a particular year or metric, it will be clearly indicated.
+            All data on College Statistics is extracted directly from official Common Data Set
+            reports published by each institution. We do not modify, interpolate, or estimate any
+            values. If data is unavailable for a particular year or metric, it will be clearly
+            indicated.
           </p>
           <p className="text-gray-600 mb-4">Our current coverage includes:</p>
           <ul className="list-disc list-inside text-gray-600 space-y-2 ml-4 mb-4">
@@ -237,16 +196,16 @@ export default function HowItWorksPage() {
               <strong>{allSchools.length} universities</strong>
             </li>
             <li>
-              <strong>8-10 years of data</strong> per school: Academic years
-              2016-2017 through 2025-2026
+              <strong>8-10 years of data</strong> per school: Academic years 2016-2017 through
+              2025-2026
             </li>
             <li>
               <strong>50+ data points</strong> per school per year
             </li>
           </ul>
           <p className="text-gray-600">
-            We continuously work to add more schools and verify data accuracy.
-            If you notice any discrepancies, please{" "}
+            We continuously work to add more schools and verify data accuracy. If you notice any
+            discrepancies, please{" "}
             <Link href="/contact" className="text-gray-800 underline">
               contact us
             </Link>
@@ -260,12 +219,7 @@ export default function HowItWorksPage() {
             className="inline-flex items-center px-6 py-3 bg-gray-800 hover:bg-gray-900 text-white rounded-lg font-medium transition-colors"
           >
             Explore Schools
-            <svg
-              className="w-4 h-4 ml-2"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
+            <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path
                 strokeLinecap="round"
                 strokeLinejoin="round"

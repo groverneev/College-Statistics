@@ -1,4 +1,4 @@
-import { SchoolData } from "@/lib/types";
+import type { SchoolData } from "@/lib/types";
 import { getLatestYear } from "@/utils/dataHelpers";
 
 import bostonCollegeData from "./bostoncollege.json";
@@ -161,12 +161,7 @@ export const SCHOOL_METADATA: Record<string, SchoolMetadata> = {
     color: "#FF6C0C",
   },
   casewesternreserve: {
-    aliases: [
-      "Case Western",
-      "Case Western Reserve",
-      "Case Western Reserve University",
-      "CWRU",
-    ],
+    aliases: ["Case Western", "Case Western Reserve", "Case Western Reserve University", "CWRU"],
     color: "#0C2340",
   },
   cmu: {
@@ -224,22 +219,11 @@ export const SCHOOL_METADATA: Record<string, SchoolMetadata> = {
   },
   nyu: { aliases: ["NYU", "New York University"], color: "#57068C" },
   ohiostate: {
-    aliases: [
-      "OSU",
-      "Ohio State",
-      "Ohio State University",
-      "The Ohio State University",
-      "tOSU",
-    ],
+    aliases: ["OSU", "Ohio State", "Ohio State University", "The Ohio State University", "tOSU"],
     color: "#BB0000",
   },
   pennstate: {
-    aliases: [
-      "Penn State",
-      "Penn State University",
-      "Pennsylvania State University",
-      "PSU",
-    ],
+    aliases: ["Penn State", "Penn State University", "Pennsylvania State University", "PSU"],
     color: "#001E44",
   },
   princeton: { aliases: ["Princeton"], color: "#E77500" },
@@ -256,12 +240,7 @@ export const SCHOOL_METADATA: Record<string, SchoolMetadata> = {
     color: "#00467F",
   },
   rutgersnewbrunswick: {
-    aliases: [
-      "Rutgers",
-      "Rutgers New Brunswick",
-      "Rutgers-New Brunswick",
-      "RU",
-    ],
+    aliases: ["Rutgers", "Rutgers New Brunswick", "Rutgers-New Brunswick", "RU"],
     color: "#CC0033",
   },
   stanford: {
@@ -270,25 +249,13 @@ export const SCHOOL_METADATA: Record<string, SchoolMetadata> = {
     featured: true,
   },
   texasam: {
-    aliases: [
-      "Texas A&M",
-      "Texas A and M",
-      "Texas A & M",
-      "Texas A&M University",
-      "TAMU",
-      "A&M",
-    ],
+    aliases: ["Texas A&M", "Texas A and M", "Texas A & M", "Texas A&M University", "TAMU", "A&M"],
     color: "#500000",
   },
   tufts: { aliases: ["Tufts", "Tufts University"], color: "#3E8EDE" },
   tulane: { aliases: ["Tulane", "Tulane University"], color: "#006747" },
   ucberkeley: {
-    aliases: [
-      "UC Berkeley",
-      "Cal",
-      "Berkeley",
-      "University of California Berkeley",
-    ],
+    aliases: ["UC Berkeley", "Cal", "Berkeley", "University of California Berkeley"],
     color: "#003262",
   },
   ucdavis: {
@@ -324,11 +291,7 @@ export const SCHOOL_METADATA: Record<string, SchoolMetadata> = {
     color: "#0064A4",
   },
   ucla: {
-    aliases: [
-      "UCLA",
-      "University of California Los Angeles",
-      "UC Los Angeles",
-    ],
+    aliases: ["UCLA", "University of California Los Angeles", "UC Los Angeles"],
     color: "#2774AE",
   },
   ucsandiego: {
@@ -488,12 +451,7 @@ export const SCHOOL_METADATA: Record<string, SchoolMetadata> = {
     color: "#A51417",
   },
   williamandmary: {
-    aliases: [
-      "William and Mary",
-      "William & Mary",
-      "W&M",
-      "William Mary",
-    ],
+    aliases: ["William and Mary", "William & Mary", "W&M", "William Mary"],
     color: "#115740",
   },
   yale: { aliases: ["Yale"], color: "#00356B" },
@@ -516,15 +474,15 @@ export const SCHOOL_METADATA: Record<string, SchoolMetadata> = {
 };
 
 export const schoolDataMap: Record<string, SchoolData> = Object.fromEntries(
-  allSchools.map((school) => [school.slug, school])
+  allSchools.map((school) => [school.slug, school]),
 );
 
 export const SCHOOL_COLORS: Record<string, string> = Object.fromEntries(
-  Object.entries(SCHOOL_METADATA).map(([slug, metadata]) => [slug, metadata.color])
+  Object.entries(SCHOOL_METADATA).map(([slug, metadata]) => [slug, metadata.color]),
 );
 
 export const SCHOOL_ALIASES: Record<string, string[]> = Object.fromEntries(
-  Object.entries(SCHOOL_METADATA).map(([slug, metadata]) => [slug, metadata.aliases ?? []])
+  Object.entries(SCHOOL_METADATA).map(([slug, metadata]) => [slug, metadata.aliases ?? []]),
 );
 
 export const FEATURED_SCHOOL_SLUGS = Object.entries(SCHOOL_METADATA)
@@ -532,7 +490,7 @@ export const FEATURED_SCHOOL_SLUGS = Object.entries(SCHOOL_METADATA)
   .map(([slug]) => slug);
 
 export const featuredSchools: SchoolData[] = FEATURED_SCHOOL_SLUGS.map(
-  (slug) => schoolDataMap[slug]
+  (slug) => schoolDataMap[slug],
 ).filter((school): school is SchoolData => Boolean(school));
 
 export const availableSchoolSlugs = allSchools.map((school) => school.slug);

@@ -140,11 +140,7 @@ function DemographicGrowthChart() {
           data={sorted}
           margin={{ top: 4, right: rightMargin, left: leftMargin, bottom: 4 }}
         >
-          <CartesianGrid
-            strokeDasharray="3 3"
-            stroke="#f0f0f0"
-            horizontal={false}
-          />
+          <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" horizontal={false} />
           <XAxis
             type="number"
             tickFormatter={(v) => `${v}%`}
@@ -173,10 +169,10 @@ function DemographicGrowthChart() {
                   entry.group === "All Applicants"
                     ? NEUTRAL
                     : entry.growth >= 5
-                    ? ACCENT
-                    : entry.growth >= 2
-                    ? "#60A5FA"
-                    : "#D1D5DB"
+                      ? ACCENT
+                      : entry.growth >= 2
+                        ? "#60A5FA"
+                        : "#D1D5DB"
                 }
               />
             ))}
@@ -184,7 +180,8 @@ function DemographicGrowthChart() {
         </BarChart>
       </ResponsiveContainer>
       <p className="text-xs text-gray-400 mt-2">
-        Source: Common App Deadline Update, 2025-2026, through February 1. URM = underrepresented minority (Black/AA, Latinx, American Indian/AK Native, Native Hawaiian/Pacific Islander).
+        Source: Common App Deadline Update, 2025-2026, through February 1. URM = underrepresented
+        minority (Black/AA, Latinx, American Indian/AK Native, Native Hawaiian/Pacific Islander).
       </p>
     </div>
   );
@@ -198,9 +195,7 @@ function InternationalRegionChart() {
       <h3 className="text-lg font-semibold text-gray-800 mb-1">
         International Applicants by Region
       </h3>
-      <p className="text-sm text-gray-500 mb-5">
-        % change vs same point in 2024-25 season
-      </p>
+      <p className="text-sm text-gray-500 mb-5">% change vs same point in 2024-25 season</p>
       <MobilePercentBars
         rows={data.map((row) => ({
           label: row.region,
@@ -217,7 +212,12 @@ function InternationalRegionChart() {
             <Tooltip formatter={fmtPct} cursor={{ fill: LIGHT_GRAY }} />
             <ReferenceLine y={0} stroke="#9CA3AF" />
             <Bar dataKey="growth" radius={[3, 3, 0, 0]} name="Growth">
-              <LabelList dataKey="growth" position="top" formatter={fmtPct} style={{ fontSize: 11, fontWeight: 600, fill: "#374151" }} />
+              <LabelList
+                dataKey="growth"
+                position="top"
+                formatter={fmtPct}
+                style={{ fontSize: 11, fontWeight: 600, fill: "#374151" }}
+              />
               {data.map((entry) => (
                 <Cell key={entry.region} fill={entry.growth >= 0 ? POSITIVE : NEGATIVE} />
               ))}
@@ -242,9 +242,7 @@ function CountryChangesChart() {
 
   return (
     <div className="card p-4 sm:p-6">
-      <h3 className="text-lg font-semibold text-gray-800 mb-1">
-        Country-Level Standouts
-      </h3>
+      <h3 className="text-lg font-semibold text-gray-800 mb-1">Country-Level Standouts</h3>
       <p className="text-sm text-gray-500 mb-5">
         % change in applicants vs 2024-25 — top gains and notable declines
       </p>
@@ -257,9 +255,18 @@ function CountryChangesChart() {
       />
       <div className="hidden lg:block">
         <ResponsiveContainer initialDimension={{ width: 1, height: 1 }} width="100%" height={260}>
-          <BarChart layout="vertical" data={data} margin={{ top: 4, right: 64, left: 80, bottom: 4 }}>
+          <BarChart
+            layout="vertical"
+            data={data}
+            margin={{ top: 4, right: 64, left: 80, bottom: 4 }}
+          >
             <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" horizontal={false} />
-            <XAxis type="number" tickFormatter={(v) => `${v}%`} tick={{ fontSize: 12 }} domain={[-50, 150]} />
+            <XAxis
+              type="number"
+              tickFormatter={(v) => `${v}%`}
+              tick={{ fontSize: 12 }}
+              domain={[-50, 150]}
+            />
             <YAxis type="category" dataKey="country" tick={{ fontSize: 12 }} width={76} />
             <Tooltip formatter={fmtPct} cursor={{ fill: LIGHT_GRAY }} />
             <ReferenceLine x={0} stroke="#9CA3AF" />
@@ -273,7 +280,15 @@ function CountryChangesChart() {
                   const height = Number(props.height ?? 0);
                   const value = Number(props.value ?? 0);
                   return (
-                    <text x={x + Math.max(width, 0) + 4} y={y + height / 2} textAnchor="start" dominantBaseline="middle" fontSize={11} fontWeight={600} fill="#374151">
+                    <text
+                      x={x + Math.max(width, 0) + 4}
+                      y={y + height / 2}
+                      textAnchor="start"
+                      dominantBaseline="middle"
+                      fontSize={11}
+                      fontWeight={600}
+                      fill="#374151"
+                    >
                       {fmtPct(value)}
                     </text>
                   );
@@ -296,9 +311,7 @@ function CountryChangesChart() {
 function ScoreReportingChart() {
   return (
     <div className="card p-4 sm:p-6">
-      <h3 className="text-lg font-semibold text-gray-800 mb-1">
-        Score Reporters vs Non-Reporters
-      </h3>
+      <h3 className="text-lg font-semibold text-gray-800 mb-1">Score Reporters vs Non-Reporters</h3>
       <p className="text-sm text-gray-500 mb-5">
         % change in applicants by test score reporting behavior, 2024-25 → 2025-26
       </p>
@@ -306,36 +319,26 @@ function ScoreReportingChart() {
         rows={scoreReportingGrowth.map((row) => ({ label: row.group, value: row.growth }))}
       />
       <div className="hidden lg:block">
-      <ResponsiveContainer initialDimension={{ width: 1, height: 1 }} width="100%" height={180}>
-        <BarChart
-          data={scoreReportingGrowth}
-          margin={{ top: 4, right: 60, left: 16, bottom: 4 }}
-        >
-          <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
-          <XAxis dataKey="group" tick={{ fontSize: 13 }} />
-          <YAxis
-            tickFormatter={(v) => `${v}%`}
-            tick={{ fontSize: 12 }}
-            domain={[-10, 15]}
-          />
-          <Tooltip formatter={fmtPct} cursor={{ fill: LIGHT_GRAY }} />
-          <ReferenceLine y={0} stroke="#9CA3AF" />
-          <Bar dataKey="growth" radius={[3, 3, 0, 0]} name="Growth">
-            <LabelList
-              dataKey="growth"
-              position="top"
-              formatter={fmtPct}
-              style={{ fontSize: 12, fontWeight: 700, fill: "#374151" }}
-            />
-            {scoreReportingGrowth.map((entry) => (
-              <Cell
-                key={entry.group}
-                fill={entry.growth >= 0 ? ACCENT : NEGATIVE}
+        <ResponsiveContainer initialDimension={{ width: 1, height: 1 }} width="100%" height={180}>
+          <BarChart data={scoreReportingGrowth} margin={{ top: 4, right: 60, left: 16, bottom: 4 }}>
+            <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
+            <XAxis dataKey="group" tick={{ fontSize: 13 }} />
+            <YAxis tickFormatter={(v) => `${v}%`} tick={{ fontSize: 12 }} domain={[-10, 15]} />
+            <Tooltip formatter={fmtPct} cursor={{ fill: LIGHT_GRAY }} />
+            <ReferenceLine y={0} stroke="#9CA3AF" />
+            <Bar dataKey="growth" radius={[3, 3, 0, 0]} name="Growth">
+              <LabelList
+                dataKey="growth"
+                position="top"
+                formatter={fmtPct}
+                style={{ fontSize: 12, fontWeight: 700, fill: "#374151" }}
               />
-            ))}
-          </Bar>
-        </BarChart>
-      </ResponsiveContainer>
+              {scoreReportingGrowth.map((entry) => (
+                <Cell key={entry.group} fill={entry.growth >= 0 ? ACCENT : NEGATIVE} />
+              ))}
+            </Bar>
+          </BarChart>
+        </ResponsiveContainer>
       </div>
     </div>
   );
@@ -351,38 +354,33 @@ function TestRequirementChart() {
         The test-optional wave — from majority to near-zero in five years
       </p>
       <MobilePercentBars
-        rows={testRequirementHistory.map((row) => ({ label: row.season, value: row.pctRequiring, color: ACCENT }))}
+        rows={testRequirementHistory.map((row) => ({
+          label: row.season,
+          value: row.pctRequiring,
+          color: ACCENT,
+        }))}
         unsigned
       />
       <div className="hidden lg:block">
-      <ResponsiveContainer initialDimension={{ width: 1, height: 1 }} width="100%" height={200}>
-        <BarChart
-          data={testRequirementHistory}
-          margin={{ top: 4, right: 16, left: 8, bottom: 4 }}
-        >
-          <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
-          <XAxis dataKey="season" tick={{ fontSize: 12 }} />
-          <YAxis
-            tickFormatter={(v) => `${v}%`}
-            tick={{ fontSize: 12 }}
-            domain={[0, 65]}
-          />
-          <Tooltip formatter={(v) => [`${v}%`, "Members requiring scores"]} />
-          <Bar
-            dataKey="pctRequiring"
-            fill={ACCENT}
-            radius={[3, 3, 0, 0]}
-            name="% Requiring"
+        <ResponsiveContainer initialDimension={{ width: 1, height: 1 }} width="100%" height={200}>
+          <BarChart
+            data={testRequirementHistory}
+            margin={{ top: 4, right: 16, left: 8, bottom: 4 }}
           >
-            <LabelList
-              dataKey="pctRequiring"
-              position="top"
-              formatter={(v: unknown) => typeof v === "number" ? `${v}%` : ""}
-              style={{ fontSize: 11, fontWeight: 600, fill: "#374151" }}
-            />
-          </Bar>
-        </BarChart>
-      </ResponsiveContainer>
+            <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
+            <XAxis dataKey="season" tick={{ fontSize: 12 }} />
+            <YAxis tickFormatter={(v) => `${v}%`} tick={{ fontSize: 12 }} domain={[0, 65]} />
+            <Tooltip formatter={(v) => [`${v}%`, "Members requiring scores"]} />
+            <Bar dataKey="pctRequiring" fill={ACCENT} radius={[3, 3, 0, 0]} name="% Requiring">
+              <LabelList
+                dataKey="pctRequiring"
+                position="top"
+                formatter={(v: unknown) => (typeof v === "number" ? `${v}%` : "")}
+                style={{ fontSize: 11, fontWeight: 600, fill: "#374151" }}
+              />
+            </Bar>
+          </BarChart>
+        </ResponsiveContainer>
       </div>
       <p className="text-xs text-gray-400 mt-2">
         Only 2019-20 and 2023-24 through 2025-26 are explicitly reported in the source document.
@@ -410,49 +408,38 @@ function SelectivityChart() {
         }))}
       />
       <div className="hidden lg:block">
-      <ResponsiveContainer initialDimension={{ width: 1, height: 1 }} width="100%" height={240}>
-        <BarChart
-          data={selectivityGrowth}
-          margin={{ top: 4, right: 16, left: 8, bottom: 4 }}
-        >
-          <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
-          <XAxis
-            dataKey="band"
-            tick={{ fontSize: 12 }}
-            tickLine={false}
-          />
-          <YAxis
-            tickFormatter={(v) => `${v}%`}
-            tick={{ fontSize: 12 }}
-            domain={[0, 10]}
-          />
-          <Tooltip
-            formatter={(v) => [`+${v}%`, "Application growth"]}
-            labelFormatter={(label, payload) => {
-              const row = payload?.[0]?.payload;
-              return `${label} (${row?.admitRange ?? ""})`;
-            }}
-          />
-          <Bar dataKey="growth" radius={[3, 3, 0, 0]} name="Growth">
-            <LabelList
-              dataKey="growth"
-              position="top"
-              formatter={(v: unknown) => typeof v === "number" ? `+${v}%` : ""}
-              style={{ fontSize: 12, fontWeight: 700, fill: "#374151" }}
+        <ResponsiveContainer initialDimension={{ width: 1, height: 1 }} width="100%" height={240}>
+          <BarChart data={selectivityGrowth} margin={{ top: 4, right: 16, left: 8, bottom: 4 }}>
+            <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
+            <XAxis dataKey="band" tick={{ fontSize: 12 }} tickLine={false} />
+            <YAxis tickFormatter={(v) => `${v}%`} tick={{ fontSize: 12 }} domain={[0, 10]} />
+            <Tooltip
+              formatter={(v) => [`+${v}%`, "Application growth"]}
+              labelFormatter={(label, payload) => {
+                const row = payload?.[0]?.payload;
+                return `${label} (${row?.admitRange ?? ""})`;
+              }}
             />
-            {selectivityGrowth.map((entry) => (
-              <Cell
-                key={entry.band}
-                fill={entry.band === "Most Selective" ? "#9CA3AF" : ACCENT}
+            <Bar dataKey="growth" radius={[3, 3, 0, 0]} name="Growth">
+              <LabelList
+                dataKey="growth"
+                position="top"
+                formatter={(v: unknown) => (typeof v === "number" ? `+${v}%` : "")}
+                style={{ fontSize: 12, fontWeight: 700, fill: "#374151" }}
               />
-            ))}
-          </Bar>
-        </BarChart>
-      </ResponsiveContainer>
+              {selectivityGrowth.map((entry) => (
+                <Cell
+                  key={entry.band}
+                  fill={entry.band === "Most Selective" ? "#9CA3AF" : ACCENT}
+                />
+              ))}
+            </Bar>
+          </BarChart>
+        </ResponsiveContainer>
       </div>
       <p className="text-xs text-gray-400 mt-2">
-        "Most Selective" = member admit rates below 25%, which includes all schools tracked on this site.
-        Source: Common App Deadline Update, 2025-2026, through February 1.
+        "Most Selective" = member admit rates below 25%, which includes all schools tracked on this
+        site. Source: Common App Deadline Update, 2025-2026, through February 1.
       </p>
     </div>
   );
@@ -466,9 +453,7 @@ export default function CommonApp2026Story() {
       </div>
 
       <div>
-        <h2 className="text-xl font-bold text-gray-900 mb-1">
-          1 — The Record Numbers
-        </h2>
+        <h2 className="text-xl font-bold text-gray-900 mb-1">1 — The Record Numbers</h2>
         <p className="text-sm text-gray-500 mb-4">
           Application volume hit a new high, and students are casting wider nets.
         </p>
@@ -476,25 +461,21 @@ export default function CommonApp2026Story() {
       </div>
 
       <div>
-        <h2 className="text-xl font-bold text-gray-900 mb-1">
-          2 — Growing Apart
-        </h2>
+        <h2 className="text-xl font-bold text-gray-900 mb-1">2 — Growing Apart</h2>
         <p className="text-sm text-gray-500 mb-4">
-          Not all students are applying at the same rate. Low-income, first-generation,
-          and underrepresented applicants are outpacing their peers by a wide margin —
-          while continuing-generation and higher-income applicants are essentially flat.
+          Not all students are applying at the same rate. Low-income, first-generation, and
+          underrepresented applicants are outpacing their peers by a wide margin — while
+          continuing-generation and higher-income applicants are essentially flat.
         </p>
         <DemographicGrowthChart />
       </div>
 
       <div>
-        <h2 className="text-xl font-bold text-gray-900 mb-1">
-          3 — The International Cliff
-        </h2>
+        <h2 className="text-xl font-bold text-gray-900 mb-1">3 — The International Cliff</h2>
         <p className="text-sm text-gray-500 mb-4">
-          International applicants fell 9% from last season — a sharp reversal after years
-          of growth. Asia and Africa drove the decline, while the Americas bucked the trend.
-          The drops in individual countries are even more striking.
+          International applicants fell 9% from last season — a sharp reversal after years of
+          growth. Asia and Africa drove the decline, while the Americas bucked the trend. The drops
+          in individual countries are even more striking.
         </p>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <InternationalRegionChart />
@@ -503,15 +484,13 @@ export default function CommonApp2026Story() {
       </div>
 
       <div>
-        <h2 className="text-xl font-bold text-gray-900 mb-1">
-          4 — Test Scores Come Back
-        </h2>
+        <h2 className="text-xl font-bold text-gray-900 mb-1">4 — Test Scores Come Back</h2>
         <p className="text-sm text-gray-500 mb-4">
-          After the COVID-era collapse — when the share of schools requiring scores fell
-          from 55% to just 4% — score submission is rebounding sharply. Reporters are up
-          11%; non-reporters are down 5%; reporters now outnumber non-reporters early in
-          the season for the first time in years. The equity gap remains: first-gen, URM,
-          and low-income students are still less likely to submit a score.
+          After the COVID-era collapse — when the share of schools requiring scores fell from 55% to
+          just 4% — score submission is rebounding sharply. Reporters are up 11%; non-reporters are
+          down 5%; reporters now outnumber non-reporters early in the season for the first time in
+          years. The equity gap remains: first-gen, URM, and low-income students are still less
+          likely to submit a score.
         </p>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <ScoreReportingChart />
@@ -530,8 +509,8 @@ export default function CommonApp2026Story() {
             ))}
           </ul>
           <p className="text-xs text-gray-400 mt-3">
-            All groups saw score reporters grow faster than non-reporters — but the gap
-            persists. Source: Common App Deadline Update, 2025-2026.
+            All groups saw score reporters grow faster than non-reporters — but the gap persists.
+            Source: Common App Deadline Update, 2025-2026.
           </p>
         </div>
       </div>
@@ -541,33 +520,29 @@ export default function CommonApp2026Story() {
           5 — The Most Selective Schools Grow Slowest
         </h2>
         <p className="text-sm text-gray-500 mb-4">
-          Every selectivity tier grew — but the most selective schools (admit rates below 25%,
-          which includes every school on this site) saw only +3% application growth, less than
-          half the rate of every other tier. The decline in international applicants likely plays
-          a role: international students disproportionately target elite institutions, and they
-          fell 19% at the most selective schools specifically.
+          Every selectivity tier grew — but the most selective schools (admit rates below 25%, which
+          includes every school on this site) saw only +3% application growth, less than half the
+          rate of every other tier. The decline in international applicants likely plays a role:
+          international students disproportionately target elite institutions, and they fell 19% at
+          the most selective schools specifically.
         </p>
         <SelectivityChart />
       </div>
 
       <div className="card p-4 sm:p-6">
-        <h3 className="text-lg font-semibold text-gray-800 mb-4">
-          Key Takeaways
-        </h3>
+        <h3 className="text-lg font-semibold text-gray-800 mb-4">Key Takeaways</h3>
         <ul className="space-y-2">
           {takeaways.map((t, i) => (
-            <li
-              key={i}
-              className="flex items-start gap-3 text-gray-700 text-sm"
-            >
+            <li key={i} className="flex items-start gap-3 text-gray-700 text-sm">
               <span className="mt-1.5 w-2 h-2 rounded-full bg-gray-800 flex-shrink-0" />
               {t}
             </li>
           ))}
         </ul>
         <p className="text-xs text-gray-400 mt-4">
-          Source: Common App &ldquo;Deadline Update, 2025-2026: First-year application trends through
-          February 1,&rdquo; published February 12, 2026. Data reflects 913 returning member institutions.
+          Source: Common App &ldquo;Deadline Update, 2025-2026: First-year application trends
+          through February 1,&rdquo; published February 12, 2026. Data reflects 913 returning member
+          institutions.
         </p>
       </div>
     </div>

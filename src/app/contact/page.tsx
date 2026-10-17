@@ -35,7 +35,7 @@ export default function ContactPage() {
   };
 
   const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>,
   ) => {
     setFormData((prev) => ({
       ...prev,
@@ -79,12 +79,7 @@ export default function ContactPage() {
       href: "https://neevgrover.com",
       label: "Website",
       icon: (
-        <svg
-          className="w-5 h-5"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-        >
+        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path
             strokeLinecap="round"
             strokeLinejoin="round"
@@ -108,9 +103,7 @@ export default function ContactPage() {
       <div className="max-w-4xl mx-auto px-4 py-12">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           <div className="card p-5 sm:p-8">
-            <h2 className="text-2xl font-bold text-gray-800 mb-6">
-              Send a Message
-            </h2>
+            <h2 className="text-2xl font-bold text-gray-800 mb-6">Send a Message</h2>
 
             {status === "success" ? (
               <div className="flex flex-col items-center justify-center py-12 text-center">
@@ -129,9 +122,7 @@ export default function ContactPage() {
                     />
                   </svg>
                 </div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-2">
-                  Message received
-                </h3>
+                <h3 className="text-xl font-semibold text-gray-900 mb-2">Message received</h3>
                 <p className="text-gray-500 text-sm max-w-xs">
                   Thanks for reaching out — I&apos;ll be in touch shortly.
                 </p>
@@ -145,10 +136,7 @@ export default function ContactPage() {
             ) : (
               <form onSubmit={handleSubmit} className="space-y-4">
                 <div>
-                  <label
-                    htmlFor="name"
-                    className="block text-sm font-medium text-gray-700 mb-1"
-                  >
+                  <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
                     Name
                   </label>
                   <input
@@ -164,10 +152,7 @@ export default function ContactPage() {
                 </div>
 
                 <div>
-                  <label
-                    htmlFor="email"
-                    className="block text-sm font-medium text-gray-700 mb-1"
-                  >
+                  <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
                     Email
                   </label>
                   <input
@@ -183,10 +168,7 @@ export default function ContactPage() {
                 </div>
 
                 <div>
-                  <label
-                    htmlFor="message"
-                    className="block text-sm font-medium text-gray-700 mb-1"
-                  >
+                  <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-1">
                     Message
                   </label>
                   <textarea
@@ -245,9 +227,7 @@ export default function ContactPage() {
 
           <div className="space-y-6">
             <div className="card p-5 sm:p-8">
-              <h2 className="text-2xl font-bold text-gray-800 mb-4">
-                Other Ways to Reach Me
-              </h2>
+              <h2 className="text-2xl font-bold text-gray-800 mb-4">Other Ways to Reach Me</h2>
               <div className="space-y-4">
                 <div className="flex items-start space-x-3">
                   <svg
@@ -272,9 +252,7 @@ export default function ContactPage() {
             </div>
 
             <div className="card p-5 sm:p-8">
-              <h2 className="text-xl font-bold text-gray-800 mb-4">
-                Connect on Social
-              </h2>
+              <h2 className="text-xl font-bold text-gray-800 mb-4">Connect on Social</h2>
               <div className="grid grid-cols-4 gap-3">
                 {socialLinks.map((link) => (
                   <a
@@ -294,13 +272,11 @@ export default function ContactPage() {
             <div className="card p-5 sm:p-8 bg-gray-800 text-black">
               <h2 className="text-xl font-bold mb-3">Found a Data Error?</h2>
               <p className="text-black-300 text-sm mb-4">
-                We take data accuracy seriously. If you notice any discrepancies
-                between our data and official CDS reports, please let us know
-                and we&apos;ll investigate.
+                We take data accuracy seriously. If you notice any discrepancies between our data
+                and official CDS reports, please let us know and we&apos;ll investigate.
               </p>
               <p className="text-gray-400 text-xs">
-                Include the school name, year, and specific data point in your
-                message.
+                Include the school name, year, and specific data point in your message.
               </p>
             </div>
           </div>

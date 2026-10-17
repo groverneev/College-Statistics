@@ -1,10 +1,9 @@
 "use client";
 
 import { createContext, useContext, useEffect, useState, useCallback } from "react";
-import { useSession } from "next-auth/react";
+import type { Category } from "@/db/schema";
+import { useSession } from "@/lib/auth-client";
 import SignInPrompt from "@/components/SignInPrompt";
-
-type Category = "REACH" | "TARGET" | "SAFETY" | "UNDECIDED";
 
 interface SavedSchool {
   schoolSlug: string;
@@ -30,17 +29,11 @@ interface SavedSchoolsContextValue {
 
 const SavedSchoolsContext = createContext<SavedSchoolsContextValue | null>(null);
 
-export function SavedSchoolsProvider({
-  children,
-  initialSavedSchools,
-  isLoggedIn,
-}: {
-  children: React.ReactNode;
-  initialSavedSchools: SavedSchool[];
-  isLoggedIn: boolean;
-}) {
+export function SavedSchoolsProvider({ children }: { children: React.ReactNode }) {
   const { data: session } = useSession();
-  const [savedSchools, setSavedSchools] = useState<SavedSchool[]>(initialSavedSchools);
+  const userId = session?.user.id;
+  const isLoggedIn = !!userId;
+  const [savedSchools, setSavedSchools] = useState<SavedSchool[]>([]);
   const [loading, setLoading] = useState(false);
   const [signInPromptOpen, setSignInPromptOpen] = useState(false);
   const [signInPromptOptions, setSignInPromptOptions] = useState<SignInPromptOptions>({});
@@ -50,36 +43,34 @@ export function SavedSchoolsProvider({
     setSignInPromptOpen(true);
   }, []);
 
-  const hadServerData = isLoggedIn;
   useEffect(() => {
-    if (!session) {
+    if (!userId) {
       setSavedSchools([]);
       return;
     }
-    if (hadServerData) return;
     setLoading(true);
     fetch("/api/my-schools")
       .then((r) => r.json())
       .then((data) => setSavedSchools(data))
       .catch(() => {})
       .finally(() => setLoading(false));
-  }, [session, hadServerData]);
+  }, [userId]);
 
   const isSaved = useCallback(
     (slug: string) => savedSchools.some((s) => s.schoolSlug === slug),
-    [savedSchools]
+    [savedSchools],
   );
 
   const getCategory = useCallback(
     (slug: string) => savedSchools.find((s) => s.schoolSlug === slug)?.category ?? null,
-    [savedSchools]
+    [savedSchools],
   );
 
   const saveSchool = useCallback(async (slug: string, category: Category) => {
     setSavedSchools((prev) => {
       const existing = prev.find((s) => s.schoolSlug === slug);
       if (existing) {
-        return prev.map((s) => s.schoolSlug === slug ? { ...s, category } : s);
+        return prev.map((s) => (s.schoolSlug === slug ? { ...s, category } : s));
       }
       return [...prev, { schoolSlug: slug, category }];
     });
@@ -108,7 +99,16 @@ export function SavedSchoolsProvider({
 
   return (
     <SavedSchoolsContext.Provider
-      value={{ savedSchools, isSaved, getCategory, saveSchool, removeSchool, promptSignIn, isLoggedIn, loading }}
+      value={{
+        savedSchools,
+        isSaved,
+        getCategory,
+        saveSchool,
+        removeSchool,
+        promptSignIn,
+        isLoggedIn,
+        loading,
+      }}
     >
       {children}
       <SignInPrompt

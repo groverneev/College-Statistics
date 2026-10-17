@@ -22,9 +22,7 @@ export default function SchoolCarousel() {
     const track = trackRef.current;
     if (!track) return;
 
-    const reduceMotion = window.matchMedia(
-      "(prefers-reduced-motion: reduce)"
-    ).matches;
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (reduceMotion) return;
 
     singleWidthRef.current = track.scrollWidth / 2;

@@ -1,6 +1,6 @@
 "use client";
 
-import { YearData } from "@/lib/types";
+import type { YearData } from "@/lib/types";
 import { formatCurrency } from "@/utils/dataHelpers";
 import {
   AreaChart,
@@ -17,10 +17,7 @@ interface CostsTrendChartProps {
   schoolColor: string;
 }
 
-export default function CostsTrendChart({
-  yearData,
-  schoolColor,
-}: CostsTrendChartProps) {
+export default function CostsTrendChart({ yearData, schoolColor }: CostsTrendChartProps) {
   const years = Object.keys(yearData).sort();
 
   const trendData = years
@@ -54,16 +51,12 @@ export default function CostsTrendChart({
   return (
     <div className="card p-4 sm:p-6">
       <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-2 mb-4">
-        <h3 className="text-lg font-semibold text-gray-800">
-          Cost of Attendance Over Time
-        </h3>
+        <h3 className="text-lg font-semibold text-gray-800">Cost of Attendance Over Time</h3>
         <div className="text-left sm:text-right">
           <div className="text-2xl font-bold" style={{ color: schoolColor }}>
             {formatCurrency(latestData.total)}
           </div>
-          <div className="text-xs text-gray-500">
-            {latestData.fullYear} Total COA
-          </div>
+          <div className="text-xs text-gray-500">{latestData.fullYear} Total COA</div>
         </div>
       </div>
 
@@ -123,9 +116,18 @@ export default function CostsTrendChart({
         </ResponsiveContainer>
       </div>
       <div className="mt-3 flex flex-wrap justify-center gap-x-4 gap-y-2 text-xs text-gray-600">
-        <span className="flex items-center gap-1.5"><span className="h-2.5 w-2.5 rounded-sm" style={{ backgroundColor: schoolColor }} />Tuition</span>
-        <span className="flex items-center gap-1.5"><span className="h-2.5 w-2.5 rounded-sm bg-orange-500" />Fees</span>
-        <span className="flex items-center gap-1.5"><span className="h-2.5 w-2.5 rounded-sm bg-green-600" />Room &amp; Board</span>
+        <span className="flex items-center gap-1.5">
+          <span className="h-2.5 w-2.5 rounded-sm" style={{ backgroundColor: schoolColor }} />
+          Tuition
+        </span>
+        <span className="flex items-center gap-1.5">
+          <span className="h-2.5 w-2.5 rounded-sm bg-orange-500" />
+          Fees
+        </span>
+        <span className="flex items-center gap-1.5">
+          <span className="h-2.5 w-2.5 rounded-sm bg-green-600" />
+          Room &amp; Board
+        </span>
       </div>
 
       <div className="mt-4 pt-4 border-t border-gray-200">
@@ -138,9 +140,7 @@ export default function CostsTrendChart({
           </div>
           <div>
             <div className="text-gray-500">Fees</div>
-            <div className="font-semibold text-orange-500">
-              {formatCurrency(latestData.fees)}
-            </div>
+            <div className="font-semibold text-orange-500">{formatCurrency(latestData.fees)}</div>
           </div>
           <div>
             <div className="text-gray-500">Room & Board</div>
@@ -150,9 +150,7 @@ export default function CostsTrendChart({
           </div>
           <div>
             <div className="text-gray-500">Change Since {earliestData.year}</div>
-            <div className="font-semibold text-red-500">
-              +{costIncrease.toFixed(0)}%
-            </div>
+            <div className="font-semibold text-red-500">+{costIncrease.toFixed(0)}%</div>
           </div>
         </div>
       </div>

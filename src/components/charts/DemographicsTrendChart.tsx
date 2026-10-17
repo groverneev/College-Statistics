@@ -1,6 +1,6 @@
 "use client";
 
-import { YearData } from "@/lib/types";
+import type { YearData } from "@/lib/types";
 import { formatNumber } from "@/utils/dataHelpers";
 import {
   LineChart,
@@ -41,7 +41,7 @@ export default function DemographicsTrendChart({
 }: DemographicsTrendChartProps) {
   const years = Object.keys(yearData).sort();
   const yearsWithEnrollment = years.filter(
-    (year) => (yearData[year].demographics.enrollment.undergraduate ?? 0) > 0
+    (year) => (yearData[year].demographics.enrollment.undergraduate ?? 0) > 0,
   );
   const latestYear = yearsWithEnrollment[yearsWithEnrollment.length - 1] || years[years.length - 1];
   const latestDemo = yearData[latestYear].demographics;
@@ -68,22 +68,18 @@ export default function DemographicsTrendChart({
     const international = race.international ?? 0;
     const twoOrMoreRaces = race.twoOrMoreRaces ?? 0;
     const hasDetailedRaceData =
-      white + asian + hispanicLatino + blackAfricanAmerican + international + twoOrMoreRaces >
-      0;
+      white + asian + hispanicLatino + blackAfricanAmerican + international + twoOrMoreRaces > 0;
 
     return {
       year: year.split("-")[0],
       fullYear: year,
       white: total > 0 && hasDetailedRaceData ? (white / total) * 100 : null,
       asian: total > 0 && hasDetailedRaceData ? (asian / total) * 100 : null,
-      hispanicLatino:
-        total > 0 && hasDetailedRaceData ? (hispanicLatino / total) * 100 : null,
+      hispanicLatino: total > 0 && hasDetailedRaceData ? (hispanicLatino / total) * 100 : null,
       blackAfricanAmerican:
         total > 0 && hasDetailedRaceData ? (blackAfricanAmerican / total) * 100 : null,
-      international:
-        total > 0 && hasDetailedRaceData ? (international / total) * 100 : null,
-      twoOrMoreRaces:
-        total > 0 && hasDetailedRaceData ? (twoOrMoreRaces / total) * 100 : null,
+      international: total > 0 && hasDetailedRaceData ? (international / total) * 100 : null,
+      twoOrMoreRaces: total > 0 && hasDetailedRaceData ? (twoOrMoreRaces / total) * 100 : null,
     };
   });
 
@@ -93,17 +89,17 @@ export default function DemographicsTrendChart({
 
   return (
     <div className="card p-4 sm:p-6">
-      <h3 className="text-lg font-semibold mb-4 text-gray-800">
-        Student Demographics
-      </h3>
+      <h3 className="text-lg font-semibold mb-4 text-gray-800">Student Demographics</h3>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <div>
-          <h4 className="text-sm font-medium text-gray-600 mb-3">
-            Enrollment Over Time
-          </h4>
+          <h4 className="text-sm font-medium text-gray-600 mb-3">Enrollment Over Time</h4>
           <div className="h-64">
-            <ResponsiveContainer initialDimension={{ width: 1, height: 1 }} width="100%" height="100%">
+            <ResponsiveContainer
+              initialDimension={{ width: 1, height: 1 }}
+              width="100%"
+              height="100%"
+            >
               <LineChart data={enrollmentData}>
                 <CartesianGrid strokeDasharray="3 3" stroke="#e5e5e5" />
                 <XAxis
@@ -146,8 +142,14 @@ export default function DemographicsTrendChart({
             </ResponsiveContainer>
           </div>
           <div className="mt-3 flex flex-wrap justify-center gap-x-4 gap-y-2 text-xs text-gray-600">
-            <span className="flex items-center gap-1.5"><span className="h-0.5 w-4" style={{ backgroundColor: schoolColor }} />Undergraduate</span>
-            <span className="flex items-center gap-1.5"><span className="h-0.5 w-4 bg-green-600" />Graduate</span>
+            <span className="flex items-center gap-1.5">
+              <span className="h-0.5 w-4" style={{ backgroundColor: schoolColor }} />
+              Undergraduate
+            </span>
+            <span className="flex items-center gap-1.5">
+              <span className="h-0.5 w-4 bg-green-600" />
+              Graduate
+            </span>
           </div>
         </div>
 
@@ -156,7 +158,11 @@ export default function DemographicsTrendChart({
             Demographics Over Time (% of Undergraduates)
           </h4>
           <div className="h-80">
-            <ResponsiveContainer initialDimension={{ width: 1, height: 1 }} width="100%" height="100%">
+            <ResponsiveContainer
+              initialDimension={{ width: 1, height: 1 }}
+              width="100%"
+              height="100%"
+            >
               <LineChart data={demographicsData} margin={{ bottom: 8 }}>
                 <CartesianGrid strokeDasharray="3 3" stroke="#e5e5e5" />
                 <XAxis
@@ -169,7 +175,7 @@ export default function DemographicsTrendChart({
                   tick={{ fontSize: 10, fill: "#666" }}
                   axisLine={{ stroke: "#e5e5e5" }}
                   tickFormatter={(v) => `${v.toFixed(0)}%`}
-                  domain={[0, 'auto']}
+                  domain={[0, "auto"]}
                 />
                 <Tooltip
                   contentStyle={{
@@ -234,7 +240,10 @@ export default function DemographicsTrendChart({
           <div className="mt-3 grid grid-cols-2 sm:grid-cols-3 gap-x-3 gap-y-2 text-xs text-gray-600">
             {Object.entries(RACE_LABELS).map(([key, label]) => (
               <span key={key} className="flex min-w-0 items-center gap-1.5">
-                <span className="h-0.5 w-4 flex-shrink-0" style={{ backgroundColor: RACE_COLORS[key] }} />
+                <span
+                  className="h-0.5 w-4 flex-shrink-0"
+                  style={{ backgroundColor: RACE_COLORS[key] }}
+                />
                 <span className="min-w-0 leading-snug">{label}</span>
               </span>
             ))}
@@ -252,14 +261,14 @@ export default function DemographicsTrendChart({
           </div>
           <div>
             <div className="text-gray-500">Total Enrollment</div>
-            <div className="font-semibold text-lg">
-              {formatNumber(latestDemo.enrollment.total)}
-            </div>
+            <div className="font-semibold text-lg">{formatNumber(latestDemo.enrollment.total)}</div>
           </div>
           <div>
             <div className="text-gray-500">International</div>
             <div className="font-semibold text-lg text-purple-600">
-              {hasRaceSummary ? `${((latestInternational / totalUndergrad) * 100).toFixed(0)}%` : "—"}
+              {hasRaceSummary
+                ? `${((latestInternational / totalUndergrad) * 100).toFixed(0)}%`
+                : "—"}
             </div>
           </div>
           <div>

@@ -70,15 +70,11 @@ export default function SearchBar({ schools }: SearchBarProps) {
     switch (e.key) {
       case "ArrowDown":
         e.preventDefault();
-        setHighlightedIndex((prev) =>
-          prev < filteredSchools.length - 1 ? prev + 1 : 0
-        );
+        setHighlightedIndex((prev) => (prev < filteredSchools.length - 1 ? prev + 1 : 0));
         break;
       case "ArrowUp":
         e.preventDefault();
-        setHighlightedIndex((prev) =>
-          prev > 0 ? prev - 1 : filteredSchools.length - 1
-        );
+        setHighlightedIndex((prev) => (prev > 0 ? prev - 1 : filteredSchools.length - 1));
         break;
       case "Enter":
         e.preventDefault();
@@ -143,14 +139,10 @@ export default function SearchBar({ schools }: SearchBarProps) {
                     onClick={() => navigateToSchool(school.slug)}
                     onMouseEnter={() => setHighlightedIndex(index)}
                     className={`w-full min-h-11 px-4 py-3 flex items-center justify-between gap-3 text-left transition-colors ${
-                      index === highlightedIndex
-                        ? "bg-gray-100"
-                        : "hover:bg-gray-50"
+                      index === highlightedIndex ? "bg-gray-100" : "hover:bg-gray-50"
                     }`}
                   >
-                    <span className="min-w-0 font-medium text-gray-800">
-                      {school.name}
-                    </span>
+                    <span className="min-w-0 font-medium text-gray-800">{school.name}</span>
                     <span className="flex-shrink-0 text-sm text-gray-500">
                       {formatPercent(school.acceptanceRate)} acceptance
                     </span>

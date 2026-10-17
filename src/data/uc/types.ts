@@ -37,9 +37,7 @@ export interface UCYearData {
   campuses: Record<string, UCCampusYear>;
 }
 
-export const UC_CAMPUS_ORDER = [
-  "UCB", "UCD", "UCI", "UCLA", "UCM", "UCR", "UCSD", "UCSB", "UCSC",
-];
+export const UC_CAMPUS_ORDER = ["UCB", "UCD", "UCI", "UCLA", "UCM", "UCR", "UCSD", "UCSB", "UCSC"];
 
 export const UC_CAMPUS_NAMES: Record<string, string> = {
   UCB: "UC Berkeley",

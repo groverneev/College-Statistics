@@ -1,6 +1,6 @@
 "use client";
 
-import { YearData } from "@/lib/types";
+import type { YearData } from "@/lib/types";
 import {
   AreaChart,
   Area,
@@ -17,10 +17,7 @@ interface TestScoresTrendChartProps {
   schoolColor: string;
 }
 
-export default function TestScoresTrendChart({
-  yearData,
-  schoolColor,
-}: TestScoresTrendChartProps) {
+export default function TestScoresTrendChart({ yearData, schoolColor }: TestScoresTrendChartProps) {
   const years = Object.keys(yearData).sort();
 
   const allScores = years
@@ -32,7 +29,7 @@ export default function TestScoresTrendChart({
       const sat = yearData[year].testScores.sat!;
       const composite = sat.composite!;
       return [composite.p25, composite.p50, composite.p75].filter(
-        (score): score is number => typeof score === "number"
+        (score): score is number => typeof score === "number",
       );
     });
 
@@ -64,9 +61,7 @@ export default function TestScoresTrendChart({
 
   return (
     <div className="card p-4 sm:p-6 h-full min-w-0">
-      <h3 className="text-lg font-semibold mb-4 text-gray-800">
-        SAT Score Trends (Middle 50%)
-      </h3>
+      <h3 className="text-lg font-semibold mb-4 text-gray-800">SAT Score Trends (Middle 50%)</h3>
       <div className="h-64">
         <ResponsiveContainer initialDimension={{ width: 1, height: 1 }} width="100%" height="100%">
           <AreaChart data={satTrendData}>
@@ -96,9 +91,7 @@ export default function TestScoresTrendChart({
                     <div className="bg-white p-3 border border-gray-200 rounded-lg shadow-lg">
                       <p className="font-semibold text-gray-800">{d.fullYear}</p>
                       <p className="text-sm text-gray-600">75th: {d.p75}</p>
-                      {d.p50 != null && (
-                        <p className="text-sm text-gray-600">50th: {d.p50}</p>
-                      )}
+                      {d.p50 != null && <p className="text-sm text-gray-600">50th: {d.p50}</p>}
                       <p className="text-sm text-gray-600">25th: {d.p25}</p>
                     </div>
                   );
@@ -129,8 +122,19 @@ export default function TestScoresTrendChart({
         </ResponsiveContainer>
       </div>
       <div className="mt-3 flex flex-wrap justify-center gap-x-4 gap-y-2 text-xs text-gray-600">
-        {hasReportedMedian && <span className="flex items-center gap-1.5"><span className="h-0.5 w-4 bg-blue-600" />Median</span>}
-        <span className="flex items-center gap-1.5"><span className="h-2.5 w-4 rounded-sm opacity-30" style={{ backgroundColor: schoolColor }} />Middle 50% Range</span>
+        {hasReportedMedian && (
+          <span className="flex items-center gap-1.5">
+            <span className="h-0.5 w-4 bg-blue-600" />
+            Median
+          </span>
+        )}
+        <span className="flex items-center gap-1.5">
+          <span
+            className="h-2.5 w-4 rounded-sm opacity-30"
+            style={{ backgroundColor: schoolColor }}
+          />
+          Middle 50% Range
+        </span>
       </div>
 
       <div className="mt-4 pt-4 border-t border-gray-200">

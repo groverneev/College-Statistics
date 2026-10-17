@@ -1,71 +1,60 @@
+import { and, eq } from "drizzle-orm";
 import { NextResponse } from "next/server";
+import { z } from "zod";
 import {
+  badRequestResponse,
+  categorySchema,
   getAuthenticatedUserId,
-  invalidCategoryResponse,
-  invalidSchoolSlugResponse,
-  isValidCategory,
-  isValidSchoolSlug,
-  revalidateSavedSchools,
+  readJson,
+  schoolSlugSchema,
   unauthorizedResponse,
 } from "@/app/api/my-schools/shared";
-import { prisma } from "@/lib/prisma";
+import { db } from "@/db";
+import { savedSchools } from "@/db/schema";
 
-export async function PATCH(
-  req: Request,
-  { params }: { params: Promise<{ slug: string }> }
-) {
+const updateSchema = z.object({ category: categorySchema });
+
+export async function PATCH(req: Request, { params }: { params: Promise<{ slug: string }> }) {
   const userId = await getAuthenticatedUserId();
   if (!userId) {
     return unauthorizedResponse();
   }
 
-  const { slug } = await params;
-  const { category } = await req.json();
-
-  if (!isValidSchoolSlug(slug)) {
-    return invalidSchoolSlugResponse();
+  const slug = schoolSlugSchema.safeParse((await params).slug);
+  if (!slug.success) {
+    return badRequestResponse(slug.error);
   }
-  if (!isValidCategory(category)) {
-    return invalidCategoryResponse();
+  const body = updateSchema.safeParse(await readJson(req));
+  if (!body.success) {
+    return badRequestResponse(body.error);
   }
 
-  const updated = await prisma.savedSchool.update({
-    where: {
-      userId_schoolSlug: {
-        userId,
-        schoolSlug: slug,
-      },
-    },
-    data: { category },
-  });
+  const [updated] = await db
+    .update(savedSchools)
+    .set({ category: body.data.category })
+    .where(and(eq(savedSchools.userId, userId), eq(savedSchools.schoolSlug, slug.data)))
+    .returning({ schoolSlug: savedSchools.schoolSlug, category: savedSchools.category });
 
-  revalidateSavedSchools(userId);
+  if (!updated) {
+    return NextResponse.json({ error: "Not found" }, { status: 404 });
+  }
   return NextResponse.json(updated);
 }
 
-export async function DELETE(
-  _req: Request,
-  { params }: { params: Promise<{ slug: string }> }
-) {
+export async function DELETE(_req: Request, { params }: { params: Promise<{ slug: string }> }) {
   const userId = await getAuthenticatedUserId();
   if (!userId) {
     return unauthorizedResponse();
   }
 
-  const { slug } = await params;
-  if (!isValidSchoolSlug(slug)) {
-    return invalidSchoolSlugResponse();
+  const slug = schoolSlugSchema.safeParse((await params).slug);
+  if (!slug.success) {
+    return badRequestResponse(slug.error);
   }
 
-  await prisma.savedSchool.delete({
-    where: {
-      userId_schoolSlug: {
-        userId,
-        schoolSlug: slug,
-      },
-    },
-  });
+  await db
+    .delete(savedSchools)
+    .where(and(eq(savedSchools.userId, userId), eq(savedSchools.schoolSlug, slug.data)));
 
-  revalidateSavedSchools(userId);
   return NextResponse.json({ success: true });
 }

@@ -1,6 +1,6 @@
 "use client";
 
-import { YearData } from "@/lib/types";
+import type { YearData } from "@/lib/types";
 import { formatCurrency, formatPercent } from "@/utils/dataHelpers";
 import {
   ComposedChart,
@@ -53,9 +53,7 @@ export default function FinancialAidTrendChart({
 
   return (
     <div className="card p-4 sm:p-6 h-full min-w-0">
-      <h3 className="text-lg font-semibold mb-4 text-gray-800">
-        Financial Aid Overview
-      </h3>
+      <h3 className="text-lg font-semibold mb-4 text-gray-800">Financial Aid Overview</h3>
       <div className="h-64">
         <ResponsiveContainer initialDimension={{ width: 1, height: 1 }} width="100%" height="100%">
           <ComposedChart data={trendData}>
@@ -84,22 +82,20 @@ export default function FinancialAidTrendChart({
               ]}
               labelFormatter={(label) => `${label}-${parseInt(label as string) + 1}`}
             />
-            <Bar
-              dataKey="totalCOA"
-              fill="#e5e5e5"
-              radius={[4, 4, 0, 0]}
-            />
-            <Bar
-              dataKey="averageAidPackage"
-              fill="#27ae60"
-              radius={[4, 4, 0, 0]}
-            />
+            <Bar dataKey="totalCOA" fill="#e5e5e5" radius={[4, 4, 0, 0]} />
+            <Bar dataKey="averageAidPackage" fill="#27ae60" radius={[4, 4, 0, 0]} />
           </ComposedChart>
         </ResponsiveContainer>
       </div>
       <div className="mt-3 flex flex-wrap justify-center gap-x-4 gap-y-2 text-xs text-gray-600">
-        <span className="flex items-center gap-1.5"><span className="h-2.5 w-2.5 rounded-sm bg-green-600" />Avg Aid Package</span>
-        <span className="flex items-center gap-1.5"><span className="h-2.5 w-2.5 rounded-sm bg-gray-200" />Total Cost</span>
+        <span className="flex items-center gap-1.5">
+          <span className="h-2.5 w-2.5 rounded-sm bg-green-600" />
+          Avg Aid Package
+        </span>
+        <span className="flex items-center gap-1.5">
+          <span className="h-2.5 w-2.5 rounded-sm bg-gray-200" />
+          Total Cost
+        </span>
       </div>
 
       <div className="mt-4 pt-4 border-t border-gray-200">

@@ -1,4 +1,4 @@
-import { SchoolData, YearData } from "@/lib/types";
+import type { SchoolData, YearData } from "@/lib/types";
 
 export function getSortedYears(school: SchoolData): string[] {
   return Object.keys(school.years).sort();
@@ -11,7 +11,7 @@ export function getLatestYear(school: SchoolData): string | null {
 
 export function getLatestYearData(school: SchoolData): YearData | null {
   const latestYear = getLatestYear(school);
-  return latestYear ? school.years[latestYear] ?? null : null;
+  return latestYear ? (school.years[latestYear] ?? null) : null;
 }
 
 export function getSchoolYearRange(school: SchoolData): string | null {

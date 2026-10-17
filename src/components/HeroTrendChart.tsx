@@ -53,8 +53,7 @@ export default function HeroTrendChart({ series }: HeroTrendChartProps) {
 
     const x = (year: number) =>
       PAD.left + ((year - minYear) / (maxYear - minYear)) * (W - PAD.left - PAD.right);
-    const y = (rate: number) =>
-      PAD.top + (1 - rate / yMax) * (H - PAD.top - PAD.bottom);
+    const y = (rate: number) => PAD.top + (1 - rate / yMax) * (H - PAD.top - PAD.bottom);
 
     const lines = series.map((s) => {
       const pts = s.points.map((p) => ({ x: x(p.year), y: y(p.rate) }));
@@ -70,9 +69,7 @@ export default function HeroTrendChart({ series }: HeroTrendChartProps) {
     });
 
     const MIN_GAP = 19;
-    const labels = lines
-      .map((l) => ({ slug: l.slug, y: l.end.y }))
-      .sort((a, b) => a.y - b.y);
+    const labels = lines.map((l) => ({ slug: l.slug, y: l.end.y })).sort((a, b) => a.y - b.y);
     for (let i = 1; i < labels.length; i++) {
       if (labels[i].y - labels[i - 1].y < MIN_GAP) {
         labels[i].y = labels[i - 1].y + MIN_GAP;
@@ -92,10 +89,7 @@ export default function HeroTrendChart({ series }: HeroTrendChartProps) {
   const isDimmed = (slug: string) => active !== null && active !== slug;
 
   return (
-    <div
-      className="relative hero-rise mx-auto w-full text-left"
-      style={{ animationDelay: "0.3s" }}
-    >
+    <div className="relative hero-rise mx-auto w-full text-left" style={{ animationDelay: "0.3s" }}>
       <div
         aria-hidden
         className="absolute -inset-x-10 -inset-y-12 pointer-events-none"
@@ -110,8 +104,7 @@ export default function HeroTrendChart({ series }: HeroTrendChartProps) {
         style={{
           border: "1px solid rgba(0, 0, 0, 0.08)",
           background: "linear-gradient(180deg, #ffffff 0%, #fbfbfd 100%)",
-          boxShadow:
-            "0 0 0 1px rgba(0,0,0,0.03), 0 32px 80px -24px rgba(23, 26, 43, 0.22)",
+          boxShadow: "0 0 0 1px rgba(0,0,0,0.03), 0 32px 80px -24px rgba(23, 26, 43, 0.22)",
         }}
       >
         <div
@@ -182,12 +175,19 @@ export default function HeroTrendChart({ series }: HeroTrendChartProps) {
             return (
               <div key={`mobile-chart-${item.slug}`}>
                 <div className="flex items-baseline justify-between gap-3 mb-1.5">
-                  <span className="text-sm font-semibold" style={{ color: item.color }}>{item.name}</span>
+                  <span className="text-sm font-semibold" style={{ color: item.color }}>
+                    {item.name}
+                  </span>
                   <span className="text-sm tabular-nums text-gray-600">
                     {(first.rate * 100).toFixed(1)}% → {(last.rate * 100).toFixed(1)}%
                   </span>
                 </div>
-                <svg viewBox="0 0 100 30" className="block w-full h-8" aria-hidden="true" preserveAspectRatio="none">
+                <svg
+                  viewBox="0 0 100 30"
+                  className="block w-full h-8"
+                  aria-hidden="true"
+                  preserveAspectRatio="none"
+                >
                   <line x1="0" x2="100" y1="28" y2="28" stroke="rgba(0,0,0,0.08)" />
                   <polyline
                     points={sparkline}
@@ -272,17 +272,11 @@ export default function HeroTrendChart({ series }: HeroTrendChartProps) {
                 className="hero-line"
                 style={{
                   animationDelay: `${0.5 + i * 0.18}s`,
-                  filter:
-                    active === line.slug
-                      ? `drop-shadow(0 0 7px ${line.color})`
-                      : undefined,
+                  filter: active === line.slug ? `drop-shadow(0 0 7px ${line.color})` : undefined,
                   transition: "stroke-width 0.25s ease",
                 }}
               />
-              <g
-                className="hero-fade"
-                style={{ animationDelay: `${1.7 + i * 0.18}s` }}
-              >
+              <g className="hero-fade" style={{ animationDelay: `${1.7 + i * 0.18}s` }}>
                 <circle cx={line.end.x} cy={line.end.y} r={4} fill={line.color} />
                 <text
                   x={line.end.x + 12}

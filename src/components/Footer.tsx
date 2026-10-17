@@ -43,12 +43,7 @@ export default function Footer() {
       href: "https://neevgrover.com",
       label: "Website",
       icon: (
-        <svg
-          className="w-5 h-5"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-        >
+        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path
             strokeLinecap="round"
             strokeLinejoin="round"
@@ -73,8 +68,8 @@ export default function Footer() {
           <div>
             <h3 className="text-lg font-bold mb-2">College Statistics</h3>
             <p className="text-gray-400 text-sm">
-              Compare university admissions data, test scores, costs, and
-              financial aid using official Common Data Set reports.
+              Compare university admissions data, test scores, costs, and financial aid using
+              official Common Data Set reports.
             </p>
           </div>
 
@@ -114,21 +109,17 @@ export default function Footer() {
                 </a>
               ))}
             </div>
-            <p className="text-gray-400 text-sm mt-4">
-              groverneev at gmail dot com
-            </p>
+            <p className="text-gray-400 text-sm mt-4">groverneev at gmail dot com</p>
           </div>
         </div>
 
         <div className="border-t border-gray-700 mt-8 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
             <p className="text-gray-400 text-sm">
-              &copy; {new Date().getFullYear()} College Statistics. All rights
-              reserved.
+              &copy; {new Date().getFullYear()} College Statistics. All rights reserved.
             </p>
             <p className="text-gray-500 text-xs text-center md:text-right">
-              Data sourced from official Common Data Set reports. For
-              informational purposes only.
+              Data sourced from official Common Data Set reports. For informational purposes only.
             </p>
           </div>
         </div>

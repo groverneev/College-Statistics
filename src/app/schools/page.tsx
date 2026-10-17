@@ -1,8 +1,6 @@
 import SearchBar from "@/components/SearchBar";
 import SchoolCard from "@/components/SchoolCard";
-import SortableSchools, {
-  type SortableSchoolItem,
-} from "@/components/SortableSchools";
+import SortableSchools, { type SortableSchoolItem } from "@/components/SortableSchools";
 import { allSchools, searchableSchools } from "@/data/schools";
 import { getLatestYearData, getSortedYears } from "@/utils/dataHelpers";
 import { pageMetadata } from "@/lib/seo";

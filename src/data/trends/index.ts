@@ -10,7 +10,8 @@ export interface TrendMeta {
 export const trends: TrendMeta[] = [
   {
     slug: "international-enrollment-exposure",
-    title: "International Students Make Up More Than 10% of Undergraduates at Half of Leading Colleges",
+    title:
+      "International Students Make Up More Than 10% of Undergraduates at Half of Leading Colleges",
     subtitle:
       "30 of 58 schools reported double-digit international enrollment in 2024–25; long-term trends split in both directions",
     date: "2026-09-06",
@@ -21,8 +22,7 @@ export const trends: TrendMeta[] = [
   {
     slug: "cs-enrollment-reversal",
     title: "Computer Science Interest Turns Down Across Every Level, 2024–2026",
-    subtitle:
-      "AP exams, the UC system, elite privates, and national counts all reversed together",
+    subtitle: "AP exams, the UC system, elite privates, and national counts all reversed together",
     date: "2026-07-07",
     tags: ["Computer Science", "Enrollment", "AP Exams", "AI"],
     preview:

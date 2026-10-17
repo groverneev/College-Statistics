@@ -70,10 +70,10 @@
         "totalCOA": 68372
       },
       "financialAid": {
-        "percentReceivingAid": 0,
+        "percentReceivingAid": 0.364,
         "averageAidPackage": 43518,
         "averageNeedBasedGrant": 42971,
-        "percentNeedFullyMet": 1.0
+        "percentNeedFullyMet": 1
       }
     },
     "2017-2018": {
@@ -115,10 +115,10 @@
         "totalCOA": 70942
       },
       "financialAid": {
-        "percentReceivingAid": 0,
+        "percentReceivingAid": 0.371,
         "averageAidPackage": 46384,
         "averageNeedBasedGrant": 44967,
-        "percentNeedFullyMet": 1.0
+        "percentNeedFullyMet": 1
       }
     },
     "2018-2019": {
@@ -160,10 +160,10 @@
         "totalCOA": 73664
       },
       "financialAid": {
-        "percentReceivingAid": 0,
+        "percentReceivingAid": 0.364,
         "averageAidPackage": 49416,
         "averageNeedBasedGrant": 48886,
-        "percentNeedFullyMet": 1.0
+        "percentNeedFullyMet": 1
       }
     },
     "2019-2020": {
@@ -205,10 +205,10 @@
         "totalCOA": 76492
       },
       "financialAid": {
-        "percentReceivingAid": 0,
+        "percentReceivingAid": 0.364,
         "averageAidPackage": 48215,
         "averageNeedBasedGrant": 46982,
-        "percentNeedFullyMet": 1.0
+        "percentNeedFullyMet": 1
       }
     },
     "2020-2021": {
@@ -250,10 +250,10 @@
         "totalCOA": 79210
       },
       "financialAid": {
-        "percentReceivingAid": 0.388,
+        "percentReceivingAid": 0.366,
         "averageAidPackage": 50302,
         "averageNeedBasedGrant": 49497,
-        "percentNeedFullyMet": 1.0
+        "percentNeedFullyMet": 1
       }
     },
     "2021-2022": {
@@ -295,10 +295,10 @@
         "totalCOA": 82002
       },
       "financialAid": {
-        "percentReceivingAid": 0.367,
+        "percentReceivingAid": 0.352,
         "averageAidPackage": 54954,
         "averageNeedBasedGrant": 54301,
-        "percentNeedFullyMet": 1.0
+        "percentNeedFullyMet": 1
       }
     },
     "2022-2023": {
@@ -367,10 +367,10 @@
         "totalCOA": 85504
       },
       "financialAid": {
-        "percentReceivingAid": 0.765,
+        "percentReceivingAid": 0.35,
         "averageAidPackage": 56540,
         "averageNeedBasedGrant": 55283,
-        "percentNeedFullyMet": 1.0
+        "percentNeedFullyMet": 1
       }
     },
     "2023-2024": {
@@ -439,10 +439,10 @@
         "totalCOA": 89292
       },
       "financialAid": {
-        "percentReceivingAid": 0.549,
+        "percentReceivingAid": 0.352,
         "averageAidPackage": 56797,
         "averageNeedBasedGrant": 55617,
-        "percentNeedFullyMet": 1.0
+        "percentNeedFullyMet": 1
       }
     },
     "2024-2025": {
@@ -511,10 +511,10 @@
         "totalCOA": 93182
       },
       "financialAid": {
-        "percentReceivingAid": 6.6,
+        "percentReceivingAid": 0.348,
         "averageAidPackage": 59574,
         "averageNeedBasedGrant": 58196,
-        "percentNeedFullyMet": 1.0
+        "percentNeedFullyMet": 1
       }
     }
   }

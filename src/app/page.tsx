@@ -3,7 +3,7 @@ import SearchBar from "@/components/SearchBar";
 import ExploreTiles from "@/components/ExploreTiles";
 import SchoolCarousel from "@/components/SchoolCarousel";
 import HomeSavedSchools from "@/components/HomeSavedSchools";
-import HeroTrendChart, { HeroSeries, HeroPoint } from "@/components/HeroTrendChart";
+import HeroTrendChart, { type HeroSeries, type HeroPoint } from "@/components/HeroTrendChart";
 import { allSchools, searchableSchools, schoolDataMap } from "@/data/schools";
 import { getSortedYears } from "@/utils/dataHelpers";
 import { pageMetadata } from "@/lib/seo";
@@ -61,10 +61,7 @@ function getHeroStats() {
   return {
     schools: allSchools.length,
     schoolYears: roundedYears,
-    yearSpan:
-      Number.isFinite(minYear) && Number.isFinite(maxYear)
-        ? `${minYear}–${maxYear}`
-        : null,
+    yearSpan: Number.isFinite(minYear) && Number.isFinite(maxYear) ? `${minYear}–${maxYear}` : null,
   };
 }
 
@@ -103,8 +100,8 @@ export default function HomePage() {
               className="hero-rise text-base sm:text-lg max-w-2xl mx-auto mb-8"
               style={{ color: "#5a5f66", animationDelay: "0.1s" }}
             >
-              Free, accurate, and transparent college insights &mdash; sourced directly from official
-              Common Data Set reports.
+              Free, accurate, and transparent college insights &mdash; sourced directly from
+              official Common Data Set reports.
             </p>
           </div>
 
@@ -124,10 +121,7 @@ export default function HomePage() {
             style={{ color: "#6b7078", animationDelay: "0.24s" }}
           >
             {chips.map((chip) => (
-              <span
-                key={chip}
-                className="rounded-full border border-black/8 bg-white px-3 py-1.5"
-              >
+              <span key={chip} className="rounded-full border border-black/8 bg-white px-3 py-1.5">
                 {chip}
               </span>
             ))}

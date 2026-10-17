@@ -1,36 +1,16 @@
-import { cookies } from "next/headers";
-import { trends } from "@/data/trends/index";
 import StoryCard from "@/components/trends/StoryCard";
-import InternationalPreviewPrompt from "@/components/trends/InternationalPreviewPrompt";
-import {
-  getInternationalPreviewToken,
-  INTERNATIONAL_PREVIEW_COOKIE,
-} from "@/lib/internationalPreview";
-import { INTERNATIONAL_PREVIEW_SLUG } from "@/lib/internationalPreviewConfig";
+import { trends } from "@/data/trends/index";
 import { pageMetadata } from "@/lib/seo";
 
 export const metadata = pageMetadata({
   title: "Trends – College Statistics",
-  description:
-    "Data-driven analysis of college admissions trends, application volumes, and more.",
+  description: "Data-driven analysis of college admissions trends, application volumes, and more.",
   path: "/trends",
 });
 
-export default async function TrendsPage({
-  searchParams,
-}: {
-  searchParams?: Promise<{ preview?: string | string[] }>;
-}) {
-  const params = await searchParams;
-  const preview = Array.isArray(params?.preview) ? params.preview[0] : params?.preview;
-  const previewPassword = process.env.REPORTER_PREVIEW_PASSWORD;
-  const previewCookie = (await cookies()).get(INTERNATIONAL_PREVIEW_COOKIE)?.value;
-  const hasPreviewAccess =
-    previewPassword !== undefined &&
-    previewCookie === getInternationalPreviewToken(previewPassword);
-
+export default function TrendsPage() {
   const sorted = [...trends].sort(
-    (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
+    (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime(),
   );
 
   return (
@@ -38,8 +18,8 @@ export default async function TrendsPage({
       <div className="bg-gradient-to-r from-gray-800 to-gray-900 py-16 px-4 text-center text-white">
         <h1 className="text-4xl md:text-5xl font-bold mb-3">Trends</h1>
         <p className="text-gray-300 text-lg max-w-2xl mx-auto">
-          Data-driven stories on college admissions, application volumes, and
-          higher education statistics.
+          Data-driven stories on college admissions, application volumes, and higher education
+          statistics.
         </p>
       </div>
 
@@ -49,21 +29,11 @@ export default async function TrendsPage({
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {sorted.map((story) => (
-              <StoryCard
-                key={story.slug}
-                story={story}
-                href={
-                  story.slug === INTERNATIONAL_PREVIEW_SLUG && !hasPreviewAccess
-                    ? `/trends?preview=${INTERNATIONAL_PREVIEW_SLUG}`
-                    : undefined
-                }
-              />
+              <StoryCard key={story.slug} story={story} />
             ))}
           </div>
         )}
       </div>
-
-      <InternationalPreviewPrompt open={preview === INTERNATIONAL_PREVIEW_SLUG} />
     </div>
   );
 }

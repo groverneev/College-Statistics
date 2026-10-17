@@ -76,10 +76,7 @@ function getInternationalShare(
   };
 }
 
-function makeRow(
-  school: (typeof allSchools)[number],
-  year: string,
-): InternationalShareRow | null {
+function makeRow(school: (typeof allSchools)[number], year: string): InternationalShareRow | null {
   const values = getInternationalShare(school, year);
   if (!values) return null;
 
@@ -135,9 +132,7 @@ const annualYears = [
 function median(values: number[]) {
   const sorted = [...values].sort((a, b) => a - b);
   const middle = Math.floor(sorted.length / 2);
-  return sorted.length % 2 === 0
-    ? (sorted[middle - 1] + sorted[middle]) / 2
-    : sorted[middle];
+  return sorted.length % 2 === 0 ? (sorted[middle - 1] + sorted[middle]) / 2 : sorted[middle];
 }
 
 export const metrics = {
@@ -165,12 +160,7 @@ export const annualMedianRows = annualYears.map((year) => {
   };
 });
 
-export const notableDeclines = [
-  "ucsandiego",
-  "purdue",
-  "northeastern",
-  "miami",
-]
+export const notableDeclines = ["ucsandiego", "purdue", "northeastern", "miami"]
   .map((slug) => comparisonRows.find((row) => row.slug === slug))
   .filter((row): row is InternationalComparisonRow => row !== undefined);
 

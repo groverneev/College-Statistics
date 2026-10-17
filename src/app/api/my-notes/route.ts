@@ -1,14 +1,28 @@
+import { desc, eq } from "drizzle-orm";
 import { NextResponse } from "next/server";
+import { z } from "zod";
 import {
+  badRequestResponse,
   getAuthenticatedUserId,
-  invalidNoteBodyResponse,
-  invalidSchoolSlugResponse,
-  isValidNoteBody,
-  isValidSchoolSlug,
-  revalidateNotes,
+  readJson,
+  schoolSlugSchema,
   unauthorizedResponse,
-} from "@/app/api/my-notes/shared";
-import { prisma } from "@/lib/prisma";
+} from "@/app/api/my-schools/shared";
+import { db } from "@/db";
+import { schoolNotes } from "@/db/schema";
+
+const MAX_NOTE_LENGTH = 5000;
+
+const saveNoteSchema = z.object({
+  schoolSlug: schoolSlugSchema,
+  body: z.string().max(MAX_NOTE_LENGTH).trim().min(1),
+});
+
+const noteColumns = {
+  schoolSlug: schoolNotes.schoolSlug,
+  body: schoolNotes.body,
+  updatedAt: schoolNotes.updatedAt,
+};
 
 export async function GET() {
   const userId = await getAuthenticatedUserId();
@@ -16,11 +30,11 @@ export async function GET() {
     return unauthorizedResponse();
   }
 
-  const notes = await prisma.schoolNote.findMany({
-    where: { userId },
-    select: { schoolSlug: true, body: true, updatedAt: true },
-    orderBy: { updatedAt: "desc" },
-  });
+  const notes = await db
+    .select(noteColumns)
+    .from(schoolNotes)
+    .where(eq(schoolNotes.userId, userId))
+    .orderBy(desc(schoolNotes.updatedAt));
 
   return NextResponse.json(notes);
 }
@@ -31,22 +45,20 @@ export async function POST(req: Request) {
     return unauthorizedResponse();
   }
 
-  const { schoolSlug, body } = await req.json();
-  if (!isValidSchoolSlug(schoolSlug)) {
-    return invalidSchoolSlugResponse();
-  }
-  if (!isValidNoteBody(body)) {
-    return invalidNoteBodyResponse();
+  const parsed = saveNoteSchema.safeParse(await readJson(req));
+  if (!parsed.success) {
+    return badRequestResponse(parsed.error);
   }
 
-  const trimmed = body.trim();
-  const note = await prisma.schoolNote.upsert({
-    where: { userId_schoolSlug: { userId, schoolSlug } },
-    update: { body: trimmed },
-    create: { userId, schoolSlug, body: trimmed },
-    select: { schoolSlug: true, body: true, updatedAt: true },
-  });
+  const { schoolSlug, body } = parsed.data;
+  const [note] = await db
+    .insert(schoolNotes)
+    .values({ userId, schoolSlug, body })
+    .onConflictDoUpdate({
+      target: [schoolNotes.userId, schoolNotes.schoolSlug],
+      set: { body, updatedAt: new Date() },
+    })
+    .returning(noteColumns);
 
-  revalidateNotes(userId);
   return NextResponse.json(note);
 }

@@ -5,7 +5,7 @@ import { schoolDataMap } from "@/data/schools";
 import SchoolCard from "@/components/SchoolCard";
 import { useSavedSchools } from "@/components/SavedSchoolsContext";
 
-type Category = "REACH" | "TARGET" | "SAFETY" | "UNDECIDED";
+import type { Category } from "@/db/schema";
 
 const CATEGORY_CONFIG: {
   value: Category;
@@ -44,9 +44,7 @@ export default function SavedSchoolsDashboard() {
       {hasSaved ? (
         <div className="space-y-10">
           {CATEGORY_CONFIG.map(({ value, label, borderColor }) => {
-            const schoolsInCategory = savedSchools.filter(
-              (school) => school.category === value
-            );
+            const schoolsInCategory = savedSchools.filter((school) => school.category === value);
             if (schoolsInCategory.length === 0) {
               return null;
             }
@@ -69,11 +67,7 @@ export default function SavedSchoolsDashboard() {
                   {schoolsInCategory.map(({ schoolSlug }) => {
                     const school = schoolDataMap[schoolSlug];
                     return school ? (
-                      <SchoolCard
-                        key={schoolSlug}
-                        school={school}
-                        showSaveButton
-                      />
+                      <SchoolCard key={schoolSlug} school={school} showSaveButton />
                     ) : null;
                   })}
                 </div>
@@ -83,13 +77,14 @@ export default function SavedSchoolsDashboard() {
         </div>
       ) : (
         <div className="text-center py-16 bg-white rounded-2xl border border-dashed border-gray-200">
-          <div className="text-4xl mb-4" aria-hidden="true">📚</div>
+          <div className="text-4xl mb-4" aria-hidden="true">
+            📚
+          </div>
           <h3 className="text-lg font-semibold text-gray-800 mb-2">
             Start building your college list
           </h3>
           <p className="text-gray-500 mb-6 max-w-sm mx-auto">
-            Browse schools and save them as Reach, Target, or Safety to build
-            your list.
+            Browse schools and save them as Reach, Target, or Safety to build your list.
           </p>
           <Link
             href="/schools"
