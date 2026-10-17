@@ -68,6 +68,8 @@ import williamscollegeData from "./williamscollege.json";
 import claremontmckennaData from "./claremontmckenna.json";
 import harveymuddData from "./harveymudd.json";
 import universityofgeorgiaData from "./universityofgeorgia.json";
+import santaclaraData from "./santaclara.json";
+import virginiatechData from "./virginiatech.json";
 
 export interface SearchableSchool {
   name: string;
@@ -149,6 +151,8 @@ export const allSchools: SchoolData[] = [
   claremontmckennaData as SchoolData,
   harveymuddData as SchoolData,
   universityofgeorgiaData as SchoolData,
+  santaclaraData as SchoolData,
+  virginiatechData as SchoolData,
 ];
 
 export const SCHOOL_METADATA: Record<string, SchoolMetadata> = {
@@ -476,6 +480,14 @@ export const SCHOOL_METADATA: Record<string, SchoolMetadata> = {
   universityofgeorgia: {
     aliases: ["UGA", "Georgia", "University of Georgia", "Georgia Bulldogs"],
     color: "#BA0C2F",
+  },
+  santaclara: {
+    aliases: ["SCU", "Santa Clara"],
+    color: "#B30838",
+  },
+  virginiatech: {
+    aliases: ["Virginia Tech", "VT", "Virginia Polytechnic Institute and State University"],
+    color: "#861F41",
   },
 };
 
