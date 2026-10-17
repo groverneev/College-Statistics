@@ -63,6 +63,10 @@ import wakeForestData from "./wakeforest.json";
 import washuData from "./washu.json";
 import williamAndMaryData from "./williamandmary.json";
 import yaleData from "./yale.json";
+import amherstcollegeData from "./amherstcollege.json";
+import williamscollegeData from "./williamscollege.json";
+import claremontmckennaData from "./claremontmckenna.json";
+import harveymuddData from "./harveymudd.json";
 
 export interface SearchableSchool {
   name: string;
@@ -139,6 +143,10 @@ export const allSchools: SchoolData[] = [
   pomonacollegeData as SchoolData,
   swarthmorecollegeData as SchoolData,
   bowdoincollegeData as SchoolData,
+  amherstcollegeData as SchoolData,
+  williamscollegeData as SchoolData,
+  claremontmckennaData as SchoolData,
+  harveymuddData as SchoolData,
 ];
 
 export const SCHOOL_METADATA: Record<string, SchoolMetadata> = {
@@ -489,6 +497,22 @@ export const SCHOOL_METADATA: Record<string, SchoolMetadata> = {
     color: "#115740",
   },
   yale: { aliases: ["Yale"], color: "#00356B" },
+  amherstcollege: {
+    aliases: ["Amherst", "Amherst College"],
+    color: "#3F1F69",
+  },
+  williamscollege: {
+    aliases: ["Williams", "Williams College"],
+    color: "#500082",
+  },
+  claremontmckenna: {
+    aliases: ["CMC", "Claremont McKenna", "Claremont McKenna College", "Claremont"],
+    color: "#981A31",
+  },
+  harveymudd: {
+    aliases: ["Harvey Mudd", "Mudd", "HMC", "Harvey Mudd College"],
+    color: "#FDB913",
+  },
 };
 
 export const schoolDataMap: Record<string, SchoolData> = Object.fromEntries(
