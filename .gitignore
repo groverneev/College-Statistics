@@ -14,7 +14,10 @@
 
 /build
 
-.claude/
+.claude/*
+!.claude/skills/
+
+__pycache__/
 
 .DS_Store
 *.pem
