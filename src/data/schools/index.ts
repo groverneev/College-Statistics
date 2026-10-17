@@ -70,6 +70,9 @@ import harveymuddData from "./harveymudd.json";
 import universityofgeorgiaData from "./universityofgeorgia.json";
 import santaclaraData from "./santaclara.json";
 import virginiatechData from "./virginiatech.json";
+import lehighData from "./lehigh.json";
+import brandeisData from "./brandeis.json";
+import villanovaData from "./villanova.json";
 
 export interface SearchableSchool {
   name: string;
@@ -153,6 +156,9 @@ export const allSchools: SchoolData[] = [
   universityofgeorgiaData as SchoolData,
   santaclaraData as SchoolData,
   virginiatechData as SchoolData,
+  lehighData as SchoolData,
+  brandeisData as SchoolData,
+  villanovaData as SchoolData,
 ];
 
 export const SCHOOL_METADATA: Record<string, SchoolMetadata> = {
@@ -488,6 +494,18 @@ export const SCHOOL_METADATA: Record<string, SchoolMetadata> = {
   virginiatech: {
     aliases: ["Virginia Tech", "VT", "Virginia Polytechnic Institute and State University"],
     color: "#861F41",
+  },
+  lehigh: {
+    aliases: ["Lehigh", "LU"],
+    color: "#502D0E",
+  },
+  brandeis: {
+    aliases: ["Brandeis", "Brandeis U"],
+    color: "#003478",
+  },
+  villanova: {
+    aliases: ["Villanova", "Nova", "VU"],
+    color: "#002664",
   },
 };
 
