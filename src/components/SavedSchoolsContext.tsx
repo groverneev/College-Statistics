@@ -40,7 +40,6 @@ export function SavedSchoolsProvider({
   isLoggedIn: boolean;
 }) {
   const { data: session } = useSession();
-  // Initialize directly with server data — present during SSR, no post-hydration flash
   const [savedSchools, setSavedSchools] = useState<SavedSchool[]>(initialSavedSchools);
   const [loading, setLoading] = useState(false);
   const [signInPromptOpen, setSignInPromptOpen] = useState(false);
@@ -51,15 +50,13 @@ export function SavedSchoolsProvider({
     setSignInPromptOpen(true);
   }, []);
 
-  // Only fetch client-side if the user logs in AFTER initial load (e.g. signs in
-  // without a full reload). On a normal page load the server already seeded us.
   const hadServerData = isLoggedIn;
   useEffect(() => {
     if (!session) {
       setSavedSchools([]);
       return;
     }
-    if (hadServerData) return; // server already provided the list
+    if (hadServerData) return;
     setLoading(true);
     fetch("/api/my-schools")
       .then((r) => r.json())
@@ -79,7 +76,6 @@ export function SavedSchoolsProvider({
   );
 
   const saveSchool = useCallback(async (slug: string, category: Category) => {
-    // Optimistic update — UI changes instantly
     setSavedSchools((prev) => {
       const existing = prev.find((s) => s.schoolSlug === slug);
       if (existing) {
@@ -87,7 +83,6 @@ export function SavedSchoolsProvider({
       }
       return [...prev, { schoolSlug: slug, category }];
     });
-    // Sync to DB in background
     try {
       await fetch("/api/my-schools", {
         method: "POST",
@@ -95,19 +90,15 @@ export function SavedSchoolsProvider({
         body: JSON.stringify({ schoolSlug: slug, category }),
       });
     } catch {
-      // Roll back on failure
       setSavedSchools((prev) => prev.filter((s) => s.schoolSlug !== slug));
     }
   }, []);
 
   const removeSchool = useCallback(async (slug: string) => {
-    // Optimistic update — UI changes instantly
     setSavedSchools((prev) => prev.filter((s) => s.schoolSlug !== slug));
-    // Sync to DB in background
     try {
       await fetch(`/api/my-schools/${slug}`, { method: "DELETE" });
     } catch {
-      // Roll back on failure — re-fetch to restore accurate state
       fetch("/api/my-schools")
         .then((r) => r.json())
         .then((data) => setSavedSchools(data))

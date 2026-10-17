@@ -15,9 +15,6 @@ export const metadata = pageMetadata({
   path: "/",
 });
 
-// Registry brand colors tuned for legibility on the light hero chart
-// (Harvard, MIT, and Northeastern are near-identical crimsons at full depth, so
-// MIT takes a neutral charcoal and Northeastern a warmer orange-red to separate).
 const HERO_SCHOOLS: { slug: string; label: string; color: string }[] = [
   { slug: "harvard", label: "Harvard", color: "#C0392B" },
   { slug: "mit", label: "MIT", color: "#6E7079" },
@@ -83,11 +80,8 @@ export default function HomePage() {
   ].filter(Boolean) as string[];
 
   return (
-    // -mt-16 pulls the dark canvas up behind the fixed translucent header
     <div className="min-h-screen -mt-16 hero-dark">
-      {/* Hero Section */}
       <div className="relative overflow-hidden pt-32 pb-20 sm:pt-36 sm:pb-24 text-center">
-        {/* Ambient glow at the top of the canvas */}
         <div
           aria-hidden
           className="absolute inset-x-0 top-0 h-80 pointer-events-none"
@@ -143,13 +137,10 @@ export default function HomePage() {
         </div>
       </div>
 
-      {/* Signed-in users see their saved list before the full catalog */}
       <HomeSavedSchools />
 
-      {/* Full catalog as an auto-scrolling marquee of school cards */}
       <SchoolCarousel />
 
-      {/* Capability gateways */}
       <ExploreTiles />
     </div>
   );

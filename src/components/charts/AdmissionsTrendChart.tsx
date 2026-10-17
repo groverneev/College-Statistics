@@ -55,7 +55,6 @@ export default function AdmissionsTrendChart({
 
   return (
     <div className="space-y-6">
-      {/* Applications & Acceptance Rate Chart */}
       <div className="card p-4 sm:p-6" style={{ backgroundColor: "#ffffff" }}>
         <h3 className="text-lg font-semibold mb-4 text-gray-800">
           Applications & Acceptance Rate Over Time
@@ -125,7 +124,6 @@ export default function AdmissionsTrendChart({
         </div>
       </div>
 
-      {/* Early Decision Chart - if data exists */}
       {hasEarlyDecision && (
         <div className="card p-4 sm:p-6" style={{ backgroundColor: "#ffffff" }}>
           <h3 className="text-lg font-semibold mb-4 text-gray-800">
@@ -177,7 +175,6 @@ export default function AdmissionsTrendChart({
         </div>
       )}
 
-      {/* Complete Admissions Data Table */}
       <div className="card p-4 sm:p-6" style={{ backgroundColor: "#ffffff" }}>
         <h3 className="text-lg font-semibold mb-4 text-gray-800">
           Complete Admissions Data

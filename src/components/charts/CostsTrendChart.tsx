@@ -128,7 +128,6 @@ export default function CostsTrendChart({
         <span className="flex items-center gap-1.5"><span className="h-2.5 w-2.5 rounded-sm bg-green-600" />Room &amp; Board</span>
       </div>
 
-      {/* Cost breakdown */}
       <div className="mt-4 pt-4 border-t border-gray-200">
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 text-center text-sm">
           <div>

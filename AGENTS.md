@@ -1,6 +1,6 @@
 # College Statistics
 
-Next.js application with a Python pipeline for publishing Common Data Set statistics.
+Next.js application for publishing Common Data Set statistics.
 
 ## Project Rules
 

@@ -9,7 +9,6 @@ export const metadata = {
 
 export default async function MySchoolsPage() {
   const session = await getSession();
-  // Signed out — send them home instead of showing a 404
   if (!session) {
     redirect("/");
   }

@@ -3,7 +3,6 @@ export interface ApCsaYearRow {
   testTakers: number;
 }
 
-// AP Computer Science A test takers, 2002–2026 (2026 preliminary)
 export const apCsaSeries: ApCsaYearRow[] = [
   { year: 2002, testTakers: 15660 },
   { year: 2003, testTakers: 14674 },
@@ -38,7 +37,6 @@ export interface CsSplitRow {
   csp: number;
 }
 
-// AP CS A vs AP CS Principles test takers, 2022–2026 (2026 preliminary)
 export const csSplitSeries: CsSplitRow[] = [
   { year: 2022, csa: 77753, csp: 134651 },
   { year: 2023, csa: 94438, csp: 164505 },
@@ -59,7 +57,6 @@ export interface SciIndexedRow {
   csaCount: number;
 }
 
-// AP science exams indexed to their own 2024 totals (2024 = 100)
 export const sciIndexedSeries: SciIndexedRow[] = [
   {
     year: 2024,
@@ -102,7 +99,6 @@ export interface DeclineSourceRow {
   change: number;
 }
 
-// CS enrollment declines by independent source (measurement windows differ)
 export const declinesBySource: DeclineSourceRow[] = [
   { source: "AP CS A", window: "2024 → 2026", change: -17 },
   { source: "UC CS majors", window: "2023 → 2025", change: -9 },

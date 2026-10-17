@@ -131,7 +131,6 @@ export default function SaveSchoolButton({
     );
   }
 
-  // icon variant
   return (
     <div className="relative" ref={popoverRef}>
       <button

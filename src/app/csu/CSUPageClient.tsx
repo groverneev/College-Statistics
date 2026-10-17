@@ -61,7 +61,6 @@ type TabId = (typeof TABS)[number]["id"];
 const LATEST = String(CSU_LATEST_FALL);
 const EARLIEST = String(CSU_EARLIEST_FALL);
 
-/** Campuses admitting fewer than half their applicants get the accent colour. */
 const SELECTIVE_THRESHOLD = 50;
 
 function signed(n: number, digits = 1): string {
@@ -82,10 +81,6 @@ function Delta({ value, suffix }: { value: number; suffix: string }) {
   );
 }
 
-// ---------------------------------------------------------------------------
-// Systemwide
-// ---------------------------------------------------------------------------
-
 function FunnelStage({
   label,
   value,
@@ -102,9 +97,6 @@ function FunnelStage({
   meta?: string;
 }) {
   const width = (value / total) * 100;
-  // The meta line is pinned to the right edge of the track rather than to the
-  // end of the fill, so a nearly full bar cannot push it off the panel. It sits
-  // over the fill on wide bars, so it takes its ink from whatever is behind it.
   const metaOverFill = width > 70;
   return (
     <div className="grid items-center gap-3" style={{ gridTemplateColumns: "6.5rem 1fr" }}>
@@ -280,10 +272,6 @@ function SystemwideView() {
     </div>
   );
 }
-
-// ---------------------------------------------------------------------------
-// Campus profile
-// ---------------------------------------------------------------------------
 
 function LevelBar({ totals, level }: { totals: CSUCampusArea; level: CSULevel }) {
   const rate = admitRate(totals);
@@ -476,10 +464,6 @@ function CampusView() {
   );
 }
 
-// ---------------------------------------------------------------------------
-// Major matrix
-// ---------------------------------------------------------------------------
-
 function HeatCell({ campus, area, level }: { campus: string; area: string; level: CSULevel }) {
   const row = campusArea(campus, area, level);
   const rate = row ? admitRate(row) : null;
@@ -636,18 +620,12 @@ function MatrixView() {
   );
 }
 
-// ---------------------------------------------------------------------------
-// California pipeline
-// ---------------------------------------------------------------------------
-
 function PipelineView() {
   const latest = csuStatewideLatest;
   const earliest = csuStatewideEarliest;
   const rate = latest.rate ?? 0;
 
   const points: ScatterPoint[] = useMemo(() => {
-    // Only the four largest counties are labelled. Beyond that the labels
-    // collide in the dense middle of the cloud, and every dot has a tooltip.
     const biggest = new Set(
       [...csuData.counties].sort((a, b) => b.graduates - a.graduates).slice(0, 4).map((c) => c.name)
     );
@@ -769,10 +747,6 @@ function PipelineView() {
     </div>
   );
 }
-
-// ---------------------------------------------------------------------------
-// Page
-// ---------------------------------------------------------------------------
 
 export default function CSUPageClient() {
   const [tab, setTab] = useState<TabId>("system");

@@ -3,7 +3,6 @@ import Link from "next/link";
 export default function NotFound() {
   return (
     <div className="min-h-screen" style={{ background: "#f5f5f5" }}>
-      {/* Hero */}
       <div className="bg-gradient-to-r from-gray-800 to-gray-900 py-16 px-4 text-center text-white">
         <div className="text-8xl font-bold mb-4 text-gray-400">404</div>
         <h1 className="text-3xl md:text-4xl font-bold mb-3">Page Not Found</h1>
@@ -12,7 +11,6 @@ export default function NotFound() {
         </p>
       </div>
 
-      {/* Content */}
       <div className="max-w-2xl mx-auto px-4 py-12">
         <div className="card p-8 text-center">
           <h2 className="text-xl font-semibold text-gray-800 mb-2">

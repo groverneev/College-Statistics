@@ -16,7 +16,6 @@ const tiles: Tile[] = [
       "Sort every school by acceptance rate, class size, test scores, cost, and yield.",
     cta: "Browse schools",
     visual: (
-      // Sorted bars
       <svg viewBox="0 0 120 40" className="w-28 h-10" aria-hidden>
         <rect x="0" y="4" width="104" height="7" rx="3.5" fill="rgba(0,0,0,0.1)" />
         <rect x="0" y="16" width="72" height="7" rx="3.5" fill="#2D7DD2" />
@@ -31,7 +30,6 @@ const tiles: Tile[] = [
       "Compare admit rates, GPA ranges, and yield across all nine UC campuses by discipline.",
     cta: "Explore UC data",
     visual: (
-      // Nine campuses
       <svg viewBox="0 0 120 40" className="w-28 h-10" aria-hidden>
         {[0, 1, 2, 3, 4, 5, 6, 7, 8].map((i) => (
           <circle
@@ -53,7 +51,6 @@ const tiles: Tile[] = [
       "Data-driven analysis of application volumes, selectivity, and shifts in who's applying.",
     cta: "Read the trends",
     visual: (
-      // Sparkline
       <svg viewBox="0 0 120 40" className="w-28 h-10" aria-hidden>
         <path
           d="M2 32 C 18 30, 26 24, 38 22 S 62 26, 74 18 S 102 6, 118 4"

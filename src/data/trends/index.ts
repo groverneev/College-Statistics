@@ -2,7 +2,7 @@ export interface TrendMeta {
   slug: string;
   title: string;
   subtitle: string;
-  date: string; // ISO: "2026-03-01"
+  date: string;
   tags: string[];
   preview: string;
 }

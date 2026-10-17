@@ -27,7 +27,6 @@ export async function generateMetadata({
     path: `/trends/${story.slug}`,
     type: "article",
   });
-  // Password-gated preview story stays out of search results until it is public.
   if (slug === INTERNATIONAL_PREVIEW_SLUG) {
     metadata.robots = { index: false, follow: false };
   }
@@ -59,7 +58,6 @@ export default async function StoryPage({
 
   return (
     <div className="min-h-screen" style={{ background: "#f5f5f5" }}>
-      {/* Hero */}
       <div className="bg-gradient-to-r from-gray-800 to-gray-900 py-14 px-4 text-center text-white">
         <div className="flex flex-wrap justify-center gap-2 mb-4">
           {story.tags.map((tag) => (
@@ -87,7 +85,6 @@ export default async function StoryPage({
         </p>
       </div>
 
-      {/* Story Content */}
       <div className="max-w-5xl mx-auto px-4 py-10">
         <StoryComponent />
       </div>

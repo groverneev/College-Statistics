@@ -92,9 +92,6 @@ export default function InternationalPreviewPrompt({ open }: { open: boolean }) 
         return;
       }
 
-      // Replace the prompt URL so Back returns to the trends list instead of
-      // reopening the password prompt. A full navigation makes the server
-      // evaluate the newly set cookie rather than a cached protected route.
       window.location.replace(`/trends/${INTERNATIONAL_PREVIEW_SLUG}`);
     } catch {
       setError("Something went wrong. Please try again.");

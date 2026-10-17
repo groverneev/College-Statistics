@@ -11,7 +11,6 @@ interface ConfirmDialogProps {
   description?: string;
   confirmLabel?: string;
   cancelLabel?: string;
-  /** Background color for the confirm button (defaults to a neutral red). */
   confirmColor?: string;
 }
 
@@ -26,7 +25,6 @@ export default function ConfirmDialog({
   cancelLabel = "Cancel",
   confirmColor = "#ef4444",
 }: ConfirmDialogProps) {
-  // Close on Escape
   useEffect(() => {
     if (!open) return;
     const previousOverflow = document.body.style.overflow;
@@ -50,14 +48,12 @@ export default function ConfirmDialog({
       aria-modal="true"
       aria-labelledby="confirm-dialog-title"
     >
-      {/* Backdrop */}
       <div
         className="absolute inset-0 bg-black/40"
         onClick={onClose}
         aria-hidden="true"
       />
 
-      {/* Card */}
       <div className="relative w-full max-w-sm max-h-[calc(100dvh-2rem)] overflow-y-auto bg-white rounded-2xl shadow-xl p-6 text-center">
         <div className="text-4xl mb-3">{icon}</div>
         <h2

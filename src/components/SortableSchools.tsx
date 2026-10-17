@@ -34,7 +34,6 @@ type SortValue =
 
 type Direction = "asc" | "desc";
 
-// Each metric has a sensible default direction; the user can reverse it.
 const SORT_OPTIONS: { value: SortValue; label: string; defaultDir: Direction }[] = [
   { value: "acceptance", label: "Acceptance rate", defaultDir: "asc" },
   { value: "name", label: "Name", defaultDir: "asc" },
@@ -45,7 +44,6 @@ const SORT_OPTIONS: { value: SortValue; label: string; defaultDir: Direction }[]
   { value: "years", label: "Years of data", defaultDir: "desc" },
 ];
 
-// The numeric field each metric sorts on. `name` is handled separately (string).
 function numericField(
   metric: SchoolSortMetric,
   sort: SortValue
@@ -68,8 +66,6 @@ function numericField(
   }
 }
 
-// Numeric compare where a missing value (null) always sorts to the bottom,
-// regardless of direction — "no data" should never read as "lowest".
 function compareNumeric(
   a: number | null,
   b: number | null,
@@ -101,7 +97,6 @@ function sortItems(
             numericField(b.metric, sort),
             dir
           );
-    // Stable, predictable tie-breaker.
     return primary !== 0 ? primary : byNameAsc(a, b);
   });
   return sorted;
@@ -115,7 +110,6 @@ export default function SortableSchools({ items }: SortableSchoolsProps) {
   const sorted = sortItems(items, sort, direction);
   const activeLabel = SORT_OPTIONS.find((o) => o.value === sort)?.label;
 
-  // Close the popover on outside click or Escape — same pattern as SaveSchoolButton.
   useEffect(() => {
     function handleClickOutside(e: MouseEvent) {
       if (menuRef.current && !menuRef.current.contains(e.target as Node)) {

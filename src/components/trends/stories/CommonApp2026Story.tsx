@@ -39,10 +39,10 @@ import {
 } from "@/data/trends/common-app-2026/data";
 
 const ACCENT = "#1D4F91";
-const POSITIVE = "#16A34A"; // green-600
-const NEGATIVE = "#DC2626"; // red-600
-const NEUTRAL = "#6B7280"; // gray-500
-const LIGHT_GRAY = "#F3F4F6"; // gray-100
+const POSITIVE = "#16A34A";
+const NEGATIVE = "#DC2626";
+const NEUTRAL = "#6B7280";
+const LIGHT_GRAY = "#F3F4F6";
 
 function fmtPct(v: unknown): string {
   if (typeof v !== "number") return "";
@@ -93,8 +93,6 @@ function MobilePercentBars({
   );
 }
 
-// ─── Section 1: Platform Stat Cards ──────────────────────────────────────────
-
 function PlatformStats() {
   return (
     <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
@@ -117,8 +115,6 @@ function PlatformStats() {
     </div>
   );
 }
-
-// ─── Section 2: Demographic Growth Bar Chart ─────────────────────────────────
 
 function DemographicGrowthChart() {
   const sorted = [...demographicGrowth].sort((a, b) => b.growth - a.growth);
@@ -194,8 +190,6 @@ function DemographicGrowthChart() {
   );
 }
 
-// ─── Section 3a: International by Region ────────────────────────────────────
-
 function InternationalRegionChart() {
   const data = [...internationalByRegion].sort((a, b) => b.growth - a.growth);
 
@@ -238,10 +232,7 @@ function InternationalRegionChart() {
   );
 }
 
-// ─── Section 3b: Country-Level Changes ──────────────────────────────────────
-
 function CountryChangesChart() {
-  // Show declines and gains in one horizontal bar chart
   const data = [
     ...countryGains.map((c) => ({ ...c, type: "gain" as const })),
     ...countryDeclines
@@ -301,8 +292,6 @@ function CountryChangesChart() {
     </div>
   );
 }
-
-// ─── Section 4: Test Score Reporting ────────────────────────────────────────
 
 function ScoreReportingChart() {
   return (
@@ -403,8 +392,6 @@ function TestRequirementChart() {
   );
 }
 
-// ─── Section 5: Selectivity Band Chart ───────────────────────────────────────
-
 function SelectivityChart() {
   return (
     <div className="card p-4 sm:p-6">
@@ -471,17 +458,13 @@ function SelectivityChart() {
   );
 }
 
-// ─── Main Export ─────────────────────────────────────────────────────────────
-
 export default function CommonApp2026Story() {
   return (
     <div className="space-y-6 sm:space-y-8">
-      {/* Lede */}
       <div className="card p-4 sm:p-6">
         <p className="text-gray-700 leading-relaxed text-base">{lede}</p>
       </div>
 
-      {/* Fault Line 1: The Surge */}
       <div>
         <h2 className="text-xl font-bold text-gray-900 mb-1">
           1 — The Record Numbers
@@ -492,7 +475,6 @@ export default function CommonApp2026Story() {
         <PlatformStats />
       </div>
 
-      {/* Fault Line 2: Growing Apart */}
       <div>
         <h2 className="text-xl font-bold text-gray-900 mb-1">
           2 — Growing Apart
@@ -505,7 +487,6 @@ export default function CommonApp2026Story() {
         <DemographicGrowthChart />
       </div>
 
-      {/* Fault Line 3: The International Cliff */}
       <div>
         <h2 className="text-xl font-bold text-gray-900 mb-1">
           3 — The International Cliff
@@ -521,7 +502,6 @@ export default function CommonApp2026Story() {
         </div>
       </div>
 
-      {/* Fault Line 4: Test Scores Come Back */}
       <div>
         <h2 className="text-xl font-bold text-gray-900 mb-1">
           4 — Test Scores Come Back
@@ -556,7 +536,6 @@ export default function CommonApp2026Story() {
         </div>
       </div>
 
-      {/* Fault Line 5: Selective Schools Grow Slowest */}
       <div>
         <h2 className="text-xl font-bold text-gray-900 mb-1">
           5 — The Most Selective Schools Grow Slowest
@@ -571,7 +550,6 @@ export default function CommonApp2026Story() {
         <SelectivityChart />
       </div>
 
-      {/* Key Takeaways */}
       <div className="card p-4 sm:p-6">
         <h3 className="text-lg font-semibold text-gray-800 mb-4">
           Key Takeaways

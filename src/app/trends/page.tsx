@@ -35,7 +35,6 @@ export default async function TrendsPage({
 
   return (
     <div className="min-h-screen" style={{ background: "#f5f5f5" }}>
-      {/* Hero */}
       <div className="bg-gradient-to-r from-gray-800 to-gray-900 py-16 px-4 text-center text-white">
         <h1 className="text-4xl md:text-5xl font-bold mb-3">Trends</h1>
         <p className="text-gray-300 text-lg max-w-2xl mx-auto">
@@ -44,7 +43,6 @@ export default async function TrendsPage({
         </p>
       </div>
 
-      {/* Story Grid */}
       <div className="max-w-6xl mx-auto px-4 py-12">
         {sorted.length === 0 ? (
           <p className="text-center text-gray-500">No stories yet.</p>

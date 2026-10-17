@@ -17,7 +17,6 @@ function satRange(school: SchoolData, year: string): string | null {
     : null;
 }
 
-// Short, number-led description for <meta name="description"> and social cards.
 export function buildSchoolDescription(school: SchoolData): string {
   const years = getSortedYears(school);
   const latestYear = years[years.length - 1];
@@ -41,8 +40,6 @@ export function buildSchoolDescription(school: SchoolData): string {
   return `${lead}See admissions trends, test scores, tuition, financial aid and demographics from the Common Data Set.`;
 }
 
-// Plain-language overview rendered on the school page so the key numbers are
-// readable as text (by people and crawlers), not only inside charts.
 export function buildSchoolSummary(school: SchoolData): string[] {
   const years = getSortedYears(school);
   const firstYear = years[0];

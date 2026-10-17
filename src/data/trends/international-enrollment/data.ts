@@ -174,8 +174,6 @@ export const notableDeclines = [
   .map((slug) => comparisonRows.find((row) => row.slug === slug))
   .filter((row): row is InternationalComparisonRow => row !== undefined);
 
-// UC Davis has a sharp source-series break between 2018–19 and 2019–20. Keep it
-// in the full data, but use a conservative set of named examples in the story chart.
 const notableIncreases = ["dartmouth", "caltech", "vanderbilt", "uncchapelhill"]
   .map((slug) => comparisonRows.find((row) => row.slug === slug))
   .filter((row): row is InternationalComparisonRow => row !== undefined);

@@ -8,7 +8,6 @@ datasource db {
   directUrl = env("DIRECT_URL")
 }
 
-// --- NextAuth models (JWT strategy: only User + Account are used) ---
 
 model Account {
   id                String  @id @default(cuid())
@@ -40,7 +39,6 @@ model User {
   notes         SchoolNote[]
 }
 
-// --- App models ---
 
 model SavedSchool {
   id         String   @id @default(cuid())

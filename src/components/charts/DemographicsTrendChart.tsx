@@ -50,7 +50,6 @@ export default function DemographicsTrendChart({
   const latestWhite = latestDemo.byRace.white ?? 0;
   const hasRaceSummary = totalUndergrad > 0 && (latestInternational > 0 || latestWhite > 0);
 
-  // Enrollment trend data
   const enrollmentData = yearsWithEnrollment.map((year) => ({
     year: year.split("-")[0],
     fullYear: year,
@@ -58,7 +57,6 @@ export default function DemographicsTrendChart({
     graduate: yearData[year].demographics.enrollment.graduate || 0,
   }));
 
-  // Demographics trend data (percentages over time)
   const demographicsData = yearsWithEnrollment.map((year) => {
     const demo = yearData[year].demographics;
     const total = demo.enrollment.undergraduate ?? 0;
@@ -100,7 +98,6 @@ export default function DemographicsTrendChart({
       </h3>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        {/* Enrollment Trend */}
         <div>
           <h4 className="text-sm font-medium text-gray-600 mb-3">
             Enrollment Over Time
@@ -154,7 +151,6 @@ export default function DemographicsTrendChart({
           </div>
         </div>
 
-        {/* Demographics Trend Chart */}
         <div>
           <h4 className="text-sm font-medium text-gray-600 mb-3">
             Demographics Over Time (% of Undergraduates)
@@ -246,7 +242,6 @@ export default function DemographicsTrendChart({
         </div>
       </div>
 
-      {/* Summary Stats */}
       <div className="mt-4 pt-4 border-t border-gray-200">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center text-sm">
           <div>

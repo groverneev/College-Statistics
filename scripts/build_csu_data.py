@@ -1,21 +1,3 @@
-"""Build the CSU Explorer dataset from the raw CSU data-dashboard exports.
-
-Reads the five files in ``College-Data/csu/raw`` and writes a single typed
-TypeScript module to ``src/data/csu/generated.ts``.
-
-The exports are UTF-16LE and tab-delimited despite the ``.csv`` extension, and
-each carries a two-row header where the term or academic year sits on the first
-row and the measure on the second. Both quirks are handled here so the rest of
-the app never sees them.
-
-Nothing in this script estimates, interpolates or carries values across years.
-A suppressed cell in the source becomes ``null`` and stays ``null``.
-
-Usage::
-
-    uv run python scripts/build_csu_data.py
-"""
-
 from __future__ import annotations
 
 import csv
@@ -31,21 +13,17 @@ OUT = ROOT / "src" / "data" / "csu" / "generated.ts"
 
 FALL_YEARS = [2021, 2022, 2023, 2024, 2025]
 
-# Entry levels are stored as single characters to keep the shipped payload small.
 LEVEL_CODE = {"First-Time Freshmen": "F", "Undergraduate Transfers": "U"}
 
-# CalStateTEACH is a systemwide credential program, not a campus.
 NOT_A_CAMPUS = {"CalStateTEACH"}
 
-# A campus/major pair needs this many applicants before it can appear in the
-# "hardest programs" ranking; below it a handful of decisions swings the rate.
 MIN_APPLICANTS_FOR_RANKING = 250
 
 RANKING_SIZE = 40
 
 
 class SourceError(RuntimeError):
-    """Raised when a raw export does not have the shape this script expects."""
+    pass
 
 
 def read_rows(filename: str) -> list[list[str]]:
@@ -57,7 +35,6 @@ def read_rows(filename: str) -> list[list[str]]:
 
 
 def parse_number(value: str | None) -> int | float | None:
-    """Parse one source cell. Blank, ``-`` and unparseable cells become None."""
     text = (value or "").strip().replace(",", "")
     if not text or text == "-":
         return None
@@ -76,7 +53,6 @@ def parse_number(value: str | None) -> int | float | None:
 
 
 def forward_fill(row: list[str]) -> list[str]:
-    """Carry each header label rightwards across the cells it spans."""
     filled: list[str] = []
     last = ""
     for cell in row:
@@ -93,13 +69,11 @@ def fall_year(label: str) -> int | None:
 
 
 def measure_key(label: str) -> str:
-    """Normalise the second header row. 'Admitted:' and 'Admit:' both -> admitted."""
     key = label.strip().rstrip(":").lower()
     return {"app": "applied", "admit": "admitted", "enroll": "enrolled"}.get(key, key)
 
 
 def year_columns(header_year: list[str], header_measure: list[str], start: int) -> Iterator[tuple[int, int, str]]:
-    """Yield (column index, fall year, measure) for every data column."""
     for i in range(start, len(header_year)):
         year = fall_year(header_year[i]) if i < len(header_year) else None
         measure = measure_key(header_measure[i]) if i < len(header_measure) else ""
@@ -109,7 +83,6 @@ def year_columns(header_year: list[str], header_measure: list[str], start: int) 
 
 
 def parse_admissions(filename: str) -> dict[str, dict[int, dict[str, Any]]]:
-    """Parse the campus and systemwide exports, which share a layout."""
     rows = read_rows(filename)
     if len(rows) < 3:
         raise SourceError(f"{filename}: expected a two-row header and at least one data row")
@@ -129,7 +102,6 @@ def parse_admissions(filename: str) -> dict[str, dict[int, dict[str, Any]]]:
 
 
 def parse_disciplines() -> list[dict[str, Any]]:
-    """Parse the discipline export: campus / area / major / entry level."""
     rows = read_rows("discipline-admissions.csv")
     header_year, header_measure = forward_fill(rows[0]), rows[1]
 
@@ -158,7 +130,6 @@ def parse_disciplines() -> list[dict[str, Any]]:
 
 
 def parse_ag(filename: str, header_row: int) -> dict[str, dict[str, dict[str, Any]]]:
-    """Parse an a-g completion export keyed by region, then academic year."""
     rows = read_rows(filename)
     years = [cell.strip() for cell in rows[header_row]]
 
@@ -178,7 +149,6 @@ def parse_ag(filename: str, header_row: int) -> dict[str, dict[str, dict[str, An
 
 
 def ag_measure(bucket: dict[str, Any], *names: str) -> Any:
-    """Read a measure that is labelled slightly differently statewide vs by county."""
     for name in names:
         if name in bucket:
             return bucket[name]
@@ -208,7 +178,6 @@ def build() -> dict[str, Any]:
     system = admissions(system_raw["Systemwide"])
     campuses = {name: admissions(record) for name, record in campus_raw.items()}
 
-    # Systemwide totals by entry level, all five years.
     by_level: dict[str, dict[str, dict[str, int]]] = {
         code: {str(y): {"applied": 0, "admitted": 0, "enrolled": 0} for y in FALL_YEARS}
         for code in LEVEL_CODE.values()
@@ -221,8 +190,6 @@ def build() -> dict[str, Any]:
                 if value:
                     by_level[row["level"]][str(year)][measure] += value
 
-    # Campus x area x entry level, Fall 2025 only. Earlier years are not rolled
-    # up because their enrollment is suppressed in the source.
     area_totals: dict[tuple[str, str, str], list[int | None]] = defaultdict(lambda: [0, 0, None])
     for row in disciplines:
         cell = row["years"].get(2025, {})
@@ -241,7 +208,6 @@ def build() -> dict[str, Any]:
         if app
     ]
 
-    # Systemwide totals per area, Fall 2025, both entry levels.
     areas: dict[str, dict[str, int | None]] = {}
     for entry in campus_areas:
         bucket = areas.setdefault(entry["area"], {"applied": 0, "admitted": 0, "enrolled": None})
@@ -250,7 +216,6 @@ def build() -> dict[str, Any]:
         if entry["enrolled"] is not None:
             bucket["enrolled"] = (bucket["enrolled"] or 0) + entry["enrolled"]
 
-    # Individual programs, Fall 2025 first-time freshmen.
     programs = []
     for row in disciplines:
         if row["level"] != "F":
@@ -325,13 +290,7 @@ def literal(value: Any) -> str:
 
 
 def render(data: dict[str, Any]) -> str:
-    return f'''// Generated by scripts/build_csu_data.py — do not edit by hand.
-// Source: CSU Institutional Research data dashboards. See
-// College-Data/csu/raw/SOURCE.md for the exports and their known gaps.
-//
-// A null is a value the source suppressed. Nothing here is estimated.
-
-import type {{ CSUData }} from "./types";
+    return f'''import type {{ CSUData }} from "./types";
 
 export const csuData: CSUData = {literal(data)} as const;
 '''

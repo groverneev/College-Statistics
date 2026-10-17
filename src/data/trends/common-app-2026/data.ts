@@ -1,9 +1,3 @@
-// Data for "2026 Application Season: Five Fault Lines"
-// Source: Common App "Deadline Update, 2025-2026: First-year application trends through February 1"
-// Published: February 12, 2026. Covers 913 returning member institutions.
-
-// ─── Section 1: Overall platform stats ───────────────────────────────────────
-
 export interface PlatformStat {
   label: string;
   value2025: string;
@@ -36,14 +30,11 @@ export const platformStats: PlatformStat[] = [
   },
 ];
 
-// ─── Section 2: Demographic growth rates ─────────────────────────────────────
-
 export interface GroupGrowthRow {
   group: string;
-  growth: number; // % change vs same point in 2024-25 season
+  growth: number;
 }
 
-// Sorted roughly from fastest to slowest growth (mix of demographic groups)
 export const demographicGrowth: GroupGrowthRow[] = [
   { group: "Black / African American", growth: 9 },
   { group: "Below-Median Income ZIP", growth: 8 },
@@ -59,8 +50,6 @@ export const demographicGrowth: GroupGrowthRow[] = [
   { group: "Fee Waiver Ineligible", growth: 0 },
   { group: "Continuing-Generation", growth: 0 },
 ];
-
-// ─── Section 3: International applicants ─────────────────────────────────────
 
 export interface RegionRow {
   region: string;
@@ -79,7 +68,6 @@ export interface CountryRow {
   growth: number;
 }
 
-// Countries with notable declines (all explicitly stated in report)
 export const countryDeclines: CountryRow[] = [
   { country: "Ghana", growth: -34 },
   { country: "Ethiopia", growth: -29 },
@@ -87,13 +75,10 @@ export const countryDeclines: CountryRow[] = [
   { country: "India", growth: -14 },
 ];
 
-// Countries with notable gains (explicitly stated in report)
 export const countryGains: CountryRow[] = [
   { country: "Venezuela", growth: 136 },
   { country: "Honduras", growth: 54 },
 ];
-
-// ─── Section 4: Test score reporting ─────────────────────────────────────────
 
 export interface ScoreReportingRow {
   group: string;
@@ -105,8 +90,6 @@ export const scoreReportingGrowth: ScoreReportingRow[] = [
   { group: "Non-Reporters", growth: -5 },
 ];
 
-// % of Common App members *requiring* test scores over time
-// 2019-20 and 2023-24 through 2025-26 are explicitly cited in the report
 export interface TestRequirementRow {
   season: string;
   pctRequiring: number;
@@ -119,7 +102,6 @@ export const testRequirementHistory: TestRequirementRow[] = [
   { season: "2025-26", pctRequiring: 5 },
 ];
 
-// Groups less likely to submit a test score (qualitative, from report text)
 export const lowerScoreSubmissionGroups = [
   "First-generation applicants",
   "URM applicants",
@@ -127,24 +109,18 @@ export const lowerScoreSubmissionGroups = [
   "Students from below-median income ZIP codes",
 ];
 
-// ─── Section 5: Application growth by selectivity ────────────────────────────
-
 export interface SelectivityRow {
   band: string;
   admitRange: string;
   growth: number;
 }
 
-// From report: Most Selective (<25% admit rate) grew +3%;
-// all other bands grew 6-7%. Public +6%, Private +5%.
 export const selectivityGrowth: SelectivityRow[] = [
   { band: "Most Selective", admitRange: "< 25%", growth: 3 },
   { band: "Highly Selective", admitRange: "25 – 49%", growth: 7 },
   { band: "More Selective", admitRange: "50 – 74%", growth: 6 },
   { band: "Less Selective", admitRange: "≥ 75%", growth: 6 },
 ];
-
-// ─── Narrative text ───────────────────────────────────────────────────────────
 
 export const lede = `
 Through February 1, 2026, more students have applied to college via Common App than ever before —

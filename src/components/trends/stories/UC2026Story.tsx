@@ -20,8 +20,8 @@ import {
 } from "@/data/trends/uc-2026-applications/data";
 import useMediaQuery from "@/components/useMediaQuery";
 
-const BLUE_2025 = "#6B7280"; // gray-500
-const BLUE_2026 = "#1D4F91"; // deep blue
+const BLUE_2025 = "#6B7280";
+const BLUE_2026 = "#1D4F91";
 
 function formatK(val: number | string | undefined) {
   if (typeof val !== "number") return "";
@@ -112,7 +112,6 @@ function MobilePercentChanges({ rows }: { rows: { campus: string; change: number
   );
 }
 
-// Chart 1: First-Year Applications by Campus (grouped bar)
 function FirstYearByCampus() {
   const isDesktop = useMediaQuery("(min-width: 640px)");
   const data = campusData.map((d) => ({
@@ -150,7 +149,6 @@ function FirstYearByCampus() {
   );
 }
 
-// Chart 2: YoY % Change by Campus (first-year, horizontal bar)
 function YoYChange() {
   const isDesktop = useMediaQuery("(min-width: 640px)");
   const data = campusData
@@ -208,7 +206,6 @@ function YoYChange() {
   );
 }
 
-// Chart 3: Application type mix system-wide (stacked bar)
 function AppTypeMix() {
   const isDesktop = useMediaQuery("(min-width: 640px)");
   const data = appTypeMix.map((d) => ({
@@ -266,7 +263,6 @@ function AppTypeMix() {
   );
 }
 
-// Chart 4: Transfer Applications by Campus (grouped bar)
 function TransferByCampus() {
   const isDesktop = useMediaQuery("(min-width: 640px)");
   const data = campusData.map((d) => ({
@@ -306,7 +302,6 @@ function TransferByCampus() {
   );
 }
 
-// Full data table
 function DataTable() {
   return (
     <div className="card p-4 sm:p-6">
@@ -389,18 +384,15 @@ function DataTable() {
 export default function UC2026Story() {
   return (
     <div className="space-y-6 sm:space-y-8">
-      {/* Lede */}
       <div className="card p-4 sm:p-6">
         <p className="text-gray-700 leading-relaxed text-base">{lede}</p>
       </div>
 
-      {/* Charts */}
       <FirstYearByCampus />
       <YoYChange />
       <AppTypeMix />
       <TransferByCampus />
 
-      {/* Key Takeaways */}
       <div className="card p-4 sm:p-6">
         <h3 className="text-lg font-semibold text-gray-800 mb-4">Key Takeaways</h3>
         <ul className="space-y-2">
@@ -413,7 +405,6 @@ export default function UC2026Story() {
         </ul>
       </div>
 
-      {/* Data Table */}
       <DataTable />
     </div>
   );

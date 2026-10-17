@@ -6,7 +6,6 @@ import { getLatestYear } from "@/utils/dataHelpers";
 import { buildSchoolDescription, buildSchoolSummary } from "@/utils/schoolSummary";
 import SchoolPageClient from "./SchoolPageClient";
 
-// Generate static params for all schools
 export function generateStaticParams() {
   return Object.keys(schoolDataMap).map((school) => ({
     school: school,

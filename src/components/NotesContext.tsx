@@ -30,19 +30,16 @@ export function NotesProvider({
   isLoggedIn: boolean;
 }) {
   const { data: session } = useSession();
-  // Initialize directly with server data — present during SSR, no post-hydration flash
   const [notes, setNotes] = useState<SchoolNote[]>(initialNotes);
   const [loading, setLoading] = useState(false);
 
-  // Only fetch client-side if the user logs in AFTER initial load (e.g. signs in
-  // without a full reload). On a normal page load the server already seeded us.
   const hadServerData = isLoggedIn;
   useEffect(() => {
     if (!session) {
       setNotes([]);
       return;
     }
-    if (hadServerData) return; // server already provided the list
+    if (hadServerData) return;
     setLoading(true);
     fetch("/api/my-notes")
       .then((r) => r.json())
@@ -64,9 +61,7 @@ export function NotesProvider({
   const saveNote = useCallback(async (slug: string, body: string) => {
     const trimmed = body.trim();
     if (!trimmed) return;
-    // Snapshot for rollback
     const prevNotes = notes;
-    // Optimistic update — UI changes instantly
     setNotes((prev) => {
       const existing = prev.find((n) => n.schoolSlug === slug);
       if (existing) {
@@ -74,7 +69,6 @@ export function NotesProvider({
       }
       return [...prev, { schoolSlug: slug, body: trimmed }];
     });
-    // Sync to DB in background
     try {
       const res = await fetch("/api/my-notes", {
         method: "POST",
@@ -83,20 +77,18 @@ export function NotesProvider({
       });
       if (!res.ok) throw new Error("save failed");
     } catch {
-      setNotes(prevNotes); // roll back
+      setNotes(prevNotes);
     }
   }, [notes]);
 
   const deleteNote = useCallback(async (slug: string) => {
     const prevNotes = notes;
-    // Optimistic update — UI changes instantly
     setNotes((prev) => prev.filter((n) => n.schoolSlug !== slug));
-    // Sync to DB in background
     try {
       const res = await fetch(`/api/my-notes/${slug}`, { method: "DELETE" });
       if (!res.ok) throw new Error("delete failed");
     } catch {
-      setNotes(prevNotes); // roll back
+      setNotes(prevNotes);
     }
   }, [notes]);
 

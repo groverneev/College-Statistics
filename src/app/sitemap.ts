@@ -22,7 +22,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.9,
   }));
 
-  // The password-gated preview story is excluded until it is public.
   const trendPages: MetadataRoute.Sitemap = trends
     .filter((story) => story.slug !== INTERNATIONAL_PREVIEW_SLUG)
     .map((story) => ({

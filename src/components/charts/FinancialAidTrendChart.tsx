@@ -102,7 +102,6 @@ export default function FinancialAidTrendChart({
         <span className="flex items-center gap-1.5"><span className="h-2.5 w-2.5 rounded-sm bg-gray-200" />Total Cost</span>
       </div>
 
-      {/* Key stats */}
       <div className="mt-4 pt-4 border-t border-gray-200">
         <div className="grid grid-cols-2 gap-4 text-center text-sm">
           <div>

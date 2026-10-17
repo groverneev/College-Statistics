@@ -15,7 +15,6 @@ export default function ContactPage() {
     setStatus("loading");
 
     try {
-      // Replace with your Formspree endpoint
       const response = await fetch("https://formspree.io/f/xnnvbrzq", {
         method: "POST",
         headers: {
@@ -99,7 +98,6 @@ export default function ContactPage() {
 
   return (
     <div className="min-h-screen" style={{ background: "#f5f5f5" }}>
-      {/* Hero Section */}
       <div className="bg-gradient-to-r from-gray-800 to-gray-900 py-16 px-4 text-center text-white">
         <h1 className="text-4xl md:text-5xl font-bold mb-3">Contact</h1>
         <p className="text-gray-300 text-lg max-w-2xl mx-auto">
@@ -107,10 +105,8 @@ export default function ContactPage() {
         </p>
       </div>
 
-      {/* Content */}
       <div className="max-w-4xl mx-auto px-4 py-12">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          {/* Contact Form */}
           <div className="card p-5 sm:p-8">
             <h2 className="text-2xl font-bold text-gray-800 mb-6">
               Send a Message
@@ -247,7 +243,6 @@ export default function ContactPage() {
             )}
           </div>
 
-          {/* Contact Info */}
           <div className="space-y-6">
             <div className="card p-5 sm:p-8">
               <h2 className="text-2xl font-bold text-gray-800 mb-4">

@@ -500,7 +500,6 @@ export const uc2025: UCYearData = {
         enrolleeGpaRange: [3.44, 3.94],
       },
       disciplines: {
-        // Applicants are derived from admits and workbook admit rates because the source rows are shifted.
         "Arts & Humanities": {
           applicants: 5386,
           admits: 4847,

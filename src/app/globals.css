@@ -1,6 +1,5 @@
 @import "tailwindcss";
 
-/* Force light mode */
 @media (prefers-color-scheme: dark) {
   :root {
     color-scheme: light only;
@@ -25,26 +24,22 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
 }
 
-/* Force all backgrounds to be light */
 .bg-white,
 .bg-gray-50,
 .bg-gray-100 {
   background-color: #ffffff !important;
 }
 
-/* Card styling - force white background */
 .card {
   background-color: #ffffff !important;
   border-radius: 8px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.06);
 }
 
-/* Override any dark mode backgrounds */
 [class*="dark:bg-"] {
   background-color: #ffffff !important;
 }
 
-/* Stat card styling */
 .stat-card {
   background-color: #ffffff !important;
   border-radius: 8px;
@@ -86,7 +81,6 @@ body {
   }
 }
 
-/* Table styling */
 .data-table {
   width: 100%;
   border-collapse: collapse;
@@ -128,7 +122,6 @@ body {
   color: #444444;
 }
 
-/* Override dark text colors */
 .text-gray-800,
 .text-gray-900 {
   color: #1a1a1a !important;
@@ -143,7 +136,6 @@ body {
   color: #666666 !important;
 }
 
-/* Recharts overrides */
 .recharts-wrapper,
 .recharts-surface {
   background-color: transparent !important;
@@ -153,13 +145,11 @@ body {
   fill: transparent !important;
 }
 
-/* Border colors */
 .border-gray-200,
 .border-gray-100 {
   border-color: #e5e5e5 !important;
 }
 
-/* Form input styling */
 .form-input {
   width: 100%;
   padding: 0.75rem 1rem;
@@ -186,7 +176,6 @@ body {
   cursor: not-allowed;
 }
 
-/* Select styling */
 select.form-input {
   appearance: none;
   background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
@@ -196,13 +185,10 @@ select.form-input {
   padding-right: 2.5rem;
 }
 
-/* Header styles */
 header:not(.header-dark) {
   background-color: #ffffff !important;
 }
 
-/* Homepage-only header (light variant floating over the hero).
-   Class names retain the historical "dark" suffix; the styling is now light. */
 header.header-dark {
   background-color: #f7f8fa;
 }
@@ -226,7 +212,6 @@ header.header-dark {
   border-color: rgba(0, 0, 0, 0.08) !important;
 }
 
-/* Search box animation */
 @keyframes subtle-pulse {
   0%, 100% {
     box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.2), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
@@ -245,13 +230,10 @@ header.header-dark {
   box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.18), 0 0 0 3px rgba(94, 106, 210, 0.25);
 }
 
-/* Footer link hover */
 footer a:hover {
   color: #ffffff;
 }
 
-/* ===== Linear-style hero (light) =====
-   Class name kept as `hero-dark` for stability; canvas is a soft off-white. */
 .hero-dark {
   background-color: #f7f8fa;
 }
@@ -306,7 +288,6 @@ footer a:hover {
   }
 }
 
-/* ===== Homepage surfaces (light) ===== */
 .section-label {
   color: #6b7078;
   font-size: 0.75rem;
@@ -340,7 +321,6 @@ footer a:hover {
   color: #0d0e10;
 }
 
-/* Hero secondary CTA: solid pill pointing at the full catalog */
 .hero-browse-btn {
   display: inline-flex;
   align-items: center;
@@ -360,8 +340,6 @@ footer a:hover {
   transform: translateY(-1px);
 }
 
-/* "Browse all" / "My Schools" pill — solid accent fill so it stands out
-   against the section headers instead of blending into the white surface. */
 .browse-all-btn {
   display: inline-flex;
   align-items: center;
@@ -385,11 +363,8 @@ footer a:hover {
   box-shadow: 0 8px 18px -6px rgba(0, 0, 0, 0.5);
 }
 
-/* ===== Homepage school-card marquee ===== */
 .marquee-mask {
   overflow: hidden;
-  /* Thin fixed-width feather so cards soften at the edge without the old
-     wide fade ghosting a translucent card over the light canvas. */
   mask-image: linear-gradient(
     to right,
     transparent,

@@ -7,7 +7,6 @@ export default function CardNoteIndicator({ schoolSlug }: { schoolSlug: string }
   const note = getNote(schoolSlug);
   if (!note) return null;
 
-  // First non-empty line, used as a one-line preview
   const preview = note.split("\n").find((line) => line.trim().length > 0)?.trim() ?? "";
 
   return (

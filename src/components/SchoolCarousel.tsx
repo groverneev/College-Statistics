@@ -5,7 +5,6 @@ import Link from "next/link";
 import SchoolCard from "@/components/SchoolCard";
 import { allSchools } from "@/data/schools";
 
-// Matches the old CSS animation's pace: a full -50% loop over 430s.
 const LOOP_DURATION_MS = 430_000;
 
 export default function SchoolCarousel() {
@@ -62,10 +61,6 @@ export default function SchoolCarousel() {
     return () => cancelAnimationFrame(rafId);
   }, []);
 
-  // Deliberately not using setPointerCapture here: capturing on the mask
-  // redirects the follow-up mouseup/click to the mask itself, which kills
-  // normal card-link clicks. Tracking move/up on window instead leaves
-  // click delivery to the real element under the pointer.
   const handlePointerMoveWindow = (e: PointerEvent) => {
     const dx = e.clientX - dragStartXRef.current;
     if (Math.abs(dx) > 3) draggedRef.current = true;
@@ -100,8 +95,6 @@ export default function SchoolCarousel() {
   };
 
   const handleClickCapture = (e: React.MouseEvent) => {
-    // Suppress the click that follows a drag so we don't accidentally
-    // navigate into a school page while the user was just panning.
     if (draggedRef.current) {
       e.preventDefault();
       e.stopPropagation();
@@ -119,11 +112,6 @@ export default function SchoolCarousel() {
         </Link>
       </div>
 
-      {/* Padding lives on this wrapper (not .marquee-mask) so the track's
-          translated cards are actually confined inside the inset box —
-          padding on the overflow:hidden element itself doesn't stop a
-          transformed child from reaching the true edge, only a narrower
-          box does. */}
       <div className="max-w-6xl mx-auto px-4">
         <div
           className={`marquee-mask${isDragging ? " marquee-dragging" : ""}`}
@@ -138,8 +126,6 @@ export default function SchoolCarousel() {
           onDragStart={(e) => e.preventDefault()}
         >
           <div ref={trackRef} className="marquee-track">
-            {/* Two identical copies make the -50% translate loop seamless. The
-                second is decorative only, so it's hidden from AT and tab order. */}
             {[0, 1].map((copy) => (
               <div
                 key={copy}

@@ -31,7 +31,6 @@ export default function AboutPage() {
 
   return (
     <div className="min-h-screen" style={{ background: "#f5f5f5" }}>
-      {/* Hero Section */}
       <div className="bg-gradient-to-r from-gray-800 to-gray-900 py-16 px-4 text-center text-white">
         <h1 className="text-4xl md:text-5xl font-bold mb-3">About</h1>
         <p className="text-gray-300 text-lg max-w-2xl mx-auto">
@@ -39,9 +38,7 @@ export default function AboutPage() {
         </p>
       </div>
 
-      {/* Content */}
       <div className="max-w-4xl mx-auto px-4 py-12">
-        {/* About the Project */}
         <section className="card p-5 sm:p-8 mb-8">
           <h2 className="text-2xl font-bold text-gray-800 mb-4">
             About College Statistics
@@ -67,13 +64,11 @@ export default function AboutPage() {
           </p>
         </section>
 
-        {/* About the Creator */}
         <section className="card p-5 sm:p-8">
           <h2 className="text-2xl font-bold text-gray-800 mb-6">
             About the Creator
           </h2>
           <div className="flex flex-col md:flex-row gap-8">
-            {/* Photo */}
             <div className="flex-shrink-0 self-center md:self-auto">
               <Image
                 src="/neev-grover.png"
@@ -84,7 +79,6 @@ export default function AboutPage() {
               />
             </div>
 
-            {/* Bio */}
             <div className="flex-1">
               <h3 className="text-xl font-semibold text-gray-800 mb-1">
                 Neev Grover
@@ -104,7 +98,6 @@ export default function AboutPage() {
                 projects.
               </p>
 
-              {/* Social Links */}
               <div className="flex flex-wrap gap-3">
                 {socialLinks.map((link) => (
                   <a
@@ -135,7 +128,6 @@ export default function AboutPage() {
           </div>
         </section>
 
-        {/* CTA */}
         <div className="text-center mt-8">
           <Link
             href="/contact"

@@ -1,6 +1,5 @@
 import { pageMetadata } from "@/lib/seo";
 
-// The contact page is a client component, so its metadata lives here.
 export const metadata = pageMetadata({
   title: "Contact – College Statistics",
   description:

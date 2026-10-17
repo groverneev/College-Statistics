@@ -1,7 +1,6 @@
 import { revalidateTag } from "next/cache";
 import { NextResponse } from "next/server";
 
-// Re-export the shared auth + slug helpers so notes routes match the saved-schools pattern.
 export {
   getAuthenticatedUserId,
   invalidSchoolSlugResponse,

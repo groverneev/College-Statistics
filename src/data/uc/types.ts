@@ -20,7 +20,7 @@ export interface UCDisciplineData {
   applicants: number;
   admits: number | null;
   enrollees: number | null;
-  admitGpaRange: [number, number] | null; // [25th, 75th] pctl
+  admitGpaRange: [number, number] | null;
   enrolleeGpaRange: [number, number] | null;
 }
 

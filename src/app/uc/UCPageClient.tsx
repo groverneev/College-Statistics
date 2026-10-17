@@ -40,7 +40,6 @@ function fmtGpa(range: [number, number] | null): string {
   return `${range[0].toFixed(2)} – ${range[1].toFixed(2)}`;
 }
 
-// ---- GPA Range Bar ----
 function GpaBar({
   range,
   label,
@@ -82,7 +81,6 @@ function GpaBar({
   );
 }
 
-// ---- KPI Card ----
 function KpiCard({
   label,
   value,
@@ -108,7 +106,6 @@ function KpiCard({
   );
 }
 
-// ---- Discipline Table ----
 type SortKey = "discipline" | "applicants" | "admits" | "enrollees" | "admitRate" | "yieldRate";
 
 function DisciplineTable({
@@ -283,7 +280,6 @@ function DisciplineTable({
   );
 }
 
-// ---- Side Panel (used in both Explore and Compare) ----
 function CampusPanel({
   yearData,
   campusCode,
@@ -354,16 +350,13 @@ function CampusPanel({
   );
 }
 
-// ---- Main Page ----
 export default function UCPageClient({ dataByYear, availableYears }: Props) {
   const [selectedYear, setSelectedYear] = useState(availableYears[0]);
   const [mode, setMode] = useState<"explore" | "compare">("explore");
 
-  // Explore mode state
   const [exploreCampus, setExploreCampus] = useState("UCB");
   const [exploreDiscipline, setExploreDiscipline] = useState<UCDiscipline | "All">("All");
 
-  // Compare mode state
   const [compareACode, setCompareACode] = useState("UCB");
   const [compareADisc, setCompareADisc] = useState<UCDiscipline | "All">("All");
   const [compareAYear, setCompareAYear] = useState(availableYears[0]);
@@ -388,7 +381,6 @@ export default function UCPageClient({ dataByYear, availableYears }: Props) {
   const campusCodesA = UC_CAMPUS_ORDER.filter(c => yearDataA.campuses[c]);
   const campusCodesB = UC_CAMPUS_ORDER.filter(c => yearDataB.campuses[c]);
 
-  // Available disciplines for compare selectors
   const discA = yearDataA.campuses[compareACode]
     ? (Object.keys(yearDataA.campuses[compareACode].disciplines) as UCDiscipline[]).sort()
     : [];
@@ -401,7 +393,6 @@ export default function UCPageClient({ dataByYear, availableYears }: Props) {
 
   return (
     <div className="min-h-screen" style={{ background: "#f5f5f5" }}>
-      {/* Hero */}
       <div className="bg-gradient-to-r from-gray-800 to-gray-900 py-14 px-4 text-center text-white">
         <h1 className="text-3xl md:text-4xl font-bold mb-3">UC Campus Explorer</h1>
         <p className="text-gray-300 text-lg max-w-2xl mx-auto">
@@ -411,9 +402,7 @@ export default function UCPageClient({ dataByYear, availableYears }: Props) {
 
       <div className="max-w-6xl mx-auto px-4 py-6 sm:py-8">
 
-        {/* Controls */}
         <div className="card p-4 mb-6 flex flex-col sm:flex-row sm:flex-wrap sm:items-center gap-3">
-          {/* Mode toggle */}
           <div className="flex w-full sm:w-auto rounded-md border border-gray-200 overflow-hidden">
             {(["explore", "compare"] as const).map(m => (
               <button
@@ -430,7 +419,6 @@ export default function UCPageClient({ dataByYear, availableYears }: Props) {
             ))}
           </div>
 
-          {/* Year selector — only in explore mode */}
           {availableYears.length > 1 && mode === "explore" && (
             <select
               className={selectClass}
@@ -470,10 +458,8 @@ export default function UCPageClient({ dataByYear, availableYears }: Props) {
           )}
         </div>
 
-        {/* ---- EXPLORE MODE ---- */}
         {mode === "explore" && (
           <>
-            {/* KPI + GPA */}
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
               <div className="lg:col-span-2 grid grid-cols-1 min-[360px]:grid-cols-2 md:grid-cols-4 gap-4">
                 {(() => {
@@ -517,7 +503,6 @@ export default function UCPageClient({ dataByYear, availableYears }: Props) {
               </div>
             </div>
 
-            {/* Discipline table — only show when "All" selected */}
             {exploreDiscipline === "All" && exploreCampusData && (
               <div className="card p-4 sm:p-6">
                 <h2 className="text-base font-semibold text-gray-800 mb-4">
@@ -534,7 +519,6 @@ export default function UCPageClient({ dataByYear, availableYears }: Props) {
               </div>
             )}
 
-            {/* All-campus comparison table */}
             <div className="card p-4 sm:p-6 mt-6">
               <h2 className="text-base font-semibold text-gray-800 mb-4">
                 All Campuses — {exploreDiscipline === "All" ? "Overall" : exploreDiscipline}
@@ -655,12 +639,9 @@ export default function UCPageClient({ dataByYear, availableYears }: Props) {
           </>
         )}
 
-        {/* ---- COMPARE MODE ---- */}
         {mode === "compare" && (
           <>
-            {/* Compare selectors */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-              {/* Panel A */}
               <div className="card p-4">
                 <div className="text-xs font-semibold uppercase tracking-wider text-gray-400 mb-3">Side A</div>
                 <div className="flex flex-col gap-2">
@@ -692,7 +673,6 @@ export default function UCPageClient({ dataByYear, availableYears }: Props) {
                   </select>
                 </div>
               </div>
-              {/* Panel B */}
               <div className="card p-4">
                 <div className="text-xs font-semibold uppercase tracking-wider text-gray-400 mb-3">Side B</div>
                 <div className="flex flex-col gap-2">
@@ -726,7 +706,6 @@ export default function UCPageClient({ dataByYear, availableYears }: Props) {
               </div>
             </div>
 
-            {/* Side by side panels */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="card p-4 sm:p-6 min-w-0">
                 <CampusPanel
@@ -746,7 +725,6 @@ export default function UCPageClient({ dataByYear, availableYears }: Props) {
               </div>
             </div>
 
-            {/* Delta row */}
             {(() => {
               const dA =
                 compareADisc === "All"

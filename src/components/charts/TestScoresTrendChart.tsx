@@ -23,7 +23,6 @@ export default function TestScoresTrendChart({
 }: TestScoresTrendChartProps) {
   const years = Object.keys(yearData).sort();
 
-  // Calculate min score for Y-axis (rounded down to nearest 50)
   const allScores = years
     .filter((year) => {
       const composite = yearData[year].testScores.sat?.composite;
@@ -37,7 +36,7 @@ export default function TestScoresTrendChart({
       );
     });
 
-  const minScore = Math.floor(Math.min(...allScores) / 50) * 50 - 50; // Round down and add padding
+  const minScore = Math.floor(Math.min(...allScores) / 50) * 50 - 50;
   const maxScore = 1600;
 
   const satTrendData = years
@@ -134,7 +133,6 @@ export default function TestScoresTrendChart({
         <span className="flex items-center gap-1.5"><span className="h-2.5 w-4 rounded-sm opacity-30" style={{ backgroundColor: schoolColor }} />Middle 50% Range</span>
       </div>
 
-      {/* Simple data summary */}
       <div className="mt-4 pt-4 border-t border-gray-200">
         <div className="grid grid-cols-3 gap-2 sm:gap-4 text-center text-sm">
           <div>

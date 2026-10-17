@@ -142,7 +142,6 @@ export default function HowItWorksPage() {
 
   return (
     <div className="min-h-screen" style={{ background: "#f5f5f5" }}>
-      {/* Hero Section */}
       <div className="bg-gradient-to-r from-gray-800 to-gray-900 py-16 px-4 text-center text-white">
         <h1 className="text-4xl md:text-5xl font-bold mb-3">How it Works</h1>
         <p className="text-gray-300 text-lg max-w-2xl mx-auto">
@@ -150,9 +149,7 @@ export default function HowItWorksPage() {
         </p>
       </div>
 
-      {/* Content */}
       <div className="max-w-4xl mx-auto px-4 py-12">
-        {/* What is CDS */}
         <section className="card p-5 sm:p-8 mb-8">
           <h2 className="text-2xl font-bold text-gray-800 mb-4">
             What is the Common Data Set?
@@ -179,7 +176,6 @@ export default function HowItWorksPage() {
           </ul>
         </section>
 
-        {/* Available Metrics */}
         <section className="card p-5 sm:p-8 mb-8">
           <h2 className="text-2xl font-bold text-gray-800 mb-6">
             Available Metrics
@@ -204,7 +200,6 @@ export default function HowItWorksPage() {
           </div>
         </section>
 
-        {/* How to Use */}
         <section className="card p-5 sm:p-8 mb-8">
           <h2 className="text-2xl font-bold text-gray-800 mb-6">
             How to Use the Dashboard
@@ -226,7 +221,6 @@ export default function HowItWorksPage() {
           </div>
         </section>
 
-        {/* Data Sources */}
         <section className="card p-5 sm:p-8">
           <h2 className="text-2xl font-bold text-gray-800 mb-4">
             Data Sources &amp; Accuracy
@@ -260,7 +254,6 @@ export default function HowItWorksPage() {
           </p>
         </section>
 
-        {/* CTA */}
         <div className="text-center mt-8">
           <Link
             href="/"

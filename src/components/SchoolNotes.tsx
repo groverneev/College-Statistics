@@ -6,7 +6,6 @@ import ConfirmDialog from "@/components/ConfirmDialog";
 
 const MAX_NOTE_LENGTH = 5000;
 
-/** How many lines of a note to show before collapsing behind "Show more". */
 const COLLAPSED_NOTE_LINES = 8;
 const COLLAPSED_NOTE_STYLE: CSSProperties = {
   display: "-webkit-box",
@@ -18,9 +17,7 @@ const COLLAPSED_NOTE_STYLE: CSSProperties = {
 interface SchoolNotesProps {
   schoolSlug: string;
   schoolColor: string;
-  /** Mount directly in edit mode (used when opened via the banner "Add note" button). */
   startEditing?: boolean;
-  /** Called when the panel should stop being shown (cancelled compose, or note deleted). */
   onClose?: () => void;
 }
 
@@ -49,7 +46,6 @@ export default function SchoolNotes({
   const [draft, setDraft] = useState(startEditing ? note ?? "" : "");
   const [confirmingDelete, setConfirmingDelete] = useState(false);
 
-  // Collapse long notes to a fixed number of lines with a "Show more" toggle.
   const noteRef = useRef<HTMLParagraphElement>(null);
   const [collapsed, setCollapsed] = useState(true);
   const [isOverflowing, setIsOverflowing] = useState(false);
@@ -60,7 +56,6 @@ export default function SchoolNotes({
     setIsOverflowing(el.scrollHeight > el.clientHeight + 1);
   }, [note, collapsed, editing]);
 
-  // Auto-grow the editor textarea so it fits its content without inner scrolling.
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   useEffect(() => {
     const el = textareaRef.current;
@@ -77,7 +72,7 @@ export default function SchoolNotes({
   function cancel() {
     setEditing(false);
     setDraft("");
-    if (!note) onClose?.(); // composing was cancelled with nothing saved
+    if (!note) onClose?.();
   }
 
   async function save() {

@@ -12,12 +12,10 @@ export const authOptions: NextAuthOptions = {
     }),
   ],
   session: {
-    // JWT sessions are validated from an encrypted cookie — no DB lookup per request
     strategy: "jwt",
   },
   callbacks: {
     jwt({ token, user }) {
-      // `user` is only present on initial sign-in; persist the DB id into the token
       if (user) {
         token.id = user.id;
       }

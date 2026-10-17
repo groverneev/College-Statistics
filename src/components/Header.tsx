@@ -25,7 +25,6 @@ export default function Header() {
     return () => window.removeEventListener("scroll", onScroll);
   }, [isHome]);
 
-  // Close user menu when clicking outside
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
       if (
@@ -78,7 +77,6 @@ export default function Header() {
     >
       <div className="max-w-6xl mx-auto px-4">
         <div className="flex items-center h-16">
-          {/* Logo */}
           <Link href="/" className="flex items-center space-x-2">
             <span
               className={`text-xl font-bold ${
@@ -89,12 +87,10 @@ export default function Header() {
             </span>
           </Link>
 
-          {/* Desktop Navigation + Auth — grouped right */}
           <div className="hidden md:flex items-center space-x-8 ml-auto">
             <nav className="flex items-center space-x-6">
               {navLinks.map((link) => {
                 const className = desktopLinkClass;
-                // "My Schools" is gated: signed out, open the sign-in popup instead of navigating
                 if (link.href === "/my-schools" && !signedIn) {
                   return (
                     <button
@@ -182,7 +178,6 @@ export default function Header() {
           </div>
           </div>
 
-          {/* Mobile Menu Button */}
           <button
             className={`md:hidden ml-auto min-h-11 min-w-11 p-2 rounded-md ${
               isHome
@@ -226,7 +221,6 @@ export default function Header() {
           </button>
         </div>
 
-        {/* Mobile Menu */}
         {mobileMenuOpen && (
           <div
             id="mobile-navigation"
@@ -240,7 +234,6 @@ export default function Header() {
                 const className = isHome
                   ? "header-dark-link font-medium px-2 py-2.5 min-h-11 text-left"
                   : "text-gray-600 hover:text-gray-900 font-medium px-2 py-2.5 min-h-11 text-left";
-                // "My Schools" is gated: signed out, open the sign-in popup instead of navigating
                 if (link.href === "/my-schools" && !signedIn) {
                   return (
                     <button

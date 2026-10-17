@@ -9,7 +9,6 @@ import { getSession, getSavedSchoolsForUser } from "@/lib/savedSchools";
 import { getNotesForUser } from "@/lib/notes";
 import { SITE_NAME, SITE_URL } from "@/lib/seo";
 
-// No canonical here: child pages would inherit it and all point at the home page.
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: "College Statistics - Compare University Data",

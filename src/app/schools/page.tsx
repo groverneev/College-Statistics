@@ -14,8 +14,6 @@ export const metadata = pageMetadata({
 });
 
 export default function BrowseSchoolsPage() {
-  // Build the lightweight sort payload + pre-rendered cards on the server so the
-  // client component only reorders (it never receives the full dataset).
   const items: SortableSchoolItem[] = allSchools.map((school) => {
     const latest = getLatestYearData(school);
     const sat = latest?.testScores.sat?.composite;

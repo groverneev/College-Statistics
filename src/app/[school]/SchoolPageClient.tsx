@@ -113,7 +113,6 @@ export default function SchoolPageClient({
 
   return (
     <div className="min-h-screen" style={{ background: "#f5f5f5" }}>
-      {/* Header Banner */}
       <div
         className="py-10 px-4 text-center text-white"
         style={{
@@ -169,9 +168,7 @@ export default function SchoolPageClient({
         </div>
       </div>
 
-      {/* Main Content */}
       <div className="max-w-6xl mx-auto px-4 py-8 -mt-4">
-        {/* Key Stats Row */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 mb-8">
           <div className="stat-card">
             <div className="label">Total Applications</div>
@@ -209,7 +206,6 @@ export default function SchoolPageClient({
           </section>
         )}
 
-        {/* Notes — only rendered once a note exists or the user is composing one */}
         {showNotes && (
           <div className="mb-8" ref={notesRef}>
             <SchoolNotes
@@ -221,7 +217,6 @@ export default function SchoolPageClient({
           </div>
         )}
 
-        {/* Charts */}
         <div className="space-y-6">
           <AdmissionsTrendChart
             yearData={schoolData.years}
@@ -265,7 +260,6 @@ export default function SchoolPageClient({
                 </div>
               </div>
 
-              {/* Mobile: stacked rows keep every factor and rating visible. */}
               <div className="md:hidden space-y-5">
                 {[
                   { label: "Academic", rows: academicFactors },
@@ -295,7 +289,6 @@ export default function SchoolPageClient({
                 ))}
               </div>
 
-              {/* Desktop: full checkmark grid */}
               <div className="hidden md:block overflow-x-auto">
                 <table className="data-table compact" style={{ tableLayout: "fixed" }}>
                   <colgroup>

@@ -18,7 +18,6 @@ export default function SignInPrompt({
   title = "Sign in to save schools",
   description = "Create your free college list and organize schools as Reach, Target, or Safety. Sign in with Google to get started.",
 }: SignInPromptProps) {
-  // Close on Escape
   useEffect(() => {
     if (!open) return;
     const previousOverflow = document.body.style.overflow;
@@ -42,14 +41,12 @@ export default function SignInPrompt({
       aria-modal="true"
       aria-labelledby="signin-prompt-title"
     >
-      {/* Backdrop */}
       <div
         className="absolute inset-0 bg-black/40"
         onClick={onClose}
         aria-hidden="true"
       />
 
-      {/* Card */}
       <div className="relative w-full max-w-sm max-h-[calc(100dvh-2rem)] overflow-y-auto bg-white rounded-2xl shadow-xl p-6 text-center">
         <div className="text-4xl mb-3">{icon}</div>
         <h2

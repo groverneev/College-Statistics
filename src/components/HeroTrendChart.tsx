@@ -49,7 +49,7 @@ export default function HeroTrendChart({ series }: HeroTrendChartProps) {
     const minYear = Math.min(...allPoints.map((p) => p.year));
     const maxYear = Math.max(...allPoints.map((p) => p.year));
     const maxRate = Math.max(...allPoints.map((p) => p.rate));
-    const yMax = Math.ceil((maxRate * 100) / 10) / 10; // e.g. 0.289 -> 0.3
+    const yMax = Math.ceil((maxRate * 100) / 10) / 10;
 
     const x = (year: number) =>
       PAD.left + ((year - minYear) / (maxYear - minYear)) * (W - PAD.left - PAD.right);
@@ -69,7 +69,6 @@ export default function HeroTrendChart({ series }: HeroTrendChartProps) {
       };
     });
 
-    // Nudge end labels apart so they never overlap
     const MIN_GAP = 19;
     const labels = lines
       .map((l) => ({ slug: l.slug, y: l.end.y }))
@@ -97,7 +96,6 @@ export default function HeroTrendChart({ series }: HeroTrendChartProps) {
       className="relative hero-rise mx-auto w-full text-left"
       style={{ animationDelay: "0.3s" }}
     >
-      {/* Glow behind the window */}
       <div
         aria-hidden
         className="absolute -inset-x-10 -inset-y-12 pointer-events-none"
@@ -107,7 +105,6 @@ export default function HeroTrendChart({ series }: HeroTrendChartProps) {
         }}
       />
 
-      {/* Product window */}
       <div
         className="relative rounded-2xl overflow-hidden"
         style={{
@@ -117,7 +114,6 @@ export default function HeroTrendChart({ series }: HeroTrendChartProps) {
             "0 0 0 1px rgba(0,0,0,0.03), 0 32px 80px -24px rgba(23, 26, 43, 0.22)",
         }}
       >
-        {/* Title bar */}
         <div
           className="flex items-center gap-3 px-4 sm:px-5 py-3"
           style={{ borderBottom: "1px solid rgba(0, 0, 0, 0.06)" }}
@@ -135,7 +131,6 @@ export default function HeroTrendChart({ series }: HeroTrendChartProps) {
           </span>
         </div>
 
-        {/* School chips */}
         <div className="flex flex-wrap items-center gap-2 px-4 sm:px-5 pt-4">
           {series.map((s) => {
             const last = s.points[s.points.length - 1];
@@ -169,7 +164,6 @@ export default function HeroTrendChart({ series }: HeroTrendChartProps) {
           })}
         </div>
 
-        {/* Compact phone view: each series gets enough room for readable labels. */}
         <div className="sm:hidden px-4 py-5 space-y-4">
           {series.map((item) => {
             const rates = item.points.map((point) => point.rate);
@@ -214,14 +208,12 @@ export default function HeroTrendChart({ series }: HeroTrendChartProps) {
           })}
         </div>
 
-        {/* Full chart */}
         <svg
           viewBox={`0 0 ${W} ${H}`}
           className="hidden sm:block w-full h-auto"
           role="img"
           aria-label="Line chart of acceptance rates over time for five universities"
         >
-          {/* Gridlines + y labels */}
           {chart.yTicks.map((r) => (
             <g key={r}>
               <line
@@ -242,7 +234,6 @@ export default function HeroTrendChart({ series }: HeroTrendChartProps) {
               </text>
             </g>
           ))}
-          {/* Baseline */}
           <line
             x1={PAD.left}
             x2={W - PAD.right}
@@ -250,7 +241,6 @@ export default function HeroTrendChart({ series }: HeroTrendChartProps) {
             y2={chart.y(0)}
             stroke="rgba(0,0,0,0.14)"
           />
-          {/* X labels */}
           {chart.xTicks.map((yr) => (
             <text
               key={yr}
@@ -264,7 +254,6 @@ export default function HeroTrendChart({ series }: HeroTrendChartProps) {
             </text>
           ))}
 
-          {/* Series */}
           {chart.lines.map((line, i) => (
             <g
               key={line.slug}

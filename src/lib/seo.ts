@@ -6,7 +6,6 @@ export const SITE_URL = (
 
 export const SITE_NAME = "College Statistics";
 
-// Rendered by src/app/opengraph-image.tsx.
 const DEFAULT_OG_IMAGE = {
   url: "/opengraph-image",
   width: 1200,
@@ -19,13 +18,9 @@ interface PageMetadataOptions {
   description: string;
   path: string;
   type?: "website" | "article";
-  // Set false on segments with their own opengraph-image file; an explicit
-  // image here would take precedence over it.
   defaultImage?: boolean;
 }
 
-// Child segments replace (not merge) the parent's openGraph/twitter objects,
-// so every page builds the full set here to keep site-wide fields intact.
 export function pageMetadata({
   title,
   description,
@@ -33,7 +28,6 @@ export function pageMetadata({
   type = "website",
   defaultImage = true,
 }: PageMetadataOptions): Metadata {
-  // Omit the key entirely: even `images: undefined` hides a segment's own file.
   const images = defaultImage ? { images: [DEFAULT_OG_IMAGE] } : {};
   return {
     title,

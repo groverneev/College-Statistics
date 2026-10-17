@@ -9,18 +9,6 @@ import {
   type ReactNode,
 } from "react";
 
-// ---------------------------------------------------------------------------
-// Palette
-//
-// Admit rate is a magnitude, so it is carried by a single-hue sequential ramp
-// where dark means selective. Two ramps exist because the two places colour is
-// used have different floors: a heatmap cell carries a number and can go very
-// pale, while a bar sits on a white card and cannot.
-//
-// The categorical pair (teal / poppy) was checked for colour-vision separation
-// and contrast before use.
-// ---------------------------------------------------------------------------
-
 export const TEAL = "#0A84A8";
 export const TEAL_DEEP = "#08465A";
 export const POPPY = "#DD4B21";
@@ -38,8 +26,6 @@ export const HEAT_RAMP = [
 
 export const BAR_RAMP = ["#8FC5D5", "#5FADC5", "#3492B1", "#12789B", "#0A5C79", "#08465A"];
 
-// Stops track where CSU admit rates actually sit — a long tail below 60 and a
-// dense cluster above 80 — so the ramp spends its range on the data.
 const HEAT_STOPS = [20, 35, 50, 62, 72, 80, 88];
 const BAR_STOPS = [30, 50, 65, 78, 88];
 
@@ -50,21 +36,14 @@ function step(ramp: string[], stops: number[], rate: number | null): string {
   return ramp[ramp.length - 1 - i];
 }
 
-/** Heatmap cell fill for an admit rate. Dark means selective. */
 export const heatFill = (rate: number | null) => step(HEAT_RAMP, HEAT_STOPS, rate);
 
-/** Bar fill for an admit rate, floored at a step that reads on white. */
 export const barFill = (rate: number | null) => step(BAR_RAMP, BAR_STOPS, rate);
 
-/** Ink that stays legible on a heatmap cell. */
 export function inkOn(fill: string): string {
   const i = HEAT_RAMP.indexOf(fill);
   return i >= 0 && i <= 3 ? "#1a1a1a" : "#ffffff";
 }
-
-// ---------------------------------------------------------------------------
-// Formatting
-// ---------------------------------------------------------------------------
 
 export function fmtNum(n: number | null | undefined): string {
   if (n == null) return "—";
@@ -79,13 +58,6 @@ export function fmtPct(n: number | null | undefined, decimals = 1): string {
 export function fmtCompact(n: number): string {
   return n >= 1000 ? `${Math.round(n / 1000)}k` : `${Math.round(n)}`;
 }
-
-// ---------------------------------------------------------------------------
-// Tooltip
-//
-// One fixed-position node for the whole page. Charts call show/move/hide rather
-// than each rendering its own.
-// ---------------------------------------------------------------------------
 
 export interface TooltipRow {
   label: string;
@@ -108,10 +80,6 @@ const TooltipContext = createContext<TooltipApi>(noop);
 
 export const useTooltip = () => useContext(TooltipContext);
 
-/**
- * Returns the mouse handlers a hoverable mark needs. Pass `null` for marks that
- * have nothing to say.
- */
 export function useHover(content: TooltipContent | null) {
   const tip = useTooltip();
   return useMemo(() => {
@@ -144,7 +112,6 @@ export function TooltipProvider({ children }: { children: ReactNode }) {
     [place]
   );
 
-  // Flip the tooltip toward whichever side has room.
   const width = 250;
   const height = 32 + (content?.rows.length ?? 0) * 20;
   const flipX = typeof window !== "undefined" && pos.x + width + 24 > window.innerWidth;
@@ -178,10 +145,6 @@ export function TooltipProvider({ children }: { children: ReactNode }) {
     </TooltipContext.Provider>
   );
 }
-
-// ---------------------------------------------------------------------------
-// Layout pieces
-// ---------------------------------------------------------------------------
 
 export function Panel({
   title,
@@ -245,8 +208,6 @@ export function StatTiles({
 }: {
   tiles: { label: string; value: ReactNode; detail: ReactNode }[];
 }) {
-  // Pick the column count the tiles actually fill, so a three-tile row does not
-  // leave a dead fourth column.
   const columns = tiles.length === 3 ? "lg:grid-cols-3" : "lg:grid-cols-4";
   return (
     <div className={`card grid grid-cols-2 overflow-hidden ${columns}`}>
@@ -269,10 +230,6 @@ export function StatTiles({
     </div>
   );
 }
-
-// ---------------------------------------------------------------------------
-// Bar list
-// ---------------------------------------------------------------------------
 
 export interface BarRow {
   key: string;
@@ -333,10 +290,6 @@ export function BarList({
     </div>
   );
 }
-
-// ---------------------------------------------------------------------------
-// Line chart
-// ---------------------------------------------------------------------------
 
 export function LineChart({
   points,
@@ -415,10 +368,6 @@ export function LineChart({
   );
 }
 
-// ---------------------------------------------------------------------------
-// Grouped bars
-// ---------------------------------------------------------------------------
-
 export function GroupedBars({
   groups,
   series,
@@ -483,10 +432,6 @@ export function GroupedBars({
     </svg>
   );
 }
-
-// ---------------------------------------------------------------------------
-// Scatter
-// ---------------------------------------------------------------------------
 
 export interface ScatterPoint {
   key: string;

@@ -25,11 +25,11 @@ import {
   sourceNote,
 } from "@/data/trends/cs-enrollment-reversal/data";
 
-const RED = "#b3322a"; // CS A / declines
-const BLUE = "#3468b8"; // CS Principles / Chemistry
-const GREEN = "#2f7d4f"; // Biology
-const AMBER = "#a06b0e"; // Physics 1
-const GRAY = "#6B7280"; // pre-peak growth era
+const RED = "#b3322a";
+const BLUE = "#3468b8";
+const GREEN = "#2f7d4f";
+const AMBER = "#a06b0e";
+const GRAY = "#6B7280";
 
 function formatK(val: number | string | undefined) {
   if (typeof val !== "number") return "";
@@ -73,7 +73,6 @@ function MobileDeclinesList({
   );
 }
 
-// Prose section card, optionally with bullets and a closing line
 function Section({
   heading,
   body,
@@ -106,7 +105,6 @@ function Section({
   );
 }
 
-// Chart 1: AP CS A test takers, 2002–2026 (growth era gray, decline red)
 function ApCsaChart() {
   const data = apCsaSeries.map((d) => ({
     year: d.year,
@@ -152,7 +150,6 @@ function ApCsaChart() {
   );
 }
 
-// Chart 2: AP science exams indexed to 2024 (2024 = 100)
 function SciIndexedChart() {
   const data = sciIndexedSeries.map((d) => ({
     year: d.year,
@@ -216,7 +213,6 @@ function SciIndexedChart() {
   );
 }
 
-// Chart 3: AP CS A vs CS Principles, 2022–2026
 function CsSplitChart() {
   const data = csSplitSeries.map((d) => ({
     year: d.year,
@@ -266,7 +262,6 @@ function CsSplitChart() {
   );
 }
 
-// Chart 4: declines by source (horizontal bar, windows differ)
 function DeclinesBySourceChart() {
   const data = declinesBySource.map((d) => ({
     source: `${d.source} (${d.window})`,
@@ -349,7 +344,6 @@ function Sources() {
 export default function CSEnrollmentReversalStory() {
   return (
     <div className="space-y-6 sm:space-y-8">
-      {/* Lede */}
       <div className="card p-4 sm:p-6">
         <p className="text-gray-700 leading-relaxed text-base">{lede}</p>
       </div>
@@ -385,7 +379,6 @@ export default function CSEnrollmentReversalStory() {
         coda={sections.whereAndWhy.coda}
       />
 
-      {/* Key Takeaways */}
       <div className="card p-4 sm:p-6">
         <h3 className="text-lg font-semibold text-gray-800 mb-4">Key Takeaways</h3>
         <ul className="space-y-2">

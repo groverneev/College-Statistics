@@ -79,7 +79,6 @@ export interface AppTypeMixRow {
   international: number;
 }
 
-// System-wide first-year application type breakdown
 export const appTypeMix: AppTypeMixRow[] = [
   {
     year: "Fall 2025",
