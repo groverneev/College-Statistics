@@ -86,6 +86,8 @@ import indianabloomingtonData from "./indianabloomington.json";
 import rensselaerData from "./rensselaer.json";
 import binghamtonData from "./binghamton.json";
 import ncstateData from "./ncstate.json";
+import vassarData from "./vassar.json";
+import wellesleyData from "./wellesley.json";
 
 export interface SearchableSchool {
   name: string;
@@ -185,6 +187,8 @@ export const allSchools: SchoolData[] = [
   rensselaerData as SchoolData,
   binghamtonData as SchoolData,
   ncstateData as SchoolData,
+  vassarData as SchoolData,
+  wellesleyData as SchoolData,
 ];
 
 export const SCHOOL_METADATA: Record<string, SchoolMetadata> = {
@@ -589,6 +593,14 @@ export const SCHOOL_METADATA: Record<string, SchoolMetadata> = {
   ncstate: {
     aliases: ["NC State", "NCSU", "North Carolina State"],
     color: "#CC0000",
+  },
+  vassar: {
+    aliases: ["Vassar", "Vassar College"],
+    color: "#A41E35",
+  },
+  wellesley: {
+    aliases: ["Wellesley", "WC"],
+    color: "#002F6C",
   },
 };
 
