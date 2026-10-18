@@ -34,12 +34,13 @@ export default function AdmissionsTrendChart({ yearData, schoolColor }: Admissio
       acceptanceRate:
         typeof admissions.acceptanceRate === "number" ? admissions.acceptanceRate * 100 : null,
       yieldRate: typeof admissions.yield === "number" ? admissions.yield * 100 : null,
-      edApplied: admissions.earlyDecision?.applied ?? 0,
-      edAdmitted: admissions.earlyDecision?.admitted ?? 0,
+      edApplied: admissions.earlyDecision?.applied || null,
+      edAdmitted: admissions.earlyDecision?.admitted || null,
     };
   });
 
-  const hasEarlyDecision = trendData.some((d) => d.edApplied > 0);
+  const edTrendData = trendData.filter((d) => d.edApplied != null);
+  const hasEarlyDecision = edTrendData.length > 0;
   const acceptanceRateAxisMax = Math.max(
     15,
     Math.ceil((Math.max(...trendData.map((d) => d.acceptanceRate ?? 0)) + 5) / 10) * 10,
@@ -139,7 +140,7 @@ export default function AdmissionsTrendChart({ yearData, schoolColor }: Admissio
               width="100%"
               height="100%"
             >
-              <ComposedChart data={trendData}>
+              <ComposedChart data={edTrendData}>
                 <CartesianGrid strokeDasharray="3 3" stroke="#e5e5e5" />
                 <XAxis
                   dataKey="year"
@@ -231,13 +232,13 @@ export default function AdmissionsTrendChart({ yearData, schoolColor }: Admissio
                     <div>
                       <dt className="text-xs uppercase tracking-wide text-gray-400">ED Apps</dt>
                       <dd className="font-medium text-gray-700 mt-0.5">
-                        {row.edApplied > 0 ? formatNumber(row.edApplied) : "—"}
+                        {row.edApplied != null ? formatNumber(row.edApplied) : "—"}
                       </dd>
                     </div>
                     <div>
                       <dt className="text-xs uppercase tracking-wide text-gray-400">ED Admits</dt>
                       <dd className="font-medium text-gray-700 mt-0.5">
-                        {row.edAdmitted > 0 ? formatNumber(row.edAdmitted) : "—"}
+                        {row.edAdmitted != null ? formatNumber(row.edAdmitted) : "—"}
                       </dd>
                     </div>
                   </>
@@ -294,10 +295,10 @@ export default function AdmissionsTrendChart({ yearData, schoolColor }: Admissio
                   {hasEarlyDecision && (
                     <>
                       <td style={{ textAlign: "right" }}>
-                        {row.edApplied > 0 ? formatNumber(row.edApplied) : "-"}
+                        {row.edApplied != null ? formatNumber(row.edApplied) : "-"}
                       </td>
                       <td style={{ textAlign: "right" }}>
-                        {row.edAdmitted > 0 ? formatNumber(row.edAdmitted) : "-"}
+                        {row.edAdmitted != null ? formatNumber(row.edAdmitted) : "-"}
                       </td>
                     </>
                   )}
