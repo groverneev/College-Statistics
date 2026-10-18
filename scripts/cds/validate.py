@@ -32,6 +32,10 @@ FRACTIONS = {
     "admissions.acceptanceRate", "admissions.yield", "testScores.sat.submissionRate",
     "testScores.act.submissionRate", "financialAid.percentReceivingAid", "financialAid.percentNeedFullyMet",
 }
+DOLLARS = {
+    "costs.tuition", "costs.fees", "costs.roomAndBoard", "costs.totalCOA",
+    "financialAid.averageAidPackage", "financialAid.averageNeedBasedGrant", "financialAid.averageNetPrice",
+}
 SWING_FIELDS = [
     "admissions.applied", "admissions.admitted", "admissions.enrolled",
     "demographics.enrollment.undergraduate", "costs.tuition", "financialAid.averageAidPackage",
@@ -100,7 +104,7 @@ def check_values(year: str, data: dict, report: Report) -> None:
         if path in FRACTIONS:
             if value > 1:
                 report.error(year, f"{path}={value} is above 1; percentages must be fractions")
-        elif not float(value).is_integer():
+        elif path not in DOLLARS and not float(value).is_integer():
             report.error(year, f"{path}={value} should be a whole number")
 
     a = data.get("admissions", {})

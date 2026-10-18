@@ -63,7 +63,7 @@ Rules:
 - Copy numbers exactly as printed. Never estimate, interpolate, or carry a value from another year.
 - Leave a field out when the source cell is blank, N/A, or the section is missing. Do not write null or 0 for blanks.
 - Write 0 only when the source prints 0.
-- Counts are integers without commas. Dollar amounts are integers without $ or commas.
+- Counts are integers without commas. Dollar amounts are numbers without $ or commas; preserve cents when printed.
 - Percentages listed as fractions are fractions between 0 and 1.
 - Do not compute acceptance rate, yield, totals, or aid percentages; the assembler derives them.
 - Check that the page you cite really is this CDS year ({year}); some files contain prior-year tables.

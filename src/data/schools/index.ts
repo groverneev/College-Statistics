@@ -74,6 +74,18 @@ import lehighData from "./lehigh.json";
 import brandeisData from "./brandeis.json";
 import villanovaData from "./villanova.json";
 import floridastateData from "./floridastate.json";
+import umassamherstData from "./umassamherst.json";
+import universityofminnesotaData from "./universityofminnesota.json";
+import michiganstateData from "./michiganstate.json";
+import gwuData from "./gwu.json";
+import stonybrookData from "./stonybrook.json";
+import stevensData from "./stevens.json";
+import syracuseuniversityData from "./syracuseuniversity.json";
+import howardData from "./howard.json";
+import indianabloomingtonData from "./indianabloomington.json";
+import rensselaerData from "./rensselaer.json";
+import binghamtonData from "./binghamton.json";
+import ncstateData from "./ncstate.json";
 
 export interface SearchableSchool {
   name: string;
@@ -161,6 +173,18 @@ export const allSchools: SchoolData[] = [
   brandeisData as SchoolData,
   villanovaData as SchoolData,
   floridastateData as SchoolData,
+  umassamherstData as SchoolData,
+  universityofminnesotaData as SchoolData,
+  michiganstateData as SchoolData,
+  gwuData as SchoolData,
+  stonybrookData as SchoolData,
+  stevensData as SchoolData,
+  syracuseuniversityData as SchoolData,
+  howardData as SchoolData,
+  indianabloomingtonData as SchoolData,
+  rensselaerData as SchoolData,
+  binghamtonData as SchoolData,
+  ncstateData as SchoolData,
 ];
 
 export const SCHOOL_METADATA: Record<string, SchoolMetadata> = {
@@ -512,6 +536,59 @@ export const SCHOOL_METADATA: Record<string, SchoolMetadata> = {
   floridastate: {
     aliases: ["FSU", "Florida State", "Florida State University", "Seminoles"],
     color: "#782F40",
+  },
+  umassamherst: {
+    aliases: [
+      "UMass Amherst",
+      "UMass",
+      "University of Massachusetts",
+      "Massachusetts Amherst",
+    ],
+    color: "#840028",
+  },
+  universityofminnesota: {
+    aliases: ["University of Minnesota", "UMN", "UMTC", "Minnesota", "Twin Cities", "U of M"],
+    color: "#7A0019",
+  },
+  michiganstate: {
+    aliases: ["Michigan State", "MSU", "Spartans"],
+    color: "#18453B",
+  },
+  gwu: {
+    aliases: ["George Washington", "GWU", "GW"],
+    color: "#033C5A",
+  },
+  stonybrook: {
+    aliases: ["Stony Brook", "SBU", "SUNY Stony Brook"],
+    color: "#990000",
+  },
+  stevens: {
+    aliases: ["Stevens", "SIT", "Stevens Tech"],
+    color: "#A32638",
+  },
+  syracuseuniversity: {
+    aliases: ["Syracuse", "SU", "Cuse"],
+    color: "#F76900",
+  },
+  howard: {
+    aliases: ["Howard", "HU"],
+    color: "#003A63",
+  },
+  indianabloomington: {
+    aliases: ["Indiana University", "IU Bloomington", "IU", "Indiana"],
+    color: "#990000",
+  },
+  rensselaer: {
+    aliases: ["RPI", "Rensselaer", "Rensselaer Polytechnic"],
+    color: "#D6001C",
+  },
+  binghamton: {
+    aliases: ["Binghamton", "SUNY Binghamton", "State University of New York at Binghamton", "Bing"],
+    color: "#005A43",
+  },
+  ncstate: {
+    aliases: ["NC State", "NCSU", "North Carolina State"],
+    color: "#CC0000",
   },
 };
 
