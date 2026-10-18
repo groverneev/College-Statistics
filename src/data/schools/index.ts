@@ -73,6 +73,7 @@ import virginiatechData from "./virginiatech.json";
 import lehighData from "./lehigh.json";
 import brandeisData from "./brandeis.json";
 import villanovaData from "./villanova.json";
+import floridastateData from "./floridastate.json";
 
 export interface SearchableSchool {
   name: string;
@@ -159,6 +160,7 @@ export const allSchools: SchoolData[] = [
   lehighData as SchoolData,
   brandeisData as SchoolData,
   villanovaData as SchoolData,
+  floridastateData as SchoolData,
 ];
 
 export const SCHOOL_METADATA: Record<string, SchoolMetadata> = {
@@ -506,6 +508,10 @@ export const SCHOOL_METADATA: Record<string, SchoolMetadata> = {
   villanova: {
     aliases: ["Villanova", "Nova", "VU"],
     color: "#002664",
+  },
+  floridastate: {
+    aliases: ["FSU", "Florida State", "Florida State University", "Seminoles"],
+    color: "#782F40",
   },
 };
 
