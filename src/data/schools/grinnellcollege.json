@@ -126,10 +126,6 @@
       },
       "testScores": {
         "sat": {
-          "composite": {
-            "p25": 640,
-            "p75": 740
-          },
           "readingWriting": {
             "p25": 670,
             "p75": 770

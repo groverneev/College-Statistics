@@ -97,6 +97,9 @@ import middleburycollegeData from "./middleburycollege.json";
 import barnardcollegeData from "./barnardcollege.json";
 import colbycollegeData from "./colbycollege.json";
 import grinnellcollegeData from "./grinnellcollege.json";
+import wpiData from "./wpi.json";
+import uconnData from "./uconn.json";
+import universityofrichmondData from "./universityofrichmond.json";
 
 export interface SearchableSchool {
   name: string;
@@ -207,6 +210,9 @@ export const allSchools: SchoolData[] = [
   barnardcollegeData as SchoolData,
   colbycollegeData as SchoolData,
   grinnellcollegeData as SchoolData,
+  wpiData as SchoolData,
+  uconnData as SchoolData,
+  universityofrichmondData as SchoolData,
 ];
 
 export const SCHOOL_METADATA: Record<string, SchoolMetadata> = {
@@ -655,6 +661,18 @@ export const SCHOOL_METADATA: Record<string, SchoolMetadata> = {
   grinnellcollege: {
     aliases: ["Grinnell"],
     color: "#DA291C",
+  },
+  wpi: {
+    aliases: ["WPI", "Worcester Poly"],
+    color: "#AC2B37",
+  },
+  uconn: {
+    aliases: ["UConn", "UConn Storrs", "University of Connecticut"],
+    color: "#000E2F",
+  },
+  universityofrichmond: {
+    aliases: ["U of R", "URichmond", "University of Richmond", "Richmond", "Richmond Spiders"],
+    color: "#990000",
   },
 };
 
