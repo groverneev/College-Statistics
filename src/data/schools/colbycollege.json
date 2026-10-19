@@ -1,0 +1,110 @@
+{
+  "name": "Colby College",
+  "slug": "colbycollege",
+  "profile": {
+    "admissionsFactors": {
+      "sourceYear": "2019-2020",
+      "sourcePdf": "College-Data/colbycollege/colbycollege-cds-2019-2020.pdf",
+      "section": "C7",
+      "academic": {
+        "rigorOfSecondarySchoolRecord": "very_important",
+        "classRank": "important",
+        "academicGpa": "very_important",
+        "standardizedTestScores": "considered",
+        "applicationEssay": "important",
+        "recommendations": "very_important"
+      },
+      "nonacademic": {
+        "interview": "not_considered",
+        "extracurricularActivities": "important",
+        "talentAbility": "important",
+        "characterPersonalQualities": "very_important",
+        "firstGeneration": "considered",
+        "alumniRelation": "considered",
+        "geographicalResidence": "considered",
+        "stateResidency": "not_considered",
+        "religiousAffiliationCommitment": "not_considered",
+        "volunteerWork": "considered",
+        "workExperience": "considered",
+        "levelOfApplicantsInterest": "considered"
+      }
+    }
+  },
+  "years": {
+    "2019-2020": {
+      "admissions": {
+        "byGender": {
+          "men": {
+            "applied": 6274,
+            "admitted": 584,
+            "enrolled": 241
+          },
+          "women": {
+            "applied": 7310,
+            "admitted": 730,
+            "enrolled": 281
+          }
+        },
+        "applied": 13584,
+        "admitted": 1314,
+        "enrolled": 522,
+        "acceptanceRate": 0.0967,
+        "yield": 0.3973
+      },
+      "testScores": {
+        "sat": {
+          "readingWriting": {
+            "p25": 680,
+            "p75": 740
+          },
+          "math": {
+            "p25": 700,
+            "p75": 780
+          },
+          "submissionRate": 0.52,
+          "composite": {
+            "p25": 1380,
+            "p75": 1520
+          }
+        },
+        "act": {
+          "composite": {
+            "p25": 31,
+            "p75": 34
+          },
+          "submissionRate": 0.38
+        }
+      },
+      "demographics": {
+        "enrollment": {
+          "undergraduate": 2003,
+          "graduate": 0,
+          "total": 2003
+        },
+        "byRace": {
+          "international": 192,
+          "hispanicLatino": 167,
+          "blackAfricanAmerican": 100,
+          "white": 1215,
+          "asian": 164,
+          "americanIndianAlaskaNative": 6,
+          "nativeHawaiianPacificIslander": 4,
+          "twoOrMoreRaces": 109,
+          "unknown": 46
+        }
+      },
+      "costs": {
+        "tuition": 56930,
+        "fees": 2500,
+        "roomAndBoard": 15295,
+        "totalCOA": 74725
+      },
+      "financialAid": {
+        "averageAidPackage": 50475,
+        "averageNeedBasedGrant": 51568,
+        "percentReceivingAid": 0.4473,
+        "percentNeedFullyMet": 1.0
+      }
+    }
+  }
+}

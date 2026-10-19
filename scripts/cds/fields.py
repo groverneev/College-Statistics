@@ -118,13 +118,17 @@ def derive_year(values: dict[str, Any]) -> dict:
         set_path(year, path, value)
 
     admissions = year["admissions"]
+    if by_gender := admissions.get("byGender"):
+        # Single-sex schools leave the other gender's C1 rows blank; the schema needs both keys.
+        by_gender.setdefault("men", {})
+        by_gender.setdefault("women", {})
     for stage in ("applied", "admitted", "enrolled"):
         if admissions.get(stage) is None:
             men = get_path(admissions, f"byGender.men.{stage}")
             women = get_path(admissions, f"byGender.women.{stage}")
             other = values.get(f"raw.C1.otherGender.{stage}") or 0
-            if isinstance(men, int) and isinstance(women, int):
-                admissions[stage] = men + women + other
+            if isinstance(men, int) or isinstance(women, int):
+                admissions[stage] = (men or 0) + (women or 0) + other
     if (rate := ratio(admissions.get("admitted"), admissions.get("applied"))) is not None:
         admissions["acceptanceRate"] = rate
     if (rate := ratio(admissions.get("enrolled"), admissions.get("admitted"))) is not None:

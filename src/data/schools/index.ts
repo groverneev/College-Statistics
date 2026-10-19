@@ -93,6 +93,10 @@ import washingtonandleeData from "./washingtonandlee.json";
 import wesleyanData from "./wesleyan.json";
 import carletoncollegeData from "./carletoncollege.json";
 import davidsoncollegeData from "./davidsoncollege.json";
+import middleburycollegeData from "./middleburycollege.json";
+import barnardcollegeData from "./barnardcollege.json";
+import colbycollegeData from "./colbycollege.json";
+import grinnellcollegeData from "./grinnellcollege.json";
 
 export interface SearchableSchool {
   name: string;
@@ -199,6 +203,10 @@ export const allSchools: SchoolData[] = [
   wesleyanData as SchoolData,
   carletoncollegeData as SchoolData,
   davidsoncollegeData as SchoolData,
+  middleburycollegeData as SchoolData,
+  barnardcollegeData as SchoolData,
+  colbycollegeData as SchoolData,
+  grinnellcollegeData as SchoolData,
 ];
 
 export const SCHOOL_METADATA: Record<string, SchoolMetadata> = {
@@ -631,6 +639,22 @@ export const SCHOOL_METADATA: Record<string, SchoolMetadata> = {
   davidsoncollege: {
     aliases: ["Davidson"],
     color: "#D42121",
+  },
+  middleburycollege: {
+    aliases: ["Middlebury", "Midd"],
+    color: "#0D395F",
+  },
+  barnardcollege: {
+    aliases: ["Barnard", "Barnard University"],
+    color: "#002F6C",
+  },
+  colbycollege: {
+    aliases: ["Colby"],
+    color: "#002169",
+  },
+  grinnellcollege: {
+    aliases: ["Grinnell"],
+    color: "#DA291C",
   },
 };
 
