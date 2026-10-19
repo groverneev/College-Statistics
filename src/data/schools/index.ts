@@ -88,6 +88,11 @@ import binghamtonData from "./binghamton.json";
 import ncstateData from "./ncstate.json";
 import vassarData from "./vassar.json";
 import wellesleyData from "./wellesley.json";
+import hamiltoncollegeData from "./hamiltoncollege.json";
+import washingtonandleeData from "./washingtonandlee.json";
+import wesleyanData from "./wesleyan.json";
+import carletoncollegeData from "./carletoncollege.json";
+import davidsoncollegeData from "./davidsoncollege.json";
 
 export interface SearchableSchool {
   name: string;
@@ -189,6 +194,11 @@ export const allSchools: SchoolData[] = [
   ncstateData as SchoolData,
   vassarData as SchoolData,
   wellesleyData as SchoolData,
+  hamiltoncollegeData as SchoolData,
+  washingtonandleeData as SchoolData,
+  wesleyanData as SchoolData,
+  carletoncollegeData as SchoolData,
+  davidsoncollegeData as SchoolData,
 ];
 
 export const SCHOOL_METADATA: Record<string, SchoolMetadata> = {
@@ -601,6 +611,26 @@ export const SCHOOL_METADATA: Record<string, SchoolMetadata> = {
   wellesley: {
     aliases: ["Wellesley", "WC"],
     color: "#002F6C",
+  },
+  hamiltoncollege: {
+    aliases: ["Hamilton", "Hamilton College"],
+    color: "#002F86",
+  },
+  washingtonandlee: {
+    aliases: ["W&L", "WLU", "Washington and Lee"],
+    color: "#003087",
+  },
+  wesleyan: {
+    aliases: ["Wesleyan", "Wes"],
+    color: "#D72121",
+  },
+  carletoncollege: {
+    aliases: ["Carleton", "Carleton College", "Carl"],
+    color: "#003069",
+  },
+  davidsoncollege: {
+    aliases: ["Davidson"],
+    color: "#D42121",
   },
 };
 
