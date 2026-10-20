@@ -26,7 +26,7 @@ Every figure on the site comes from a school's official **Common Data Set (CDS)*
 | 🤝 **Financial Aid** | Share of students receiving aid, average aid packages, need-based grants, and net price |
 | 🌎 **Demographics** | Enrollment totals, racial and ethnic breakdowns, and where students come from |
 
-Coverage spans **60+ universities** with up to **ten years of history** (2016–17 through 2025–26), so you can see how a school has changed over time and not just where it stands today.
+Coverage spans **100+ universities** with up to **ten years of history** (2016–17 through 2025–26), so you can see how a school has changed over time and not just where it stands today.
 
 ## Features
 
