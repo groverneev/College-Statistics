@@ -100,6 +100,7 @@ import grinnellcollegeData from "./grinnellcollege.json";
 import wpiData from "./wpi.json";
 import uconnData from "./uconn.json";
 import universityofrichmondData from "./universityofrichmond.json";
+import colgateData from "./colgate.json";
 
 export interface SearchableSchool {
   name: string;
@@ -213,6 +214,7 @@ export const allSchools: SchoolData[] = [
   wpiData as SchoolData,
   uconnData as SchoolData,
   universityofrichmondData as SchoolData,
+  colgateData as SchoolData,
 ];
 
 export const SCHOOL_METADATA: Record<string, SchoolMetadata> = {
@@ -673,6 +675,10 @@ export const SCHOOL_METADATA: Record<string, SchoolMetadata> = {
   universityofrichmond: {
     aliases: ["U of R", "URichmond", "University of Richmond", "Richmond", "Richmond Spiders"],
     color: "#990000",
+  },
+  colgate: {
+    aliases: ["Colgate"],
+    color: "#821019",
   },
 };
 
