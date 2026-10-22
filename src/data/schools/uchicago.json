@@ -37,9 +37,44 @@
         "admitted": 2460,
         "enrolled": 2053,
         "acceptanceRate": 0.0648,
-        "yield": 0.8346
+        "yield": 0.8346,
+        "byGender": {
+          "men": {
+            "applied": 17513,
+            "admitted": 1254,
+            "enrolled": 1067
+          },
+          "women": {
+            "applied": 20445,
+            "admitted": 1206,
+            "enrolled": 986
+          }
+        }
       },
-      "testScores": {},
+      "testScores": {
+        "sat": {
+          "composite": {
+            "p25": 1510,
+            "p75": 1560
+          },
+          "readingWriting": {
+            "p25": 740,
+            "p75": 780
+          },
+          "math": {
+            "p25": 770,
+            "p75": 800
+          },
+          "submissionRate": 0.49
+        },
+        "act": {
+          "composite": {
+            "p25": 33,
+            "p75": 35
+          },
+          "submissionRate": 0.35
+        }
+      },
       "demographics": {
         "enrollment": {
           "total": 16274,

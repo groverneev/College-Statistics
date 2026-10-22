@@ -88,17 +88,21 @@
       "admissions": {
         "applied": 19607,
         "admitted": 6947,
+        "enrolled": 1363,
         "byGender": {
           "men": {
             "applied": 9875,
-            "admitted": 3171
+            "admitted": 3171,
+            "enrolled": 643
           },
           "women": {
             "applied": 9732,
-            "admitted": 3776
+            "admitted": 3776,
+            "enrolled": 720
           }
         },
-        "acceptanceRate": 0.3543
+        "acceptanceRate": 0.3543,
+        "yield": 0.1962
       },
       "testScores": {},
       "demographics": {
