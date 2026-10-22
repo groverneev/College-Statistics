@@ -1,7 +1,182 @@
 {
   "name": "Bowdoin College",
   "slug": "bowdoincollege",
+  "profile": {
+    "admissionsFactors": {
+      "sourceYear": "2025-2026",
+      "sourcePdf": "College-Data/bowdoincollege/bowdoincollege-cds-2025-2026.pdf",
+      "section": "C7",
+      "academic": {
+        "rigorOfSecondarySchoolRecord": "very_important",
+        "classRank": "very_important",
+        "academicGpa": "very_important",
+        "standardizedTestScores": "considered",
+        "applicationEssay": "very_important",
+        "recommendations": "very_important"
+      },
+      "nonacademic": {
+        "interview": "considered",
+        "extracurricularActivities": "very_important",
+        "talentAbility": "very_important",
+        "characterPersonalQualities": "very_important",
+        "firstGeneration": "considered",
+        "alumniRelation": "considered",
+        "geographicalResidence": "considered",
+        "stateResidency": "considered",
+        "religiousAffiliationCommitment": "not_considered",
+        "volunteerWork": "considered",
+        "workExperience": "considered",
+        "levelOfApplicantsInterest": "considered"
+      }
+    }
+  },
   "years": {
+    "2016-2017": {
+      "admissions": {
+        "byGender": {
+          "men": {
+            "applied": 2869,
+            "admitted": 475,
+            "enrolled": 241
+          },
+          "women": {
+            "applied": 3930,
+            "admitted": 534,
+            "enrolled": 262
+          }
+        },
+        "earlyDecision": {
+          "applied": 870,
+          "admitted": 237
+        },
+        "applied": 6799,
+        "admitted": 1009,
+        "enrolled": 503,
+        "acceptanceRate": 0.1484,
+        "yield": 0.4985
+      },
+      "testScores": {
+        "sat": {
+          "math": {
+            "p25": 640,
+            "p75": 760
+          },
+          "submissionRate": 0.54
+        },
+        "act": {
+          "composite": {
+            "p25": 30,
+            "p75": 34
+          },
+          "submissionRate": 0.44
+        }
+      },
+      "demographics": {
+        "enrollment": {
+          "undergraduate": 1806,
+          "graduate": 0,
+          "total": 1806
+        },
+        "byRace": {
+          "international": 90,
+          "hispanicLatino": 192,
+          "blackAfricanAmerican": 110,
+          "white": 1159,
+          "asian": 110,
+          "americanIndianAlaskaNative": 5,
+          "nativeHawaiianPacificIslander": 1,
+          "twoOrMoreRaces": 119,
+          "unknown": 20
+        }
+      },
+      "costs": {
+        "tuition": 51344,
+        "fees": 504,
+        "roomAndBoard": 14132,
+        "totalCOA": 65980
+      },
+      "financialAid": {
+        "averageAidPackage": 43352,
+        "averageNeedBasedGrant": 41582,
+        "percentReceivingAid": 0.4473,
+        "percentNeedFullyMet": 1.0
+      }
+    },
+    "2017-2018": {
+      "admissions": {
+        "byGender": {
+          "men": {
+            "applied": 3013,
+            "admitted": 463,
+            "enrolled": 247
+          },
+          "women": {
+            "applied": 4238,
+            "admitted": 525,
+            "enrolled": 254
+          }
+        },
+        "earlyDecision": {
+          "applied": 870,
+          "admitted": 246
+        },
+        "applied": 7251,
+        "admitted": 988,
+        "enrolled": 501,
+        "acceptanceRate": 0.1363,
+        "yield": 0.5071
+      },
+      "testScores": {
+        "sat": {
+          "readingWriting": {
+            "p25": 650,
+            "p75": 750
+          },
+          "math": {
+            "p25": 640,
+            "p75": 760
+          },
+          "submissionRate": 0.53
+        },
+        "act": {
+          "composite": {
+            "p25": 30,
+            "p75": 34
+          },
+          "submissionRate": 0.52
+        }
+      },
+      "demographics": {
+        "enrollment": {
+          "undergraduate": 1816,
+          "graduate": 0,
+          "total": 1816
+        },
+        "byRace": {
+          "international": 91,
+          "hispanicLatino": 202,
+          "blackAfricanAmerican": 117,
+          "white": 1130,
+          "asian": 120,
+          "americanIndianAlaskaNative": 5,
+          "nativeHawaiianPacificIslander": 1,
+          "twoOrMoreRaces": 132,
+          "unknown": 18
+        }
+      },
+      "costs": {
+        "tuition": 51344,
+        "fees": 504,
+        "roomAndBoard": 14132,
+        "totalCOA": 65980
+      },
+      "financialAid": {
+        "averageAidPackage": 46562,
+        "averageNeedBasedGrant": 44824,
+        "percentReceivingAid": 0.4594,
+        "percentNeedFullyMet": 1.0
+      }
+    },
     "2018-2019": {
       "admissions": {
         "byGender": {
@@ -61,10 +236,6 @@
           "math": {
             "p25": 650,
             "p75": 770
-          },
-          "composite": {
-            "p25": 650,
-            "p75": 740
           },
           "submissionRate": 0.6
         },
@@ -528,35 +699,89 @@
           }
         }
       }
-    }
-  },
-  "profile": {
-    "admissionsFactors": {
-      "academic": {
-        "rigorOfSecondarySchoolRecord": "very_important",
-        "classRank": "very_important",
-        "academicGpa": "very_important",
-        "standardizedTestScores": "considered",
-        "applicationEssay": "very_important",
-        "recommendations": "very_important"
+    },
+    "2025-2026": {
+      "admissions": {
+        "byGender": {
+          "men": {
+            "applied": 6690,
+            "admitted": 440,
+            "enrolled": 250
+          },
+          "women": {
+            "applied": 7355,
+            "admitted": 517,
+            "enrolled": 265
+          }
+        },
+        "earlyDecision": {
+          "applied": 1985,
+          "admitted": 296
+        },
+        "applied": 14045,
+        "admitted": 957,
+        "enrolled": 515,
+        "acceptanceRate": 0.0681,
+        "yield": 0.5381
       },
-      "nonacademic": {
-        "interview": "considered",
-        "extracurricularActivities": "very_important",
-        "talentAbility": "very_important",
-        "characterPersonalQualities": "very_important",
-        "firstGeneration": "considered",
-        "alumniRelation": "considered",
-        "geographicalResidence": "considered",
-        "stateResidency": "considered",
-        "religiousAffiliationCommitment": "not_considered",
-        "volunteerWork": "considered",
-        "workExperience": "considered",
-        "levelOfApplicantsInterest": "considered"
+      "testScores": {
+        "sat": {
+          "composite": {
+            "p25": 1470,
+            "p50": 1510,
+            "p75": 1540
+          },
+          "readingWriting": {
+            "p25": 730,
+            "p50": 750,
+            "p75": 770
+          },
+          "math": {
+            "p25": 730,
+            "p50": 760,
+            "p75": 780
+          },
+          "submissionRate": 0.3476
+        },
+        "act": {
+          "composite": {
+            "p25": 33,
+            "p50": 34,
+            "p75": 35
+          },
+          "submissionRate": 0.1728
+        }
       },
-      "sourceYear": "2023-2024",
-      "section": "C7",
-      "sourcePdf": "College-Data/bowdoincollege/bowdoincollege-cds-2023-2024.pdf"
+      "demographics": {
+        "enrollment": {
+          "undergraduate": 1841,
+          "graduate": 0,
+          "total": 1841
+        },
+        "byRace": {
+          "international": 119,
+          "hispanicLatino": 276,
+          "blackAfricanAmerican": 99,
+          "white": 983,
+          "asian": 187,
+          "americanIndianAlaskaNative": 2,
+          "nativeHawaiianPacificIslander": 1,
+          "twoOrMoreRaces": 160,
+          "unknown": 14
+        }
+      },
+      "costs": {
+        "tuition": 71070,
+        "fees": 670,
+        "roomAndBoard": 19560,
+        "totalCOA": 91300
+      },
+      "financialAid": {
+        "averageAidPackage": 73084,
+        "averageNeedBasedGrant": 70968,
+        "percentReceivingAid": 0.5234,
+        "percentNeedFullyMet": 1.0
+      }
     }
   }
 }

@@ -31,6 +31,215 @@
     }
   },
   "years": {
+    "2016-2017": {
+      "admissions": {
+        "byGender": {
+          "men": {
+            "applied": 15329,
+            "admitted": 4400,
+            "enrolled": 1698
+          },
+          "women": {
+            "applied": 17048,
+            "admitted": 5268,
+            "enrolled": 1985
+          }
+        },
+        "applied": 32377,
+        "admitted": 9668,
+        "enrolled": 3683,
+        "acceptanceRate": 0.2986,
+        "yield": 0.3809
+      },
+      "testScores": {
+        "sat": {
+          "math": {
+            "p25": 620,
+            "p75": 740
+          },
+          "submissionRate": 0.77
+        },
+        "act": {
+          "submissionRate": 0.5,
+          "composite": {
+            "p25": 29,
+            "p75": 33
+          }
+        }
+      },
+      "demographics": {
+        "enrollment": {
+          "undergraduate": 16331,
+          "graduate": 7567,
+          "total": 23898
+        },
+        "byRace": {
+          "international": 776,
+          "hispanicLatino": 1025,
+          "blackAfricanAmerican": 1054,
+          "white": 9712,
+          "asian": 2094,
+          "americanIndianAlaskaNative": 17,
+          "nativeHawaiianPacificIslander": 8,
+          "twoOrMoreRaces": 718,
+          "unknown": 927
+        }
+      },
+      "costs": {
+        "tuition": 12496,
+        "fees": 3345,
+        "roomAndBoard": 10726,
+        "totalCOA": 26567
+      },
+      "financialAid": {
+        "averageAidPackage": 26422,
+        "averageNeedBasedGrant": 20980,
+        "percentReceivingAid": 0.3249,
+        "percentNeedFullyMet": 1.0
+      }
+    },
+    "2017-2018": {
+      "admissions": {
+        "byGender": {
+          "men": {
+            "applied": 17420,
+            "admitted": 4595,
+            "enrolled": 1667
+          },
+          "women": {
+            "applied": 19359,
+            "admitted": 5463,
+            "enrolled": 2121
+          }
+        },
+        "applied": 36779,
+        "admitted": 10058,
+        "enrolled": 3788,
+        "acceptanceRate": 0.2735,
+        "yield": 0.3766
+      },
+      "testScores": {
+        "sat": {
+          "readingWriting": {
+            "p25": 660,
+            "p75": 740
+          },
+          "math": {
+            "p25": 650,
+            "p75": 760
+          },
+          "submissionRate": 0.74
+        },
+        "act": {
+          "composite": {
+            "p25": 29,
+            "p75": 33
+          },
+          "submissionRate": 0.52
+        }
+      },
+      "demographics": {
+        "enrollment": {
+          "undergraduate": 16655,
+          "graduate": 7705,
+          "total": 24360
+        },
+        "byRace": {
+          "international": 734,
+          "hispanicLatino": 1095,
+          "blackAfricanAmerican": 1098,
+          "white": 9723,
+          "asian": 2278,
+          "americanIndianAlaskaNative": 17,
+          "nativeHawaiianPacificIslander": 10,
+          "twoOrMoreRaces": 725,
+          "unknown": 975
+        }
+      },
+      "costs": {
+        "tuition": 13412,
+        "fees": 2734,
+        "roomAndBoard": 11220,
+        "totalCOA": 27366
+      },
+      "financialAid": {
+        "averageAidPackage": 27799,
+        "averageNeedBasedGrant": 22129,
+        "percentReceivingAid": 0.3397,
+        "percentNeedFullyMet": 1.0
+      }
+    },
+    "2018-2019": {
+      "admissions": {
+        "byGender": {
+          "men": {
+            "applied": 17615,
+            "admitted": 4440,
+            "enrolled": 1661
+          },
+          "women": {
+            "applied": 19567,
+            "admitted": 5388,
+            "enrolled": 2161
+          }
+        },
+        "applied": 37182,
+        "admitted": 9828,
+        "enrolled": 3822,
+        "acceptanceRate": 0.2643,
+        "yield": 0.3889
+      },
+      "testScores": {
+        "sat": {
+          "readingWriting": {
+            "p25": 660,
+            "p75": 730
+          },
+          "math": {
+            "p25": 670,
+            "p75": 770
+          },
+          "submissionRate": 0.78
+        },
+        "act": {
+          "composite": {
+            "p25": 30,
+            "p75": 34
+          },
+          "submissionRate": 0.41
+        }
+      },
+      "demographics": {
+        "enrollment": {
+          "undergraduate": 16777,
+          "graduate": 7862,
+          "total": 24639
+        },
+        "byRace": {
+          "international": 775,
+          "hispanicLatino": 1078,
+          "blackAfricanAmerican": 1131,
+          "white": 9600,
+          "asian": 2388,
+          "americanIndianAlaskaNative": 21,
+          "nativeHawaiianPacificIslander": 16,
+          "twoOrMoreRaces": 778,
+          "unknown": 990
+        }
+      },
+      "costs": {
+        "tuition": 14509,
+        "fees": 2845,
+        "roomAndBoard": 11590,
+        "totalCOA": 28944
+      },
+      "financialAid": {
+        "averageAidPackage": 28986,
+        "averageNeedBasedGrant": 23439,
+        "percentReceivingAid": 0.3505,
+        "percentNeedFullyMet": 1.0
+      }
+    },
     "2019-2020": {
       "admissions": {
         "applied": 40971,
@@ -86,13 +295,29 @@
       },
       "testScores": {
         "sat": {
-          "composite": { "p25": 1330, "p50": 1410, "p75": 1490 },
-          "readingWriting": { "p25": 660, "p50": 700, "p75": 740 },
-          "math": { "p25": 660, "p50": 715, "p75": 770 },
+          "composite": {
+            "p25": 1330,
+            "p50": 1410,
+            "p75": 1490
+          },
+          "readingWriting": {
+            "p25": 660,
+            "p50": 700,
+            "p75": 740
+          },
+          "math": {
+            "p25": 660,
+            "p50": 715,
+            "p75": 770
+          },
           "submissionRate": 0.7
         },
         "act": {
-          "composite": { "p25": 30, "p50": 32, "p75": 34 },
+          "composite": {
+            "p25": 30,
+            "p50": 32,
+            "p75": 34
+          },
           "submissionRate": 0.36
         }
       },
@@ -142,13 +367,29 @@
       },
       "testScores": {
         "sat": {
-          "composite": { "p25": 1400, "p50": 1455, "p75": 1510 },
-          "readingWriting": { "p25": 690, "p50": 720, "p75": 750 },
-          "math": { "p25": 700, "p50": 740, "p75": 780 },
+          "composite": {
+            "p25": 1400,
+            "p50": 1455,
+            "p75": 1510
+          },
+          "readingWriting": {
+            "p25": 690,
+            "p50": 720,
+            "p75": 750
+          },
+          "math": {
+            "p25": 700,
+            "p50": 740,
+            "p75": 780
+          },
           "submissionRate": 0.51
         },
         "act": {
-          "composite": { "p25": 32, "p50": 34, "p75": 35 },
+          "composite": {
+            "p25": 32,
+            "p50": 34,
+            "p75": 35
+          },
           "submissionRate": 0.2
         }
       },
@@ -198,13 +439,29 @@
       },
       "testScores": {
         "sat": {
-          "composite": { "p25": 1400, "p50": 1470, "p75": 1540 },
-          "readingWriting": { "p25": 690, "p50": 720, "p75": 750 },
-          "math": { "p25": 710, "p50": 750, "p75": 790 },
+          "composite": {
+            "p25": 1400,
+            "p50": 1470,
+            "p75": 1540
+          },
+          "readingWriting": {
+            "p25": 690,
+            "p50": 720,
+            "p75": 750
+          },
+          "math": {
+            "p25": 710,
+            "p50": 750,
+            "p75": 790
+          },
           "submissionRate": 0.54
         },
         "act": {
-          "composite": { "p25": 32, "p50": 33, "p75": 34 },
+          "composite": {
+            "p25": 32,
+            "p50": 33,
+            "p75": 34
+          },
           "submissionRate": 0.17
         }
       },
@@ -254,13 +511,29 @@
       },
       "testScores": {
         "sat": {
-          "composite": { "p25": 1410, "p50": 1450, "p75": 1510 },
-          "readingWriting": { "p25": 700, "p50": 730, "p75": 750 },
-          "math": { "p25": 710, "p50": 760, "p75": 780 },
+          "composite": {
+            "p25": 1410,
+            "p50": 1450,
+            "p75": 1510
+          },
+          "readingWriting": {
+            "p25": 700,
+            "p50": 730,
+            "p75": 750
+          },
+          "math": {
+            "p25": 710,
+            "p50": 760,
+            "p75": 780
+          },
           "submissionRate": 0.5
         },
         "act": {
-          "composite": { "p25": 32, "p50": 33, "p75": 34 },
+          "composite": {
+            "p25": 32,
+            "p50": 33,
+            "p75": 34
+          },
           "submissionRate": 0.16
         }
       },
@@ -310,13 +583,29 @@
       },
       "testScores": {
         "sat": {
-          "composite": { "p25": 1410, "p50": 1470, "p75": 1520 },
-          "readingWriting": { "p25": 700, "p50": 730, "p75": 760 },
-          "math": { "p25": 710, "p50": 750, "p75": 780 },
+          "composite": {
+            "p25": 1410,
+            "p50": 1470,
+            "p75": 1520
+          },
+          "readingWriting": {
+            "p25": 700,
+            "p50": 730,
+            "p75": 760
+          },
+          "math": {
+            "p25": 710,
+            "p50": 750,
+            "p75": 780
+          },
           "submissionRate": 0.456
         },
         "act": {
-          "composite": { "p25": 32, "p50": 33, "p75": 35 },
+          "composite": {
+            "p25": 32,
+            "p50": 33,
+            "p75": 35
+          },
           "submissionRate": 0.138
         }
       },
