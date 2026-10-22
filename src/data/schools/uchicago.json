@@ -3,8 +3,8 @@
   "slug": "uchicago",
   "profile": {
     "admissionsFactors": {
-      "sourceYear": "2024-2025",
-      "sourcePdf": "College-Data/UChicago/CDS_2024-2025_to_publish.pdf",
+      "sourceYear": "2025-2026",
+      "sourcePdf": "College-Data/uchicago/uchicago-cds-2025-2026.pdf",
       "section": "C7",
       "academic": {
         "rigorOfSecondarySchoolRecord": "very_important",
@@ -325,6 +325,75 @@
         "percentReceivingAid": 0.344,
         "averageAidPackage": 78883,
         "averageNeedBasedGrant": 72859,
+        "percentNeedFullyMet": 1.0
+      }
+    },
+    "2025-2026": {
+      "admissions": {
+        "byGender": {
+          "men": {
+            "applied": 19929,
+            "admitted": 1169,
+            "enrolled": 1042
+          },
+          "women": {
+            "applied": 24578,
+            "admitted": 870,
+            "enrolled": 744
+          }
+        },
+        "applied": 45533,
+        "admitted": 2039,
+        "enrolled": 1786,
+        "acceptanceRate": 0.0448,
+        "yield": 0.8759
+      },
+      "testScores": {
+        "sat": {
+          "composite": {
+            "p25": 1500,
+            "p50": 1540,
+            "p75": 1560
+          },
+          "readingWriting": {
+            "p25": 740,
+            "p50": 760,
+            "p75": 770
+          },
+          "math": {
+            "p25": 760,
+            "p50": 780,
+            "p75": 790
+          },
+          "submissionRate": 0.57
+        },
+        "act": {
+          "composite": {
+            "p25": 34,
+            "p50": 35,
+            "p75": 35
+          },
+          "submissionRate": 0.25
+        }
+      },
+      "demographics": {
+        "enrollment": {
+          "undergraduate": 7453,
+          "graduate": 8953,
+          "total": 16406
+        },
+        "byRace": {}
+      },
+      "costs": {
+        "tuition": 75960,
+        "fees": 1995,
+        "roomAndBoard": 21414,
+        "totalCOA": 99369
+      },
+      "financialAid": {
+        "averageAidPackage": 83276,
+        "averageNeedBasedGrant": 77445,
+        "percentReceivingAid": 0.3348,
         "percentNeedFullyMet": 1.0
       }
     }

@@ -3,8 +3,8 @@
   "slug": "nyu",
   "profile": {
     "admissionsFactors": {
-      "sourceYear": "2024-2025",
-      "sourcePdf": "College-Data/NYU/2024-2025 (pdf, file size 907KB).pdf",
+      "sourceYear": "2025-2026",
+      "sourcePdf": "College-Data/nyu/nyu-cds-2025-2026.pdf",
       "section": "C7",
       "academic": {
         "rigorOfSecondarySchoolRecord": "very_important",
@@ -26,9 +26,8 @@
         "religiousAffiliationCommitment": "not_considered",
         "volunteerWork": "considered",
         "workExperience": "considered",
-        "levelOfApplicantsInterest": "not_considered"
-      },
-      "notes": "For programs that require a portfolio or audition, the artistic talent factor is considered."
+        "levelOfApplicantsInterest": "considered"
+      }
     }
   },
   "years": {
@@ -579,6 +578,80 @@
         "averageAidPackage": 68216,
         "averageNeedBasedGrant": 63749,
         "percentNeedFullyMet": 0.984
+      }
+    },
+    "2025-2026": {
+      "admissions": {
+        "applied": 114125,
+        "admitted": 10340,
+        "enrolled": 5662,
+        "byGender": {
+          "men": {
+            "applied": 46307,
+            "admitted": 4231,
+            "enrolled": 2426
+          },
+          "women": {
+            "applied": 67818,
+            "admitted": 6109,
+            "enrolled": 3236
+          }
+        },
+        "acceptanceRate": 0.0906,
+        "yield": 0.5476
+      },
+      "testScores": {
+        "sat": {
+          "composite": {
+            "p25": 1480,
+            "p50": 1520,
+            "p75": 1550
+          },
+          "readingWriting": {
+            "p25": 730,
+            "p50": 750,
+            "p75": 770
+          },
+          "math": {
+            "p25": 750,
+            "p50": 780,
+            "p75": 790
+          },
+          "submissionRate": 0.27
+        },
+        "act": {
+          "composite": {
+            "p25": 34,
+            "p50": 35,
+            "p75": 35
+          },
+          "submissionRate": 0.1
+        }
+      },
+      "demographics": {
+        "enrollment": {
+          "undergraduate": 29471,
+          "graduate": 27804,
+          "total": 57275
+        },
+        "byRace": {
+          "international": 7531,
+          "hispanicLatino": 3869,
+          "blackAfricanAmerican": 1769,
+          "white": 6468,
+          "asian": 7090,
+          "americanIndianAlaskaNative": 45,
+          "nativeHawaiianPacificIslander": 18,
+          "twoOrMoreRaces": 1378,
+          "unknown": 1303
+        }
+      },
+      "costs": {},
+      "financialAid": {
+        "averageAidPackage": 64101,
+        "averageNeedBasedGrant": 56510,
+        "percentReceivingAid": 0.278,
+        "percentNeedFullyMet": 0.245
       }
     }
   }

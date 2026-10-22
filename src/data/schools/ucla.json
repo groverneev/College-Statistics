@@ -3,8 +3,8 @@
   "slug": "ucla",
   "profile": {
     "admissionsFactors": {
-      "sourceYear": "2024-2025",
-      "sourcePdf": "College-Data/UCLA/24-25.pdf",
+      "sourceYear": "2025-2026",
+      "sourcePdf": "College-Data/ucla/ucla-cds-2025-2026.pdf",
       "section": "C7",
       "academic": {
         "rigorOfSecondarySchoolRecord": "very_important",
@@ -470,6 +470,58 @@
         "averageAidPackage": 25012,
         "averageNeedBasedGrant": 25234,
         "percentNeedFullyMet": 0.48
+      }
+    },
+    "2025-2026": {
+      "admissions": {
+        "byGender": {
+          "men": {
+            "applied": 65079,
+            "admitted": 5546,
+            "enrolled": 2547
+          },
+          "women": {
+            "applied": 73508,
+            "admitted": 7274,
+            "enrolled": 3652
+          }
+        },
+        "applied": 145086,
+        "admitted": 13659,
+        "enrolled": 6553,
+        "acceptanceRate": 0.0941,
+        "yield": 0.4798
+      },
+      "testScores": {},
+      "demographics": {
+        "enrollment": {
+          "undergraduate": 33534,
+          "graduate": 13898,
+          "total": 47432
+        },
+        "byRace": {
+          "international": 2627,
+          "hispanicLatino": 8299,
+          "blackAfricanAmerican": 1071,
+          "white": 7610,
+          "asian": 10014,
+          "americanIndianAlaskaNative": 41,
+          "nativeHawaiianPacificIslander": 53,
+          "twoOrMoreRaces": 2671,
+          "unknown": 1148
+        }
+      },
+      "costs": {
+        "tuition": 13368,
+        "fees": 2105,
+        "roomAndBoard": 19779,
+        "totalCOA": 35252
+      },
+      "financialAid": {
+        "averageAidPackage": 33777,
+        "averageNeedBasedGrant": 28297,
+        "percentReceivingAid": 0.4624,
+        "percentNeedFullyMet": 0.2058
       }
     }
   }

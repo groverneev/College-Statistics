@@ -3,8 +3,8 @@
   "slug": "northeastern",
   "profile": {
     "admissionsFactors": {
-      "sourceYear": "2024-2025",
-      "sourcePdf": "https://uds.northeastern.edu/wp-content/uploads/2026/03/CDS-2024-25.pdf",
+      "sourceYear": "2025-2026",
+      "sourcePdf": "College-Data/northeastern/northeastern-cds-2025-2026.xlsx",
       "section": "C7",
       "academic": {
         "rigorOfSecondarySchoolRecord": "very_important",
@@ -713,6 +713,89 @@
         "averageAidPackage": 46555,
         "averageNeedBasedGrant": 44807,
         "percentNeedFullyMet": 0.867
+      }
+    },
+    "2025-2026": {
+      "admissions": {
+        "applied": 105256,
+        "admitted": 5920,
+        "enrolled": 2736,
+        "byGender": {
+          "men": {
+            "applied": 46252,
+            "admitted": 2458,
+            "enrolled": 1171
+          },
+          "women": {
+            "applied": 58959,
+            "admitted": 3458,
+            "enrolled": 1561
+          }
+        },
+        "earlyDecision": {
+          "applied": 5404,
+          "admitted": 1910
+        },
+        "acceptanceRate": 0.0562,
+        "yield": 0.4622
+      },
+      "testScores": {
+        "sat": {
+          "composite": {
+            "p25": 1440,
+            "p50": 1480,
+            "p75": 1510
+          },
+          "readingWriting": {
+            "p25": 710,
+            "p50": 730,
+            "p75": 750
+          },
+          "math": {
+            "p25": 720,
+            "p50": 750,
+            "p75": 780
+          },
+          "submissionRate": 0.22
+        },
+        "act": {
+          "composite": {
+            "p25": 33,
+            "p50": 33,
+            "p75": 34
+          },
+          "submissionRate": 0.06
+        }
+      },
+      "demographics": {
+        "enrollment": {
+          "undergraduate": 22456,
+          "graduate": 15947,
+          "total": 38403
+        },
+        "byRace": {
+          "international": 2860,
+          "hispanicLatino": 2274,
+          "blackAfricanAmerican": 914,
+          "white": 8825,
+          "asian": 5532,
+          "americanIndianAlaskaNative": 21,
+          "nativeHawaiianPacificIslander": 10,
+          "twoOrMoreRaces": 1468,
+          "unknown": 552
+        }
+      },
+      "costs": {
+        "tuition": 71050,
+        "fees": 1650,
+        "roomAndBoard": 22992,
+        "totalCOA": 95692
+      },
+      "financialAid": {
+        "averageAidPackage": 53055,
+        "averageNeedBasedGrant": 50990,
+        "percentReceivingAid": 0.2969,
+        "percentNeedFullyMet": 0.255
       }
     }
   }

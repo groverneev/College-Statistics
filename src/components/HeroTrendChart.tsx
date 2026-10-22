@@ -294,6 +294,35 @@ export default function HeroTrendChart({ series }: HeroTrendChartProps) {
               </g>
             </g>
           ))}
+
+          {chart.lines.map((line) => (
+            <g
+              key={`hit-${line.slug}`}
+              onMouseEnter={() => setActive(line.slug)}
+              onMouseLeave={() => setActive(null)}
+              onClick={() => router.push(`/${line.slug}`)}
+              className="cursor-pointer"
+              aria-hidden
+            >
+              <title>{`Open ${line.name} dashboard`}</title>
+              <path
+                d={line.path}
+                fill="none"
+                stroke="transparent"
+                strokeWidth={16}
+                strokeLinecap="round"
+                pointerEvents="stroke"
+              />
+              <circle cx={line.end.x} cy={line.end.y} r={10} fill="transparent" />
+              <rect
+                x={line.end.x + 8}
+                y={chart.labelY[line.slug] - 10}
+                width={PAD.right - 12}
+                height={19}
+                fill="transparent"
+              />
+            </g>
+          ))}
         </svg>
       </div>
     </div>

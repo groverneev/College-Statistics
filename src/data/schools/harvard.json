@@ -3,8 +3,8 @@
   "slug": "harvard",
   "profile": {
     "admissionsFactors": {
-      "sourceYear": "2024-2025",
-      "sourcePdf": "College-Data/Harvard/HarvardUniversity_CDS_2024-2025.pdf",
+      "sourceYear": "2025-2026",
+      "sourcePdf": "College-Data/harvard/harvard-cds-2025-2026.pdf",
       "section": "C7",
       "academic": {
         "rigorOfSecondarySchoolRecord": "considered",
@@ -680,6 +680,75 @@
         "percentReceivingAid": 0.55,
         "averageAidPackage": 74387,
         "averageNeedBasedGrant": 72600,
+        "percentNeedFullyMet": 1.0
+      }
+    },
+    "2025-2026": {
+      "admissions": {
+        "applied": 47893,
+        "admitted": 2003,
+        "enrolled": 1675,
+        "byGender": {
+          "men": {
+            "applied": 24000,
+            "admitted": 968,
+            "enrolled": 803
+          },
+          "women": {
+            "applied": 23872,
+            "admitted": 1035,
+            "enrolled": 872
+          }
+        },
+        "acceptanceRate": 0.0418,
+        "yield": 0.8362
+      },
+      "testScores": {
+        "sat": {
+          "readingWriting": {
+            "p25": 720,
+            "p50": 750,
+            "p75": 770
+          },
+          "math": {
+            "p25": 730,
+            "p50": 770,
+            "p75": 790
+          },
+          "submissionRate": 0.79
+        },
+        "act": {
+          "composite": {
+            "p25": 33,
+            "p50": 35,
+            "p75": 35
+          },
+          "submissionRate": 0.27
+        }
+      },
+      "demographics": {
+        "enrollment": {
+          "undergraduate": 6738,
+          "graduate": 14113,
+          "total": 20851
+        },
+        "byRace": {
+          "international": 1077,
+          "hispanicLatino": 729,
+          "blackAfricanAmerican": 547,
+          "white": 1933,
+          "asian": 1681,
+          "americanIndianAlaskaNative": 18,
+          "nativeHawaiianPacificIslander": 9,
+          "twoOrMoreRaces": 532,
+          "unknown": 212
+        }
+      },
+      "costs": {},
+      "financialAid": {
+        "averageAidPackage": 74285,
+        "averageNeedBasedGrant": 71448,
+        "percentReceivingAid": 0.5558,
         "percentNeedFullyMet": 1.0
       }
     }
