@@ -3,8 +3,8 @@
   "slug": "uci",
   "profile": {
     "admissionsFactors": {
-      "sourceYear": "2024-2025",
-      "sourcePdf": "College-Data/UCI/2024-25.pdf",
+      "sourceYear": "2025-2026",
+      "sourcePdf": "College-Data/uci/uci-cds-2025-2026.pdf",
       "section": "C7",
       "academic": {
         "rigorOfSecondarySchoolRecord": "very_important",
@@ -16,16 +16,16 @@
       },
       "nonacademic": {
         "interview": "not_considered",
-        "extracurricularActivities": "important",
-        "talentAbility": "important",
-        "characterPersonalQualities": "considered",
+        "extracurricularActivities": "very_important",
+        "talentAbility": "very_important",
+        "characterPersonalQualities": "important",
         "firstGeneration": "considered",
         "alumniRelation": "not_considered",
         "geographicalResidence": "considered",
         "stateResidency": "considered",
         "religiousAffiliationCommitment": "not_considered",
-        "volunteerWork": "important",
-        "workExperience": "important",
+        "volunteerWork": "very_important",
+        "workExperience": "very_important",
         "levelOfApplicantsInterest": "not_considered"
       }
     }
@@ -529,6 +529,53 @@
         "averageAidPackage": 27265,
         "averageNeedBasedGrant": 24200,
         "percentNeedFullyMet": 0.1557
+      }
+    },
+    "2025-2026": {
+      "admissions": {
+        "byGender": {
+          "men": {
+            "applied": 58513,
+            "admitted": 15851,
+            "enrolled": 2896
+          },
+          "women": {
+            "applied": 65718,
+            "admitted": 20113,
+            "enrolled": 3525
+          }
+        },
+        "applied": 124231,
+        "admitted": 35964,
+        "enrolled": 6421,
+        "acceptanceRate": 0.2895,
+        "yield": 0.1785
+      },
+      "testScores": {},
+      "demographics": {
+        "enrollment": {
+          "undergraduate": 30260,
+          "graduate": 7008,
+          "total": 37268
+        },
+        "byRace": {
+          "international": 3682,
+          "hispanicLatino": 7786,
+          "blackAfricanAmerican": 548,
+          "white": 3854,
+          "asian": 11609,
+          "americanIndianAlaskaNative": 34,
+          "nativeHawaiianPacificIslander": 33,
+          "twoOrMoreRaces": 2003,
+          "unknown": 711
+        }
+      },
+      "costs": {},
+      "financialAid": {
+        "averageAidPackage": 28526,
+        "averageNeedBasedGrant": 25734,
+        "percentReceivingAid": 0.5067,
+        "percentNeedFullyMet": 0.1652
       }
     }
   }

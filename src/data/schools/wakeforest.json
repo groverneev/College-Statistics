@@ -3,8 +3,8 @@
   "slug": "wakeforest",
   "profile": {
     "admissionsFactors": {
-      "sourceYear": "2023-2024",
-      "sourcePdf": "College-Data/WakeForest/CDS_2023-2024_WakeForest.pdf",
+      "sourceYear": "2025-2026",
+      "sourcePdf": "College-Data/wakeforest/wakeforest-cds-2025-2026.pdf",
       "section": "C7",
       "academic": {
         "rigorOfSecondarySchoolRecord": "very_important",
@@ -27,8 +27,7 @@
         "volunteerWork": "considered",
         "workExperience": "considered",
         "levelOfApplicantsInterest": "considered"
-      },
-      "notes": "Undergraduate residency counts are derived from CDS F1 undergraduate out-of-state percentages applied to domestic undergraduate enrollment because Wake Forest CDS B2 does not report undergraduate in-state and out-of-state headcounts directly."
+      }
     }
   },
   "years": {
@@ -516,6 +515,83 @@
         "averageAidPackage": 72851,
         "averageNeedBasedGrant": 66913,
         "percentNeedFullyMet": 0.8476
+      }
+    },
+    "2025-2026": {
+      "admissions": {
+        "byGender": {
+          "men": {
+            "applied": 8235,
+            "admitted": 1965,
+            "enrolled": 676
+          },
+          "women": {
+            "applied": 11360,
+            "admitted": 2103,
+            "enrolled": 868
+          }
+        },
+        "applied": 19600,
+        "admitted": 4068,
+        "enrolled": 1544,
+        "acceptanceRate": 0.2076,
+        "yield": 0.3795
+      },
+      "testScores": {
+        "sat": {
+          "composite": {
+            "p25": 1420,
+            "p50": 1450,
+            "p75": 1490
+          },
+          "readingWriting": {
+            "p25": 700,
+            "p50": 730,
+            "p75": 750
+          },
+          "math": {
+            "p25": 700,
+            "p50": 730,
+            "p75": 760
+          },
+          "submissionRate": 0.24
+        },
+        "act": {
+          "composite": {
+            "p25": 32,
+            "p50": 33,
+            "p75": 34
+          },
+          "submissionRate": 0.22
+        }
+      },
+      "demographics": {
+        "enrollment": {
+          "undergraduate": 5595,
+          "graduate": 4038,
+          "total": 9633
+        },
+        "byRace": {
+          "international": 223,
+          "hispanicLatino": 461,
+          "blackAfricanAmerican": 354,
+          "white": 3742,
+          "asian": 275,
+          "americanIndianAlaskaNative": 8,
+          "nativeHawaiianPacificIslander": 7,
+          "twoOrMoreRaces": 256,
+          "unknown": 269
+        }
+      },
+      "costs": {
+        "tuition": 71894,
+        "fees": 1276
+      },
+      "financialAid": {
+        "averageAidPackage": 77994,
+        "averageNeedBasedGrant": 69008,
+        "percentReceivingAid": 0.2233,
+        "percentNeedFullyMet": 0.8947
       }
     }
   }

@@ -3,16 +3,16 @@
   "slug": "emory",
   "profile": {
     "admissionsFactors": {
-      "sourceYear": "2024-2025",
-      "sourcePdf": "College-Data/EmoryUniversity/emory-common-data-set-2024-2025.pdf",
+      "sourceYear": "2025-2026",
+      "sourcePdf": "College-Data/emory/emory-cds-2025-2026.pdf",
       "section": "C7",
       "academic": {
         "rigorOfSecondarySchoolRecord": "very_important",
         "classRank": "considered",
         "academicGpa": "very_important",
-        "standardizedTestScores": "important",
+        "standardizedTestScores": "very_important",
         "applicationEssay": "important",
-        "recommendations": "very_important"
+        "recommendations": "important"
       },
       "nonacademic": {
         "interview": "considered",
@@ -502,6 +502,89 @@
         "averageAidPackage": 62611,
         "averageNeedBasedGrant": 61022,
         "percentNeedFullyMet": 0.9877
+      }
+    },
+    "2025-2026": {
+      "admissions": {
+        "applied": 37561,
+        "admitted": 3869,
+        "enrolled": 1443,
+        "byGender": {
+          "men": {
+            "applied": 14990,
+            "admitted": 1764,
+            "enrolled": 624
+          },
+          "women": {
+            "applied": 22566,
+            "admitted": 2105,
+            "enrolled": 819
+          }
+        },
+        "earlyDecision": {
+          "applied": 4728,
+          "admitted": 1049
+        },
+        "acceptanceRate": 0.103,
+        "yield": 0.373
+      },
+      "testScores": {
+        "sat": {
+          "composite": {
+            "p25": 1480,
+            "p50": 1510,
+            "p75": 1540
+          },
+          "readingWriting": {
+            "p25": 720,
+            "p50": 740,
+            "p75": 760
+          },
+          "math": {
+            "p25": 740,
+            "p50": 780,
+            "p75": 790
+          },
+          "submissionRate": 0.47
+        },
+        "act": {
+          "composite": {
+            "p25": 33,
+            "p50": 34,
+            "p75": 35
+          },
+          "submissionRate": 0.21
+        }
+      },
+      "demographics": {
+        "enrollment": {
+          "undergraduate": 7320,
+          "graduate": 8180,
+          "total": 15500
+        },
+        "byRace": {
+          "international": 1208,
+          "hispanicLatino": 865,
+          "blackAfricanAmerican": 748,
+          "white": 2046,
+          "asian": 1905,
+          "americanIndianAlaskaNative": 4,
+          "nativeHawaiianPacificIslander": 1,
+          "twoOrMoreRaces": 312,
+          "unknown": 231
+        }
+      },
+      "costs": {
+        "tuition": 70300,
+        "fees": 1148,
+        "roomAndBoard": 22406,
+        "totalCOA": 93854
+      },
+      "financialAid": {
+        "averageAidPackage": 68697,
+        "averageNeedBasedGrant": 66417,
+        "percentReceivingAid": 0.3728,
+        "percentNeedFullyMet": 0.997
       }
     }
   }

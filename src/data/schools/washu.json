@@ -516,6 +516,89 @@
         "averageNeedBasedGrant": 70607,
         "percentNeedFullyMet": 1.0
       }
+    },
+    "2025-2026": {
+      "admissions": {
+        "applied": 33283,
+        "admitted": 3968,
+        "enrolled": 1961,
+        "byGender": {
+          "men": {
+            "applied": 15251,
+            "admitted": 1874,
+            "enrolled": 906
+          },
+          "women": {
+            "applied": 18016,
+            "admitted": 2093,
+            "enrolled": 1054
+          }
+        },
+        "earlyDecision": {
+          "applied": 4934,
+          "admitted": 1333
+        },
+        "acceptanceRate": 0.1192,
+        "yield": 0.4942
+      },
+      "testScores": {
+        "sat": {
+          "composite": {
+            "p25": 1500,
+            "p50": 1530,
+            "p75": 1550
+          },
+          "readingWriting": {
+            "p25": 730,
+            "p50": 750,
+            "p75": 760
+          },
+          "math": {
+            "p25": 760,
+            "p50": 780,
+            "p75": 790
+          },
+          "submissionRate": 0.32
+        },
+        "act": {
+          "composite": {
+            "p25": 33,
+            "p50": 34,
+            "p75": 35
+          },
+          "submissionRate": 0.29
+        }
+      },
+      "demographics": {
+        "enrollment": {
+          "undergraduate": 8153,
+          "graduate": 7781,
+          "total": 15934
+        },
+        "byRace": {
+          "international": 850,
+          "hispanicLatino": 981,
+          "blackAfricanAmerican": 727,
+          "white": 3174,
+          "asian": 1723,
+          "americanIndianAlaskaNative": 7,
+          "nativeHawaiianPacificIslander": 7,
+          "twoOrMoreRaces": 479,
+          "unknown": 205
+        }
+      },
+      "costs": {
+        "tuition": 71310,
+        "fees": 1412,
+        "roomAndBoard": 24272,
+        "totalCOA": 96994
+      },
+      "financialAid": {
+        "averageAidPackage": 79052,
+        "averageNeedBasedGrant": 73547,
+        "percentReceivingAid": 0.4473,
+        "percentNeedFullyMet": 1.0
+      }
     }
   }
 }

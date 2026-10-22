@@ -3,8 +3,8 @@
   "slug": "tufts",
   "profile": {
     "admissionsFactors": {
-      "sourceYear": "2024-2025",
-      "sourcePdf": "College-Data/Tufts/CDS_2024-2025-1.pdf",
+      "sourceYear": "2025-2026",
+      "sourcePdf": "College-Data/tufts/tufts-cds-2025-2026.pdf",
       "section": "C7",
       "academic": {
         "rigorOfSecondarySchoolRecord": "very_important",
@@ -515,6 +515,85 @@
         "averageAidPackage": 59574,
         "averageNeedBasedGrant": 58196,
         "percentNeedFullyMet": 1
+      }
+    },
+    "2025-2026": {
+      "admissions": {
+        "applied": 33415,
+        "admitted": 3613,
+        "enrolled": 1765,
+        "byGender": {
+          "men": {
+            "applied": 14444,
+            "admitted": 1568,
+            "enrolled": 777
+          },
+          "women": {
+            "applied": 18947,
+            "admitted": 2044,
+            "enrolled": 987
+          }
+        },
+        "acceptanceRate": 0.1081,
+        "yield": 0.4885
+      },
+      "testScores": {
+        "sat": {
+          "composite": {
+            "p25": 1460,
+            "p50": 1500,
+            "p75": 1520
+          },
+          "readingWriting": {
+            "p25": 720,
+            "p50": 740,
+            "p75": 760
+          },
+          "math": {
+            "p25": 730,
+            "p50": 760,
+            "p75": 780
+          },
+          "submissionRate": 0.42
+        },
+        "act": {
+          "composite": {
+            "p25": 33,
+            "p50": 34,
+            "p75": 35
+          },
+          "submissionRate": 0.16
+        }
+      },
+      "demographics": {
+        "enrollment": {
+          "undergraduate": 7031,
+          "graduate": 6619,
+          "total": 13650
+        },
+        "byRace": {
+          "international": 876,
+          "hispanicLatino": 717,
+          "blackAfricanAmerican": 427,
+          "white": 2775,
+          "asian": 1193,
+          "americanIndianAlaskaNative": 3,
+          "nativeHawaiianPacificIslander": 6,
+          "twoOrMoreRaces": 535,
+          "unknown": 499
+        }
+      },
+      "costs": {
+        "tuition": 74862,
+        "fees": 1696,
+        "roomAndBoard": 20594,
+        "totalCOA": 97152
+      },
+      "financialAid": {
+        "averageAidPackage": 65473,
+        "averageNeedBasedGrant": 63238,
+        "percentReceivingAid": 0.3703,
+        "percentNeedFullyMet": 1.0
       }
     }
   }

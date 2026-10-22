@@ -3,8 +3,8 @@
   "slug": "universitypittsburgh",
   "profile": {
     "admissionsFactors": {
-      "sourceYear": "2024-2025",
-      "sourcePdf": "College-Data/University-Pittsburgh/2024-25 University of Pittsburgh.pdf",
+      "sourceYear": "2025-2026",
+      "sourcePdf": "College-Data/universitypittsburgh/universitypittsburgh-cds-2025-2026.pdf",
       "section": "C7",
       "academic": {
         "rigorOfSecondarySchoolRecord": "very_important",
@@ -605,6 +605,70 @@
         "averageAidPackage": 18255,
         "averageNeedBasedGrant": 16322,
         "percentNeedFullyMet": 0.0923
+      }
+    },
+    "2025-2026": {
+      "admissions": {
+        "byGender": {
+          "men": {
+            "applied": 27732,
+            "admitted": 15646,
+            "enrolled": 2335
+          },
+          "women": {
+            "applied": 36992,
+            "admitted": 22831,
+            "enrolled": 3541
+          }
+        },
+        "applied": 64724,
+        "admitted": 38477,
+        "enrolled": 5876,
+        "acceptanceRate": 0.5945,
+        "yield": 0.1527
+      },
+      "testScores": {
+        "sat": {
+          "readingWriting": {
+            "p25": 650,
+            "p50": 690,
+            "p75": 720
+          },
+          "math": {
+            "p25": 630,
+            "p50": 680,
+            "p75": 730
+          },
+          "submissionRate": 0.403
+        },
+        "act": {
+          "composite": {
+            "p25": 29,
+            "p50": 32,
+            "p75": 33
+          },
+          "submissionRate": 0.083
+        }
+      },
+      "demographics": {
+        "enrollment": {
+          "undergraduate": 21388,
+          "graduate": 9849,
+          "total": 31237
+        },
+        "byRace": {}
+      },
+      "costs": {
+        "tuition": 21594,
+        "fees": 2152,
+        "roomAndBoard": 15430,
+        "totalCOA": 39176
+      },
+      "financialAid": {
+        "averageAidPackage": 20258,
+        "averageNeedBasedGrant": 17819,
+        "percentReceivingAid": 0.4395,
+        "percentNeedFullyMet": 0.1247
       }
     }
   }
