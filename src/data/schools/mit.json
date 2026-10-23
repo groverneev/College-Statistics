@@ -36,6 +36,18 @@
         "applied": 19020,
         "admitted": 1485,
         "enrolled": 1107,
+        "byGender": {
+          "men": {
+            "applied": 13131,
+            "admitted": 757,
+            "enrolled": 599
+          },
+          "women": {
+            "applied": 5889,
+            "admitted": 754,
+            "enrolled": 511
+          }
+        },
         "acceptanceRate": 0.0781,
         "yield": 0.7455,
         "earlyAction": {
@@ -96,6 +108,18 @@
         "applied": 20247,
         "admitted": 1438,
         "enrolled": 1092,
+        "byGender": {
+          "men": {
+            "applied": 13993,
+            "admitted": 734,
+            "enrolled": 592
+          },
+          "women": {
+            "applied": 6254,
+            "admitted": 718,
+            "enrolled": 505
+          }
+        },
         "acceptanceRate": 0.071,
         "yield": 0.7594,
         "earlyAction": {
@@ -156,6 +180,18 @@
         "applied": 21706,
         "admitted": 1464,
         "enrolled": 1112,
+        "byGender": {
+          "men": {
+            "applied": 14689,
+            "admitted": 721,
+            "enrolled": 567
+          },
+          "women": {
+            "applied": 7017,
+            "admitted": 743,
+            "enrolled": 547
+          }
+        },
         "acceptanceRate": 0.0674,
         "yield": 0.7596,
         "earlyAction": {
@@ -216,6 +252,18 @@
         "applied": 21312,
         "admitted": 1410,
         "enrolled": 1099,
+        "byGender": {
+          "men": {
+            "applied": 14522,
+            "admitted": 703,
+            "enrolled": 580
+          },
+          "women": {
+            "applied": 6790,
+            "admitted": 724,
+            "enrolled": 522
+          }
+        },
         "acceptanceRate": 0.0662,
         "yield": 0.7794,
         "earlyAction": {
@@ -276,6 +324,18 @@
         "applied": 20075,
         "admitted": 1457,
         "enrolled": 1065,
+        "byGender": {
+          "men": {
+            "applied": 13528,
+            "admitted": 702,
+            "enrolled": 542
+          },
+          "women": {
+            "applied": 6547,
+            "admitted": 755,
+            "enrolled": 528
+          }
+        },
         "acceptanceRate": 0.0726,
         "yield": 0.7309,
         "earlyAction": {
@@ -336,6 +396,18 @@
         "applied": 33240,
         "admitted": 1365,
         "enrolled": 1177,
+        "byGender": {
+          "men": {
+            "applied": 21672,
+            "admitted": 665,
+            "enrolled": 604
+          },
+          "women": {
+            "applied": 11568,
+            "admitted": 700,
+            "enrolled": 573
+          }
+        },
         "acceptanceRate": 0.0411,
         "yield": 0.8623,
         "earlyAction": {
@@ -396,6 +468,18 @@
         "applied": 33767,
         "admitted": 1337,
         "enrolled": 1136,
+        "byGender": {
+          "men": {
+            "applied": 21588,
+            "admitted": 661,
+            "enrolled": 582
+          },
+          "women": {
+            "applied": 12179,
+            "admitted": 676,
+            "enrolled": 554
+          }
+        },
         "acceptanceRate": 0.0396,
         "yield": 0.8497,
         "earlyAction": {
@@ -456,6 +540,18 @@
         "applied": 26914,
         "admitted": 1291,
         "enrolled": 1092,
+        "byGender": {
+          "men": {
+            "applied": 16386,
+            "admitted": 607,
+            "enrolled": 530
+          },
+          "women": {
+            "applied": 8669,
+            "admitted": 617,
+            "enrolled": 508
+          }
+        },
         "acceptanceRate": 0.048,
         "yield": 0.8459,
         "earlyAction": {
@@ -516,6 +612,18 @@
         "applied": 28232,
         "admitted": 1284,
         "enrolled": 1106,
+        "byGender": {
+          "men": {
+            "applied": 17210,
+            "admitted": 606,
+            "enrolled": 547
+          },
+          "women": {
+            "applied": 8975,
+            "admitted": 612,
+            "enrolled": 499
+          }
+        },
         "acceptanceRate": 0.0455,
         "yield": 0.8614,
         "earlyAction": {

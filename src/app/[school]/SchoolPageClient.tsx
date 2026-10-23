@@ -11,6 +11,7 @@ import {
   CostsTrendChart,
   FinancialAidTrendChart,
   DemographicsTrendChart,
+  GenderAcceptanceChart,
 } from "@/components/charts";
 import SaveSchoolButton from "@/components/SaveSchoolButton";
 import SchoolNotes from "@/components/SchoolNotes";
@@ -31,6 +32,9 @@ const IMPORTANCE_LABELS: Record<AdmissionsFactorImportance, string> = {
   considered: "Considered",
   not_considered: "Not Considered",
 };
+
+// Gender acceptance card is being piloted on these schools before rolling out everywhere.
+const GENDER_CARD_SCHOOLS = new Set(["caltech", "harveymudd", "mit", "uchicago"]);
 
 const IMPORTANCE_ORDER: AdmissionsFactorImportance[] = [
   "very_important",
@@ -231,6 +235,10 @@ export default function SchoolPageClient({
 
         <div className="space-y-6">
           <AdmissionsTrendChart yearData={schoolData.years} schoolColor={schoolColor} />
+
+          {GENDER_CARD_SCHOOLS.has(schoolData.slug) && (
+            <GenderAcceptanceChart yearData={schoolData.years} />
+          )}
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
             <TestScoresTrendChart yearData={schoolData.years} schoolColor={schoolColor} />
