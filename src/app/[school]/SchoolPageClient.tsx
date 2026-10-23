@@ -62,7 +62,7 @@ export default function SchoolPageClient({
         icon: "📝",
         title: "Sign in to add notes",
         description:
-          "Keep private notes on any school — reminders, pros and cons, people to contact. Sign in with Google to get started.",
+          "Keep private notes on any school: reminders, pros and cons, people to contact. Sign in with Google to get started.",
       });
       return;
     }

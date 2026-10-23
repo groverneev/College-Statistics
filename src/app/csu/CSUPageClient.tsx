@@ -186,7 +186,7 @@ function SystemwideView() {
             value: fmtPct(rate),
             detail: (
               <>
-                <Delta value={rate - priorRate} suffix=" pts" />— the CSU has grown more open
+                <Delta value={rate - priorRate} suffix=" pts" />: the CSU has grown more open
               </>
             ),
           },
@@ -399,7 +399,7 @@ function CampusView() {
 
       <div className="grid gap-4 lg:grid-cols-2">
         <Panel
-          title={`${campusName(selected)} — five-year volume`}
+          title={`${campusName(selected)}: five-year volume`}
           aside={
             <Legend
               items={[
@@ -515,7 +515,7 @@ function MatrixView() {
 
   const largest: BarRow[] = csuData.largest.slice(0, 16).map((p) => ({
     key: `${p.campus}|${p.major}`,
-    label: `${p.major} — ${campusName(p.campus)}`,
+    label: `${p.major}: ${campusName(p.campus)}`,
     value: p.applied,
     display: fmtNum(p.applied),
     fill: barFill(p.admitRate),
@@ -823,13 +823,13 @@ export default function CSUPageClient() {
 
         <div className="mx-auto max-w-6xl px-4 text-xs leading-relaxed text-gray-400">
           <p className="mb-2">
-            <strong className="font-semibold text-gray-500">Source</strong> — CSU Institutional
+            <strong className="font-semibold text-gray-500">Source</strong>: CSU Institutional
             Research data dashboards. Admissions counts are Fall term. Discipline figures cover
             first-time freshmen and undergraduate transfers across {majorCount}+ majors; campus
             totals cover all entry levels, so they are larger than the discipline sums.
           </p>
           <p>
-            <strong className="font-semibold text-gray-500">Gaps carried from the source</strong> —
+            <strong className="font-semibold text-gray-500">Gaps carried from the source</strong>:
             the CSU suppresses enrollment in much of Fall {CSU_EARLIEST_FALL} and Fall{" "}
             {CSU_EARLIEST_FALL + 1} at the discipline level, so discipline views report Fall{" "}
             {CSU_DISCIPLINE_FALL} only rather than a trend that would show a reporting gap as a

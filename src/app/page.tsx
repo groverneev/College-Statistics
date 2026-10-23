@@ -100,7 +100,7 @@ export default function HomePage() {
               className="hero-rise text-base sm:text-lg max-w-2xl mx-auto mb-8"
               style={{ color: "#5a5f66", animationDelay: "0.1s" }}
             >
-              Free, accurate, and transparent college insights &mdash; sourced directly from
+              Free, accurate, and transparent college insights, sourced directly from
               official Common Data Set reports.
             </p>
           </div>

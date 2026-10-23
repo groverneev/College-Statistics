@@ -139,7 +139,7 @@ function MedianShareTrendChart() {
           <YAxis domain={[9, 12]} tickFormatter={(value) => `${value}%`} tick={{ fontSize: 12 }} />
           <Tooltip
             formatter={(value, _name, item) => [
-              `${Number(value).toFixed(1)}% (n=${item?.payload?.schoolCount ?? "—"})`,
+              `${Number(value).toFixed(1)}% (n=${item?.payload?.schoolCount ?? "-"})`,
               "Median share",
             ]}
           />

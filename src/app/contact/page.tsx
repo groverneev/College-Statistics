@@ -124,7 +124,7 @@ export default function ContactPage() {
                 </div>
                 <h3 className="text-xl font-semibold text-gray-900 mb-2">Message received</h3>
                 <p className="text-gray-500 text-sm max-w-xs">
-                  Thanks for reaching out — I&apos;ll be in touch shortly.
+                  Thanks for reaching out! I&apos;ll be in touch shortly.
                 </p>
                 <button
                   onClick={() => setStatus("idle")}

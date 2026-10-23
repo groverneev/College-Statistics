@@ -148,7 +148,7 @@ computing literacy.`,
   ucSystem: {
     heading: "University of California: first sustained decline since the dot-com bust",
     body: `UC-wide, 12,652 undergraduates are majoring in computer science in 2025,
-down 6% from 2024 on top of a 3% drop the year before — a 9% decline over two years
+down 6% from 2024 on top of a 3% drop the year before, a 9% decline over two years
 and the first sustained retreat since the early-2000s dot-com bust. The total is back
 to roughly its 2021 level, though still nearly double where it stood a decade ago.
 One campus bucked the trend: UC San Diego, the only UC with a dedicated undergraduate
@@ -176,9 +176,9 @@ campuses show the same: Arizona State CS down about 14% between fall 2024 and fa
   },
   whereAndWhy: {
     heading: "Where the students are going, and why",
-    body: `The retreat is concentrated in traditional CS. Adjacent fields — data
+    body: `The retreat is concentrated in traditional CS. Adjacent fields (data
 science, cybersecurity, computer engineering, and dedicated AI programs like UC San
-Diego's and MIT's — are flat or growing, so much of this is movement within computing
+Diego's and MIT's) are flat or growing, so much of this is movement within computing
 rather than away from it. Sources covering the decline cite a recurring set of
 conditions, listed here as co-occurring variables, not established causes:`,
     bullets: [
@@ -193,11 +193,11 @@ conditions, listed here as co-occurring variables, not established causes:`,
 
 export const takeaways = [
   "AP CS A test takers fell ~17% from the 2024 peak (98,136 → ~81,500), erasing roughly three years of growth",
-  "AP Biology and Chemistry grew ~22% and Physics 1 ~12% over the same two years — CS A fell while every other lab science rose",
+  "AP Biology and Chemistry grew ~22% and Physics 1 ~12% over the same two years; CS A fell while every other lab science rose",
   "The rigorous CS A track is shrinking ~2.5x faster than the conceptual CS Principles course",
-  "UC CS majors are down 9% over two years — the first sustained decline since the dot-com bust",
+  "UC CS majors are down 9% over two years, the first sustained decline since the dot-com bust",
   "National Student Clearinghouse: CS enrollment down 11.2% in fall 2025, the steepest drop of any field",
-  "Adjacent fields (AI, data science, cybersecurity, computer engineering) are flat or growing — much of the shift is within computing, not away from it",
+  "Adjacent fields (AI, data science, cybersecurity, computer engineering) are flat or growing; much of the shift is within computing, not away from it",
   "The turn lines up with the arrival of generative AI coding tools, but the data alone can't settle which factor is decisive",
 ];
 
@@ -208,43 +208,43 @@ export interface SourceLink {
 
 export const sourceLinks: SourceLink[] = [
   {
-    label: "College Board — AP Computer Science A score distributions",
+    label: "College Board: AP Computer Science A score distributions",
     url: "https://apstudents.collegeboard.org/about-ap-scores/score-distributions/ap-computer-science-a",
   },
   {
-    label: "College Board — AP Computer Science Principles score distributions",
+    label: "College Board: AP Computer Science Principles score distributions",
     url: "https://apstudents.collegeboard.org/about-ap-scores/score-distributions/ap-computer-science-principles",
   },
   {
-    label: "AP Program — Trevor Packer, 2026 AP CSA results",
+    label: "AP Program: Trevor Packer, 2026 AP CSA results",
     url: "https://x.com/AP_Trevor/status/2071651160281231385",
   },
   {
-    label: "University of California — Freshman admission by discipline",
+    label: "University of California: Freshman admission by discipline",
     url: "https://www.universityofcalifornia.edu/about-us/information-center/freshman-admission-discipline",
   },
   {
-    label: "San Francisco Chronicle (via GovTech) — UC CS majors decline",
+    label: "San Francisco Chronicle (via GovTech): UC CS majors decline",
     url: "https://www.govtech.com/education/higher-ed/cs-majors-decline-at-uc-for-first-time-since-early-2000s",
   },
   {
-    label: "Princeton Alumni Weekly — Computer science majors decline",
+    label: "Princeton Alumni Weekly: Computer science majors decline",
     url: "https://paw.princeton.edu/article/computer-science-majors-decline-consistent-nationwide-trends",
   },
   {
-    label: "Built In — CS degrees losing popularity (NSC, MIT AI major)",
+    label: "Built In: CS degrees losing popularity (NSC, MIT AI major)",
     url: "https://builtin.com/articles/computer-science-degree-decline-ai",
   },
   {
-    label: "Goldman Sachs (via Yahoo Finance) — Students ditching computer science",
+    label: "Goldman Sachs (via Yahoo Finance): Students ditching computer science",
     url: "https://finance.yahoo.com/technology/ai/articles/students-ditching-computer-science-ai-121215794.html",
   },
   {
-    label: "Computing Research Association — 2025 Taulbee Survey",
+    label: "Computing Research Association: 2025 Taulbee Survey",
     url: "https://cra.org/crn/2026/06/cra-update-new-cra-taulbee-survey-findings-show-record-degree-production-alongside-a-cooling-enrollment-pipeline/",
   },
   {
-    label: "Computing Research Association — CERP enrollment pulse survey",
+    label: "Computing Research Association: CERP enrollment pulse survey",
     url: "https://cra.org/crn/2025/10/cra-update-navigating-the-changing-landscape-of-computing-education-together/",
   },
 ];

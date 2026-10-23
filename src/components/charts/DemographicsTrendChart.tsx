@@ -268,13 +268,13 @@ export default function DemographicsTrendChart({
             <div className="font-semibold text-lg text-purple-600">
               {hasRaceSummary
                 ? `${((latestInternational / totalUndergrad) * 100).toFixed(0)}%`
-                : "—"}
+                : "-"}
             </div>
           </div>
           <div>
             <div className="text-gray-500">Students of Color</div>
             <div className="font-semibold text-lg text-green-600">
-              {hasRaceSummary ? `${(100 - (latestWhite / totalUndergrad) * 100).toFixed(0)}%` : "—"}
+              {hasRaceSummary ? `${(100 - (latestWhite / totalUndergrad) * 100).toFixed(0)}%` : "-"}
             </div>
           </div>
         </div>

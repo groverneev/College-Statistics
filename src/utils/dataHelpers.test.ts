@@ -49,9 +49,9 @@ describe("formatters", () => {
 
   test("render missing values as a dash", () => {
     for (const value of [undefined, null, Number.NaN, Number.POSITIVE_INFINITY]) {
-      expect(formatNumber(value)).toBe("—");
-      expect(formatPercent(value)).toBe("—");
-      expect(formatCurrency(value)).toBe("—");
+      expect(formatNumber(value)).toBe("-");
+      expect(formatPercent(value)).toBe("-");
+      expect(formatCurrency(value)).toBe("-");
     }
   });
 });

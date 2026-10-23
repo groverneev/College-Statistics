@@ -232,13 +232,13 @@ export default function AdmissionsTrendChart({ yearData, schoolColor }: Admissio
                     <div>
                       <dt className="text-xs uppercase tracking-wide text-gray-400">ED Apps</dt>
                       <dd className="font-medium text-gray-700 mt-0.5">
-                        {row.edApplied != null ? formatNumber(row.edApplied) : "—"}
+                        {row.edApplied != null ? formatNumber(row.edApplied) : "-"}
                       </dd>
                     </div>
                     <div>
                       <dt className="text-xs uppercase tracking-wide text-gray-400">ED Admits</dt>
                       <dd className="font-medium text-gray-700 mt-0.5">
-                        {row.edAdmitted != null ? formatNumber(row.edAdmitted) : "—"}
+                        {row.edAdmitted != null ? formatNumber(row.edAdmitted) : "-"}
                       </dd>
                     </div>
                   </>

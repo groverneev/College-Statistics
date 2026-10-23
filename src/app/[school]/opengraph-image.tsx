@@ -27,7 +27,7 @@ export default async function Image({ params }: { params: Promise<{ school: stri
       value:
         typeof sat?.p25 === "number" && typeof sat?.p75 === "number"
           ? `${sat.p25}–${sat.p75}`
-          : "—",
+          : "-",
     },
   ];
 

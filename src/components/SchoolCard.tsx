@@ -77,7 +77,7 @@ export default function SchoolCard({ school, showSaveButton = false }: SchoolCar
               <div className="text-lg font-semibold text-gray-700">
                 {typeof latestData.costs.totalCOA === "number"
                   ? `$${(latestData.costs.totalCOA / 1000).toFixed(0)}k`
-                  : "—"}
+                  : "-"}
               </div>
               <div className="text-xs text-gray-500">Total Cost</div>
             </div>

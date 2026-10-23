@@ -39,12 +39,12 @@ export function inkOn(fill: string): string {
 }
 
 export function fmtNum(n: number | null | undefined): string {
-  if (n == null) return "—";
+  if (n == null) return "-";
   return new Intl.NumberFormat("en-US").format(n);
 }
 
 export function fmtPct(n: number | null | undefined, decimals = 1): string {
-  if (n == null) return "—";
+  if (n == null) return "-";
   return `${n.toFixed(decimals)}%`;
 }
 

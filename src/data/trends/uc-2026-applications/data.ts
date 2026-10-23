@@ -99,13 +99,13 @@ UC-wide, the headline number barely moved: first-year applications held near fla
 from Fall 2025 to Fall 2026. But that system total masks a striking divergence across
 campuses. Santa Cruz saw a 19% surge in first-year applicants, while Merced's transfer
 pool nearly doubled. Meanwhile, Berkeley continued its upward trajectory and Santa Barbara
-was the only campus to decline. The story isn't how many students applied to the UC system
-— it's where they're applying.
+was the only campus to decline. The story isn't how many students applied to the UC system;
+it's where they're applying.
 `.trim();
 
 export const takeaways = [
   "System-wide first-year applications essentially flat: 205,158 → 205,431 (+0.1%)",
-  "Santa Cruz first-year applications up 19.1% (66,178 → 78,832) — the largest campus jump",
+  "Santa Cruz first-year applications up 19.1% (66,178 → 78,832), the largest campus jump",
   "Merced transfers nearly doubled: 3,696 → 6,401 (+73.3%)",
   "Berkeley first-year up 5.0% (126,796 → 133,128)",
   "Santa Barbara was the only campus with a first-year decline (-1.5%)",

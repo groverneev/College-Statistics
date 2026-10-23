@@ -244,7 +244,7 @@ function CountryChangesChart() {
     <div className="card p-4 sm:p-6">
       <h3 className="text-lg font-semibold text-gray-800 mb-1">Country-Level Standouts</h3>
       <p className="text-sm text-gray-500 mb-5">
-        % change in applicants vs 2024-25 — top gains and notable declines
+        % change in applicants vs 2024-25: top gains and notable declines
       </p>
       <MobilePercentBars
         rows={data.map((row) => ({
@@ -351,7 +351,7 @@ function TestRequirementChart() {
         % of Common App Members Requiring Test Scores
       </h3>
       <p className="text-sm text-gray-500 mb-5">
-        The test-optional wave — from majority to near-zero in five years
+        The test-optional wave: from majority to near-zero in five years
       </p>
       <MobilePercentBars
         rows={testRequirementHistory.map((row) => ({
@@ -453,7 +453,7 @@ export default function CommonApp2026Story() {
       </div>
 
       <div>
-        <h2 className="text-xl font-bold text-gray-900 mb-1">1 — The Record Numbers</h2>
+        <h2 className="text-xl font-bold text-gray-900 mb-1">1. The Record Numbers</h2>
         <p className="text-sm text-gray-500 mb-4">
           Application volume hit a new high, and students are casting wider nets.
         </p>
@@ -461,19 +461,19 @@ export default function CommonApp2026Story() {
       </div>
 
       <div>
-        <h2 className="text-xl font-bold text-gray-900 mb-1">2 — Growing Apart</h2>
+        <h2 className="text-xl font-bold text-gray-900 mb-1">2. Growing Apart</h2>
         <p className="text-sm text-gray-500 mb-4">
           Not all students are applying at the same rate. Low-income, first-generation, and
-          underrepresented applicants are outpacing their peers by a wide margin — while
+          underrepresented applicants are outpacing their peers by a wide margin, while
           continuing-generation and higher-income applicants are essentially flat.
         </p>
         <DemographicGrowthChart />
       </div>
 
       <div>
-        <h2 className="text-xl font-bold text-gray-900 mb-1">3 — The International Cliff</h2>
+        <h2 className="text-xl font-bold text-gray-900 mb-1">3. The International Cliff</h2>
         <p className="text-sm text-gray-500 mb-4">
-          International applicants fell 9% from last season — a sharp reversal after years of
+          International applicants fell 9% from last season, a sharp reversal after years of
           growth. Asia and Africa drove the decline, while the Americas bucked the trend. The drops
           in individual countries are even more striking.
         </p>
@@ -484,10 +484,10 @@ export default function CommonApp2026Story() {
       </div>
 
       <div>
-        <h2 className="text-xl font-bold text-gray-900 mb-1">4 — Test Scores Come Back</h2>
+        <h2 className="text-xl font-bold text-gray-900 mb-1">4. Test Scores Come Back</h2>
         <p className="text-sm text-gray-500 mb-4">
-          After the COVID-era collapse — when the share of schools requiring scores fell from 55% to
-          just 4% — score submission is rebounding sharply. Reporters are up 11%; non-reporters are
+          After the COVID-era collapse (when the share of schools requiring scores fell from 55% to
+          just 4%), score submission is rebounding sharply. Reporters are up 11%; non-reporters are
           down 5%; reporters now outnumber non-reporters early in the season for the first time in
           years. The equity gap remains: first-gen, URM, and low-income students are still less
           likely to submit a score.
@@ -509,7 +509,7 @@ export default function CommonApp2026Story() {
             ))}
           </ul>
           <p className="text-xs text-gray-400 mt-3">
-            All groups saw score reporters grow faster than non-reporters — but the gap persists.
+            All groups saw score reporters grow faster than non-reporters, but the gap persists.
             Source: Common App Deadline Update, 2025-2026.
           </p>
         </div>
@@ -517,10 +517,10 @@ export default function CommonApp2026Story() {
 
       <div>
         <h2 className="text-xl font-bold text-gray-900 mb-1">
-          5 — The Most Selective Schools Grow Slowest
+          5. The Most Selective Schools Grow Slowest
         </h2>
         <p className="text-sm text-gray-500 mb-4">
-          Every selectivity tier grew — but the most selective schools (admit rates below 25%, which
+          Every selectivity tier grew, but the most selective schools (admit rates below 25%, which
           includes every school on this site) saw only +3% application growth, less than half the
           rate of every other tier. The decline in international applicants likely plays a role:
           international students disproportionately target elite institutions, and they fell 19% at

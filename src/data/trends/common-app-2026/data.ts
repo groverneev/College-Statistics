@@ -123,7 +123,7 @@ export const selectivityGrowth: SelectivityRow[] = [
 ];
 
 export const lede = `
-Through February 1, 2026, more students have applied to college via Common App than ever before —
+Through February 1, 2026, more students have applied to college via Common App than ever before:
 1.4 million applicants sending 9.2 million applications across 913 institutions. The headline number
 suggests a boom. But beneath it, the 2025-2026 cycle reveals five sharp fault lines: who is surging,
 who is retreating, where test scores stand, and why the nation's most selective schools are growing
@@ -131,12 +131,12 @@ the slowest of all.
 `.trim();
 
 export const takeaways = [
-  "9,188,630 total applications submitted through Feb 1 — up 5% from 2024-25; apps per applicant rose from 6.37 to 6.56",
+  "9,188,630 total applications submitted through Feb 1, up 5% from 2024-25; apps per applicant rose from 6.37 to 6.56",
   "Black/African American applicants grew the fastest (+9%); first-generation and Two or More Races each grew +7%",
-  "Below-median income ZIP codes drove growth at +8% — four times the rate of above-median income ZIPs (+2%)",
+  "Below-median income ZIP codes drove growth at +8%, four times the rate of above-median income ZIPs (+2%)",
   "International applicants fell 9% overall; India down 14%, Ghana down 34%, Africa as a whole down 16%",
   "Venezuela (+136%) and Honduras (+54%) were the top-gaining countries; Americas region up +3%",
-  "Score reporters grew +11% while non-reporters declined 5% — reporters now outnumber non-reporters early in the season",
+  "Score reporters grew +11% while non-reporters declined 5%; reporters now outnumber non-reporters early in the season",
   "Most selective schools (admit rate < 25%) saw only +3% application growth; all other selectivity bands grew 6–7%",
   "63.5% of member institutions saw stable or growing application volume; 36.5% saw a decline",
 ];

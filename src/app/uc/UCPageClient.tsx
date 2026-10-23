@@ -26,17 +26,17 @@ function yieldRate(d: UCDisciplineData): number | null {
 }
 
 function fmtPct(n: number | null, decimals = 0): string {
-  if (n === null) return "—";
+  if (n === null) return "-";
   return `${(n * 100).toFixed(decimals)}%`;
 }
 
 function fmtNum(n: number | null): string {
-  if (n === null) return "—";
+  if (n === null) return "-";
   return new Intl.NumberFormat("en-US").format(n);
 }
 
 function fmtGpa(range: [number, number] | null): string {
-  if (!range) return "—";
+  if (!range) return "-";
   return `${range[0].toFixed(2)} – ${range[1].toFixed(2)}`;
 }
 
@@ -527,7 +527,7 @@ export default function UCPageClient({ dataByYear, availableYears }: Props) {
                     exploreDiscipline === "All"
                       ? exploreCampusData?.overall
                       : exploreCampusData?.disciplines[exploreDiscipline as UCDiscipline];
-                  if (!d) return <div className="text-gray-400 text-sm italic">—</div>;
+                  if (!d) return <div className="text-gray-400 text-sm italic">-</div>;
                   return (
                     <>
                       <GpaBar range={d.admitGpaRange} label="Admit GPA" color={exploreColor} />
@@ -545,7 +545,7 @@ export default function UCPageClient({ dataByYear, availableYears }: Props) {
             {exploreDiscipline === "All" && exploreCampusData && (
               <div className="card p-4 sm:p-6">
                 <h2 className="text-base font-semibold text-gray-800 mb-4">
-                  By Discipline — {UC_CAMPUS_NAMES[exploreCampus]}
+                  By Discipline: {UC_CAMPUS_NAMES[exploreCampus]}
                 </h2>
                 <DisciplineTable disciplines={exploreCampusData.disciplines} color={exploreColor} />
                 <p className="text-xs text-gray-400 mt-4">
@@ -557,7 +557,7 @@ export default function UCPageClient({ dataByYear, availableYears }: Props) {
 
             <div className="card p-4 sm:p-6 mt-6">
               <h2 className="text-base font-semibold text-gray-800 mb-4">
-                All Campuses — {exploreDiscipline === "All" ? "Overall" : exploreDiscipline}
+                All Campuses: {exploreDiscipline === "All" ? "Overall" : exploreDiscipline}
               </h2>
               <div className="md:hidden divide-y divide-gray-100 border-y border-gray-100">
                 {campusCodes.map((code) => {
@@ -584,15 +584,15 @@ export default function UCPageClient({ dataByYear, availableYears }: Props) {
                             Admit rate
                           </span>
                           <span className="block text-lg font-bold" style={{ color }}>
-                            {d ? fmtPct(admitRate(d), 1) : "—"}
+                            {d ? fmtPct(admitRate(d), 1) : "-"}
                           </span>
                         </span>
                       </div>
                       <span className="grid grid-cols-3 gap-2 text-sm">
                         {[
-                          ["Applicants", d ? fmtNum(d.applicants) : "—"],
-                          ["Admits", d ? fmtNum(d.admits) : "—"],
-                          ["Enrolled", d ? fmtNum(d.enrollees) : "—"],
+                          ["Applicants", d ? fmtNum(d.applicants) : "-"],
+                          ["Admits", d ? fmtNum(d.admits) : "-"],
+                          ["Enrolled", d ? fmtNum(d.enrollees) : "-"],
                         ].map(([label, value]) => (
                           <span key={label}>
                             <span className="block text-[10px] uppercase tracking-wide text-gray-400">
@@ -608,7 +608,7 @@ export default function UCPageClient({ dataByYear, availableYears }: Props) {
                             Yield
                           </span>
                           <span className="block font-medium text-gray-700 mt-0.5">
-                            {d ? fmtPct(yieldRate(d), 1) : "—"}
+                            {d ? fmtPct(yieldRate(d), 1) : "-"}
                           </span>
                         </span>
                         <span>
@@ -616,7 +616,7 @@ export default function UCPageClient({ dataByYear, availableYears }: Props) {
                             Admit GPA
                           </span>
                           <span className="block font-medium text-gray-700 mt-0.5 whitespace-nowrap">
-                            {d ? fmtGpa(d.admitGpaRange) : "—"}
+                            {d ? fmtGpa(d.admitGpaRange) : "-"}
                           </span>
                         </span>
                         <span>
@@ -624,7 +624,7 @@ export default function UCPageClient({ dataByYear, availableYears }: Props) {
                             Enrollee GPA
                           </span>
                           <span className="block font-medium text-gray-700 mt-0.5 whitespace-nowrap">
-                            {d ? fmtGpa(d.enrolleeGpaRange) : "—"}
+                            {d ? fmtGpa(d.enrolleeGpaRange) : "-"}
                           </span>
                         </span>
                       </span>
@@ -686,25 +686,25 @@ export default function UCPageClient({ dataByYear, availableYears }: Props) {
                             </span>
                           </td>
                           <td className="py-2.5 text-right text-gray-600">
-                            {d ? fmtNum(d.applicants) : "—"}
+                            {d ? fmtNum(d.applicants) : "-"}
                           </td>
                           <td className="py-2.5 text-right text-gray-600">
-                            {d ? fmtNum(d.admits) : "—"}
+                            {d ? fmtNum(d.admits) : "-"}
                           </td>
                           <td className="py-2.5 text-right font-semibold" style={{ color }}>
-                            {d ? fmtPct(admitRate(d), 1) : "—"}
+                            {d ? fmtPct(admitRate(d), 1) : "-"}
                           </td>
                           <td className="py-2.5 text-right text-gray-600">
-                            {d ? fmtNum(d.enrollees) : "—"}
+                            {d ? fmtNum(d.enrollees) : "-"}
                           </td>
                           <td className="py-2.5 text-right text-gray-600">
-                            {d ? fmtPct(yieldRate(d), 1) : "—"}
+                            {d ? fmtPct(yieldRate(d), 1) : "-"}
                           </td>
                           <td className="py-2.5 text-right text-gray-500 text-xs hidden md:table-cell">
-                            {d ? fmtGpa(d.admitGpaRange) : "—"}
+                            {d ? fmtGpa(d.admitGpaRange) : "-"}
                           </td>
                           <td className="py-2.5 text-right text-gray-500 text-xs hidden md:table-cell">
-                            {d ? fmtGpa(d.enrolleeGpaRange) : "—"}
+                            {d ? fmtGpa(d.enrolleeGpaRange) : "-"}
                           </td>
                         </tr>
                       );
@@ -846,7 +846,7 @@ export default function UCPageClient({ dataByYear, availableYears }: Props) {
               const yrA = yieldRate(dA);
               const yrB = yieldRate(dB);
               const delta = (a: number | null, b: number | null) => {
-                if (a === null || b === null) return "—";
+                if (a === null || b === null) return "-";
                 const d = a - b;
                 return `${d >= 0 ? "+" : ""}${(d * 100).toFixed(1)} pp`;
               };
@@ -864,14 +864,14 @@ export default function UCPageClient({ dataByYear, availableYears }: Props) {
                         val:
                           dA.admitGpaRange && dB.admitGpaRange
                             ? `${(dA.admitGpaRange[0] - dB.admitGpaRange[0]).toFixed(2)}`
-                            : "—",
+                            : "-",
                       },
                       {
                         label: "Admit GPA 75th",
                         val:
                           dA.admitGpaRange && dB.admitGpaRange
                             ? `${(dA.admitGpaRange[1] - dB.admitGpaRange[1]).toFixed(2)}`
-                            : "—",
+                            : "-",
                       },
                     ].map(({ label, val }) => (
                       <div key={label}>

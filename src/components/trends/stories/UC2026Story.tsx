@@ -281,7 +281,7 @@ function TransferByCampus() {
   return (
     <div className="card p-4 sm:p-6">
       <h3 className="text-lg font-semibold text-gray-800 mb-1">Transfer Applications by Campus</h3>
-      <p className="text-sm text-gray-500 mb-4">Fall 2025 vs Fall 2026 — Merced nearly doubled</p>
+      <p className="text-sm text-gray-500 mb-4">Fall 2025 vs Fall 2026: Merced nearly doubled</p>
       {isDesktop ? (
         <div>
           <ResponsiveContainer initialDimension={{ width: 1, height: 1 }} width="100%" height={320}>

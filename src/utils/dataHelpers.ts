@@ -26,17 +26,17 @@ export function getSchoolYearRange(school: SchoolData): string | null {
 }
 
 export function formatNumber(num: number | null | undefined): string {
-  if (typeof num !== "number" || !Number.isFinite(num)) return "—";
+  if (typeof num !== "number" || !Number.isFinite(num)) return "-";
   return new Intl.NumberFormat("en-US").format(num);
 }
 
 export function formatPercent(num: number | null | undefined): string {
-  if (typeof num !== "number" || !Number.isFinite(num)) return "—";
+  if (typeof num !== "number" || !Number.isFinite(num)) return "-";
   return `${(num * 100).toFixed(1)}%`;
 }
 
 export function formatCurrency(num: number | null | undefined): string {
-  if (typeof num !== "number" || !Number.isFinite(num)) return "—";
+  if (typeof num !== "number" || !Number.isFinite(num)) return "-";
   return new Intl.NumberFormat("en-US", {
     style: "currency",
     currency: "USD",
