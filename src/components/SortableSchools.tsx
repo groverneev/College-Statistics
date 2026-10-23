@@ -10,7 +10,6 @@ export interface SchoolSortMetric {
   satMid: number | null;
   totalCost: number | null;
   yieldRate: number | null;
-  yearsOfData: number;
 }
 
 export interface SortableSchoolItem {
@@ -23,7 +22,7 @@ interface SortableSchoolsProps {
   items: SortableSchoolItem[];
 }
 
-type SortValue = "acceptance" | "name" | "classSize" | "sat" | "cost" | "yield" | "years";
+type SortValue = "acceptance" | "name" | "classSize" | "sat" | "cost" | "yield";
 
 type Direction = "asc" | "desc";
 
@@ -34,7 +33,6 @@ const SORT_OPTIONS: { value: SortValue; label: string; defaultDir: Direction }[]
   { value: "sat", label: "SAT midpoint", defaultDir: "desc" },
   { value: "cost", label: "Total cost", defaultDir: "desc" },
   { value: "yield", label: "Yield", defaultDir: "desc" },
-  { value: "years", label: "Years of data", defaultDir: "desc" },
 ];
 
 function numericField(metric: SchoolSortMetric, sort: SortValue): number | null {
@@ -49,8 +47,6 @@ function numericField(metric: SchoolSortMetric, sort: SortValue): number | null 
       return metric.totalCost;
     case "yield":
       return metric.yieldRate;
-    case "years":
-      return metric.yearsOfData;
     default:
       return null;
   }

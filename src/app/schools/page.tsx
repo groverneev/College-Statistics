@@ -2,7 +2,7 @@ import SearchBar from "@/components/SearchBar";
 import SchoolCard from "@/components/SchoolCard";
 import SortableSchools, { type SortableSchoolItem } from "@/components/SortableSchools";
 import { allSchools, searchableSchools } from "@/data/schools";
-import { getLatestYearData, getSortedYears } from "@/utils/dataHelpers";
+import { getLatestYearData } from "@/utils/dataHelpers";
 import { pageMetadata } from "@/lib/seo";
 
 export const metadata = pageMetadata({
@@ -26,7 +26,6 @@ export default function BrowseSchoolsPage() {
         satMid: sat?.p50 ?? null,
         totalCost: latest?.costs.totalCOA ?? null,
         yieldRate: latest?.admissions.yield ?? null,
-        yearsOfData: getSortedYears(school).length,
       },
       card: <SchoolCard school={school} showSaveButton />,
     };
