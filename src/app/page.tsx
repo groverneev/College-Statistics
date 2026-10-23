@@ -18,6 +18,7 @@ export const metadata = pageMetadata({
 const HERO_SCHOOLS: { slug: string; label: string; color: string }[] = [
   { slug: "harvard", label: "Harvard", color: "#C0392B" },
   { slug: "mit", label: "MIT", color: "#6E7079" },
+  { slug: "caltech", label: "Caltech", color: "#1A9E75" },
   { slug: "ucla", label: "UCLA", color: "#2D7DD2" },
   { slug: "nyu", label: "NYU", color: "#7B3FE4" },
   { slug: "northeastern", label: "Northeastern", color: "#E05A2B" },

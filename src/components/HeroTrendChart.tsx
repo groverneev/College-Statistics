@@ -75,6 +75,11 @@ export default function HeroTrendChart({ series }: HeroTrendChartProps) {
         labels[i].y = labels[i - 1].y + MIN_GAP;
       }
     }
+    const maxLabelY = H - PAD.bottom + 8;
+    for (let i = labels.length - 1; i >= 0; i--) {
+      const limit = i === labels.length - 1 ? maxLabelY : labels[i + 1].y - MIN_GAP;
+      if (labels[i].y > limit) labels[i].y = limit;
+    }
     const labelY = Object.fromEntries(labels.map((l) => [l.slug, l.y]));
 
     const yTicks = [];
