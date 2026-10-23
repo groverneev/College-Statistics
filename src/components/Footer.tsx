@@ -63,65 +63,49 @@ export default function Footer() {
         borderTop: "1px solid rgba(255, 255, 255, 0.08)",
       }}
     >
-      <div className="max-w-6xl mx-auto px-4 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div className="max-w-6xl mx-auto px-4 py-8">
+        <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
           <div>
-            <h3 className="text-lg font-bold mb-2">College Statistics</h3>
-            <p className="text-gray-400 text-sm">
+            <p className="font-bold">College Statistics</p>
+            <p className="mt-1 max-w-sm text-sm text-gray-400">
               Compare university admissions data, test scores, costs, and financial aid using
               official Common Data Set reports.
             </p>
           </div>
 
-          <div>
-            <h4 className="text-sm font-semibold uppercase tracking-wider text-gray-400 mb-4">
-              Quick Links
-            </h4>
-            <ul className="space-y-2">
-              {quickLinks.map((link) => (
-                <li key={link.href}>
-                  <Link
-                    href={link.href}
-                    className="inline-flex min-h-11 items-center text-gray-300 hover:text-white transition-colors"
-                  >
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
+          <nav className="flex flex-wrap gap-x-6 gap-y-2 text-sm">
+            {quickLinks.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                className="text-gray-300 hover:text-white transition-colors"
+              >
+                {link.label}
+              </Link>
+            ))}
+          </nav>
 
-          <div>
-            <h4 className="text-sm font-semibold uppercase tracking-wider text-gray-400 mb-4">
-              Connect
-            </h4>
-            <div className="flex space-x-4">
-              {socialLinks.map((link) => (
-                <a
-                  key={link.href}
-                  href={link.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex h-11 w-11 items-center justify-center text-gray-400 hover:text-white transition-colors"
-                  aria-label={link.label}
-                >
-                  {link.icon}
-                </a>
-              ))}
-            </div>
-            <p className="text-gray-400 text-sm mt-4">groverneev at gmail dot com</p>
+          <div className="-ml-2 flex items-center md:ml-0">
+            {socialLinks.map((link) => (
+              <a
+                key={link.href}
+                href={link.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex h-10 w-10 items-center justify-center text-gray-400 hover:text-white transition-colors"
+                aria-label={link.label}
+              >
+                {link.icon}
+              </a>
+            ))}
           </div>
         </div>
 
-        <div className="border-t border-gray-700 mt-8 pt-8">
-          <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-            <p className="text-gray-400 text-sm">
-              &copy; {new Date().getFullYear()} College Statistics. All rights reserved.
-            </p>
-            <p className="text-gray-500 text-xs text-center md:text-right">
-              Data sourced from official Common Data Set reports. For informational purposes only.
-            </p>
-          </div>
+        <div className="mt-6 flex flex-col gap-2 border-t border-white/10 pt-6 text-xs text-gray-500 md:flex-row md:justify-between">
+          <p>
+            &copy; {new Date().getFullYear()} College Statistics · groverneev at gmail dot com
+          </p>
+          <p>Data sourced from official Common Data Set reports. For informational purposes only.</p>
         </div>
       </div>
     </footer>

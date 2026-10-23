@@ -4,18 +4,21 @@ import Link from "next/link";
 import Image from "next/image";
 import { useState, useRef, useEffect } from "react";
 import { usePathname } from "next/navigation";
+import HeaderSearch from "@/components/HeaderSearch";
 import { useSavedSchools } from "@/components/SavedSchoolsContext";
+import type { SearchableSchool } from "@/data/schools";
 import { signInWithGoogle, signOut, useSession } from "@/lib/auth-client";
 
-export default function Header() {
+export default function Header({ schools }: { schools: SearchableSchool[] }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [userMenuOpen, setUserMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const pathname = usePathname();
   const userMenuRef = useRef<HTMLDivElement>(null);
   const { data: session, isPending } = useSession();
   const { promptSignIn } = useSavedSchools();
   const signedIn = !!session;
-  const isHome = usePathname() === "/";
+  const isHome = pathname === "/";
 
   useEffect(() => {
     if (!isHome) return;
@@ -45,7 +48,7 @@ export default function Header() {
   }, [mobileMenuOpen]);
 
   const navLinks = [
-    { href: "/schools", label: "Browse Schools" },
+    { href: "/schools", label: "Browse" },
     { href: "/my-schools", label: "My Schools" },
     { href: "/trends", label: "Trends" },
     { href: "/uc", label: "UC Explorer" },
@@ -69,15 +72,15 @@ export default function Header() {
       }
     >
       <div className="max-w-6xl mx-auto px-4">
-        <div className="flex items-center h-16">
+        <div className="relative flex items-center h-16">
           <Link href="/" className="flex items-center space-x-2">
             <span className={`text-xl font-bold ${isHome ? "header-dark-logo" : "text-gray-800"}`}>
               College Statistics
             </span>
           </Link>
 
-          <div className="hidden md:flex items-center space-x-8 ml-auto">
-            <nav className="flex items-center space-x-6">
+          <div className="ml-auto flex items-center gap-2 md:gap-6">
+            <nav className="hidden md:flex items-center space-x-6">
               {navLinks.map((link) => {
                 const className = desktopLinkClass;
                 if (link.href === "/my-schools" && !signedIn) {
@@ -94,7 +97,8 @@ export default function Header() {
                 );
               })}
             </nav>
-            <div className="flex items-center">
+            <HeaderSearch schools={schools} />
+            <div className="hidden md:flex items-center">
               {session ? (
                 <div className="relative" ref={userMenuRef}>
                   <button
@@ -161,10 +165,9 @@ export default function Header() {
                 </button>
               )}
             </div>
-          </div>
 
-          <button
-            className={`md:hidden ml-auto min-h-11 min-w-11 p-2 rounded-md ${
+            <button
+            className={`md:hidden min-h-11 min-w-11 p-2 rounded-md ${
               isHome ? "header-dark-link" : "text-gray-600 hover:text-gray-900 hover:bg-gray-100"
             }`}
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
@@ -192,6 +195,7 @@ export default function Header() {
               </svg>
             )}
           </button>
+          </div>
         </div>
 
         {mobileMenuOpen && (

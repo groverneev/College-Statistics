@@ -107,6 +107,7 @@ export interface SearchableSchool {
   name: string;
   slug: string;
   acceptanceRate: number;
+  aliases: string[];
 }
 
 type SchoolMetadata = {
@@ -718,6 +719,7 @@ export const searchableSchools: SearchableSchool[] = allSchools.map((school) => 
     name: school.name,
     slug: school.slug,
     acceptanceRate: latestData?.admissions.acceptanceRate ?? 0,
+    aliases: SCHOOL_ALIASES[school.slug] ?? [],
   };
 });
 

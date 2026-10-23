@@ -2,46 +2,26 @@
 
 import { useState, useRef, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { SCHOOL_ALIASES } from "@/data/schools";
-import { formatPercent } from "@/utils/dataHelpers";
-
-interface School {
-  name: string;
-  slug: string;
-  acceptanceRate: number;
-}
+import SchoolSearchResults, { searchSchools } from "@/components/SchoolSearchResults";
+import type { SearchableSchool } from "@/data/schools";
 
 interface SearchBarProps {
-  schools: School[];
+  schools: SearchableSchool[];
 }
 
 export default function SearchBar({ schools }: SearchBarProps) {
   const [query, setQuery] = useState("");
   const [isOpen, setIsOpen] = useState(false);
   const [highlightedIndex, setHighlightedIndex] = useState(0);
+  const containerRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
-  const dropdownRef = useRef<HTMLDivElement>(null);
   const router = useRouter();
 
-  const filteredSchools = query.trim()
-    ? schools
-        .filter((school) => {
-          const q = query.toLowerCase();
-          if (school.name.toLowerCase().includes(q)) return true;
-          const aliases = SCHOOL_ALIASES[school.slug] ?? [];
-          return aliases.some((alias) => alias.toLowerCase().includes(q));
-        })
-        .slice(0, 6)
-    : [];
+  const results = searchSchools(schools, query);
 
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
-      if (
-        dropdownRef.current &&
-        !dropdownRef.current.contains(e.target as Node) &&
-        inputRef.current &&
-        !inputRef.current.contains(e.target as Node)
-      ) {
+      if (containerRef.current && !containerRef.current.contains(e.target as Node)) {
         setIsOpen(false);
       }
     };
@@ -50,41 +30,30 @@ export default function SearchBar({ schools }: SearchBarProps) {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  useEffect(() => {
-    setHighlightedIndex(0);
-  }, [filteredSchools.length]);
-
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setQuery(e.target.value);
-    setIsOpen(true);
-  };
-
   const handleKeyDown = (e: React.KeyboardEvent) => {
-    if (!isOpen || filteredSchools.length === 0) {
-      if (e.key === "Enter" && filteredSchools.length === 0 && query.trim()) {
-        return;
-      }
+    if (e.key === "Escape") {
+      setIsOpen(false);
+      inputRef.current?.blur();
       return;
     }
+    if (!isOpen) {
+      if (e.key === "ArrowDown") setIsOpen(true);
+      return;
+    }
+    if (results.length === 0) return;
 
     switch (e.key) {
       case "ArrowDown":
         e.preventDefault();
-        setHighlightedIndex((prev) => (prev < filteredSchools.length - 1 ? prev + 1 : 0));
+        setHighlightedIndex((i) => (i + 1) % results.length);
         break;
       case "ArrowUp":
         e.preventDefault();
-        setHighlightedIndex((prev) => (prev > 0 ? prev - 1 : filteredSchools.length - 1));
+        setHighlightedIndex((i) => (i - 1 + results.length) % results.length);
         break;
       case "Enter":
         e.preventDefault();
-        if (filteredSchools[highlightedIndex]) {
-          navigateToSchool(filteredSchools[highlightedIndex].slug);
-        }
-        break;
-      case "Escape":
-        setIsOpen(false);
-        inputRef.current?.blur();
+        if (results[highlightedIndex]) navigateToSchool(results[highlightedIndex].slug);
         break;
     }
   };
@@ -96,7 +65,7 @@ export default function SearchBar({ schools }: SearchBarProps) {
   };
 
   return (
-    <div className="relative w-full max-w-2xl mx-auto">
+    <div ref={containerRef} className="relative w-full max-w-2xl mx-auto">
       <div className="relative">
         <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
           <svg
@@ -117,44 +86,29 @@ export default function SearchBar({ schools }: SearchBarProps) {
           ref={inputRef}
           type="text"
           value={query}
-          onChange={handleInputChange}
+          onChange={(e) => {
+            setQuery(e.target.value);
+            setHighlightedIndex(0);
+            setIsOpen(true);
+          }}
           onKeyDown={handleKeyDown}
-          onFocus={() => query.trim() && setIsOpen(true)}
+          onFocus={() => setIsOpen(true)}
+          onClick={() => setIsOpen(true)}
           placeholder="Search for a college..."
           className="search-input-animate w-full pl-12 pr-4 py-4 text-lg rounded-full border-2 border-black/10 focus:outline-none focus:border-indigo-400 text-gray-800 placeholder-gray-500 bg-white"
           autoComplete="off"
         />
       </div>
 
-      {isOpen && query.trim() && (
-        <div
-          ref={dropdownRef}
-          className="absolute top-full left-0 right-0 mt-2 max-h-[min(24rem,calc(100dvh-12rem))] bg-white rounded-2xl shadow-xl overflow-y-auto overscroll-contain z-50"
-        >
-          {filteredSchools.length > 0 ? (
-            <ul className="py-2">
-              {filteredSchools.map((school, index) => (
-                <li key={school.slug}>
-                  <button
-                    onClick={() => navigateToSchool(school.slug)}
-                    onMouseEnter={() => setHighlightedIndex(index)}
-                    className={`w-full min-h-11 px-4 py-3 flex items-center justify-between gap-3 text-left transition-colors ${
-                      index === highlightedIndex ? "bg-gray-100" : "hover:bg-gray-50"
-                    }`}
-                  >
-                    <span className="min-w-0 font-medium text-gray-800">{school.name}</span>
-                    <span className="flex-shrink-0 text-sm text-gray-500">
-                      {formatPercent(school.acceptanceRate)} acceptance
-                    </span>
-                  </button>
-                </li>
-              ))}
-            </ul>
-          ) : (
-            <div className="px-4 py-6 text-center text-gray-500">
-              No colleges found matching &quot;{query}&quot;
-            </div>
-          )}
+      {isOpen && (
+        <div className="absolute top-full left-0 right-0 mt-2 overflow-hidden rounded-2xl bg-white text-left shadow-xl z-50">
+          <SchoolSearchResults
+            results={results}
+            query={query}
+            highlightedIndex={highlightedIndex}
+            onHighlight={setHighlightedIndex}
+            onSelect={navigateToSchool}
+          />
         </div>
       )}
     </div>

@@ -4,6 +4,7 @@ import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import { NotesProvider } from "@/components/NotesContext";
 import { SavedSchoolsProvider } from "@/components/SavedSchoolsContext";
+import { searchableSchools } from "@/data/schools";
 import { SITE_NAME, SITE_URL } from "@/lib/seo";
 import { Analytics } from "@vercel/analytics/next";
 
@@ -33,7 +34,7 @@ export default function RootLayout({
       <body className="min-h-screen antialiased bg-[#f5f5f5] flex flex-col">
         <SavedSchoolsProvider>
           <NotesProvider>
-            <Header />
+            <Header schools={searchableSchools} />
             <main className="flex-1 pt-16">{children}</main>
             <Footer />
           </NotesProvider>
