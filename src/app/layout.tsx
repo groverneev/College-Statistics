@@ -5,6 +5,7 @@ import Header from "@/components/Header";
 import { NotesProvider } from "@/components/NotesContext";
 import { SavedSchoolsProvider } from "@/components/SavedSchoolsContext";
 import { SITE_NAME, SITE_URL } from "@/lib/seo";
+import { Analytics } from "@vercel/analytics/next";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -37,6 +38,7 @@ export default function RootLayout({
             <Footer />
           </NotesProvider>
         </SavedSchoolsProvider>
+        <Analytics />
       </body>
     </html>
   );
