@@ -2,6 +2,9 @@
   "name": "college-comparisons",
   "version": "1.0.0",
   "private": true,
+  "engines": {
+    "node": ">=26"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "bun run validate && next build",
@@ -28,12 +31,12 @@
   "devDependencies": {
     "@biomejs/biome": "^2.5.15",
     "@types/bun": "^1.4.3",
-    "@types/node": "^25.0.10",
+    "@types/node": "^26.6.5",
     "@types/react": "^19.2.9",
     "@types/react-dom": "^19.2.3",
     "drizzle-kit": "^0.31.11",
-    "postcss": "^8.5.6",
+    "postcss": "^8.5.31",
     "tailwindcss": "^4.1.18",
-    "typescript": "5.9.3"
+    "typescript": "^7.0.2"
   }
 }

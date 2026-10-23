@@ -1,7 +1,7 @@
 "use client";
 
 import type { YearData } from "@/lib/types";
-import { formatCurrency, formatPercent } from "@/utils/dataHelpers";
+import { formatCurrency } from "@/utils/dataHelpers";
 import {
   ComposedChart,
   Bar,
@@ -31,17 +31,18 @@ export default function FinancialAidTrendChart({
         (aid.percentReceivingAid ?? 0) > 0 ||
         (aid.averageAidPackage ?? 0) > 0 ||
         (aid.averageNeedBasedGrant ?? 0) > 0 ||
-        (aid.percentNeedFullyMet ?? 0) > 0
+        (aid.percentNeedFullyMet ?? 0) > 0 ||
+        typeof aid.averageNetPrice === "number"
       );
     })
     .map((year) => ({
       year: year.split("-")[0],
       fullYear: year,
       percentReceivingAid: (yearData[year].financialAid.percentReceivingAid ?? 0) * 100,
-      averageAidPackage: yearData[year].financialAid.averageAidPackage ?? 0,
+      averageAidPackage: yearData[year].financialAid.averageAidPackage ?? null,
       averageNeedBasedGrant: yearData[year].financialAid.averageNeedBasedGrant ?? 0,
       percentNeedFullyMet: (yearData[year].financialAid.percentNeedFullyMet ?? 0) * 100,
-      averageNetPrice: yearData[year].financialAid.averageNetPrice || 0,
+      averageNetPrice: yearData[year].financialAid.averageNetPrice ?? null,
       totalCOA: yearData[year].costs.totalCOA,
     }));
 
@@ -50,6 +51,7 @@ export default function FinancialAidTrendChart({
   }
 
   const latestData = trendData[trendData.length - 1];
+  const hasNetPrice = trendData.some((point) => point.averageNetPrice != null);
 
   return (
     <div className="card p-4 sm:p-6 h-full min-w-0">
@@ -78,12 +80,25 @@ export default function FinancialAidTrendChart({
               }}
               formatter={(value, name) => [
                 formatCurrency(value as number),
-                name === "totalCOA" ? "Total Cost" : "Avg Aid Package",
+                name === "totalCOA"
+                  ? "Total Cost"
+                  : name === "averageNetPrice"
+                    ? "Avg Net Price"
+                    : "Avg Aid Package",
               ]}
-              labelFormatter={(label) => `${label}-${parseInt(label as string) + 1}`}
+              labelFormatter={(label) => `${label}-${parseInt(label as string, 10) + 1}`}
             />
             <Bar dataKey="totalCOA" fill="#e5e5e5" radius={[4, 4, 0, 0]} />
             <Bar dataKey="averageAidPackage" fill="#27ae60" radius={[4, 4, 0, 0]} />
+            {hasNetPrice && (
+              <Line
+                dataKey="averageNetPrice"
+                stroke={schoolColor}
+                strokeWidth={2}
+                strokeDasharray="4 4"
+                connectNulls={false}
+              />
+            )}
           </ComposedChart>
         </ResponsiveContainer>
       </div>
@@ -96,7 +111,19 @@ export default function FinancialAidTrendChart({
           <span className="h-2.5 w-2.5 rounded-sm bg-gray-200" />
           Total Cost
         </span>
+        {hasNetPrice && (
+          <span className="flex items-center gap-1.5">
+            <span className="h-0.5 w-4" style={{ backgroundColor: schoolColor }} />
+            Avg Net Price
+          </span>
+        )}
       </div>
+      {hasNetPrice && (
+        <p className="mt-2 text-xs text-gray-500">
+          Net price is the average cost after grants and scholarships for first-time, full-time
+          students receiving grant aid; it covers a different student group from the aid package.
+        </p>
+      )}
 
       <div className="mt-4 pt-4 border-t border-gray-200">
         <div className="grid grid-cols-2 gap-4 text-center text-sm">

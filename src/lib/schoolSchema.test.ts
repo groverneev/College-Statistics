@@ -35,3 +35,30 @@ test("rejects malformed year keys", () => {
   const bad = { ...base, years: { "2024": base.years["2024-2025"] } };
   expect(schoolDataSchema.safeParse(bad).success).toBe(false);
 });
+
+test("preserves attribution for supplemental historical data", () => {
+  const sources = [
+    {
+      kind: "ipeds" as const,
+      label: "NCES IPEDS",
+      url: "https://nces.ed.gov/ipeds/",
+      years: ["2024-2025"],
+      notes: "Fall enrollment and admissions.",
+    },
+  ];
+  const result = schoolDataSchema.parse({ ...base, profile: { sources } });
+  expect(result.profile?.sources).toEqual(sources);
+});
+
+test("rejects source attribution without valid years or URLs", () => {
+  const source = { kind: "ipeds", label: "NCES IPEDS", url: "not a URL", years: ["2024"] };
+  expect(schoolDataSchema.safeParse({ ...base, profile: { sources: [source] } }).success).toBe(
+    false,
+  );
+  expect(
+    schoolDataSchema.safeParse({
+      ...base,
+      profile: { sources: [{ ...source, url: "https://nces.ed.gov/ipeds/", years: [] }] },
+    }).success,
+  ).toBe(false);
+});

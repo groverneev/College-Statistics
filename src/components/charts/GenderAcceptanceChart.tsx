@@ -15,6 +15,7 @@ import {
 
 interface GenderAcceptanceChartProps {
   yearData: Record<string, YearData>;
+  sourceDescription?: string;
 }
 
 const WOMEN_COLOR = "#eb6834";
@@ -27,7 +28,10 @@ function rate(admitted: number | undefined, applied: number | undefined): number
   return admitted / applied;
 }
 
-export default function GenderAcceptanceChart({ yearData }: GenderAcceptanceChartProps) {
+export default function GenderAcceptanceChart({
+  yearData,
+  sourceDescription = "Common Data Set Section C1",
+}: GenderAcceptanceChartProps) {
   const [active, setActive] = useState<Series | null>(null);
   const isDimmed = (key: Series) => active !== null && active !== key;
   const trendData = Object.keys(yearData)
@@ -53,7 +57,7 @@ export default function GenderAcceptanceChart({ yearData }: GenderAcceptanceChar
     <div className="card p-4 sm:p-6" style={{ backgroundColor: "#ffffff" }}>
       <h3 className="text-lg font-semibold text-gray-800">Acceptance Rate by Gender</h3>
       <p className="text-sm text-gray-600 mt-1 mb-4">
-        First-time, first-year applicants, Common Data Set Section C1.
+        First-time, first-year applicants, {sourceDescription}.
       </p>
 
       <div className="flex flex-wrap items-center gap-2 mb-4">

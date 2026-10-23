@@ -568,12 +568,7 @@ export const SCHOOL_METADATA: Record<string, SchoolMetadata> = {
     color: "#782F40",
   },
   umassamherst: {
-    aliases: [
-      "UMass Amherst",
-      "UMass",
-      "University of Massachusetts",
-      "Massachusetts Amherst",
-    ],
+    aliases: ["UMass Amherst", "UMass", "University of Massachusetts", "Massachusetts Amherst"],
     color: "#840028",
   },
   universityofminnesota: {
@@ -613,7 +608,12 @@ export const SCHOOL_METADATA: Record<string, SchoolMetadata> = {
     color: "#D6001C",
   },
   binghamton: {
-    aliases: ["Binghamton", "SUNY Binghamton", "State University of New York at Binghamton", "Bing"],
+    aliases: [
+      "Binghamton",
+      "SUNY Binghamton",
+      "State University of New York at Binghamton",
+      "Bing",
+    ],
     color: "#005A43",
   },
   ncstate: {
