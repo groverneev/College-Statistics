@@ -118,12 +118,6 @@ export default function FinancialAidTrendChart({
           </span>
         )}
       </div>
-      {hasNetPrice && (
-        <p className="mt-2 text-xs text-gray-500">
-          Net price is the average cost after grants and scholarships for first-time, full-time
-          students receiving grant aid; it covers a different student group from the aid package.
-        </p>
-      )}
 
       <div className="mt-4 pt-4 border-t border-gray-200">
         <div className="grid grid-cols-2 gap-4 text-center text-sm">

@@ -32,10 +32,7 @@ export function buildSchoolDescription(school: SchoolData): string {
   }
 
   const lead = facts.length > 0 ? `${facts.join(" ")} ` : "";
-  const source = school.profile?.sources?.some((entry) => entry.kind === "ipeds")
-    ? "the Common Data Set and official IPEDS records"
-    : "the Common Data Set";
-  return `${lead}See admissions trends, test scores, tuition, financial aid and demographics from ${source}.`;
+  return `${lead}See admissions trends, test scores, tuition, financial aid and demographics from the Common Data Set.`;
 }
 
 export function buildSchoolSummary(school: SchoolData): string[] {

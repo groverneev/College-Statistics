@@ -80,8 +80,6 @@ export default function SchoolPageClient({
   const latestData = schoolData.years[latestYear];
   const yearRange = `${years[0].split("-")[0]}-${years[years.length - 1].split("-")[1]}`;
   const admissionsFactors = schoolData.profile?.admissionsFactors;
-  const sources = schoolData.profile?.sources;
-  const hasIpeds = sources?.some((source) => source.kind === "ipeds");
   const academicFactors: AdmissionsFactorRow[] = admissionsFactors
     ? [
         [
@@ -154,7 +152,7 @@ export default function SchoolPageClient({
         </Link>
         <h1 className="text-3xl md:text-4xl font-bold mb-2">{schoolData.name}</h1>
         <p className="text-white/80 text-sm md:text-base mb-4">
-          Admissions Data Dashboard | {hasIpeds ? "CDS & IPEDS" : "Common Data Set"} {yearRange}
+          Admissions Data Dashboard | Common Data Set {yearRange}
         </p>
         <div className="flex flex-wrap justify-center gap-2">
           <SaveSchoolButton
@@ -215,23 +213,6 @@ export default function SchoolPageClient({
           </div>
         </div>
 
-        {sources && sources.length > 0 && (
-          <div className="card p-4 sm:p-6 mb-8 text-sm text-gray-600">
-            <h2 className="font-semibold text-gray-800 mb-2">Data sources</h2>
-            <ul className="space-y-2">
-              {sources.map((source) => (
-                <li key={`${source.kind}-${source.url}`}>
-                  <a className="underline" href={source.url} target="_blank" rel="noreferrer">
-                    {source.label}
-                  </a>
-                  {": "}
-                  {source.years.join(", ")}.{source.notes && ` ${source.notes}`}
-                </li>
-              ))}
-            </ul>
-          </div>
-        )}
-
         {summary.length > 0 && (
           <section className="card p-4 sm:p-6 mb-8" style={{ backgroundColor: "#ffffff" }}>
             <h2 className="text-lg font-semibold text-gray-800 mb-2">
@@ -256,12 +237,7 @@ export default function SchoolPageClient({
           <AdmissionsTrendChart yearData={schoolData.years} schoolColor={schoolColor} />
 
           {GENDER_CARD_SCHOOLS.has(schoolData.slug) && (
-            <GenderAcceptanceChart
-              yearData={schoolData.years}
-              sourceDescription={
-                hasIpeds ? "Common Data Set Section C1 and IPEDS Admissions" : undefined
-              }
-            />
+            <GenderAcceptanceChart yearData={schoolData.years} />
           )}
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
@@ -275,16 +251,11 @@ export default function SchoolPageClient({
 
           {admissionsFactors && (
             <div className="card p-4 sm:p-6" style={{ backgroundColor: "#ffffff" }}>
-              <div className="flex flex-col gap-2 mb-4 md:flex-row md:items-end md:justify-between">
-                <div>
-                  <h3 className="text-lg font-semibold text-gray-800">Admissions Factors</h3>
-                  <p className="text-sm text-gray-600 mt-1">
-                    Relative importance reported in the latest available Common Data Set.
-                  </p>
-                </div>
-                <div className="text-sm text-gray-500">
-                  Source: CDS {admissionsFactors.sourceYear}, Section {admissionsFactors.section}
-                </div>
+              <div className="mb-4">
+                <h3 className="text-lg font-semibold text-gray-800">Admissions Factors</h3>
+                <p className="text-sm text-gray-600 mt-1">
+                  Relative importance reported in the latest available Common Data Set.
+                </p>
               </div>
 
               <div className="md:hidden space-y-5">

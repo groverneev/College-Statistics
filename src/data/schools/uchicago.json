@@ -28,35 +28,7 @@
         "workExperience": "considered",
         "levelOfApplicantsInterest": "not_considered"
       }
-    },
-    "sources": [
-      {
-        "kind": "cds",
-        "label": "UChicago Common Data Sets",
-        "url": "https://data.uchicago.edu/common-data-set/",
-        "years": [
-          "2021-2022",
-          "2022-2023",
-          "2023-2024",
-          "2024-2025",
-          "2025-2026"
-        ],
-        "notes": "Years identify the CDS edition. G1 costs generally cover the following academic year; H2 aid periods may differ. Costs use the undergraduate column. Residency headcounts are omitted because only rounded percentages are published. The 2025-2026 racial breakdown covers degree-seeking students only and is omitted from the all-undergraduate series."
-      },
-      {
-        "kind": "ipeds",
-        "label": "NCES IPEDS (University of Chicago, UNITID 144050)",
-        "url": "https://nces.ed.gov/ipeds/use-the-data/download-access-database",
-        "years": [
-          "2016-2017",
-          "2017-2018",
-          "2018-2019",
-          "2019-2020",
-          "2020-2021"
-        ],
-        "notes": "Reported revised ADM, EF-A, IC-AY and SFA records. Costs cover the named academic year and use general undergraduate tuition and fees plus on-campus housing and food. Net price covers first-time, full-time grant recipients. Enrollment populations differ from CDS, so the 2020-2021 to 2021-2022 change spans a source transition. SAT definitions changed in 2017; 2016 Critical Reading is omitted. Unreported composites, medians, early-admission counts and CDS aid measures are omitted."
-      }
-    ]
+    }
   },
   "years": {
     "2016-2017": {

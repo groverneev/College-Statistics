@@ -127,21 +127,6 @@ export const yearDataSchema = z.strictObject({
 export const schoolDataSchema = z.strictObject({
   name: z.string().min(1),
   slug: z.string().regex(/^[a-z0-9]+$/),
-  profile: z
-    .strictObject({
-      admissionsFactors: admissionsFactors.optional(),
-      sources: z
-        .array(
-          z.strictObject({
-            kind: z.enum(["cds", "ipeds"]),
-            label: z.string().min(1),
-            url: z.url(),
-            years: z.array(z.string().regex(/^\d{4}-\d{4}$/)).min(1),
-            notes: z.string().optional(),
-          }),
-        )
-        .optional(),
-    })
-    .optional(),
+  profile: z.strictObject({ admissionsFactors: admissionsFactors.optional() }).optional(),
   years: z.record(z.string().regex(/^\d{4}-\d{4}$/), yearDataSchema),
 });
