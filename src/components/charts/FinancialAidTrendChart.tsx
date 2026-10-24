@@ -38,10 +38,10 @@ export default function FinancialAidTrendChart({
     .map((year) => ({
       year: year.split("-")[0],
       fullYear: year,
-      percentReceivingAid: (yearData[year].financialAid.percentReceivingAid ?? 0) * 100,
+      percentReceivingAid: yearData[year].financialAid.percentReceivingAid,
       averageAidPackage: yearData[year].financialAid.averageAidPackage ?? null,
       averageNeedBasedGrant: yearData[year].financialAid.averageNeedBasedGrant ?? 0,
-      percentNeedFullyMet: (yearData[year].financialAid.percentNeedFullyMet ?? 0) * 100,
+      percentNeedFullyMet: yearData[year].financialAid.percentNeedFullyMet,
       averageNetPrice: yearData[year].financialAid.averageNetPrice ?? null,
       totalCOA: yearData[year].costs.totalCOA,
     }));
@@ -124,13 +124,17 @@ export default function FinancialAidTrendChart({
           <div>
             <div className="text-gray-500">Students Receiving Aid</div>
             <div className="font-semibold text-lg" style={{ color: schoolColor }}>
-              {latestData.percentReceivingAid.toFixed(0)}%
+              {typeof latestData.percentReceivingAid === "number"
+                ? `${(latestData.percentReceivingAid * 100).toFixed(0)}%`
+                : "—"}
             </div>
           </div>
           <div>
             <div className="text-gray-500">Need Fully Met</div>
             <div className="font-semibold text-lg text-green-600">
-              {latestData.percentNeedFullyMet.toFixed(0)}%
+              {typeof latestData.percentNeedFullyMet === "number"
+                ? `${(latestData.percentNeedFullyMet * 100).toFixed(0)}%`
+                : "—"}
             </div>
           </div>
         </div>

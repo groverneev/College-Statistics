@@ -3,8 +3,8 @@
   "slug": "ucmerced",
   "profile": {
     "admissionsFactors": {
-      "sourceYear": "2024-2025",
-      "sourcePdf": "College-Data/ucmerced/ucmerced-cds-2024-2025.xlsx",
+      "sourceYear": "2025-2026",
+      "sourcePdf": "College-Data/ucmerced/ucmerced-cds-2025-2026.xlsx",
       "section": "C7",
       "academic": {
         "rigorOfSecondarySchoolRecord": "very_important",
@@ -617,6 +617,58 @@
       },
       "costs": {},
       "financialAid": {}
+    },
+    "2025-2026": {
+      "admissions": {
+        "applied": 47985,
+        "admitted": 46564,
+        "enrolled": 1982,
+        "byGender": {
+          "men": {
+            "applied": 22011,
+            "admitted": 21227,
+            "enrolled": 1070
+          },
+          "women": {
+            "applied": 24077,
+            "admitted": 23457,
+            "enrolled": 847
+          }
+        },
+        "acceptanceRate": 0.9704,
+        "yield": 0.0426
+      },
+      "demographics": {
+        "enrollment": {
+          "undergraduate": 8234,
+          "graduate": 700,
+          "total": 8934
+        },
+        "byRace": {
+          "international": 72,
+          "hispanicLatino": 4606,
+          "blackAfricanAmerican": 419,
+          "white": 780,
+          "americanIndianAlaskaNative": 13,
+          "asian": 1872,
+          "nativeHawaiianPacificIslander": 16,
+          "twoOrMoreRaces": 407,
+          "unknown": 157
+        }
+      },
+      "costs": {
+        "tuition": 13368,
+        "fees": 2646.5,
+        "roomAndBoard": 23126,
+        "totalCOA": 39140.5
+      },
+      "financialAid": {
+        "averageAidPackage": 32285.23785118766,
+        "averageNeedBasedGrant": 29362.93984372533,
+        "percentReceivingAid": 0.7817,
+        "percentNeedFullyMet": 0.1987
+      },
+      "testScores": {}
     }
   }
 }

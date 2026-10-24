@@ -89,7 +89,8 @@
         "averageAidPackage": 13796,
         "averageNeedBasedGrant": 11399,
         "percentReceivingAid": 0.53,
-        "percentNeedFullyMet": 0.0341
+        "percentNeedFullyMet": 0.0341,
+        "averageNetPrice": 16016
       }
     },
     "2017-2018": {
@@ -153,7 +154,8 @@
         "averageAidPackage": 13747,
         "averageNeedBasedGrant": 11124,
         "percentReceivingAid": 0.5334,
-        "percentNeedFullyMet": 0.0396
+        "percentNeedFullyMet": 0.0396,
+        "averageNetPrice": 16295
       }
     },
     "2018-2019": {
@@ -224,7 +226,8 @@
         "averageAidPackage": 14197,
         "averageNeedBasedGrant": 11517,
         "percentReceivingAid": 0.5433,
-        "percentNeedFullyMet": 0.0376
+        "percentNeedFullyMet": 0.0376,
+        "averageNetPrice": 16873
       }
     },
     "2019-2020": {
@@ -295,7 +298,8 @@
         "averageAidPackage": 14433,
         "averageNeedBasedGrant": 12215,
         "percentReceivingAid": 0.5205,
-        "percentNeedFullyMet": 0.0407
+        "percentNeedFullyMet": 0.0407,
+        "averageNetPrice": 17835
       }
     },
     "2020-2021": {
@@ -366,7 +370,8 @@
         "averageAidPackage": 14351,
         "averageNeedBasedGrant": 12535,
         "percentReceivingAid": 0.4953,
-        "percentNeedFullyMet": 0.032
+        "percentNeedFullyMet": 0.032,
+        "averageNetPrice": 11803
       }
     },
     "2021-2022": {
@@ -437,7 +442,8 @@
         "averageAidPackage": 12401,
         "averageNeedBasedGrant": 11867,
         "percentReceivingAid": 0.4552,
-        "percentNeedFullyMet": 0.0428
+        "percentNeedFullyMet": 0.0428,
+        "averageNetPrice": 17535
       }
     },
     "2022-2023": {
@@ -511,7 +517,8 @@
         "averageAidPackage": 12663,
         "averageNeedBasedGrant": 12235,
         "percentReceivingAid": 0.4621,
-        "percentNeedFullyMet": 0.115
+        "percentNeedFullyMet": 0.115,
+        "averageNetPrice": 19052
       }
     },
     "2023-2024": {
@@ -585,8 +592,78 @@
         "averageAidPackage": 13560,
         "averageNeedBasedGrant": 13516,
         "percentReceivingAid": 0.4906,
-        "percentNeedFullyMet": 0.1763
+        "percentNeedFullyMet": 0.1763,
+        "averageNetPrice": 20522
       }
+    },
+    "2024-2025": {
+      "admissions": {
+        "applied": 68614,
+        "admitted": 39899,
+        "enrolled": 8191,
+        "byGender": {
+          "men": {
+            "applied": 32652,
+            "admitted": 18574,
+            "enrolled": 4045
+          },
+          "women": {
+            "applied": 35948,
+            "admitted": 21314,
+            "enrolled": 4146
+          }
+        },
+        "acceptanceRate": 0.5815,
+        "yield": 0.2053
+      },
+      "testScores": {
+        "sat": {
+          "readingWriting": {
+            "p25": 650,
+            "p50": 690,
+            "p75": 730
+          },
+          "math": {
+            "p25": 660,
+            "p50": 720,
+            "p75": 770
+          },
+          "submissionRate": 0.5
+        },
+        "act": {
+          "composite": {
+            "p25": 28,
+            "p50": 31,
+            "p75": 33
+          },
+          "submissionRate": 0.05
+        }
+      },
+      "demographics": {
+        "enrollment": {
+          "undergraduate": 37985,
+          "graduate": 14284,
+          "total": 52269
+        },
+        "byRace": {
+          "international": 2780,
+          "hispanicLatino": 6023,
+          "blackAfricanAmerican": 2665,
+          "white": 11386,
+          "asian": 12726,
+          "americanIndianAlaskaNative": 24,
+          "nativeHawaiianPacificIslander": 24,
+          "twoOrMoreRaces": 1379,
+          "unknown": 978
+        }
+      },
+      "costs": {
+        "tuition": 14222,
+        "fees": 3707,
+        "roomAndBoard": 15714,
+        "totalCOA": 33643
+      },
+      "financialAid": {}
     }
   }
 }

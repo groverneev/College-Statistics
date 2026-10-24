@@ -43,7 +43,26 @@
           "admitted": 678
         }
       },
-      "testScores": {},
+      "testScores": {
+        "sat": {
+          "readingWriting": {
+            "p25": 670,
+            "p75": 740
+          },
+          "math": {
+            "p25": 680,
+            "p75": 780
+          },
+          "submissionRate": 0.57
+        },
+        "act": {
+          "composite": {
+            "p25": 30,
+            "p75": 33
+          },
+          "submissionRate": 0.64
+        }
+      },
       "demographics": {
         "enrollment": {
           "total": 14273,
@@ -92,7 +111,26 @@
           "admitted": 698
         }
       },
-      "testScores": {},
+      "testScores": {
+        "sat": {
+          "readingWriting": {
+            "p25": 660,
+            "p75": 730
+          },
+          "math": {
+            "p25": 690,
+            "p75": 790
+          },
+          "submissionRate": 0.52
+        },
+        "act": {
+          "composite": {
+            "p25": 31,
+            "p75": 34
+          },
+          "submissionRate": 0.48
+        }
+      },
       "demographics": {
         "enrollment": {
           "total": 14459,
@@ -141,7 +179,30 @@
           "admitted": 704
         }
       },
-      "testScores": {},
+      "testScores": {
+        "sat": {
+          "composite": {
+            "p25": 1390,
+            "p75": 1510
+          },
+          "readingWriting": {
+            "p25": 670,
+            "p75": 740
+          },
+          "math": {
+            "p25": 690,
+            "p75": 790
+          },
+          "submissionRate": 0.59
+        },
+        "act": {
+          "composite": {
+            "p25": 31,
+            "p75": 34
+          },
+          "submissionRate": 0.41
+        }
+      },
       "demographics": {
         "enrollment": {
           "total": 14417,
@@ -190,7 +251,30 @@
           "admitted": 803
         }
       },
-      "testScores": {},
+      "testScores": {
+        "sat": {
+          "composite": {
+            "p25": 1400,
+            "p75": 1510
+          },
+          "readingWriting": {
+            "p25": 680,
+            "p75": 740
+          },
+          "math": {
+            "p25": 700,
+            "p75": 790
+          },
+          "submissionRate": 0.61
+        },
+        "act": {
+          "composite": {
+            "p25": 31,
+            "p75": 34
+          },
+          "submissionRate": 0.39
+        }
+      },
       "demographics": {
         "enrollment": {
           "total": 14002,
@@ -239,7 +323,30 @@
           "admitted": 844
         }
       },
-      "testScores": {},
+      "testScores": {
+        "sat": {
+          "composite": {
+            "p25": 1430,
+            "p75": 1530
+          },
+          "readingWriting": {
+            "p25": 690,
+            "p75": 750
+          },
+          "math": {
+            "p25": 730,
+            "p75": 790
+          },
+          "submissionRate": 0.37
+        },
+        "act": {
+          "composite": {
+            "p25": 32,
+            "p75": 34
+          },
+          "submissionRate": 0.27
+        }
+      },
       "demographics": {
         "enrollment": {
           "total": 14781,

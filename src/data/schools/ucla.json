@@ -176,10 +176,22 @@
     "2018-2019": {
       "admissions": {
         "applied": 113761,
-        "admitted": 15981,
-        "enrolled": 6210,
-        "acceptanceRate": 0.1405,
-        "yield": 0.3886
+        "admitted": 15970,
+        "enrolled": 6240,
+        "acceptanceRate": 0.1404,
+        "yield": 0.3907,
+        "byGender": {
+          "men": {
+            "applied": 51171,
+            "admitted": 6724,
+            "enrolled": 2485
+          },
+          "women": {
+            "applied": 59840,
+            "admitted": 8832,
+            "enrolled": 3732
+          }
+        }
       },
       "testScores": {
         "sat": {
@@ -233,10 +245,10 @@
         }
       },
       "costs": {
-        "tuition": 42184,
-        "fees": 1755,
+        "tuition": 11442,
+        "fees": 1784,
         "roomAndBoard": 15902,
-        "totalCOA": 59841
+        "totalCOA": 29128
       },
       "financialAid": {
         "percentReceivingAid": 0.57,
@@ -248,10 +260,22 @@
     "2019-2020": {
       "admissions": {
         "applied": 111322,
-        "admitted": 13857,
-        "enrolled": 5900,
-        "acceptanceRate": 0.1245,
-        "yield": 0.4258
+        "admitted": 13720,
+        "enrolled": 5920,
+        "acceptanceRate": 0.1232,
+        "yield": 0.4315,
+        "byGender": {
+          "men": {
+            "applied": 50177,
+            "admitted": 5811,
+            "enrolled": 2335
+          },
+          "women": {
+            "applied": 58654,
+            "admitted": 7621,
+            "enrolled": 3576
+          }
+        }
       },
       "testScores": {
         "sat": {
@@ -305,10 +329,10 @@
         }
       },
       "costs": {
-        "tuition": 42994,
-        "fees": 1790,
+        "tuition": 11442,
+        "fees": 1838,
         "roomAndBoard": 16104,
-        "totalCOA": 60888
+        "totalCOA": 29384
       },
       "financialAid": {
         "percentReceivingAid": 0.56,
@@ -319,11 +343,23 @@
     },
     "2020-2021": {
       "admissions": {
-        "applied": 107356,
-        "admitted": 15352,
-        "enrolled": 6370,
-        "acceptanceRate": 0.143,
-        "yield": 0.4149
+        "applied": 108877,
+        "admitted": 15602,
+        "enrolled": 6386,
+        "acceptanceRate": 0.1433,
+        "yield": 0.4093,
+        "byGender": {
+          "men": {
+            "applied": 49603,
+            "admitted": 6571,
+            "enrolled": 2524
+          },
+          "women": {
+            "applied": 57753,
+            "admitted": 8781,
+            "enrolled": 3854
+          }
+        }
       },
       "testScores": {},
       "demographics": {
@@ -350,10 +386,10 @@
         }
       },
       "costs": {
-        "tuition": 43012,
-        "fees": 1838,
-        "roomAndBoard": 16570,
-        "totalCOA": 61420
+        "tuition": 11442,
+        "fees": 1826,
+        "roomAndBoard": 16667,
+        "totalCOA": 29935
       },
       "financialAid": {
         "percentReceivingAid": 0.57,
@@ -364,11 +400,23 @@
     },
     "2021-2022": {
       "admissions": {
-        "applied": 136162,
-        "admitted": 14663,
-        "enrolled": 6535,
+        "applied": 139490,
+        "admitted": 15028,
+        "enrolled": 6587,
         "acceptanceRate": 0.1077,
-        "yield": 0.4457
+        "yield": 0.4383,
+        "byGender": {
+          "men": {
+            "applied": 60821,
+            "admitted": 5820,
+            "enrolled": 2412
+          },
+          "women": {
+            "applied": 75341,
+            "admitted": 8843,
+            "enrolled": 4140
+          }
+        }
       },
       "testScores": {},
       "demographics": {
@@ -395,10 +443,7 @@
         }
       },
       "costs": {
-        "tuition": 43476,
-        "fees": 1872,
-        "roomAndBoard": 17231,
-        "totalCOA": 62579
+        "fees": 2304
       },
       "financialAid": {
         "percentReceivingAid": 0.58,
@@ -411,9 +456,21 @@
       "admissions": {
         "applied": 149815,
         "admitted": 12844,
-        "enrolled": 6449,
+        "enrolled": 6462,
         "acceptanceRate": 0.0857,
-        "yield": 0.5021
+        "yield": 0.5031,
+        "byGender": {
+          "men": {
+            "applied": 65852,
+            "admitted": 4910,
+            "enrolled": 2373
+          },
+          "women": {
+            "applied": 78381,
+            "admitted": 7593,
+            "enrolled": 4012
+          }
+        }
       },
       "testScores": {},
       "demographics": {
@@ -440,10 +497,7 @@
         }
       },
       "costs": {
-        "tuition": 44096,
-        "fees": 1902,
-        "roomAndBoard": 17892,
-        "totalCOA": 63890
+        "fees": 1166
       },
       "financialAid": {
         "percentReceivingAid": 0.58,
@@ -456,9 +510,21 @@
       "admissions": {
         "applied": 145910,
         "admitted": 12737,
-        "enrolled": 6354,
+        "enrolled": 6585,
         "acceptanceRate": 0.0873,
-        "yield": 0.4989
+        "yield": 0.517,
+        "byGender": {
+          "men": {
+            "applied": 64324,
+            "admitted": 4771,
+            "enrolled": 2346
+          },
+          "women": {
+            "applied": 75500,
+            "admitted": 7570,
+            "enrolled": 4195
+          }
+        }
       },
       "testScores": {},
       "demographics": {
@@ -485,10 +551,10 @@
         }
       },
       "costs": {
-        "tuition": 45636,
-        "fees": 1956,
-        "roomAndBoard": 18423,
-        "totalCOA": 66015
+        "tuition": 12260,
+        "fees": 1948,
+        "roomAndBoard": 18369,
+        "totalCOA": 32577
       },
       "financialAid": {
         "percentReceivingAid": 0.59,
@@ -503,7 +569,19 @@
         "admitted": 13114,
         "enrolled": 6610,
         "acceptanceRate": 0.0897,
-        "yield": 0.504
+        "yield": 0.504,
+        "byGender": {
+          "men": {
+            "applied": 64521,
+            "admitted": 5220,
+            "enrolled": 2525
+          },
+          "women": {
+            "applied": 75193,
+            "admitted": 7381,
+            "enrolled": 4002
+          }
+        }
       },
       "testScores": {},
       "demographics": {
@@ -530,10 +608,10 @@
         }
       },
       "costs": {
-        "tuition": 46326,
-        "fees": 1467,
-        "roomAndBoard": 18927,
-        "totalCOA": 66720
+        "tuition": 12800,
+        "fees": 2024,
+        "roomAndBoard": 18960,
+        "totalCOA": 33784
       },
       "financialAid": {
         "percentReceivingAid": 0.59,

@@ -27,8 +27,7 @@
         "volunteerWork": "important",
         "workExperience": "considered",
         "levelOfApplicantsInterest": "not_considered"
-      },
-      "notes": "The local source PDF filename is `CDS_2024-2025_Final1.pdf`, but the document header is labeled `Common Data Set 2025-2026`."
+      }
     }
   },
   "years": {
@@ -529,6 +528,46 @@
     },
     "2024-2025": {
       "admissions": {
+        "applied": 134455,
+        "admitted": 35989,
+        "enrolled": 7330,
+        "acceptanceRate": 0.2677,
+        "yield": 0.2037
+      },
+      "testScores": {},
+      "demographics": {
+        "enrollment": {
+          "total": 44256,
+          "undergraduate": 34955,
+          "graduate": 9301
+        },
+        "byRace": {
+          "international": 3891,
+          "hispanicLatino": 9267,
+          "blackAfricanAmerican": 569,
+          "white": 6005,
+          "americanIndianAlaskaNative": 25,
+          "asian": 12108,
+          "nativeHawaiianPacificIslander": 20,
+          "twoOrMoreRaces": 2258,
+          "unknown": 812
+        }
+      },
+      "costs": {
+        "tuition": 12800,
+        "fees": 3579,
+        "roomAndBoard": 19629,
+        "totalCOA": 36008
+      },
+      "financialAid": {
+        "percentReceivingAid": 0.5287,
+        "averageAidPackage": 30549,
+        "averageNeedBasedGrant": 27393,
+        "percentNeedFullyMet": 0.1107
+      }
+    },
+    "2025-2026": {
+      "admissions": {
         "applied": 136750,
         "admitted": 39054,
         "enrolled": 7801,
@@ -552,25 +591,15 @@
           "nativeHawaiianPacificIslander": 27,
           "twoOrMoreRaces": 2276,
           "unknown": 834
-        },
-        "byResidency": {
-          "inState": 28336,
-          "outOfState": 2802,
-          "international": 4304
         }
       },
       "costs": {
         "tuition": 14934,
-        "fees": 5958,
+        "fees": 5793,
         "roomAndBoard": 20319,
-        "totalCOA": 41211
+        "totalCOA": 41046
       },
-      "financialAid": {
-        "percentReceivingAid": 0.5287,
-        "averageAidPackage": 30549,
-        "averageNeedBasedGrant": 27393,
-        "percentNeedFullyMet": 0.1107
-      }
+      "financialAid": {}
     }
   }
 }
