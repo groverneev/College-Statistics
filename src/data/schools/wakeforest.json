@@ -37,9 +37,28 @@
         "admitted": 4249,
         "enrolled": 1306,
         "acceptanceRate": 0.3034,
-        "yield": 0.3074
+        "yield": 0.3074,
+        "earlyDecision": {
+          "applied": 1294,
+          "admitted": 509
+        }
       },
-      "testScores": {},
+      "testScores": {
+        "sat": {
+          "math": {
+            "p25": 640,
+            "p75": 740
+          },
+          "submissionRate": 0.43
+        },
+        "act": {
+          "composite": {
+            "p25": 28,
+            "p75": 32
+          },
+          "submissionRate": 0.49
+        }
+      },
       "demographics": {
         "enrollment": {
           "total": 7968,
@@ -82,9 +101,32 @@
         "admitted": 3604,
         "enrolled": 1349,
         "acceptanceRate": 0.2757,
-        "yield": 0.3743
+        "yield": 0.3743,
+        "earlyDecision": {
+          "applied": 1842,
+          "admitted": 815
+        }
       },
-      "testScores": {},
+      "testScores": {
+        "sat": {
+          "readingWriting": {
+            "p25": 630,
+            "p75": 710
+          },
+          "math": {
+            "p25": 630,
+            "p75": 730
+          },
+          "submissionRate": 0.38
+        },
+        "act": {
+          "composite": {
+            "p25": 28,
+            "p75": 32
+          },
+          "submissionRate": 0.54
+        }
+      },
       "demographics": {
         "enrollment": {
           "total": 8116,
@@ -127,9 +169,32 @@
         "admitted": 3803,
         "enrolled": 1421,
         "acceptanceRate": 0.294,
-        "yield": 0.3737
+        "yield": 0.3737,
+        "earlyDecision": {
+          "applied": 1939,
+          "admitted": 795
+        }
       },
-      "testScores": {},
+      "testScores": {
+        "sat": {
+          "readingWriting": {
+            "p25": 650,
+            "p75": 710
+          },
+          "math": {
+            "p25": 660,
+            "p75": 760
+          },
+          "submissionRate": 0.41
+        },
+        "act": {
+          "composite": {
+            "p25": 29,
+            "p75": 33
+          },
+          "submissionRate": 0.45
+        }
+      },
       "demographics": {
         "enrollment": {
           "total": 8401,
@@ -172,9 +237,36 @@
         "admitted": 3717,
         "enrolled": 1360,
         "acceptanceRate": 0.296,
-        "yield": 0.3659
+        "yield": 0.3659,
+        "earlyDecision": {
+          "applied": 2047,
+          "admitted": 626
+        }
       },
-      "testScores": {},
+      "testScores": {
+        "sat": {
+          "composite": {
+            "p25": 1340,
+            "p75": 1470
+          },
+          "readingWriting": {
+            "p25": 650,
+            "p75": 720
+          },
+          "math": {
+            "p25": 670,
+            "p75": 770
+          },
+          "submissionRate": 0.44
+        },
+        "act": {
+          "composite": {
+            "p25": 30,
+            "p75": 33
+          },
+          "submissionRate": 0.45
+        }
+      },
       "demographics": {
         "enrollment": {
           "total": 8495,
@@ -217,9 +309,36 @@
         "admitted": 3825,
         "enrolled": 1452,
         "acceptanceRate": 0.3198,
-        "yield": 0.3796
+        "yield": 0.3796,
+        "earlyDecision": {
+          "applied": 2241,
+          "admitted": 773
+        }
       },
-      "testScores": {},
+      "testScores": {
+        "sat": {
+          "composite": {
+            "p25": 1300,
+            "p75": 1460
+          },
+          "readingWriting": {
+            "p25": 640,
+            "p75": 720
+          },
+          "math": {
+            "p25": 650,
+            "p75": 750
+          },
+          "submissionRate": 0.5
+        },
+        "act": {
+          "composite": {
+            "p25": 30,
+            "p75": 33
+          },
+          "submissionRate": 0.45
+        }
+      },
       "demographics": {
         "enrollment": {
           "total": 8789,
@@ -264,7 +383,30 @@
         "acceptanceRate": 0.2518,
         "yield": 0.37
       },
-      "testScores": {},
+      "testScores": {
+        "sat": {
+          "composite": {
+            "p25": 1380,
+            "p75": 1480
+          },
+          "readingWriting": {
+            "p25": 670,
+            "p75": 730
+          },
+          "math": {
+            "p25": 680,
+            "p75": 770
+          },
+          "submissionRate": 0.23
+        },
+        "act": {
+          "composite": {
+            "p25": 30,
+            "p75": 33
+          },
+          "submissionRate": 0.32
+        }
+      },
       "demographics": {
         "enrollment": {
           "total": 8947,
