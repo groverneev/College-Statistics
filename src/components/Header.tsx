@@ -71,6 +71,8 @@ export default function Header({ schools }: { schools: SearchableSchool[] }) {
           className="md:hidden fixed inset-0 z-40"
           aria-hidden="true"
           onClick={() => setMobileMenuOpen(false)}
+          onTouchMove={() => setMobileMenuOpen(false)}
+          onWheel={() => setMobileMenuOpen(false)}
         />
       )}
       <header
