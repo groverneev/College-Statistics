@@ -519,10 +519,14 @@
         "enrolled": 6736,
         "byGender": {
           "men": {
-            "enrolled": 3111
+            "enrolled": 3111,
+            "applied": 18901,
+            "admitted": 14427
           },
           "women": {
-            "enrolled": 3610
+            "enrolled": 3610,
+            "admitted": 16218,
+            "applied": 20862
           }
         }
       },

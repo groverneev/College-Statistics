@@ -37,9 +37,40 @@
         "admitted": 2889,
         "enrolled": 1336,
         "acceptanceRate": 0.1429,
-        "yield": 0.4624
+        "yield": 0.4624,
+        "byGender": {
+          "men": {
+            "applied": 8469,
+            "admitted": 1420,
+            "enrolled": 665
+          },
+          "women": {
+            "applied": 11754,
+            "admitted": 1469,
+            "enrolled": 671
+          }
+        }
       },
-      "testScores": {},
+      "testScores": {
+        "sat": {
+          "readingWriting": {
+            "p25": 680,
+            "p75": 750
+          },
+          "math": {
+            "p25": 690,
+            "p75": 770
+          },
+          "submissionRate": 0.49
+        },
+        "act": {
+          "composite": {
+            "p25": 31,
+            "p75": 34
+          },
+          "submissionRate": 0.51
+        }
+      },
       "demographics": {
         "enrollment": {
           "total": 11489,
@@ -82,9 +113,40 @@
         "admitted": 3127,
         "enrolled": 1410,
         "acceptanceRate": 0.1482,
-        "yield": 0.4509
+        "yield": 0.4509,
+        "byGender": {
+          "men": {
+            "applied": 8864,
+            "admitted": 1483,
+            "enrolled": 672
+          },
+          "women": {
+            "applied": 12237,
+            "admitted": 1644,
+            "enrolled": 738
+          }
+        }
       },
-      "testScores": {},
+      "testScores": {
+        "sat": {
+          "readingWriting": {
+            "p25": 700,
+            "p75": 760
+          },
+          "math": {
+            "p25": 710,
+            "p75": 780
+          },
+          "submissionRate": 0.34
+        },
+        "act": {
+          "composite": {
+            "p25": 31,
+            "p75": 34
+          },
+          "submissionRate": 0.66
+        }
+      },
       "demographics": {
         "enrollment": {
           "total": 11449,
@@ -127,9 +189,44 @@
         "admitted": 3143,
         "enrolled": 1484,
         "acceptanceRate": 0.1462,
-        "yield": 0.4722
+        "yield": 0.4722,
+        "byGender": {
+          "men": {
+            "applied": 8933,
+            "admitted": 1375,
+            "enrolled": 652
+          },
+          "women": {
+            "applied": 12568,
+            "admitted": 1768,
+            "enrolled": 832
+          }
+        },
+        "earlyDecision": {
+          "applied": 2262,
+          "admitted": 957
+        }
       },
-      "testScores": {},
+      "testScores": {
+        "sat": {
+          "readingWriting": {
+            "p25": 680,
+            "p75": 750
+          },
+          "math": {
+            "p25": 700,
+            "p75": 780
+          },
+          "submissionRate": 0.43
+        },
+        "act": {
+          "composite": {
+            "p25": 31,
+            "p75": 34
+          },
+          "submissionRate": 0.57
+        }
+      },
       "demographics": {
         "enrollment": {
           "total": 11586,
@@ -172,9 +269,40 @@
         "admitted": 3404,
         "enrolled": 1612,
         "acceptanceRate": 0.1495,
-        "yield": 0.4736
+        "yield": 0.4736,
+        "byGender": {
+          "men": {
+            "applied": 9407,
+            "admitted": 1528,
+            "enrolled": 740
+          },
+          "women": {
+            "applied": 13359,
+            "admitted": 1876,
+            "enrolled": 872
+          }
+        }
       },
-      "testScores": {},
+      "testScores": {
+        "sat": {
+          "readingWriting": {
+            "p25": 680,
+            "p75": 750
+          },
+          "math": {
+            "p25": 710,
+            "p75": 790
+          },
+          "submissionRate": 0.56
+        },
+        "act": {
+          "composite": {
+            "p25": 32,
+            "p75": 34
+          },
+          "submissionRate": 0.44
+        }
+      },
       "demographics": {
         "enrollment": {
           "total": 11878,
@@ -217,9 +345,44 @@
         "admitted": 3770,
         "enrolled": 1615,
         "acceptanceRate": 0.163,
-        "yield": 0.4284
+        "yield": 0.4284,
+        "byGender": {
+          "men": {
+            "applied": 9889,
+            "admitted": 1678,
+            "enrolled": 718
+          },
+          "women": {
+            "applied": 13238,
+            "admitted": 2092,
+            "enrolled": 897
+          }
+        }
       },
-      "testScores": {},
+      "testScores": {
+        "sat": {
+          "composite": {
+            "p25": 1400,
+            "p75": 1510
+          },
+          "readingWriting": {
+            "p25": 680,
+            "p75": 750
+          },
+          "math": {
+            "p25": 700,
+            "p75": 780
+          },
+          "submissionRate": 0.59
+        },
+        "act": {
+          "composite": {
+            "p25": 32,
+            "p75": 35
+          },
+          "submissionRate": 0.41
+        }
+      },
       "demographics": {
         "enrollment": {
           "total": 12219,
@@ -262,9 +425,44 @@
         "admitted": 3566,
         "enrolled": 1804,
         "acceptanceRate": 0.1143,
-        "yield": 0.5059
+        "yield": 0.5059,
+        "byGender": {
+          "men": {
+            "applied": 12590,
+            "admitted": 1510,
+            "enrolled": 784
+          },
+          "women": {
+            "applied": 18608,
+            "admitted": 2056,
+            "enrolled": 1020
+          }
+        }
       },
-      "testScores": {},
+      "testScores": {
+        "sat": {
+          "composite": {
+            "p25": 1450,
+            "p75": 1530
+          },
+          "readingWriting": {
+            "p25": 710,
+            "p75": 760
+          },
+          "math": {
+            "p25": 730,
+            "p75": 790
+          },
+          "submissionRate": 0.31
+        },
+        "act": {
+          "composite": {
+            "p25": 33,
+            "p75": 35
+          },
+          "submissionRate": 0.23
+        }
+      },
       "demographics": {
         "enrollment": {
           "total": 13293,
@@ -307,7 +505,19 @@
         "admitted": 3381,
         "enrolled": 1695,
         "acceptanceRate": 0.0969,
-        "yield": 0.5013
+        "yield": 0.5013,
+        "byGender": {
+          "men": {
+            "applied": 13898,
+            "admitted": 1374,
+            "enrolled": 696
+          },
+          "women": {
+            "applied": 19730,
+            "admitted": 1873,
+            "enrolled": 929
+          }
+        }
       },
       "testScores": {
         "sat": {
@@ -379,7 +589,19 @@
         "admitted": 3444,
         "enrolled": 1739,
         "acceptanceRate": 0.1013,
-        "yield": 0.5049
+        "yield": 0.5049,
+        "byGender": {
+          "men": {
+            "applied": 13955,
+            "admitted": 1416,
+            "enrolled": 718
+          },
+          "women": {
+            "applied": 18669,
+            "admitted": 1905,
+            "enrolled": 959
+          }
+        }
       },
       "testScores": {
         "sat": {
@@ -451,7 +673,19 @@
         "admitted": 3957,
         "enrolled": 1801,
         "acceptanceRate": 0.1149,
-        "yield": 0.4551
+        "yield": 0.4551,
+        "byGender": {
+          "men": {
+            "applied": 14310,
+            "admitted": 1633,
+            "enrolled": 733
+          },
+          "women": {
+            "applied": 18834,
+            "admitted": 2189,
+            "enrolled": 1000
+          }
+        }
       },
       "testScores": {
         "sat": {
@@ -483,8 +717,8 @@
       },
       "demographics": {
         "enrollment": {
-          "total": 13509,
-          "undergraduate": 7036,
+          "total": 13599,
+          "undergraduate": 7126,
           "graduate": 6473
         },
         "byRace": {

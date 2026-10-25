@@ -3,8 +3,8 @@
   "slug": "cmu",
   "profile": {
     "admissionsFactors": {
-      "sourceYear": "2024-2025",
-      "sourcePdf": "https://www.cmu.edu/ira/CDS/pdf/cds_2024-25/cds-2024-c-first-time-first-year-freshman-admission-21feb2025.pdf",
+      "sourceYear": "2025-2026",
+      "sourcePdf": "College-Data/cmu/cmu-cds-2025-2026.pdf",
       "section": "C7",
       "academic": {
         "rigorOfSecondarySchoolRecord": "very_important",
@@ -542,6 +542,89 @@
         "averageAidPackage": 63000,
         "averageNeedBasedGrant": 59000,
         "percentNeedFullyMet": 1.0
+      }
+    },
+    "2025-2026": {
+      "admissions": {
+        "applied": 34867,
+        "admitted": 3859,
+        "enrolled": 1804,
+        "byGender": {
+          "men": {
+            "applied": 21054,
+            "admitted": 2140,
+            "enrolled": 1060
+          },
+          "women": {
+            "applied": 12942,
+            "admitted": 1628,
+            "enrolled": 700
+          }
+        },
+        "earlyDecision": {
+          "applied": 2680,
+          "admitted": 553
+        },
+        "acceptanceRate": 0.1107,
+        "yield": 0.4675
+      },
+      "testScores": {
+        "sat": {
+          "composite": {
+            "p25": 1500,
+            "p50": 1540,
+            "p75": 1560
+          },
+          "readingWriting": {
+            "p25": 730,
+            "p50": 750,
+            "p75": 770
+          },
+          "math": {
+            "p25": 770,
+            "p50": 790,
+            "p75": 800
+          },
+          "submissionRate": 0.655
+        },
+        "act": {
+          "composite": {
+            "p25": 34,
+            "p50": 35,
+            "p75": 36
+          },
+          "submissionRate": 0.181
+        }
+      },
+      "demographics": {
+        "enrollment": {
+          "undergraduate": 7728,
+          "graduate": 8854,
+          "total": 16582
+        },
+        "byRace": {
+          "international": 1716,
+          "hispanicLatino": 651,
+          "blackAfricanAmerican": 295,
+          "white": 1504,
+          "asian": 2680,
+          "americanIndianAlaskaNative": 3,
+          "nativeHawaiianPacificIslander": 2,
+          "twoOrMoreRaces": 355,
+          "unknown": 522
+        }
+      },
+      "costs": {
+        "tuition": 69702,
+        "fees": 1114,
+        "roomAndBoard": 22890,
+        "totalCOA": 93706
+      },
+      "financialAid": {
+        "averageAidPackage": 65194,
+        "averageNeedBasedGrant": 62801,
+        "percentReceivingAid": 0.4043,
+        "percentNeedFullyMet": 0.9626
       }
     }
   }

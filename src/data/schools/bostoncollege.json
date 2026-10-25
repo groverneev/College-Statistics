@@ -691,6 +691,68 @@
         "averageNeedBasedGrant": 57690,
         "percentNeedFullyMet": 1.0
       }
+    },
+    "2016-2017": {
+      "admissions": {
+        "applied": 28956,
+        "admitted": 9017,
+        "acceptanceRate": 0.3114
+      },
+      "demographics": {
+        "enrollment": {
+          "total": 13851,
+          "undergraduate": 9309,
+          "graduate": 4542
+        },
+        "byRace": {
+          "international": 609,
+          "hispanicLatino": 913,
+          "blackAfricanAmerican": 341,
+          "white": 5855,
+          "asian": 923,
+          "americanIndianAlaskaNative": 5,
+          "nativeHawaiianPacificIslander": 3,
+          "twoOrMoreRaces": 280,
+          "unknown": 380
+        }
+      },
+      "costs": {
+        "tuition": 50480
+      },
+      "financialAid": {},
+      "testScores": {}
+    },
+    "2025-2026": {
+      "admissions": {
+        "applied": 39686,
+        "enrolled": 2479,
+        "acceptanceRate": 0.14
+      },
+      "testScores": {
+        "sat": {
+          "composite": {
+            "p25": 1440,
+            "p75": 1520
+          }
+        },
+        "act": {
+          "composite": {
+            "p25": 33,
+            "p75": 35
+          }
+        }
+      },
+      "demographics": {
+        "enrollment": {},
+        "byRace": {}
+      },
+      "costs": {
+        "tuition": 72180,
+        "fees": 1328,
+        "roomAndBoard": 19290,
+        "totalCOA": 92798
+      },
+      "financialAid": {}
     }
   }
 }

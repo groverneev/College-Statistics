@@ -37,9 +37,40 @@
         "admitted": 4827,
         "enrolled": 1776,
         "acceptanceRate": 0.1653,
-        "yield": 0.3677
+        "yield": 0.3679,
+        "byGender": {
+          "men": {
+            "applied": 13760,
+            "admitted": 2361,
+            "enrolled": 839
+          },
+          "women": {
+            "applied": 15437,
+            "admitted": 2466,
+            "enrolled": 937
+          }
+        },
+        "earlyDecision": {
+          "applied": 1661,
+          "admitted": 624
+        }
       },
-      "testScores": {},
+      "testScores": {
+        "sat": {
+          "math": {
+            "p25": 710,
+            "p75": 800
+          },
+          "submissionRate": 0.37
+        },
+        "act": {
+          "composite": {
+            "p25": 32,
+            "p75": 34
+          },
+          "submissionRate": 0.72
+        }
+      },
       "demographics": {
         "enrollment": {
           "total": 15032,
@@ -47,15 +78,15 @@
           "graduate": 7492
         },
         "byRace": {
-          "international": 538,
-          "hispanicLatino": 535,
-          "blackAfricanAmerican": 504,
-          "white": 3798,
-          "asian": 1287,
-          "americanIndianAlaskaNative": 4,
+          "international": 612,
+          "hispanicLatino": 554,
+          "blackAfricanAmerican": 559,
+          "white": 4022,
+          "asian": 1312,
+          "americanIndianAlaskaNative": 6,
           "nativeHawaiianPacificIslander": 0,
-          "twoOrMoreRaces": 315,
-          "unknown": 135
+          "twoOrMoreRaces": 324,
+          "unknown": 166
         },
         "byResidency": {
           "inState": 526,
@@ -82,9 +113,44 @@
         "admitted": 4863,
         "enrolled": 1778,
         "acceptanceRate": 0.1596,
-        "yield": 0.3656
+        "yield": 0.3656,
+        "byGender": {
+          "men": {
+            "applied": 14417,
+            "admitted": 2310,
+            "enrolled": 821
+          },
+          "women": {
+            "applied": 16046,
+            "admitted": 2553,
+            "enrolled": 957
+          }
+        },
+        "earlyDecision": {
+          "applied": 1808,
+          "admitted": 692
+        }
       },
-      "testScores": {},
+      "testScores": {
+        "sat": {
+          "readingWriting": {
+            "p25": 720,
+            "p75": 770
+          },
+          "math": {
+            "p25": 750,
+            "p75": 800
+          },
+          "submissionRate": 0.22
+        },
+        "act": {
+          "composite": {
+            "p25": 32,
+            "p75": 34
+          },
+          "submissionRate": 0.81
+        }
+      },
       "demographics": {
         "enrollment": {
           "total": 15303,
@@ -92,15 +158,15 @@
           "graduate": 7628
         },
         "byRace": {
-          "international": 533,
-          "hispanicLatino": 627,
-          "blackAfricanAmerican": 562,
-          "white": 3803,
-          "asian": 1256,
+          "international": 603,
+          "hispanicLatino": 649,
+          "blackAfricanAmerican": 621,
+          "white": 4010,
+          "asian": 1277,
           "americanIndianAlaskaNative": 4,
           "nativeHawaiianPacificIslander": 1,
-          "twoOrMoreRaces": 347,
-          "unknown": 120
+          "twoOrMoreRaces": 354,
+          "unknown": 156
         },
         "byResidency": {
           "inState": 606,
@@ -127,9 +193,44 @@
         "admitted": 4708,
         "enrolled": 1797,
         "acceptanceRate": 0.1503,
-        "yield": 0.3817
+        "yield": 0.3817,
+        "byGender": {
+          "men": {
+            "applied": 15096,
+            "admitted": 2213,
+            "enrolled": 863
+          },
+          "women": {
+            "applied": 16224,
+            "admitted": 2495,
+            "enrolled": 934
+          }
+        },
+        "earlyDecision": {
+          "applied": 1840,
+          "admitted": 772
+        }
       },
-      "testScores": {},
+      "testScores": {
+        "sat": {
+          "readingWriting": {
+            "p25": 710,
+            "p75": 770
+          },
+          "math": {
+            "p25": 760,
+            "p75": 800
+          },
+          "submissionRate": 0.33
+        },
+        "act": {
+          "composite": {
+            "p25": 32,
+            "p75": 35
+          },
+          "submissionRate": 0.71
+        }
+      },
       "demographics": {
         "enrollment": {
           "total": 15852,
@@ -137,15 +238,15 @@
           "graduate": 8101
         },
         "byRace": {
-          "international": 551,
-          "hispanicLatino": 688,
-          "blackAfricanAmerican": 663,
-          "white": 3750,
-          "asian": 1208,
+          "international": 607,
+          "hispanicLatino": 704,
+          "blackAfricanAmerican": 721,
+          "white": 3959,
+          "asian": 1238,
           "americanIndianAlaskaNative": 3,
           "nativeHawaiianPacificIslander": 5,
-          "twoOrMoreRaces": 349,
-          "unknown": 139
+          "twoOrMoreRaces": 353,
+          "unknown": 161
         },
         "byResidency": {
           "inState": 681,
@@ -172,9 +273,48 @@
         "admitted": 3522,
         "enrolled": 1732,
         "acceptanceRate": 0.1385,
-        "yield": 0.4918
+        "yield": 0.4918,
+        "byGender": {
+          "men": {
+            "applied": 12133,
+            "admitted": 1663,
+            "enrolled": 839
+          },
+          "women": {
+            "applied": 13293,
+            "admitted": 1859,
+            "enrolled": 893
+          }
+        },
+        "earlyDecision": {
+          "applied": 3066,
+          "admitted": 1042
+        }
       },
-      "testScores": {},
+      "testScores": {
+        "sat": {
+          "composite": {
+            "p25": 1480,
+            "p75": 1560
+          },
+          "readingWriting": {
+            "p25": 720,
+            "p75": 760
+          },
+          "math": {
+            "p25": 760,
+            "p75": 800
+          },
+          "submissionRate": 0.37
+        },
+        "act": {
+          "composite": {
+            "p25": 33,
+            "p75": 35
+          },
+          "submissionRate": 0.68
+        }
+      },
       "demographics": {
         "enrollment": {
           "total": 16191,
@@ -182,15 +322,15 @@
           "graduate": 8369
         },
         "byRace": {
-          "international": 560,
-          "hispanicLatino": 733,
-          "blackAfricanAmerican": 693,
-          "white": 3639,
-          "asian": 1211,
+          "international": 645,
+          "hispanicLatino": 742,
+          "blackAfricanAmerican": 763,
+          "white": 3838,
+          "asian": 1237,
           "americanIndianAlaskaNative": 6,
           "nativeHawaiianPacificIslander": 9,
-          "twoOrMoreRaces": 386,
-          "unknown": 167
+          "twoOrMoreRaces": 391,
+          "unknown": 191
         },
         "byResidency": {
           "inState": 753,
@@ -217,9 +357,48 @@
         "admitted": 4477,
         "enrolled": 1804,
         "acceptanceRate": 0.1602,
-        "yield": 0.4029
+        "yield": 0.4029,
+        "byGender": {
+          "men": {
+            "applied": 13312,
+            "admitted": 2102,
+            "enrolled": 845
+          },
+          "women": {
+            "applied": 14637,
+            "admitted": 2375,
+            "enrolled": 959
+          }
+        },
+        "earlyDecision": {
+          "applied": 3109,
+          "admitted": 1080
+        }
       },
-      "testScores": {},
+      "testScores": {
+        "sat": {
+          "composite": {
+            "p25": 1480,
+            "p75": 1560
+          },
+          "readingWriting": {
+            "p25": 720,
+            "p75": 760
+          },
+          "math": {
+            "p25": 760,
+            "p75": 800
+          },
+          "submissionRate": 0.37
+        },
+        "act": {
+          "composite": {
+            "p25": 33,
+            "p75": 35
+          },
+          "submissionRate": 0.67
+        }
+      },
       "demographics": {
         "enrollment": {
           "total": 15449,
@@ -227,15 +406,15 @@
           "graduate": 7796
         },
         "byRace": {
-          "international": 524,
-          "hispanicLatino": 776,
-          "blackAfricanAmerican": 646,
-          "white": 3509,
-          "asian": 1340,
+          "international": 549,
+          "hispanicLatino": 788,
+          "blackAfricanAmerican": 694,
+          "white": 3658,
+          "asian": 1366,
           "americanIndianAlaskaNative": 8,
           "nativeHawaiianPacificIslander": 10,
-          "twoOrMoreRaces": 399,
-          "unknown": 154
+          "twoOrMoreRaces": 410,
+          "unknown": 170
         },
         "byResidency": {
           "inState": 752,
@@ -262,9 +441,48 @@
         "admitted": 4373,
         "enrolled": 1980,
         "acceptanceRate": 0.13,
-        "yield": 0.4528
+        "yield": 0.4528,
+        "byGender": {
+          "men": {
+            "applied": 15252,
+            "admitted": 2060,
+            "enrolled": 910
+          },
+          "women": {
+            "applied": 18382,
+            "admitted": 2313,
+            "enrolled": 1070
+          }
+        },
+        "earlyDecision": {
+          "applied": 3754,
+          "admitted": 1098
+        }
       },
-      "testScores": {},
+      "testScores": {
+        "sat": {
+          "composite": {
+            "p25": 1490,
+            "p75": 1570
+          },
+          "readingWriting": {
+            "p25": 730,
+            "p75": 770
+          },
+          "math": {
+            "p25": 760,
+            "p75": 800
+          },
+          "submissionRate": 0.25
+        },
+        "act": {
+          "composite": {
+            "p25": 33,
+            "p75": 35
+          },
+          "submissionRate": 0.41
+        }
+      },
       "demographics": {
         "enrollment": {
           "total": 16973,
@@ -272,15 +490,15 @@
           "graduate": 8939
         },
         "byRace": {
-          "international": 503,
-          "hispanicLatino": 854,
-          "blackAfricanAmerican": 673,
-          "white": 3578,
-          "asian": 1475,
+          "international": 566,
+          "hispanicLatino": 873,
+          "blackAfricanAmerican": 734,
+          "white": 3723,
+          "asian": 1487,
           "americanIndianAlaskaNative": 10,
           "nativeHawaiianPacificIslander": 11,
-          "twoOrMoreRaces": 461,
-          "unknown": 148
+          "twoOrMoreRaces": 465,
+          "unknown": 165
         },
         "byResidency": {
           "inState": 794,
@@ -307,7 +525,23 @@
         "admitted": 3764,
         "enrolled": 1813,
         "acceptanceRate": 0.1133,
-        "yield": 0.4817
+        "yield": 0.4817,
+        "byGender": {
+          "men": {
+            "applied": 15212,
+            "admitted": 1795,
+            "enrolled": 827
+          },
+          "women": {
+            "applied": 18002,
+            "admitted": 1969,
+            "enrolled": 986
+          }
+        },
+        "earlyDecision": {
+          "applied": 4175,
+          "admitted": 1092
+        }
       },
       "testScores": {
         "sat": {
@@ -344,15 +578,15 @@
           "graduate": 8880
         },
         "byRace": {
-          "international": 591,
-          "hispanicLatino": 922,
-          "blackAfricanAmerican": 672,
-          "white": 3414,
-          "asian": 1570,
-          "americanIndianAlaskaNative": 8,
+          "international": 649,
+          "hispanicLatino": 934,
+          "blackAfricanAmerican": 746,
+          "white": 3570,
+          "asian": 1583,
+          "americanIndianAlaskaNative": 9,
           "nativeHawaiianPacificIslander": 8,
-          "twoOrMoreRaces": 484,
-          "unknown": 132
+          "twoOrMoreRaces": 492,
+          "unknown": 141
         },
         "byResidency": {
           "inState": 793,
@@ -364,7 +598,7 @@
         "tuition": 61750,
         "fees": 1232,
         "roomAndBoard": 20778,
-        "totalCOA": 79760
+        "totalCOA": 83760
       },
       "financialAid": {
         "percentReceivingAid": 0.4324,
@@ -379,7 +613,23 @@
         "admitted": 3855,
         "enrolled": 1828,
         "acceptanceRate": 0.1196,
-        "yield": 0.4742
+        "yield": 0.4742,
+        "byGender": {
+          "men": {
+            "applied": 15206,
+            "admitted": 1847,
+            "enrolled": 873
+          },
+          "women": {
+            "applied": 17034,
+            "admitted": 2008,
+            "enrolled": 955
+          }
+        },
+        "earlyDecision": {
+          "applied": 4517,
+          "admitted": 1158
+        }
       },
       "testScores": {
         "sat": {
@@ -416,15 +666,15 @@
           "graduate": 8233
         },
         "byRace": {
-          "international": 648,
-          "hispanicLatino": 992,
-          "blackAfricanAmerican": 704,
-          "white": 3275,
-          "asian": 1670,
+          "international": 715,
+          "hispanicLatino": 1017,
+          "blackAfricanAmerican": 777,
+          "white": 3431,
+          "asian": 1683,
           "americanIndianAlaskaNative": 8,
           "nativeHawaiianPacificIslander": 5,
-          "twoOrMoreRaces": 497,
-          "unknown": 98
+          "twoOrMoreRaces": 510,
+          "unknown": 121
         },
         "byResidency": {
           "inState": 870,
@@ -451,7 +701,23 @@
         "admitted": 3951,
         "enrolled": 1847,
         "acceptanceRate": 0.1206,
-        "yield": 0.4675
+        "yield": 0.4675,
+        "byGender": {
+          "men": {
+            "applied": 15330,
+            "admitted": 1920,
+            "enrolled": 862
+          },
+          "women": {
+            "applied": 17411,
+            "admitted": 2030,
+            "enrolled": 984
+          }
+        },
+        "earlyDecision": {
+          "applied": 4817,
+          "admitted": 1217
+        }
       },
       "testScores": {
         "sat": {
@@ -488,15 +754,15 @@
           "graduate": 8137
         },
         "byRace": {
-          "international": 711,
-          "hispanicLatino": 1035,
-          "blackAfricanAmerican": 684,
-          "white": 3117,
-          "asian": 1640,
+          "international": 774,
+          "hispanicLatino": 1059,
+          "blackAfricanAmerican": 762,
+          "white": 3258,
+          "asian": 1665,
           "americanIndianAlaskaNative": 8,
           "nativeHawaiianPacificIslander": 4,
-          "twoOrMoreRaces": 486,
-          "unknown": 172
+          "twoOrMoreRaces": 497,
+          "unknown": 193
         },
         "byResidency": {
           "inState": 929,

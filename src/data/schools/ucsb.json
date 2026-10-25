@@ -242,6 +242,18 @@
     },
     "2019-2020": {
       "admissions": {
+        "byGender": {
+          "men": {
+            "applied": 41347,
+            "admitted": 11538,
+            "enrolled": 2144
+          },
+          "women": {
+            "applied": 49961,
+            "admitted": 15343,
+            "enrolled": 2770
+          }
+        },
         "applied": 93457,
         "admitted": 27626,
         "enrolled": 4935,
@@ -314,6 +326,18 @@
     },
     "2020-2021": {
       "admissions": {
+        "byGender": {
+          "men": {
+            "applied": 40436,
+            "admitted": 14062,
+            "enrolled": 1974
+          },
+          "women": {
+            "applied": 49316,
+            "admitted": 18780,
+            "enrolled": 2828
+          }
+        },
         "applied": 90963,
         "admitted": 33385,
         "enrolled": 4847,
@@ -386,6 +410,18 @@
     },
     "2021-2022": {
       "admissions": {
+        "byGender": {
+          "men": {
+            "applied": 45516,
+            "admitted": 11709,
+            "enrolled": 1904
+          },
+          "women": {
+            "applied": 57658,
+            "admitted": 18330,
+            "enrolled": 2903
+          }
+        },
         "applied": 105647,
         "admitted": 30823,
         "enrolled": 4898,
@@ -431,6 +467,18 @@
     },
     "2022-2023": {
       "admissions": {
+        "byGender": {
+          "men": {
+            "applied": 48548,
+            "admitted": 11147,
+            "enrolled": 2039
+          },
+          "women": {
+            "applied": 58358,
+            "admitted": 16475,
+            "enrolled": 2811
+          }
+        },
         "applied": 111006,
         "admitted": 28689,
         "enrolled": 4968,
@@ -476,6 +524,18 @@
     },
     "2023-2024": {
       "admissions": {
+        "byGender": {
+          "men": {
+            "applied": 49299,
+            "admitted": 12086,
+            "enrolled": 1958
+          },
+          "women": {
+            "applied": 59656,
+            "admitted": 18242,
+            "enrolled": 3018
+          }
+        },
         "applied": 110876,
         "admitted": 30805,
         "enrolled": 5043,
@@ -521,6 +581,18 @@
     },
     "2024-2025": {
       "admissions": {
+        "byGender": {
+          "men": {
+            "applied": 47530,
+            "admitted": 13764,
+            "enrolled": 1868
+          },
+          "women": {
+            "applied": 57512,
+            "admitted": 20641,
+            "enrolled": 3044
+          }
+        },
         "applied": 110266,
         "admitted": 36347,
         "enrolled": 5008,

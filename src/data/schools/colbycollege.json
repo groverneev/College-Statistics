@@ -636,6 +636,20 @@
         "totalCOA": 87490
       },
       "financialAid": {}
+    },
+    "2025-2026": {
+      "admissions": {
+        "applied": 20144,
+        "acceptanceRate": 0.07,
+        "enrolled": 639
+      },
+      "testScores": {},
+      "demographics": {
+        "enrollment": {},
+        "byRace": {}
+      },
+      "costs": {},
+      "financialAid": {}
     }
   }
 }

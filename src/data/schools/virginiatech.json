@@ -456,7 +456,11 @@
           }
         },
         "acceptanceRate": 0.5698,
-        "yield": 0.2775
+        "yield": 0.2775,
+        "earlyDecision": {
+          "applied": 2796,
+          "admitted": 1389
+        }
       },
       "testScores": {
         "sat": {
@@ -573,7 +577,9 @@
       },
       "costs": {
         "tuition": 13152,
-        "fees": 2796
+        "fees": 2796,
+        "roomAndBoard": 16550,
+        "totalCOA": 32498
       },
       "financialAid": {
         "averageAidPackage": 13357,
@@ -714,7 +720,9 @@
       },
       "costs": {
         "tuition": 13548,
-        "fees": 2902
+        "fees": 2902,
+        "roomAndBoard": 16046,
+        "totalCOA": 32496
       },
       "financialAid": {
         "averageAidPackage": 18692,

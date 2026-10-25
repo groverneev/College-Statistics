@@ -3,8 +3,8 @@
   "slug": "ucdavis",
   "profile": {
     "admissionsFactors": {
-      "sourceYear": "2024-2025",
-      "sourcePdf": "College-Data/UCDavis/2024-25.pdf",
+      "sourceYear": "2025-2026",
+      "sourcePdf": "College-Data/UCDavis/2025-26.pdf",
       "section": "C7",
       "academic": {
         "rigorOfSecondarySchoolRecord": "very_important",
@@ -22,7 +22,7 @@
         "firstGeneration": "considered",
         "alumniRelation": "not_considered",
         "geographicalResidence": "considered",
-        "stateResidency": "important",
+        "stateResidency": "considered",
         "religiousAffiliationCommitment": "not_considered",
         "volunteerWork": "important",
         "workExperience": "considered",
@@ -37,7 +37,19 @@
         "admitted": 28617,
         "enrolled": 5760,
         "acceptanceRate": 0.4241,
-        "yield": 0.2013
+        "yield": 0.2013,
+        "byGender": {
+          "men": {
+            "applied": 30838,
+            "admitted": 11251,
+            "enrolled": 2090
+          },
+          "women": {
+            "applied": 36634,
+            "admitted": 17366,
+            "enrolled": 3670
+          }
+        }
       },
       "testScores": {
         "sat": {
@@ -109,7 +121,19 @@
         "admitted": 30573,
         "enrolled": 5820,
         "acceptanceRate": 0.4354,
-        "yield": 0.1904
+        "yield": 0.1904,
+        "byGender": {
+          "men": {
+            "applied": 32161,
+            "admitted": 12550,
+            "enrolled": 2204
+          },
+          "women": {
+            "applied": 38053,
+            "admitted": 18023,
+            "enrolled": 3616
+          }
+        }
       },
       "testScores": {
         "sat": {
@@ -181,7 +205,19 @@
         "admitted": 31564,
         "enrolled": 6389,
         "acceptanceRate": 0.4118,
-        "yield": 0.2024
+        "yield": 0.2024,
+        "byGender": {
+          "men": {
+            "applied": 35009,
+            "admitted": 12552,
+            "enrolled": 2284
+          },
+          "women": {
+            "applied": 41638,
+            "admitted": 19012,
+            "enrolled": 4105
+          }
+        }
       },
       "testScores": {
         "sat": {
@@ -325,7 +361,19 @@
         "admitted": 35304,
         "enrolled": 6137,
         "acceptanceRate": 0.4632,
-        "yield": 0.1738
+        "yield": 0.1738,
+        "byGender": {
+          "men": {
+            "applied": 34949,
+            "admitted": 14420,
+            "enrolled": 2273
+          },
+          "women": {
+            "applied": 41276,
+            "admitted": 20884,
+            "enrolled": 3864
+          }
+        }
       },
       "testScores": {
         "sat": {
@@ -487,7 +535,19 @@
         "admitted": 39399,
         "enrolled": 6581,
         "acceptanceRate": 0.4164,
-        "yield": 0.167
+        "yield": 0.167,
+        "byGender": {
+          "men": {
+            "applied": 42360,
+            "admitted": 15290,
+            "enrolled": 2462
+          },
+          "women": {
+            "applied": 48049,
+            "admitted": 22317,
+            "enrolled": 3820
+          }
+        }
       },
       "testScores": {},
       "demographics": {
@@ -528,11 +588,23 @@
     },
     "2024-2025": {
       "admissions": {
-        "applied": 95386,
-        "admitted": 39784,
-        "enrolled": 6680,
-        "acceptanceRate": 0.4171,
-        "yield": 0.1679
+        "applied": 98869,
+        "admitted": 41353,
+        "enrolled": 6804,
+        "acceptanceRate": 0.4183,
+        "yield": 0.1645,
+        "byGender": {
+          "men": {
+            "applied": 43931,
+            "admitted": 16150,
+            "enrolled": 2622
+          },
+          "women": {
+            "applied": 50044,
+            "admitted": 23056,
+            "enrolled": 3891
+          }
+        }
       },
       "testScores": {},
       "demographics": {
@@ -577,7 +649,19 @@
         "admitted": 45674,
         "enrolled": 6824,
         "acceptanceRate": 0.4435,
-        "yield": 0.1494
+        "yield": 0.1494,
+        "byGender": {
+          "men": {
+            "applied": 46871,
+            "admitted": 18878,
+            "enrolled": 2685
+          },
+          "women": {
+            "applied": 52616,
+            "admitted": 25103,
+            "enrolled": 3952
+          }
+        }
       },
       "testScores": {},
       "demographics": {
