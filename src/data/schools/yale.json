@@ -3,8 +3,8 @@
   "slug": "yale",
   "profile": {
     "admissionsFactors": {
-      "sourceYear": "2024-2025",
-      "sourcePdf": "College-Data/Yale/yale_cds_2024-25_rmd_20250612.pdf",
+      "sourceYear": "2025-2026",
+      "sourcePdf": "College-Data/yale/yale_cds_2025-26_md_20260616.pdf",
       "section": "C7",
       "academic": {
         "rigorOfSecondarySchoolRecord": "very_important",
@@ -676,6 +676,83 @@
         "percentReceivingAid": 0.54,
         "averageAidPackage": 75093,
         "averageNeedBasedGrant": 74040,
+        "percentNeedFullyMet": 1.0
+      }
+    },
+    "2025-2026": {
+      "admissions": {
+        "applied": 50264,
+        "admitted": 2387,
+        "enrolled": 1633,
+        "acceptanceRate": 0.0475,
+        "yield": 0.6841,
+        "byGender": {
+          "men": {
+            "applied": 22819,
+            "admitted": 1189,
+            "enrolled": 799
+          },
+          "women": {
+            "applied": 27445,
+            "admitted": 1198,
+            "enrolled": 834
+          }
+        }
+      },
+      "testScores": {
+        "sat": {
+          "composite": {
+            "p25": 1480,
+            "p50": 1540,
+            "p75": 1560
+          },
+          "readingWriting": {
+            "p25": 730,
+            "p50": 760,
+            "p75": 780
+          },
+          "math": {
+            "p25": 740,
+            "p50": 780,
+            "p75": 790
+          },
+          "submissionRate": 0.67
+        },
+        "act": {
+          "composite": {
+            "p25": 33,
+            "p50": 34,
+            "p75": 35
+          },
+          "submissionRate": 0.25
+        }
+      },
+      "demographics": {
+        "enrollment": {
+          "undergraduate": 6667,
+          "graduate": 8990,
+          "total": 15657
+        },
+        "byRace": {
+          "international": 706,
+          "hispanicLatino": 1074,
+          "blackAfricanAmerican": 620,
+          "white": 1984,
+          "asian": 1562,
+          "americanIndianAlaskaNative": 34,
+          "nativeHawaiianPacificIslander": 11,
+          "twoOrMoreRaces": 483,
+          "unknown": 193
+        }
+      },
+      "costs": {
+        "tuition": 72500,
+        "roomAndBoard": 21600
+      },
+      "financialAid": {
+        "averageAidPackage": 76770,
+        "averageNeedBasedGrant": 75220,
+        "percentReceivingAid": 0.5493,
         "percentNeedFullyMet": 1.0
       }
     }

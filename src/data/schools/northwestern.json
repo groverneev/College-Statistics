@@ -3,8 +3,8 @@
   "slug": "northwestern",
   "profile": {
     "admissionsFactors": {
-      "sourceYear": "2024-2025",
-      "sourcePdf": "College-Data/Northwestern/2024-2025.pdf",
+      "sourceYear": "2025-2026",
+      "sourcePdf": "College-Data/Northwestern/northwestern-cds-2025-2026.pdf",
       "section": "C7",
       "academic": {
         "rigorOfSecondarySchoolRecord": "very_important",
@@ -15,7 +15,7 @@
         "recommendations": "very_important"
       },
       "nonacademic": {
-        "interview": "considered",
+        "interview": "not_considered",
         "extracurricularActivities": "very_important",
         "talentAbility": "very_important",
         "characterPersonalQualities": "very_important",
@@ -532,6 +532,89 @@
         "percentReceivingAid": 0.52,
         "averageAidPackage": 69813,
         "averageNeedBasedGrant": 65983,
+        "percentNeedFullyMet": 1.0
+      }
+    },
+    "2025-2026": {
+      "admissions": {
+        "byGender": {
+          "men": {
+            "applied": 25258,
+            "admitted": 1828,
+            "enrolled": 1000
+          },
+          "women": {
+            "applied": 27390,
+            "admitted": 2105,
+            "enrolled": 1139
+          }
+        },
+        "earlyDecision": {
+          "applied": 5939,
+          "admitted": 1212
+        },
+        "applied": 52676,
+        "admitted": 3933,
+        "enrolled": 2139,
+        "acceptanceRate": 0.0747,
+        "yield": 0.5439
+      },
+      "testScores": {
+        "sat": {
+          "submissionRate": 0.48,
+          "composite": {
+            "p25": 1520,
+            "p50": 1540,
+            "p75": 1560
+          },
+          "readingWriting": {
+            "p25": 740,
+            "p50": 760,
+            "p75": 770
+          },
+          "math": {
+            "p25": 770,
+            "p50": 790,
+            "p75": 790
+          }
+        },
+        "act": {
+          "submissionRate": 0.25,
+          "composite": {
+            "p25": 34,
+            "p50": 35,
+            "p75": 35
+          }
+        }
+      },
+      "demographics": {
+        "enrollment": {
+          "undergraduate": 9039,
+          "graduate": 14273,
+          "total": 23312
+        },
+        "byRace": {
+          "international": 1108,
+          "hispanicLatino": 1363,
+          "blackAfricanAmerican": 800,
+          "white": 2505,
+          "americanIndianAlaskaNative": 10,
+          "asian": 2055,
+          "nativeHawaiianPacificIslander": 7,
+          "twoOrMoreRaces": 714,
+          "unknown": 477
+        }
+      },
+      "costs": {
+        "tuition": 71802,
+        "fees": 1260,
+        "roomAndBoard": 22941,
+        "totalCOA": 96003
+      },
+      "financialAid": {
+        "averageAidPackage": 68883,
+        "averageNeedBasedGrant": 66208,
+        "percentReceivingAid": 0.4192,
         "percentNeedFullyMet": 1.0
       }
     }

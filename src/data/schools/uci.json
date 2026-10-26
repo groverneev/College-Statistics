@@ -268,7 +268,11 @@
             "p25": 590,
             "p75": 750
           },
-          "submissionRate": 1.0
+          "submissionRate": 1.0,
+          "composite": {
+            "p25": 1190,
+            "p75": 1400
+          }
         }
       },
       "demographics": {

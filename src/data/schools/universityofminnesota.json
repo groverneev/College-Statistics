@@ -156,7 +156,9 @@
           "unknown": 1254
         }
       },
-      "costs": {},
+      "costs": {
+        "tuition": 13058
+      },
       "financialAid": {
         "averageAidPackage": 13381,
         "averageNeedBasedGrant": 10444,
@@ -222,7 +224,9 @@
           "unknown": 1292
         }
       },
-      "costs": {},
+      "costs": {
+        "tuition": 13318
+      },
       "financialAid": {
         "averageAidPackage": 13482,
         "averageNeedBasedGrant": 10672,
@@ -292,7 +296,9 @@
           "unknown": 2093
         }
       },
-      "costs": {},
+      "costs": {
+        "tuition": 13318
+      },
       "financialAid": {
         "averageAidPackage": 14347,
         "averageNeedBasedGrant": 11235,
@@ -362,7 +368,9 @@
           "unknown": 2523
         }
       },
-      "costs": {},
+      "costs": {
+        "tuition": 13532
+      },
       "financialAid": {
         "averageAidPackage": 14114,
         "averageNeedBasedGrant": 11555,
@@ -432,7 +440,9 @@
           "unknown": 1652
         }
       },
-      "costs": {},
+      "costs": {
+        "tuition": 14006
+      },
       "financialAid": {
         "averageAidPackage": 15186,
         "averageNeedBasedGrant": 12419,
@@ -506,7 +516,9 @@
           "unknown": 1697
         }
       },
-      "costs": {},
+      "costs": {
+        "tuition": 14496
+      },
       "financialAid": {
         "averageAidPackage": 16414,
         "averageNeedBasedGrant": 13570,
@@ -566,7 +578,9 @@
         },
         "byRace": {}
       },
-      "costs": {},
+      "costs": {
+        "tuition": 15148
+      },
       "financialAid": {
         "averageAidPackage": 17405,
         "averageNeedBasedGrant": 14537,

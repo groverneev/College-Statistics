@@ -3,8 +3,8 @@
   "slug": "princeton",
   "profile": {
     "admissionsFactors": {
-      "sourceYear": "2024-2025",
-      "sourcePdf": "College-Data/Princeton/CDS_2425_Princeton_v2.pdf",
+      "sourceYear": "2025-2026",
+      "sourcePdf": "College-Data/Princeton/princeton-cds-2025-2026.pdf",
       "section": "C7",
       "academic": {
         "rigorOfSecondarySchoolRecord": "very_important",
@@ -676,6 +676,85 @@
         "percentReceivingAid": 0.6,
         "averageAidPackage": 75600,
         "averageNeedBasedGrant": 71237,
+        "percentNeedFullyMet": 1.0
+      }
+    },
+    "2025-2026": {
+      "admissions": {
+        "byGender": {
+          "men": {
+            "applied": 21692,
+            "admitted": 915,
+            "enrolled": 690
+          },
+          "women": {
+            "applied": 20593,
+            "admitted": 953,
+            "enrolled": 718
+          }
+        },
+        "applied": 42303,
+        "admitted": 1868,
+        "enrolled": 1408,
+        "acceptanceRate": 0.0442,
+        "yield": 0.7537
+      },
+      "testScores": {
+        "sat": {
+          "submissionRate": 0.6,
+          "composite": {
+            "p25": 1490,
+            "p50": 1530,
+            "p75": 1560
+          },
+          "readingWriting": {
+            "p25": 740,
+            "p50": 760,
+            "p75": 780
+          },
+          "math": {
+            "p25": 760,
+            "p50": 790,
+            "p75": 800
+          }
+        },
+        "act": {
+          "submissionRate": 0.2,
+          "composite": {
+            "p25": 34,
+            "p50": 35,
+            "p75": 35
+          }
+        }
+      },
+      "demographics": {
+        "enrollment": {
+          "undergraduate": 5916,
+          "graduate": 3365,
+          "total": 9281
+        },
+        "byRace": {
+          "international": 784,
+          "hispanicLatino": 562,
+          "blackAfricanAmerican": 464,
+          "white": 1833,
+          "americanIndianAlaskaNative": 9,
+          "asian": 1456,
+          "nativeHawaiianPacificIslander": 3,
+          "twoOrMoreRaces": 426,
+          "unknown": 379
+        }
+      },
+      "costs": {
+        "tuition": 68140,
+        "fees": 314,
+        "roomAndBoard": 22120,
+        "totalCOA": 90574
+      },
+      "financialAid": {
+        "averageAidPackage": 80837,
+        "averageNeedBasedGrant": 80837,
+        "percentReceivingAid": 0.6882,
         "percentNeedFullyMet": 1.0
       }
     }

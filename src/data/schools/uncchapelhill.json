@@ -3,30 +3,30 @@
   "slug": "uncchapelhill",
   "profile": {
     "admissionsFactors": {
-      "sourceYear": "2024-2025",
-      "sourcePdf": "College-Data/UNC-Chapel-Hill/CDS_UNCCH_2024-25_20250829.pdf",
+      "sourceYear": "2025-2026",
+      "sourcePdf": "College-Data/uncchapelhill/uncchapelhill-cds-2025-2026.pdf",
       "section": "C7",
       "academic": {
         "rigorOfSecondarySchoolRecord": "very_important",
         "classRank": "important",
         "academicGpa": "important",
         "standardizedTestScores": "considered",
-        "applicationEssay": "important",
-        "recommendations": "important"
+        "applicationEssay": "very_important",
+        "recommendations": "very_important"
       },
       "nonacademic": {
-        "interview": "considered",
-        "extracurricularActivities": "important",
-        "talentAbility": "important",
-        "characterPersonalQualities": "important",
+        "interview": "not_considered",
+        "extracurricularActivities": "very_important",
+        "talentAbility": "very_important",
+        "characterPersonalQualities": "very_important",
         "firstGeneration": "considered",
         "alumniRelation": "considered",
-        "geographicalResidence": "considered",
-        "stateResidency": "important",
-        "religiousAffiliationCommitment": "considered",
+        "geographicalResidence": "not_considered",
+        "stateResidency": "very_important",
+        "religiousAffiliationCommitment": "not_considered",
         "volunteerWork": "important",
         "workExperience": "important",
-        "levelOfApplicantsInterest": "considered"
+        "levelOfApplicantsInterest": "not_considered"
       }
     }
   },
@@ -292,14 +292,14 @@
         "yield": 0.4351,
         "byGender": {
           "men": {
-            "applied": 0,
-            "admitted": 0,
-            "enrolled": 0
+            "applied": 17293,
+            "admitted": 3953,
+            "enrolled": 1660
           },
           "women": {
-            "applied": 0,
-            "admitted": 0,
-            "enrolled": 0
+            "applied": 25173,
+            "admitted": 5655,
+            "enrolled": 2520
           }
         }
       },
@@ -376,18 +376,41 @@
         "yield": 0.4255,
         "byGender": {
           "men": {
-            "applied": 0,
-            "admitted": 0,
-            "enrolled": 0
+            "applied": 18627,
+            "admitted": 4340,
+            "enrolled": 1732
           },
           "women": {
-            "applied": 0,
-            "admitted": 0,
-            "enrolled": 0
+            "applied": 25755,
+            "admitted": 6106,
+            "enrolled": 2713
           }
         }
       },
-      "testScores": {},
+      "testScores": {
+        "sat": {
+          "composite": {
+            "p25": 1270,
+            "p75": 1460
+          },
+          "readingWriting": {
+            "p25": 640,
+            "p75": 720
+          },
+          "math": {
+            "p25": 630,
+            "p75": 750
+          },
+          "submissionRate": 0.65
+        },
+        "act": {
+          "composite": {
+            "p25": 27,
+            "p75": 33
+          },
+          "submissionRate": 0.7
+        }
+      },
       "demographics": {
         "enrollment": {
           "total": 30098,
@@ -433,18 +456,41 @@
         "yield": 0.4532,
         "byGender": {
           "men": {
-            "applied": 0,
-            "admitted": 0,
-            "enrolled": 0
+            "applied": 21627,
+            "admitted": 3996,
+            "enrolled": 1736
           },
           "women": {
-            "applied": 0,
-            "admitted": 0,
-            "enrolled": 0
+            "applied": 32149,
+            "admitted": 6351,
+            "enrolled": 2953
           }
         }
       },
-      "testScores": {},
+      "testScores": {
+        "sat": {
+          "composite": {
+            "p25": 1330,
+            "p75": 1500
+          },
+          "readingWriting": {
+            "p25": 660,
+            "p75": 740
+          },
+          "math": {
+            "p25": 660,
+            "p75": 770
+          },
+          "submissionRate": 0.15
+        },
+        "act": {
+          "composite": {
+            "p25": 29,
+            "p75": 33
+          },
+          "submissionRate": 0.6
+        }
+      },
       "demographics": {
         "enrollment": {
           "total": 31733,
@@ -490,18 +536,45 @@
         "yield": 0.4601,
         "byGender": {
           "men": {
-            "applied": 0,
-            "admitted": 0,
-            "enrolled": 0
+            "applied": 23862,
+            "admitted": 3863,
+            "enrolled": 1679
           },
           "women": {
-            "applied": 0,
-            "admitted": 0,
-            "enrolled": 0
+            "applied": 33359,
+            "admitted": 5777,
+            "enrolled": 2756
           }
         }
       },
-      "testScores": {},
+      "testScores": {
+        "sat": {
+          "composite": {
+            "p25": 1360,
+            "p50": 1450,
+            "p75": 1510
+          },
+          "readingWriting": {
+            "p25": 670,
+            "p50": 710,
+            "p75": 750
+          },
+          "math": {
+            "p25": 680,
+            "p50": 730,
+            "p75": 780
+          },
+          "submissionRate": 0.24
+        },
+        "act": {
+          "composite": {
+            "p25": 30,
+            "p50": 32,
+            "p75": 34
+          },
+          "submissionRate": 0.32
+        }
+      },
       "demographics": {
         "enrollment": {
           "total": 31949,
@@ -556,9 +629,40 @@
             "admitted": 6518,
             "enrolled": 2935
           }
+        },
+        "earlyAction": {
+          "applied": 38520,
+          "admitted": 8879
         }
       },
-      "testScores": {},
+      "testScores": {
+        "sat": {
+          "composite": {
+            "p25": 1380,
+            "p50": 1460,
+            "p75": 1520
+          },
+          "readingWriting": {
+            "p25": 680,
+            "p50": 720,
+            "p75": 750
+          },
+          "math": {
+            "p25": 690,
+            "p50": 750,
+            "p75": 780
+          },
+          "submissionRate": 0.29
+        },
+        "act": {
+          "composite": {
+            "p25": 30,
+            "p50": 32,
+            "p75": 34
+          },
+          "submissionRate": 0.34
+        }
+      },
       "demographics": {
         "enrollment": {
           "total": 32496,
@@ -604,18 +708,45 @@
         "yield": 0.4545,
         "byGender": {
           "men": {
-            "applied": 0,
-            "admitted": 0,
+            "applied": 27899,
+            "admitted": 4256,
             "enrolled": 1752
           },
           "women": {
-            "applied": 0,
-            "admitted": 0,
+            "applied": 38636,
+            "admitted": 5953,
             "enrolled": 2888
           }
         }
       },
-      "testScores": {},
+      "testScores": {
+        "sat": {
+          "composite": {
+            "p25": 1400,
+            "p50": 1470,
+            "p75": 1530
+          },
+          "readingWriting": {
+            "p25": 690,
+            "p50": 730,
+            "p75": 750
+          },
+          "math": {
+            "p25": 700,
+            "p50": 750,
+            "p75": 780
+          },
+          "submissionRate": 0.28
+        },
+        "act": {
+          "composite": {
+            "p25": 28,
+            "p50": 31,
+            "p75": 34
+          },
+          "submissionRate": 0.41
+        }
+      },
       "demographics": {
         "enrollment": {
           "total": 32680,
@@ -650,6 +781,80 @@
         "averageAidPackage": 20705,
         "averageNeedBasedGrant": 19921,
         "percentNeedFullyMet": 0.6845
+      }
+    },
+    "2025-2026": {
+      "admissions": {
+        "applied": 76247,
+        "admitted": 12751,
+        "byGender": {
+          "men": {
+            "applied": 31665,
+            "admitted": 5305,
+            "enrolled": 1912
+          },
+          "women": {
+            "applied": 44582,
+            "admitted": 7446,
+            "enrolled": 3179
+          }
+        },
+        "enrolled": 5091,
+        "acceptanceRate": 0.1672,
+        "yield": 0.3993
+      },
+      "testScores": {
+        "sat": {
+          "composite": {
+            "p25": 1400,
+            "p50": 1470,
+            "p75": 1530
+          },
+          "readingWriting": {
+            "p25": 690,
+            "p50": 730,
+            "p75": 750
+          },
+          "math": {
+            "p25": 700,
+            "p50": 750,
+            "p75": 780
+          },
+          "submissionRate": 0.28
+        },
+        "act": {
+          "composite": {
+            "p25": 29,
+            "p50": 32,
+            "p75": 34
+          },
+          "submissionRate": 0.41
+        }
+      },
+      "demographics": {
+        "enrollment": {
+          "undergraduate": 22007,
+          "graduate": 12092,
+          "total": 34099
+        },
+        "byRace": {
+          "international": 1683,
+          "hispanicLatino": 2155,
+          "blackAfricanAmerican": 1421,
+          "white": 11232,
+          "asian": 3648,
+          "americanIndianAlaskaNative": 58,
+          "nativeHawaiianPacificIslander": 9,
+          "twoOrMoreRaces": 1104,
+          "unknown": 697
+        }
+      },
+      "costs": {},
+      "financialAid": {
+        "averageAidPackage": 24333,
+        "averageNeedBasedGrant": 23464,
+        "percentReceivingAid": 0.3113,
+        "percentNeedFullyMet": 0.6794
       }
     }
   }
