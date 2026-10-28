@@ -461,7 +461,10 @@
           }
         }
       },
-      "financialAid": {}
+      "financialAid": {
+        "averageAidPackage": 50261,
+        "averageNeedBasedGrant": 50261
+      }
     },
     "2022-2023": {
       "admissions": {
@@ -535,7 +538,10 @@
           "submissionRate": 0.18
         }
       },
-      "financialAid": {}
+      "financialAid": {
+        "averageAidPackage": 61621,
+        "averageNeedBasedGrant": 59183
+      }
     },
     "2023-2024": {
       "admissions": {

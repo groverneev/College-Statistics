@@ -105,7 +105,8 @@
         "percentReceivingAid": 0.41,
         "averageAidPackage": 44099,
         "averageNeedBasedGrant": 40290,
-        "percentNeedFullyMet": 1.0
+        "percentNeedFullyMet": 1.0,
+        "averageNetPrice": 26567
       }
     },
     "2018-2019": {
@@ -181,7 +182,8 @@
         "percentReceivingAid": 0.4178,
         "averageAidPackage": 45774,
         "averageNeedBasedGrant": 42240,
-        "percentNeedFullyMet": 1.0
+        "percentNeedFullyMet": 1.0,
+        "averageNetPrice": 28354
       }
     },
     "2019-2020": {
@@ -261,7 +263,8 @@
         "percentReceivingAid": 0.4221,
         "averageAidPackage": 47533,
         "averageNeedBasedGrant": 44337,
-        "percentNeedFullyMet": 1.0
+        "percentNeedFullyMet": 1.0,
+        "averageNetPrice": 30192
       }
     },
     "2020-2021": {
@@ -341,7 +344,8 @@
         "percentReceivingAid": 0.4066,
         "averageAidPackage": 49580,
         "averageNeedBasedGrant": 46777,
-        "percentNeedFullyMet": 1.0
+        "percentNeedFullyMet": 1.0,
+        "averageNetPrice": 30159
       }
     },
     "2021-2022": {
@@ -425,7 +429,8 @@
         "percentReceivingAid": 0.3949,
         "averageAidPackage": 50323,
         "averageNeedBasedGrant": 47465,
-        "percentNeedFullyMet": 1.0
+        "percentNeedFullyMet": 1.0,
+        "averageNetPrice": 30559
       }
     },
     "2022-2023": {
@@ -513,7 +518,8 @@
         "percentReceivingAid": 0.3908,
         "averageAidPackage": 52620,
         "averageNeedBasedGrant": 49758,
-        "percentNeedFullyMet": 1.0
+        "percentNeedFullyMet": 1.0,
+        "averageNetPrice": 32590
       }
     },
     "2023-2024": {
@@ -601,7 +607,8 @@
         "percentReceivingAid": 0.3893,
         "averageAidPackage": 56561,
         "averageNeedBasedGrant": 54109,
-        "percentNeedFullyMet": 1.0
+        "percentNeedFullyMet": 1.0,
+        "averageNetPrice": 32519
       }
     },
     "2024-2025": {
@@ -714,12 +721,19 @@
           "nativeHawaiianPacificIslander": 3,
           "twoOrMoreRaces": 280,
           "unknown": 380
+        },
+        "byResidency": {
+          "inState": 2223,
+          "outOfState": 6468,
+          "international": 618
         }
       },
       "costs": {
         "tuition": 50480
       },
-      "financialAid": {},
+      "financialAid": {
+        "averageNetPrice": 27299
+      },
       "testScores": {}
     },
     "2025-2026": {

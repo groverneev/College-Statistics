@@ -95,7 +95,8 @@
         "averageAidPackage": 13153,
         "averageNeedBasedGrant": 10140,
         "percentReceivingAid": 0.4751,
-        "percentNeedFullyMet": 0.2394
+        "percentNeedFullyMet": 0.2394,
+        "averageNetPrice": 16808
       }
     },
     "2017-2018": {
@@ -163,7 +164,8 @@
         "averageAidPackage": 13381,
         "averageNeedBasedGrant": 10444,
         "percentReceivingAid": 0.4779,
-        "percentNeedFullyMet": 0.219
+        "percentNeedFullyMet": 0.219,
+        "averageNetPrice": 16691
       }
     },
     "2018-2019": {
@@ -231,7 +233,8 @@
         "averageAidPackage": 13482,
         "averageNeedBasedGrant": 10672,
         "percentReceivingAid": 0.4661,
-        "percentNeedFullyMet": 0.2205
+        "percentNeedFullyMet": 0.2205,
+        "averageNetPrice": 17279
       }
     },
     "2019-2020": {
@@ -303,7 +306,8 @@
         "averageAidPackage": 14347,
         "averageNeedBasedGrant": 11235,
         "percentReceivingAid": 0.4552,
-        "percentNeedFullyMet": 0.2506
+        "percentNeedFullyMet": 0.2506,
+        "averageNetPrice": 17729
       }
     },
     "2020-2021": {
@@ -375,7 +379,8 @@
         "averageAidPackage": 14114,
         "averageNeedBasedGrant": 11555,
         "percentReceivingAid": 0.4422,
-        "percentNeedFullyMet": 0.2596
+        "percentNeedFullyMet": 0.2596,
+        "averageNetPrice": 17468
       }
     },
     "2021-2022": {
@@ -447,7 +452,8 @@
         "averageAidPackage": 15186,
         "averageNeedBasedGrant": 12419,
         "percentReceivingAid": 0.4492,
-        "percentNeedFullyMet": 0.2591
+        "percentNeedFullyMet": 0.2591,
+        "averageNetPrice": 16018
       }
     },
     "2022-2023": {
@@ -523,7 +529,8 @@
         "averageAidPackage": 16414,
         "averageNeedBasedGrant": 13570,
         "percentReceivingAid": 0.4569,
-        "percentNeedFullyMet": 0.271
+        "percentNeedFullyMet": 0.271,
+        "averageNetPrice": 16730
       }
     },
     "2023-2024": {
@@ -540,7 +547,11 @@
             "admitted": 16218,
             "applied": 20862
           }
-        }
+        },
+        "applied": 39763,
+        "admitted": 30645,
+        "acceptanceRate": 0.7707,
+        "yield": 0.2198
       },
       "testScores": {
         "sat": {
@@ -585,7 +596,8 @@
         "averageAidPackage": 17405,
         "averageNeedBasedGrant": 14537,
         "percentReceivingAid": 0.4716,
-        "percentNeedFullyMet": 0.2693
+        "percentNeedFullyMet": 0.2693,
+        "averageNetPrice": 17209
       }
     },
     "2024-2025": {

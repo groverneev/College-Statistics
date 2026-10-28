@@ -615,7 +615,12 @@
           "unknown": 100
         }
       },
-      "costs": {},
+      "costs": {
+        "tuition": 12259.5,
+        "fees": 2350,
+        "roomAndBoard": 21445,
+        "totalCOA": 36054.5
+      },
       "financialAid": {}
     },
     "2025-2026": {

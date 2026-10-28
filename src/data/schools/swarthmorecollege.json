@@ -555,7 +555,10 @@
           }
         }
       },
-      "financialAid": {}
+      "financialAid": {
+        "averageAidPackage": 62570,
+        "averageNeedBasedGrant": 60877
+      }
     },
     "2023-2024": {
       "admissions": {

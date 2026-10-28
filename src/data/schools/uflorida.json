@@ -691,6 +691,85 @@
         "averageNeedBasedGrant": 11236,
         "percentNeedFullyMet": 0.8279
       }
+    },
+    "2025-2026": {
+      "admissions": {
+        "applied": 90523,
+        "admitted": 18403,
+        "enrolled": 7619,
+        "byGender": {
+          "men": {
+            "applied": 40876,
+            "admitted": 8725,
+            "enrolled": 3526
+          },
+          "women": {
+            "applied": 49647,
+            "admitted": 9678,
+            "enrolled": 4093
+          }
+        },
+        "acceptanceRate": 0.2033,
+        "yield": 0.414
+      },
+      "testScores": {
+        "sat": {
+          "composite": {
+            "p25": 1330,
+            "p50": 1410,
+            "p75": 1490
+          },
+          "readingWriting": {
+            "p25": 670,
+            "p50": 700,
+            "p75": 740
+          },
+          "math": {
+            "p25": 660,
+            "p50": 710,
+            "p75": 750
+          },
+          "submissionRate": 0.78
+        },
+        "act": {
+          "composite": {
+            "p25": 29,
+            "p50": 32,
+            "p75": 33
+          },
+          "submissionRate": 0.39
+        }
+      },
+      "demographics": {
+        "enrollment": {
+          "undergraduate": 37283,
+          "graduate": 20118,
+          "total": 57401
+        },
+        "byRace": {
+          "international": 1067,
+          "hispanicLatino": 9399,
+          "blackAfricanAmerican": 1722,
+          "white": 17826,
+          "asian": 4749,
+          "americanIndianAlaskaNative": 26,
+          "nativeHawaiianPacificIslander": 20,
+          "twoOrMoreRaces": 1885,
+          "unknown": 589
+        }
+      },
+      "costs": {
+        "tuition": 4477,
+        "fees": 1959,
+        "roomAndBoard": 14190,
+        "totalCOA": 20626
+      },
+      "financialAid": {
+        "averageAidPackage": 20925,
+        "averageNeedBasedGrant": 15242,
+        "percentReceivingAid": 0.3441,
+        "percentNeedFullyMet": 0.5805
+      }
     }
   }
 }

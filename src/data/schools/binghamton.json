@@ -85,7 +85,8 @@
         "averageAidPackage": 13677,
         "averageNeedBasedGrant": 9356,
         "percentReceivingAid": 0.5163,
-        "percentNeedFullyMet": 0.1425
+        "percentNeedFullyMet": 0.1425,
+        "averageNetPrice": 16440
       }
     },
     "2018-2019": {
@@ -156,7 +157,8 @@
         "averageAidPackage": 14129,
         "averageNeedBasedGrant": 9655,
         "percentReceivingAid": 0.517,
-        "percentNeedFullyMet": 0.1864
+        "percentNeedFullyMet": 0.1864,
+        "averageNetPrice": 17424
       }
     },
     "2019-2020": {
@@ -229,7 +231,8 @@
         "averageAidPackage": 14458,
         "averageNeedBasedGrant": 9765,
         "percentReceivingAid": 0.5124,
-        "percentNeedFullyMet": 0.1933
+        "percentNeedFullyMet": 0.1933,
+        "averageNetPrice": 19061
       }
     },
     "2020-2021": {
@@ -304,7 +307,8 @@
         "averageAidPackage": 15341,
         "averageNeedBasedGrant": 10144,
         "percentReceivingAid": 0.5001,
-        "percentNeedFullyMet": 0.2475
+        "percentNeedFullyMet": 0.2475,
+        "averageNetPrice": 17881
       }
     },
     "2021-2022": {
@@ -381,7 +385,8 @@
         "averageAidPackage": 14974,
         "averageNeedBasedGrant": 10289,
         "percentReceivingAid": 0.5115,
-        "percentNeedFullyMet": 0.1866
+        "percentNeedFullyMet": 0.1866,
+        "averageNetPrice": 19535
       }
     },
     "2022-2023": {
@@ -462,7 +467,8 @@
         "averageAidPackage": 15561,
         "averageNeedBasedGrant": 10848,
         "percentReceivingAid": 0.5026,
-        "percentNeedFullyMet": 0.1487
+        "percentNeedFullyMet": 0.1487,
+        "averageNetPrice": 18860
       }
     },
     "2023-2024": {
@@ -545,7 +551,8 @@
         "averageAidPackage": 16454.91,
         "averageNeedBasedGrant": 11578.95,
         "percentReceivingAid": 0.513,
-        "percentNeedFullyMet": 0.1337
+        "percentNeedFullyMet": 0.1337,
+        "averageNetPrice": 18877
       }
     },
     "2024-2025": {
@@ -708,6 +715,18 @@
         "averageNeedBasedGrant": 12856,
         "percentReceivingAid": 0.4559,
         "percentNeedFullyMet": 0.202
+      }
+    },
+    "2016-2017": {
+      "admissions": {},
+      "testScores": {},
+      "demographics": {
+        "enrollment": {},
+        "byRace": {}
+      },
+      "costs": {},
+      "financialAid": {
+        "averageNetPrice": 16775
       }
     }
   }
