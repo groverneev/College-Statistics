@@ -318,7 +318,12 @@
           "unknown": 36
         }
       },
-      "costs": {},
+      "costs": {
+        "tuition": 58968,
+        "fees": 384,
+        "roomAndBoard": 15147,
+        "totalCOA": 74499
+      },
       "financialAid": {
         "averageAidPackage": 51761,
         "averageNeedBasedGrant": 44774,
@@ -392,7 +397,12 @@
           "unknown": 40
         }
       },
-      "costs": {},
+      "costs": {
+        "tuition": 59850,
+        "fees": 375,
+        "roomAndBoard": 15375,
+        "totalCOA": 75600
+      },
       "financialAid": {
         "averageAidPackage": 53497,
         "averageNeedBasedGrant": 46651,
@@ -466,7 +476,12 @@
           "unknown": 54
         }
       },
-      "costs": {},
+      "costs": {
+        "tuition": 62244,
+        "fees": 390,
+        "roomAndBoard": 15990,
+        "totalCOA": 78624
+      },
       "financialAid": {
         "averageAidPackage": 56478,
         "averageNeedBasedGrant": 49818,
@@ -544,7 +559,12 @@
           "unknown": 81
         }
       },
-      "costs": {},
+      "costs": {
+        "tuition": 65043,
+        "fees": 414,
+        "roomAndBoard": 16710,
+        "totalCOA": 82167
+      },
       "financialAid": {
         "averageAidPackage": 59993,
         "averageNeedBasedGrant": 53106,
@@ -622,7 +642,12 @@
           "unknown": 47
         }
       },
-      "costs": {},
+      "costs": {
+        "tuition": 68457,
+        "fees": 435,
+        "roomAndBoard": 17586,
+        "totalCOA": 86478
+      },
       "financialAid": {
         "averageAidPackage": 63948,
         "averageNeedBasedGrant": 56996,

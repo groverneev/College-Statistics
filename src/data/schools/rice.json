@@ -714,6 +714,89 @@
         "averageNeedBasedGrant": 66070,
         "percentNeedFullyMet": 0.9977
       }
+    },
+    "2025-2026": {
+      "admissions": {
+        "applied": 36791,
+        "admitted": 2948,
+        "enrolled": 1263,
+        "acceptanceRate": 0.0801,
+        "yield": 0.4284,
+        "byGender": {
+          "men": {
+            "applied": 19072,
+            "admitted": 1476,
+            "enrolled": 636
+          },
+          "women": {
+            "applied": 17712,
+            "admitted": 1472,
+            "enrolled": 627
+          }
+        },
+        "earlyDecision": {
+          "applied": 5748,
+          "admitted": 647
+        }
+      },
+      "testScores": {
+        "sat": {
+          "composite": {
+            "p25": 1510,
+            "p50": 1540,
+            "p75": 1560
+          },
+          "readingWriting": {
+            "p25": 740,
+            "p50": 760,
+            "p75": 770
+          },
+          "math": {
+            "p25": 760,
+            "p50": 790,
+            "p75": 800
+          },
+          "submissionRate": 0.59
+        },
+        "act": {
+          "composite": {
+            "p25": 34,
+            "p50": 35,
+            "p75": 36
+          },
+          "submissionRate": 0.24
+        }
+      },
+      "demographics": {
+        "enrollment": {
+          "total": 9071,
+          "undergraduate": 4807,
+          "graduate": 4264
+        },
+        "byRace": {
+          "international": 654,
+          "hispanicLatino": 775,
+          "blackAfricanAmerican": 361,
+          "white": 1164,
+          "americanIndianAlaskaNative": 7,
+          "asian": 1445,
+          "nativeHawaiianPacificIslander": 4,
+          "twoOrMoreRaces": 262,
+          "unknown": 135
+        }
+      },
+      "costs": {
+        "tuition": 71140,
+        "fees": 984,
+        "roomAndBoard": 20530,
+        "totalCOA": 92654
+      },
+      "financialAid": {
+        "percentReceivingAid": 0.445,
+        "averageAidPackage": 73489,
+        "averageNeedBasedGrant": 69521,
+        "percentNeedFullyMet": 0.9986
+      }
     }
   }
 }

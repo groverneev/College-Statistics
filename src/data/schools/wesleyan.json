@@ -89,7 +89,10 @@
           "unknown": 149
         }
       },
-      "costs": {},
+      "costs": {
+        "tuition": 52174,
+        "fees": 300
+      },
       "financialAid": {
         "averageAidPackage": 47077,
         "averageNeedBasedGrant": 42457,
@@ -160,7 +163,8 @@
         }
       },
       "costs": {
-        "fees": 300
+        "fees": 300,
+        "tuition": 54314
       },
       "financialAid": {
         "averageAidPackage": 51397,
@@ -231,7 +235,10 @@
           "unknown": 92
         }
       },
-      "costs": {},
+      "costs": {
+        "tuition": 56704,
+        "fees": 300
+      },
       "financialAid": {
         "averageAidPackage": 56471,
         "averageNeedBasedGrant": 50051,
@@ -713,7 +720,10 @@
           "unknown": 106
         }
       },
-      "costs": {},
+      "costs": {
+        "tuition": 72438,
+        "fees": 390
+      },
       "financialAid": {
         "averageAidPackage": 74808,
         "averageNeedBasedGrant": 70348,
