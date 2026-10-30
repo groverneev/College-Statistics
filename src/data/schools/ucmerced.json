@@ -126,6 +126,17 @@
             "p75": 23
           },
           "submissionRate": 0.49
+        },
+        "sat": {
+          "readingWriting": {
+            "p25": 500,
+            "p75": 580
+          },
+          "math": {
+            "p25": 500,
+            "p75": 590
+          },
+          "submissionRate": 0.94
         }
       },
       "demographics": {
@@ -146,7 +157,12 @@
           "unknown": 43
         }
       },
-      "costs": {},
+      "costs": {
+        "tuition": 11502,
+        "fees": 2096,
+        "roomAndBoard": 16790,
+        "totalCOA": 30388
+      },
       "financialAid": {}
     },
     "2018-2019": {

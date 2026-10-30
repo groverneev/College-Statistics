@@ -3,8 +3,8 @@
   "slug": "uwmadison",
   "profile": {
     "admissionsFactors": {
-      "sourceYear": "2024-2025",
-      "sourcePdf": "College-Data/UWisconsinMadison/CDS-2024-2025-TEMPLATE responses March 2025 (1).pdf",
+      "sourceYear": "2025-2026",
+      "sourcePdf": "College-Data/uwmadison/uwmadison-cds-2025-2026.xlsx",
       "section": "C7",
       "academic": {
         "rigorOfSecondarySchoolRecord": "very_important",
@@ -36,7 +36,7 @@
         "applied": 32887,
         "admitted": 17304,
         "enrolled": 6430,
-        "acceptanceRate": 0.526,
+        "acceptanceRate": 0.5262,
         "yield": 0.3716
       },
       "testScores": {
@@ -677,6 +677,73 @@
         "averageAidPackage": 25909,
         "averageNeedBasedGrant": 24442,
         "percentNeedFullyMet": 0.6423
+      }
+    },
+    "2025-2026": {
+      "admissions": {
+        "applied": 73912,
+        "admitted": 30167,
+        "enrolled": 8495,
+        "acceptanceRate": 0.4082,
+        "yield": 0.2816
+      },
+      "testScores": {
+        "sat": {
+          "composite": {
+            "p25": 1400,
+            "p50": 1450,
+            "p75": 1490
+          },
+          "readingWriting": {
+            "p25": 680,
+            "p50": 710,
+            "p75": 740
+          },
+          "math": {
+            "p25": 700,
+            "p50": 740,
+            "p75": 780
+          },
+          "submissionRate": 0.118
+        },
+        "act": {
+          "composite": {
+            "p25": 29,
+            "p50": 31,
+            "p75": 33
+          },
+          "submissionRate": 0.287
+        }
+      },
+      "demographics": {
+        "enrollment": {
+          "total": 51822,
+          "undergraduate": 39193,
+          "graduate": 12629
+        },
+        "byRace": {
+          "international": 3907,
+          "hispanicLatino": 3512,
+          "blackAfricanAmerican": 1105,
+          "white": 22975,
+          "asian": 4232,
+          "americanIndianAlaskaNative": 86,
+          "nativeHawaiianPacificIslander": 22,
+          "twoOrMoreRaces": 1862,
+          "unknown": 1492
+        }
+      },
+      "costs": {
+        "tuition": 10717,
+        "fees": 1699,
+        "roomAndBoard": 14994,
+        "totalCOA": 27410
+      },
+      "financialAid": {
+        "percentReceivingAid": 0.3117,
+        "averageAidPackage": 30639,
+        "averageNeedBasedGrant": 28227,
+        "percentNeedFullyMet": 0.716
       }
     }
   }

@@ -57,7 +57,11 @@
             "p25": 630,
             "p75": 720
           },
-          "submissionRate": 0.77
+          "submissionRate": 0.77,
+          "readingWriting": {
+            "p25": 570,
+            "p75": 680
+          }
         },
         "act": {
           "composite": {

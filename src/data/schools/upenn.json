@@ -3,8 +3,8 @@
   "slug": "upenn",
   "profile": {
     "admissionsFactors": {
-      "sourceYear": "2024-2025",
-      "sourcePdf": "College-Data/UPenn/UPenn-Common-Data-Set-2024-25-June-2025.pdf",
+      "sourceYear": "2025-2026",
+      "sourcePdf": "College-Data/upenn/upenn-cds-2025-2026.pdf",
       "section": "C7",
       "academic": {
         "rigorOfSecondarySchoolRecord": "very_important",
@@ -218,15 +218,15 @@
           "total": 22376
         },
         "byRace": {
-          "international": 1590,
-          "hispanicLatino": 1158,
-          "blackAfricanAmerican": 880,
-          "white": 4897,
-          "asian": 2367,
-          "americanIndianAlaskaNative": 12,
+          "international": 1320,
+          "hispanicLatino": 1065,
+          "blackAfricanAmerican": 757,
+          "white": 4157,
+          "asian": 2181,
+          "americanIndianAlaskaNative": 10,
           "nativeHawaiianPacificIslander": 6,
-          "twoOrMoreRaces": 553,
-          "unknown": 388
+          "twoOrMoreRaces": 469,
+          "unknown": 218
         },
         "byResidency": {
           "inState": 1633,
@@ -290,15 +290,15 @@
           "total": 22432
         },
         "byRace": {
-          "international": 1610,
-          "hispanicLatino": 1145,
-          "blackAfricanAmerican": 958,
-          "white": 4671,
-          "asian": 2466,
-          "americanIndianAlaskaNative": 13,
-          "nativeHawaiianPacificIslander": 6,
-          "twoOrMoreRaces": 579,
-          "unknown": 424
+          "international": 1347,
+          "hispanicLatino": 1014,
+          "blackAfricanAmerican": 770,
+          "white": 3860,
+          "asian": 2254,
+          "americanIndianAlaskaNative": 11,
+          "nativeHawaiianPacificIslander": 5,
+          "twoOrMoreRaces": 508,
+          "unknown": 250
         },
         "byResidency": {
           "inState": 1598,
@@ -362,15 +362,15 @@
           "total": 22436
         },
         "byRace": {
-          "international": 1324,
-          "hispanicLatino": 1116,
-          "blackAfricanAmerican": 890,
-          "white": 4252,
-          "asian": 2616,
-          "americanIndianAlaskaNative": 14,
+          "international": 1286,
+          "hispanicLatino": 1033,
+          "blackAfricanAmerican": 762,
+          "white": 3545,
+          "asian": 2433,
+          "americanIndianAlaskaNative": 13,
           "nativeHawaiianPacificIslander": 6,
-          "twoOrMoreRaces": 566,
-          "unknown": 371
+          "twoOrMoreRaces": 478,
+          "unknown": 316
         },
         "byResidency": {
           "inState": 1624,
@@ -676,6 +676,82 @@
         "percentReceivingAid": 0.46,
         "averageAidPackage": 77395,
         "averageNeedBasedGrant": 68578,
+        "percentNeedFullyMet": 1.0
+      }
+    },
+    "2025-2026": {
+      "admissions": {
+        "applied": 72544,
+        "admitted": 3570,
+        "enrolled": 2420,
+        "acceptanceRate": 0.0492,
+        "yield": 0.6779,
+        "byGender": {
+          "men": {
+            "applied": 34504,
+            "admitted": 1665
+          },
+          "women": {
+            "applied": 38023,
+            "admitted": 1905
+          }
+        },
+        "earlyDecision": {
+          "applied": 9503,
+          "admitted": 1266
+        }
+      },
+      "testScores": {
+        "sat": {
+          "readingWriting": {
+            "p25": 740,
+            "p50": 760,
+            "p75": 770
+          },
+          "math": {
+            "p25": 770,
+            "p50": 790,
+            "p75": 800
+          },
+          "submissionRate": 0.52
+        },
+        "act": {
+          "composite": {
+            "p25": 34,
+            "p50": 35,
+            "p75": 35
+          },
+          "submissionRate": 0.18
+        }
+      },
+      "demographics": {
+        "enrollment": {
+          "total": 24183,
+          "undergraduate": 9989,
+          "graduate": 14194
+        },
+        "byRace": {
+          "international": 1337,
+          "hispanicLatino": 1141,
+          "blackAfricanAmerican": 907,
+          "white": 2367,
+          "asian": 3039,
+          "americanIndianAlaskaNative": 14,
+          "nativeHawaiianPacificIslander": 5,
+          "twoOrMoreRaces": 543,
+          "unknown": 636
+        }
+      },
+      "costs": {
+        "tuition": 65670,
+        "fees": 8308,
+        "roomAndBoard": 20604,
+        "totalCOA": 94582
+      },
+      "financialAid": {
+        "percentReceivingAid": 0.4587,
+        "averageAidPackage": 73338,
+        "averageNeedBasedGrant": 70215,
         "percentNeedFullyMet": 1.0
       }
     }

@@ -158,7 +158,10 @@
         }
       },
       "costs": {
-        "tuition": 13058
+        "tuition": 13058,
+        "fees": 1632,
+        "roomAndBoard": 9910,
+        "totalCOA": 24600
       },
       "financialAid": {
         "averageAidPackage": 13381,
@@ -227,7 +230,10 @@
         }
       },
       "costs": {
-        "tuition": 13318
+        "tuition": 13318,
+        "fees": 1709,
+        "roomAndBoard": 10358,
+        "totalCOA": 25385
       },
       "financialAid": {
         "averageAidPackage": 13482,
@@ -300,7 +306,10 @@
         }
       },
       "costs": {
-        "tuition": 13318
+        "tuition": 13318,
+        "fees": 1709,
+        "roomAndBoard": 10358,
+        "totalCOA": 25385
       },
       "financialAid": {
         "averageAidPackage": 14347,
@@ -373,7 +382,10 @@
         }
       },
       "costs": {
-        "tuition": 13532
+        "tuition": 13532,
+        "fees": 1729,
+        "roomAndBoard": 11354,
+        "totalCOA": 26615
       },
       "financialAid": {
         "averageAidPackage": 14114,
@@ -446,7 +458,10 @@
         }
       },
       "costs": {
-        "tuition": 14006
+        "tuition": 14006,
+        "fees": 1926,
+        "roomAndBoard": 11894,
+        "totalCOA": 27826
       },
       "financialAid": {
         "averageAidPackage": 15186,
@@ -523,7 +538,10 @@
         }
       },
       "costs": {
-        "tuition": 14496
+        "tuition": 14496,
+        "fees": 1994,
+        "roomAndBoard": 12778,
+        "totalCOA": 29268
       },
       "financialAid": {
         "averageAidPackage": 16414,
@@ -587,10 +605,23 @@
           "graduate": 15334,
           "total": 54890
         },
-        "byRace": {}
+        "byRace": {
+          "international": 1918,
+          "hispanicLatino": 2588,
+          "blackAfricanAmerican": 3298,
+          "white": 23086,
+          "asian": 4942,
+          "americanIndianAlaskaNative": 144,
+          "nativeHawaiianPacificIslander": 20,
+          "twoOrMoreRaces": 1964,
+          "unknown": 1596
+        }
       },
       "costs": {
-        "tuition": 15148
+        "tuition": 15148,
+        "fees": 2063,
+        "roomAndBoard": 13606,
+        "totalCOA": 30817
       },
       "financialAid": {
         "averageAidPackage": 17405,
@@ -654,7 +685,17 @@
           "graduate": 15363,
           "total": 56666
         },
-        "byRace": {}
+        "byRace": {
+          "international": 2121,
+          "hispanicLatino": 2900,
+          "blackAfricanAmerican": 3844,
+          "white": 23206,
+          "asian": 5265,
+          "americanIndianAlaskaNative": 143,
+          "nativeHawaiianPacificIslander": 21,
+          "twoOrMoreRaces": 2114,
+          "unknown": 1689
+        }
       },
       "costs": {
         "tuition": 16132,

@@ -3,8 +3,8 @@
   "slug": "cornell",
   "profile": {
     "admissionsFactors": {
-      "sourceYear": "2024-2025",
-      "sourcePdf": "College-Data/Cornell/CDS-2024-2025.pdf",
+      "sourceYear": "2025-2026",
+      "sourcePdf": "College-Data/Cornell/cornell-cds-2025-2026.pdf",
       "section": "C7",
       "academic": {
         "rigorOfSecondarySchoolRecord": "very_important",
@@ -41,6 +41,18 @@
         "earlyDecision": {
           "applied": 4882,
           "admitted": 1340
+        },
+        "byGender": {
+          "men": {
+            "applied": 23578,
+            "admitted": 2865,
+            "enrolled": 1542
+          },
+          "women": {
+            "applied": 21387,
+            "admitted": 3472,
+            "enrolled": 1773
+          }
         }
       },
       "testScores": {
@@ -117,6 +129,18 @@
         "earlyDecision": {
           "applied": 5401,
           "admitted": 1393
+        },
+        "byGender": {
+          "men": {
+            "applied": 24867,
+            "admitted": 2734,
+            "enrolled": 1577
+          },
+          "women": {
+            "applied": 22172,
+            "admitted": 3228,
+            "enrolled": 1772
+          }
         }
       },
       "testScores": {
@@ -193,6 +217,18 @@
         "earlyDecision": {
           "applied": 6325,
           "admitted": 1549
+        },
+        "byGender": {
+          "men": {
+            "applied": 26342,
+            "admitted": 2432,
+            "enrolled": 1516
+          },
+          "women": {
+            "applied": 24982,
+            "admitted": 3016,
+            "enrolled": 1779
+          }
         }
       },
       "testScores": {
@@ -269,6 +305,16 @@
         "earlyDecision": {
           "applied": 6158,
           "admitted": 1397
+        },
+        "byGender": {
+          "men": {
+            "applied": 25582,
+            "admitted": 2402
+          },
+          "women": {
+            "applied": 23532,
+            "admitted": 2928
+          }
         }
       },
       "testScores": {
@@ -345,6 +391,18 @@
         "earlyDecision": {
           "applied": 6630,
           "admitted": 1594
+        },
+        "byGender": {
+          "men": {
+            "applied": 26848,
+            "admitted": 2457,
+            "enrolled": 1481
+          },
+          "women": {
+            "applied": 24652,
+            "admitted": 3057,
+            "enrolled": 1768
+          }
         }
       },
       "testScores": {
@@ -421,6 +479,16 @@
         "earlyDecision": {
           "applied": 9017,
           "admitted": 1930
+        },
+        "byGender": {
+          "men": {
+            "applied": 33488,
+            "admitted": 2613
+          },
+          "women": {
+            "applied": 33892,
+            "admitted": 3239
+          }
         }
       },
       "testScores": {
@@ -497,6 +565,18 @@
         "earlyDecision": {
           "applied": 9555,
           "admitted": 1831
+        },
+        "byGender": {
+          "men": {
+            "applied": 35492,
+            "admitted": 2317,
+            "enrolled": 1570
+          },
+          "women": {
+            "applied": 35672,
+            "admitted": 2851,
+            "enrolled": 1921
+          }
         }
       },
       "testScores": {
@@ -566,13 +646,25 @@
     "2023-2024": {
       "admissions": {
         "applied": 67846,
-        "admitted": 4482,
-        "enrolled": 2023,
-        "acceptanceRate": 0.0661,
-        "yield": 0.4514,
+        "admitted": 5358,
+        "enrolled": 3537,
+        "acceptanceRate": 0.079,
+        "yield": 0.6601,
         "earlyDecision": {
           "applied": 9515,
           "admitted": 1670
+        },
+        "byGender": {
+          "men": {
+            "applied": 33674,
+            "admitted": 2459,
+            "enrolled": 1643
+          },
+          "women": {
+            "applied": 34172,
+            "admitted": 2899,
+            "enrolled": 1894
+          }
         }
       },
       "testScores": {
@@ -649,6 +741,18 @@
         "earlyDecision": {
           "applied": 7218,
           "admitted": 670
+        },
+        "byGender": {
+          "men": {
+            "applied": 33387,
+            "admitted": 2529,
+            "enrolled": 1648
+          },
+          "women": {
+            "applied": 32195,
+            "admitted": 2987,
+            "enrolled": 1877
+          }
         }
       },
       "testScores": {
@@ -712,6 +816,87 @@
         "percentReceivingAid": 0.47,
         "averageAidPackage": 62720,
         "averageNeedBasedGrant": 57947,
+        "percentNeedFullyMet": 1.0
+      }
+    },
+    "2025-2026": {
+      "admissions": {
+        "applied": 72523,
+        "admitted": 6077,
+        "enrolled": 3827,
+        "acceptanceRate": 0.0838,
+        "yield": 0.6298,
+        "byGender": {
+          "men": {
+            "applied": 36834,
+            "admitted": 2794,
+            "enrolled": 1806
+          },
+          "women": {
+            "applied": 35687,
+            "admitted": 3282,
+            "enrolled": 2020
+          }
+        },
+        "earlyDecision": {
+          "applied": 10057,
+          "admitted": 1889
+        }
+      },
+      "testScores": {
+        "sat": {
+          "composite": {
+            "p25": 1490,
+            "p50": 1530,
+            "p75": 1550
+          },
+          "readingWriting": {
+            "p25": 730,
+            "p50": 750,
+            "p75": 770
+          },
+          "math": {
+            "p25": 770,
+            "p50": 790,
+            "p75": 800
+          }
+        },
+        "act": {
+          "composite": {
+            "p25": 33,
+            "p50": 34,
+            "p75": 35
+          }
+        }
+      },
+      "demographics": {
+        "enrollment": {
+          "undergraduate": 16138,
+          "graduate": 3803,
+          "total": 19941
+        },
+        "byRace": {
+          "international": 1677,
+          "hispanicLatino": 1967,
+          "blackAfricanAmerican": 934,
+          "white": 4887,
+          "americanIndianAlaskaNative": 24,
+          "asian": 4440,
+          "nativeHawaiianPacificIslander": 21,
+          "twoOrMoreRaces": 988,
+          "unknown": 1200
+        }
+      },
+      "costs": {
+        "tuition": 73946,
+        "fees": 1024,
+        "roomAndBoard": 21348,
+        "totalCOA": 96318
+      },
+      "financialAid": {
+        "percentReceivingAid": 0.4696,
+        "averageAidPackage": 67602,
+        "averageNeedBasedGrant": 63827,
         "percentNeedFullyMet": 1.0
       }
     }

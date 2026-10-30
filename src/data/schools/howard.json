@@ -559,6 +559,70 @@
         "percentNeedFullyMet": 0.0785
       }
     },
+    "2023-2024": {
+      "admissions": {
+        "applied": 30342,
+        "admitted": 10587,
+        "enrolled": 2268,
+        "byGender": {
+          "men": {
+            "applied": 8864,
+            "admitted": 2870,
+            "enrolled": 560
+          },
+          "women": {
+            "applied": 21478,
+            "admitted": 7717,
+            "enrolled": 1708
+          }
+        },
+        "acceptanceRate": 0.3489,
+        "yield": 0.2142
+      },
+      "testScores": {
+        "sat": {
+          "readingWriting": {
+            "p25": 560,
+            "p50": 620,
+            "p75": 660
+          },
+          "math": {
+            "p25": 540,
+            "p50": 580,
+            "p75": 638
+          },
+          "submissionRate": 0.27
+        },
+        "act": {
+          "composite": {
+            "p25": 22,
+            "p50": 25,
+            "p75": 28
+          },
+          "submissionRate": 0.1
+        }
+      },
+      "demographics": {
+        "enrollment": {
+          "undergraduate": 10190,
+          "graduate": 3226,
+          "total": 13416
+        },
+        "byRace": {
+          "international": 474,
+          "hispanicLatino": 664,
+          "blackAfricanAmerican": 6864,
+          "white": 28,
+          "asian": 298,
+          "americanIndianAlaskaNative": 36,
+          "nativeHawaiianPacificIslander": 11,
+          "twoOrMoreRaces": 494,
+          "unknown": 1321
+        }
+      },
+      "costs": {},
+      "financialAid": {}
+    },
     "2024-2025": {
       "admissions": {
         "byGender": {

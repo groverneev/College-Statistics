@@ -718,13 +718,67 @@
       }
     },
     "2016-2017": {
-      "admissions": {},
-      "testScores": {},
-      "demographics": {
-        "enrollment": {},
-        "byRace": {}
+      "admissions": {
+        "applied": 32139,
+        "admitted": 13056,
+        "enrolled": 2708,
+        "byGender": {
+          "men": {
+            "applied": 15214,
+            "admitted": 6245
+          },
+          "women": {
+            "applied": 16925,
+            "admitted": 6811
+          }
+        },
+        "acceptanceRate": 0.4062,
+        "yield": 0.2074
       },
-      "costs": {},
+      "testScores": {
+        "sat": {
+          "readingWriting": {
+            "p25": 600,
+            "p75": 690
+          },
+          "math": {
+            "p25": 630,
+            "p75": 710
+          },
+          "submissionRate": 0.97
+        },
+        "act": {
+          "composite": {
+            "p25": 28,
+            "p75": 31
+          },
+          "submissionRate": 0.44
+        }
+      },
+      "demographics": {
+        "enrollment": {
+          "total": 17292,
+          "undergraduate": 13632,
+          "graduate": 3660
+        },
+        "byRace": {
+          "international": 1287,
+          "hispanicLatino": 1447,
+          "blackAfricanAmerican": 712,
+          "white": 7701,
+          "asian": 1914,
+          "americanIndianAlaskaNative": 13,
+          "nativeHawaiianPacificIslander": 8,
+          "twoOrMoreRaces": 314,
+          "unknown": 236
+        }
+      },
+      "costs": {
+        "tuition": 6470,
+        "fees": 2801,
+        "roomAndBoard": 13590,
+        "totalCOA": 22861
+      },
       "financialAid": {
         "averageNetPrice": 16775
       }
