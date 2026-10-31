@@ -703,7 +703,9 @@
       "admissions": {
         "applied": 28956,
         "admitted": 9017,
-        "acceptanceRate": 0.3114
+        "acceptanceRate": 0.3114,
+        "enrolled": 2359,
+        "yield": 0.2616
       },
       "demographics": {
         "enrollment": {

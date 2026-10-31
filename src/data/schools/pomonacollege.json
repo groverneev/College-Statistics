@@ -99,7 +99,8 @@
         "averageAidPackage": 48034,
         "averageNeedBasedGrant": 46039,
         "percentReceivingAid": 0.5591,
-        "percentNeedFullyMet": 1.0
+        "percentNeedFullyMet": 1.0,
+        "averageNetPrice": 18427
       }
     },
     "2017-2018": {
@@ -174,7 +175,8 @@
         "averageAidPackage": 52173,
         "averageNeedBasedGrant": 50069,
         "percentNeedFullyMet": 1.0,
-        "percentReceivingAid": 0.5591
+        "percentReceivingAid": 0.5591,
+        "averageNetPrice": 16988
       }
     },
     "2018-2019": {
@@ -245,7 +247,8 @@
         }
       },
       "financialAid": {
-        "percentReceivingAid": 0.5864
+        "percentReceivingAid": 0.5864,
+        "averageNetPrice": 18500
       }
     },
     "2019-2020": {
@@ -320,7 +323,8 @@
         }
       },
       "financialAid": {
-        "percentReceivingAid": 0.5121
+        "percentReceivingAid": 0.5121,
+        "averageNetPrice": 30392
       }
     },
     "2020-2021": {
@@ -389,12 +393,18 @@
           "unknown": 60
         }
       },
-      "costs": {},
+      "costs": {
+        "tuition": 56284,
+        "fees": 402,
+        "roomAndBoard": 18524,
+        "totalCOA": 75210
+      },
       "financialAid": {
         "averageAidPackage": 58528,
         "averageNeedBasedGrant": 56395,
         "percentReceivingAid": 0.5504,
-        "percentNeedFullyMet": 1.0
+        "percentNeedFullyMet": 1.0,
+        "averageNetPrice": 17000
       }
     },
     "2021-2022": {
@@ -463,7 +473,8 @@
       },
       "financialAid": {
         "averageAidPackage": 50261,
-        "averageNeedBasedGrant": 50261
+        "averageNeedBasedGrant": 50261,
+        "averageNetPrice": 19962
       }
     },
     "2022-2023": {
@@ -540,7 +551,8 @@
       },
       "financialAid": {
         "averageAidPackage": 61621,
-        "averageNeedBasedGrant": 59183
+        "averageNeedBasedGrant": 59183,
+        "averageNetPrice": 17423
       }
     },
     "2023-2024": {
@@ -595,7 +607,8 @@
         "averageAidPackage": 67819,
         "averageNeedBasedGrant": 65925,
         "percentReceivingAid": 0.5583,
-        "percentNeedFullyMet": 1.0
+        "percentNeedFullyMet": 1.0,
+        "averageNetPrice": 19938
       },
       "testScores": {
         "sat": {

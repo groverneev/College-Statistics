@@ -99,7 +99,8 @@
         "averageAidPackage": 43352,
         "averageNeedBasedGrant": 41582,
         "percentReceivingAid": 0.4473,
-        "percentNeedFullyMet": 1.0
+        "percentNeedFullyMet": 1.0,
+        "averageNetPrice": 24447
       }
     },
     "2017-2018": {
@@ -174,7 +175,8 @@
         "averageAidPackage": 46562,
         "averageNeedBasedGrant": 44824,
         "percentReceivingAid": 0.4594,
-        "percentNeedFullyMet": 1.0
+        "percentNeedFullyMet": 1.0,
+        "averageNetPrice": 24831
       }
     },
     "2018-2019": {
@@ -225,7 +227,8 @@
         "averageAidPackage": 50611,
         "averageNeedBasedGrant": 48856,
         "percentReceivingAid": 0.5059,
-        "percentNeedFullyMet": 1.0
+        "percentNeedFullyMet": 1.0,
+        "averageNetPrice": 23808
       },
       "testScores": {
         "sat": {
@@ -296,7 +299,8 @@
         "averageAidPackage": 53004,
         "averageNeedBasedGrant": 51131,
         "percentReceivingAid": 0.494,
-        "percentNeedFullyMet": 1.0
+        "percentNeedFullyMet": 1.0,
+        "averageNetPrice": 25622
       },
       "testScores": {
         "sat": {
@@ -375,7 +379,8 @@
         "averageAidPackage": 50204,
         "averageNeedBasedGrant": 50204,
         "percentReceivingAid": 0.5097,
-        "percentNeedFullyMet": 1.0
+        "percentNeedFullyMet": 1.0,
+        "averageNetPrice": 26727
       },
       "testScores": {
         "sat": {
@@ -450,7 +455,8 @@
         "averageAidPackage": 58320,
         "averageNeedBasedGrant": 56360,
         "percentReceivingAid": 0.4913,
-        "percentNeedFullyMet": 1.0
+        "percentNeedFullyMet": 1.0,
+        "averageNetPrice": 22776
       },
       "testScores": {
         "sat": {
@@ -529,7 +535,8 @@
         "averageAidPackage": 62389,
         "averageNeedBasedGrant": 60558,
         "percentReceivingAid": 0.4902,
-        "percentNeedFullyMet": 1.0
+        "percentNeedFullyMet": 1.0,
+        "averageNetPrice": 23110
       },
       "testScores": {
         "sat": {
@@ -574,7 +581,9 @@
           "applied": 1572,
           "admitted": 276
         },
-        "acceptanceRate": 0.0802
+        "acceptanceRate": 0.0802,
+        "enrolled": 504,
+        "yield": 0.5734
       },
       "demographics": {
         "byRace": {
@@ -618,8 +627,19 @@
           }
         }
       },
-      "costs": {},
-      "financialAid": {}
+      "costs": {
+        "tuition": 64304,
+        "fees": 606,
+        "roomAndBoard": 17690,
+        "totalCOA": 82600
+      },
+      "financialAid": {
+        "percentReceivingAid": 0.5095,
+        "percentNeedFullyMet": 1.0,
+        "averageAidPackage": 65957,
+        "averageNeedBasedGrant": 64056,
+        "averageNetPrice": 22228
+      }
     },
     "2024-2025": {
       "admissions": {

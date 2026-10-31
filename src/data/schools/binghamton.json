@@ -379,7 +379,9 @@
       },
       "costs": {
         "tuition": 7070,
-        "fees": 3320
+        "fees": 3320,
+        "roomAndBoard": 17064,
+        "totalCOA": 27454
       },
       "financialAid": {
         "averageAidPackage": 14974,
@@ -461,7 +463,9 @@
       },
       "costs": {
         "tuition": 7070,
-        "fees": 3320
+        "fees": 3320,
+        "roomAndBoard": 17506,
+        "totalCOA": 27896
       },
       "financialAid": {
         "averageAidPackage": 15561,
@@ -627,7 +631,9 @@
       },
       "costs": {
         "tuition": 7070,
-        "fees": 3497
+        "fees": 3497,
+        "roomAndBoard": 18809,
+        "totalCOA": 29376
       },
       "financialAid": {
         "averageAidPackage": 19288,

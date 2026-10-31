@@ -97,7 +97,8 @@
         "averageAidPackage": 38742,
         "averageNeedBasedGrant": 33119,
         "percentReceivingAid": 0.6067,
-        "percentNeedFullyMet": 0.1928
+        "percentNeedFullyMet": 0.1928,
+        "averageNetPrice": 37648
       }
     },
     "2017-2018": {
@@ -165,7 +166,8 @@
         "averageAidPackage": 40405,
         "averageNeedBasedGrant": 34894,
         "percentReceivingAid": 0.5843,
-        "percentNeedFullyMet": 0.174
+        "percentNeedFullyMet": 0.174,
+        "averageNetPrice": 39308
       }
     },
     "2018-2019": {
@@ -233,7 +235,8 @@
         "averageAidPackage": 41327,
         "averageNeedBasedGrant": 37236,
         "percentReceivingAid": 0.5751,
-        "percentNeedFullyMet": 0.1603
+        "percentNeedFullyMet": 0.1603,
+        "averageNetPrice": 41006
       }
     },
     "2019-2020": {
@@ -291,12 +294,18 @@
         },
         "byRace": {}
       },
-      "costs": {},
+      "costs": {
+        "tuition": 55600,
+        "fees": 1412,
+        "roomAndBoard": 15954,
+        "totalCOA": 72966
+      },
       "financialAid": {
         "averageAidPackage": 42951,
         "averageNeedBasedGrant": 38809,
         "percentReceivingAid": 0.5565,
-        "percentNeedFullyMet": 0.1886
+        "percentNeedFullyMet": 0.1886,
+        "averageNetPrice": 40661
       }
     },
     "2020-2021": {
@@ -375,7 +384,8 @@
         "averageAidPackage": 42052,
         "averageNeedBasedGrant": 37412,
         "percentReceivingAid": 0.5518,
-        "percentNeedFullyMet": 0.776
+        "percentNeedFullyMet": 0.776,
+        "averageNetPrice": 40070
       }
     },
     "2021-2022": {
@@ -454,7 +464,8 @@
         "averageAidPackage": 33781,
         "averageNeedBasedGrant": 20968,
         "percentReceivingAid": 0.6429,
-        "percentNeedFullyMet": 0.3592
+        "percentNeedFullyMet": 0.3592,
+        "averageNetPrice": 39127
       }
     },
     "2022-2023": {
@@ -527,7 +538,8 @@
         "averageAidPackage": 49237,
         "averageNeedBasedGrant": 17068,
         "percentReceivingAid": 0.572,
-        "percentNeedFullyMet": 0.2002
+        "percentNeedFullyMet": 0.2002,
+        "averageNetPrice": 35940
       }
     },
     "2023-2024": {
@@ -610,7 +622,8 @@
         "averageAidPackage": 50265,
         "averageNeedBasedGrant": 16166,
         "percentReceivingAid": 0.5857,
-        "percentNeedFullyMet": 0.1954
+        "percentNeedFullyMet": 0.1954,
+        "averageNetPrice": 38887
       }
     },
     "2024-2025": {

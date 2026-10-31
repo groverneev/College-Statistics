@@ -49,7 +49,9 @@
         },
         "applied": 5705,
         "admitted": 1786,
-        "acceptanceRate": 0.3131
+        "acceptanceRate": 0.3131,
+        "enrolled": 355,
+        "yield": 0.1988
       },
       "testScores": {
         "sat": {
@@ -99,7 +101,8 @@
         "averageAidPackage": 45050,
         "averageNeedBasedGrant": 39915,
         "percentReceivingAid": 0.5292,
-        "percentNeedFullyMet": 0.8428
+        "percentNeedFullyMet": 0.8428,
+        "averageNetPrice": 32097
       }
     },
     "2017-2018": {
@@ -174,7 +177,8 @@
         "averageAidPackage": 43875,
         "averageNeedBasedGrant": 38994,
         "percentReceivingAid": 0.5221,
-        "percentNeedFullyMet": 0.8456
+        "percentNeedFullyMet": 0.8456,
+        "averageNetPrice": 31977
       }
     },
     "2018-2019": {
@@ -245,7 +249,8 @@
         "averageAidPackage": 44317,
         "averageNeedBasedGrant": 39913,
         "percentReceivingAid": 0.5186,
-        "percentNeedFullyMet": 1.0
+        "percentNeedFullyMet": 1.0,
+        "averageNetPrice": 32069
       }
     },
     "2019-2020": {
@@ -266,7 +271,9 @@
         },
         "applied": 5815,
         "admitted": 2295,
-        "acceptanceRate": 0.3947
+        "acceptanceRate": 0.3947,
+        "enrolled": 394,
+        "yield": 0.1717
       },
       "testScores": {
         "sat": {
@@ -308,13 +315,16 @@
       },
       "costs": {
         "tuition": 60310,
-        "fees": 310
+        "fees": 310,
+        "roomAndBoard": 14980,
+        "totalCOA": 75600
       },
       "financialAid": {
         "averageAidPackage": 43780,
         "averageNeedBasedGrant": 39742,
         "percentReceivingAid": 0.5523,
-        "percentNeedFullyMet": 0.9949
+        "percentNeedFullyMet": 0.9949,
+        "averageNetPrice": 33980
       }
     },
     "2020-2021": {
@@ -335,7 +345,9 @@
         },
         "applied": 5647,
         "admitted": 2391,
-        "acceptanceRate": 0.4234
+        "acceptanceRate": 0.4234,
+        "enrolled": 365,
+        "yield": 0.1527
       },
       "testScores": {
         "sat": {
@@ -377,13 +389,16 @@
       },
       "costs": {
         "tuition": 62420,
-        "fees": 310
+        "fees": 310,
+        "roomAndBoard": 15280,
+        "totalCOA": 78010
       },
       "financialAid": {
         "averageAidPackage": 47008,
         "averageNeedBasedGrant": 43053,
         "percentReceivingAid": 0.5359,
-        "percentNeedFullyMet": 1.0
+        "percentNeedFullyMet": 1.0,
+        "averageNetPrice": 33056
       }
     },
     "2021-2022": {
@@ -459,7 +474,8 @@
         "averageAidPackage": 49137,
         "averageNeedBasedGrant": 45237,
         "percentReceivingAid": 0.5731,
-        "percentNeedFullyMet": 0.9965
+        "percentNeedFullyMet": 0.9965,
+        "averageNetPrice": 33106
       }
     },
     "2022-2023": {
@@ -480,7 +496,9 @@
         },
         "applied": 9023,
         "admitted": 2779,
-        "acceptanceRate": 0.308
+        "acceptanceRate": 0.308,
+        "enrolled": 394,
+        "yield": 0.1418
       },
       "testScores": {
         "sat": {
@@ -538,7 +556,8 @@
         "averageAidPackage": 50518,
         "averageNeedBasedGrant": 46643,
         "percentReceivingAid": 0.5457,
-        "percentNeedFullyMet": 1.0
+        "percentNeedFullyMet": 1.0,
+        "averageNetPrice": 36993
       }
     },
     "2023-2024": {
@@ -617,13 +636,16 @@
       },
       "costs": {
         "tuition": 69040,
-        "fees": 310
+        "fees": 310,
+        "roomAndBoard": 17260,
+        "totalCOA": 86610
       },
       "financialAid": {
         "averageAidPackage": 54355,
         "averageNeedBasedGrant": 50413,
         "percentReceivingAid": 0.5894,
-        "percentNeedFullyMet": 1.0
+        "percentNeedFullyMet": 1.0,
+        "averageNetPrice": 30953
       }
     },
     "2024-2025": {
@@ -777,7 +799,9 @@
       },
       "costs": {
         "tuition": 73960,
-        "fees": 310
+        "fees": 310,
+        "roomAndBoard": 18470,
+        "totalCOA": 92740
       },
       "financialAid": {
         "averageAidPackage": 57320,

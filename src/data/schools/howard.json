@@ -95,7 +95,8 @@
         "averageAidPackage": 14601,
         "averageNeedBasedGrant": 9264,
         "percentReceivingAid": 0.7724,
-        "percentNeedFullyMet": 0.0677
+        "percentNeedFullyMet": 0.0677,
+        "averageNetPrice": 21061
       }
     },
     "2017-2018": {
@@ -162,7 +163,9 @@
         "roomAndBoard": 13895,
         "totalCOA": 40951
       },
-      "financialAid": {}
+      "financialAid": {
+        "averageNetPrice": 19196
+      }
     },
     "2018-2019": {
       "admissions": {
@@ -232,7 +235,8 @@
         "averageAidPackage": 7796,
         "averageNeedBasedGrant": 4960,
         "percentReceivingAid": 0.7627,
-        "percentNeedFullyMet": 0.0048
+        "percentNeedFullyMet": 0.0048,
+        "averageNetPrice": 21428
       }
     },
     "2019-2020": {
@@ -307,7 +311,8 @@
         "averageAidPackage": 22191,
         "averageNeedBasedGrant": 7778,
         "percentReceivingAid": 0.808,
-        "percentNeedFullyMet": 0.0478
+        "percentNeedFullyMet": 0.0478,
+        "averageNetPrice": 23233
       }
     },
     "2020-2021": {
@@ -390,7 +395,8 @@
         "averageAidPackage": 23224,
         "averageNeedBasedGrant": 14040,
         "percentReceivingAid": 0.8526,
-        "percentNeedFullyMet": 0.2019
+        "percentNeedFullyMet": 0.2019,
+        "averageNetPrice": 26870
       }
     },
     "2021-2022": {
@@ -473,7 +479,8 @@
         "averageAidPackage": 23795,
         "averageNeedBasedGrant": 12351,
         "percentReceivingAid": 0.8346,
-        "percentNeedFullyMet": 0.2864
+        "percentNeedFullyMet": 0.2864,
+        "averageNetPrice": 28279
       }
     },
     "2022-2023": {
@@ -556,7 +563,8 @@
         "averageAidPackage": 24438,
         "averageNeedBasedGrant": 11430,
         "percentReceivingAid": 0.8075,
-        "percentNeedFullyMet": 0.0785
+        "percentNeedFullyMet": 0.0785,
+        "averageNetPrice": 30028
       }
     },
     "2023-2024": {
@@ -621,7 +629,9 @@
         }
       },
       "costs": {},
-      "financialAid": {}
+      "financialAid": {
+        "averageNetPrice": 33368
+      }
     },
     "2024-2025": {
       "admissions": {

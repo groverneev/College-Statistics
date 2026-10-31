@@ -49,7 +49,9 @@
         },
         "applied": 25000,
         "admitted": 17718,
-        "acceptanceRate": 0.7087
+        "acceptanceRate": 0.7087,
+        "enrolled": 5929,
+        "yield": 0.3346
       },
       "testScores": {
         "sat": {
@@ -114,7 +116,9 @@
         },
         "applied": 27423,
         "admitted": 19212,
-        "acceptanceRate": 0.7006
+        "acceptanceRate": 0.7006,
+        "enrolled": 6836,
+        "yield": 0.3558
       },
       "testScores": {
         "sat": {
@@ -186,7 +190,9 @@
         },
         "applied": 31936,
         "admitted": 20709,
-        "acceptanceRate": 0.6485
+        "acceptanceRate": 0.6485,
+        "enrolled": 6285,
+        "yield": 0.3035
       },
       "testScores": {
         "sat": {
@@ -410,7 +416,9 @@
         },
         "applied": 42054,
         "admitted": 23746,
-        "acceptanceRate": 0.5647
+        "acceptanceRate": 0.5647,
+        "enrolled": 6758,
+        "yield": 0.2846
       },
       "testScores": {
         "sat": {
@@ -531,7 +539,9 @@
       },
       "costs": {
         "tuition": 12698,
-        "fees": 2780
+        "fees": 2780,
+        "roomAndBoard": 14888,
+        "totalCOA": 30366
       },
       "financialAid": {
         "averageAidPackage": 12805,

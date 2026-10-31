@@ -112,7 +112,8 @@
         "percentReceivingAid": 0.5042,
         "averageAidPackage": 12192,
         "averageNeedBasedGrant": 9771,
-        "percentNeedFullyMet": 0.126
+        "percentNeedFullyMet": 0.126,
+        "averageNetPrice": 24040
       }
     },
     "2018-2019": {
@@ -196,7 +197,8 @@
         "percentReceivingAid": 0.5023,
         "averageAidPackage": 12078,
         "averageNeedBasedGrant": 9903,
-        "percentNeedFullyMet": 0.1262
+        "percentNeedFullyMet": 0.1262,
+        "averageNetPrice": 22600
       }
     },
     "2019-2020": {
@@ -280,7 +282,8 @@
         "percentReceivingAid": 0.4987,
         "averageAidPackage": 12362,
         "averageNeedBasedGrant": 10519,
-        "percentNeedFullyMet": 0.0948
+        "percentNeedFullyMet": 0.0948,
+        "averageNetPrice": 22346
       }
     },
     "2020-2021": {
@@ -364,7 +367,8 @@
         "percentReceivingAid": 0.4902,
         "averageAidPackage": 14449,
         "averageNeedBasedGrant": 12859,
-        "percentNeedFullyMet": 0.1346
+        "percentNeedFullyMet": 0.1346,
+        "averageNetPrice": 22996
       }
     },
     "2021-2022": {
@@ -448,7 +452,8 @@
         "percentReceivingAid": 0.4807,
         "averageAidPackage": 15340,
         "averageNeedBasedGrant": 13820,
-        "percentNeedFullyMet": 0.1189
+        "percentNeedFullyMet": 0.1189,
+        "averageNetPrice": 24286
       }
     },
     "2022-2023": {
@@ -532,7 +537,8 @@
         "percentReceivingAid": 0.4729,
         "averageAidPackage": 16364,
         "averageNeedBasedGrant": 14700,
-        "percentNeedFullyMet": 0.0967
+        "percentNeedFullyMet": 0.0967,
+        "averageNetPrice": 24338
       }
     },
     "2023-2024": {
@@ -616,7 +622,8 @@
         "percentReceivingAid": 0.4631,
         "averageAidPackage": 17467,
         "averageNeedBasedGrant": 15444,
-        "percentNeedFullyMet": 0.1339
+        "percentNeedFullyMet": 0.1339,
+        "averageNetPrice": 25223
       }
     },
     "2024-2025": {

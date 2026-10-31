@@ -101,7 +101,8 @@
         "averageAidPackage": 47255,
         "averageNeedBasedGrant": 45536,
         "percentReceivingAid": 0.5362,
-        "percentNeedFullyMet": 1.0
+        "percentNeedFullyMet": 1.0,
+        "averageNetPrice": 20444
       }
     },
     "2017-2018": {
@@ -179,7 +180,8 @@
         "averageAidPackage": 50361,
         "averageNeedBasedGrant": 48661,
         "percentReceivingAid": 0.5556,
-        "percentNeedFullyMet": 1.0
+        "percentNeedFullyMet": 1.0,
+        "averageNetPrice": 19446
       }
     },
     "2018-2019": {
@@ -257,7 +259,8 @@
         "averageAidPackage": 52814,
         "averageNeedBasedGrant": 51079,
         "percentReceivingAid": 0.5551,
-        "percentNeedFullyMet": 1.0
+        "percentNeedFullyMet": 1.0,
+        "averageNetPrice": 19759
       }
     },
     "2019-2020": {
@@ -307,7 +310,8 @@
       "financialAid": {
         "averageAidPackage": 56923,
         "percentReceivingAid": 0.5564,
-        "percentNeedFullyMet": 1.0
+        "percentNeedFullyMet": 1.0,
+        "averageNetPrice": 20360
       },
       "testScores": {
         "sat": {
@@ -406,7 +410,9 @@
           }
         }
       },
-      "financialAid": {}
+      "financialAid": {
+        "averageNetPrice": 19733
+      }
     },
     "2021-2022": {
       "admissions": {
@@ -480,7 +486,9 @@
           }
         }
       },
-      "financialAid": {}
+      "financialAid": {
+        "averageNetPrice": 20715
+      }
     },
     "2022-2023": {
       "admissions": {
@@ -557,7 +565,8 @@
       },
       "financialAid": {
         "averageAidPackage": 62570,
-        "averageNeedBasedGrant": 60877
+        "averageNeedBasedGrant": 60877,
+        "averageNetPrice": 17930
       }
     },
     "2023-2024": {
@@ -640,7 +649,8 @@
         "averageAidPackage": 66335,
         "averageNeedBasedGrant": 64332,
         "percentReceivingAid": 0.5212,
-        "percentNeedFullyMet": 1.0
+        "percentNeedFullyMet": 1.0,
+        "averageNetPrice": 22469
       }
     },
     "2024-2025": {

@@ -99,7 +99,8 @@
         "averageAidPackage": 51775,
         "averageNeedBasedGrant": 50380,
         "percentReceivingAid": 0.5518,
-        "percentNeedFullyMet": 1.0
+        "percentNeedFullyMet": 1.0,
+        "averageNetPrice": 19519
       }
     },
     "2017-2018": {
@@ -174,7 +175,8 @@
         "averageAidPackage": 53052,
         "averageNeedBasedGrant": 51841,
         "percentReceivingAid": 0.5704,
-        "percentNeedFullyMet": 1.0
+        "percentNeedFullyMet": 1.0,
+        "averageNetPrice": 19275
       }
     },
     "2018-2019": {
@@ -249,7 +251,8 @@
         "averageAidPackage": 55908,
         "averageNeedBasedGrant": 54715,
         "percentReceivingAid": 0.5611,
-        "percentNeedFullyMet": 1.0
+        "percentNeedFullyMet": 1.0,
+        "averageNetPrice": 16339
       }
     },
     "2019-2020": {
@@ -328,7 +331,8 @@
         "averageAidPackage": 58806,
         "averageNeedBasedGrant": 57760,
         "percentReceivingAid": 0.5742,
-        "percentNeedFullyMet": 1.0
+        "percentNeedFullyMet": 1.0,
+        "averageNetPrice": 18832
       }
     },
     "2020-2021": {
@@ -407,7 +411,8 @@
         "averageAidPackage": 59616,
         "averageNeedBasedGrant": 59695,
         "percentReceivingAid": 0.6115,
-        "percentNeedFullyMet": 1.0
+        "percentNeedFullyMet": 1.0,
+        "averageNetPrice": 18809
       }
     },
     "2021-2022": {
@@ -486,7 +491,8 @@
         "averageAidPackage": 62071,
         "averageNeedBasedGrant": 60767,
         "percentReceivingAid": 0.5867,
-        "percentNeedFullyMet": 1.0
+        "percentNeedFullyMet": 1.0,
+        "averageNetPrice": 21367
       }
     },
     "2022-2023": {
@@ -569,7 +575,8 @@
         "averageAidPackage": 67375,
         "averageNeedBasedGrant": 66393,
         "percentReceivingAid": 0.5627,
-        "percentNeedFullyMet": 1.0
+        "percentNeedFullyMet": 1.0,
+        "averageNetPrice": 17965
       }
     },
     "2023-2024": {
@@ -651,7 +658,8 @@
         "averageAidPackage": 67881,
         "averageNeedBasedGrant": 68051,
         "percentReceivingAid": 0.5701,
-        "percentNeedFullyMet": 1.0
+        "percentNeedFullyMet": 1.0,
+        "averageNetPrice": 19049
       }
     },
     "2024-2025": {
