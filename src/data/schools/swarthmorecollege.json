@@ -566,7 +566,9 @@
       "financialAid": {
         "averageAidPackage": 62570,
         "averageNeedBasedGrant": 60877,
-        "averageNetPrice": 17930
+        "averageNetPrice": 17930,
+        "percentReceivingAid": 0.5139,
+        "percentNeedFullyMet": 1.0
       }
     },
     "2023-2024": {

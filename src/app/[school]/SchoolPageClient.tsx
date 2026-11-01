@@ -78,6 +78,7 @@ export default function SchoolPageClient({
   const years = Object.keys(schoolData.years).sort();
   const latestYear = years[years.length - 1];
   const latestData = schoolData.years[latestYear];
+  const latestSat = latestData.testScores.sat;
   const yearRange = `${years[0].split("-")[0]}-${years[years.length - 1].split("-")[1]}`;
   const admissionsFactors = schoolData.profile?.admissionsFactors;
   const academicFactors: AdmissionsFactorRow[] = admissionsFactors
@@ -204,10 +205,21 @@ export default function SchoolPageClient({
           <div className="stat-card">
             <div className="label">SAT Middle 50%</div>
             <div className="value">
-              {typeof latestData.testScores.sat?.composite?.p25 === "number" &&
-              typeof latestData.testScores.sat.composite.p75 === "number"
-                ? `${latestData.testScores.sat.composite.p25}-${latestData.testScores.sat.composite.p75}`
-                : "N/A"}
+              {typeof latestSat?.composite?.p25 === "number" &&
+              typeof latestSat.composite.p75 === "number" ? (
+                `${latestSat.composite.p25}-${latestSat.composite.p75}`
+              ) : typeof latestSat?.readingWriting?.p25 === "number" &&
+                typeof latestSat.readingWriting.p75 === "number" &&
+                typeof latestSat.math?.p25 === "number" &&
+                typeof latestSat.math.p75 === "number" ? (
+                <span className="block text-base sm:text-lg leading-snug">
+                  R&amp;W {latestSat.readingWriting.p25}-{latestSat.readingWriting.p75}
+                  <br />
+                  Math {latestSat.math.p25}-{latestSat.math.p75}
+                </span>
+              ) : (
+                "N/A"
+              )}
             </div>
             <div className="subtext">{latestYear}</div>
           </div>

@@ -164,7 +164,11 @@
         "totalCOA": 72500
       },
       "financialAid": {
-        "averageNetPrice": 36254
+        "averageNetPrice": 36254,
+        "percentReceivingAid": 0.5243,
+        "percentNeedFullyMet": 0.9242,
+        "averageAidPackage": 51250,
+        "averageNeedBasedGrant": 47250
       }
     },
     "2020-2021": {
@@ -232,10 +236,6 @@
         "totalCOA": 75305
       },
       "financialAid": {
-        "averageAidPackage": 51250,
-        "averageNeedBasedGrant": 47250,
-        "percentReceivingAid": 0.5243,
-        "percentNeedFullyMet": 0.9242,
         "averageNetPrice": 40125
       }
     },

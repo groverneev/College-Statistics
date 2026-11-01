@@ -617,7 +617,12 @@
           "unknown": 436
         }
       },
-      "costs": {},
+      "costs": {
+        "tuition": 66312,
+        "fees": 2030,
+        "roomAndBoard": 26358,
+        "totalCOA": 94700
+      },
       "financialAid": {
         "averageAidPackage": 56585,
         "averageNeedBasedGrant": 47989,

@@ -736,7 +736,17 @@
           "graduate": 8953,
           "total": 16406
         },
-        "byRace": {}
+        "byRace": {
+          "international": 1432,
+          "hispanicLatino": 1181,
+          "blackAfricanAmerican": 445,
+          "white": 2136,
+          "americanIndianAlaskaNative": 3,
+          "asian": 1476,
+          "nativeHawaiianPacificIslander": 1,
+          "twoOrMoreRaces": 514,
+          "unknown": 250
+        }
       },
       "costs": {
         "tuition": 75960,
