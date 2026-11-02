@@ -73,7 +73,17 @@
           "graduate": 9541,
           "total": 28664
         },
-        "byRace": {}
+        "byRace": {
+          "international": 715,
+          "hispanicLatino": 669,
+          "blackAfricanAmerican": 1014,
+          "white": 13876,
+          "asian": 1888,
+          "americanIndianAlaskaNative": 14,
+          "nativeHawaiianPacificIslander": 8,
+          "twoOrMoreRaces": 717,
+          "unknown": 222
+        }
       },
       "costs": {
         "tuition": 18130,
@@ -85,7 +95,8 @@
         "averageAidPackage": 12286,
         "averageNeedBasedGrant": 9289,
         "percentReceivingAid": 0.5138,
-        "percentNeedFullyMet": 0.1227
+        "percentNeedFullyMet": 0.1227,
+        "averageNetPrice": 22848
       }
     },
     "2017-2018": {

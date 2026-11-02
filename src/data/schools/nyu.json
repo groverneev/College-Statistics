@@ -792,7 +792,9 @@
           "unknown": 1303
         }
       },
-      "costs": {},
+      "costs": {
+        "roomAndBoard": 26438
+      },
       "financialAid": {
         "averageAidPackage": 64101,
         "averageNeedBasedGrant": 56510,
