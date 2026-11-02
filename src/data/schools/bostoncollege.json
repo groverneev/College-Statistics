@@ -705,7 +705,19 @@
         "admitted": 9017,
         "acceptanceRate": 0.3114,
         "enrolled": 2359,
-        "yield": 0.2616
+        "yield": 0.2616,
+        "byGender": {
+          "men": {
+            "applied": 12218,
+            "admitted": 4066,
+            "enrolled": 1056
+          },
+          "women": {
+            "applied": 16738,
+            "admitted": 4951,
+            "enrolled": 1303
+          }
+        }
       },
       "demographics": {
         "enrollment": {
@@ -742,7 +754,17 @@
       "admissions": {
         "applied": 39686,
         "enrolled": 2479,
-        "acceptanceRate": 0.14
+        "acceptanceRate": 0.1385,
+        "admitted": 5497,
+        "yield": 0.451,
+        "byGender": {
+          "men": {
+            "enrolled": 1150
+          },
+          "women": {
+            "enrolled": 1329
+          }
+        }
       },
       "testScores": {
         "sat": {
@@ -759,8 +781,22 @@
         }
       },
       "demographics": {
-        "enrollment": {},
-        "byRace": {}
+        "enrollment": {
+          "total": 14830,
+          "undergraduate": 9677,
+          "graduate": 5153
+        },
+        "byRace": {
+          "international": 704,
+          "hispanicLatino": 1201,
+          "blackAfricanAmerican": 454,
+          "white": 5458,
+          "asian": 1126,
+          "americanIndianAlaskaNative": 4,
+          "nativeHawaiianPacificIslander": 10,
+          "twoOrMoreRaces": 552,
+          "unknown": 168
+        }
       },
       "costs": {
         "tuition": 72180,

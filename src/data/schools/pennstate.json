@@ -312,7 +312,8 @@
         "averageAidPackage": 11497,
         "averageNeedBasedGrant": 6755,
         "percentReceivingAid": 0.4326,
-        "percentNeedFullyMet": 0.3218
+        "percentNeedFullyMet": 0.3218,
+        "averageNetPrice": 28204
       }
     },
     "2020-2021": {
@@ -388,7 +389,8 @@
         "percentReceivingAid": 0.4199,
         "averageAidPackage": 11729,
         "averageNeedBasedGrant": 7653,
-        "percentNeedFullyMet": 0.3135
+        "percentNeedFullyMet": 0.3135,
+        "averageNetPrice": 26291
       }
     },
     "2021-2022": {

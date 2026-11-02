@@ -72,8 +72,22 @@
         }
       },
       "demographics": {
-        "enrollment": {},
-        "byRace": {}
+        "enrollment": {
+          "total": 17351,
+          "undergraduate": 13737,
+          "graduate": 3614
+        },
+        "byRace": {
+          "international": 1147,
+          "hispanicLatino": 1545,
+          "blackAfricanAmerican": 714,
+          "white": 7877,
+          "asian": 1916,
+          "americanIndianAlaskaNative": 10,
+          "nativeHawaiianPacificIslander": 9,
+          "twoOrMoreRaces": 294,
+          "unknown": 225
+        }
       },
       "costs": {
         "tuition": 6670,
@@ -194,13 +208,15 @@
           "math": {
             "p25": 650,
             "p75": 740
-          }
+          },
+          "submissionRate": 0.91
         },
         "act": {
           "composite": {
             "p25": 29,
             "p75": 32
-          }
+          },
+          "submissionRate": 0.36
         }
       },
       "demographics": {
@@ -733,11 +749,13 @@
         "byGender": {
           "men": {
             "applied": 15214,
-            "admitted": 6245
+            "admitted": 6245,
+            "enrolled": 1370
           },
           "women": {
             "applied": 16925,
-            "admitted": 6811
+            "admitted": 6811,
+            "enrolled": 1328
           }
         },
         "acceptanceRate": 0.4062,

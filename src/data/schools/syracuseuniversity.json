@@ -679,18 +679,21 @@
         "sat": {
           "readingWriting": {
             "p25": 640,
-            "p75": 720
+            "p75": 720,
+            "p50": 680
           },
           "math": {
             "p25": 630,
-            "p75": 720
+            "p75": 720,
+            "p50": 680
           },
           "submissionRate": 0.22
         },
         "act": {
           "composite": {
             "p25": 29,
-            "p75": 32
+            "p75": 32,
+            "p50": 31
           },
           "submissionRate": 0.09
         }

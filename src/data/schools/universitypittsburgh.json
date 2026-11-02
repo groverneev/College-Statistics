@@ -31,6 +31,63 @@
     }
   },
   "years": {
+    "2016-2017": {
+      "admissions": {
+        "byGender": {
+          "men": {
+            "applied": 13158,
+            "admitted": 7252,
+            "enrolled": 1776
+          },
+          "women": {
+            "applied": 16017,
+            "admitted": 8913,
+            "enrolled": 2178
+          }
+        },
+        "applied": 29175,
+        "admitted": 16165,
+        "enrolled": 3954,
+        "acceptanceRate": 0.5541,
+        "yield": 0.2446
+      },
+      "testScores": {
+        "sat": {
+          "math": {
+            "p25": 600,
+            "p75": 700
+          },
+          "submissionRate": 0.8
+        },
+        "act": {
+          "composite": {
+            "p25": 27,
+            "p75": 32
+          },
+          "submissionRate": 0.5
+        }
+      },
+      "demographics": {
+        "enrollment": {
+          "undergraduate": 19123,
+          "graduate": 9541,
+          "total": 28664
+        },
+        "byRace": {}
+      },
+      "costs": {
+        "tuition": 18130,
+        "fees": 950,
+        "roomAndBoard": 10950,
+        "totalCOA": 30030
+      },
+      "financialAid": {
+        "averageAidPackage": 12286,
+        "averageNeedBasedGrant": 9289,
+        "percentReceivingAid": 0.5138,
+        "percentNeedFullyMet": 0.1227
+      }
+    },
     "2017-2018": {
       "admissions": {
         "applied": 27679,

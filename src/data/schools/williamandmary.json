@@ -538,6 +538,10 @@
             "admitted": 3398,
             "enrolled": 917
           }
+        },
+        "earlyDecision": {
+          "applied": 1247,
+          "admitted": 620
         }
       },
       "testScores": {
@@ -623,6 +627,10 @@
             "admitted": 3269,
             "enrolled": 957
           }
+        },
+        "earlyDecision": {
+          "applied": 1460,
+          "admitted": 664
         }
       },
       "testScores": {
@@ -708,6 +716,10 @@
             "admitted": 3544,
             "enrolled": 971
           }
+        },
+        "earlyDecision": {
+          "applied": 1586,
+          "admitted": 746
         }
       },
       "testScores": {
@@ -792,6 +804,10 @@
             "admitted": 3670,
             "enrolled": 991
           }
+        },
+        "earlyDecision": {
+          "applied": 1477,
+          "admitted": 735
         }
       },
       "testScores": {

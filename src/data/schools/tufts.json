@@ -777,7 +777,11 @@
           }
         },
         "acceptanceRate": 0.1081,
-        "yield": 0.4885
+        "yield": 0.4885,
+        "earlyDecision": {
+          "applied": 3344,
+          "admitted": 1071
+        }
       },
       "testScores": {
         "sat": {

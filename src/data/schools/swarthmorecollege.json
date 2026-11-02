@@ -281,7 +281,11 @@
         "admitted": 1022,
         "enrolled": 417,
         "acceptanceRate": 0.0893,
-        "yield": 0.408
+        "yield": 0.408,
+        "earlyDecision": {
+          "applied": 992,
+          "admitted": 235
+        }
       },
       "costs": {
         "tuition": 54256,
@@ -308,10 +312,11 @@
         }
       },
       "financialAid": {
-        "averageAidPackage": 56923,
-        "percentReceivingAid": 0.5564,
+        "averageAidPackage": 56048,
+        "percentReceivingAid": 0.5435,
         "percentNeedFullyMet": 1.0,
-        "averageNetPrice": 20360
+        "averageNetPrice": 20360,
+        "averageNeedBasedGrant": 54217
       },
       "testScores": {
         "sat": {
@@ -411,7 +416,11 @@
         }
       },
       "financialAid": {
-        "averageNetPrice": 19733
+        "averageNetPrice": 19733,
+        "averageAidPackage": 51382,
+        "averageNeedBasedGrant": 50671,
+        "percentReceivingAid": 0.5645,
+        "percentNeedFullyMet": 1.0
       }
     },
     "2021-2022": {
@@ -487,7 +496,11 @@
         }
       },
       "financialAid": {
-        "averageNetPrice": 20715
+        "averageNetPrice": 20715,
+        "averageAidPackage": 57737,
+        "averageNeedBasedGrant": 56128,
+        "percentReceivingAid": 0.5186,
+        "percentNeedFullyMet": 1.0
       }
     },
     "2022-2023": {
@@ -552,14 +565,16 @@
           },
           "math": {
             "p25": 730,
-            "p75": 790
+            "p75": 790,
+            "p50": 770
           }
         },
         "act": {
           "submissionRate": 0.19,
           "composite": {
             "p25": 32,
-            "p75": 35
+            "p75": 35,
+            "p50": 33
           }
         }
       },

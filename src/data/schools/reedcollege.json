@@ -36,11 +36,13 @@
         "byGender": {
           "men": {
             "applied": 2297,
-            "admitted": 763
+            "admitted": 763,
+            "enrolled": 167
           },
           "women": {
             "applied": 3408,
-            "admitted": 1023
+            "admitted": 1023,
+            "enrolled": 188
           }
         },
         "earlyDecision": {
@@ -199,7 +201,11 @@
         "admitted": 2087,
         "enrolled": 363,
         "acceptanceRate": 0.3503,
-        "yield": 0.1739
+        "yield": 0.1739,
+        "earlyDecision": {
+          "applied": 235,
+          "admitted": 123
+        }
       },
       "testScores": {
         "sat": {
@@ -258,11 +264,13 @@
         "byGender": {
           "men": {
             "applied": 2247,
-            "admitted": 858
+            "admitted": 858,
+            "enrolled": 185
           },
           "women": {
             "applied": 3568,
-            "admitted": 1437
+            "admitted": 1437,
+            "enrolled": 209
           }
         },
         "earlyDecision": {
@@ -332,11 +340,13 @@
         "byGender": {
           "men": {
             "applied": 2195,
-            "admitted": 884
+            "admitted": 884,
+            "enrolled": 158
           },
           "women": {
             "applied": 3452,
-            "admitted": 1507
+            "admitted": 1507,
+            "enrolled": 207
           }
         },
         "earlyDecision": {
@@ -409,11 +419,13 @@
         "byGender": {
           "men": {
             "applied": 2545,
-            "admitted": 999
+            "admitted": 999,
+            "enrolled": 182
           },
           "women": {
             "applied": 4028,
-            "admitted": 1874
+            "admitted": 1874,
+            "enrolled": 320
           }
         },
         "earlyDecision": {

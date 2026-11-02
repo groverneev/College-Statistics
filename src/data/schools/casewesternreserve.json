@@ -85,7 +85,12 @@
           "unknown": 131
         }
       },
-      "costs": {},
+      "costs": {
+        "tuition": 47074,
+        "fees": 426,
+        "roomAndBoard": 14784,
+        "totalCOA": 62284
+      },
       "financialAid": {
         "averageAidPackage": 38928,
         "averageNeedBasedGrant": 28156,
@@ -152,7 +157,12 @@
           "unknown": 90
         }
       },
-      "costs": {},
+      "costs": {
+        "tuition": 48604,
+        "fees": 438,
+        "roomAndBoard": 15190,
+        "totalCOA": 64232
+      },
       "financialAid": {
         "averageAidPackage": 44122,
         "averageNeedBasedGrant": 30713,
@@ -179,6 +189,10 @@
             "admitted": 3806,
             "enrolled": 655
           }
+        },
+        "earlyDecision": {
+          "applied": 566,
+          "admitted": 238
         }
       },
       "testScores": {
@@ -256,6 +270,10 @@
             "admitted": 3888,
             "enrolled": 647
           }
+        },
+        "earlyDecision": {
+          "applied": 687,
+          "admitted": 268
         }
       },
       "testScores": {
@@ -337,6 +355,10 @@
             "admitted": 4242,
             "enrolled": 598
           }
+        },
+        "earlyDecision": {
+          "applied": 303,
+          "admitted": 169
         }
       },
       "testScores": {

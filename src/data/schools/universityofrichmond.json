@@ -111,11 +111,13 @@
         "byGender": {
           "men": {
             "applied": 4304,
-            "admitted": 1492
+            "admitted": 1492,
+            "enrolled": 373
           },
           "women": {
             "applied": 5709,
-            "admitted": 1809
+            "admitted": 1809,
+            "enrolled": 428
           }
         },
         "earlyDecision": {
@@ -639,7 +641,17 @@
           "graduate": 722,
           "total": 3776
         },
-        "byRace": {}
+        "byRace": {
+          "international": 365,
+          "hispanicLatino": 304,
+          "blackAfricanAmerican": 188,
+          "white": 1836,
+          "asian": 185,
+          "americanIndianAlaskaNative": 3,
+          "nativeHawaiianPacificIslander": 1,
+          "twoOrMoreRaces": 131,
+          "unknown": 41
+        }
       },
       "costs": {
         "tuition": 65230,

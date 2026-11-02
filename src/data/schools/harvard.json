@@ -37,7 +37,19 @@
         "admitted": 2110,
         "enrolled": 1663,
         "acceptanceRate": 0.054,
-        "yield": 0.7882
+        "yield": 0.7882,
+        "byGender": {
+          "men": {
+            "applied": 19809,
+            "admitted": 1088,
+            "enrolled": 868
+          },
+          "women": {
+            "applied": 19232,
+            "admitted": 1022,
+            "enrolled": 795
+          }
+        }
       },
       "testScores": {
         "act": {
@@ -110,7 +122,19 @@
         "admitted": 2037,
         "enrolled": 1687,
         "acceptanceRate": 0.0516,
-        "yield": 0.8282
+        "yield": 0.8282,
+        "byGender": {
+          "men": {
+            "applied": 19782,
+            "admitted": 1033,
+            "enrolled": 850
+          },
+          "women": {
+            "applied": 19724,
+            "admitted": 1004,
+            "enrolled": 837
+          }
+        }
       },
       "testScores": {
         "sat": {
@@ -183,7 +207,19 @@
         "admitted": 2024,
         "enrolled": 1653,
         "acceptanceRate": 0.0473,
-        "yield": 0.8167
+        "yield": 0.8167,
+        "byGender": {
+          "men": {
+            "applied": 21261,
+            "admitted": 1012,
+            "enrolled": 835
+          },
+          "women": {
+            "applied": 21488,
+            "admitted": 1012,
+            "enrolled": 818
+          }
+        }
       },
       "testScores": {
         "sat": {
@@ -256,7 +292,19 @@
         "admitted": 2009,
         "enrolled": 1649,
         "acceptanceRate": 0.0464,
-        "yield": 0.8208
+        "yield": 0.8208,
+        "byGender": {
+          "men": {
+            "applied": 21730,
+            "admitted": 1009,
+            "enrolled": 833
+          },
+          "women": {
+            "applied": 21600,
+            "admitted": 1000,
+            "enrolled": 816
+          }
+        }
       },
       "testScores": {
         "sat": {
@@ -329,7 +377,19 @@
         "admitted": 2015,
         "enrolled": 1407,
         "acceptanceRate": 0.0501,
-        "yield": 0.6983
+        "yield": 0.6983,
+        "byGender": {
+          "men": {
+            "applied": 20036,
+            "admitted": 974,
+            "enrolled": 674
+          },
+          "women": {
+            "applied": 20212,
+            "admitted": 1041,
+            "enrolled": 733
+          }
+        }
       },
       "testScores": {
         "sat": {
@@ -402,7 +462,19 @@
         "admitted": 2318,
         "enrolled": 1951,
         "acceptanceRate": 0.0401,
-        "yield": 0.8417
+        "yield": 0.8417,
+        "byGender": {
+          "men": {
+            "applied": 26981,
+            "admitted": 1100,
+            "enrolled": 925
+          },
+          "women": {
+            "applied": 30805,
+            "admitted": 1218,
+            "enrolled": 1026
+          }
+        }
       },
       "testScores": {
         "sat": {
@@ -475,7 +547,19 @@
         "admitted": 1984,
         "enrolled": 1646,
         "acceptanceRate": 0.0324,
-        "yield": 0.8296
+        "yield": 0.8296,
+        "byGender": {
+          "men": {
+            "applied": 28024,
+            "admitted": 908,
+            "enrolled": 740
+          },
+          "women": {
+            "applied": 33197,
+            "admitted": 1076,
+            "enrolled": 906
+          }
+        }
       },
       "testScores": {
         "sat": {
@@ -657,9 +741,9 @@
       },
       "demographics": {
         "enrollment": {
-          "undergraduate": 7370,
-          "graduate": 17800,
-          "total": 25170
+          "undergraduate": 7038,
+          "graduate": 14151,
+          "total": 21189
         },
         "byRace": {
           "international": 1103,
@@ -670,12 +754,7 @@
           "americanIndianAlaskaNative": 24,
           "nativeHawaiianPacificIslander": 11,
           "twoOrMoreRaces": 542,
-          "unknown": 117
-        },
-        "byResidency": {
-          "inState": 940,
-          "outOfState": 5327,
-          "international": 1103
+          "unknown": 185
         }
       },
       "costs": {

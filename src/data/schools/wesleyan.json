@@ -3,8 +3,8 @@
   "slug": "wesleyan",
   "profile": {
     "admissionsFactors": {
-      "sourceYear": "2024-2025",
-      "sourcePdf": "College-Data/wesleyan/wesleyan-cds-2024-2025.pdf",
+      "sourceYear": "2025-2026",
+      "sourcePdf": "College-Data/wesleyan/wesleyan-cds-2025-2026.pdf",
       "section": "C7",
       "academic": {
         "rigorOfSecondarySchoolRecord": "very_important",
@@ -746,6 +746,84 @@
         "percentReceivingAid": 0.4256,
         "percentNeedFullyMet": 1.0
       }
+    },
+    "2025-2026": {
+      "admissions": {
+        "byGender": {
+          "men": {
+            "applied": 6460,
+            "admitted": 1119,
+            "enrolled": 399
+          },
+          "women": {
+            "applied": 8486,
+            "admitted": 1327,
+            "enrolled": 426
+          }
+        },
+        "earlyDecision": {
+          "applied": 1220,
+          "admitted": 522
+        },
+        "applied": 14973,
+        "admitted": 2451,
+        "enrolled": 825,
+        "acceptanceRate": 0.1637,
+        "yield": 0.3366
+      },
+      "testScores": {
+        "sat": {
+          "composite": {
+            "p25": 1350,
+            "p50": 1460,
+            "p75": 1510
+          },
+          "readingWriting": {
+            "p25": 690,
+            "p50": 730,
+            "p75": 750
+          },
+          "math": {
+            "p25": 660,
+            "p50": 720,
+            "p75": 770
+          },
+          "submissionRate": 0.44
+        },
+        "act": {
+          "composite": {
+            "p25": 32,
+            "p50": 33,
+            "p75": 35
+          },
+          "submissionRate": 0.15
+        }
+      },
+      "demographics": {
+        "enrollment": {
+          "undergraduate": 3043,
+          "graduate": 171,
+          "total": 3214
+        },
+        "byRace": {
+          "international": 311,
+          "hispanicLatino": 327,
+          "blackAfricanAmerican": 189,
+          "white": 1567,
+          "asian": 284,
+          "americanIndianAlaskaNative": 2,
+          "nativeHawaiianPacificIslander": 0,
+          "twoOrMoreRaces": 228,
+          "unknown": 135
+        }
+      },
+      "costs": {
+        "tuition": 72438,
+        "fees": 390,
+        "roomAndBoard": 20668,
+        "totalCOA": 93496
+      },
+      "financialAid": {}
     }
   }
 }

@@ -197,7 +197,8 @@
         "admitted": 780,
         "enrolled": 412,
         "earlyDecision": {
-          "admitted": 207
+          "admitted": 207,
+          "applied": 1364
         },
         "acceptanceRate": 0.0761,
         "yield": 0.5282
@@ -272,7 +273,8 @@
         "admitted": 770,
         "enrolled": 416,
         "earlyDecision": {
-          "admitted": 213
+          "admitted": 213,
+          "applied": 1384
         },
         "acceptanceRate": 0.074,
         "yield": 0.5403
@@ -431,7 +433,11 @@
         "admitted": 771,
         "enrolled": 451,
         "acceptanceRate": 0.0664,
-        "yield": 0.585
+        "yield": 0.585,
+        "earlyDecision": {
+          "applied": 1606,
+          "admitted": 205
+        }
       },
       "costs": {
         "tuition": 58818,
@@ -467,6 +473,10 @@
           "math": {
             "p25": 740,
             "p75": 800
+          },
+          "readingWriting": {
+            "p25": 730,
+            "p75": 770
           }
         },
         "act": {
@@ -537,7 +547,8 @@
         "sat": {
           "readingWriting": {
             "p25": 730,
-            "p75": 770
+            "p75": 770,
+            "p50": 750
           },
           "composite": {
             "p25": 1480,
@@ -545,14 +556,16 @@
           },
           "math": {
             "p25": 750,
-            "p75": 790
+            "p75": 790,
+            "p50": 770
           },
           "submissionRate": 0.35
         },
         "act": {
           "composite": {
             "p25": 33,
-            "p75": 35
+            "p75": 35,
+            "p50": 34
           },
           "submissionRate": 0.18
         }
@@ -629,14 +642,21 @@
           },
           "math": {
             "p25": 750,
-            "p75": 790
+            "p75": 790,
+            "p50": 770
+          },
+          "readingWriting": {
+            "p25": 730,
+            "p50": 750,
+            "p75": 770
           }
         },
         "act": {
           "submissionRate": 0.15,
           "composite": {
             "p25": 33,
-            "p75": 35
+            "p75": 35,
+            "p50": 34
           }
         }
       }

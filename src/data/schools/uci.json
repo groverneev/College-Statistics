@@ -132,6 +132,13 @@
             "p75": 730
           },
           "submissionRate": 1.0
+        },
+        "act": {
+          "composite": {
+            "p25": 25,
+            "p75": 32
+          },
+          "submissionRate": 0.5
         }
       },
       "demographics": {
@@ -350,6 +357,13 @@
             "p75": 750
           },
           "submissionRate": 1.0
+        },
+        "act": {
+          "composite": {
+            "p25": 26,
+            "p75": 33
+          },
+          "submissionRate": 0.3
         }
       },
       "demographics": {

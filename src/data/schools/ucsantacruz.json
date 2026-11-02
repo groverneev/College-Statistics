@@ -683,7 +683,9 @@
           "unknown": 423
         }
       },
-      "costs": {},
+      "costs": {
+        "roomAndBoard": 20928
+      },
       "financialAid": {}
     }
   }

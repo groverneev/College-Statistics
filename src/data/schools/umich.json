@@ -3,8 +3,8 @@
   "slug": "umich",
   "profile": {
     "admissionsFactors": {
-      "sourceYear": "2024-2025",
-      "sourcePdf": "College-Data/University of Michigan Ann Arbor/CDS_2024-25_UMAA.pdf",
+      "sourceYear": "2025-2026",
+      "sourcePdf": "College-Data/umich/umich-cds-2025-2026.pdf",
       "section": "C7",
       "academic": {
         "rigorOfSecondarySchoolRecord": "very_important",
@@ -793,6 +793,85 @@
         "averageAidPackage": 34861,
         "averageNeedBasedGrant": 26860,
         "percentNeedFullyMet": 0.722
+      }
+    },
+    "2025-2026": {
+      "admissions": {
+        "applied": 109112,
+        "admitted": 17915,
+        "enrolled": 8178,
+        "byGender": {
+          "men": {
+            "applied": 53044,
+            "admitted": 7593,
+            "enrolled": 3499
+          },
+          "women": {
+            "applied": 56068,
+            "admitted": 10322,
+            "enrolled": 4679
+          }
+        },
+        "acceptanceRate": 0.1642,
+        "yield": 0.4565
+      },
+      "testScores": {
+        "sat": {
+          "composite": {
+            "p25": 1370,
+            "p50": 1470,
+            "p75": 1530
+          },
+          "readingWriting": {
+            "p25": 690,
+            "p50": 730,
+            "p75": 750
+          },
+          "math": {
+            "p25": 680,
+            "p50": 740,
+            "p75": 780
+          },
+          "submissionRate": 0.55
+        },
+        "act": {
+          "composite": {
+            "p25": 32,
+            "p50": 33,
+            "p75": 34
+          },
+          "submissionRate": 0.18
+        }
+      },
+      "demographics": {
+        "enrollment": {
+          "undergraduate": 35358,
+          "graduate": 18130,
+          "total": 53488
+        },
+        "byRace": {
+          "international": 2658,
+          "hispanicLatino": 4469,
+          "blackAfricanAmerican": 2030,
+          "white": 15828,
+          "asian": 6503,
+          "americanIndianAlaskaNative": 64,
+          "nativeHawaiianPacificIslander": 43,
+          "twoOrMoreRaces": 2078,
+          "unknown": 1685
+        }
+      },
+      "costs": {
+        "tuition": 19588,
+        "fees": 494,
+        "roomAndBoard": 17220,
+        "totalCOA": 37302
+      },
+      "financialAid": {
+        "averageAidPackage": 39324,
+        "averageNeedBasedGrant": 30693,
+        "percentReceivingAid": 0.3536,
+        "percentNeedFullyMet": 0.7291
       }
     }
   }

@@ -569,11 +569,13 @@
         "byGender": {
           "men": {
             "applied": 29959,
-            "admitted": 8135
+            "admitted": 8135,
+            "enrolled": 2480
           },
           "women": {
             "applied": 44059,
-            "admitted": 10653
+            "admitted": 10653,
+            "enrolled": 3410
           }
         },
         "acceptanceRate": 0.2538,

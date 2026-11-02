@@ -256,7 +256,19 @@
         "admitted": 2241,
         "enrolled": 1550,
         "acceptanceRate": 0.0608,
-        "yield": 0.6917
+        "yield": 0.6917,
+        "byGender": {
+          "men": {
+            "applied": 17076,
+            "admitted": 1128,
+            "enrolled": 771
+          },
+          "women": {
+            "applied": 19768,
+            "admitted": 1113,
+            "enrolled": 779
+          }
+        }
       },
       "testScores": {
         "sat": {
@@ -329,7 +341,19 @@
         "admitted": 2299,
         "enrolled": 1264,
         "acceptanceRate": 0.0653,
-        "yield": 0.5498
+        "yield": 0.5498,
+        "byGender": {
+          "men": {
+            "applied": 16409,
+            "admitted": 1185,
+            "enrolled": 656
+          },
+          "women": {
+            "applied": 18811,
+            "admitted": 1114,
+            "enrolled": 608
+          }
+        }
       },
       "testScores": {
         "sat": {
@@ -402,7 +426,19 @@
         "admitted": 2509,
         "enrolled": 1786,
         "acceptanceRate": 0.0531,
-        "yield": 0.7118
+        "yield": 0.7118,
+        "byGender": {
+          "men": {
+            "applied": 20441,
+            "admitted": 1170,
+            "enrolled": 799
+          },
+          "women": {
+            "applied": 26799,
+            "admitted": 1339,
+            "enrolled": 987
+          }
+        }
       },
       "testScores": {
         "sat": {
@@ -475,7 +511,19 @@
         "admitted": 2289,
         "enrolled": 1554,
         "acceptanceRate": 0.0457,
-        "yield": 0.6789
+        "yield": 0.6789,
+        "byGender": {
+          "men": {
+            "applied": 21108,
+            "admitted": 1118,
+            "enrolled": 759
+          },
+          "women": {
+            "applied": 28952,
+            "admitted": 1171,
+            "enrolled": 795
+          }
+        }
       },
       "testScores": {
         "sat": {

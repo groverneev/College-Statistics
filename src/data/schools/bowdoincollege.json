@@ -197,7 +197,11 @@
         "admitted": 932,
         "enrolled": 510,
         "acceptanceRate": 0.1026,
-        "yield": 0.5472
+        "yield": 0.5472,
+        "earlyDecision": {
+          "applied": 1093,
+          "admitted": 250
+        }
       },
       "costs": {
         "tuition": 55822,
@@ -269,7 +273,11 @@
         "admitted": 845,
         "enrolled": 499,
         "acceptanceRate": 0.0905,
-        "yield": 0.5905
+        "yield": 0.5905,
+        "earlyDecision": {
+          "applied": 1112,
+          "admitted": 251
+        }
       },
       "costs": {
         "tuition": 55822,
@@ -568,11 +576,13 @@
         "byGender": {
           "men": {
             "applied": 4865,
-            "admitted": 420
+            "admitted": 420,
+            "enrolled": 251
           },
           "women": {
             "applied": 6101,
-            "admitted": 459
+            "admitted": 459,
+            "enrolled": 253
           }
         },
         "applied": 10966,
@@ -612,18 +622,21 @@
           },
           "math": {
             "p25": 750,
-            "p75": 790
+            "p75": 790,
+            "p50": 760
           },
           "readingWriting": {
             "p25": 730,
-            "p75": 760
+            "p75": 760,
+            "p50": 750
           }
         },
         "act": {
           "submissionRate": 0.218,
           "composite": {
             "p25": 33,
-            "p75": 35
+            "p75": 35,
+            "p50": 34
           }
         }
       },
@@ -700,7 +713,8 @@
           "submissionRate": 0.3116,
           "readingWriting": {
             "p25": 730,
-            "p75": 770
+            "p75": 770,
+            "p50": 750
           },
           "composite": {
             "p25": 1470,
@@ -708,14 +722,16 @@
           },
           "math": {
             "p25": 740,
-            "p75": 780
+            "p75": 780,
+            "p50": 770
           }
         },
         "act": {
           "submissionRate": 0.1677,
           "composite": {
             "p25": 33,
-            "p75": 35
+            "p75": 35,
+            "p50": 34
           }
         }
       }

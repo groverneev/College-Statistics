@@ -38,7 +38,19 @@
         "admitted": 13975,
         "enrolled": 6182,
         "acceptanceRate": 0.1693,
-        "yield": 0.4424
+        "yield": 0.4424,
+        "byGender": {
+          "men": {
+            "applied": 41046,
+            "admitted": 6209,
+            "enrolled": 2997
+          },
+          "women": {
+            "applied": 41515,
+            "admitted": 7766,
+            "enrolled": 3185
+          }
+        }
       },
       "testScores": {
         "sat": {
@@ -111,7 +123,19 @@
         "admitted": 14549,
         "enrolled": 6379,
         "acceptanceRate": 0.1711,
-        "yield": 0.4384
+        "yield": 0.4384,
+        "byGender": {
+          "men": {
+            "applied": 41597,
+            "admitted": 6324,
+            "enrolled": 2957
+          },
+          "women": {
+            "applied": 43447,
+            "admitted": 8225,
+            "enrolled": 3422
+          }
+        }
       },
       "testScores": {
         "sat": {
@@ -687,7 +711,12 @@
           "unknown": 1344
         }
       },
-      "costs": {},
+      "costs": {
+        "roomAndBoard": 26028,
+        "tuition": 14202,
+        "fees": 4262,
+        "totalCOA": 44492
+      },
       "financialAid": {
         "percentReceivingAid": 0.4546,
         "averageAidPackage": 37130,

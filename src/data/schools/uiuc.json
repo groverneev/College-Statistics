@@ -3,8 +3,8 @@
   "slug": "uiuc",
   "profile": {
     "admissionsFactors": {
-      "sourceYear": "2024-2025",
-      "sourcePdf": "College-Data/UIllinoisUrbanaChampaign/cds_2024_2025.xlsx",
+      "sourceYear": "2025-2026",
+      "sourcePdf": "College-Data/uiuc/uiuc-cds-2025-2026.xlsx",
       "section": "C7",
       "academic": {
         "rigorOfSecondarySchoolRecord": "very_important",
@@ -16,10 +16,10 @@
       },
       "nonacademic": {
         "interview": "not_considered",
-        "extracurricularActivities": "important",
-        "talentAbility": "important",
-        "characterPersonalQualities": "important",
-        "firstGeneration": "important",
+        "extracurricularActivities": "very_important",
+        "talentAbility": "very_important",
+        "characterPersonalQualities": "very_important",
+        "firstGeneration": "very_important",
         "alumniRelation": "not_considered",
         "geographicalResidence": "considered",
         "stateResidency": "considered",
@@ -781,6 +781,85 @@
         "averageAidPackage": 23217,
         "averageNeedBasedGrant": 21943,
         "percentNeedFullyMet": 0.77
+      }
+    },
+    "2025-2026": {
+      "admissions": {
+        "applied": 83045,
+        "admitted": 30384,
+        "enrolled": 9207,
+        "byGender": {
+          "men": {
+            "applied": 46897,
+            "admitted": 14656,
+            "enrolled": 4662
+          },
+          "women": {
+            "applied": 36114,
+            "admitted": 15713,
+            "enrolled": 4543
+          }
+        },
+        "acceptanceRate": 0.3659,
+        "yield": 0.303
+      },
+      "testScores": {
+        "sat": {
+          "composite": {
+            "p25": 1390,
+            "p50": 1442,
+            "p75": 1520
+          },
+          "readingWriting": {
+            "p25": 690,
+            "p50": 720,
+            "p75": 750
+          },
+          "math": {
+            "p25": 700,
+            "p50": 760,
+            "p75": 790
+          },
+          "submissionRate": 0.4259
+        },
+        "act": {
+          "composite": {
+            "p25": 31,
+            "p50": 32.3,
+            "p75": 34
+          },
+          "submissionRate": 0.1407
+        }
+      },
+      "demographics": {
+        "enrollment": {
+          "undergraduate": 38572,
+          "graduate": 22276,
+          "total": 60848
+        },
+        "byRace": {
+          "international": 5961,
+          "hispanicLatino": 5673,
+          "blackAfricanAmerican": 2018,
+          "white": 14104,
+          "asian": 8356,
+          "americanIndianAlaskaNative": 9,
+          "nativeHawaiianPacificIslander": 11,
+          "twoOrMoreRaces": 1628,
+          "unknown": 812
+        }
+      },
+      "costs": {
+        "tuition": 12992,
+        "fees": 5054,
+        "roomAndBoard": 15184,
+        "totalCOA": 33230
+      },
+      "financialAid": {
+        "averageAidPackage": 25495,
+        "averageNeedBasedGrant": 24235,
+        "percentReceivingAid": 0.4037,
+        "percentNeedFullyMet": 0.2252
       }
     }
   }
