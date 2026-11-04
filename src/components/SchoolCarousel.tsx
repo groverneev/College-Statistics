@@ -3,11 +3,15 @@
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import SchoolCard from "@/components/SchoolCard";
-import { allSchools } from "@/data/schools";
+import type { SchoolCardData } from "@/data/schools";
 
 const LOOP_DURATION_MS = 430_000;
 
-export default function SchoolCarousel() {
+interface SchoolCarouselProps {
+  schools: SchoolCardData[];
+}
+
+export default function SchoolCarousel({ schools }: SchoolCarouselProps) {
   const trackRef = useRef<HTMLDivElement>(null);
   const positionRef = useRef(0);
   const singleWidthRef = useRef(0);
@@ -103,7 +107,7 @@ export default function SchoolCarousel() {
   return (
     <div className="pt-4 pb-8 overflow-hidden">
       <div className="max-w-6xl mx-auto px-4 flex items-baseline justify-between mb-5">
-        <h2 className="section-label">All {allSchools.length} schools</h2>
+        <h2 className="section-label">All {schools.length} schools</h2>
         <Link href="/schools" className="browse-all-btn">
           Browse all
           <span aria-hidden>&rarr;</span>
@@ -131,7 +135,7 @@ export default function SchoolCarousel() {
                 aria-hidden={copy === 1 || undefined}
                 inert={copy === 1 || undefined}
               >
-                {allSchools.map((school) => (
+                {schools.map((school) => (
                   <div
                     key={`${copy}-${school.slug}`}
                     className="w-[calc(100vw-3rem)] max-w-80 flex-shrink-0 mr-4"

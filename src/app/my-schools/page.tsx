@@ -1,5 +1,6 @@
 import { redirect } from "next/navigation";
 import SavedSchoolsDashboard from "@/components/SavedSchoolsDashboard";
+import { schoolCardMap } from "@/data/schools";
 import { getSession } from "@/lib/auth";
 
 export const metadata = {
@@ -15,7 +16,7 @@ export default async function MySchoolsPage() {
 
   return (
     <div className="min-h-screen" style={{ background: "#f5f5f5" }}>
-      <SavedSchoolsDashboard />
+      <SavedSchoolsDashboard schools={schoolCardMap} />
     </div>
   );
 }

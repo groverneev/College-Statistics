@@ -2,8 +2,8 @@
 
 import Link from "next/link";
 import { useSavedSchools } from "@/components/SavedSchoolsContext";
-import { schoolDataMap } from "@/data/schools";
-import { getLatestYearData, formatPercent } from "@/utils/dataHelpers";
+import type { SchoolCardData } from "@/data/schools";
+import { formatPercent } from "@/utils/dataHelpers";
 
 import type { Category } from "@/db/schema";
 
@@ -14,7 +14,11 @@ const CATEGORY_CONFIG: { value: Category; label: string; color: string }[] = [
   { value: "UNDECIDED", label: "Undecided", color: "#9ca3af" },
 ];
 
-export default function HomeSavedSchools() {
+interface HomeSavedSchoolsProps {
+  schools: Record<string, SchoolCardData>;
+}
+
+export default function HomeSavedSchools({ schools: schoolMap }: HomeSavedSchoolsProps) {
   const { isLoggedIn, savedSchools } = useSavedSchools();
 
   if (!isLoggedIn || savedSchools.length === 0) return null;
@@ -33,8 +37,10 @@ export default function HomeSavedSchools() {
         {CATEGORY_CONFIG.map(({ value, label, color }) => {
           const schools = savedSchools
             .filter((saved) => saved.category === value)
-            .map((saved) => ({ saved, school: schoolDataMap[saved.schoolSlug] }))
-            .filter((entry) => Boolean(entry.school));
+            .flatMap((saved) => {
+              const school = schoolMap[saved.schoolSlug];
+              return school ? [{ saved, school }] : [];
+            });
 
           if (schools.length === 0) return null;
 
@@ -57,15 +63,15 @@ export default function HomeSavedSchools() {
 
               <div className="flex flex-wrap gap-2">
                 {schools.map(({ saved, school }) => {
-                  const rate = getLatestYearData(school!)?.admissions.acceptanceRate;
+                  const rate = school.acceptanceRate;
                   return (
                     <Link
                       key={saved.schoolSlug}
                       href={`/${saved.schoolSlug}`}
                       className="chip-dark flex min-h-11 items-center gap-1.5 rounded-full px-3 py-2 text-sm"
                     >
-                      {school!.name}
-                      {rate !== undefined && (
+                      {school.name}
+                      {rate !== null && (
                         <span style={{ color: "#9ca1a8" }}>{formatPercent(rate)}</span>
                       )}
                     </Link>

@@ -80,14 +80,14 @@ Assemble derives acceptance rate, yield, total cost, enrollment total, percent r
 ## 8. Register and check the page
 
 ```
-python -I scripts/cds/register.py <slug> --color "#RRGGBB" --aliases "Short Name,Abbreviation"
+python -I scripts/cds/register.py <slug> --color "#RRGGBB" --aliases "Short Name,Abbreviation" --state XX --control public|private
 bun run validate
 bun run typecheck
 ```
 
 Run `bun install --frozen-lockfile` first if `node_modules` is missing. `bun run validate` checks every school JSON against the Zod schema in `src/lib/schoolSchema.ts`; fix any value it rejects before continuing. `next dev` re-adds a Next.js block to `AGENTS.md`; leave it alone.
 
-Use the school's official primary color. Then start `bun run dev`, open `/<slug>` (or curl it if the browser preview is unavailable), and confirm every chart has data and the headline numbers match the newest `final.json`.
+Use the school's official primary color, the two-letter state of the main campus, and whether it is public or private (CDS A2). Then start `bun run dev`, open `/<slug>` (or curl it if the browser preview is unavailable), and confirm every chart has data and the headline numbers match the newest `final.json`.
 
 ## 9. Report
 

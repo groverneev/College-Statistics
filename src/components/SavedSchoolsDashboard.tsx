@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { schoolDataMap } from "@/data/schools";
+import type { SchoolCardData } from "@/data/schools";
 import SchoolCard from "@/components/SchoolCard";
 import { useSavedSchools } from "@/components/SavedSchoolsContext";
 
@@ -18,7 +18,11 @@ const CATEGORY_CONFIG: {
   { value: "UNDECIDED", label: "Undecided", borderColor: "#9ca3af" },
 ];
 
-export default function SavedSchoolsDashboard() {
+interface SavedSchoolsDashboardProps {
+  schools: Record<string, SchoolCardData>;
+}
+
+export default function SavedSchoolsDashboard({ schools }: SavedSchoolsDashboardProps) {
   const { savedSchools } = useSavedSchools();
   const hasSaved = savedSchools.length > 0;
 
@@ -65,7 +69,7 @@ export default function SavedSchoolsDashboard() {
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                   {schoolsInCategory.map(({ schoolSlug }) => {
-                    const school = schoolDataMap[schoolSlug];
+                    const school = schools[schoolSlug];
                     return school ? (
                       <SchoolCard key={schoolSlug} school={school} showSaveButton />
                     ) : null;

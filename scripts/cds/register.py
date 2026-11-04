@@ -19,12 +19,16 @@ def main() -> None:
     parser.add_argument("slug")
     parser.add_argument("--color", required=True, help="primary brand color, e.g. #5F259F")
     parser.add_argument("--aliases", default="", help="comma-separated search aliases")
+    parser.add_argument("--state", required=True, help="two-letter postal code of the main campus, e.g. MA or DC")
+    parser.add_argument("--control", required=True, choices=["public", "private"])
     args = parser.parse_args()
 
     if not (SCHOOLS_DIR / f"{args.slug}.json").exists():
         raise SystemExit(f"missing src/data/schools/{args.slug}.json")
     if not re.fullmatch(r"#[0-9A-Fa-f]{6}", args.color):
         raise SystemExit("color must be #RRGGBB")
+    if not re.fullmatch(r"[A-Z]{2}", args.state):
+        raise SystemExit("state must be a two-letter postal code, e.g. MA")
 
     source = INDEX_TS.read_text(encoding="utf-8")
     if f'"./{args.slug}.json"' in source:
@@ -48,7 +52,7 @@ def main() -> None:
     if not meta_end:
         raise SystemExit("could not find SCHOOL_METADATA")
     aliases = [alias.strip() for alias in args.aliases.split(",") if alias.strip()]
-    entry = f"  {args.slug}: {{\n    aliases: {json.dumps(aliases)},\n    color: \"{args.color.upper()}\",\n  }},\n"
+    entry = f"  {args.slug}: {{\n    aliases: {json.dumps(aliases)},\n    state: \"{args.state}\",\n    control: \"{args.control}\",\n    color: \"{args.color.upper()}\",\n  }},\n"
     at = meta_end.end(1)
     source = source[:at] + entry + source[at:]
 

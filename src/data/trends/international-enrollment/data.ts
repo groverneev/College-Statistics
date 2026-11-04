@@ -209,3 +209,18 @@ export const sourceLinks: SourceLink[] = [
 
 export const sourceNote =
   "Source: CollegeStatistics.org analysis of institution-published Common Data Set records. The chart uses 2024–25, the latest year available for most schools; 2025–26 data is currently available for only eight schools. International students are the CDS-reported international/nonresident category divided by undergraduate enrollment.";
+
+export const internationalEnrollmentStoryData = {
+  chartRows,
+  changeChartRows,
+  annualMedianRows,
+  baseYear,
+  factBullets,
+  lede,
+  metrics,
+  reportYear,
+  sourceLinks,
+  sourceNote,
+};
+
+export type InternationalEnrollmentStoryData = typeof internationalEnrollmentStoryData;

@@ -4,7 +4,13 @@ import ExploreTiles from "@/components/ExploreTiles";
 import SchoolCarousel from "@/components/SchoolCarousel";
 import HomeSavedSchools from "@/components/HomeSavedSchools";
 import HeroTrendChart, { type HeroSeries, type HeroPoint } from "@/components/HeroTrendChart";
-import { allSchools, searchableSchools, schoolDataMap } from "@/data/schools";
+import {
+  allSchools,
+  schoolCardMap,
+  schoolCards,
+  schoolDataMap,
+  searchableSchools,
+} from "@/data/schools";
 import { getSortedYears } from "@/utils/dataHelpers";
 import { pageMetadata } from "@/lib/seo";
 
@@ -101,8 +107,8 @@ export default function HomePage() {
               className="hero-rise text-base sm:text-lg max-w-2xl mx-auto mb-8"
               style={{ color: "#5a5f66", animationDelay: "0.1s" }}
             >
-              Free, accurate, and transparent college insights, sourced directly from
-              official Common Data Set reports.
+              Free, accurate, and transparent college insights, sourced directly from official
+              Common Data Set reports.
             </p>
           </div>
 
@@ -132,9 +138,9 @@ export default function HomePage() {
         </div>
       </div>
 
-      <HomeSavedSchools />
+      <HomeSavedSchools schools={schoolCardMap} />
 
-      <SchoolCarousel />
+      <SchoolCarousel schools={schoolCards} />
 
       <ExploreTiles />
     </div>

@@ -1,31 +1,15 @@
 import Link from "next/link";
-import { getSchoolColor } from "@/data/schools";
 import SaveSchoolButton from "@/components/SaveSchoolButton";
-import type { SchoolData } from "@/lib/types";
-import {
-  formatNumber,
-  formatPercent,
-  getLatestYear,
-  getLatestYearData,
-  getSchoolYearRange,
-  getSortedYears,
-} from "@/utils/dataHelpers";
+import type { SchoolCardData } from "@/data/schools";
+import { formatNumber, formatPercent } from "@/utils/dataHelpers";
 
 interface SchoolCardProps {
-  school: SchoolData;
+  school: SchoolCardData;
   showSaveButton?: boolean;
 }
 
 export default function SchoolCard({ school, showSaveButton = false }: SchoolCardProps) {
-  const years = getSortedYears(school);
-  const latestYear = getLatestYear(school);
-  const latestData = getLatestYearData(school);
-  const yearRange = getSchoolYearRange(school);
-  const color = getSchoolColor(school.slug);
-
-  if (!latestYear || !latestData || !yearRange) {
-    return null;
-  }
+  const { color } = school;
 
   return (
     <div className="relative">
@@ -47,37 +31,33 @@ export default function SchoolCard({ school, showSaveButton = false }: SchoolCar
             {school.name}
           </h3>
           <p className="text-sm text-gray-500 mb-4">
-            {years.length} years of data ({yearRange})
+            {school.yearCount} years of data ({school.yearRange})
           </p>
 
           <div className="grid grid-cols-2 gap-4">
             <div>
               <div className="text-2xl font-bold text-gray-800">
-                {formatPercent(latestData.admissions.acceptanceRate)}
+                {formatPercent(school.acceptanceRate)}
               </div>
               <div className="text-xs text-gray-500">Acceptance Rate</div>
             </div>
             <div>
               <div className="text-2xl font-bold text-gray-800">
-                {formatNumber(latestData.admissions.enrolled)}
+                {formatNumber(school.enrolled)}
               </div>
               <div className="text-xs text-gray-500">Class Size</div>
             </div>
-            {typeof latestData.testScores.sat?.composite?.p25 === "number" &&
-              typeof latestData.testScores.sat.composite.p75 === "number" && (
-                <div>
-                  <div className="text-lg font-semibold text-gray-700">
-                    {latestData.testScores.sat.composite.p25}-
-                    {latestData.testScores.sat.composite.p75}
-                  </div>
-                  <div className="text-xs text-gray-500">SAT Range</div>
+            {school.satP25 !== null && school.satP75 !== null && (
+              <div>
+                <div className="text-lg font-semibold text-gray-700">
+                  {school.satP25}-{school.satP75}
                 </div>
-              )}
+                <div className="text-xs text-gray-500">SAT Range</div>
+              </div>
+            )}
             <div>
               <div className="text-lg font-semibold text-gray-700">
-                {typeof latestData.costs.totalCOA === "number"
-                  ? `$${(latestData.costs.totalCOA / 1000).toFixed(0)}k`
-                  : "-"}
+                {school.totalCOA !== null ? `$${(school.totalCOA / 1000).toFixed(0)}k` : "-"}
               </div>
               <div className="text-xs text-gray-500">Total Cost</div>
             </div>

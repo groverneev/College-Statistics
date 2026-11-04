@@ -1,5 +1,5 @@
 import type { SchoolData } from "@/lib/types";
-import { getLatestYear } from "@/utils/dataHelpers";
+import { getLatestYear, getSchoolYearRange, getSortedYears } from "@/utils/dataHelpers";
 
 import bostonCollegeData from "./bostoncollege.json";
 import bostonUniversityData from "./bostonuniversity.json";
@@ -110,9 +110,14 @@ export interface SearchableSchool {
   aliases: string[];
 }
 
+export type SchoolControl = "public" | "private";
+
 type SchoolMetadata = {
   aliases?: string[];
   color: string;
+  /** Two-letter postal code of the main campus (DC included). */
+  state: string;
+  control: SchoolControl;
   featured?: boolean;
 };
 
@@ -221,29 +226,47 @@ export const allSchools: SchoolData[] = [
 ];
 
 export const SCHOOL_METADATA: Record<string, SchoolMetadata> = {
-  bostoncollege: { aliases: ["BC", "Boston College"], color: "#98002E" },
+  bostoncollege: {
+    aliases: ["BC", "Boston College"],
+    state: "MA",
+    control: "private",
+    color: "#98002E",
+  },
   bostonuniversity: {
     aliases: ["BU", "Boston U", "Boston University"],
+    state: "MA",
+    control: "private",
     color: "#CC0000",
   },
-  brown: { aliases: ["Brown"], color: "#4E3629" },
+  brown: { aliases: ["Brown"], state: "RI", control: "private", color: "#4E3629" },
   caltech: {
     aliases: ["Caltech", "Cal Tech", "CIT"],
+    state: "CA",
+    control: "private",
     color: "#FF6C0C",
   },
   casewesternreserve: {
     aliases: ["Case Western", "Case Western Reserve", "Case Western Reserve University", "CWRU"],
+    state: "OH",
+    control: "private",
     color: "#0C2340",
   },
   cmu: {
     aliases: ["CMU", "Carnegie Mellon", "Carnegie-Mellon"],
+    state: "PA",
+    control: "private",
     color: "#C41230",
   },
-  columbia: { aliases: ["Columbia"], color: "#1D4F91" },
-  cornell: { aliases: ["Cornell"], color: "#B31B1B" },
-  dartmouth: { aliases: ["Dartmouth"], color: "#00693E" },
-  duke: { aliases: ["Duke"], color: "#012169" },
-  emory: { aliases: ["Emory", "Emory University"], color: "#012169" },
+  columbia: { aliases: ["Columbia"], state: "NY", control: "private", color: "#1D4F91" },
+  cornell: { aliases: ["Cornell"], state: "NY", control: "private", color: "#B31B1B" },
+  dartmouth: { aliases: ["Dartmouth"], state: "NH", control: "private", color: "#00693E" },
+  duke: { aliases: ["Duke"], state: "NC", control: "private", color: "#012169" },
+  emory: {
+    aliases: ["Emory", "Emory University"],
+    state: "GA",
+    control: "private",
+    color: "#012169",
+  },
   georgiatech: {
     aliases: [
       "Georgia Tech",
@@ -252,81 +275,132 @@ export const SCHOOL_METADATA: Record<string, SchoolMetadata> = {
       "GaTech",
       "GT",
     ],
+    state: "GA",
+    control: "public",
     color: "#B3A369",
   },
   georgetown: {
     aliases: ["Georgetown", "Georgetown University", "GU"],
+    state: "DC",
+    control: "private",
     color: "#041E42",
   },
   harvard: {
     aliases: ["Harvard"],
+    state: "MA",
+    control: "private",
     color: "#A51C30",
     featured: true,
   },
   johnshopkins: {
     aliases: ["JHU", "Johns Hopkins", "Johns Hopkins University", "Hopkins"],
+    state: "MD",
+    control: "private",
     color: "#002D72",
   },
   miami: {
     aliases: ["Miami", "University of Miami", "UM", "The U"],
+    state: "FL",
+    control: "private",
     color: "#F47321",
   },
   mit: {
     aliases: ["MIT", "Massachusetts Institute of Technology"],
+    state: "MA",
+    control: "private",
     color: "#A31F34",
     featured: true,
   },
   northeastern: {
     aliases: ["Northeastern", "Northeastern University", "NEU"],
+    state: "MA",
+    control: "private",
     color: "#C8102E",
   },
   northwestern: {
     aliases: ["NU", "Northwestern"],
+    state: "IL",
+    control: "private",
     color: "#4E2A84",
   },
   notredame: {
     aliases: ["Notre Dame", "University of Notre Dame", "ND"],
+    state: "IN",
+    control: "private",
     color: "#0C2340",
   },
-  nyu: { aliases: ["NYU", "New York University"], color: "#57068C" },
+  nyu: {
+    aliases: ["NYU", "New York University"],
+    state: "NY",
+    control: "private",
+    color: "#57068C",
+  },
   ohiostate: {
     aliases: ["OSU", "Ohio State", "Ohio State University", "The Ohio State University", "tOSU"],
+    state: "OH",
+    control: "public",
     color: "#BB0000",
   },
   pennstate: {
     aliases: ["Penn State", "Penn State University", "Pennsylvania State University", "PSU"],
+    state: "PA",
+    control: "public",
     color: "#001E44",
   },
-  princeton: { aliases: ["Princeton"], color: "#E77500" },
+  princeton: { aliases: ["Princeton"], state: "NJ", control: "private", color: "#E77500" },
   purdue: {
     aliases: ["Purdue", "Purdue University", "Purdue West Lafayette"],
+    state: "IN",
+    control: "public",
     color: "#CFB991",
   },
   rice: {
     aliases: ["Rice", "Rice University", "William Marsh Rice University"],
+    state: "TX",
+    control: "private",
     color: "#00205B",
   },
   rochester: {
     aliases: ["Rochester", "University of Rochester", "UR"],
+    state: "NY",
+    control: "private",
     color: "#00467F",
   },
   rutgersnewbrunswick: {
     aliases: ["Rutgers", "Rutgers New Brunswick", "Rutgers-New Brunswick", "RU"],
+    state: "NJ",
+    control: "public",
     color: "#CC0033",
   },
   stanford: {
     aliases: ["Stanford"],
+    state: "CA",
+    control: "private",
     color: "#8C1515",
     featured: true,
   },
   texasam: {
     aliases: ["Texas A&M", "Texas A and M", "Texas A & M", "Texas A&M University", "TAMU", "A&M"],
+    state: "TX",
+    control: "public",
     color: "#500000",
   },
-  tufts: { aliases: ["Tufts", "Tufts University"], color: "#3E8EDE" },
-  tulane: { aliases: ["Tulane", "Tulane University"], color: "#006747" },
+  tufts: {
+    aliases: ["Tufts", "Tufts University"],
+    state: "MA",
+    control: "private",
+    color: "#3E8EDE",
+  },
+  tulane: {
+    aliases: ["Tulane", "Tulane University"],
+    state: "LA",
+    control: "private",
+    color: "#006747",
+  },
   ucberkeley: {
     aliases: ["UC Berkeley", "Cal", "Berkeley", "University of California Berkeley"],
+    state: "CA",
+    control: "public",
     color: "#003262",
   },
   ucdavis: {
@@ -336,6 +410,8 @@ export const SCHOOL_METADATA: Record<string, SchoolMetadata> = {
       "University of California, Davis",
       "Davis",
     ],
+    state: "CA",
+    control: "public",
     color: "#022851",
   },
   ucmerced: {
@@ -345,10 +421,14 @@ export const SCHOOL_METADATA: Record<string, SchoolMetadata> = {
       "University of California, Merced",
       "Merced",
     ],
+    state: "CA",
+    control: "public",
     color: "#0F2D52",
   },
   uchicago: {
     aliases: ["UChicago", "University of Chicago", "Chicago"],
+    state: "IL",
+    control: "private",
     color: "#800000",
   },
   uci: {
@@ -359,10 +439,14 @@ export const SCHOOL_METADATA: Record<string, SchoolMetadata> = {
       "University of California, Irvine",
       "Irvine",
     ],
+    state: "CA",
+    control: "public",
     color: "#0064A4",
   },
   ucla: {
     aliases: ["UCLA", "University of California Los Angeles", "UC Los Angeles"],
+    state: "CA",
+    control: "public",
     color: "#2774AE",
   },
   ucsandiego: {
@@ -373,6 +457,8 @@ export const SCHOOL_METADATA: Record<string, SchoolMetadata> = {
       "University of California, San Diego",
       "San Diego",
     ],
+    state: "CA",
+    control: "public",
     color: "#182B49",
   },
   ucsb: {
@@ -383,6 +469,8 @@ export const SCHOOL_METADATA: Record<string, SchoolMetadata> = {
       "University of California, Santa Barbara",
       "Santa Barbara",
     ],
+    state: "CA",
+    control: "public",
     color: "#003660",
   },
   ucsantacruz: {
@@ -393,6 +481,8 @@ export const SCHOOL_METADATA: Record<string, SchoolMetadata> = {
       "University of California, Santa Cruz",
       "Santa Cruz",
     ],
+    state: "CA",
+    control: "public",
     color: "#003C6C",
   },
   ucriverside: {
@@ -403,10 +493,14 @@ export const SCHOOL_METADATA: Record<string, SchoolMetadata> = {
       "University of California, Riverside",
       "Riverside",
     ],
+    state: "CA",
+    control: "public",
     color: "#003DA5",
   },
   uflorida: {
     aliases: ["UF", "UFlorida", "U of F", "Florida", "University of Florida"],
+    state: "FL",
+    control: "public",
     color: "#0021A5",
   },
   uiuc: {
@@ -418,6 +512,8 @@ export const SCHOOL_METADATA: Record<string, SchoolMetadata> = {
       "U of I",
       "Urbana-Champaign",
     ],
+    state: "IL",
+    control: "public",
     color: "#13294B",
   },
   umd: {
@@ -429,6 +525,8 @@ export const SCHOOL_METADATA: Record<string, SchoolMetadata> = {
       "University of Maryland College Park",
       "University of Maryland, College Park",
     ],
+    state: "MD",
+    control: "public",
     color: "#E21833",
   },
   umich: {
@@ -440,6 +538,8 @@ export const SCHOOL_METADATA: Record<string, SchoolMetadata> = {
       "University of Michigan Ann Arbor",
       "UM Ann Arbor",
     ],
+    state: "MI",
+    control: "public",
     color: "#00274C",
   },
   uncchapelhill: {
@@ -451,6 +551,8 @@ export const SCHOOL_METADATA: Record<string, SchoolMetadata> = {
       "University of North Carolina",
       "University of North Carolina at Chapel Hill",
     ],
+    state: "NC",
+    control: "public",
     color: "#4B9CD3",
   },
   universitypittsburgh: {
@@ -462,14 +564,20 @@ export const SCHOOL_METADATA: Record<string, SchoolMetadata> = {
       "UPitt",
       "U Pitt",
     ],
+    state: "PA",
+    control: "public",
     color: "#003594",
   },
   upenn: {
     aliases: ["UPenn", "Penn", "U Penn", "University of Pennsylvania"],
+    state: "PA",
+    control: "private",
     color: "#011F5B",
   },
   usc: {
     aliases: ["USC", "Southern Cal", "University of Southern California"],
+    state: "CA",
+    control: "private",
     color: "#990000",
   },
   utexasaustin: {
@@ -480,14 +588,20 @@ export const SCHOOL_METADATA: Record<string, SchoolMetadata> = {
       "University of Texas at Austin",
       "University of Texas Austin",
     ],
+    state: "TX",
+    control: "public",
     color: "#BF5700",
   },
   uva: {
     aliases: ["UVA", "University of Virginia", "Virginia", "U. Virginia"],
+    state: "VA",
+    control: "public",
     color: "#232D4B",
   },
   uwashington: {
     aliases: [],
+    state: "WA",
+    control: "public",
     color: "#4B2E83",
   },
   uwmadison: {
@@ -500,14 +614,20 @@ export const SCHOOL_METADATA: Record<string, SchoolMetadata> = {
       "University of Wisconsin Madison",
       "University of Wisconsin-Madison",
     ],
+    state: "WI",
+    control: "public",
     color: "#C5050C",
   },
   vanderbilt: {
     aliases: ["Vanderbilt", "Vandy", "Vanderbilt University"],
+    state: "TN",
+    control: "private",
     color: "#866D4B",
   },
   wakeforest: {
     aliases: ["Wake", "Wake Forest", "Wake Forest University"],
+    state: "NC",
+    control: "private",
     color: "#9E7E38",
   },
   washu: {
@@ -519,95 +639,141 @@ export const SCHOOL_METADATA: Record<string, SchoolMetadata> = {
       "Washington University in St. Louis",
       "Washington University in St Louis",
     ],
+    state: "MO",
+    control: "private",
     color: "#A51417",
   },
   williamandmary: {
     aliases: ["William and Mary", "William & Mary", "W&M", "William Mary"],
+    state: "VA",
+    control: "public",
     color: "#115740",
   },
-  yale: { aliases: ["Yale"], color: "#00356B" },
+  yale: { aliases: ["Yale"], state: "CT", control: "private", color: "#00356B" },
   amherstcollege: {
     aliases: ["Amherst", "Amherst College"],
+    state: "MA",
+    control: "private",
     color: "#3F1F69",
   },
   williamscollege: {
     aliases: ["Williams", "Williams College"],
+    state: "MA",
+    control: "private",
     color: "#500082",
   },
   claremontmckenna: {
     aliases: ["CMC", "Claremont McKenna", "Claremont McKenna College", "Claremont"],
+    state: "CA",
+    control: "private",
     color: "#981A31",
   },
   harveymudd: {
     aliases: ["Harvey Mudd", "Mudd", "HMC", "Harvey Mudd College"],
+    state: "CA",
+    control: "private",
     color: "#FDB913",
   },
   universityofgeorgia: {
     aliases: ["UGA", "Georgia", "University of Georgia", "Georgia Bulldogs"],
+    state: "GA",
+    control: "public",
     color: "#BA0C2F",
   },
   santaclara: {
     aliases: ["SCU", "Santa Clara"],
+    state: "CA",
+    control: "private",
     color: "#B30838",
   },
   virginiatech: {
     aliases: ["Virginia Tech", "VT", "Virginia Polytechnic Institute and State University"],
+    state: "VA",
+    control: "public",
     color: "#861F41",
   },
   lehigh: {
     aliases: ["Lehigh", "LU"],
+    state: "PA",
+    control: "private",
     color: "#502D0E",
   },
   brandeis: {
     aliases: ["Brandeis", "Brandeis U"],
+    state: "MA",
+    control: "private",
     color: "#003478",
   },
   villanova: {
     aliases: ["Villanova", "Nova", "VU"],
+    state: "PA",
+    control: "private",
     color: "#002664",
   },
   floridastate: {
     aliases: ["FSU", "Florida State", "Florida State University", "Seminoles"],
+    state: "FL",
+    control: "public",
     color: "#782F40",
   },
   umassamherst: {
     aliases: ["UMass Amherst", "UMass", "University of Massachusetts", "Massachusetts Amherst"],
+    state: "MA",
+    control: "public",
     color: "#840028",
   },
   universityofminnesota: {
     aliases: ["University of Minnesota", "UMN", "UMTC", "Minnesota", "Twin Cities", "U of M"],
+    state: "MN",
+    control: "public",
     color: "#7A0019",
   },
   michiganstate: {
     aliases: ["Michigan State", "MSU", "Spartans"],
+    state: "MI",
+    control: "public",
     color: "#18453B",
   },
   gwu: {
     aliases: ["George Washington", "GWU", "GW"],
+    state: "DC",
+    control: "private",
     color: "#033C5A",
   },
   stonybrook: {
     aliases: ["Stony Brook", "SBU", "SUNY Stony Brook"],
+    state: "NY",
+    control: "public",
     color: "#990000",
   },
   stevens: {
     aliases: ["Stevens", "SIT", "Stevens Tech"],
+    state: "NJ",
+    control: "private",
     color: "#A32638",
   },
   syracuseuniversity: {
     aliases: ["Syracuse", "SU", "Cuse"],
+    state: "NY",
+    control: "private",
     color: "#F76900",
   },
   howard: {
     aliases: ["Howard", "HU"],
+    state: "DC",
+    control: "private",
     color: "#003A63",
   },
   indianabloomington: {
     aliases: ["Indiana University", "IU Bloomington", "IU", "Indiana"],
+    state: "IN",
+    control: "public",
     color: "#990000",
   },
   rensselaer: {
     aliases: ["RPI", "Rensselaer", "Rensselaer Polytechnic"],
+    state: "NY",
+    control: "private",
     color: "#D6001C",
   },
   binghamton: {
@@ -617,76 +783,126 @@ export const SCHOOL_METADATA: Record<string, SchoolMetadata> = {
       "State University of New York at Binghamton",
       "Bing",
     ],
+    state: "NY",
+    control: "public",
     color: "#005A43",
   },
   ncstate: {
     aliases: ["NC State", "NCSU", "North Carolina State"],
+    state: "NC",
+    control: "public",
     color: "#CC0000",
   },
   vassar: {
     aliases: ["Vassar", "Vassar College"],
+    state: "NY",
+    control: "private",
     color: "#A41E35",
   },
   wellesley: {
     aliases: ["Wellesley", "WC"],
+    state: "MA",
+    control: "private",
     color: "#002F6C",
   },
   hamiltoncollege: {
     aliases: ["Hamilton", "Hamilton College"],
+    state: "NY",
+    control: "private",
     color: "#002F86",
   },
   washingtonandlee: {
     aliases: ["W&L", "WLU", "Washington and Lee"],
+    state: "VA",
+    control: "private",
     color: "#003087",
   },
   wesleyan: {
     aliases: ["Wesleyan", "Wes"],
+    state: "CT",
+    control: "private",
     color: "#D72121",
   },
   carletoncollege: {
     aliases: ["Carleton", "Carleton College", "Carl"],
+    state: "MN",
+    control: "private",
     color: "#003069",
   },
   davidsoncollege: {
     aliases: ["Davidson"],
+    state: "NC",
+    control: "private",
     color: "#D42121",
   },
   middleburycollege: {
     aliases: ["Middlebury", "Midd"],
+    state: "VT",
+    control: "private",
     color: "#0D395F",
   },
   barnardcollege: {
     aliases: ["Barnard", "Barnard University"],
+    state: "NY",
+    control: "private",
     color: "#002F6C",
   },
   colbycollege: {
     aliases: ["Colby"],
+    state: "ME",
+    control: "private",
     color: "#002169",
   },
   grinnellcollege: {
     aliases: ["Grinnell"],
+    state: "IA",
+    control: "private",
     color: "#DA291C",
   },
   wpi: {
     aliases: ["WPI", "Worcester Poly"],
+    state: "MA",
+    control: "private",
     color: "#AC2B37",
   },
   uconn: {
     aliases: ["UConn", "UConn Storrs", "University of Connecticut"],
+    state: "CT",
+    control: "public",
     color: "#000E2F",
   },
   universityofrichmond: {
     aliases: ["U of R", "URichmond", "University of Richmond", "Richmond", "Richmond Spiders"],
+    state: "VA",
+    control: "private",
     color: "#990000",
   },
   colgate: {
     aliases: ["Colgate"],
+    state: "NY",
+    control: "private",
     color: "#821019",
   },
   reedcollege: {
     aliases: ["Reed", "Reed College"],
+    state: "OR",
+    control: "private",
     color: "#A70E16",
   },
+  // TODO: set official colors for these three (they currently use the default gray).
+  pomonacollege: {
+    aliases: ["Pomona", "Pomona College"],
+    state: "CA",
+    control: "private",
+    color: "#4B5563",
+  },
+  swarthmorecollege: {
+    aliases: ["Swarthmore", "Swat"],
+    state: "PA",
+    control: "private",
+    color: "#4B5563",
+  },
+  bowdoincollege: { aliases: ["Bowdoin"], state: "ME", control: "private", color: "#4B5563" },
 };
 
 export const schoolDataMap: Record<string, SchoolData> = Object.fromEntries(
@@ -726,3 +942,58 @@ export const searchableSchools: SearchableSchool[] = allSchools.map((school) => 
 export function getSchoolColor(slug: string): string {
   return SCHOOL_COLORS[slug] ?? "#4B5563";
 }
+
+/**
+ * Small, serializable summary of a school for cards, chips and lists.
+ * Client components receive these as props instead of importing the full
+ * school JSON, which would ship every school's data to the browser.
+ */
+export interface SchoolCardData {
+  slug: string;
+  name: string;
+  color: string;
+  yearCount: number;
+  yearRange: string;
+  acceptanceRate: number | null;
+  enrolled: number | null;
+  yieldRate: number | null;
+  satP25: number | null;
+  satP50: number | null;
+  satP75: number | null;
+  totalCOA: number | null;
+  state: string;
+  control: SchoolControl;
+}
+
+function toSchoolCardData(school: SchoolData): SchoolCardData | null {
+  const latestYear = getLatestYear(school);
+  const latest = latestYear ? school.years[latestYear] : null;
+  const yearRange = getSchoolYearRange(school);
+  if (!latest || !yearRange) return null;
+  const sat = latest.testScores.sat?.composite;
+
+  return {
+    slug: school.slug,
+    name: school.name,
+    color: getSchoolColor(school.slug),
+    yearCount: getSortedYears(school).length,
+    yearRange,
+    acceptanceRate: latest.admissions.acceptanceRate ?? null,
+    enrolled: latest.admissions.enrolled ?? null,
+    yieldRate: latest.admissions.yield ?? null,
+    satP25: sat?.p25 ?? null,
+    satP50: sat?.p50 ?? null,
+    satP75: sat?.p75 ?? null,
+    totalCOA: latest.costs.totalCOA ?? null,
+    state: SCHOOL_METADATA[school.slug]?.state ?? "",
+    control: SCHOOL_METADATA[school.slug]?.control ?? "private",
+  };
+}
+
+export const schoolCards: SchoolCardData[] = allSchools
+  .map(toSchoolCardData)
+  .filter((card): card is SchoolCardData => card !== null);
+
+export const schoolCardMap: Record<string, SchoolCardData> = Object.fromEntries(
+  schoolCards.map((card) => [card.slug, card]),
+);
