@@ -727,7 +727,12 @@
         "roomAndBoard": 18520,
         "totalCOA": 89346
       },
-      "financialAid": {}
+      "financialAid": {
+        "averageAidPackage": 54477,
+        "averageNeedBasedGrant": 50485,
+        "percentReceivingAid": 0.4066,
+        "percentNeedFullyMet": 0.2291
+      }
     },
     "2025-2026": {
       "admissions": {
