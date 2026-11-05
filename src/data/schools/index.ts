@@ -109,6 +109,9 @@ import batescollegeData from "./batescollege.json";
 import brynmawrData from "./brynmawr.json";
 import mountholyokeData from "./mountholyoke.json";
 import occidentalData from "./occidental.json";
+import haverfordcollegeData from "./haverfordcollege.json";
+import kenyoncollegeData from "./kenyoncollege.json";
+import oberlincollegeData from "./oberlincollege.json";
 
 export interface SearchableSchool {
   name: string;
@@ -237,6 +240,9 @@ export const allSchools: SchoolData[] = [
   brynmawrData as SchoolData,
   mountholyokeData as SchoolData,
   occidentalData as SchoolData,
+  haverfordcollegeData as SchoolData,
+  kenyoncollegeData as SchoolData,
+  oberlincollegeData as SchoolData,
 ];
 
 export const SCHOOL_METADATA: Record<string, SchoolMetadata> = {
@@ -958,6 +964,24 @@ export const SCHOOL_METADATA: Record<string, SchoolMetadata> = {
     state: "CA",
     control: "private",
     color: "#FF671F",
+  },
+  haverfordcollege: {
+    aliases: ["Haverford", "Fords"],
+    state: "PA",
+    control: "private",
+    color: "#8B0000",
+  },
+  kenyoncollege: {
+    aliases: ["Kenyon"],
+    state: "OH",
+    control: "private",
+    color: "#4B2E84",
+  },
+  oberlincollege: {
+    aliases: ["Oberlin", "Oberlin College"],
+    state: "OH",
+    control: "private",
+    color: "#A6192E",
   },
 };
 
