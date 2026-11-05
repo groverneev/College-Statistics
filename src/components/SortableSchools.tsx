@@ -12,7 +12,11 @@ type SortValue = "acceptance" | "name" | "classSize" | "sat" | "cost" | "yield";
 
 type Direction = "asc" | "desc";
 
-const SORT_OPTIONS: { value: SortValue; label: string; defaultDir: Direction }[] = [
+const SORT_OPTIONS: {
+  value: SortValue;
+  label: string;
+  defaultDir: Direction;
+}[] = [
   { value: "acceptance", label: "Acceptance rate", defaultDir: "asc" },
   { value: "name", label: "Name", defaultDir: "asc" },
   { value: "classSize", label: "Class size", defaultDir: "desc" },
@@ -44,8 +48,35 @@ const REGION_STATES: Record<Region, string[]> = {
     "OK",
     "TX",
   ],
-  midwest: ["IL", "IN", "MI", "OH", "WI", "IA", "KS", "MN", "MO", "NE", "ND", "SD"],
-  west: ["AZ", "CO", "ID", "MT", "NV", "NM", "UT", "WY", "AK", "CA", "HI", "OR", "WA"],
+  midwest: [
+    "IL",
+    "IN",
+    "MI",
+    "OH",
+    "WI",
+    "IA",
+    "KS",
+    "MN",
+    "MO",
+    "NE",
+    "ND",
+    "SD",
+  ],
+  west: [
+    "AZ",
+    "CO",
+    "ID",
+    "MT",
+    "NV",
+    "NM",
+    "UT",
+    "WY",
+    "AK",
+    "CA",
+    "HI",
+    "OR",
+    "WA",
+  ],
 };
 
 interface RangeOption {
@@ -140,15 +171,24 @@ function numericField(school: SchoolCardData, sort: SortValue): number | null {
   }
 }
 
-function compareNumeric(a: number | null, b: number | null, dir: Direction): number {
+function compareNumeric(
+  a: number | null,
+  b: number | null,
+  dir: Direction,
+): number {
   if (a === null && b === null) return 0;
   if (a === null) return 1;
   if (b === null) return -1;
   return dir === "asc" ? a - b : b - a;
 }
 
-function sortSchools(schools: SchoolCardData[], sort: SortValue, dir: Direction) {
-  const byNameAsc = (a: SchoolCardData, b: SchoolCardData) => a.name.localeCompare(b.name);
+function sortSchools(
+  schools: SchoolCardData[],
+  sort: SortValue,
+  dir: Direction,
+) {
+  const byNameAsc = (a: SchoolCardData, b: SchoolCardData) =>
+    a.name.localeCompare(b.name);
 
   return [...schools].sort((a, b) => {
     const primary =
@@ -176,13 +216,18 @@ function groupValue(school: SchoolCardData, key: FilterKey): number | null {
 }
 
 // Options within a group are OR'd together; groups are AND'd.
-export function matchesFilters(school: SchoolCardData, filters: Filters): boolean {
+export function matchesFilters(
+  school: SchoolCardData,
+  filters: Filters,
+): boolean {
   return FILTER_GROUPS.every(({ key, options }) => {
     const selected = filters[key];
     if (selected.length === 0) return true;
     if (key === "control") return selected.includes(school.control);
     if (key === "region") {
-      return selected.some((region) => REGION_STATES[region as Region]?.includes(school.state));
+      return selected.some((region) =>
+        REGION_STATES[region as Region]?.includes(school.state),
+      );
     }
     return options
       .filter((option) => selected.includes(option.value))
@@ -195,7 +240,9 @@ function readFiltersFromUrl(): Filters {
   const filters: Filters = { ...EMPTY_FILTERS };
   for (const { key, options } of FILTER_GROUPS) {
     const allowed = new Set(options.map((option) => option.value));
-    filters[key] = (params.get(key)?.split(",") ?? []).filter((value) => allowed.has(value));
+    filters[key] = (params.get(key)?.split(",") ?? []).filter((value) =>
+      allowed.has(value),
+    );
   }
   return filters;
 }
@@ -207,7 +254,11 @@ function writeFiltersToUrl(filters: Filters) {
     else params.delete(key);
   }
   const query = params.toString();
-  window.history.replaceState(null, "", `${window.location.pathname}${query ? `?${query}` : ""}`);
+  window.history.replaceState(
+    null,
+    "",
+    `${window.location.pathname}${query ? `?${query}` : ""}`,
+  );
 }
 
 export default function SortableSchools({ schools }: SortableSchoolsProps) {
@@ -215,9 +266,13 @@ export default function SortableSchools({ schools }: SortableSchoolsProps) {
   const [direction, setDirection] = useState<Direction>("asc");
   const [filters, setFilters] = useState<Filters>(EMPTY_FILTERS);
   const [open, setOpen] = useState(false);
+  const [openFilter, setOpenFilter] = useState<FilterKey | null>(null);
   const menuRef = useRef<HTMLDivElement>(null);
   const activeLabel = SORT_OPTIONS.find((o) => o.value === sort)?.label;
-  const activeFilterCount = Object.values(filters).reduce((n, values) => n + values.length, 0);
+  const activeFilterCount = Object.values(filters).reduce(
+    (n, values) => n + values.length,
+    0,
+  );
   const visible = sortSchools(
     schools.filter((school) => matchesFilters(school, filters)),
     sort,
@@ -237,7 +292,9 @@ export default function SortableSchools({ schools }: SortableSchoolsProps) {
     const current = filters[key];
     updateFilters({
       ...filters,
-      [key]: current.includes(value) ? current.filter((v) => v !== value) : [...current, value],
+      [key]: current.includes(value)
+        ? current.filter((v) => v !== value)
+        : [...current, value],
     });
   }
 
@@ -246,9 +303,15 @@ export default function SortableSchools({ schools }: SortableSchoolsProps) {
       if (menuRef.current && !menuRef.current.contains(e.target as Node)) {
         setOpen(false);
       }
+      if (!(e.target as Element).closest?.("[data-filter-dropdown]")) {
+        setOpenFilter(null);
+      }
     }
     function handleKey(e: KeyboardEvent) {
-      if (e.key === "Escape") setOpen(false);
+      if (e.key === "Escape") {
+        setOpen(false);
+        setOpenFilter(null);
+      }
     }
     document.addEventListener("mousedown", handleClickOutside);
     document.addEventListener("keydown", handleKey);
@@ -260,14 +323,43 @@ export default function SortableSchools({ schools }: SortableSchoolsProps) {
 
   return (
     <>
-      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-6">
-        <h2 className="text-2xl font-semibold text-gray-800">
-          {activeFilterCount > 0
-            ? `${visible.length} of ${schools.length} schools`
-            : `All Schools (${schools.length})`}
-        </h2>
+      <h2 className="text-2xl font-semibold text-gray-800 mb-4">
+        {activeFilterCount > 0
+          ? `${visible.length} of ${schools.length} schools`
+          : `All Schools (${schools.length})`}
+      </h2>
 
-        <div className="grid grid-cols-[minmax(0,1fr)_auto] sm:flex sm:items-center gap-2 w-full sm:w-auto text-sm text-gray-600">
+      <div className="mb-8 flex flex-col lg:flex-row lg:items-center lg:justify-between gap-3">
+        <div className="grid grid-cols-2 gap-2 sm:flex sm:flex-wrap sm:items-center text-sm text-gray-600">
+          <span className="col-span-2 sm:col-span-1 font-medium sm:mr-1">
+            Filter
+          </span>
+          {FILTER_GROUPS.map((group, index) => (
+            <FilterDropdown
+              key={group.key}
+              group={group}
+              selected={filters[group.key]}
+              open={openFilter === group.key}
+              alignRightOnMobile={index % 2 === 1}
+              onToggleOpen={() =>
+                setOpenFilter((k) => (k === group.key ? null : group.key))
+              }
+              onToggleValue={(value) => toggleFilter(group.key, value)}
+              onClear={() => updateFilters({ ...filters, [group.key]: [] })}
+            />
+          ))}
+          {activeFilterCount > 0 && (
+            <button
+              type="button"
+              onClick={() => updateFilters(EMPTY_FILTERS)}
+              className="min-h-11 px-2 text-sm font-medium text-blue-600 hover:text-blue-700 text-left"
+            >
+              Clear all
+            </button>
+          )}
+        </div>
+
+        <div className="grid grid-cols-[minmax(0,1fr)_auto] sm:flex sm:items-center gap-2 w-full sm:w-auto flex-shrink-0 text-sm text-gray-600">
           <span className="col-span-2 sm:col-span-1 font-medium">Sort by</span>
           <div className="relative min-w-0" ref={menuRef}>
             <button
@@ -275,7 +367,7 @@ export default function SortableSchools({ schools }: SortableSchoolsProps) {
               onClick={() => setOpen((v) => !v)}
               aria-haspopup="listbox"
               aria-expanded={open}
-              className="flex min-h-11 w-full sm:w-auto items-center justify-between gap-2 sm:min-w-[15rem] rounded-lg border border-gray-300 bg-white pl-4 pr-3 py-2 text-sm font-medium text-gray-700 shadow-sm transition-colors hover:bg-gray-50 focus:border-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400"
+              className="flex min-h-11 w-full sm:w-auto items-center justify-between gap-2 sm:min-w-[12rem] rounded-lg border border-gray-300 bg-white pl-4 pr-3 py-2 text-sm font-medium text-gray-700 shadow-sm transition-colors hover:bg-gray-50 focus:border-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400"
             >
               <span>{activeLabel}</span>
               <svg
@@ -285,7 +377,11 @@ export default function SortableSchools({ schools }: SortableSchoolsProps) {
                 strokeWidth={2}
                 viewBox="0 0 24 24"
               >
-                <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M19 9l-7 7-7-7"
+                />
               </svg>
             </button>
 
@@ -308,7 +404,9 @@ export default function SortableSchools({ schools }: SortableSchoolsProps) {
                         setOpen(false);
                       }}
                       className={`w-full min-h-11 text-left px-3 py-2 rounded-lg text-sm font-medium transition-colors flex items-center justify-between ${
-                        selected ? "bg-gray-100 text-gray-900" : "text-gray-700 hover:bg-gray-50"
+                        selected
+                          ? "bg-gray-100 text-gray-900"
+                          : "text-gray-700 hover:bg-gray-50"
                       }`}
                     >
                       <span>{option.label}</span>
@@ -348,52 +446,14 @@ export default function SortableSchools({ schools }: SortableSchoolsProps) {
               strokeWidth={2}
               viewBox="0 0 24 24"
             >
-              <path strokeLinecap="round" strokeLinejoin="round" d="M12 5v14M19 12l-7 7-7-7" />
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M12 5v14M19 12l-7 7-7-7"
+              />
             </svg>
           </button>
         </div>
-      </div>
-
-      <div className="mb-8 rounded-xl border border-gray-200 bg-white p-4 sm:p-5 space-y-3">
-        {FILTER_GROUPS.map(({ key, label, options }) => (
-          <fieldset key={key} className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4">
-            <legend className="sr-only">{label}</legend>
-            <span aria-hidden className="sm:w-32 flex-shrink-0 text-sm font-medium text-gray-600">
-              {label}
-            </span>
-            <div className="flex flex-wrap gap-2">
-              {options.map((option) => {
-                const selected = filters[key].includes(option.value);
-                return (
-                  <button
-                    key={option.value}
-                    type="button"
-                    aria-pressed={selected}
-                    onClick={() => toggleFilter(key, option.value)}
-                    className={`min-h-9 rounded-full border px-3 py-1.5 text-sm font-medium transition-colors ${
-                      selected
-                        ? "border-gray-800 bg-gray-800 text-white"
-                        : "border-gray-300 bg-white text-gray-700 hover:bg-gray-50"
-                    }`}
-                  >
-                    {option.label}
-                  </button>
-                );
-              })}
-            </div>
-          </fieldset>
-        ))}
-        {activeFilterCount > 0 && (
-          <div className="pt-1">
-            <button
-              type="button"
-              onClick={() => updateFilters(EMPTY_FILTERS)}
-              className="min-h-9 text-sm font-medium text-blue-600 hover:text-blue-700"
-            >
-              Clear filters
-            </button>
-          </div>
-        )}
       </div>
 
       {visible.length > 0 ? (
@@ -415,5 +475,126 @@ export default function SortableSchools({ schools }: SortableSchoolsProps) {
         </div>
       )}
     </>
+  );
+}
+
+interface FilterDropdownProps {
+  group: FilterGroup;
+  selected: string[];
+  open: boolean;
+  alignRightOnMobile: boolean;
+  onToggleOpen: () => void;
+  onToggleValue: (value: string) => void;
+  onClear: () => void;
+}
+
+function FilterDropdown({
+  group,
+  selected,
+  open,
+  alignRightOnMobile,
+  onToggleOpen,
+  onToggleValue,
+  onClear,
+}: FilterDropdownProps) {
+  const active = selected.length > 0;
+  const summary =
+    selected.length === 1
+      ? group.options.find((o) => o.value === selected[0])?.label
+      : null;
+
+  return (
+    <div className="relative min-w-0" data-filter-dropdown>
+      <button
+        type="button"
+        onClick={onToggleOpen}
+        aria-haspopup="true"
+        aria-expanded={open}
+        className={`flex min-h-11 w-full sm:w-auto items-center justify-between gap-2 rounded-lg border bg-white pl-4 pr-3 py-2 text-sm font-medium shadow-sm transition-colors hover:bg-gray-50 focus:outline-none focus:ring-1 focus:ring-gray-400 ${
+          active
+            ? "border-gray-800 text-gray-900"
+            : "border-gray-300 text-gray-700"
+        }`}
+      >
+        <span className="truncate">
+          {group.label}
+          {summary && (
+            <span className="text-gray-500 font-normal">: {summary}</span>
+          )}
+        </span>
+        <span className="flex items-center gap-1.5 flex-shrink-0">
+          {selected.length > 1 && (
+            <span className="rounded-full bg-gray-800 px-1.5 text-xs leading-5 text-white">
+              {selected.length}
+            </span>
+          )}
+          <svg
+            className={`w-4 h-4 text-gray-500 transition-transform ${open ? "rotate-180" : ""}`}
+            fill="none"
+            stroke="currentColor"
+            strokeWidth={2}
+            viewBox="0 0 24 24"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M19 9l-7 7-7-7"
+            />
+          </svg>
+        </span>
+      </button>
+
+      {open && (
+        <div
+          role="group"
+          aria-label={group.label}
+          className={`absolute ${
+            alignRightOnMobile ? "right-0" : "left-0"
+          } sm:left-0 sm:right-auto mt-2 w-full min-w-[11rem] sm:w-56 bg-white rounded-xl shadow-lg border border-gray-100 p-1.5 z-50`}
+        >
+          {group.options.map((option) => {
+            const checked = selected.includes(option.value);
+            return (
+              <button
+                key={option.value}
+                type="button"
+                role="menuitemcheckbox"
+                aria-checked={checked}
+                onClick={() => onToggleValue(option.value)}
+                className={`w-full min-h-11 text-left px-3 py-2 rounded-lg text-sm font-medium transition-colors flex items-center justify-between ${
+                  checked
+                    ? "bg-gray-100 text-gray-900"
+                    : "text-gray-700 hover:bg-gray-50"
+                }`}
+              >
+                <span>{option.label}</span>
+                {checked && (
+                  <svg
+                    className="w-3.5 h-3.5 text-blue-500"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                )}
+              </button>
+            );
+          })}
+          {selected.length > 0 && (
+            <button
+              type="button"
+              onClick={onClear}
+              className="mt-1 w-full min-h-9 border-t border-gray-100 px-3 pt-2 pb-1 text-left text-sm font-medium text-blue-600 hover:text-blue-700"
+            >
+              Clear
+            </button>
+          )}
+        </div>
+      )}
+    </div>
   );
 }
