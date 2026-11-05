@@ -106,6 +106,9 @@ import bucknellData from "./bucknell.json";
 import lafayetteData from "./lafayette.json";
 import macalesterData from "./macalester.json";
 import batescollegeData from "./batescollege.json";
+import brynmawrData from "./brynmawr.json";
+import mountholyokeData from "./mountholyoke.json";
+import occidentalData from "./occidental.json";
 
 export interface SearchableSchool {
   name: string;
@@ -231,6 +234,9 @@ export const allSchools: SchoolData[] = [
   lafayetteData as SchoolData,
   macalesterData as SchoolData,
   batescollegeData as SchoolData,
+  brynmawrData as SchoolData,
+  mountholyokeData as SchoolData,
+  occidentalData as SchoolData,
 ];
 
 export const SCHOOL_METADATA: Record<string, SchoolMetadata> = {
@@ -934,6 +940,24 @@ export const SCHOOL_METADATA: Record<string, SchoolMetadata> = {
     state: "ME",
     control: "private",
     color: "#881124",
+  },
+  brynmawr: {
+    aliases: ["Bryn Mawr", "BMC"],
+    state: "PA",
+    control: "private",
+    color: "#FFC600",
+  },
+  mountholyoke: {
+    aliases: ["Mount Holyoke", "MHC", "Mt. Holyoke"],
+    state: "MA",
+    control: "private",
+    color: "#004876",
+  },
+  occidental: {
+    aliases: ["Occidental", "Oxy"],
+    state: "CA",
+    control: "private",
+    color: "#FF671F",
   },
 };
 
