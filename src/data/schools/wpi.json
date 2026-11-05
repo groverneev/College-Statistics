@@ -343,7 +343,28 @@
         "acceptanceRate": 0.5905,
         "yield": 0.1951
       },
-      "testScores": {},
+      "testScores": {
+        "sat": {
+          "composite": {
+            "p25": 1320,
+            "p75": 1450
+          },
+          "readingWriting": {
+            "p25": 630,
+            "p75": 710
+          },
+          "math": {
+            "p25": 670,
+            "p75": 760
+          }
+        },
+        "act": {
+          "composite": {
+            "p25": 29,
+            "p75": 33
+          }
+        }
+      },
       "demographics": {
         "enrollment": {
           "undergraduate": 4892,
