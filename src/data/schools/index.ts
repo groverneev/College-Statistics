@@ -104,6 +104,7 @@ import colgateData from "./colgate.json";
 import reedcollegeData from "./reedcollege.json";
 import bucknellData from "./bucknell.json";
 import lafayetteData from "./lafayette.json";
+import macalesterData from "./macalester.json";
 
 export interface SearchableSchool {
   name: string;
@@ -227,6 +228,7 @@ export const allSchools: SchoolData[] = [
   reedcollegeData as SchoolData,
   bucknellData as SchoolData,
   lafayetteData as SchoolData,
+  macalesterData as SchoolData,
 ];
 
 export const SCHOOL_METADATA: Record<string, SchoolMetadata> = {
@@ -918,6 +920,12 @@ export const SCHOOL_METADATA: Record<string, SchoolMetadata> = {
     state: "PA",
     control: "private",
     color: "#910029",
+  },
+  macalester: {
+    aliases: ["Macalester", "Mac"],
+    state: "MN",
+    control: "private",
+    color: "#01426A",
   },
 };
 
