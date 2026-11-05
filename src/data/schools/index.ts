@@ -112,6 +112,7 @@ import occidentalData from "./occidental.json";
 import haverfordcollegeData from "./haverfordcollege.json";
 import kenyoncollegeData from "./kenyoncollege.json";
 import oberlincollegeData from "./oberlincollege.json";
+import universityofdelawareData from "./universityofdelaware.json";
 
 export interface SearchableSchool {
   name: string;
@@ -243,6 +244,7 @@ export const allSchools: SchoolData[] = [
   haverfordcollegeData as SchoolData,
   kenyoncollegeData as SchoolData,
   oberlincollegeData as SchoolData,
+  universityofdelawareData as SchoolData,
 ];
 
 export const SCHOOL_METADATA: Record<string, SchoolMetadata> = {
@@ -982,6 +984,12 @@ export const SCHOOL_METADATA: Record<string, SchoolMetadata> = {
     state: "OH",
     control: "private",
     color: "#A6192E",
+  },
+  universityofdelaware: {
+    aliases: ["UDel", "Delaware", "UD"],
+    state: "DE",
+    control: "public",
+    color: "#00539F",
   },
 };
 
