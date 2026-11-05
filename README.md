@@ -18,13 +18,13 @@ Every figure on the site comes from a school's official **Common Data Set (CDS)*
 
 ## What you can explore
 
-| | |
-|---|---|
-| 📈 **Admissions** | Applications received, acceptance and yield rates, and early decision/action statistics |
-| 📝 **Test Scores** | SAT and ACT score distributions, including 25th, 50th, and 75th percentile ranges |
-| 💵 **Costs** | Tuition, fees, room and board, and total cost of attendance |
+|                      |                                                                                         |
+| -------------------- | --------------------------------------------------------------------------------------- |
+| 📈 **Admissions**    | Applications received, acceptance and yield rates, and early decision/action statistics |
+| 📝 **Test Scores**   | SAT and ACT score distributions, including 25th, 50th, and 75th percentile ranges       |
+| 💵 **Costs**         | Tuition, fees, room and board, and total cost of attendance                             |
 | 🤝 **Financial Aid** | Share of students receiving aid, average aid packages, need-based grants, and net price |
-| 🌎 **Demographics** | Enrollment totals, racial and ethnic breakdowns, and where students come from |
+| 🌎 **Demographics**  | Enrollment totals, racial and ethnic breakdowns, and where students come from           |
 
 Coverage spans **100+ universities** with up to **ten years of history** (2016–17 through 2025–26), so you can see how a school has changed over time and not just where it stands today.
 

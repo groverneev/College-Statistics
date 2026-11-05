@@ -102,10 +102,10 @@ export default function Footer() {
         </div>
 
         <div className="mt-6 flex flex-col gap-2 border-t border-white/10 pt-6 text-xs text-gray-500 md:flex-row md:justify-between">
+          <p>&copy; {new Date().getFullYear()} College Statistics · groverneev at gmail dot com</p>
           <p>
-            &copy; {new Date().getFullYear()} College Statistics · groverneev at gmail dot com
+            Data sourced from official Common Data Set reports. For informational purposes only.
           </p>
-          <p>Data sourced from official Common Data Set reports. For informational purposes only.</p>
         </div>
       </div>
     </footer>

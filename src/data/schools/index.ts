@@ -115,6 +115,9 @@ import oberlincollegeData from "./oberlincollege.json";
 import universityofdelawareData from "./universityofdelaware.json";
 import baylorData from "./baylor.json";
 import smuData from "./smu.json";
+import universityofalabamaData from "./universityofalabama.json";
+import auburnData from "./auburn.json";
+import clemsonData from "./clemson.json";
 
 export interface SearchableSchool {
   name: string;
@@ -249,6 +252,9 @@ export const allSchools: SchoolData[] = [
   universityofdelawareData as SchoolData,
   baylorData as SchoolData,
   smuData as SchoolData,
+  universityofalabamaData as SchoolData,
+  auburnData as SchoolData,
+  clemsonData as SchoolData,
 ];
 
 export const SCHOOL_METADATA: Record<string, SchoolMetadata> = {
@@ -1006,6 +1012,24 @@ export const SCHOOL_METADATA: Record<string, SchoolMetadata> = {
     state: "TX",
     control: "private",
     color: "#CC0035",
+  },
+  universityofalabama: {
+    aliases: ["Alabama", "UA", "Bama"],
+    state: "AL",
+    control: "public",
+    color: "#9E1B32",
+  },
+  auburn: {
+    aliases: ["Auburn", "AU"],
+    state: "AL",
+    control: "public",
+    color: "#0B2341",
+  },
+  clemson: {
+    aliases: ["Clemson", "Clemson Tigers"],
+    state: "SC",
+    control: "public",
+    color: "#F56600",
   },
 };
 

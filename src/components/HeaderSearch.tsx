@@ -65,13 +65,7 @@ export default function HeaderSearch({ schools }: HeaderSearchProps) {
   );
 }
 
-function SearchDialog({
-  schools,
-  onClose,
-}: {
-  schools: SearchableSchool[];
-  onClose: () => void;
-}) {
+function SearchDialog({ schools, onClose }: { schools: SearchableSchool[]; onClose: () => void }) {
   const [query, setQuery] = useState("");
   const [highlightedIndex, setHighlightedIndex] = useState(0);
   const inputRef = useRef<HTMLInputElement>(null);

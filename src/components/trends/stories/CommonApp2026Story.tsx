@@ -473,9 +473,9 @@ export default function CommonApp2026Story() {
       <div>
         <h2 className="text-xl font-bold text-gray-900 mb-1">3. The International Cliff</h2>
         <p className="text-sm text-gray-500 mb-4">
-          International applicants fell 9% from last season, a sharp reversal after years of
-          growth. Asia and Africa drove the decline, while the Americas bucked the trend. The drops
-          in individual countries are even more striking.
+          International applicants fell 9% from last season, a sharp reversal after years of growth.
+          Asia and Africa drove the decline, while the Americas bucked the trend. The drops in
+          individual countries are even more striking.
         </p>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <InternationalRegionChart />

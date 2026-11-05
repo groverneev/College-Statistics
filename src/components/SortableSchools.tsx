@@ -48,35 +48,8 @@ const REGION_STATES: Record<Region, string[]> = {
     "OK",
     "TX",
   ],
-  midwest: [
-    "IL",
-    "IN",
-    "MI",
-    "OH",
-    "WI",
-    "IA",
-    "KS",
-    "MN",
-    "MO",
-    "NE",
-    "ND",
-    "SD",
-  ],
-  west: [
-    "AZ",
-    "CO",
-    "ID",
-    "MT",
-    "NV",
-    "NM",
-    "UT",
-    "WY",
-    "AK",
-    "CA",
-    "HI",
-    "OR",
-    "WA",
-  ],
+  midwest: ["IL", "IN", "MI", "OH", "WI", "IA", "KS", "MN", "MO", "NE", "ND", "SD"],
+  west: ["AZ", "CO", "ID", "MT", "NV", "NM", "UT", "WY", "AK", "CA", "HI", "OR", "WA"],
 };
 
 interface RangeOption {
@@ -171,24 +144,15 @@ function numericField(school: SchoolCardData, sort: SortValue): number | null {
   }
 }
 
-function compareNumeric(
-  a: number | null,
-  b: number | null,
-  dir: Direction,
-): number {
+function compareNumeric(a: number | null, b: number | null, dir: Direction): number {
   if (a === null && b === null) return 0;
   if (a === null) return 1;
   if (b === null) return -1;
   return dir === "asc" ? a - b : b - a;
 }
 
-function sortSchools(
-  schools: SchoolCardData[],
-  sort: SortValue,
-  dir: Direction,
-) {
-  const byNameAsc = (a: SchoolCardData, b: SchoolCardData) =>
-    a.name.localeCompare(b.name);
+function sortSchools(schools: SchoolCardData[], sort: SortValue, dir: Direction) {
+  const byNameAsc = (a: SchoolCardData, b: SchoolCardData) => a.name.localeCompare(b.name);
 
   return [...schools].sort((a, b) => {
     const primary =
@@ -216,18 +180,13 @@ function groupValue(school: SchoolCardData, key: FilterKey): number | null {
 }
 
 // Options within a group are OR'd together; groups are AND'd.
-export function matchesFilters(
-  school: SchoolCardData,
-  filters: Filters,
-): boolean {
+export function matchesFilters(school: SchoolCardData, filters: Filters): boolean {
   return FILTER_GROUPS.every(({ key, options }) => {
     const selected = filters[key];
     if (selected.length === 0) return true;
     if (key === "control") return selected.includes(school.control);
     if (key === "region") {
-      return selected.some((region) =>
-        REGION_STATES[region as Region]?.includes(school.state),
-      );
+      return selected.some((region) => REGION_STATES[region as Region]?.includes(school.state));
     }
     return options
       .filter((option) => selected.includes(option.value))
@@ -240,9 +199,7 @@ function readFiltersFromUrl(): Filters {
   const filters: Filters = { ...EMPTY_FILTERS };
   for (const { key, options } of FILTER_GROUPS) {
     const allowed = new Set(options.map((option) => option.value));
-    filters[key] = (params.get(key)?.split(",") ?? []).filter((value) =>
-      allowed.has(value),
-    );
+    filters[key] = (params.get(key)?.split(",") ?? []).filter((value) => allowed.has(value));
   }
   return filters;
 }
@@ -254,11 +211,7 @@ function writeFiltersToUrl(filters: Filters) {
     else params.delete(key);
   }
   const query = params.toString();
-  window.history.replaceState(
-    null,
-    "",
-    `${window.location.pathname}${query ? `?${query}` : ""}`,
-  );
+  window.history.replaceState(null, "", `${window.location.pathname}${query ? `?${query}` : ""}`);
 }
 
 export default function SortableSchools({ schools }: SortableSchoolsProps) {
@@ -269,10 +222,7 @@ export default function SortableSchools({ schools }: SortableSchoolsProps) {
   const [openFilter, setOpenFilter] = useState<FilterKey | null>(null);
   const menuRef = useRef<HTMLDivElement>(null);
   const activeLabel = SORT_OPTIONS.find((o) => o.value === sort)?.label;
-  const activeFilterCount = Object.values(filters).reduce(
-    (n, values) => n + values.length,
-    0,
-  );
+  const activeFilterCount = Object.values(filters).reduce((n, values) => n + values.length, 0);
   const visible = sortSchools(
     schools.filter((school) => matchesFilters(school, filters)),
     sort,
@@ -292,9 +242,7 @@ export default function SortableSchools({ schools }: SortableSchoolsProps) {
     const current = filters[key];
     updateFilters({
       ...filters,
-      [key]: current.includes(value)
-        ? current.filter((v) => v !== value)
-        : [...current, value],
+      [key]: current.includes(value) ? current.filter((v) => v !== value) : [...current, value],
     });
   }
 
@@ -331,9 +279,7 @@ export default function SortableSchools({ schools }: SortableSchoolsProps) {
 
       <div className="mb-8 flex flex-col lg:flex-row lg:items-center lg:justify-between gap-3">
         <div className="grid grid-cols-2 gap-2 sm:flex sm:flex-wrap sm:items-center text-sm text-gray-600">
-          <span className="col-span-2 sm:col-span-1 font-medium sm:mr-1">
-            Filter
-          </span>
+          <span className="col-span-2 sm:col-span-1 font-medium sm:mr-1">Filter</span>
           {FILTER_GROUPS.map((group, index) => (
             <FilterDropdown
               key={group.key}
@@ -341,9 +287,7 @@ export default function SortableSchools({ schools }: SortableSchoolsProps) {
               selected={filters[group.key]}
               open={openFilter === group.key}
               alignRightOnMobile={index % 2 === 1}
-              onToggleOpen={() =>
-                setOpenFilter((k) => (k === group.key ? null : group.key))
-              }
+              onToggleOpen={() => setOpenFilter((k) => (k === group.key ? null : group.key))}
               onToggleValue={(value) => toggleFilter(group.key, value)}
               onClear={() => updateFilters({ ...filters, [group.key]: [] })}
             />
@@ -377,11 +321,7 @@ export default function SortableSchools({ schools }: SortableSchoolsProps) {
                 strokeWidth={2}
                 viewBox="0 0 24 24"
               >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M19 9l-7 7-7-7"
-                />
+                <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
               </svg>
             </button>
 
@@ -404,9 +344,7 @@ export default function SortableSchools({ schools }: SortableSchoolsProps) {
                         setOpen(false);
                       }}
                       className={`w-full min-h-11 text-left px-3 py-2 rounded-lg text-sm font-medium transition-colors flex items-center justify-between ${
-                        selected
-                          ? "bg-gray-100 text-gray-900"
-                          : "text-gray-700 hover:bg-gray-50"
+                        selected ? "bg-gray-100 text-gray-900" : "text-gray-700 hover:bg-gray-50"
                       }`}
                     >
                       <span>{option.label}</span>
@@ -446,11 +384,7 @@ export default function SortableSchools({ schools }: SortableSchoolsProps) {
               strokeWidth={2}
               viewBox="0 0 24 24"
             >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M12 5v14M19 12l-7 7-7-7"
-              />
+              <path strokeLinecap="round" strokeLinejoin="round" d="M12 5v14M19 12l-7 7-7-7" />
             </svg>
           </button>
         </div>
@@ -499,9 +433,7 @@ function FilterDropdown({
 }: FilterDropdownProps) {
   const active = selected.length > 0;
   const summary =
-    selected.length === 1
-      ? group.options.find((o) => o.value === selected[0])?.label
-      : null;
+    selected.length === 1 ? group.options.find((o) => o.value === selected[0])?.label : null;
 
   return (
     <div className="relative min-w-0" data-filter-dropdown>
@@ -511,16 +443,12 @@ function FilterDropdown({
         aria-haspopup="true"
         aria-expanded={open}
         className={`flex min-h-11 w-full sm:w-auto items-center justify-between gap-2 rounded-lg border bg-white pl-4 pr-3 py-2 text-sm font-medium shadow-sm transition-colors hover:bg-gray-50 focus:outline-none focus:ring-1 focus:ring-gray-400 ${
-          active
-            ? "border-gray-800 text-gray-900"
-            : "border-gray-300 text-gray-700"
+          active ? "border-gray-800 text-gray-900" : "border-gray-300 text-gray-700"
         }`}
       >
         <span className="truncate">
           {group.label}
-          {summary && (
-            <span className="text-gray-500 font-normal">: {summary}</span>
-          )}
+          {summary && <span className="text-gray-500 font-normal">: {summary}</span>}
         </span>
         <span className="flex items-center gap-1.5 flex-shrink-0">
           {selected.length > 1 && (
@@ -535,18 +463,14 @@ function FilterDropdown({
             strokeWidth={2}
             viewBox="0 0 24 24"
           >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M19 9l-7 7-7-7"
-            />
+            <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
           </svg>
         </span>
       </button>
 
       {open && (
         <div
-          role="group"
+          role="menu"
           aria-label={group.label}
           className={`absolute ${
             alignRightOnMobile ? "right-0" : "left-0"
@@ -562,9 +486,7 @@ function FilterDropdown({
                 aria-checked={checked}
                 onClick={() => onToggleValue(option.value)}
                 className={`w-full min-h-11 text-left px-3 py-2 rounded-lg text-sm font-medium transition-colors flex items-center justify-between ${
-                  checked
-                    ? "bg-gray-100 text-gray-900"
-                    : "text-gray-700 hover:bg-gray-50"
+                  checked ? "bg-gray-100 text-gray-900" : "text-gray-700 hover:bg-gray-50"
                 }`}
               >
                 <span>{option.label}</span>
