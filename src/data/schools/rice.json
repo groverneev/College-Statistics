@@ -41,6 +41,18 @@
         "earlyDecision": {
           "applied": 1492,
           "admitted": 337
+        },
+        "byGender": {
+          "men": {
+            "applied": 9392,
+            "admitted": 1384,
+            "enrolled": 489
+          },
+          "women": {
+            "applied": 8844,
+            "admitted": 1401,
+            "enrolled": 492
+          }
         }
       },
       "testScores": {
@@ -118,6 +130,18 @@
         "earlyDecision": {
           "applied": 1603,
           "admitted": 329
+        },
+        "byGender": {
+          "men": {
+            "applied": 9371,
+            "admitted": 1434,
+            "enrolled": 539
+          },
+          "women": {
+            "applied": 8692,
+            "admitted": 1430,
+            "enrolled": 509
+          }
         }
       },
       "testScores": {
@@ -195,6 +219,18 @@
         "earlyDecision": {
           "applied": 1675,
           "admitted": 370
+        },
+        "byGender": {
+          "men": {
+            "applied": 11040,
+            "admitted": 1196,
+            "enrolled": 507
+          },
+          "women": {
+            "applied": 9883,
+            "admitted": 1132,
+            "enrolled": 453
+          }
         }
       },
       "testScores": {
@@ -272,6 +308,18 @@
         "earlyDecision": {
           "applied": 2628,
           "admitted": 408
+        },
+        "byGender": {
+          "men": {
+            "applied": 14214,
+            "admitted": 1217,
+            "enrolled": 497
+          },
+          "women": {
+            "applied": 12873,
+            "admitted": 1144,
+            "enrolled": 467
+          }
         }
       },
       "testScores": {
@@ -349,6 +397,18 @@
         "earlyDecision": {
           "applied": 2248,
           "admitted": 440
+        },
+        "byGender": {
+          "men": {
+            "applied": 12031,
+            "admitted": 1281,
+            "enrolled": 522
+          },
+          "women": {
+            "applied": 11424,
+            "admitted": 1274,
+            "enrolled": 471
+          }
         }
       },
       "testScores": {
@@ -426,6 +486,18 @@
         "earlyDecision": {
           "applied": 2635,
           "admitted": 478
+        },
+        "byGender": {
+          "men": {
+            "applied": 14761,
+            "admitted": 1355,
+            "enrolled": 596
+          },
+          "women": {
+            "applied": 14783,
+            "admitted": 1447,
+            "enrolled": 630
+          }
         }
       },
       "testScores": {

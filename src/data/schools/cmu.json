@@ -404,14 +404,26 @@
     "2021-2022": {
       "admissions": {
         "applied": 32896,
-        "admitted": 4605,
-        "enrolled": 1980,
-        "acceptanceRate": 0.14,
-        "yield": 0.43,
+        "admitted": 4453,
+        "enrolled": 1896,
+        "acceptanceRate": 0.1354,
+        "yield": 0.4258,
         "earlyAction": { "applied": 2972, "admitted": 592 },
         "earlyDecision": {
           "applied": 2972,
           "admitted": 592
+        },
+        "byGender": {
+          "men": {
+            "applied": 19878,
+            "admitted": 2122,
+            "enrolled": 912
+          },
+          "women": {
+            "applied": 13018,
+            "admitted": 2331,
+            "enrolled": 984
+          }
         }
       },
       "testScores": {
@@ -548,6 +560,18 @@
         "earlyDecision": {
           "applied": 4515,
           "admitted": 615
+        },
+        "byGender": {
+          "men": {
+            "applied": 20091,
+            "admitted": 1850,
+            "enrolled": 874
+          },
+          "women": {
+            "applied": 13616,
+            "admitted": 1993,
+            "enrolled": 834
+          }
         }
       },
       "testScores": {

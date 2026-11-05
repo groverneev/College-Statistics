@@ -80,9 +80,11 @@ export default function TestScoresTrendChart({ yearData, schoolColor }: TestScor
     return null;
   }
   const canToggle = satTrendData.length > 0 && sectionTrendData.length > 0;
-  const activeView: SatView = satTrendData.length === 0 ? "sections" : sectionTrendData.length === 0 ? "composite" : view;
+  const activeView: SatView =
+    satTrendData.length === 0 ? "sections" : sectionTrendData.length === 0 ? "composite" : view;
   const hasReportedMedian = satTrendData.some((point) => point.p50 != null);
   const latestSections = sectionTrendData[sectionTrendData.length - 1];
+  const latestComposite = satTrendData[satTrendData.length - 1];
 
   const tooltipStyle = {
     backgroundColor: "white",
@@ -157,9 +159,7 @@ export default function TestScoresTrendChart({ yearData, schoolColor }: TestScor
                         <div className="bg-white p-3 border border-gray-200 rounded-lg shadow-lg">
                           <p className="font-semibold text-gray-800">{d.fullYear}</p>
                           <p className="text-sm text-gray-600">75th: {d.p75}</p>
-                          {d.p50 != null && (
-                            <p className="text-sm text-gray-600">50th: {d.p50}</p>
-                          )}
+                          {d.p50 != null && <p className="text-sm text-gray-600">50th: {d.p50}</p>}
                           <p className="text-sm text-gray-600">25th: {d.p25}</p>
                         </div>
                       );
@@ -206,24 +206,24 @@ export default function TestScoresTrendChart({ yearData, schoolColor }: TestScor
           </div>
 
           <div className="mt-4 pt-4 border-t border-gray-200">
-            <div className="grid grid-cols-3 gap-2 sm:gap-4 text-center text-sm">
+            <div
+              className={`grid ${latestComposite?.p50 != null ? "grid-cols-3" : "grid-cols-2"} gap-2 sm:gap-4 text-center text-sm`}
+            >
               <div>
                 <div className="text-gray-500">25th Percentile</div>
                 <div className="font-semibold" style={{ color: schoolColor }}>
-                  {satTrendData[satTrendData.length - 1]?.p25}
+                  {latestComposite?.p25}
                 </div>
               </div>
-              <div>
-                <div className="text-gray-500">50th Percentile</div>
-                <div className="font-semibold text-blue-600">
-                  {satTrendData[satTrendData.length - 1]?.p50 ?? "Not reported"}
+              {latestComposite?.p50 != null && (
+                <div>
+                  <div className="text-gray-500">50th Percentile</div>
+                  <div className="font-semibold text-blue-600">{latestComposite.p50}</div>
                 </div>
-              </div>
+              )}
               <div>
                 <div className="text-gray-500">75th Percentile</div>
-                <div className="font-semibold text-green-600">
-                  {satTrendData[satTrendData.length - 1]?.p75}
-                </div>
+                <div className="font-semibold text-green-600">{latestComposite?.p75}</div>
               </div>
             </div>
           </div>

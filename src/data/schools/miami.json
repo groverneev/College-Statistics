@@ -41,6 +41,18 @@
         "earlyDecision": {
           "applied": 1142,
           "admitted": 333
+        },
+        "byGender": {
+          "men": {
+            "applied": 14728,
+            "admitted": 5569,
+            "enrolled": 925
+          },
+          "women": {
+            "applied": 17797,
+            "admitted": 6697,
+            "enrolled": 1140
+          }
         }
       },
       "testScores": {
@@ -102,6 +114,18 @@
         "earlyDecision": {
           "applied": 954,
           "admitted": 609
+        },
+        "byGender": {
+          "men": {
+            "applied": 14171,
+            "admitted": 5221,
+            "enrolled": 1055
+          },
+          "women": {
+            "applied": 16463,
+            "admitted": 5715,
+            "enrolled": 1156
+          }
         }
       },
       "testScores": {
@@ -163,6 +187,18 @@
         "earlyDecision": {
           "applied": 1232,
           "admitted": 685
+        },
+        "byGender": {
+          "men": {
+            "applied": 15556,
+            "admitted": 5259,
+            "enrolled": 1142
+          },
+          "women": {
+            "applied": 18723,
+            "admitted": 5761,
+            "enrolled": 1224
+          }
         }
       },
       "testScores": {
@@ -224,6 +260,18 @@
         "earlyDecision": {
           "applied": 1564,
           "admitted": 755
+        },
+        "byGender": {
+          "men": {
+            "applied": 17267,
+            "admitted": 5063,
+            "enrolled": 1009
+          },
+          "women": {
+            "applied": 21652,
+            "admitted": 5494,
+            "enrolled": 1194
+          }
         }
       },
       "testScores": {
@@ -577,6 +625,18 @@
         "earlyDecision": {
           "applied": 2260,
           "admitted": 1075
+        },
+        "byGender": {
+          "men": {
+            "applied": 21427,
+            "admitted": 4816,
+            "enrolled": 1100
+          },
+          "women": {
+            "applied": 32497,
+            "admitted": 5361,
+            "enrolled": 1368
+          }
         }
       },
       "testScores": {

@@ -697,7 +697,19 @@
         "admitted": 4058,
         "enrolled": 1466,
         "acceptanceRate": 0.2167,
-        "yield": 0.3613
+        "yield": 0.3613,
+        "byGender": {
+          "men": {
+            "applied": 8224,
+            "admitted": 1919,
+            "enrolled": 672
+          },
+          "women": {
+            "applied": 10498,
+            "admitted": 2137,
+            "enrolled": 794
+          }
+        }
       },
       "testScores": {
         "sat": {

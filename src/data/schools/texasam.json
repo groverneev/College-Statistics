@@ -274,7 +274,11 @@
             "p25": 580,
             "p75": 710
           },
-          "submissionRate": 0.6246
+          "submissionRate": 0.6246,
+          "composite": {
+            "p25": 1180,
+            "p75": 1390
+          }
         },
         "act": {
           "composite": {

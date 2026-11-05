@@ -25,6 +25,28 @@ export function getSchoolYearRange(school: SchoolData): string | null {
   return `${firstYear.split("-")[0]}-${latestYear.split("-")[1]}`;
 }
 
+/**
+ * Newest year whose data yields a value, so a figure the latest form left blank falls back
+ * to the most recent year that reported it instead of rendering an empty placeholder.
+ */
+export function latestReported<T>(
+  yearData: Record<string, YearData>,
+  pick: (data: YearData) => T | null | undefined,
+): { year: string; value: T } | null {
+  const years = Object.keys(yearData).sort().reverse();
+  for (const year of years) {
+    const value = pick(yearData[year]);
+    if (
+      value !== null &&
+      value !== undefined &&
+      !(typeof value === "number" && !Number.isFinite(value))
+    ) {
+      return { year, value };
+    }
+  }
+  return null;
+}
+
 export function formatNumber(num: number | null | undefined): string {
   if (typeof num !== "number" || !Number.isFinite(num)) return "-";
   return new Intl.NumberFormat("en-US").format(num);

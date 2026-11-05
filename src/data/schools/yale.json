@@ -37,7 +37,19 @@
         "admitted": 1988,
         "enrolled": 1371,
         "acceptanceRate": 0.0632,
-        "yield": 0.6896
+        "yield": 0.6896,
+        "byGender": {
+          "men": {
+            "applied": 14526,
+            "admitted": 989,
+            "enrolled": 678
+          },
+          "women": {
+            "applied": 16919,
+            "admitted": 999,
+            "enrolled": 693
+          }
+        }
       },
       "testScores": {
         "sat": {
@@ -110,7 +122,19 @@
         "admitted": 2285,
         "enrolled": 1579,
         "acceptanceRate": 0.0694,
-        "yield": 0.691
+        "yield": 0.691,
+        "byGender": {
+          "men": {
+            "applied": 15129,
+            "admitted": 1110,
+            "enrolled": 762
+          },
+          "women": {
+            "applied": 17785,
+            "admitted": 1175,
+            "enrolled": 817
+          }
+        }
       },
       "testScores": {
         "sat": {
@@ -183,7 +207,19 @@
         "admitted": 2241,
         "enrolled": 1573,
         "acceptanceRate": 0.0635,
-        "yield": 0.7019
+        "yield": 0.7019,
+        "byGender": {
+          "men": {
+            "applied": 16181,
+            "admitted": 1142,
+            "enrolled": 781
+          },
+          "women": {
+            "applied": 19126,
+            "admitted": 1099,
+            "enrolled": 792
+          }
+        }
       },
       "testScores": {
         "sat": {
@@ -596,7 +632,19 @@
         "admitted": 2332,
         "enrolled": 1641,
         "acceptanceRate": 0.045,
-        "yield": 0.7037
+        "yield": 0.7037,
+        "byGender": {
+          "men": {
+            "applied": 22003,
+            "admitted": 1127,
+            "enrolled": 788
+          },
+          "women": {
+            "applied": 29799,
+            "admitted": 1205,
+            "enrolled": 853
+          }
+        }
       },
       "testScores": {
         "sat": {
@@ -669,7 +717,19 @@
         "admitted": 2227,
         "enrolled": 1554,
         "acceptanceRate": 0.0387,
-        "yield": 0.6978
+        "yield": 0.6978,
+        "byGender": {
+          "men": {
+            "applied": 24951,
+            "admitted": 1136,
+            "enrolled": 782
+          },
+          "women": {
+            "applied": 32540,
+            "admitted": 1091,
+            "enrolled": 772
+          }
+        }
       },
       "testScores": {
         "sat": {

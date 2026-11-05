@@ -194,6 +194,18 @@
         "earlyDecision": {
           "applied": 10469,
           "admitted": 3628
+        },
+        "byGender": {
+          "men": {
+            "applied": 29356,
+            "admitted": 5869,
+            "enrolled": 2670
+          },
+          "women": {
+            "applied": 42478,
+            "admitted": 8490,
+            "enrolled": 3504
+          }
         }
       },
       "testScores": {
@@ -660,7 +672,19 @@
         "admitted": 10232,
         "enrolled": 5645,
         "acceptanceRate": 0.0923,
-        "yield": 0.5517
+        "yield": 0.5517,
+        "byGender": {
+          "men": {
+            "applied": 45100,
+            "admitted": 4097,
+            "enrolled": 2353
+          },
+          "women": {
+            "applied": 65707,
+            "admitted": 6135,
+            "enrolled": 3313
+          }
+        }
       },
       "testScores": {
         "sat": {
@@ -793,7 +817,8 @@
         }
       },
       "costs": {
-        "roomAndBoard": 26438
+        "roomAndBoard": 26438,
+        "tuition": 68574
       },
       "financialAid": {
         "averageAidPackage": 64101,

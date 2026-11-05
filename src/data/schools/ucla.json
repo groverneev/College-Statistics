@@ -365,7 +365,28 @@
           }
         }
       },
-      "testScores": {},
+      "testScores": {
+        "sat": {
+          "composite": {
+            "p25": 1290,
+            "p75": 1510
+          },
+          "readingWriting": {
+            "p25": 650,
+            "p75": 740
+          },
+          "math": {
+            "p25": 640,
+            "p75": 780
+          }
+        },
+        "act": {
+          "composite": {
+            "p25": 29,
+            "p75": 34
+          }
+        }
+      },
       "demographics": {
         "enrollment": {
           "total": 46000,
