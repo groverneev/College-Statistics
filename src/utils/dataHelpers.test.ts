@@ -8,6 +8,7 @@ import {
   getLatestYearData,
   getSchoolYearRange,
   getSortedYears,
+  latestReported,
 } from "@/utils/dataHelpers";
 
 const year = (applied: number): YearData => ({
@@ -53,5 +54,19 @@ describe("formatters", () => {
       expect(formatPercent(value)).toBe("-");
       expect(formatCurrency(value)).toBe("-");
     }
+  });
+});
+
+describe("latestReported", () => {
+  test("falls back to the newest year that reported the value", () => {
+    const years = { ...school.years, "2025-2026": { ...year(4), admissions: {} } };
+    expect(latestReported(years, (d) => d.admissions.applied)).toEqual({
+      year: "2024-2025",
+      value: 3,
+    });
+  });
+
+  test("returns null when no year reported it", () => {
+    expect(latestReported(school.years, (d) => d.admissions.enrolled)).toBeNull();
   });
 });

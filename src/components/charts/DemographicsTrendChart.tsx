@@ -45,9 +45,20 @@ export default function DemographicsTrendChart({
   );
   const latestYear = yearsWithEnrollment[yearsWithEnrollment.length - 1] || years[years.length - 1];
   const latestDemo = yearData[latestYear].demographics;
-  const totalUndergrad = latestDemo.enrollment.undergraduate ?? 0;
-  const latestInternational = latestDemo.byRace.international ?? 0;
-  const latestWhite = latestDemo.byRace.white ?? 0;
+  // Race shares come from the newest year that reported a race breakdown, which can trail
+  // the newest enrollment year.
+  const raceYear =
+    yearsWithEnrollment
+      .slice()
+      .reverse()
+      .find((year) => {
+        const race = yearData[year].demographics.byRace;
+        return (race.international ?? 0) > 0 || (race.white ?? 0) > 0;
+      }) ?? latestYear;
+  const raceDemo = yearData[raceYear].demographics;
+  const totalUndergrad = raceDemo.enrollment.undergraduate ?? 0;
+  const latestInternational = raceDemo.byRace.international ?? 0;
+  const latestWhite = raceDemo.byRace.white ?? 0;
   const hasRaceSummary = totalUndergrad > 0 && (latestInternational > 0 || latestWhite > 0);
 
   const enrollmentData = yearsWithEnrollment.map((year) => ({
@@ -252,7 +263,9 @@ export default function DemographicsTrendChart({
       </div>
 
       <div className="mt-4 pt-4 border-t border-gray-200">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center text-sm">
+        <div
+          className={`grid grid-cols-2 ${hasRaceSummary ? "md:grid-cols-4" : ""} gap-4 text-center text-sm`}
+        >
           <div>
             <div className="text-gray-500">Undergraduates</div>
             <div className="font-semibold text-lg" style={{ color: schoolColor }}>
@@ -263,20 +276,22 @@ export default function DemographicsTrendChart({
             <div className="text-gray-500">Total Enrollment</div>
             <div className="font-semibold text-lg">{formatNumber(latestDemo.enrollment.total)}</div>
           </div>
-          <div>
-            <div className="text-gray-500">International</div>
-            <div className="font-semibold text-lg text-purple-600">
-              {hasRaceSummary
-                ? `${((latestInternational / totalUndergrad) * 100).toFixed(0)}%`
-                : "-"}
-            </div>
-          </div>
-          <div>
-            <div className="text-gray-500">Students of Color</div>
-            <div className="font-semibold text-lg text-green-600">
-              {hasRaceSummary ? `${(100 - (latestWhite / totalUndergrad) * 100).toFixed(0)}%` : "-"}
-            </div>
-          </div>
+          {hasRaceSummary && (
+            <>
+              <div>
+                <div className="text-gray-500">International</div>
+                <div className="font-semibold text-lg text-purple-600">
+                  {`${((latestInternational / totalUndergrad) * 100).toFixed(0)}%`}
+                </div>
+              </div>
+              <div>
+                <div className="text-gray-500">Students of Color</div>
+                <div className="font-semibold text-lg text-green-600">
+                  {`${(100 - (latestWhite / totalUndergrad) * 100).toFixed(0)}%`}
+                </div>
+              </div>
+            </>
+          )}
         </div>
       </div>
     </div>

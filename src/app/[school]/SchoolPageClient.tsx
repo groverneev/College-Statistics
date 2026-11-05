@@ -1,10 +1,10 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { type ReactNode, useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { useSession } from "@/lib/auth-client";
 import type { AdmissionsFactorImportance, SchoolData } from "@/lib/types";
-import { formatNumber, formatPercent } from "@/utils/dataHelpers";
+import { formatNumber, formatPercent, latestReported } from "@/utils/dataHelpers";
 import {
   AdmissionsTrendChart,
   TestScoresTrendChart,
@@ -43,6 +43,63 @@ const IMPORTANCE_ORDER: AdmissionsFactorImportance[] = [
   "not_considered",
 ];
 
+const STAT_GRID_COLUMNS: Record<number, string> = {
+  1: "md:grid-cols-1",
+  2: "md:grid-cols-2",
+  3: "md:grid-cols-3",
+  4: "md:grid-cols-4",
+};
+
+type StatCard = { label: string; value: ReactNode; year: string };
+
+function satRange(range: { p25?: number; p75?: number } | undefined): string | null {
+  return typeof range?.p25 === "number" && typeof range.p75 === "number"
+    ? `${range.p25}-${range.p75}`
+    : null;
+}
+
+// Each headline card shows the newest year that reported its figure; a card the school
+// never reported is left out rather than shown empty.
+function buildStatCards(yearData: SchoolData["years"]): StatCard[] {
+  const cards: (StatCard | null)[] = [];
+  const applied = latestReported(yearData, (d) => d.admissions.applied);
+  cards.push(
+    applied && {
+      label: "Total Applications",
+      value: formatNumber(applied.value),
+      year: applied.year,
+    },
+  );
+  const rate = latestReported(yearData, (d) => d.admissions.acceptanceRate);
+  cards.push(
+    rate && { label: "Acceptance Rate", value: formatPercent(rate.value), year: rate.year },
+  );
+  const enrolled = latestReported(yearData, (d) => d.admissions.enrolled);
+  cards.push(
+    enrolled && {
+      label: "Enrolled Students",
+      value: formatNumber(enrolled.value),
+      year: enrolled.year,
+    },
+  );
+  const sat = latestReported(yearData, (d): ReactNode => {
+    const composite = satRange(d.testScores.sat?.composite);
+    if (composite) return composite;
+    const rw = satRange(d.testScores.sat?.readingWriting);
+    const math = satRange(d.testScores.sat?.math);
+    if (!rw || !math) return null;
+    return (
+      <span className="block text-base sm:text-lg leading-snug">
+        R&amp;W {rw}
+        <br />
+        Math {math}
+      </span>
+    );
+  });
+  cards.push(sat && { label: "SAT Middle 50%", value: sat.value, year: sat.year });
+  return cards.filter((card): card is StatCard => card !== null);
+}
+
 export default function SchoolPageClient({
   schoolData,
   schoolColor,
@@ -76,9 +133,6 @@ export default function SchoolPageClient({
   }, [composing]);
 
   const years = Object.keys(schoolData.years).sort();
-  const latestYear = years[years.length - 1];
-  const latestData = schoolData.years[latestYear];
-  const latestSat = latestData.testScores.sat;
   const yearRange = `${years[0].split("-")[0]}-${years[years.length - 1].split("-")[1]}`;
   const admissionsFactors = schoolData.profile?.admissionsFactors;
   const academicFactors: AdmissionsFactorRow[] = admissionsFactors
@@ -113,6 +167,8 @@ export default function SchoolPageClient({
         ["Level of applicant's interest", admissionsFactors.nonacademic.levelOfApplicantsInterest],
       ]
     : [];
+
+  const statCards = buildStatCards(schoolData.years);
 
   const renderImportanceCell = (
     activeImportance: AdmissionsFactorImportance,
@@ -186,43 +242,16 @@ export default function SchoolPageClient({
       </div>
 
       <div className="max-w-6xl mx-auto px-4 py-8 -mt-4">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 mb-8">
-          <div className="stat-card">
-            <div className="label">Total Applications</div>
-            <div className="value">{formatNumber(latestData.admissions.applied)}</div>
-            <div className="subtext">{latestYear}</div>
-          </div>
-          <div className="stat-card">
-            <div className="label">Acceptance Rate</div>
-            <div className="value">{formatPercent(latestData.admissions.acceptanceRate)}</div>
-            <div className="subtext">{latestYear}</div>
-          </div>
-          <div className="stat-card">
-            <div className="label">Enrolled Students</div>
-            <div className="value">{formatNumber(latestData.admissions.enrolled)}</div>
-            <div className="subtext">{latestYear}</div>
-          </div>
-          <div className="stat-card">
-            <div className="label">SAT Middle 50%</div>
-            <div className="value">
-              {typeof latestSat?.composite?.p25 === "number" &&
-              typeof latestSat.composite.p75 === "number" ? (
-                `${latestSat.composite.p25}-${latestSat.composite.p75}`
-              ) : typeof latestSat?.readingWriting?.p25 === "number" &&
-                typeof latestSat.readingWriting.p75 === "number" &&
-                typeof latestSat.math?.p25 === "number" &&
-                typeof latestSat.math.p75 === "number" ? (
-                <span className="block text-base sm:text-lg leading-snug">
-                  R&amp;W {latestSat.readingWriting.p25}-{latestSat.readingWriting.p75}
-                  <br />
-                  Math {latestSat.math.p25}-{latestSat.math.p75}
-                </span>
-              ) : (
-                "N/A"
-              )}
+        <div
+          className={`grid grid-cols-2 ${STAT_GRID_COLUMNS[statCards.length]} gap-3 sm:gap-4 mb-8`}
+        >
+          {statCards.map((card) => (
+            <div key={card.label} className="stat-card">
+              <div className="label">{card.label}</div>
+              <div className="value">{card.value}</div>
+              <div className="subtext">{card.year}</div>
             </div>
-            <div className="subtext">{latestYear}</div>
-          </div>
+          ))}
         </div>
 
         {summary.length > 0 && (

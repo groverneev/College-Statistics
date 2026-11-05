@@ -1,7 +1,7 @@
 "use client";
 
 import type { YearData } from "@/lib/types";
-import { formatCurrency } from "@/utils/dataHelpers";
+import { formatCurrency, latestReported } from "@/utils/dataHelpers";
 import {
   ComposedChart,
   Bar,
@@ -50,7 +50,23 @@ export default function FinancialAidTrendChart({
     return null;
   }
 
-  const latestData = trendData[trendData.length - 1];
+  const latestYear = trendData[trendData.length - 1].fullYear;
+  const receivingAid = latestReported(yearData, (d) => d.financialAid.percentReceivingAid);
+  const needMet = latestReported(yearData, (d) => d.financialAid.percentNeedFullyMet);
+  const summaryStats = [
+    receivingAid && {
+      label: "Students Receiving Aid",
+      ...receivingAid,
+      className: "",
+      style: { color: schoolColor },
+    },
+    needMet && {
+      label: "Need Fully Met",
+      ...needMet,
+      className: "text-green-600",
+      style: undefined,
+    },
+  ].filter((stat) => stat != null);
   const hasNetPrice = trendData.some((point) => point.averageNetPrice != null);
 
   return (
@@ -119,26 +135,25 @@ export default function FinancialAidTrendChart({
         )}
       </div>
 
-      <div className="mt-4 pt-4 border-t border-gray-200">
-        <div className="grid grid-cols-2 gap-4 text-center text-sm">
-          <div>
-            <div className="text-gray-500">Students Receiving Aid</div>
-            <div className="font-semibold text-lg" style={{ color: schoolColor }}>
-              {typeof latestData.percentReceivingAid === "number"
-                ? `${(latestData.percentReceivingAid * 100).toFixed(0)}%`
-                : "—"}
-            </div>
-          </div>
-          <div>
-            <div className="text-gray-500">Need Fully Met</div>
-            <div className="font-semibold text-lg text-green-600">
-              {typeof latestData.percentNeedFullyMet === "number"
-                ? `${(latestData.percentNeedFullyMet * 100).toFixed(0)}%`
-                : "—"}
-            </div>
+      {summaryStats.length > 0 && (
+        <div className="mt-4 pt-4 border-t border-gray-200">
+          <div
+            className={`grid ${summaryStats.length > 1 ? "grid-cols-2" : "grid-cols-1"} gap-4 text-center text-sm`}
+          >
+            {summaryStats.map((stat) => (
+              <div key={stat.label}>
+                <div className="text-gray-500">{stat.label}</div>
+                <div className={`font-semibold text-lg ${stat.className}`} style={stat.style}>
+                  {`${(stat.value * 100).toFixed(0)}%`}
+                </div>
+                {stat.year !== latestYear && (
+                  <div className="text-xs text-gray-400">{stat.year}</div>
+                )}
+              </div>
+            ))}
           </div>
         </div>
-      </div>
+      )}
     </div>
   );
 }
