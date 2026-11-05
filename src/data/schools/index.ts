@@ -113,6 +113,7 @@ import haverfordcollegeData from "./haverfordcollege.json";
 import kenyoncollegeData from "./kenyoncollege.json";
 import oberlincollegeData from "./oberlincollege.json";
 import universityofdelawareData from "./universityofdelaware.json";
+import baylorData from "./baylor.json";
 
 export interface SearchableSchool {
   name: string;
@@ -245,6 +246,7 @@ export const allSchools: SchoolData[] = [
   kenyoncollegeData as SchoolData,
   oberlincollegeData as SchoolData,
   universityofdelawareData as SchoolData,
+  baylorData as SchoolData,
 ];
 
 export const SCHOOL_METADATA: Record<string, SchoolMetadata> = {
@@ -990,6 +992,12 @@ export const SCHOOL_METADATA: Record<string, SchoolMetadata> = {
     state: "DE",
     control: "public",
     color: "#00539F",
+  },
+  baylor: {
+    aliases: ["Baylor", "BU"],
+    state: "TX",
+    control: "private",
+    color: "#154734",
   },
 };
 
