@@ -112,6 +112,9 @@ import occidentalData from "./occidental.json";
 import haverfordcollegeData from "./haverfordcollege.json";
 import kenyoncollegeData from "./kenyoncollege.json";
 import oberlincollegeData from "./oberlincollege.json";
+import universityofdelawareData from "./universityofdelaware.json";
+import baylorData from "./baylor.json";
+import smuData from "./smu.json";
 
 export interface SearchableSchool {
   name: string;
@@ -243,6 +246,9 @@ export const allSchools: SchoolData[] = [
   haverfordcollegeData as SchoolData,
   kenyoncollegeData as SchoolData,
   oberlincollegeData as SchoolData,
+  universityofdelawareData as SchoolData,
+  baylorData as SchoolData,
+  smuData as SchoolData,
 ];
 
 export const SCHOOL_METADATA: Record<string, SchoolMetadata> = {
@@ -982,6 +988,24 @@ export const SCHOOL_METADATA: Record<string, SchoolMetadata> = {
     state: "OH",
     control: "private",
     color: "#A6192E",
+  },
+  universityofdelaware: {
+    aliases: ["UDel", "Delaware", "UD"],
+    state: "DE",
+    control: "public",
+    color: "#00539F",
+  },
+  baylor: {
+    aliases: ["Baylor", "BU"],
+    state: "TX",
+    control: "private",
+    color: "#154734",
+  },
+  smu: {
+    aliases: ["SMU", "Southern Methodist"],
+    state: "TX",
+    control: "private",
+    color: "#CC0035",
   },
 };
 
