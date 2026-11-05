@@ -812,10 +812,10 @@
         }
       },
       "costs": {
-        "tuition": 70632.0,
-        "fees": 230.0,
-        "roomAndBoard": 16476.0,
-        "totalCOA": 87338.0
+        "tuition": 70632,
+        "fees": 230,
+        "roomAndBoard": 16476,
+        "totalCOA": 87338
       },
       "financialAid": {
         "averageAidPackage": 67609,

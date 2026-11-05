@@ -105,6 +105,7 @@ import reedcollegeData from "./reedcollege.json";
 import bucknellData from "./bucknell.json";
 import lafayetteData from "./lafayette.json";
 import macalesterData from "./macalester.json";
+import batescollegeData from "./batescollege.json";
 
 export interface SearchableSchool {
   name: string;
@@ -229,6 +230,7 @@ export const allSchools: SchoolData[] = [
   bucknellData as SchoolData,
   lafayetteData as SchoolData,
   macalesterData as SchoolData,
+  batescollegeData as SchoolData,
 ];
 
 export const SCHOOL_METADATA: Record<string, SchoolMetadata> = {
@@ -926,6 +928,12 @@ export const SCHOOL_METADATA: Record<string, SchoolMetadata> = {
     state: "MN",
     control: "private",
     color: "#01426A",
+  },
+  batescollege: {
+    aliases: ["Bates"],
+    state: "ME",
+    control: "private",
+    color: "#881124",
   },
 };
 
