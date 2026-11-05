@@ -684,9 +684,17 @@
         }
       },
       "costs": {
-        "roomAndBoard": 20928
+        "roomAndBoard": 20928,
+        "tuition": 13368,
+        "fees": 2961,
+        "totalCOA": 37257
       },
-      "financialAid": {}
+      "financialAid": {
+        "averageAidPackage": 34159,
+        "averageNeedBasedGrant": 30759,
+        "percentReceivingAid": 0.5083,
+        "percentNeedFullyMet": 0.2661
+      }
     }
   }
 }
