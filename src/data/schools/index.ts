@@ -102,6 +102,8 @@ import uconnData from "./uconn.json";
 import universityofrichmondData from "./universityofrichmond.json";
 import colgateData from "./colgate.json";
 import reedcollegeData from "./reedcollege.json";
+import bucknellData from "./bucknell.json";
+import lafayetteData from "./lafayette.json";
 
 export interface SearchableSchool {
   name: string;
@@ -223,6 +225,8 @@ export const allSchools: SchoolData[] = [
   universityofrichmondData as SchoolData,
   colgateData as SchoolData,
   reedcollegeData as SchoolData,
+  bucknellData as SchoolData,
+  lafayetteData as SchoolData,
 ];
 
 export const SCHOOL_METADATA: Record<string, SchoolMetadata> = {
@@ -903,6 +907,18 @@ export const SCHOOL_METADATA: Record<string, SchoolMetadata> = {
     color: "#4B5563",
   },
   bowdoincollege: { aliases: ["Bowdoin"], state: "ME", control: "private", color: "#4B5563" },
+  bucknell: {
+    aliases: ["Bucknell"],
+    state: "PA",
+    control: "private",
+    color: "#003865",
+  },
+  lafayette: {
+    aliases: ["Lafayette"],
+    state: "PA",
+    control: "private",
+    color: "#910029",
+  },
 };
 
 export const schoolDataMap: Record<string, SchoolData> = Object.fromEntries(
