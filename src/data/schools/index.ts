@@ -125,6 +125,8 @@ import loyolamarymountData from "./loyolamarymount.json";
 import universityofdenverData from "./universityofdenver.json";
 import universityofvermontData from "./universityofvermont.json";
 import universityofnewhampshireData from "./universityofnewhampshire.json";
+import universityofiowaData from "./universityofiowa.json";
+import universityofkansasData from "./universityofkansas.json";
 
 export interface SearchableSchool {
   name: string;
@@ -269,6 +271,8 @@ export const allSchools: SchoolData[] = [
   universityofdenverData as SchoolData,
   universityofvermontData as SchoolData,
   universityofnewhampshireData as SchoolData,
+  universityofiowaData as SchoolData,
+  universityofkansasData as SchoolData,
 ];
 
 export const SCHOOL_METADATA: Record<string, SchoolMetadata> = {
@@ -1086,6 +1090,18 @@ export const SCHOOL_METADATA: Record<string, SchoolMetadata> = {
     state: "NH",
     control: "public",
     color: "#003591",
+  },
+  universityofiowa: {
+    aliases: ["Iowa", "UIowa", "Hawkeyes"],
+    state: "IA",
+    control: "public",
+    color: "#FFCD00",
+  },
+  universityofkansas: {
+    aliases: ["Kansas", "KU", "Jayhawks"],
+    state: "KS",
+    control: "public",
+    color: "#0051BA",
   },
 };
 
