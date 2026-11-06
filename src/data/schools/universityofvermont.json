@@ -1,0 +1,788 @@
+{
+  "name": "University of Vermont",
+  "slug": "universityofvermont",
+  "profile": {
+    "admissionsFactors": {
+      "sourceYear": "2025-2026",
+      "sourcePdf": "College-Data/universityofvermont/universityofvermont-cds-2025-2026.pdf",
+      "section": "C7",
+      "academic": {
+        "rigorOfSecondarySchoolRecord": "very_important",
+        "classRank": "considered",
+        "academicGpa": "very_important",
+        "standardizedTestScores": "considered",
+        "applicationEssay": "important",
+        "recommendations": "important"
+      },
+      "nonacademic": {
+        "interview": "not_considered",
+        "extracurricularActivities": "important",
+        "talentAbility": "important",
+        "characterPersonalQualities": "important",
+        "firstGeneration": "important",
+        "alumniRelation": "not_considered",
+        "geographicalResidence": "important",
+        "stateResidency": "important",
+        "religiousAffiliationCommitment": "not_considered",
+        "volunteerWork": "important",
+        "workExperience": "important",
+        "levelOfApplicantsInterest": "considered"
+      }
+    }
+  },
+  "years": {
+    "2016-2017": {
+      "admissions": {
+        "byGender": {
+          "men": {
+            "applied": 9500,
+            "admitted": 5988,
+            "enrolled": 975
+          },
+          "women": {
+            "applied": 12976,
+            "admitted": 9507,
+            "enrolled": 1521
+          }
+        },
+        "applied": 22476,
+        "admitted": 15495,
+        "enrolled": 2496,
+        "acceptanceRate": 0.6894,
+        "yield": 0.1611
+      },
+      "testScores": {
+        "sat": {
+          "math": {
+            "p25": 550,
+            "p75": 650
+          },
+          "submissionRate": 0.77
+        },
+        "act": {
+          "composite": {
+            "p25": 25,
+            "p75": 30
+          },
+          "submissionRate": 0.41
+        }
+      },
+      "demographics": {
+        "enrollment": {
+          "undergraduate": 11159,
+          "graduate": 1946,
+          "total": 13105
+        },
+        "byRace": {
+          "international": 679,
+          "hispanicLatino": 475,
+          "blackAfricanAmerican": 148,
+          "white": 8960,
+          "asian": 311,
+          "americanIndianAlaskaNative": 15,
+          "nativeHawaiianPacificIslander": 2,
+          "twoOrMoreRaces": 337,
+          "unknown": 232
+        }
+      },
+      "costs": {
+        "tuition": 15504,
+        "fees": 2236,
+        "roomAndBoard": 12022,
+        "totalCOA": 29762
+      },
+      "financialAid": {
+        "averageAidPackage": 23942,
+        "averageNeedBasedGrant": 15647,
+        "percentReceivingAid": 0.5422,
+        "percentNeedFullyMet": 0.14
+      }
+    },
+    "2017-2018": {
+      "admissions": {
+        "byGender": {
+          "men": {
+            "applied": 9027,
+            "admitted": 5485,
+            "enrolled": 1001
+          },
+          "women": {
+            "applied": 12964,
+            "admitted": 9292,
+            "enrolled": 1641
+          }
+        },
+        "applied": 21991,
+        "admitted": 14777,
+        "enrolled": 2642,
+        "acceptanceRate": 0.672,
+        "yield": 0.1788
+      },
+      "testScores": {
+        "sat": {
+          "readingWriting": {
+            "p25": 600,
+            "p75": 680
+          },
+          "math": {
+            "p25": 580,
+            "p75": 670
+          },
+          "submissionRate": 0.76
+        },
+        "act": {
+          "composite": {
+            "p25": 25,
+            "p75": 30
+          },
+          "submissionRate": 0.39
+        }
+      },
+      "demographics": {
+        "enrollment": {
+          "undergraduate": 11339,
+          "graduate": 2001,
+          "total": 13340
+        },
+        "byRace": {
+          "international": 722,
+          "hispanicLatino": 473,
+          "blackAfricanAmerican": 153,
+          "white": 9031,
+          "asian": 321,
+          "americanIndianAlaskaNative": 12,
+          "nativeHawaiianPacificIslander": 2,
+          "twoOrMoreRaces": 333,
+          "unknown": 292
+        }
+      },
+      "costs": {
+        "tuition": 15936,
+        "fees": 2340,
+        "roomAndBoard": 12462,
+        "totalCOA": 30738
+      },
+      "financialAid": {
+        "averageAidPackage": 25251,
+        "averageNeedBasedGrant": 16278,
+        "percentReceivingAid": 0.5345,
+        "percentNeedFullyMet": 0.1567
+      }
+    },
+    "2018-2019": {
+      "admissions": {
+        "byGender": {
+          "men": {
+            "applied": 8411,
+            "admitted": 5236,
+            "enrolled": 950
+          },
+          "women": {
+            "applied": 12852,
+            "admitted": 9129,
+            "enrolled": 1581
+          }
+        },
+        "applied": 21263,
+        "admitted": 14365,
+        "enrolled": 2531,
+        "acceptanceRate": 0.6756,
+        "yield": 0.1762
+      },
+      "testScores": {
+        "sat": {
+          "readingWriting": {
+            "p25": 600,
+            "p75": 680
+          },
+          "math": {
+            "p25": 580,
+            "p75": 680
+          },
+          "submissionRate": 0.77
+        },
+        "act": {
+          "composite": {
+            "p25": 26,
+            "p75": 31
+          },
+          "submissionRate": 0.37
+        }
+      },
+      "demographics": {
+        "enrollment": {
+          "undergraduate": 11328,
+          "graduate": 2067,
+          "total": 13395
+        },
+        "byRace": {
+          "international": 645,
+          "hispanicLatino": 448,
+          "blackAfricanAmerican": 152,
+          "white": 9110,
+          "asian": 312,
+          "americanIndianAlaskaNative": 9,
+          "nativeHawaiianPacificIslander": 2,
+          "twoOrMoreRaces": 354,
+          "unknown": 296
+        }
+      },
+      "costs": {
+        "tuition": 16392,
+        "fees": 2410,
+        "roomAndBoard": 12916,
+        "totalCOA": 31718
+      },
+      "financialAid": {
+        "averageAidPackage": 26256,
+        "averageNeedBasedGrant": 17169,
+        "percentReceivingAid": 0.5492,
+        "percentNeedFullyMet": 0.1593
+      }
+    },
+    "2019-2020": {
+      "admissions": {
+        "byGender": {
+          "men": {
+            "applied": 7557,
+            "admitted": 4764,
+            "enrolled": 1003
+          },
+          "women": {
+            "applied": 11676,
+            "admitted": 8179,
+            "enrolled": 1633
+          }
+        },
+        "applied": 19233,
+        "admitted": 12943,
+        "enrolled": 2636,
+        "acceptanceRate": 0.673,
+        "yield": 0.2037
+      },
+      "testScores": {
+        "sat": {
+          "composite": {
+            "p25": 1200,
+            "p75": 1360
+          },
+          "readingWriting": {
+            "p25": 600,
+            "p75": 680
+          },
+          "math": {
+            "p25": 580,
+            "p75": 680
+          },
+          "submissionRate": 0.79
+        },
+        "act": {
+          "composite": {
+            "p25": 26,
+            "p75": 31
+          },
+          "submissionRate": 0.31
+        }
+      },
+      "demographics": {
+        "enrollment": {
+          "undergraduate": 11443,
+          "graduate": 2105,
+          "total": 13548
+        },
+        "byRace": {
+          "international": 510,
+          "hispanicLatino": 454,
+          "blackAfricanAmerican": 142,
+          "white": 9322,
+          "asian": 312,
+          "americanIndianAlaskaNative": 10,
+          "nativeHawaiianPacificIslander": 3,
+          "twoOrMoreRaces": 364,
+          "unknown": 326
+        }
+      },
+      "costs": {},
+      "financialAid": {
+        "averageAidPackage": 26752,
+        "averageNeedBasedGrant": 17313,
+        "percentReceivingAid": 0.5556,
+        "percentNeedFullyMet": 0.162
+      }
+    },
+    "2020-2021": {
+      "admissions": {
+        "byGender": {
+          "men": {
+            "applied": 7101,
+            "admitted": 4718,
+            "enrolled": 922
+          },
+          "women": {
+            "applied": 11463,
+            "admitted": 8522,
+            "enrolled": 1565
+          }
+        },
+        "applied": 18564,
+        "admitted": 13240,
+        "enrolled": 2487,
+        "acceptanceRate": 0.7132,
+        "yield": 0.1878
+      },
+      "testScores": {
+        "sat": {
+          "composite": {
+            "p25": 1180,
+            "p75": 1340
+          },
+          "readingWriting": {
+            "p25": 590,
+            "p75": 680
+          },
+          "math": {
+            "p25": 570,
+            "p75": 670
+          },
+          "submissionRate": 0.72
+        },
+        "act": {
+          "composite": {
+            "p25": 26,
+            "p75": 31
+          },
+          "submissionRate": 0.28
+        }
+      },
+      "demographics": {
+        "enrollment": {
+          "undergraduate": 11136,
+          "graduate": 2156,
+          "total": 13292
+        },
+        "byRace": {
+          "international": 307,
+          "hispanicLatino": 512,
+          "blackAfricanAmerican": 156,
+          "white": 9135,
+          "asian": 325,
+          "americanIndianAlaskaNative": 4,
+          "nativeHawaiianPacificIslander": 1,
+          "twoOrMoreRaces": 367,
+          "unknown": 329
+        }
+      },
+      "costs": {
+        "tuition": 16392,
+        "fees": 2610,
+        "roomAndBoard": 13324,
+        "totalCOA": 32326
+      },
+      "financialAid": {
+        "averageAidPackage": 27935,
+        "averageNeedBasedGrant": 16987,
+        "percentReceivingAid": 0.5486,
+        "percentNeedFullyMet": 0.1358
+      }
+    },
+    "2021-2022": {
+      "admissions": {
+        "applied": 25559,
+        "admitted": 16233,
+        "enrolled": 2932,
+        "byGender": {
+          "men": {
+            "applied": 9110,
+            "admitted": 5097,
+            "enrolled": 962
+          },
+          "women": {
+            "applied": 16449,
+            "admitted": 11136,
+            "enrolled": 1970
+          }
+        },
+        "acceptanceRate": 0.6351,
+        "yield": 0.1806
+      },
+      "testScores": {
+        "sat": {
+          "composite": {
+            "p25": 1250,
+            "p75": 1400
+          },
+          "readingWriting": {
+            "p25": 630,
+            "p75": 710
+          },
+          "math": {
+            "p25": 610,
+            "p75": 700
+          },
+          "submissionRate": 0.344
+        },
+        "act": {
+          "composite": {
+            "p25": 29,
+            "p75": 33
+          },
+          "submissionRate": 0.137
+        }
+      },
+      "demographics": {
+        "enrollment": {
+          "undergraduate": 11626,
+          "graduate": 2200,
+          "total": 13826
+        },
+        "byRace": {
+          "international": 220,
+          "hispanicLatino": 525,
+          "blackAfricanAmerican": 123,
+          "white": 9682,
+          "asian": 327,
+          "americanIndianAlaskaNative": 5,
+          "nativeHawaiianPacificIslander": 3,
+          "twoOrMoreRaces": 383,
+          "unknown": 358
+        }
+      },
+      "costs": {
+        "tuition": 16280,
+        "fees": 2610,
+        "roomAndBoard": 13324,
+        "totalCOA": 32214
+      },
+      "financialAid": {
+        "averageAidPackage": 27906,
+        "averageNeedBasedGrant": 18787,
+        "percentReceivingAid": 0.5311,
+        "percentNeedFullyMet": 0.1823
+      }
+    },
+    "2022-2023": {
+      "admissions": {
+        "byGender": {
+          "men": {
+            "applied": 9918,
+            "admitted": 5459,
+            "enrolled": 991
+          },
+          "women": {
+            "applied": 20313,
+            "admitted": 12616,
+            "enrolled": 2009
+          }
+        },
+        "applied": 30231,
+        "admitted": 18075,
+        "enrolled": 3000,
+        "acceptanceRate": 0.5979,
+        "yield": 0.166
+      },
+      "testScores": {
+        "sat": {
+          "composite": {
+            "p25": 1280,
+            "p50": 1350,
+            "p75": 1420
+          },
+          "readingWriting": {
+            "p25": 640,
+            "p50": 680,
+            "p75": 720
+          },
+          "math": {
+            "p25": 620,
+            "p50": 670,
+            "p75": 710
+          },
+          "submissionRate": 0.375
+        },
+        "act": {
+          "composite": {
+            "p25": 28,
+            "p50": 30,
+            "p75": 32
+          },
+          "submissionRate": 0.144
+        }
+      },
+      "demographics": {
+        "enrollment": {
+          "undergraduate": 11898,
+          "graduate": 2190,
+          "total": 14088
+        },
+        "byRace": {
+          "international": 170,
+          "hispanicLatino": 558,
+          "blackAfricanAmerican": 125,
+          "white": 9886,
+          "asian": 330,
+          "americanIndianAlaskaNative": 10,
+          "nativeHawaiianPacificIslander": 1,
+          "twoOrMoreRaces": 435,
+          "unknown": 383
+        }
+      },
+      "costs": {
+        "tuition": 16280,
+        "fees": 2610,
+        "roomAndBoard": 13354,
+        "totalCOA": 32244
+      },
+      "financialAid": {
+        "averageAidPackage": 28529,
+        "averageNeedBasedGrant": 19403,
+        "percentReceivingAid": 0.5259,
+        "percentNeedFullyMet": 0.1924
+      }
+    },
+    "2023-2024": {
+      "admissions": {
+        "byGender": {
+          "men": {
+            "applied": 9582,
+            "admitted": 5577,
+            "enrolled": 1061
+          },
+          "women": {
+            "applied": 18654,
+            "admitted": 11370,
+            "enrolled": 1835
+          }
+        },
+        "applied": 28236,
+        "admitted": 16947,
+        "enrolled": 2896,
+        "acceptanceRate": 0.6002,
+        "yield": 0.1709
+      },
+      "testScores": {
+        "sat": {
+          "composite": {
+            "p25": 1270,
+            "p50": 1340,
+            "p75": 1410
+          },
+          "readingWriting": {
+            "p25": 640,
+            "p50": 680,
+            "p75": 720
+          },
+          "math": {
+            "p25": 610,
+            "p50": 660,
+            "p75": 700
+          },
+          "submissionRate": 0.35
+        },
+        "act": {
+          "composite": {
+            "p25": 29,
+            "p50": 31,
+            "p75": 32
+          },
+          "submissionRate": 0.11
+        }
+      },
+      "demographics": {
+        "enrollment": {
+          "undergraduate": 12168,
+          "graduate": 2152,
+          "total": 14320
+        },
+        "byRace": {
+          "international": 155,
+          "hispanicLatino": 644,
+          "blackAfricanAmerican": 110,
+          "white": 10110,
+          "asian": 323,
+          "americanIndianAlaskaNative": 5,
+          "nativeHawaiianPacificIslander": 1,
+          "twoOrMoreRaces": 490,
+          "unknown": 330
+        }
+      },
+      "costs": {
+        "tuition": 16280,
+        "fees": 2778,
+        "roomAndBoard": 13776,
+        "totalCOA": 32834
+      },
+      "financialAid": {
+        "averageAidPackage": 29209,
+        "averageNeedBasedGrant": 19784,
+        "percentReceivingAid": 0.5034,
+        "percentNeedFullyMet": 0.1966
+      }
+    },
+    "2024-2025": {
+      "admissions": {
+        "applied": 27138,
+        "admitted": 17722,
+        "enrolled": 2808,
+        "byGender": {
+          "men": {
+            "applied": 9662,
+            "admitted": 5951,
+            "enrolled": 1058
+          },
+          "women": {
+            "applied": 17476,
+            "admitted": 11771,
+            "enrolled": 1750
+          }
+        },
+        "earlyDecision": {
+          "applied": 479,
+          "admitted": 449
+        },
+        "acceptanceRate": 0.653,
+        "yield": 0.1584
+      },
+      "testScores": {
+        "sat": {
+          "composite": {
+            "p25": 1300,
+            "p50": 1360,
+            "p75": 1420
+          },
+          "readingWriting": {
+            "p25": 660,
+            "p50": 690,
+            "p75": 730
+          },
+          "math": {
+            "p25": 630,
+            "p50": 670,
+            "p75": 710
+          },
+          "submissionRate": 0.25
+        },
+        "act": {
+          "composite": {
+            "p25": 30,
+            "p50": 31,
+            "p75": 32
+          },
+          "submissionRate": 0.1
+        }
+      },
+      "demographics": {
+        "enrollment": {
+          "undergraduate": 12276,
+          "graduate": 2200,
+          "total": 14476
+        },
+        "byRace": {
+          "international": 194,
+          "hispanicLatino": 671,
+          "blackAfricanAmerican": 119,
+          "white": 10090,
+          "asian": 320,
+          "americanIndianAlaskaNative": 7,
+          "nativeHawaiianPacificIslander": 1,
+          "twoOrMoreRaces": 544,
+          "unknown": 330
+        }
+      },
+      "costs": {
+        "tuition": 16606,
+        "fees": 2908,
+        "roomAndBoard": 14226,
+        "totalCOA": 33740
+      },
+      "financialAid": {
+        "averageAidPackage": 29518,
+        "averageNeedBasedGrant": 20005,
+        "percentReceivingAid": 0.4939,
+        "percentNeedFullyMet": 0.1964
+      }
+    },
+    "2025-2026": {
+      "admissions": {
+        "applied": 25434,
+        "admitted": 18576,
+        "enrolled": 2810,
+        "byGender": {
+          "men": {
+            "applied": 9633,
+            "admitted": 6689,
+            "enrolled": 1126
+          },
+          "women": {
+            "applied": 15801,
+            "admitted": 11887,
+            "enrolled": 1684
+          }
+        },
+        "earlyDecision": {
+          "applied": 396,
+          "admitted": 363
+        },
+        "acceptanceRate": 0.7304,
+        "yield": 0.1513
+      },
+      "testScores": {
+        "sat": {
+          "composite": {
+            "p25": 1300,
+            "p50": 1360,
+            "p75": 1430
+          },
+          "readingWriting": {
+            "p25": 660,
+            "p50": 700,
+            "p75": 740
+          },
+          "math": {
+            "p25": 630,
+            "p50": 670,
+            "p75": 700
+          },
+          "submissionRate": 0.32
+        },
+        "act": {
+          "composite": {
+            "p25": 29,
+            "p50": 31,
+            "p75": 33
+          },
+          "submissionRate": 0.08
+        }
+      },
+      "demographics": {
+        "enrollment": {
+          "undergraduate": 12159,
+          "graduate": 2266,
+          "total": 14425
+        },
+        "byRace": {
+          "international": 198,
+          "hispanicLatino": 742,
+          "blackAfricanAmerican": 139,
+          "white": 9804,
+          "asian": 340,
+          "americanIndianAlaskaNative": 14,
+          "nativeHawaiianPacificIslander": 4,
+          "twoOrMoreRaces": 586,
+          "unknown": 332
+        }
+      },
+      "costs": {
+        "tuition": 16938,
+        "fees": 3058,
+        "roomAndBoard": 14654,
+        "totalCOA": 34650
+      },
+      "financialAid": {
+        "averageAidPackage": 31265,
+        "averageNeedBasedGrant": 21567,
+        "percentReceivingAid": 0.4332,
+        "percentNeedFullyMet": 0.3207
+      }
+    }
+  }
+}

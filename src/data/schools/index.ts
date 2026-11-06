@@ -118,6 +118,13 @@ import smuData from "./smu.json";
 import universityofalabamaData from "./universityofalabama.json";
 import auburnData from "./auburn.json";
 import clemsonData from "./clemson.json";
+import pepperdineData from "./pepperdine.json";
+import fordhamData from "./fordham.json";
+import marquetteData from "./marquette.json";
+import loyolamarymountData from "./loyolamarymount.json";
+import universityofdenverData from "./universityofdenver.json";
+import universityofvermontData from "./universityofvermont.json";
+import universityofnewhampshireData from "./universityofnewhampshire.json";
 
 export interface SearchableSchool {
   name: string;
@@ -255,6 +262,13 @@ export const allSchools: SchoolData[] = [
   universityofalabamaData as SchoolData,
   auburnData as SchoolData,
   clemsonData as SchoolData,
+  pepperdineData as SchoolData,
+  fordhamData as SchoolData,
+  marquetteData as SchoolData,
+  loyolamarymountData as SchoolData,
+  universityofdenverData as SchoolData,
+  universityofvermontData as SchoolData,
+  universityofnewhampshireData as SchoolData,
 ];
 
 export const SCHOOL_METADATA: Record<string, SchoolMetadata> = {
@@ -1030,6 +1044,48 @@ export const SCHOOL_METADATA: Record<string, SchoolMetadata> = {
     state: "SC",
     control: "public",
     color: "#F56600",
+  },
+  pepperdine: {
+    aliases: ["Pepperdine", "Pepperdine Waves"],
+    state: "CA",
+    control: "private",
+    color: "#00205C",
+  },
+  fordham: {
+    aliases: ["Fordham", "Fordham University"],
+    state: "NY",
+    control: "private",
+    color: "#7E072A",
+  },
+  marquette: {
+    aliases: ["Marquette", "MU", "Marquette Golden Eagles"],
+    state: "WI",
+    control: "private",
+    color: "#003366",
+  },
+  loyolamarymount: {
+    aliases: ["LMU", "Loyola Marymount", "Loyola Marymount University"],
+    state: "CA",
+    control: "private",
+    color: "#AB0C2F",
+  },
+  universityofdenver: {
+    aliases: ["DU", "Denver", "University of Denver"],
+    state: "CO",
+    control: "private",
+    color: "#BA0C2F",
+  },
+  universityofvermont: {
+    aliases: ["UVM", "Vermont"],
+    state: "VT",
+    control: "public",
+    color: "#154734",
+  },
+  universityofnewhampshire: {
+    aliases: ["UNH", "New Hampshire"],
+    state: "NH",
+    control: "public",
+    color: "#003591",
   },
 };
 
