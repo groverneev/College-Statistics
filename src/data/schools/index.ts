@@ -127,6 +127,7 @@ import universityofvermontData from "./universityofvermont.json";
 import universityofnewhampshireData from "./universityofnewhampshire.json";
 import universityofiowaData from "./universityofiowa.json";
 import universityofkansasData from "./universityofkansas.json";
+import skidmorecollegeData from "./skidmorecollege.json";
 
 export interface SearchableSchool {
   name: string;
@@ -273,6 +274,7 @@ export const allSchools: SchoolData[] = [
   universityofnewhampshireData as SchoolData,
   universityofiowaData as SchoolData,
   universityofkansasData as SchoolData,
+  skidmorecollegeData as SchoolData,
 ];
 
 export const SCHOOL_METADATA: Record<string, SchoolMetadata> = {
@@ -1102,6 +1104,12 @@ export const SCHOOL_METADATA: Record<string, SchoolMetadata> = {
     state: "KS",
     control: "public",
     color: "#0051BA",
+  },
+  skidmorecollege: {
+    aliases: ["Skidmore"],
+    state: "NY",
+    control: "private",
+    color: "#006A52",
   },
 };
 

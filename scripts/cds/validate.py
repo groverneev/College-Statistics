@@ -104,7 +104,8 @@ def check_values(year: str, data: dict, report: Report) -> None:
         if path in FRACTIONS:
             if value > 1:
                 report.error(year, f"{path}={value} is above 1; percentages must be fractions")
-        elif path not in DOLLARS and not float(value).is_integer():
+        # Reported score percentiles can be fractional even though individual scores are integers.
+        elif path not in DOLLARS and not path.startswith("testScores.") and not float(value).is_integer():
             report.error(year, f"{path}={value} should be a whole number")
 
     a = data.get("admissions", {})
