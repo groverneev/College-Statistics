@@ -131,6 +131,9 @@ import skidmorecollegeData from "./skidmorecollege.json";
 import universityofutahData from "./universityofutah.json";
 import universityoforegonData from "./universityoforegon.json";
 import universityoftennesseeData from "./universityoftennessee.json";
+import oregonstateData from "./oregonstate.json";
+import coloradocollegeData from "./coloradocollege.json";
+import iowastateData from "./iowastate.json";
 
 export interface SearchableSchool {
   name: string;
@@ -281,6 +284,9 @@ export const allSchools: SchoolData[] = [
   universityofutahData as SchoolData,
   universityoforegonData as SchoolData,
   universityoftennesseeData as SchoolData,
+  oregonstateData as SchoolData,
+  coloradocollegeData as SchoolData,
+  iowastateData as SchoolData,
 ];
 
 export const SCHOOL_METADATA: Record<string, SchoolMetadata> = {
@@ -1134,6 +1140,24 @@ export const SCHOOL_METADATA: Record<string, SchoolMetadata> = {
     state: "TN",
     control: "public",
     color: "#FF8200",
+  },
+  oregonstate: {
+    aliases: ["Oregon State", "OSU"],
+    state: "OR",
+    control: "public",
+    color: "#D73F09",
+  },
+  coloradocollege: {
+    aliases: ["Colorado College", "CC"],
+    state: "CO",
+    control: "private",
+    color: "#EAB337",
+  },
+  iowastate: {
+    aliases: ["Iowa State", "ISU"],
+    state: "IA",
+    control: "public",
+    color: "#C8102E",
   },
 };
 
