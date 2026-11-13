@@ -134,6 +134,9 @@ import universityoftennesseeData from "./universityoftennessee.json";
 import oregonstateData from "./oregonstate.json";
 import coloradocollegeData from "./coloradocollege.json";
 import iowastateData from "./iowastate.json";
+import drexelData from "./drexel.json";
+import ritData from "./rit.json";
+import universityofsouthcarolinaData from "./universityofsouthcarolina.json";
 
 export interface SearchableSchool {
   name: string;
@@ -287,6 +290,9 @@ export const allSchools: SchoolData[] = [
   oregonstateData as SchoolData,
   coloradocollegeData as SchoolData,
   iowastateData as SchoolData,
+  drexelData as SchoolData,
+  ritData as SchoolData,
+  universityofsouthcarolinaData as SchoolData,
 ];
 
 export const SCHOOL_METADATA: Record<string, SchoolMetadata> = {
@@ -1158,6 +1164,24 @@ export const SCHOOL_METADATA: Record<string, SchoolMetadata> = {
     state: "IA",
     control: "public",
     color: "#C8102E",
+  },
+  drexel: {
+    aliases: ["Drexel", "DU"],
+    state: "PA",
+    control: "private",
+    color: "#07294D",
+  },
+  rit: {
+    aliases: ["RIT", "Rochester Tech"],
+    state: "NY",
+    control: "private",
+    color: "#F76902",
+  },
+  universityofsouthcarolina: {
+    aliases: ["South Carolina", "USC Columbia", "UofSC", "Gamecocks"],
+    state: "SC",
+    control: "public",
+    color: "#73000A",
   },
 };
 
