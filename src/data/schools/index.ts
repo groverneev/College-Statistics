@@ -137,6 +137,12 @@ import iowastateData from "./iowastate.json";
 import drexelData from "./drexel.json";
 import ritData from "./rit.json";
 import universityofsouthcarolinaData from "./universityofsouthcarolina.json";
+import universityofmissouriData from "./universityofmissouri.json";
+import universityofarizonaData from "./universityofarizona.json";
+import coloradoboulderData from "./coloradoboulder.json";
+import kansasstateData from "./kansasstate.json";
+import universityofoklahomaData from "./universityofoklahoma.json";
+import universityofnebraskalincolnData from "./universityofnebraskalincoln.json";
 
 export interface SearchableSchool {
   name: string;
@@ -293,6 +299,12 @@ export const allSchools: SchoolData[] = [
   drexelData as SchoolData,
   ritData as SchoolData,
   universityofsouthcarolinaData as SchoolData,
+  universityofmissouriData as SchoolData,
+  universityofarizonaData as SchoolData,
+  coloradoboulderData as SchoolData,
+  kansasstateData as SchoolData,
+  universityofoklahomaData as SchoolData,
+  universityofnebraskalincolnData as SchoolData,
 ];
 
 export const SCHOOL_METADATA: Record<string, SchoolMetadata> = {
@@ -1182,6 +1194,42 @@ export const SCHOOL_METADATA: Record<string, SchoolMetadata> = {
     state: "SC",
     control: "public",
     color: "#73000A",
+  },
+  universityofmissouri: {
+    aliases: ["Mizzou", "Missouri", "MU", "University of Missouri"],
+    state: "MO",
+    control: "public",
+    color: "#FDB719",
+  },
+  universityofarizona: {
+    aliases: ["University of Arizona", "Arizona", "UArizona", "UA"],
+    state: "AZ",
+    control: "public",
+    color: "#AB0520",
+  },
+  coloradoboulder: {
+    aliases: ["CU Boulder", "Colorado", "Boulder", "University of Colorado"],
+    state: "CO",
+    control: "public",
+    color: "#CFB87C",
+  },
+  kansasstate: {
+    aliases: ["K-State", "KSU", "Kansas State"],
+    state: "KS",
+    control: "public",
+    color: "#512888",
+  },
+  universityofoklahoma: {
+    aliases: ["OU", "Oklahoma", "University of Oklahoma Norman"],
+    state: "OK",
+    control: "public",
+    color: "#841617",
+  },
+  universityofnebraskalincoln: {
+    aliases: ["UNL", "Nebraska", "Nebraska Lincoln", "University of Nebraska Lincoln"],
+    state: "NE",
+    control: "public",
+    color: "#D00000",
   },
 };
 
