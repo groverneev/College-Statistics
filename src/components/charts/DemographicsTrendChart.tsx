@@ -131,7 +131,7 @@ export default function DemographicsTrendChart({
                     borderRadius: "8px",
                   }}
                   formatter={(value) => [formatNumber(value as number), ""]}
-                  labelFormatter={(label) => `${label}-${parseInt(label as string) + 1}`}
+                  labelFormatter={(label) => `${label}-${parseInt(label as string, 10) + 1}`}
                 />
                 <Line
                   type="monotone"
@@ -195,7 +195,7 @@ export default function DemographicsTrendChart({
                     borderRadius: "8px",
                   }}
                   formatter={(value) => [`${(value as number).toFixed(1)}%`, ""]}
-                  labelFormatter={(label) => `${label}-${parseInt(label as string) + 1}`}
+                  labelFormatter={(label) => `${label}-${parseInt(label as string, 10) + 1}`}
                 />
                 <Line
                   type="monotone"

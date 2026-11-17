@@ -51,6 +51,7 @@ export default function SignInPrompt({
         <p className="text-sm text-gray-500 mb-6">{description}</p>
 
         <button
+          type="button"
           onClick={() => signInWithGoogle()}
           className="w-full min-h-11 flex items-center justify-center space-x-2 bg-white border border-gray-300 rounded-lg px-4 py-2.5 text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors shadow-sm"
         >
@@ -76,6 +77,7 @@ export default function SignInPrompt({
         </button>
 
         <button
+          type="button"
           onClick={onClose}
           className="mt-3 w-full min-h-11 text-sm text-gray-400 hover:text-gray-600 transition-colors"
         >

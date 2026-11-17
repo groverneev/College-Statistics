@@ -219,6 +219,7 @@ export default function SchoolPageClient({
           />
           {!noteExists && (
             <button
+              type="button"
               onClick={handleAddNote}
               className="flex min-h-11 items-center space-x-2 px-4 py-2 rounded-lg font-medium text-sm transition-colors bg-white/10 border border-white/30 text-white hover:bg-white/20"
             >

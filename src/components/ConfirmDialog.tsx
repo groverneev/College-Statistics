@@ -58,6 +58,7 @@ export default function ConfirmDialog({
         {description && <p className="text-sm text-gray-500 mb-6">{description}</p>}
 
         <button
+          type="button"
           onClick={onConfirm}
           className="w-full min-h-11 rounded-lg px-4 py-2.5 text-sm font-medium text-white transition-opacity hover:opacity-90"
           style={{ backgroundColor: confirmColor }}
@@ -66,6 +67,7 @@ export default function ConfirmDialog({
         </button>
 
         <button
+          type="button"
           onClick={onClose}
           className="mt-3 w-full min-h-11 text-sm text-gray-400 hover:text-gray-600 transition-colors"
         >

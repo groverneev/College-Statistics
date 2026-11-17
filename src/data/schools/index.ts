@@ -143,6 +143,8 @@ import coloradoboulderData from "./coloradoboulder.json";
 import kansasstateData from "./kansasstate.json";
 import universityofoklahomaData from "./universityofoklahoma.json";
 import universityofnebraskalincolnData from "./universityofnebraskalincoln.json";
+import arizonastateData from "./arizonastate.json";
+import universityofkentuckyData from "./universityofkentucky.json";
 
 export interface SearchableSchool {
   name: string;
@@ -305,6 +307,8 @@ export const allSchools: SchoolData[] = [
   kansasstateData as SchoolData,
   universityofoklahomaData as SchoolData,
   universityofnebraskalincolnData as SchoolData,
+  arizonastateData as SchoolData,
+  universityofkentuckyData as SchoolData,
 ];
 
 export const SCHOOL_METADATA: Record<string, SchoolMetadata> = {
@@ -1230,6 +1234,18 @@ export const SCHOOL_METADATA: Record<string, SchoolMetadata> = {
     state: "NE",
     control: "public",
     color: "#D00000",
+  },
+  arizonastate: {
+    aliases: ["ASU", "Arizona State"],
+    state: "AZ",
+    control: "public",
+    color: "#8C1D40",
+  },
+  universityofkentucky: {
+    aliases: ["UK", "Kentucky", "UKY"],
+    state: "KY",
+    control: "public",
+    color: "#0033A0",
   },
 };
 

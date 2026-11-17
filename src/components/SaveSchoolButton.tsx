@@ -68,6 +68,7 @@ export default function SaveSchoolButton({
     return (
       <div className="relative inline-block" ref={popoverRef}>
         <button
+          type="button"
           onClick={handleClick}
           className={`flex min-h-11 items-center space-x-2 px-4 py-2 rounded-lg font-medium text-sm transition-colors ${
             saved
@@ -99,6 +100,7 @@ export default function SaveSchoolButton({
             <div className="space-y-1">
               {CATEGORIES.map((cat) => (
                 <button
+                  type="button"
                   key={cat.value}
                   onClick={() => handleSave(cat.value)}
                   className={`w-full min-h-11 text-left px-3 py-2 rounded-lg text-sm font-medium transition-colors flex items-center justify-between ${
@@ -125,6 +127,7 @@ export default function SaveSchoolButton({
             {saved && (
               <div className="mt-2 pt-2 border-t border-gray-100">
                 <button
+                  type="button"
                   onClick={handleRemove}
                   className="w-full min-h-11 text-left px-3 py-2 rounded-lg text-sm text-red-500 hover:bg-red-50 transition-colors"
                 >
@@ -141,6 +144,7 @@ export default function SaveSchoolButton({
   return (
     <div className="relative" ref={popoverRef}>
       <button
+        type="button"
         onClick={handleClick}
         className={`flex h-11 w-11 items-center justify-center rounded-full transition-colors ${
           saved
@@ -172,6 +176,7 @@ export default function SaveSchoolButton({
           <div className="space-y-1">
             {CATEGORIES.map((cat) => (
               <button
+                type="button"
                 key={cat.value}
                 onClick={() => handleSave(cat.value)}
                 className={`w-full min-h-11 text-left px-3 py-2 rounded-lg text-sm font-medium transition-colors flex items-center justify-between ${
@@ -198,6 +203,7 @@ export default function SaveSchoolButton({
           {saved && (
             <div className="mt-2 pt-2 border-t border-gray-100">
               <button
+                type="button"
                 onClick={handleRemove}
                 className="w-full min-h-11 text-left px-3 py-2 rounded-lg text-sm text-red-500 hover:bg-red-50 transition-colors"
               >

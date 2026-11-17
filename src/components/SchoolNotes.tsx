@@ -113,6 +113,7 @@ export default function SchoolNotes({
         {!editing && note && (
           <div className="flex items-center gap-3">
             <button
+              type="button"
               onClick={startEdit}
               className="min-h-11 px-2 text-sm font-medium transition-colors hover:opacity-80"
               style={{ color: schoolColor }}
@@ -120,6 +121,7 @@ export default function SchoolNotes({
               Edit
             </button>
             <button
+              type="button"
               onClick={() => setConfirmingDelete(true)}
               className="min-h-11 px-2 text-sm font-medium transition-colors hover:opacity-80"
               style={{ color: schoolColor }}
@@ -148,12 +150,14 @@ export default function SchoolNotes({
             </span>
             <div className="flex items-center gap-2">
               <button
+                type="button"
                 onClick={cancel}
                 className="min-h-11 px-4 py-2 rounded-lg text-sm text-gray-600 border border-gray-200 hover:bg-gray-50 transition-colors"
               >
                 Cancel
               </button>
               <button
+                type="button"
                 onClick={save}
                 className="min-h-11 px-4 py-2 rounded-lg text-sm font-medium text-white transition-opacity hover:opacity-90"
                 style={{ backgroundColor: schoolColor }}
@@ -174,6 +178,7 @@ export default function SchoolNotes({
           </p>
           {isOverflowing && (
             <button
+              type="button"
               onClick={() => setCollapsed((c) => !c)}
               className="mt-1.5 min-h-11 text-sm font-medium transition-colors hover:opacity-80"
               style={{ color: schoolColor }}

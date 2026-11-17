@@ -86,7 +86,7 @@ export default function CostsTrendChart({ yearData, schoolColor }: CostsTrendCha
                 formatCurrency(value as number),
                 name === "tuition" ? "Tuition" : name === "fees" ? "Fees" : "Room & Board",
               ]}
-              labelFormatter={(label) => `${label}-${parseInt(label as string) + 1}`}
+              labelFormatter={(label) => `${label}-${parseInt(label as string, 10) + 1}`}
             />
             <Area
               type="monotone"

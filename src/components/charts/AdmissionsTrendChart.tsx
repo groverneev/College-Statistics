@@ -98,7 +98,7 @@ export default function AdmissionsTrendChart({ yearData, schoolColor }: Admissio
                     name === "applications" ? "Applications" : name,
                   ];
                 }}
-                labelFormatter={(label) => `${label}-${parseInt(label as string) + 1}`}
+                labelFormatter={(label) => `${label}-${parseInt(label as string, 10) + 1}`}
               />
               <Bar
                 yAxisId="left"
@@ -159,7 +159,7 @@ export default function AdmissionsTrendChart({ yearData, schoolColor }: Admissio
                     borderRadius: "8px",
                   }}
                   formatter={(value) => [formatNumber(value as number), ""]}
-                  labelFormatter={(label) => `${label}-${parseInt(label as string) + 1}`}
+                  labelFormatter={(label) => `${label}-${parseInt(label as string, 10) + 1}`}
                 />
                 <Bar
                   dataKey="edApplied"

@@ -6,7 +6,7 @@
     "useIgnoreFile": true
   },
   "files": {
-    "includes": ["**", "!src/data/**/*.json", "!src/data/csu/generated.ts", "!.claude"]
+    "includes": ["**", "!src/data/**/*.json", "!src/data/csu/generated.ts", "!.claude", "!.cache"]
   },
   "formatter": {
     "indentStyle": "space",

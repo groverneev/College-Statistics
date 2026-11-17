@@ -127,6 +127,7 @@ export default function ContactPage() {
                   Thanks for reaching out! I&apos;ll be in touch shortly.
                 </p>
                 <button
+                  type="button"
                   onClick={() => setStatus("idle")}
                   className="mt-6 text-sm text-gray-400 hover:text-gray-600 transition-colors"
                 >

@@ -102,7 +102,12 @@ export default function Header({ schools }: { schools: SearchableSchool[] }) {
                   const className = desktopLinkClass;
                   if (link.href === "/my-schools" && !signedIn) {
                     return (
-                      <button key={link.href} onClick={() => promptSignIn()} className={className}>
+                      <button
+                        type="button"
+                        key={link.href}
+                        onClick={() => promptSignIn()}
+                        className={className}
+                      >
                         {link.label}
                       </button>
                     );
@@ -119,6 +124,7 @@ export default function Header({ schools }: { schools: SearchableSchool[] }) {
                 {session ? (
                   <div className="relative" ref={userMenuRef}>
                     <button
+                      type="button"
                       onClick={() => setUserMenuOpen(!userMenuOpen)}
                       className="flex items-center space-x-2 rounded-full focus:outline-none"
                     >
@@ -145,6 +151,7 @@ export default function Header({ schools }: { schools: SearchableSchool[] }) {
                           <p className="text-xs text-gray-500 truncate">{session.user?.email}</p>
                         </div>
                         <button
+                          type="button"
                           onClick={() => signOut()}
                           className="w-full text-left px-4 py-2 text-sm text-gray-600 hover:bg-gray-50 hover:text-gray-900"
                         >
@@ -157,6 +164,7 @@ export default function Header({ schools }: { schools: SearchableSchool[] }) {
                   <div className="w-8 h-8" />
                 ) : (
                   <button
+                    type="button"
                     onClick={() => signInWithGoogle()}
                     className="flex items-center space-x-2 bg-white border border-gray-300 rounded-lg px-3 py-1.5 text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors shadow-sm"
                   >
@@ -184,6 +192,7 @@ export default function Header({ schools }: { schools: SearchableSchool[] }) {
               </div>
 
               <button
+                type="button"
                 className={`md:hidden min-h-11 min-w-11 p-2 rounded-md ${
                   isHome
                     ? "header-dark-link"
@@ -233,6 +242,7 @@ export default function Header({ schools }: { schools: SearchableSchool[] }) {
                   if (link.href === "/my-schools" && !signedIn) {
                     return (
                       <button
+                        type="button"
                         key={link.href}
                         onClick={() => {
                           setMobileMenuOpen(false);
@@ -275,6 +285,7 @@ export default function Header({ schools }: { schools: SearchableSchool[] }) {
                         </p>
                       </div>
                       <button
+                        type="button"
                         onClick={() => signOut()}
                         className={`min-h-11 text-sm font-medium ${
                           isHome ? "header-dark-link" : "text-gray-600 hover:text-gray-900"
@@ -285,6 +296,7 @@ export default function Header({ schools }: { schools: SearchableSchool[] }) {
                     </div>
                   ) : (
                     <button
+                      type="button"
                       onClick={() => signInWithGoogle()}
                       className={`flex min-h-11 items-center space-x-2 font-medium ${
                         isHome ? "header-dark-link" : "text-gray-600 hover:text-gray-900"

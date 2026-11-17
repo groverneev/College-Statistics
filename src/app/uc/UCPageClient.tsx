@@ -423,6 +423,7 @@ export default function UCPageClient({ dataByYear, availableYears }: Props) {
           <div className="flex w-full sm:w-auto rounded-md border border-gray-200 overflow-hidden">
             {(["explore", "compare"] as const).map((m) => (
               <button
+                type="button"
                 key={m}
                 onClick={() => setMode(m)}
                 className={`flex-1 sm:flex-none min-h-11 px-4 py-2 text-sm font-medium capitalize transition-colors ${

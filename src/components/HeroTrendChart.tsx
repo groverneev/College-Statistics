@@ -134,6 +134,7 @@ export default function HeroTrendChart({ series }: HeroTrendChartProps) {
             const last = s.points[s.points.length - 1];
             return (
               <button
+                type="button"
                 key={s.slug}
                 onMouseEnter={() => setActive(s.slug)}
                 onMouseLeave={() => setActive(null)}

@@ -153,7 +153,7 @@ export default function TestScoresTrendChart({ yearData, schoolColor }: TestScor
                 <Tooltip
                   contentStyle={tooltipStyle}
                   content={({ active, payload }) => {
-                    if (active && payload && payload.length) {
+                    if (active && payload?.length) {
                       const d = payload[0].payload;
                       return (
                         <div className="bg-white p-3 border border-gray-200 rounded-lg shadow-lg">
@@ -255,7 +255,7 @@ export default function TestScoresTrendChart({ yearData, schoolColor }: TestScor
                 <Tooltip
                   contentStyle={tooltipStyle}
                   content={({ active, payload }) => {
-                    if (active && payload && payload.length) {
+                    if (active && payload?.length) {
                       const d = payload[0].payload;
                       return (
                         <div className="bg-white p-3 border border-gray-200 rounded-lg shadow-lg">
